@@ -1,0 +1,7 @@
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\clsBuiness\bin\Debug\clsBuiness.dll
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\clsBuiness\bin\Debug\clsBuiness.pdb
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\clsBuiness\bin\Debug\SDZdb.dll
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\clsBuiness\bin\Debug\SDZdb.pdb
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\clsBuiness\obj\Debug\clsBuiness.csprojResolveAssemblyReference.cache
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\clsBuiness\obj\Debug\clsBuiness.dll
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\clsBuiness\obj\Debug\clsBuiness.pdb

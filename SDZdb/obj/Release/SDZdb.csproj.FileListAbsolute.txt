@@ -1,0 +1,9 @@
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\SDZdb\bin\Release\SDZdb.dll
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\SDZdb\bin\Release\SDZdb.pdb
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\SDZdb\obj\Release\SDZdb.dll
+D:\Devlop\身份证阅读器二次开发软件说明\ewm\SDZdb\obj\Release\SDZdb.pdb
+D:\Devlop\DL_pos\DL_pos\SDZdb\bin\Release\SDZdb.dll
+D:\Devlop\DL_pos\DL_pos\SDZdb\bin\Release\SDZdb.pdb
+D:\Devlop\DL_pos\DL_pos\SDZdb\obj\Release\SDZdb.csprojResolveAssemblyReference.cache
+D:\Devlop\DL_pos\DL_pos\SDZdb\obj\Release\SDZdb.dll
+D:\Devlop\DL_pos\DL_pos\SDZdb\obj\Release\SDZdb.pdb

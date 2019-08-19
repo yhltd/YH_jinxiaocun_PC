@@ -352,6 +352,7 @@
     <Content Include="Myadmin\PicUpload\init.js" />
     <Content Include="Myadmin\PicUpload\UpLoad_Class.asp" />
     <Content Include="NoAccess.html" />
+    <Content Include="ru_ku.aspx" />
     <Content Include="sample\index.html" />
     <Content Include="sample\jquery.js" />
     <Content Include="Scripts\Common.js" />
@@ -473,6 +474,13 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ru_ku.aspx.cs">
+      <DependentUpon>ru_ku.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ru_ku.aspx.designer.cs">
+      <DependentUpon>ru_ku.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewImage.aspx.cs">
       <DependentUpon>ViewImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

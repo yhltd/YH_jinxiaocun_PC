@@ -128,7 +128,10 @@
                         <li><a href="UserPassUp.asp" class="leftNav_li">商户管理</a></li>
                         <li><a href="UserPassUp.asp" class="leftNav_li">分润中心</a></li>
                          <li><a href="#" id="abc" class="leftNav_li" onclick="changeurl()">管理中心</a></li>
-                        <span id="show_hide_app" style="display: &#39; none&#39;"></span>
+                        
+                        <li><a href="ru_ku.aspx" id="r_k" class="leftNav_li" onclick="r_k_ff()">入库</a></li>
+
+                        <span id="show_hide_app" style="display: &#39; none &#39;"></span>
                     </ul>
                 </div>
 

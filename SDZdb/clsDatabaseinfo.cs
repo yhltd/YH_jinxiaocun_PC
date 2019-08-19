@@ -22,6 +22,24 @@ namespace SDZdb
         public string xiajilist { get; set; }
 
     }
+
+    public class ming_xi_info
+    {
+        public string Id { get; set; }
+        public string Openid { get; set; }
+        public string Cpid { get; set; }
+        public string Cpjg { get; set; }
+        public string Cplb { get; set; }
+        public string Cpname { get; set; }
+        public string Cpsj { get; set; }
+        public string Cpsl { get; set; }
+        public string Finduser { get; set; }
+        public string Gongsi { get; set; }
+        public string Mxtype { get; set; }
+        public string Orderid { get; set; }
+        public string Shijian { get; set; }
+    }
+
     public class clCard_info
     {
         public string Order_id { get; set; }//=FItemID

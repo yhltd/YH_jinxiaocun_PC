@@ -24,3 +24,12 @@ D:\Devlop\身份证阅读器二次开发软件说明\ewm\China_System.Common\bin
 D:\Devlop\身份证阅读器二次开发软件说明\ewm\China_System.Common\obj\Debug\China_System.Common.csprojResolveAssemblyReference.cache
 D:\Devlop\身份证阅读器二次开发软件说明\ewm\China_System.Common\obj\Debug\China_System.Common.dll
 D:\Devlop\身份证阅读器二次开发软件说明\ewm\China_System.Common\obj\Debug\China_System.Common.pdb
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\bin\Debug\China_System.Common.dll
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\bin\Debug\China_System.Common.pdb
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\bin\Debug\MySql.Data.dll
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\bin\Debug\MySql.Data.Entity.dll
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.dll
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.pdb
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.csprojResolveAssemblyReference.cache
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.dll
+D:\yhltd112\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.pdb

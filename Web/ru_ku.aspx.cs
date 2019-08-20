@@ -10,8 +10,9 @@ using System.Configuration;
 using Order.Common;
 using clsBuiness;
 
-
-
+using clsBuiness;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace Web
 {
@@ -21,7 +22,8 @@ namespace Web
         public string ConStrPIC;
         public string rev_servename;
 
-        public ru_ku() {
+        public ru_ku()
+        {
             if (HttpRuntime.Cache.Get("servename") != null)
             {
                 var objCache = HttpRuntime.Cache.Get("servename");
@@ -60,7 +62,8 @@ namespace Web
 
         }
 
-        public bool select_rk() { 
+        public bool select_rk()
+        {
             bool check = false;
             clsAllnew BusinessHelp = new clsAllnew();
 
@@ -68,22 +71,44 @@ namespace Web
             return check;
         }
 
-        public void insert_ruku(List<ming_xi_info> mxif) {
-            string sql = "";
-            foreach (ming_xi_info item in mxif)
-            {
-              
-                sql = "insert into Yh_JinXiaoCun_mingxi(id,openid,cpid,cpjg,cplb,cpname,cpsj,cpsl,finduser,gongsi,mxtype,orderid,shijian) values ('" + item.Id + "','" + item.Openid + "',N'" + item.Cpid + "','" + item.Cpjg + "','" + item.Cplb + "','" + item.Cpname + "','" + item.Cpsj + "','" + item.Cpsl + "','" + item.Finduser + "','" + item.Gongsi + "','" + item.Mxtype + "','" + item.Orderid + "','" + item.Shijian + "')";
-
-               
-
-            }
-            //int isrun = MySqlHelper.ExecuteSql(sql, ConStr);
+        public void insert_ruku(List<ming_xi_info> mxif)
+        {
+ 
+            clsAllnew buiness = new clsBuiness.clsAllnew();
+            buiness.buindess_addinput_ku(mxif);
+ 
+            //MySqlHelper.ExecuteSql(sql, ConStr);
         }
-        protected void ru_ku_click(object sender, EventArgs e) {
 
-            string username = Request.Form["sp_name"];
-            
+
+
+        public void xxx()
+        {
+            Response.Write("<script>alert('修改成功');</script>");
+        }
+
+        protected void bt_add_Click(object sender, EventArgs e)
+        {
+            List<ming_xi_info> list = new List<ming_xi_info>();
+            ming_xi_info mxi = new ming_xi_info();
+            mxi.Cpname = Context.Request["sp_name"].ToString();
+            mxi.sp_dm = Context.Request["sp_dm"].ToString();
+            mxi.Cplb = Context.Request["sp_cplb"].ToString();
+            mxi.Cpsj = Context.Request["sp_cpsj"].ToString();
+            mxi.Cpsl = Context.Request["sp_cpsl"].ToString();
+            list.Add(mxi);
+            insert_ruku(list);
+            //string sp_name = Context.Request["sp_name"].ToString();
+            //string sp_dm = Context.Request["sp_dm"].ToString();
+            //string sp_cplb = Context.Request["sp_cplb"].ToString();
+            //string sp_cpsj = Context.Request["sp_cpsj"].ToString();
+            //string sp_cpsl = Context.Request["sp_cpsl"].ToString();
+            //string sp_je = Context.Request["sp_name"].ToString();
+            //string sp_bz = Context.Request["sp_bz"].ToString();
+        }
+        public void print()
+        {
+
         }
 
     }

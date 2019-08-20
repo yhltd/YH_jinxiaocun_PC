@@ -4,6 +4,5 @@ D:\Devlop\身份证阅读器二次开发软件说明\ewm\SDZdb\obj\Debug\SDZdb.d
 D:\Devlop\身份证阅读器二次开发软件说明\ewm\SDZdb\obj\Debug\SDZdb.pdb
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.dll
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
-D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb

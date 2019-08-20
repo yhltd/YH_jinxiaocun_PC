@@ -38,6 +38,7 @@ namespace SDZdb
         public string Mxtype { get; set; }
         public string Orderid { get; set; }
         public string Shijian { get; set; }
+        public string sp_dm { get; set; }
     }
 
     public class clCard_info

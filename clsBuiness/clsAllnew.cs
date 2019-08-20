@@ -1335,5 +1335,54 @@ namespace clsBuiness
 
         }
 
+        public void buindess_addinput_ku(List<ming_xi_info> mxif)
+        {
+            try
+            {
+                string sql = "";
+                bool isworng = false;
+
+                foreach (ming_xi_info item in mxif)
+                {
+
+                    sql = "insert into Yh_JinXiaoCun_mingxi(id,openid,cpid,cpjg,cplb,cpname,cpsj,cpsl,finduser,gongsi,mxtype,orderid,shijian,sp_dm) values ('" + item.Id + "','" + item.Openid + "',N'" + item.Cpid + "','" + item.Cpjg + "','" + item.Cplb + "','" + item.Cpname + "','" + item.Cpsj + "','" + item.Cpsl + "','" + item.Finduser + "','" + item.Gongsi + "','" + item.Mxtype + "','" + item.Orderid + "','" + item.Shijian + "','" + item.sp_dm + "')";
+                    int isrun = MySqlHelper.ExecuteSql(sql, ConStr);
+                    if (isrun != 0)
+                    {
+                        if (MessageBox.Show("写入数据有误请是否继续下一条 , 继续 ?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        {
+
+                        }
+                        else
+                        {
+
+                            isworng = true;
+                            break;
+                        }
+
+                    }
+                }
+
+
+                if (isworng == true)
+                {
+
+                    //继续进行
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("写入数据有误请重新维护" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+
+
+                throw;
+            }
+        }
+
+
     }
 }

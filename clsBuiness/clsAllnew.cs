@@ -1351,7 +1351,7 @@ namespace clsBuiness
                     {
                         if (MessageBox.Show("写入数据有误请是否继续下一条 , 继续 ?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                         {
-
+//
                         }
                         else
                         {

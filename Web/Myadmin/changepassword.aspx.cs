@@ -23,7 +23,7 @@ namespace Web.Myadmin
         {
             clsAllnew BusinessHelp = new clsAllnew();
             userlist_Server = new List<clsuserinfo>();
-            string strSelect = "select * from emw_user where name='" + textBox6.Text.Trim() + "'" + " and mibao='" + textBox1.Text.Trim() + "'";
+            string strSelect = "select * from Yh_JinXiaoCun_user where name='" + textBox6.Text.Trim() + "' and mi_bao='" + textBox1.Text.Trim() + "'";
 
             userlist_Server = BusinessHelp.findUser(strSelect);
             if (userlist_Server.Count == 0)
@@ -32,9 +32,9 @@ namespace Web.Myadmin
                 return;
             }
             alterinfo1 = "";
-            userlist_Server = new List<clsuserinfo>();
+          //  userlist_Server = new List<clsuserinfo>();
             clsuserinfo item = new clsuserinfo();
-
+            
             if (textBox4.Text == "" || textBox5.Text == "" || textBox6.Text == "")
             {
 
@@ -50,10 +50,13 @@ namespace Web.Myadmin
                 return;
 
             }
-
+           
             item.name = textBox6.Text.Trim();
             item.password = textBox5.Text.Trim();
-
+            foreach (clsuserinfo item_11 in userlist_Server)
+            {
+                item.Order_id = item_11.Order_id;
+            }
 
             userlist_Server.Add(item);
 

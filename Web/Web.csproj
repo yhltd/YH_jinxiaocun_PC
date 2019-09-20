@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chu_ku.aspx" />
+    <Content Include="ck_san.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage\ErrorPage.aspx" />
     <Content Include="FileNotFound.html" />
@@ -80,6 +82,10 @@
     <Content Include="Images\style.css" />
     <Content Include="Images\uploadify.css" />
     <Content Include="ImportData.aspx" />
+    <Content Include="jin_xiao_cun.aspx" />
+    <Content Include="ji_chu_zi_liao_page.aspx" />
+    <Content Include="kh_ming_xi_selcet.aspx" />
+    <Content Include="ming_xi.aspx" />
     <Content Include="Myadmin\logout.aspx" />
     <Content Include="Myadmin\changepassword.aspx" />
     <Content Include="Myadmin\js\jquery-1.7.1.min.js" />
@@ -352,6 +358,7 @@
     <Content Include="Myadmin\PicUpload\init.js" />
     <Content Include="Myadmin\PicUpload\UpLoad_Class.asp" />
     <Content Include="NoAccess.html" />
+    <Content Include="qi_chu.aspx" />
     <Content Include="ru_ku.aspx" />
     <Content Include="sample\index.html" />
     <Content Include="sample\jquery.js" />
@@ -384,7 +391,9 @@
     <Content Include="Scripts\My97DatePicker\开发包\skin\whyGreen\bg.jpg" />
     <Content Include="Scripts\My97DatePicker\开发包\skin\whyGreen\datepicker.css" />
     <Content Include="Scripts\My97DatePicker\开发包\skin\whyGreen\img.gif" />
+    <Content Include="sp_rc_ku_select.aspx" />
     <Content Include="statelist.asp" />
+    <Content Include="test_jxc.aspx" />
     <Content Include="ViewImage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -400,6 +409,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cfgList.cs" />
+    <Compile Include="chu_ku.aspx.cs">
+      <DependentUpon>chu_ku.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="chu_ku.aspx.designer.cs">
+      <DependentUpon>chu_ku.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ck_san.aspx.cs">
+      <DependentUpon>ck_san.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ck_san.aspx.designer.cs">
+      <DependentUpon>ck_san.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -452,6 +475,34 @@
     <Compile Include="ImportData.aspx.designer.cs">
       <DependentUpon>ImportData.aspx</DependentUpon>
     </Compile>
+    <Compile Include="jin_xiao_cun.aspx.cs">
+      <DependentUpon>jin_xiao_cun.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jin_xiao_cun.aspx.designer.cs">
+      <DependentUpon>jin_xiao_cun.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ji_chu_zi_liao_page.aspx.cs">
+      <DependentUpon>ji_chu_zi_liao_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ji_chu_zi_liao_page.aspx.designer.cs">
+      <DependentUpon>ji_chu_zi_liao_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="kh_ming_xi_selcet.aspx.cs">
+      <DependentUpon>kh_ming_xi_selcet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="kh_ming_xi_selcet.aspx.designer.cs">
+      <DependentUpon>kh_ming_xi_selcet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ming_xi.aspx.cs">
+      <DependentUpon>ming_xi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ming_xi.aspx.designer.cs">
+      <DependentUpon>ming_xi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Myadmin\logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -474,12 +525,33 @@
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="qi_chu.aspx.cs">
+      <DependentUpon>qi_chu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="qi_chu.aspx.designer.cs">
+      <DependentUpon>qi_chu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ru_ku.aspx.cs">
       <DependentUpon>ru_ku.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ru_ku.aspx.designer.cs">
       <DependentUpon>ru_ku.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="sp_rc_ku_select.aspx.cs">
+      <DependentUpon>sp_rc_ku_select.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sp_rc_ku_select.aspx.designer.cs">
+      <DependentUpon>sp_rc_ku_select.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test_jxc.aspx.cs">
+      <DependentUpon>test_jxc.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test_jxc.aspx.designer.cs">
+      <DependentUpon>test_jxc.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewImage.aspx.cs">
       <DependentUpon>ViewImage.aspx</DependentUpon>
@@ -508,6 +580,20 @@
     </Compile>
     <Compile Include="yejiguanli.aspx.designer.cs">
       <DependentUpon>yejiguanli.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="yl_set_page.aspx.cs">
+      <DependentUpon>yl_set_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="yl_set_page.aspx.designer.cs">
+      <DependentUpon>yl_set_page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="zheng_li_page.aspx.cs">
+      <DependentUpon>zheng_li_page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="zheng_li_page.aspx.designer.cs">
+      <DependentUpon>zheng_li_page.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -539,6 +625,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="yejiguanli.aspx" />
+    <Content Include="yl_set_page.aspx" />
+    <Content Include="zheng_li_page.aspx" />
     <Content Include="副本 Web.config">
       <SubType>Designer</SubType>
     </Content>

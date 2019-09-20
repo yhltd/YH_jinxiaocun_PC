@@ -6,3 +6,4 @@ D:\yhltd112\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.dll
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb
+D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache

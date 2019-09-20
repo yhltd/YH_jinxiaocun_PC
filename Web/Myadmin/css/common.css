@@ -625,7 +625,7 @@ table.gridview_m {
     height: 40px;
     width: 100%;
     border-bottom: 1px solid #CCC;
-    background: #EEE;
+    background: #EEf3fa;
 }
 
 .header_login_info_con {
@@ -638,11 +638,11 @@ table.gridview_m {
     font-weight: normal;
     font-size: 16px;
     line-height: 40px;
-    color: #b40605;
+    color: black;
 }
 
 .header_nav:hover {
-    color: #b40605;
+    color: #95b8e7;
     font-weight: bold;
 }
 
@@ -657,7 +657,7 @@ table.gridview_m {
 .header_logo {
     height: 50px;
     width: 100%;
-    border-bottom: 2px solid #b40605;
+    border-bottom: 2px solid #95b8e7;
 }
 
 .header_logo_con {
@@ -672,7 +672,7 @@ table.gridview_m {
     font-weight: normal;
     font-size: 32px;
     line-height: 32px;
-    color: #b40605;
+    color: black;
 }
 
 /*.app_table {
@@ -732,6 +732,7 @@ table.gridview_m {
     line-height: 28px;
     color: #333;
     padding: 0 0 0 25px;
+    
 }
 
     .leftNav_li:hover {

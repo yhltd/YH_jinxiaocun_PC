@@ -28,7 +28,7 @@ body, a {
 .header_logo {
     height: 80px;
     width: 100%;
-    border-bottom: 2px solid #b40605;
+    border-bottom: 2px solid #95b8e7;
 }
 
 .header_logo_con {
@@ -49,7 +49,7 @@ body, a {
     height: 40px;
     width: 100%;
     border-bottom: 1px solid #CCC;
-    background: #EEE;
+    background: #eef3fa;
 }
 
 .header_login_info_con {
@@ -100,7 +100,7 @@ body, a {
 }
 
     .header_nav_a:hover {
-        color: #b40605;
+        color: #95b8e7;
         font-weight: bold;
         font-size: 20px;
     }
@@ -140,11 +140,12 @@ body, a {
     line-height: 28px;
     color: #333;
     padding: 0 0 0 25px;
+    background-color:#e0ecff;
 }
 
     .leftNav_li:hover {
-        color: #FFF;
-        background-color: #b40605;
+        color:black;
+        background-color: #ffe48d;
     }
 
 .leftNav_li_selected {

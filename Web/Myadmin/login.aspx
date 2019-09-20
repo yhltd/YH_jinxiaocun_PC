@@ -67,7 +67,7 @@
             <div class="lefts">
 
                 <p align="left" class="pname">
-                    <b><span style="font-size: 43pt">POS分销系统</span></b>
+                    <b><span style="font-size: 38pt">云和未来-进销存</span></b>
                 </p>
             </div>
 
@@ -101,6 +101,18 @@
 
                                     </td>
                                 </tr>
+
+                                 <tr>
+                                    <td height="60">
+                                        <p align="right" style="width: 81px">
+                                            <b><span style="font-size: 13pt">公 司 名：</span></b>
+                                        </p>
+                                    </td>
+                                    <td class="auto-style1">
+                                        <input name="gs_name" type="text" class="select_w150" id="gs_name" size="16" maxlength="100" value="" /></td>
+                                </tr>
+                                <tr>
+
                                 <tr>
                                     <td height="60">
                                         <p align="right" style="width: 81px">
@@ -110,6 +122,7 @@
                                     <td class="auto-style1">
                                         <input name="username" type="text" class="select_w150" id="username" size="16" maxlength="100" value="<%=user%>" /></td>
                                 </tr>
+
                                 <tr>
                                     <td height="60">
                                         <p align="right">

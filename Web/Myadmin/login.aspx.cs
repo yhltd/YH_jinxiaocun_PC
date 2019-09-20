@@ -64,7 +64,10 @@ namespace Web
         {
 
             string username = Request.Form["username"];
+            Session["username"] = username;
             string txtSAPPassword = Request.Form["password"];
+            string gs_name = Request.Form["gs_name"];
+            Session["gs_name"] = gs_name;
             string servename = DropDownList1.SelectedItem.Text;//这是获取选中的文本值
             string ab = DropDownList1.SelectedValue;//获取DropDownList中你设定的Value值
             Cache["servename"] = servename;
@@ -86,10 +89,10 @@ namespace Web
             user = username;
             pass = txtSAPPassword;
 
-            NewMethoduserFind(username.Trim(), txtSAPPassword.Trim());
+            NewMethoduserFind(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim());
 
         }
-        private bool NewMethoduserFind(string user, string pass)
+        private bool NewMethoduserFind(string user, string pass, string gs_name)
         {
 
             try
@@ -97,7 +100,7 @@ namespace Web
                 clsAllnew BusinessHelp = new clsAllnew();
 
                 List<clsuserinfo> userlist_Server = new List<clsuserinfo>();
-                string strSelect = "select * from _user where name='" + user + "'";
+                string strSelect = "select * from Yh_JinXiaoCun_user where name='" + user + "'";
 
                 userlist_Server = BusinessHelp.findUser(strSelect.Trim());
 
@@ -106,7 +109,7 @@ namespace Web
 
                     return false;
                 }
-                if (userlist_Server.Count > 0 && userlist_Server[0].password.ToString().Trim() == pass.Trim() && userlist_Server[0].name.ToString().Trim() == user.Trim())
+                if (userlist_Server.Count > 0 && userlist_Server[0].password.ToString().Trim() == pass.Trim() && userlist_Server[0].name.ToString().Trim() == user.Trim() && userlist_Server[0].gongsi.ToString().Trim() == gs_name.Trim())
                 {
                     string servename = DropDownList1.SelectedItem.Text;//这是获取选中的文本值
 
@@ -133,7 +136,10 @@ namespace Web
                     alterinfo1 = "登录失败，请确认用户名和密码或联系系统管理员，谢谢";
 
                     return false;
+                
                 }
+
+               
                 return false;
 
 

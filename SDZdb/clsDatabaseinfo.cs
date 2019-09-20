@@ -20,6 +20,7 @@ namespace SDZdb
         public string mibao { get; set; }
         public string Input_Date { get; set; }
         public string xiajilist { get; set; }
+        public string gongsi { get; set; }
 
     }
 
@@ -39,8 +40,145 @@ namespace SDZdb
         public string Orderid { get; set; }
         public string Shijian { get; set; }
         public string sp_dm { get; set; }
+        public string shou_h { get; set; }
+        public string zh_name { get; set; }
+        public string gs_name { get; set; } 
     }
 
+    public class qi_chu_info
+    {
+        public string Id { get; set; }
+        public string Openid { get; set; }
+        public string Cpid { get; set; }
+        public string Cpjg { get; set; }
+        public string Cpjj { get; set; }
+        public string Cplb { get; set; }
+        public string Cpname { get; set; }
+        public string Cpsj { get; set; }
+        public string Cpsl { get; set; }
+        public string Mxtype { get; set; }
+        public string Shijian { get; set; }
+        public string zh_name { get; set; }
+        public string gs_name { get; set; } 
+    }
+
+    public class ku_cun {
+        public string Name { get; set; }
+        public string Shou_jia { get; set; }
+        public string Jin_jia { get; set; }
+        public string Lei_bie { get; set; }
+        public string Mx_lb { get; set; }
+        public string Shu_liang { get; set; }
+        public string Jia_ge { get; set; }
+        public string Ri_qi { get; set; }
+        public string Gong_huo { get; set; }
+        public string Shou_huo { get; set; }
+        public string Dan_hao { get; set; }
+        public string Tou_xiang { get; set; }
+        public string Sp_dm { get; set; }
+        public string Bei_zhu { get; set; }
+        public string Id { get; set; }
+        public string zh_name { get; set; }
+        public string gs_name { get; set; } 
+    }
+
+    public class jxc_1_info
+    {
+        public string Sp_dm { get; set; }
+        public string Name { get; set; }
+        public string Lei_bie { get; set; }
+        public string Cpsj { get; set; }
+        public string Cpsl { get; set; }
+        public string Cpje { get; set; }
+    }
+
+    public class jxc_2_info
+    {
+
+        
+        public string Cpsj{ get; set; }
+        public string Cpsl { get; set; }
+        public string Cpje { get; set; }
+    }
+
+    public class jxc_3_info
+    {
+
+
+        public string Cpsj { get; set; }
+        public string Cpsl { get; set; }
+        public string Cpje { get; set; }
+    }
+
+    public class jxc_4_info
+    {
+        public string Cpjc { get; set; }
+        public string Cpsj { get; set; }
+        public string Cpje { get; set; }
+        public string Cptx { get; set; }
+    }
+
+    public class jxc_z_info
+    {
+        public string ID { get; set; }
+        public string Sp_dm { get; set; }
+        public string Name { get; set; }
+        public string Lei_bie { get; set; }
+        public string Cpsj_1 { get; set; }
+        public string Cpsl_1 { get; set; }
+        public string Cpsj_2 { get; set; }
+        public string Cpsl_2 { get; set; }
+        public string Cpsj_3 { get; set; }
+        public string Cpsl_3 { get; set; }
+        public string Cpje_1{ get; set; }
+        public string Cpje_2 { get; set; }
+        public string Cpje_3 { get; set; }
+        public string jc_jc { get; set; }
+        public string jc_dj { get; set; }
+        public string jc_je { get; set; }
+        public string yl_tx { get; set; }
+    }
+
+    public class rc_ku_info
+    {
+        public string Ri_qi { get; set; }
+        public string Gong_huo { get; set; }
+        public string Orderid { get; set; }
+        public string Sp_dm { get; set; }
+        public string Name { get; set; }
+        public string Lei_bie { get; set; }
+        public string Shou_jia { get; set; }
+        public string Shu_liang { get; set; }
+        public string Shou_jia_2 { get; set; }
+        public string Shu_liang_2{ get; set; }
+       
+    }
+
+    public class zl_and_jc_info
+    {
+        public string sp_dm { get; set; }
+        public string name { get; set; }
+        public string lei_bie { get; set; }
+        public string dan_wei { get; set; }
+        public string shou_huo { get; set; }
+        public string Gong_huo { get; set; }
+        public string id { get; set; }
+        public string zh_name { get; set; }
+        public string gs_name { get; set; } 
+
+    }
+
+    public class yong_liao_set_info
+    {
+        public string cp_name { get; set; }
+        public string yl_dm { get; set; }    
+        public string yl_name { get; set; }
+        public string yl_sl { get; set; }
+        public string id { get; set; }
+        public string yl_tx { get; set; }
+        public string zh_name { get; set; }
+        public string gs_name { get; set; } 
+    }
     public class clCard_info
     {
         public string Order_id { get; set; }//=FItemID

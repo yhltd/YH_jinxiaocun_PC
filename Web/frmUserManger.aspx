@@ -23,7 +23,7 @@
 
 
 </head>
-<body class="trbackcolor">
+<body class="trbackcolor" style="background-color:#ffffff">
     <div class="headerContainer">
         <div class="logo">
             <a href="http://www.yhocn.com" target="_blank">

@@ -25,7 +25,7 @@
         }
 
         tr:nth-child(2n) input {
-            background-color: #ffffff;
+            background-color: ;
         }
 
 

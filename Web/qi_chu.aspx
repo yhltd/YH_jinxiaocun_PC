@@ -68,9 +68,9 @@
                 row++;
             });
 
-            $("#row_del_htl" + i).click(function () {
-                $("#del_row" + i + "").remove();
-            });
+            //$("#row_del_htl" + i).click(function () {
+            //    $("#del_row" + i + "").remove();
+            //});
             function click(obj) {
                 alert($(obj).context.innerHTML);
 
@@ -81,12 +81,24 @@
 
         function pd_tj_ff() {
             var c = confirm('要提交吗?');
-            if (c)
+            if (c) {
+                $("#xx_hidden").val("tj_true");
                 $("#tj_pd_id").val("tj_true");
-            else
+            } else {
+
                 $("#tj_pd_id").val("tj_false");
+
+            }
+
         }
 
+        $(document).on("click", "#dj_row", function () {
+            //  alert("asd");
+            if (document.getElementById("xx_hidden").value == "tj_false") {
+                return false;
+            } else {
+            }
+        })
 
     </script>
     <style type="text/css">
@@ -204,6 +216,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
+               <input type="hidden" id="xx_hidden" value="tj_false" />
+
             <input type="hidden" id="row_i1" name="row_i" />
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <%--<asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="bt_select_Click">

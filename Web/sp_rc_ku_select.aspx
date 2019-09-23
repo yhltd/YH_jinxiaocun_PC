@@ -103,7 +103,7 @@ border-bottom: 1px dashed #a8a8a8;
     </style>
     <title></title>
 </head>
-<body onload="body_load()">
+<body>
     <form id="form1" runat="server">
         <div>
             <asp:DropDownList CssClass="rk_btu" ID="DropDownList1" runat="server" OnLoad="rc_ku_select_load">

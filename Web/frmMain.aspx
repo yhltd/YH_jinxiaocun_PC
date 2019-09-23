@@ -357,7 +357,7 @@
                     <ul>
                         <li><a id="Nav_begin" style="font-weight: bold; font-size: 18px;" class="leftNav_li" href="senior.asp">信息导航</a></li>
                         <li><span class="leftNav_block"></span></li>
-                        <li><a href="#" class="leftNav_li" onclick="add_li('yjgl_tz()','业绩管理','yejiguanli.aspx')">业绩管理</a></li>
+<%--                        <li><a href="#" class="leftNav_li" onclick="add_li('yjgl_tz()','业绩管理','yejiguanli.aspx')">业绩管理</a></li>--%>
                         <%--add_li('yjgl_tz','业绩管理','yejiguanli.aspx'     function add_li(ff, row, tz_lj) {)--%>
                         <%--       <li><a href="statelist.asp#Nav_profile_image" class="leftNav_li">团队管理</a></li>
                         <li><a href="UserPassUp.asp" class="leftNav_li">商户管理</a></li>

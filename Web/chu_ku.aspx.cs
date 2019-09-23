@@ -19,7 +19,7 @@ namespace Web
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Button1.Attributes.Add("onclick", "javascript:pd_tj_ff();");
+            this.dj_row.Attributes.Add("onclick", "javascript:pd_tj_ff();");
             //dd = select_kc(Session["username"].ToString(), Session["gs_name"].ToString());
             //rpt_list.DataSource = dd;//设定数据源
             //rpt_list.DataBind();//绑定数据

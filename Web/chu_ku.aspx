@@ -34,11 +34,50 @@
 
         function pd_tj_ff() {
             var c = confirm('要提交吗?');
-            if (c)
+            if (c) {
+                $("#xx_hidden").val("tj_true");
                 $("#tj_pd_id").val("tj_true");
-            else
+            }
+            else {
                 $("#tj_pd_id").val("tj_false");
+            }
         }
+
+        
+        $(document).on("click", "#dj_row", function () {
+            //  alert("asd");
+            if (document.getElementById("order_id").value == "") {
+                alert("请输入订单号");
+                return false;
+            } else {
+            }
+        })
+
+        $(document).on("click", "#dj_row", function () {
+            //  alert("asd");
+            if (document.getElementById("gh_f_id").value == "") {
+                alert("请输入供货方");
+                return false;
+            } else {
+            }
+        })
+
+        $(document).on("click", "#dj_row", function () {
+            //  alert("asd");
+            if (document.getElementById("sh_f_id").value == "") {
+                alert("请输入收货方");
+                return false;
+            } else {
+            }
+        })
+
+        $(document).on("click", "#dj_row", function () {
+            //  alert("asd");
+            if (document.getElementById("xx_hidden").value == "tj_false") {
+                return false;
+            } else {
+            }
+        })
     </script>
     <style type="text/css">
         #biao_ti {
@@ -152,7 +191,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-
+               <input type="hidden" id="xx_hidden" value="tj_false" />
 
             <%-- <div class="tj_kk">
                 <div class="dh_css">
@@ -237,17 +276,17 @@
         <div class="tj_kk" style="margin-top: 9%;">
 
             <div class="dh_css" style="margin-top: -2.1%; padding-left: 14.2%;">
-                <label>单号：</label><input type="text" style="width: 6%" class="input_tr" name="orderid" />
+                <label>单号：</label><input type="text" id="order_id" style="width: 6%" class="input_tr" name="orderid" />
             </div>
             <div class="ghf_css" style="margin-top: -2.1%; padding-left: 29%;">
-                <label>供货方：</label><input type="text" style="width: 10%" class="input_tr" name="gongsi" />
+                <label>供货方：</label><input type="text" id="gh_f_id" style="width: 10%" class="input_tr" name="gongsi" />
             </div>
             <div class="shf_css" style="margin-top: -2.1%; padding-left: 46%;">
-                <label>收货方：</label><input type="text" style="width: 14%" class="input_tr" name="shou_h" />
+                <label>收货方：</label><input type="text" id="sh_f_id" style="width: 14%" class="input_tr" name="shou_h" />
             </div>
             <div class="rq_css" style="margin-top: -2.2%; margin-left: 63%;">
                 <label>日期：</label><input type="date" style="width: 27%" class="input_tr" name="shijian" />
-                <asp:Button ID="Button1" class="input_tr_ck" OnClick="rk_pd" Text="出库" runat="server" />
+                <asp:Button ID="dj_row" class="input_tr_ck" OnClick="rk_pd"  Text="出库" runat="server" />
             </div>
 
         </div>

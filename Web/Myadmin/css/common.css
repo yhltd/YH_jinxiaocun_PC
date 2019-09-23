@@ -444,7 +444,7 @@ div {
 
 .trbackcolor {
     /*color: #3399CC;*/
-    background-color: #EBF2F9;
+    background-color: #ffffff;
 }
 
 .textfield {
@@ -494,6 +494,9 @@ div {
     CURSOR: hand;
     font-style: normal;
 }
+
+
+
 
 table.gridview_m {
     border-collapse: collapse;

@@ -46,11 +46,25 @@
 
         function pd_tj_ff() {
             var c = confirm('要提交吗?');
-            if (c)
+            if (c) {
+                $("#xx_hidden").val("tj_true");
                 $("#tj_pd_id").val("tj_true");
-            else
+            } else {
+
                 $("#tj_pd_id").val("tj_false");
+
+            }
+
         }
+
+        $(document).on("click", "#dj_row", function () {
+            //  alert("asd");
+            if (document.getElementById("xx_hidden").value == "tj_false") {
+                return false;
+            } else {
+            }
+        })
+
     </script>
     <style type="text/css">
         .input_tr {
@@ -178,6 +192,7 @@ border-bottom: 1px dashed #a8a8a8;
     <form id="form1" runat="server">
         <div style="margin-top: 5%;">
                <input type="hidden" id="tj_pd_id"  name="tj_pd" />
+                <input type="hidden" id="xx_hidden" value="tj_false" />
            <%-- <asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="yl_set_select_load">
             </asp:DropDownList>--%>
              <asp:Button ID="Button2" class="input_tr_sx" OnClick="yl_set_select_load" Text="刷新数据" runat="server" />

@@ -14,3 +14,12 @@ D:\Devlop\DL_pos\DL_pos\China_System.Common\obj\Release\China_System.Common.dll
 D:\Devlop\DL_pos\DL_pos\China_System.Common\obj\Release\China_System.Common.pdb
 D:\Devlop\DL_pos\DL_pos\China_System.Common\bin\Release\MySql.Data.dll
 D:\Devlop\DL_pos\DL_pos\China_System.Common\bin\Release\MySql.Data.Entity.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\bin\Release\China_System.Common.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\bin\Release\China_System.Common.pdb
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\bin\Release\MySql.Data.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\bin\Release\MySql.Data.Entity.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\bin\Release\SDZdb.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\bin\Release\SDZdb.pdb
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\obj\Release\China_System.Common.csprojResolveAssemblyReference.cache
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\obj\Release\China_System.Common.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\China_System.Common\obj\Release\China_System.Common.pdb

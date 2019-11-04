@@ -18,7 +18,10 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            if (Session["username"] == null && Session["gs_name"] == null)
+            {
+                Response.Write("<script>alert('请登录！');location='/Myadmin/Login.aspx';</script>");
+            }
         }
 
         protected void kh_mx_select_load(object sender, EventArgs e)

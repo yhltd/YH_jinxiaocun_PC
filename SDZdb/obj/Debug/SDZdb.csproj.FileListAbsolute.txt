@@ -7,3 +7,8 @@ D:\yhltd112\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb
 D:\yhltd112\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
+D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
+D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
+D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb

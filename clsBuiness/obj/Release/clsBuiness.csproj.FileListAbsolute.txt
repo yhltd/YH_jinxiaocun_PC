@@ -19,3 +19,15 @@ D:\Devlop\DL_pos\DL_pos\clsBuiness\obj\Release\clsBuiness.pdb
 D:\Devlop\DL_pos\DL_pos\clsBuiness\bin\Release\MySql.Data.dll
 D:\Devlop\DL_pos\DL_pos\clsBuiness\bin\Release\MySql.Data.Entity.dll
 D:\Devlop\DL_pos\DL_pos\clsBuiness\bin\Release\log4net.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\clsBuiness.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\clsBuiness.pdb
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\China_System.Common.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\log4net.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\MySql.Data.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\MySql.Data.Entity.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\SDZdb.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\China_System.Common.pdb
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\bin\Release\SDZdb.pdb
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\obj\Release\clsBuiness.csprojResolveAssemblyReference.cache
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\obj\Release\clsBuiness.dll
+D:\yho110\进销存\YH_jinxiaocun_PC\clsBuiness\obj\Release\clsBuiness.pdb

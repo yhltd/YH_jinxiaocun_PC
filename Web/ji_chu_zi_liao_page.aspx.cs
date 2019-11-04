@@ -20,17 +20,28 @@ namespace Web
         private int row_count;
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.dj_row.Attributes.Add("onclick", "javascript:pd_tj_ff();");
-           
-            if (Convert.ToInt32(Session["dq_ye_jczl"]) == 0)
+            if (Session["username"] == null && Session["gs_name"] == null)
             {
-                Session["dq_ye_jczl"] = 0;
+                Response.Write("<script>alert('请登录！');location='/Myadmin/Login.aspx';</script>");
+            }
+            else 
+            {
+                this.dj_row.Attributes.Add("onclick", "javascript:pd_tj_ff();");
+
+                if (Convert.ToInt32(Session["dq_ye_jczl"]) == 0)
+                {
+                    Session["dq_ye_jczl"] = 0;
+                }
+
             }
         }
         protected void jczl_select_load(object sender, EventArgs e)
         {
-            List<zl_and_jc_info> list = jczl_select(Session["username"].ToString(), Session["gs_name"].ToString());
-            Session["jczj_select"] = list;
+            
+                List<zl_and_jc_info> list = jczl_select(Session["username"].ToString(), Session["gs_name"].ToString());
+                Session["jczj_select"] = list;
+            
+            
         }
 
         public List<zl_and_jc_info> jczl_select(string zh_name, string gs_name)
@@ -60,6 +71,7 @@ namespace Web
                     if (Convert.ToInt32(name) == i)
                     {
                         del_jczl_ff(list[i].id);
+                        jczl_select_load(sender,e);
                         Response.Write(" <script>alert('删除成功'); location='ji_chu_zi_liao_page.aspx';</script>");
                     }
                 }
@@ -112,7 +124,7 @@ namespace Web
                     update_jczl(Context.Request["sp_dm_cs" + i].ToString(), Context.Request["name_cs" + i].ToString(), Context.Request["lei_bie_cs" + i].ToString(), Context.Request["dan_wei_cs" + i].ToString(), Context.Request["shou_huo_cs" + i].ToString(), Context.Request["gong_huo_cs" + i].ToString(), Context.Request["id_cs" + i].ToString());
 
                 }
-
+                jczl_select_load(sender, e);
                 Response.Write(" <script>alert('提交成功'); location='ji_chu_zi_liao_page.aspx';</script>");
 
             }

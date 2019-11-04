@@ -4,9 +4,9 @@
 <head id="Head1" runat="server">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
     <link href="inc/logincss.css" rel="stylesheet" type="text/css" />
     <link href="../../Myadmin/css/common.css" rel="stylesheet" type="text/css" />
+
     <script language="JavaScript">
         function CheckLogin() {
             if (document.MyForm.username.value == "") {
@@ -39,9 +39,9 @@
         }
 
         .select {
-            position: absolute;
-            width: 297px;
-            height: 58px;
+            /*position: absolute;*/
+            width: 100%;
+            height: 100%;
             padding: 0 24px 0 8px;
             color: #fff;
             font: 12px/21px arial,sans-serif;
@@ -68,7 +68,7 @@
             <div class="lefts">
 
                 <p align="left" class="pname">
-                    <b><span style="font-size: 43pt">证件录入系统</span></b>
+                    <b><span style="font-size: 38pt">云和未来-进销存</span></b>
                 </p>
             </div>
 
@@ -102,6 +102,18 @@
 
                                     </td>
                                 </tr>
+
+                                 <tr>
+                                    <td height="60">
+                                        <p align="right" style="width: 81px">
+                                            <b><span style="font-size: 13pt">公 司 名：</span></b>
+                                        </p>
+                                    </td>
+                                    <td class="auto-style1">
+                                        <input name="gs_name" type="text" class="select_w150" id="gs_name" size="16" maxlength="100" value="" /></td>
+                                </tr>
+                                <tr>
+
                                 <tr>
                                     <td height="60">
                                         <p align="right" style="width: 81px">
@@ -111,6 +123,7 @@
                                     <td class="auto-style1">
                                         <input name="username" type="text" class="select_w150" id="username" size="16" maxlength="100" value="<%=user%>" /></td>
                                 </tr>
+
                                 <tr>
                                     <td height="60">
                                         <p align="right">
@@ -128,7 +141,7 @@
                                         <%--<asp:Button  name="image" runat="server" type="submit" class="LoginSub" OnClientClick="CheckLogin()" onclick="CheckLogin()" value=" 登 录 " />--%>
                                         <asp:Button ID="image" runat="server" Text=" 登 录 " class="LoginSub" OnClick="HtmlBtn_Click" OnClientClick="CheckLogin()" />
 
-                                        <asp:Button ID="btcreate" runat="server" Text=" 创建账户 " class="LoginSub" OnClick="HtmlBtcreate_Click" Visible="False" />
+                                        <asp:Button ID="btcreate" runat="server" Text=" 找回密码 " class="LoginSub" OnClick="Btchangepas_Click" Visible="true" />
                                         <br>
                                         <br>
 
@@ -142,8 +155,9 @@
                                     <br>
                                     <td height="49"></td>
                                     <td class="auto-style1">
-                                        <asp:Button ID="Btchangepas" runat="server" Text=" 改密 " class="LoginSub" OnClick="Btchangepas_Click" Visible="True" />
+                                      <%--  <asp:Button ID="Btchangepas" runat="server" Text=" 改密 " class="LoginSub" OnClick="Btchangepas_Click" Visible="True" />
                                         <asp:Button ID="frmmain" runat="server" Text=" 主页面 " class="LoginSub" OnClick="Btmain_Click" Visible="False" />
+                                        --%>
                                         <br>
                                         <span style="color: #FF0000;"></span>
 

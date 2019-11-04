@@ -7,3 +7,12 @@ D:\Devlop\身份证阅读器二次开发软件说明\ewm\frmcstest\obj\Debug\frm
 D:\Devlop\身份证阅读器二次开发软件说明\ewm\frmcstest\obj\Debug\frmcstest.csproj.GenerateResource.Cache
 D:\Devlop\身份证阅读器二次开发软件说明\ewm\frmcstest\obj\Debug\frmcstest.exe
 D:\Devlop\身份证阅读器二次开发软件说明\ewm\frmcstest\obj\Debug\frmcstest.pdb
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe.config
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.pdb
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csprojResolveAssemblyReference.cache
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Form1.resources
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Properties.Resources.resources
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csproj.GenerateResource.Cache
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.exe
+D:\yho110\进销存\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.pdb

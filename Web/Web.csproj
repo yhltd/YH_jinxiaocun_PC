@@ -633,6 +633,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
+    <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />
     <None Include="副本 Web.Debug.config">
       <DependentUpon>副本 Web.config</DependentUpon>
     </None>

@@ -41,10 +41,10 @@
       <publishTime>12/10/2019 14:43:59</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>12/18/2019 10:52:41</publishTime>
+      <publishTime>12/18/2019 11:24:42</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>12/18/2019 10:52:41</publishTime>
+      <publishTime>12/18/2019 11:24:42</publishTime>
     </File>
     <File Include="bin/zxing.dll">
       <publishTime>09/20/2019 13:28:56</publishTime>
@@ -1892,7 +1892,7 @@
       <publishTime>09/20/2019 13:28:53</publishTime>
     </File>
     <File Include="Myadmin/login.aspx">
-      <publishTime>12/10/2019 14:43:59</publishTime>
+      <publishTime>12/18/2019 11:22:53</publishTime>
     </File>
     <File Include="Myadmin/logout.aspx">
       <publishTime>09/20/2019 13:28:53</publishTime>
@@ -2357,7 +2357,7 @@
       <publishTime>09/20/2019 13:28:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/18/2019 10:53:17</publishTime>
+      <publishTime>12/18/2019 11:24:56</publishTime>
     </File>
     <File Include="WebForm1.aspx">
       <publishTime>09/20/2019 13:28:53</publishTime>

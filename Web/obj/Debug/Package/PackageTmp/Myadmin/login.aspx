@@ -62,7 +62,7 @@
     <div class="mains">
         <div class="inners">
             <p>
-                <span style="font-size: 12pt"  align="left" class="font_gray">建议使用IE浏览器</span>
+                <span style="font-size: 12pt"  align="left" class="font_gray"><%=version%></span>
 
             </p>
             <div class="lefts">

@@ -19,9 +19,11 @@ namespace Web
         int logis = 0;
         public string user;
         public string pass;
-
+        public string version;
         protected void Page_Load(object sender, EventArgs e)
         {
+            version = "建议使用IE浏览器-当前系统版本: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+          
 
             if (!Page.IsPostBack)
             {

@@ -62,9 +62,10 @@ namespace Web
 
         protected void HtmlBtn_Click(object sender, EventArgs e)
         {
-
+            Session.Timeout = 10000;
             string username = Request.Form["username"];
             Session["username"] = username;
+            
             string txtSAPPassword = Request.Form["password"];
             string gs_name = Request.Form["gs_name"];
             Session["gs_name"] = gs_name;

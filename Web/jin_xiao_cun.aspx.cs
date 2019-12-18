@@ -19,6 +19,7 @@ namespace Web
     public partial class jin_xiao_cun : System.Web.UI.Page
     {
         private int count_row;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["username"] == null && Session["gs_name"] == null) 
@@ -27,6 +28,7 @@ namespace Web
             }
             
         }
+
         protected void toExcel(object sender, EventArgs e)
         {
             List<jxc_z_info> gtlist = Session["jxc_z_select"] as List<jxc_z_info> ;
@@ -60,6 +62,7 @@ namespace Web
                 Response.Write(" <script>alert('保存失败'); location='ming_xi.aspx';</script>");
             }
         }
+
         protected void jxc_load(object sender, EventArgs e)
         {
             
@@ -69,7 +72,6 @@ namespace Web
                     List<jxc_z_info> list = jxc_z_select(Session["username"].ToString(), Session["gs_name"].ToString());
                     for (int i = 0; i < list.Count; i++)
                     {
-
 
                         if (list[i].Cpsl_3 == "")
                         {
@@ -87,8 +89,6 @@ namespace Web
                         {
                             list[i].jc_jc = (Convert.ToInt32(list[i].Cpsl_3) + Convert.ToInt32(list[i].Cpsl_1) - Convert.ToInt32(list[i].Cpsl_2)).ToString();
                         }
-
-
 
                         if (Convert.ToInt32(list[i].jc_jc) >= 0)
                         {
@@ -113,8 +113,6 @@ namespace Web
                         {
                             list[i].jc_je = "0";
                         }
-
-
 
                         if (Convert.ToInt32(list[i].jc_jc) > 0)
                         {
@@ -209,6 +207,7 @@ namespace Web
             catch (Exception ex) { throw; }
             
         }
+
         public List<jxc_4_info> jxc_4_select()
         {
             clsAllnew buiness = new clsBuiness.clsAllnew();

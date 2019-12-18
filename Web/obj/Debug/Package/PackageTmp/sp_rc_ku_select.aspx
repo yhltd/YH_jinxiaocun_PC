@@ -112,12 +112,15 @@ border-bottom: 1px dashed #a8a8a8;
                 <select id="select_xl">
                     <%           
                         List<rc_ku_info> rc_ku_xl_select = Session["rc_ku_xl_select"] as List<rc_ku_info>;
+                        if (rc_ku_xl_select != null)
+                        {
                         for (int i = 0; i < rc_ku_xl_select.Count; i++)
                         {                          
                     %>
                     <option><%=rc_ku_xl_select[i].Name %></option>
                     <%
                         }
+                       
                     %>
                 </select>
                 <input name="kui_lei" class="rk_btu" id="kui_lei" value="<%=rc_ku_xl_select[0].Name %>" type="text" />
@@ -142,7 +145,7 @@ border-bottom: 1px dashed #a8a8a8;
                 </tr>
 
                 <%
-               
+                        }
                     List<rc_ku_info> rc_ku_r_select = Session["selectSp"] as List<rc_ku_info>;
 
 

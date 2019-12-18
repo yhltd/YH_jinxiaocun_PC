@@ -33,17 +33,18 @@
         </div>
         <div class="header_logo">
             <div class="header_logo_con" style="margin-left: 2%;">
-                <img src="Myadmin/images/tm_logo.png" style="float: left;margin-top: -1%;height: 67px;" />
+                <img src="Myadmin/images/tm_logo.png" style="float: left; margin-top: -1%; height: 67px;" />
                 <h1 class="h1_logo">云合进销存</h1>
             </div>
         </div>
         <div class="header_login_info">
             <div class="header_login_info_con">
-                 
+
                 <span class="fl welcome_info">你好         ！　　你的账号：<%=Session["username"] %></span>
                 <%--<span class="fr"><a class="header_nav" href="#"></a><a class="header_nav" href="UserPassUp.asp">修改密码</a>　　　<a class="header_nav" href="/Myadmin/logout.aspx">退出登录</a></span>--%>
                 <span id="myspan" runat="server" type="hidden" class="fr"><a class="header_nav" href="#"></a><a class="header_nav" href="/Myadmin/changepassword.aspx">修改密码</a>　　　<a href="#" onclick="top.location.href='/Myadmin/login.aspx'">退出登录</a></span>
-                <span id="myspan2" runat="server" type="hidden" class="fr"><a class="header_nav_a" href="#"></a><a class="header_nav_a" href="#" onclick="top.location.href='frmUserManger.aspx'">用户管理</a> <a class="header_nav_a" onclick="top.location.href='/Myadmin/changepassword.aspx'">修改密码</a>　　　<a href="#" class="header_nav_a" onclick="top.location.href='/Myadmin/login.aspx'">退出登录</a> &nbsp<a class="header_nav_a" href="#" onclick="top.location.href='frmMain.aspx'">主页</a></span>
+                <%--<span id="myspan2" runat="server" type="hidden" class="fr"><a class="header_nav_a" href="#"></a><a class="header_nav_a" href="#" onclick="top.location.href='frmUserManger.aspx'">用户管理</a> <a class="header_nav_a" onclick="top.location.href='/Myadmin/changepassword.aspx'">修改密码</a>　　　<a href="#" class="header_nav_a" onclick="top.location.href='/Myadmin/login.aspx'">退出登录</a> &nbsp<a class="header_nav_a" href="#" onclick="top.location.href='frmMain.aspx'">主页</a></span>--%>
+                <span id="myspan2" runat="server" type="hidden" class="fr"><a class="header_nav_a" href="#"></a><a class="header_nav_a" href="#" onclick="top.location.href='Myadmin/HouTai/YongHuGuanli.aspx'">用户管理</a> <a class="header_nav_a" onclick="top.location.href='/Myadmin/changepassword.aspx'">修改密码</a>　　　<a href="#" class="header_nav_a" onclick="top.location.href='/Myadmin/login.aspx'">退出登录</a> &nbsp<a class="header_nav_a" href="#" onclick="top.location.href='frmMain.aspx'">主页</a></span>
 
             </div>
         </div>

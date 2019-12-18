@@ -265,4 +265,19 @@ namespace SDZdb
         public string mark5 { get; set; }
      
     }
+
+    public class userTable
+    {
+        public string _id { get; set; }
+        public string AdminIS { get; set; }
+        public string Btype { get; set; }
+        public string Createdate { get; set; }
+        public string _openid { get; set; }
+        public string gongsi { get; set; }
+        public string jigoudaima { get; set; }
+        public string name { get; set; }
+        public string password { get; set; }
+        public string mi_bao { get; set; }
+    }
+
 }

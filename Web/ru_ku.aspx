@@ -43,7 +43,7 @@
                                         if (jichu[ji].id != "") 
                                         {
                                         %>
-                                            +"<option>"+<%=jichu[ji].sp_dm %>+"</option>"
+                                            +"<option value ='<%=jichu[ji].sp_dm %>'>" +<%=jichu[ji].sp_dm %> +"</option>"
                                         <%
                                         }
                                     }
@@ -555,7 +555,7 @@
                                         if (jichu[ji].id != "") 
                                         {
                                         %>
-                                            <option><%=jichu[ji].sp_dm %></option>
+                                            <option value="<%=jichu[ji].sp_dm %>"><%=jichu[ji].sp_dm %></option>
                                         <%
                                         }
                                     }
@@ -606,7 +606,7 @@
                                         if (jichuc[ji].id != "") 
                                         {
                                         %>
-                                            <option><%=jichuc[ji].Gong_huo %></option>
+                                            <option value="<%=jichuc[ji].Gong_huo %>"><%=jichuc[ji].Gong_huo %></option>
                                         <%
                                         }
                                     }
@@ -629,7 +629,7 @@
                                         if (jichub[ji].id != "") 
                                         {
                                         %>
-                                            <option><%=jichub[ji].shou_huo %></option>
+                                            <option value="<%=jichub[ji].shou_huo %>"><%=jichub[ji].shou_huo %></option>
                                         <%
                                         }
                                     }

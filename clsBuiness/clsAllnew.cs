@@ -290,17 +290,21 @@ namespace clsBuiness
 
                 //if (reader.GetValue(11) != null && Convert.ToString(reader.GetValue(11)) != "")
                 //    item.xiajilist = reader.GetString(11);
-                if (reader.GetValue(1) != null && Convert.ToString(reader.GetValue(1)) != "")
+                if (reader.GetValue(7) != null && Convert.ToString(reader.GetValue(7)) != "")
                     item.name = reader.GetString(7);
-                if (reader.GetValue(2) != null && Convert.ToString(reader.GetValue(2)) != "")
+                if (reader.GetValue(8) != null && Convert.ToString(reader.GetValue(8)) != "")
                     item.password = reader.GetString(8);
-                if (reader.GetValue(3) != null && Convert.ToString(reader.GetValue(2)) != "")
+                if (reader.GetValue(9) != null && Convert.ToString(reader.GetValue(9)) != "")
                     item.mibao = reader.GetString(9);
-                if (reader.GetValue(4) != null && Convert.ToString(reader.GetValue(2)) != "")
+                if (reader.GetValue(0) != null && Convert.ToString(reader.GetValue(0)) != "")
                     item.Order_id = reader.GetString(0);
-                ClaimReport_Server.Add(item);
-                if (reader.GetValue(5) != null && Convert.ToString(reader.GetValue(2)) != "")
+                //ClaimReport_Server.Add(item);
+                if (reader.GetValue(5) != null && Convert.ToString(reader.GetValue(5)) != "")
                     item.gongsi = reader.GetString(5);
+
+                if (reader.GetValue(1) != null && Convert.ToString(reader.GetValue(1)) != "")
+                    item.AdminIS = reader.GetString(1);
+
                 ClaimReport_Server.Add(item);
                 //这里做数据处理....
             }
@@ -344,7 +348,7 @@ namespace clsBuiness
         }
         public List<clsuserinfo> ReadUserlistfromServer()
         {
-            string conditions = "select * from _user";//成功
+            string conditions = "select * from yh_jinxiaocun_user";//成功
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(conditions, ConStr);
             List<clsuserinfo> ClaimReport_Server = new List<clsuserinfo>();
 
@@ -1429,15 +1433,42 @@ namespace clsBuiness
             while (reader.Read())
             {
                 qi_chu_info qci = new qi_chu_info();
-                qci.Cpid = reader.GetString(2);
-                qci.Cpjg = reader.GetString(3);
-                qci.Cpjj = reader.GetString(4);
-                qci.Cplb = reader.GetString(5);
-                qci.Cpname = reader.GetString(6);
-                qci.Cpsj = reader.GetString(7);
-                qci.Cpsl = reader.GetString(8);
-                qci.Mxtype = reader.GetString(9);
-                qci.Shijian = reader.GetString(10);
+                if (reader.GetValue(2) != null && reader.GetValue(2).ToString() != "")
+                {
+                    qci.Cpid = reader.GetString(2);
+                }
+                if (reader.GetValue(3) != null && reader.GetValue(3).ToString() != "")
+                {
+                    qci.Cpjg = reader.GetString(3);
+                }
+                if (reader.GetValue(4) != null && reader.GetValue(4).ToString() != "")
+                {
+                    qci.Cpjj = reader.GetString(4);
+                }
+                if (reader.GetValue(5) != null && reader.GetValue(5).ToString() != "")
+                {
+                    qci.Cplb = reader.GetString(5);
+                }
+                if (reader.GetValue(6) != null && reader.GetValue(6).ToString() != "")
+                {
+                    qci.Cpname = reader.GetString(6);
+                }
+                if (reader.GetValue(7) != null && reader.GetValue(7).ToString() != "")
+                {
+                    qci.Cpsj = reader.GetString(7);
+                }
+                if (reader.GetValue(8) != null && reader.GetValue(8).ToString() != "")
+                {
+                    qci.Cpsl = reader.GetString(8);
+                }
+                if (reader.GetValue(9) != null && reader.GetValue(9).ToString() != "")
+                {
+                    qci.Mxtype = reader.GetString(9);
+                }
+                if (reader.GetValue(10) != null && reader.GetValue(10).ToString() != "")
+                {
+                    qci.Shijian = reader.GetString(10);
+                }
                 list.Add(qci);
             }
             reader.Close();
@@ -1530,7 +1561,10 @@ namespace clsBuiness
             while (reader.Read())
             {
                 qi_chu_info mxi = new qi_chu_info();
-                mxi.Cpid = reader.GetString(0);
+                if (reader.GetValue(0) != null && reader.GetValue(0).ToString() != "")
+                {
+                    mxi.Cpid = reader.GetString(0);
+                }
                 list.Add(mxi);
             }
             reader.Close();
@@ -1575,9 +1609,9 @@ namespace clsBuiness
 
             }
         }
-        public List<ku_cun> seletrkc(string zh_name, string gs_name, string spdm) 
+        public List<ku_cun> seletrkc(string zh_name, string gs_name, string spdm)
         {
-            string strSelect = "select * from Yh_JinXiaoCun_kucun where zh_name = '" + zh_name + "' and gs_name = '" + gs_name + "' and sp_dm='"+spdm+"'";
+            string strSelect = "select * from Yh_JinXiaoCun_kucun where zh_name = '" + zh_name + "' and gs_name = '" + gs_name + "' and sp_dm='" + spdm + "'";
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(strSelect, ConStr);
             List<ku_cun> list = new List<ku_cun>();
             while (reader.Read())
@@ -1602,11 +1636,26 @@ namespace clsBuiness
             while (reader.Read())
             {
                 ku_cun kc = new ku_cun();
-                kc.Name = reader.GetString(0);
-                kc.Shu_liang = reader.GetString(5);
-                kc.Id = reader.GetString(14);
-                kc.Sp_dm = reader.GetString(12);
-                kc.Lei_bie = reader.GetString(reader.GetOrdinal("Lei_bie"));
+                if (reader.GetValue(0) != null && reader.GetValue(0).ToString() != "")
+                {
+                    kc.Name = reader.GetString(0);
+                }
+                if (reader.GetValue(5) != null && reader.GetValue(5).ToString() != "")
+                {
+                    kc.Shu_liang = reader.GetString(5);
+                }
+                if (reader.GetValue(14) != null && reader.GetValue(14).ToString() != "")
+                {
+                    kc.Id = reader.GetString(14);
+                }
+                if (reader.GetValue(12) != null && reader.GetValue(12).ToString() != "")
+                {
+                    kc.Sp_dm = reader.GetString(12);
+                }
+                if (reader.GetValue(3) != null && reader.GetValue(3).ToString() != "")
+                {
+                    kc.Lei_bie = reader.GetString(reader.GetOrdinal("Lei_bie"));
+                }
                 list.Add(kc);
             }
             reader.Close();
@@ -1768,16 +1817,16 @@ namespace clsBuiness
 
         public List<jxc_z_info> jxc_z_select(string zh_name, string gs_name)
         {
-            
+
             List<jxc_z_info> list = new List<jxc_z_info>();
-            string sqlselect = "select * from Yh_JinXiaoCun_qichushu where zh_name = '"+zh_name+"' and gs_name= '"+gs_name+"' ";
+            string sqlselect = "select * from Yh_JinXiaoCun_qichushu where zh_name = '" + zh_name + "' and gs_name= '" + gs_name + "' ";
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(sqlselect, ConStr);
             List<qi_chu_info> qichushu = new List<qi_chu_info>();
             List<ming_xi_info> mingxi = new List<ming_xi_info>();
-            qi_chu_info qc = new qi_chu_info(); 
+            qi_chu_info qc = new qi_chu_info();
             while (reader.Read())
             {
-                qc= new qi_chu_info();
+                qc = new qi_chu_info();
                 qc.Cpid = reader.GetString(reader.GetOrdinal("cpid"));
                 qc.Cpname = reader.GetString(reader.GetOrdinal("Cpname"));
                 qc.Cplb = reader.GetString(reader.GetOrdinal("Cplb"));
@@ -1789,7 +1838,7 @@ namespace clsBuiness
             sqlselect = "select sp_dm,cpname,mxtype,cplb,sum(cpsl),sum(cpsj) from Yh_JinXiaoCun_mingxi where zh_name= '" + zh_name + "' and gs_name = '" + gs_name + "' GROUP BY sp_dm,mxtype ";
             MySql.Data.MySqlClient.MySqlDataReader reader2 = MySqlHelper.ExecuteReader(sqlselect, ConStr);
             ming_xi_info mx = new ming_xi_info();
-            while (reader2.Read()) 
+            while (reader2.Read())
             {
                 mx = new ming_xi_info();
                 mx.sp_dm = reader2.GetString(reader2.GetOrdinal("sp_dm"));
@@ -1801,11 +1850,11 @@ namespace clsBuiness
                 mingxi.Add(mx);
             }
             jxc_z_info jxc = new jxc_z_info();
-            for (int mxi = 0; mxi < mingxi.Count; mxi++ ) 
+            for (int mxi = 0; mxi < mingxi.Count; mxi++)
             {
                 int i = 0;
                 bool pd = false;
-                for (int jxci = 0; jxci < list.Count; jxci++) 
+                for (int jxci = 0; jxci < list.Count; jxci++)
                 {
                     if (list[jxci].Sp_dm == mingxi[mxi].sp_dm)
                     {
@@ -1834,7 +1883,7 @@ namespace clsBuiness
                     }
                     list.Add(jxc);
                 }
-                else 
+                else
                 {
                     if (mingxi[mxi].Mxtype == "出库")
                     {
@@ -1848,15 +1897,15 @@ namespace clsBuiness
                         list[i].Cpsl_1 = mingxi[mxi].Cpsl;
                         list[i].Cpsj_1 = (Convert.ToInt32(list[i].Cpje_1) / Convert.ToInt32(list[i].Cpsl_1)).ToString();
                     }
-                    
+
                 }
-                
+
             }
-            for (int qci = 0; qci < qichushu.Count; qci++) 
+            for (int qci = 0; qci < qichushu.Count; qci++)
             {
-                bool pd=false;
-                int i=0;
-                for (int li = 0; li < list.Count; li++) 
+                bool pd = false;
+                int i = 0;
+                for (int li = 0; li < list.Count; li++)
                 {
                     if (list[li].Sp_dm == qichushu[qci].Cpid)
                     {
@@ -1873,17 +1922,20 @@ namespace clsBuiness
                     jxc.Lei_bie = qichushu[qci].Cplb;
                     jxc.Cpje_3 = qichushu[qci].Cpsj;
                     jxc.Cpsl_3 = qichushu[qci].Cpsl;
-                    jxc.Cpsj_3 = (Convert.ToInt32(jxc.Cpje_3) / Convert.ToInt32(jxc.Cpsl_3)).ToString();
+                    if (jxc.Cpje_3 != null && jxc.Cpje_3.Length > 0 && jxc.Cpje_3 != "undefined" && jxc.Cpsl_3 != null && jxc.Cpsl_3.Length > 0 && jxc.Cpsl_3 != "undefined")
+                        jxc.Cpsj_3 = (Convert.ToInt32(jxc.Cpje_3) / Convert.ToInt32(jxc.Cpsl_3)).ToString();
                     list.Add(jxc);
                 }
-                else 
+                else
                 {
                     list[i].Cpje_3 = qichushu[qci].Cpsj;
                     list[i].Cpsl_3 = qichushu[qci].Cpsl;
-                    list[i].Cpsj_3 = (Convert.ToInt32(list[i].Cpje_3) / Convert.ToInt32(list[i].Cpsl_3)).ToString();
+                    if (list[i].Cpje_3 != null && list[i].Cpje_3.Length > 0 && list[i].Cpje_3 != "undefined" && list[i].Cpsl_3 != null && list[i].Cpsl_3.Length > 0 && list[i].Cpsl_3 != "undefined")
+
+                        list[i].Cpsj_3 = (Convert.ToInt32(list[i].Cpje_3) / Convert.ToInt32(list[i].Cpsl_3)).ToString();
                 }
             }
-                reader.Close();
+            reader.Close();
             reader2.Close();
 
 
@@ -1894,17 +1946,17 @@ namespace clsBuiness
         }
 
 
-        public List<jxc_z_info> jxc_z_select_where(string time_qs, string time_jz, string zh_name, string gs_name,string spdm , string spmc )
+        public List<jxc_z_info> jxc_z_select_where(string time_qs, string time_jz, string zh_name, string gs_name, string spdm, string spmc)
         {
             List<jxc_z_info> list = new List<jxc_z_info>();
             string sqlselect = "select * from Yh_JinXiaoCun_qichushu where zh_name = '" + zh_name + "' and gs_name= '" + gs_name + "' ";
-            if (spdm != "") 
+            if (spdm != "")
             {
-                sqlselect = sqlselect +" and cpid='" + spdm+"'";
+                sqlselect = sqlselect + " and cpid='" + spdm + "'";
             }
-            if (spmc != "") 
+            if (spmc != "")
             {
-                sqlselect = sqlselect + " and cpname='" + spmc+"'";
+                sqlselect = sqlselect + " and cpname='" + spmc + "'";
             }
 
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(sqlselect, ConStr);
@@ -1922,7 +1974,7 @@ namespace clsBuiness
                 qichushu.Add(qc);
             }
 
-            sqlselect = "select sp_dm,cpname,mxtype,cplb,sum(cpsl),sum(cpsj) from Yh_JinXiaoCun_mingxi where zh_name= '"+zh_name+"' and gs_name = '"+gs_name+"'";
+            sqlselect = "select sp_dm,cpname,mxtype,cplb,sum(cpsl),sum(cpsj) from Yh_JinXiaoCun_mingxi where zh_name= '" + zh_name + "' and gs_name = '" + gs_name + "'";
             if (spdm != "")
             {
                 sqlselect = sqlselect + " and sp_dm='" + spdm + "'";
@@ -1931,7 +1983,7 @@ namespace clsBuiness
             {
                 sqlselect = sqlselect + " and cpname='" + spmc + "'";
             }
-            if (time_jz != "") 
+            if (time_jz != "")
             {
                 sqlselect = sqlselect + "and  shijian between '" + time_qs + "' and '" + time_jz + "'";
             }
@@ -2043,7 +2095,7 @@ namespace clsBuiness
         public List<rc_ku_info> rc_ku_select(string name, string zh_name, string gs_name)
         {
             rc_ku_info rki = new rc_ku_info();
-            string strSelect = "select * FROM Yh_JinXiaoCun_mingxi where zh_name ='"+zh_name+"' and gs_name='"+gs_name+"' and cpname = '"+name+"'";
+            string strSelect = "select * FROM Yh_JinXiaoCun_mingxi where zh_name ='" + zh_name + "' and gs_name='" + gs_name + "' and cpname = '" + name + "'";
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(strSelect, ConStr);
             List<rc_ku_info> list = new List<rc_ku_info>();
             while (reader.Read())
@@ -2060,13 +2112,13 @@ namespace clsBuiness
                     rki.Shou_jia = reader.GetString(reader.GetOrdinal("cpsj"));
                     rki.Shu_liang = reader.GetString(reader.GetOrdinal("cpsl"));
                 }
-                else 
+                else
                 {
                     rki.Shou_jia_2 = reader.GetString(reader.GetOrdinal("cpsj"));
                     rki.Shu_liang_2 = reader.GetString(reader.GetOrdinal("cpsl"));
                 }
-                
-                
+
+
                 list.Add(rki);
             }
             reader.Close();
@@ -2087,7 +2139,7 @@ namespace clsBuiness
             ////    rki.Shou_jia = list[i].Shou_jia;
             ////    rki.Shu_liang = list[i].Shu_liang;
 
-                
+
             ////    i++;
             ////    list2.Add(rki);
             ////}
@@ -2185,9 +2237,10 @@ namespace clsBuiness
             while (reader.Read())
             {
                 rc_ku_info rki = new rc_ku_info();
-
-                rki.Gong_huo = reader.GetString(0);
-
+                if (reader.GetValue(0) != null && reader.GetValue(0).ToString() != "")
+                {
+                    rki.Gong_huo = reader.GetString(0);
+                }
                 list.Add(rki);
             }
             reader.Close();
@@ -2432,20 +2485,39 @@ namespace clsBuiness
             return list;
         }
 
-        public List<zl_and_jc_info> select_jczl(string zh ,string gs) 
+        public List<zl_and_jc_info> select_jczl(string zh, string gs)
         {
-            string sql = "select * from Yh_JinXiaoCun_jichuziliao where zh_name = '"+zh+"' and gs_name = '"+gs+"'";
+            string sql = "select * from Yh_JinXiaoCun_jichuziliao where zh_name = '" + zh + "' and gs_name = '" + gs + "'";
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(sql, ConStr);
             List<zl_and_jc_info> list = new List<zl_and_jc_info>();
-            while(reader.Read())
+            while (reader.Read())
             {
+
                 zl_and_jc_info zl = new zl_and_jc_info();
-                zl.sp_dm = reader.GetString(reader.GetOrdinal("sp_dm"));
-                zl.name = reader.GetString(reader.GetOrdinal("name"));
-                zl.lei_bie = reader.GetString(reader.GetOrdinal("lei_bie"));
-                zl.dan_wei = reader.GetString(reader.GetOrdinal("dan_wei"));
-                zl.shou_huo = reader.GetString(reader.GetOrdinal("shou_huo"));
-                zl.Gong_huo = reader.GetString(reader.GetOrdinal("Gong_huo"));
+                if (reader.GetValue(0) != null && reader.GetValue(0).ToString() != "")
+                {
+                    zl.sp_dm = reader.GetString(reader.GetOrdinal("sp_dm"));
+                }
+                if (reader.GetValue(1) != null && reader.GetValue(1).ToString() != "")
+                {
+                    zl.name = reader.GetString(reader.GetOrdinal("name"));
+                }
+                if (reader.GetValue(2) != null && reader.GetValue(2).ToString() != "")
+                {
+                    zl.lei_bie = reader.GetString(reader.GetOrdinal("lei_bie"));
+                }
+                if (reader.GetValue(3) != null && reader.GetValue(3).ToString() != "")
+                {
+                    zl.dan_wei = reader.GetString(reader.GetOrdinal("dan_wei"));
+                }
+                if (reader.GetValue(4) != null && reader.GetValue(4).ToString() != "")
+                {
+                    zl.shou_huo = reader.GetString(reader.GetOrdinal("shou_huo"));
+                }
+                if (reader.GetValue(5) != null && reader.GetValue(5).ToString() != "")
+                {
+                    zl.Gong_huo = reader.GetString(reader.GetOrdinal("Gong_huo"));
+                }
                 list.Add(zl);
             }
             return list;
@@ -2464,6 +2536,86 @@ namespace clsBuiness
             reader.Close();
             return list;
         }
+
+        public int del_Usertable(string id, string gongsi)
+        {
+
+            string strSelect = "";
+            strSelect = "delete from yh_jinxiaocun_user where _id = '" + id + "' and gongsi = '" + gongsi + "'";
+            int isrun = MySqlHelper.ExecuteSql(strSelect, ConStr);
+            return isrun;
+
+
+        }
+        public int add_User(userTable us)
+        {
+            string strSelect = "";
+            strSelect = "insert yh_jinxiaocun_user (_id,AdminIS,gongsi,name,password,Btype) values('" + us._id + "','" + us.AdminIS + "','" + us.gongsi + "','" + us.name + "','" + us.password + "',false)";
+            int isrun = MySqlHelper.ExecuteSql(strSelect, ConStr);
+            return isrun;
+
+        }
+        public int up_User(userTable us)
+        {
+            string strSelect = "";
+            strSelect = "update yh_jinxiaocun_user set AdminIS='" + us.AdminIS + "' , gongsi='" + us.gongsi + "',name ='" + us.name + "',password = '" + us.password + "' where _id = '" + us._id + "'";
+            int isrun = MySqlHelper.ExecuteSql(strSelect, ConStr);
+            return isrun;
+
+        }
+        public List<userTable> selectUser()
+        {
+            List<userTable> list = new List<userTable>();
+            string strSelect = "select * from Yh_JinXiaoCun_user";
+            MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(strSelect, ConStr);
+            while (reader.Read())
+            {
+                userTable ut = new userTable();
+                if (reader.GetString(reader.GetOrdinal("_id")) != null)
+                {
+                    ut._id = reader.GetString(reader.GetOrdinal("_id"));
+                }
+                if (reader.GetString(reader.GetOrdinal("AdminIS")) != null)
+                {
+                    ut.AdminIS = reader.GetString(reader.GetOrdinal("AdminIS"));
+                }
+                if (reader.GetValue(2) != null && reader.GetValue(2).ToString() != "")
+                {
+                    ut.Btype = reader.GetString(reader.GetOrdinal("Btype"));
+                }
+                if (reader.GetValue(3) != null && reader.GetValue(3).ToString() != "")
+                {
+                    ut.Createdate = reader.GetString(reader.GetOrdinal("Createdate"));
+                }
+                if (reader.GetValue(4) != null && reader.GetValue(4).ToString() != "")
+                {
+                    ut._openid = reader.GetString(reader.GetOrdinal("_openid"));
+                }
+                if (reader.GetValue(5) != null && reader.GetValue(5).ToString() != "")
+                {
+                    ut.gongsi = reader.GetString(reader.GetOrdinal("gongsi"));
+                }
+                if (reader.GetValue(6) != null && reader.GetValue(6).ToString() != "")
+                {
+                    ut.jigoudaima = reader.GetString(reader.GetOrdinal("jigoudaima"));
+                }
+                if (reader.GetValue(7) != null && reader.GetValue(7).ToString() != "")
+                {
+                    ut.name = reader.GetString(reader.GetOrdinal("name"));
+                }
+                if (reader.GetValue(8) != null && reader.GetValue(8).ToString() != "")
+                {
+                    ut.password = reader.GetString(reader.GetOrdinal("password"));
+                }
+                if (reader.GetValue(9) != null && reader.GetValue(9).ToString() != "")
+                {
+                    ut.mi_bao = reader.GetString(reader.GetOrdinal("mi_bao"));
+                }
+                list.Add(ut);
+            }
+            return list;
+        }
+
 
     }
 

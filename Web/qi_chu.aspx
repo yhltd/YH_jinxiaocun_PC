@@ -90,7 +90,7 @@
                                         if (jichu[ji].id != "") 
                                         {
                                         %>
-                                            +"<option>" +<%=jichu[ji].sp_dm %> +"</option>"
+                                            +"<option value ='<%=jichu[ji].sp_dm %>'>" +<%=jichu[ji].sp_dm %> +"</option>"
                                         <%
                                         }
                                     }

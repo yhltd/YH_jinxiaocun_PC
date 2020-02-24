@@ -270,7 +270,7 @@
             </div>
             <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 8%;">
                 <tr id="dj_yh">
-                    <td class="auto-style1" style="padding-left: 1%; width: 18px; font-size: 92%"></td>
+                    <td class="auto-style1" style="padding-left: 1%; width: 38px; font-size: 92%">序号</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 148px; font-size: 92%">商品名称</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 321px; font-size: 92%">商品代码</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 148px; font-size: 92%">商品类别</td>

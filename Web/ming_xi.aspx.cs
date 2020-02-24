@@ -114,9 +114,12 @@ namespace Web
             try
             {
                 int dang_qian = Convert.ToInt32(Session["dq_ye_mx_dd"]);
-                List<ming_xi_info> list = fen_ye(dang_qian - 1, 4);
-                Session["dq_ye_mx_dd"] = dang_qian - 1;
-                Session["ming_xi_select_dd"] = list;
+                if (dang_qian > 0)
+                {
+                    List<ming_xi_info> list = fen_ye(dang_qian - 1, 4);
+                    Session["dq_ye_mx_dd"] = dang_qian - 1;
+                    Session["ming_xi_select_dd"] = list;
+                }
             }
             catch (Exception ex) { throw; }
             

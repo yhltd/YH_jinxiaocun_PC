@@ -377,7 +377,7 @@
                         <li><a href="#" id="A4" class="leftNav_li" onclick="add_li('jin_xiao_cun_ff()','进销存','jin_xiao_cun.aspx','jin_xiao_cun_id','4')">进销存</a></li>
                         <li><a href="#" id="A10" class="leftNav_li" onclick="add_li('sp_rc_ru_select_ff()','商品进出查询','sp_rc_ku_select.aspx','sp_rc_ru_select_id','5')">商品进出查询</a></li>
                         <li><a href="#" id="A11" class="leftNav_li" onclick="add_li('kh_ming_xi_ff()','客户出货查询','kh_ming_xi_selcet.aspx','kh_ming_xi_id','6')">客户出货查询</a></li>
-                        <li><a href="#" id="A7" class="leftNav_li" <%--onclick="add_li('yl_set_page_ff()','用料基础设定','yl_set_page.aspx','yl_set_page_id','7')"--%>><%--用料基础设定--%>（尚未开发）</a></li>
+                       <%-- <li><a href="#" id="A7" class="leftNav_li" <%--onclick="add_li('yl_set_page_ff()','用料基础设定','yl_set_page.aspx','yl_set_page_id','7')">><用料基础设定></a></li>--%>
                         <li><a href="#" id="A8" class="leftNav_li" onclick="add_li('ji_chu_zi_liao_page_ff()','基础资料','ji_chu_zi_liao_page.aspx','ji_chu_zi_liao_page_id','8')">基础资料</a></li>
                         <li><a href="#" id="A9" class="leftNav_li" onclick="add_li('zheng_li_page_ff()','整理','zheng_li_page.aspx','zheng_li_page_id','9')">整理</a></li>
                         <%--        <li><a href="#" id="A5" class="leftNav_li" onclick="add_li('jin_xiao_cun_ff()','进销存','jin_xiao_cun.aspx','jin_xiao_cun_id')">进销存</a></li>--%>

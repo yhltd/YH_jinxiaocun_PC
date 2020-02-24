@@ -653,6 +653,12 @@ table.gridview_m {
     float: right;
 }
 
+.btleft {
+    position: absolute;
+    left: 15px;
+     vertical-align:middle;
+}
+
 .fl {
     float: left;
 }
@@ -853,15 +859,43 @@ table.gridview_m {
     margin: 0 auto;
     /*padding: 0 0 0 0px;*/
 }
+
 .upload_tr1 {
-    padding-left:  0px;
+    padding-left: 0px;
     padding-right: 0px;
     font-size: 18pt;
     margin: 0 auto;
     /*padding: 0 0 0 0px;*/
 }
+
+.new_ss_div {
+    padding-left: 60%;
+    padding-bottom: 2%;
+    margin-top: 4%;
+}
+
+.new_sslddiv {
+    /*margin: 93px 5px 0px 0px;*/
+    /*background-color: #0099CC;*/
+    vertical-align: middle;
+}
+.btaddimage {
+   background-size:80px 60px;
+    vertical-align: middle;
+}
+
+
+.btclor {
+      
+     background-color: #f9f9f9;
+       border: 0px;
+}
+.btclor {
+     background-color: #f9f9f9;
+       border: 0px;
+}
 .upload_bt {
-    padding-left:  310px;
+    padding-left: 310px;
     padding-right: 0px;
     font-size: 18pt;
     /*margin: 0 auto;*/

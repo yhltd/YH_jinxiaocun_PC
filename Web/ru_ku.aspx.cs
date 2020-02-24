@@ -67,7 +67,7 @@ namespace Web
             List<zl_and_jc_info> getlist = HttpContext.Current.Session["jichu"] as List<zl_and_jc_info>;
             for (int li = 0; li < getlist.Count; li++) 
             {
-                if (getlist[li].sp_dm.Equals( id)) 
+                if (getlist[li].sp_dm!=null&&getlist[li].sp_dm.Equals(id)) 
                 {
                     
                     zl.name = getlist[li].name;
@@ -92,7 +92,14 @@ namespace Web
             return check;
         }
 
+        protected void bt_addemprt_Click(object sender, EventArgs e)
+        {
 
+
+            Session["ru_ku_select"] = null;
+
+
+        }
 
         protected void bt_select_Click(object sender, EventArgs e)
         {

@@ -6,6 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
+    <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         #biao_ge {
             /*margin: 0px auto;*/
@@ -137,13 +139,15 @@
             </div>
             <%--<asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="bt_select_Click">
             </asp:DropDownList>--%>
-
-            <asp:Button ID="Button2" class="input_tr_sx" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
-            <asp:Button ID ="downexcel" class="input_tr_sx" OnClick="toExcel" Text="保存至excel" runat="server" />
+            <img class="new_mingxi" src="Myadmin/images/Resources/refresh_24.gif" />
+            <asp:Button ID="Button2" class="qichu_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
+               <img class="new_mingxisave" src="Myadmin/images/Resources/arrow.jpg" />
+             <asp:Button ID="downexcel" class="qichu_input_tr_tj" OnClick="toExcel" Text="保存Excel" runat="server" />
             <div class="rq_css" style="margin-left: 63%; margin-top: -2.2%; margin-bottom: -8%;">
                 <label style="margin-left: -35%;">起始日期：</label><input type="date" style="width: 27%" class="input_tr" name="time_qs" />
                 <label style="margin-left: 9%;">截止日期：</label><input type="date" style="width: 27%" class="input_tr" name="time_jz" />
-                <asp:Button ID="Button3" class="rk_btu" OnClick="rq_select" Text="查询" runat="server" />
+                   <img class="new_sslddivmingxi" src="Myadmin/images/Resources/newbookChecktb.jpg" />
+                    <asp:Button ID="Button3" class="rk_btmingxifind" OnClick="rq_select" Text="查询" runat="server" />
             </div>
 
 
@@ -156,14 +160,14 @@
                     <td class="auto-style1" style="width: 83px; padding-left: 1%;">商品代码</td>
                     <td class="auto-style1" style="width: 83px; padding-left: 1%;">商品名称</td>
                     <td class="auto-style1" style="width: 83px; padding-left: 1%;">商品类别</td>
-                    
+
                     <td class="auto-style1" style="width: 83px; padding-left: 1%;">价格</td>
                     <td class="auto-style1" style="width: 83px; padding-left: 1%;">数量</td>
                     <%--      <td class="auto-style1" style="width: 66px; padding-left: 1%;">用户名</td>--%>
                     <td class="auto-style1" style="width: 83px; padding-left: 1%;">明细类型</td>
-                    
+
                     <td class="auto-style1" style="width: 131px; padding-left: 1%;">时间</td>
-                    
+
                     <td class="auto-style1" style="width: 132px; padding-left: 1%;">公司名</td>
                     <td class="auto-style1" style="width: 132px; padding-left: 1%; border-right: 1px dashed #a8a8a8;">收货方</td>
                 </tr>
@@ -184,14 +188,14 @@
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].sp_dm %></td>
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Cpname %></td>
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Cplb %></td>
-                    
+
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Cpsj %></td>
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Cpsl %></td>
                     <%--   <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Finduser %></td>--%>
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Mxtype %></td>
-                    
+
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Shijian %></td>
-                    
+
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Gongsi %></td>
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%; border-right: 1px dashed #a8a8a8;"><%=ming_xi_select_dd[i].shou_h %></td>
                 </tr>

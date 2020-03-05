@@ -360,6 +360,8 @@
                 </div>
                 <div class="rq_css" style="margin-left: 63%">
                     <label>日期：</label><input type="date" style="width: 29%" class="input_tr" name="shijian" />
+                     <%--<img class="new_cuku" src="Myadmin/images/Resources/readerModiAndDeltb.jpg"  />--%>
+
                     <asp:Button OnClick="rk_pd" ID="dj_row" class="rk_btu" Text="出库" runat="server" />
                 </div>
 

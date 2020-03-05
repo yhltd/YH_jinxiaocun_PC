@@ -7,6 +7,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
+        <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
         function bhhq(row) {
 
@@ -250,6 +251,9 @@
         .qc_sc {
             margin-left: 1px;
         }
+        .new_cuku {
+            width: 28px;
+        }
     </style>
     <title></title>
 </head>
@@ -262,7 +266,8 @@
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <%--<asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="bt_select_Click">
             </asp:DropDownList>--%>
-            <asp:Button ID="Button2" class="input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
+              <img class="new_qichu" src="Myadmin/images/Resources/refresh_24.gif"  />
+             <asp:Button ID="Button2" class="qichu_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
             <div style="width: 171px; border: 1px solid #95b8e7; height: 51px; margin-left: 80%; margin-top: -3%; margin-bottom: -6%;">
                 <div style="font-size: 19%; margin-top: -5%; margin-left: 7%; background-color: white; width: 27px;">功能</div>
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_sc" Text="删除" runat="server" />

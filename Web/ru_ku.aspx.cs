@@ -49,6 +49,10 @@ namespace Web
                     {
                         Session["dq_ye"] = 0;
                     }
+                    clsAllnew allbewn = new clsAllnew();
+
+                    allbewn.inputcookvalue("入库");
+
                 }
                 catch (Exception ex) { throw; }
 

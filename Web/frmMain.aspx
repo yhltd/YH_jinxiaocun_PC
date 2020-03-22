@@ -1,6 +1,4 @@
-﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmMain.aspx.cs" Inherits="Web.frmMain" %>--%>
-
-<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="frmMain.aspx.cs" Inherits="Web.frmMain" %>
+﻿<%@ Page Language="C#" EnableEventValidation="false" AutoEventWireup="true" CodeBehind="frmMain.aspx.cs" Inherits="Web.frmMain" %>
 
 <%--<!DOCTYPE html>--%>
 
@@ -10,9 +8,11 @@
     <link rel="stylesheet" type="text/css" href="images/uploadify.css" />
     <%--<link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />--%>
     <link href="images/style.css" rel="stylesheet" type="text/css">
-  <%--  <SCRIPT FOR=window EVENT=onload LANGUAGE="JScript">
+    <script src="/Myadmin/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="/Myadmin/js/json2.js" type="text/javascript"></script>
+    <%--  <SCRIPT FOR=window EVENT=onload LANGUAGE="JScript">
         document.all("Iframe1").height = document.body.scrollHeight;
-    </SCRIPT>  --%> 
+    </SCRIPT>  --%>
     <style type="text/css">
         /*body {
             margin: 0;
@@ -93,18 +93,41 @@
             window.parent.document.getElementById("Iframe1").src = "zheng_li_page.aspx";
         }
 
+        //自动加载
+        $(document).ready(function () {
 
-
-    </script>
-
-    <script src="Myadmin/js/jquery-1.7.1.min.js"></script>
-    <script>
-
+            $("#nameDiv").html("当前页面 >入库");
+        })
         var a = 0;
         var li_count = 0;
         var mycars = new Array(8);
         var id_ary = new Array(8);
+
         function add_li(ff, row, tz_lj, id, xb) {
+            //
+            nowpage = "当前页面 >" + row;
+            //alert(nowpage);
+
+            $("#nameDiv").html(nowpage);
+            var postData = { mingcheng: row, minzu: row };//, idResultDesc: idResultDesc1   CertCtl.EffectedDate + "-" + 
+
+            //新加的 更新页签
+            $.ajax({
+                type: "post", //要用post方式                 
+                url: "frmMain.aspx/update_laber",//方法所在页面和方法名
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                dataType: "json",
+                data: JSON.stringify(postData),
+                success: function (data) {
+
+                    //alert(data.d);//返回的数据用data.d获取内容
+                    //  window.location.reload();
+                },
+                error: function (err) {
+                    //alert(err);
+                }
+            });
             id_ary[xb] = id;
             if (row == mycars[xb]) {
                 for (var i = 0; i < id_ary.length; i++) {
@@ -119,10 +142,9 @@
             }
             else {
                 window.parent.document.getElementById("Iframe1").src = tz_lj;
-                if (row != "入库单")
-                {
+                if (row != "入库单") {
                     $("#ul_tj").append("<li id='" + id + "' class='bj_ys'><a href='#'  id='" + id + "'  onclick='" + ff + "'  class='a_lj' >" + row + "</a></li>");
-                    
+
                 }
                 for (var i = 0; i < id_ary.length; i++) {
                     if (id_ary[i] == null) {
@@ -136,6 +158,7 @@
             li_count++;
         }
         function chu_ku_ff() {
+
             for (var i = 0; i < id_ary.length; i++) {
                 if (id_ary[i] == null) {
 
@@ -146,6 +169,8 @@
 
             document.getElementById("chu_ku_id").style.background = "#b8d9fc";
             window.parent.document.getElementById("Iframe1").src = "chu_ku.aspx";
+
+
         }
 
         function rk_id_ff() {
@@ -364,20 +389,20 @@
                     <ul>
                         <li><a id="Nav_begin" style="font-weight: bold; font-size: 18px;" class="leftNav_li" href="senior.asp">信息导航</a></li>
                         <li><span class="leftNav_block"></span></li>
-<%--                        <li><a href="#" class="leftNav_li" onclick="add_li('yjgl_tz()','业绩管理','yejiguanli.aspx')">业绩管理</a></li>--%>
+                        <%--                        <li><a href="#" class="leftNav_li" onclick="add_li('yjgl_tz()','业绩管理','yejiguanli.aspx')">业绩管理</a></li>--%>
                         <%--add_li('yjgl_tz','业绩管理','yejiguanli.aspx'     function add_li(ff, row, tz_lj) {)--%>
                         <%--       <li><a href="statelist.asp#Nav_profile_image" class="leftNav_li">团队管理</a></li>
                         <li><a href="UserPassUp.asp" class="leftNav_li">商户管理</a></li>
                         <li><a href="UserPassUp.asp" class="leftNav_li">分润中心</a></li>
                         <li><a href="#" id="abc" class="leftNav_li" onclick="changeurl()">管理中心</a></li>      --%>
-                        <li><a href="#" id="r_k" class="leftNav_li"onclick="add_li('rk_id_ff()','入库单','ru_ku.aspx','ru_ku_id','0')"><%--<img style="height:50px;width:50px;" src="Myadmin/images/ru_tm.png"/>--%>入库</a></li>
+                        <li><a href="#" id="r_k" class="leftNav_li" onclick="add_li('rk_id_ff()','入库单','ru_ku.aspx','ru_ku_id','0')"><%--<img style="height:50px;width:50px;" src="Myadmin/images/ru_tm.png"/>--%>入库</a></li>
                         <li><a href="#" id="A1" class="leftNav_li" onclick="add_li('chu_ku_ff()','出库单','chu_ku.aspx','chu_ku_id','1')">出库</a></li>
                         <li><a href="#" id="A2" class="leftNav_li" onclick="add_li('qi_chu_ff()','期初数','qi_chu.aspx','qi_chu_id','2')">期初数</a></li>
                         <li><a href="#" id="A3" class="leftNav_li" onclick="add_li('ming_xi_ff()','明细','ming_xi.aspx','ming_xi_id','3')">明细</a></li>
                         <li><a href="#" id="A4" class="leftNav_li" onclick="add_li('jin_xiao_cun_ff()','进销存','jin_xiao_cun.aspx','jin_xiao_cun_id','4')">进销存</a></li>
                         <li><a href="#" id="A10" class="leftNav_li" onclick="add_li('sp_rc_ru_select_ff()','商品进出查询','sp_rc_ku_select.aspx','sp_rc_ru_select_id','5')">商品进出查询</a></li>
                         <li><a href="#" id="A11" class="leftNav_li" onclick="add_li('kh_ming_xi_ff()','客户出货查询','kh_ming_xi_selcet.aspx','kh_ming_xi_id','6')">客户出货查询</a></li>
-                       <%-- <li><a href="#" id="A7" class="leftNav_li" <%--onclick="add_li('yl_set_page_ff()','用料基础设定','yl_set_page.aspx','yl_set_page_id','7')">><用料基础设定></a></li>--%>
+                        <%-- <li><a href="#" id="A7" class="leftNav_li" <%--onclick="add_li('yl_set_page_ff()','用料基础设定','yl_set_page.aspx','yl_set_page_id','7')">><用料基础设定></a></li>--%>
                         <li><a href="#" id="A8" class="leftNav_li" onclick="add_li('ji_chu_zi_liao_page_ff()','基础资料','ji_chu_zi_liao_page.aspx','ji_chu_zi_liao_page_id','8')">基础资料</a></li>
                         <li><a href="#" id="A9" class="leftNav_li" onclick="add_li('zheng_li_page_ff()','整理','zheng_li_page.aspx','zheng_li_page_id','9')">整理</a></li>
                         <%--        <li><a href="#" id="A5" class="leftNav_li" onclick="add_li('jin_xiao_cun_ff()','进销存','jin_xiao_cun.aspx','jin_xiao_cun_id')">进销存</a></li>--%>
@@ -385,15 +410,26 @@
                     </ul>
                 </div>
 
-                <div class="rightContentfrmain" style="overflow: hidden;position: relative;">
-                    <iframe id="Iframe1" name="ifrMain" frameborder="0" scrolling="yes" src="/ru_ku.aspx" style="height: 100%;visibility: inherit;width: 100%;z-index: 1;position:absolute;left: -1%;transform: scale(0.95);/* overflow: hidden; */"></iframe>
+                <div class="rightContentfrmain" style="overflow: hidden; position: relative;">
+                    <%-- <td>
+                        <asp:Button ID="btsearch" runat="server" OnClientClick="chu_ku_f111f()" />
+                    </td>--%>
+                    <%--  <p class="nolaber">
+                        当前页面><%=nowpage  %>
+                     
+                    </p>--%>
+                    <div id="nameDiv" class="nolaber"></div>
+
+
+
+                    <iframe id="Iframe1" name="ifrMain" frameborder="0" scrolling="yes" src="/ru_ku.aspx" style="height: 100%; visibility: inherit; width: 100%; z-index: 1; position: absolute; left: -1%; transform: scale(0.95); /* overflow: hidden; */"></iframe>
                     <%--  <input  id="k_y_g" type="text" value="1"/>
                     <input  id="k_y_g1" type="text" value="1"/>--%>
                     <ul style="margin-top: -35%; list-style: none" id="ul_tj">
-                                            <li id='ru_ku_id' style="background-color:#b8d9fc;" class='bj_ys'><a href='#'  id='A5'  onclick='rk_id_ff()'  class='a_lj' > 入库单</a></li>
+                        <li id='ru_ku_id' style="background-color: #b8d9fc;" class='bj_ys'><a href='#' id='A5' onclick='rk_id_ff()' class='a_lj'>入库单</a></li>
 
                     </ul>
-                   
+
 
                     <%--     <table id="Nav_profile_whish" class="app_table">
                         <tbody>

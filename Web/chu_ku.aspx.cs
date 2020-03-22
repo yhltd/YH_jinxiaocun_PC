@@ -33,7 +33,9 @@ namespace Web
                 {
                     Response.Write("<script>alert('请登录！'); location='/Myadmin/Login.aspx';</script>");
                 }
-                
+                clsAllnew allbewn = new clsAllnew();
+
+                allbewn.inputcookvalue("出库"); 
                 
             }
             catch (Exception ex) { throw; }

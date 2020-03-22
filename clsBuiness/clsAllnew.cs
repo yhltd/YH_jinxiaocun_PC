@@ -20,6 +20,10 @@ using System.Web;
 using System.Web.Caching;
 using System.Windows.Forms;
 
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+
 namespace clsBuiness
 {
     public enum ProcessStatus
@@ -2616,7 +2620,28 @@ namespace clsBuiness
             return list;
         }
 
+        public void inputcookvalue(string vaul)
+        {
+            HttpCookie cookie = new HttpCookie("nowpage");//初使化并设置Cookie的名称
 
+            //nowpage = HttpUtility.UrlEncode(nowpage, System.Text.UTF8Encoding.UTF8);
+            cookie.Values.Set("nowpage_name", HttpUtility.UrlEncode(vaul, System.Text.UTF8Encoding.UTF8));
+            cookie.Expires = System.DateTime.Now.AddYears(100);
+
+            HttpContext.Current.Response.SetCookie(cookie);
+
+            HttpCookie cookies = HttpContext.Current.Request.Cookies["nowpage"];
+            cookies["nowpage_name"] = vaul;
+
+            HttpCookie cookie1 = System.Web.HttpContext.Current.Request.Cookies["nowpage"];
+
+            if (cookie1 != null && cookie1["nowpage_name"].ToString() != "")
+            {
+                string nowpage = HttpUtility.UrlDecode(cookie1["nowpage_name"].ToString());
+
+            }
+
+        }
     }
 
 

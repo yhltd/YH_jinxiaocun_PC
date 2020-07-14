@@ -152,7 +152,7 @@
 
 
             <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 8%;">
-                <tr id="dj_yh">
+                <tr id="dj_yh">                     
                     <td class="auto-style1" style="width: 18px; padding-left: 1%;"></td>
                     <%--<td class="auto-style1" style="width: 69px; padding-left: 1%;">产品id</td>
                     <td class="auto-style1" style="width: 83px; padding-left: 1%;">商品价格</td>--%>
@@ -196,7 +196,7 @@
 
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Shijian %></td>
 
-                    <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].Gongsi %></td>
+                    <td class="bg_bj" style="font-size: 84%; padding-left: 1%;"><%=ming_xi_select_dd[i].zh_name %></td>
                     <td class="bg_bj" style="font-size: 84%; padding-left: 1%; border-right: 1px dashed #a8a8a8;"><%=ming_xi_select_dd[i].shou_h %></td>
                 </tr>
                 <%

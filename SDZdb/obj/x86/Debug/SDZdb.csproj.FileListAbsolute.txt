@@ -1,0 +1,5 @@
+D:\yho117\YH_jinxiaocun_PC\SDZdb\bin\x86\Debug\SDZdb.dll
+D:\yho117\YH_jinxiaocun_PC\SDZdb\bin\x86\Debug\SDZdb.pdb
+D:\yho117\YH_jinxiaocun_PC\SDZdb\obj\x86\Debug\SDZdb.csprojResolveAssemblyReference.cache
+D:\yho117\YH_jinxiaocun_PC\SDZdb\obj\x86\Debug\SDZdb.dll
+D:\yho117\YH_jinxiaocun_PC\SDZdb\obj\x86\Debug\SDZdb.pdb

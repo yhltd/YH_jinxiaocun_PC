@@ -117,6 +117,33 @@
             -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
             -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         }
+        .auto-style1 {
+            width: 126px;
+        }
+        .auto-style2 {
+            height: 21px;
+            font-size: 1%;
+            padding-left: 1%;
+            width: 126px;
+        }
+        .auto-style3 {
+            width: 99px;
+        }
+        .auto-style4 {
+            height: 21px;
+            font-size: 1%;
+            padding-left: 1%;
+            width: 99px;
+        }
+        .auto-style7 {
+            width: 133px;
+        }
+        .auto-style9 {
+            width: 132px;
+        }
+        .auto-style12 {
+            width: 208px;
+        }
     </style>
 </head>
 <body>
@@ -144,12 +171,12 @@
             </div>
 
             <div>
-                <table cellspacing="0" cellpadding="0" id="Table4" style="margin-left: 31.98%; margin-bottom: -8.1%; margin-top: 5%;">
+                <table cellspacing="0" cellpadding="0" id="Table4" style="margin-left: 28.4%; margin-bottom: -8.1%; margin-top: 5%;">
                     <tr id="Tr8">
-                        <td class="" style="background-color: #eeeeee; width: 133px; border-top: 1px dashed #a8a8a8; padding-left: 10px;">期初</td>
-                        <td class="" style="background-color: #eeeeee; width: 133px; border-top: 1px dashed #a8a8a8; padding-left: 10px;">进货</td>
-                        <td class="" style="background-color: #eeeeee; width: 133px; border-top: 1px dashed #a8a8a8; padding-left: 10px;">出货</td>
-                        <td class="" style="background-color: #eeeeee; width: 335px; border-top: 1px dashed #a8a8a8; padding-left: 10px; border-right: 1px dashed #a8a8a8;">结存</td>
+                        <td class="auto-style9" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">期初</td>
+                        <td class="auto-style7" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">进货</td>
+                        <td class="auto-style7" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">出货</td>
+                        <td class="auto-style12" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px; border-right: 1px dashed #a8a8a8;">结存</td>
                     </tr>
 
                 </table>
@@ -157,8 +184,8 @@
                     <tr id="dj_yh">
                         <td class="bk_bt_t" style="padding-left: 1%; width: 18px; border-top: 1px dashed #a8a8a8;"></td>
                         <td class="bk_bt_t" style="padding-left: 1%; width: 100px; border-top: 1px dashed #a8a8a8;">商品代码</td>
-                        <td class="bk_bt_t" style="padding-left: 1%; width: 157px; border-top: 1px dashed #a8a8a8;">商品名称</td>
-                        <td class="bk_bt_t" style="padding-left: 1%; width: 100px; border-top: 1px dashed #a8a8a8;">商品类别</td>
+                        <td class="auto-style1" style="padding-left: 1%; border-top: 1px dashed #a8a8a8;">商品名称</td>
+                        <td class="auto-style3" style="padding-left: 1%; border-top: 1px dashed #a8a8a8;">商品类别</td>
                         <td class="bk_bt">数量</td>
                         <td class="bk_bt">单价</td>
                         <td class="bk_bt">金额</td>
@@ -185,8 +212,8 @@
                     <tr id="Tr1">
                         <td style="font-size: 12px; padding-left: 0.5%; width: 18px;"><%=(i+1) %></td>
                         <td class="bk_nr"><%=jxc_z_select[i].Sp_dm%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Name%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Lei_bie%></td>
+                        <td class="auto-style2"><%=jxc_z_select[i].Name%></td>
+                        <td class="auto-style4"><%=jxc_z_select[i].Lei_bie%></td>
 
 
                         <td class="bk_nr"><%=jxc_z_select[i].Cpsl_3%></td>

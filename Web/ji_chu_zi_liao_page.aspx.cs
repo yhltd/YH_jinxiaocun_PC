@@ -150,20 +150,27 @@ namespace Web
         protected void shang_ye_Click(object sender, EventArgs e)
         {
             int dang_qian = Convert.ToInt32(Session["dq_ye_jczl"]);
-            List<zl_and_jc_info> list = fen_ye(dang_qian - 1, 1);
-            Session["dq_ye_jczl"] = dang_qian - 1;
-            Session["jczj_select"] = list;
-
+            if (dang_qian > 0)
+            {
+                List<zl_and_jc_info> list = fen_ye(dang_qian - 1, 1);
+                Session["dq_ye_jczl"] = dang_qian - 1;
+                Session["jczj_select"] = list;
+            }
         }
 
         protected void xia_ye_Click(object sender, EventArgs e)
         {
-            int dang_qian = Convert.ToInt32(Session["dq_ye_jczl"]);
-            List<zl_and_jc_info> list = fen_ye(dang_qian + 1, 1);
-            Session["dq_ye_jczl"] = dang_qian + 1;
-            Session["jczj_select"] = list;
-
-
+            try
+            {
+                int dang_qian = Convert.ToInt32(Session["dq_ye_jczl"]);
+                List<zl_and_jc_info> list = fen_ye(dang_qian + 1, 1);
+                Session["dq_ye_jczl"] = dang_qian + 1;
+                Session["jczj_select"] = list;
+            }
+            catch (Exception ex) 
+            {
+                Response.Write(" <script>alert('已经是最后一页'); location='ji_chu_zi_liao.aspx';</script>");
+            }
         }
 
         protected void mo_ye_Click(object sender, EventArgs e)

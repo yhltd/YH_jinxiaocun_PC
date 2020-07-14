@@ -72,7 +72,7 @@ namespace Web.Myadmin.HouTai
                     addut.name = ut.name;
                     addut.password = ut.password;
                     addut.mi_bao = ut.mi_bao;
-                    if (ut.AdminIS != null && ut.AdminIS.Equals("true"))
+                    if (ut.AdminIS != null && ut.AdminIS.Equals("是"))
                     {
                         addut.AdminIS = "管理员";
                     }

@@ -19,7 +19,7 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             try
             {
                 if (Session["username"] == null && Session["gs_name"] == null)
@@ -35,8 +35,8 @@ namespace Web
                 }
             }
             catch (Exception ex) { throw; }
-           
-            
+
+
         }
         protected void toExcel(object sender, EventArgs e)
         {
@@ -68,7 +68,7 @@ namespace Web
                 Response.End();
                 Response.Write(" <script>alert('保存成功'); location='ming_xi.aspx';</script>");
             }
-            else 
+            else
             {
                 Response.Write(" <script>alert('保存失败'); location='ming_xi.aspx';</script>");
             }
@@ -76,28 +76,33 @@ namespace Web
         }
         protected void bt_select_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 List<ming_xi_info> list = ming_xi_select(Session["username"].ToString(), Session["gs_name"].ToString());
                 Session["ming_xi_select_dd"] = list;
             }
             catch (Exception ex) { throw; }
-            
-           
+
+
 
         }
 
         public List<ming_xi_info> ming_xi_select(string zh_name, string gs_name)
         {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<ming_xi_info> list = buiness.ming_xi_select(zh_name, gs_name);
-            return list;
+            try
+            {
+                clsAllnew buiness = new clsBuiness.clsAllnew();
+                List<ming_xi_info> list = buiness.ming_xi_select(zh_name, gs_name);
+                return list;
+            }
+            catch (Exception ex) { throw; }
+
         }
 
         protected void shou_ye_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 Session["dq_ye_mx_dd"] = 0;
@@ -105,12 +110,12 @@ namespace Web
                 Session["ming_xi_select_dd"] = list;
             }
             catch (Exception ex) { throw; }
-            
+
         }
 
         protected void shang_ye_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 int dang_qian = Convert.ToInt32(Session["dq_ye_mx_dd"]);
@@ -122,13 +127,13 @@ namespace Web
                 }
             }
             catch (Exception ex) { throw; }
-            
+
 
         }
 
         protected void xia_ye_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 int dang_qian = Convert.ToInt32(Session["dq_ye_mx_dd"]);
@@ -137,14 +142,14 @@ namespace Web
                 Session["ming_xi_select_dd"] = list;
             }
             catch (Exception ex) { throw; }
-            
+
 
 
         }
 
         protected void mo_ye_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 Session["dq_ye_mx_dd"] = select_row().Count - 1;
@@ -152,7 +157,7 @@ namespace Web
                 Session["ming_xi_select_dd"] = list;
             }
             catch (Exception ex) { throw; }
-            
+
         }
 
         public List<ming_xi_info> fen_ye(int y_c, int e_c)
@@ -171,17 +176,17 @@ namespace Web
 
         protected void rq_select(object sender, EventArgs e)
         {
-            
+
             try
             {
                 List<ming_xi_info> list = ri_qi_select(Context.Request["time_qs"].ToString(), Context.Request["time_jz"].ToString(), Session["username"].ToString(), Session["gs_name"].ToString());
                 Session["ming_xi_select_dd"] = list;
             }
             catch (Exception ex) { throw; }
-            
+
         }
 
-        public List<ming_xi_info> ri_qi_select(string time_qs, string time_jz, string zh_name, string gs_name) 
+        public List<ming_xi_info> ri_qi_select(string time_qs, string time_jz, string zh_name, string gs_name)
         {
             clsAllnew buiness = new clsBuiness.clsAllnew();
             List<ming_xi_info> list = buiness.ri_qi_select(time_qs, time_jz, zh_name, gs_name);

@@ -7,6 +7,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
+    <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
         $(function () {
             $("#select_xl").change(function () {
@@ -47,7 +48,7 @@
 
         td {
             border-left: 1px dashed #a8a8a8;
-border-bottom: 1px dashed #a8a8a8;
+            border-bottom: 1px dashed #a8a8a8;
         }
 
         table {
@@ -114,8 +115,8 @@ border-bottom: 1px dashed #a8a8a8;
                         List<rc_ku_info> rc_ku_xl_select = Session["rc_ku_xl_select"] as List<rc_ku_info>;
                         if (rc_ku_xl_select != null)
                         {
-                        for (int i = 0; i < rc_ku_xl_select.Count; i++)
-                        {                          
+                            for (int i = 0; i < rc_ku_xl_select.Count; i++)
+                            {                          
                     %>
                     <option><%=rc_ku_xl_select[i].Name %></option>
                     <%
@@ -124,6 +125,7 @@ border-bottom: 1px dashed #a8a8a8;
                     %>
                 </select>
                 <input name="kui_lei" class="rk_btu" id="kui_lei" value="<%=rc_ku_xl_select[0].Name %>" type="text" />
+                <img class="new_jinxcxun" src="Myadmin/images/Resources/newbookChecktb.jpg" />
                 <asp:Button OnClick="rc_ku_select_Click" ID="Button1" CssClass="input_tr" Text="查询" runat="server" />
             </div>
 
@@ -141,22 +143,22 @@ border-bottom: 1px dashed #a8a8a8;
                     <td class="auto-style1" style="width: 47px; padding-left: 1%;">金额</td>
                     <td class="auto-style1" style="width: 84px; padding-left: 1%;">出库数量</td>
                     <td class="auto-style1" style="width: 84px; padding-left: 1%;">出库单价</td>
-                    <td class="auto-style1" style="width: 47px; padding-left: 1%;border-right: 1px dashed #a8a8a8;">出库金额</td>
+                    <td class="auto-style1" style="width: 47px; padding-left: 1%; border-right: 1px dashed #a8a8a8;">出库金额</td>
                 </tr>
 
                 <%
                         }
-                    List<rc_ku_info> rc_ku_r_select = Session["selectSp"] as List<rc_ku_info>;
+                        List<rc_ku_info> rc_ku_r_select = Session["selectSp"] as List<rc_ku_info>;
 
 
-                    if (rc_ku_r_select == null)
-                    {
-
-                    }
-                    else
-                    {
-                        for (int i = 0; i < rc_ku_r_select.Count; i++)
+                        if (rc_ku_r_select == null)
                         {
+
+                        }
+                        else
+                        {
+                            for (int i = 0; i < rc_ku_r_select.Count; i++)
+                            {
                        
                 %>
                 <tr id="Tr1">
@@ -169,7 +171,9 @@ border-bottom: 1px dashed #a8a8a8;
                     <td class="td_css"><%=rc_ku_r_select[i].Lei_bie %></td>
                     <td class="td_css"><%=rc_ku_r_select[i].Shou_jia %></td>
                     <td class="td_css"><%=rc_ku_r_select[i].Shu_liang %></td>
+                  
                     <td class="td_css"><%=Convert.ToInt32( rc_ku_r_select[i].Shou_jia) * Convert.ToInt32( rc_ku_r_select[i].Shu_liang )%></td>
+
                     <td class="td_css"><%=rc_ku_r_select[i].Shou_jia_2 %></td>
                     <td class="td_css"><%=rc_ku_r_select[i].Shu_liang_2 %></td>
                     <td style="border-right: 1px dashed #a8a8a8;" class="td_css"><%=Convert.ToInt32( rc_ku_r_select[i].Shou_jia_2) * Convert.ToInt32( rc_ku_r_select[i].Shu_liang_2 )%></td>

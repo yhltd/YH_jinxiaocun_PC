@@ -115,7 +115,7 @@
         }*/
 
         .ghf_css {
-            margin-top: -23px;
+            margin-top: -30px;
             margin-left: 23%;
         }
 
@@ -125,7 +125,7 @@
         }
 
         .rq_css {
-            margin-top: -28px;
+            margin-top: -26px;
             margin-left: 69%;
         }
          .tj_kk {
@@ -337,8 +337,8 @@
                 </div>
                 <div class="shf_css" style="">
                     <label>收货方：</label>
-                    <select style="width: 12%" id="sh_f_id" class="input_tr" name="shou_h" >
-                                                    <option>选择收货</option>
+                    <select style="width: 13%" id="sh_f_id" class="input_tr" name="shou_h" >
+                                                    <option>选择收货方</option>
                             <%
                                 List<zl_and_jc_info> jichub = Session["jichu"] as  List<zl_and_jc_info> ;
                                 if (jichub != null)
@@ -360,10 +360,13 @@
                 </div>
                 <div class="rq_css" style="margin-left: 63%">
                     <label>日期：</label><input type="date" style="width: 29%" class="input_tr" name="shijian" />
+                     <%--<img class="new_cuku" src="Myadmin/images/Resources/readerModiAndDeltb.jpg"  />--%>
+
                     <asp:Button OnClick="rk_pd" ID="dj_row" class="rk_btu" Text="出库" runat="server" />
                 </div>
 
             </div>
+        <div>
         <div style="border: 1px solid #95b8e7; height: 90px; width: 79%; margin-top: -5%; margin-left: 11%;"></div>
         <div style="margin-top: -9%; margin-left: 13%; background-color: #ffffff; width: 7%; padding-left: 2%;">提交出库</div>
         </div>

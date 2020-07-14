@@ -8,6 +8,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
+     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
 
         function aaa(row) {
@@ -58,8 +59,8 @@
         }
 
         td {
-          border-left: 1px dashed #a8a8a8;
-border-bottom: 1px dashed #a8a8a8;
+            border-left: 1px dashed #a8a8a8;
+            border-bottom: 1px dashed #a8a8a8;
         }
 
         table {
@@ -87,9 +88,7 @@ border-bottom: 1px dashed #a8a8a8;
             /*奇数行*/
         }
 
-          input{
-            
-          
+        input {
             border: 1px solid #ccc;
             padding: 4px 0px;
             /*border-radius: 3px;*/
@@ -101,7 +100,7 @@ border-bottom: 1px dashed #a8a8a8;
             -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
             transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         }
-    
+
             input:focus {
                 border-color: #66afe9;
                 outline: 0;
@@ -110,51 +109,83 @@ border-bottom: 1px dashed #a8a8a8;
             }
 
         .input_tr {
-        margin-top: 2%;
-        /*margin-left: 3%;*/
-        border: 1px solid #ccc;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            margin-top: 2%;
+            /*margin-left: 3%;*/
+            border: 1px solid #ccc;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         }
-
+        .auto-style1 {
+            width: 126px;
+        }
+        .auto-style2 {
+            height: 21px;
+            font-size: 1%;
+            padding-left: 1%;
+            width: 126px;
+        }
+        .auto-style3 {
+            width: 99px;
+        }
+        .auto-style4 {
+            height: 21px;
+            font-size: 1%;
+            padding-left: 1%;
+            width: 99px;
+        }
+        .auto-style7 {
+            width: 133px;
+        }
+        .auto-style9 {
+            width: 132px;
+        }
+        .auto-style12 {
+            width: 208px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-              <asp:Button ID="Button2" class="input_tr" OnClick="jxc_load" Text="刷新数据" runat="server" />
-           <%-- <asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="jxc_load">
+            <img class="new_qichu" src="Myadmin/images/Resources/refresh_24.gif" />
+            <asp:Button ID="Button2" class="input_tr" OnClick="jxc_load" Text="刷新数据" runat="server" />
+            <%-- <asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="jxc_load">
             </asp:DropDownList>--%>
-            <asp:Button ID ="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" />
-            <div class="sp_css" style=" position: absolute;width: 100%;left: 85%;top: -2%;">
-                <label style="margin-left: -35%;">商品代码：</label><input type="text" style="width: 10%;margin-right: 3%;"class="input_tr" name="sp_dm" />
-                <span><label>商品名称：</label><input type="text" style="width: 10%" class="input_tr" name="sp_mc" /></span>
+            <img class="new_mingxisave" src="Myadmin/images/Resources/arrow.jpg" />
+            <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" />
+            <div class="sp_css" style="position: absolute; width: 100%; left: 85%; top: -2%;">
+                <label style="margin-left: -35%;">商品代码：</label><input type="text" style="width: 10%; margin-right: 3%;" class="input_tr" name="sp_dm" />
+                <span>
+                    <label> 商品名称：</label><input type="text" style="width: 10%" class="input_tr" name="sp_mc" /></span>
             </div>
-            <div class="rq_css" style="margin-left: 63%;margin-top: -2.2%;margin-bottom: -2%;">
-                
+            <br />
+            <br />
+            <div class="rq_css" style="margin-left: 63%; margin-top: -2.2%; margin-bottom: -2%;">
+
                 <label style="margin-left: -35%;">起始日期：</label><input type="date" style="width: 27%" class="input_tr" name="time_qs" />
-                  <label style="margin-left: 9%;">截止日期：</label><input type="date" style="width: 27%" class="input_tr" name="time_jz" />
-                <asp:Button ID="Button1" class="input_tr_ck" OnClick="time_select" Text="查询" runat="server" />
+                <label style="margin-left: 9%;">截止日期：</label><input type="date" style="width: 27%" class="input_tr" name="time_jz" />
+                  <img class="new_jinxcxun" src="Myadmin/images/Resources/newbookChecktb.jpg"  />
+                   <asp:Button ID="Button1" class="input_tr_ck" OnClick="time_select" Text="查询" runat="server" />
             </div>
 
             <div>
-                <table cellspacing="0" cellpadding="0" id="Table4" style="margin-left: 31.98%; margin-bottom: -8.1%; margin-top: 5%;">
+                <table cellspacing="0" cellpadding="0" id="Table4" style="margin-left: 28.4%; margin-bottom: -8.1%; margin-top: 5%;">
                     <tr id="Tr8">
-                        <td class="" style="background-color: #eeeeee; width: 133px;border-top: 1px dashed #a8a8a8;padding-left:10px;">期初</td>
-                        <td class="" style="background-color: #eeeeee; width: 133px;border-top: 1px dashed #a8a8a8;padding-left:10px;">进货</td>
-                        <td class="" style="background-color: #eeeeee; width: 133px;border-top: 1px dashed #a8a8a8;padding-left:10px;">出货</td>
-                        <td class="" style="background-color: #eeeeee; width: 335px;border-top: 1px dashed #a8a8a8;padding-left:10px;border-right: 1px dashed #a8a8a8;">结存</td>
+                        <td class="auto-style9" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">期初</td>
+                        <td class="auto-style7" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">进货</td>
+                        <td class="auto-style7" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">出货</td>
+                        <td class="auto-style12" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px; border-right: 1px dashed #a8a8a8;">结存</td>
                     </tr>
 
                 </table>
                 <table cellspacing="0" cellpadding="0" class="biao_ge" name="bg_row" style="margin-top: 8%; margin-left: 0%;">
                     <tr id="dj_yh">
-                        <td class="bk_bt_t" style="padding-left: 1%; width: 18px;border-top: 1px dashed #a8a8a8;"></td>
-                        <td class="bk_bt_t" style="padding-left: 1%; width: 100px;border-top: 1px dashed #a8a8a8;">商品代码</td>
-                        <td class="bk_bt_t" style="padding-left: 1%; width: 157px;border-top: 1px dashed #a8a8a8;">商品名称</td>
-                        <td class="bk_bt_t" style="padding-left: 1%; width: 100px;border-top: 1px dashed #a8a8a8;">商品类别</td>
+                        <td class="bk_bt_t" style="padding-left: 1%; width: 18px; border-top: 1px dashed #a8a8a8;"></td>
+                        <td class="bk_bt_t" style="padding-left: 1%; width: 100px; border-top: 1px dashed #a8a8a8;">商品代码</td>
+                        <td class="auto-style1" style="padding-left: 1%; border-top: 1px dashed #a8a8a8;">商品名称</td>
+                        <td class="auto-style3" style="padding-left: 1%; border-top: 1px dashed #a8a8a8;">商品类别</td>
                         <td class="bk_bt">数量</td>
                         <td class="bk_bt">单价</td>
                         <td class="bk_bt">金额</td>
@@ -167,8 +198,8 @@ border-bottom: 1px dashed #a8a8a8;
                         <td class="bk_bt">结存</td>
                         <td class="bk_bt">单价</td>
                         <td class="bk_bt">金额</td>
-                        <td style="background-color:#eeeeee;padding-left: 1%; width: 100px;border-top: 1px dashed #a8a8a8;">边缘存量</td>
-                        <td class="" style="background-color:#eeeeee;border-right: 1px dashed #a8a8a8;border-top: 1px dashed #a8a8a8;padding-left: 1%;width: 50px;">缺货提醒</td>
+                        <td style="background-color: #eeeeee; padding-left: 1%; width: 100px; border-top: 1px dashed #a8a8a8;">边缘存量</td>
+                        <td class="" style="background-color: #eeeeee; border-right: 1px dashed #a8a8a8; border-top: 1px dashed #a8a8a8; padding-left: 1%; width: 50px;">缺货提醒</td>
                     </tr>
                     <%
                
@@ -179,10 +210,10 @@ border-bottom: 1px dashed #a8a8a8;
                             {                          
                     %>
                     <tr id="Tr1">
-                        <td style="font-size: 12px;padding-left: 0.5%;width: 18px;"><%=(i+1) %></td>
+                        <td style="font-size: 12px; padding-left: 0.5%; width: 18px;"><%=(i+1) %></td>
                         <td class="bk_nr"><%=jxc_z_select[i].Sp_dm%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Name%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Lei_bie%></td>
+                        <td class="auto-style2"><%=jxc_z_select[i].Name%></td>
+                        <td class="auto-style4"><%=jxc_z_select[i].Lei_bie%></td>
 
 
                         <td class="bk_nr"><%=jxc_z_select[i].Cpsl_3%></td>
@@ -208,7 +239,7 @@ border-bottom: 1px dashed #a8a8a8;
                                 { 
                         %>
 
-                        <td style="background-color: red;border-right: 1px dashed #a8a8a8;"></td>
+                        <td style="background-color: red; border-right: 1px dashed #a8a8a8;"></td>
                         <%
                                 
                                 }
@@ -217,14 +248,14 @@ border-bottom: 1px dashed #a8a8a8;
                             
                         %>
 
-                        <td style="background-color: red;border-right: 1px dashed #a8a8a8;"></td>
+                        <td style="background-color: red; border-right: 1px dashed #a8a8a8;"></td>
                         <%
                                 }
                                 else
                                 {
                         %>
 
-                        <td style="background-color: green;border-right: 1px dashed #a8a8a8;"></td>
+                        <td style="background-color: green; border-right: 1px dashed #a8a8a8;"></td>
                         <%
                                 
                                 }

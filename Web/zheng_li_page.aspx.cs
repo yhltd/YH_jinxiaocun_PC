@@ -135,11 +135,17 @@ namespace Web
 
         protected void shang_ye_Click(object sender, EventArgs e)
         {
-            int dang_qian = Convert.ToInt32(Session["dq_ye_zl"]);
-            List<zl_and_jc_info> list = fen_ye(dang_qian - 1, 1);
-            Session["dq_ye_zl"] = dang_qian - 1;
-            Session["zl_and_jc_select"] = list;
-
+            if (Session["dq_ye_zl"] == null)
+            {
+                Response.Write(" <script>alert('已经是第一页！')</script>");
+            }
+            else
+            {
+                int dang_qian = Convert.ToInt32(Session["dq_ye_zl"]);
+                List<zl_and_jc_info> list = fen_ye(dang_qian - 1, 1);
+                Session["dq_ye_zl"] = dang_qian - 1;
+                Session["zl_and_jc_select"] = list;
+            }
         }
 
         protected void xia_ye_Click(object sender, EventArgs e)

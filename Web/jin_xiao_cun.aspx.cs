@@ -75,38 +75,39 @@ namespace Web
 
                         if (list[i].Cpsl_3 == "")
                         {
-                            list[i].jc_jc = (0 + Convert.ToInt32(list[i].Cpsl_1) - Convert.ToInt32(list[i].Cpsl_2)).ToString();
+                            list[i].jc_jc = (0 + Convert.ToDouble(list[i].Cpsl_1) - Convert.ToDouble(list[i].Cpsl_2)).ToString();
                         }
                         else if (list[i].Cpsl_1 == "")
                         {
-                            list[i].jc_jc = (Convert.ToInt32(list[i].Cpsl_3) + 0 - Convert.ToInt32(list[i].Cpsl_2)).ToString();
+                            list[i].jc_jc = (Convert.ToDouble(list[i].Cpsl_3) + 0 - Convert.ToDouble(list[i].Cpsl_2)).ToString();
                         }
                         else if (list[i].Cpsl_2 == "")
                         {
-                            list[i].jc_jc = (Convert.ToInt32(list[i].Cpsl_3) + Convert.ToInt32(list[i].Cpsl_1) - 0).ToString();
+                            list[i].jc_jc = (Convert.ToDouble(list[i].Cpsl_3) + Convert.ToDouble(list[i].Cpsl_1) - 0).ToString();
                         }
                         else
                         {
-                            list[i].jc_jc = (Convert.ToInt32(list[i].Cpsl_3) + Convert.ToInt32(list[i].Cpsl_1) - Convert.ToInt32(list[i].Cpsl_2)).ToString();
+                            list[i].jc_jc = (Convert.ToDouble(list[i].Cpsl_3) + Convert.ToDouble(list[i].Cpsl_1) - Convert.ToDouble(list[i].Cpsl_2)).ToString();
                         }
 
-                        if (Convert.ToInt32(list[i].jc_jc) >= 0)
+                        if (Convert.ToInt32(list[i].jc_jc) >= 0)  //判断的有问题，明明是六种情况，就判断了三种！
+                            //这里要看看，ToDouble能不能把null变为空，再回去clsallnew里看看，是空的值，ToDouble怎么变的！
                         {
-                            if (list[i].Cpje_3 == "")
+                            if (list[i].Cpje_3 == "" )
                             {
-                                list[i].jc_je = (0 + Convert.ToInt32(list[i].Cpje_1) - Convert.ToInt32(list[i].Cpje_2)).ToString();
+                                list[i].jc_je = (0 + Convert.ToDouble(list[i].Cpje_1) - Convert.ToDouble(list[i].Cpje_2)).ToString();
                             }
                             else if (list[i].Cpje_1 == "")
                             {
-                                list[i].jc_je = (Convert.ToInt32(list[i].Cpje_3) + 0 - Convert.ToInt32(list[i].Cpje_2)).ToString();
+                                list[i].jc_je = (Convert.ToDouble(list[i].Cpje_3) + 0 - Convert.ToDouble(list[i].Cpje_2)).ToString();
                             }
                             else if (list[i].Cpje_2 == "")
                             {
-                                list[i].jc_je = (Convert.ToInt32(list[i].Cpje_3) + Convert.ToInt32(list[i].Cpje_1) - 0).ToString();
+                                list[i].jc_je = (Convert.ToDouble(list[i].Cpje_3) + Convert.ToDouble(list[i].Cpje_1) - 0).ToString();
                             }
                             else
                             {
-                                list[i].jc_je = (Convert.ToInt32(list[i].Cpje_3) + Convert.ToInt32(list[i].Cpje_1) - Convert.ToInt32(list[i].Cpje_2)).ToString();
+                                list[i].jc_je = (Convert.ToDouble(list[i].Cpje_3) + Convert.ToDouble(list[i].Cpje_1) - Convert.ToDouble(list[i].Cpje_2)).ToString();
                             }
                         }
                         else
@@ -116,7 +117,7 @@ namespace Web
 
                         if (Convert.ToInt32(list[i].jc_jc) > 0)
                         {
-                            list[i].jc_dj = (Convert.ToInt32(list[i].jc_je) / Convert.ToInt32(list[i].jc_jc)).ToString();
+                            list[i].jc_dj = (Convert.ToDouble(list[i].jc_je) / Convert.ToDouble(list[i].jc_jc)).ToString("f2");
                         }
                         else
                         {

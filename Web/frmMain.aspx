@@ -387,7 +387,8 @@
             <div class="mainCon1">
                 <div class="leftNav" style="background-color: #e0ecff;">
                     <ul>
-                        <li><a id="Nav_begin" style="font-weight: bold; font-size: 18px;" class="leftNav_li" href="senior.asp">信息导航</a></li>
+                        <%--<li><a id="Nav_begin" style="font-weight: bold; font-size: 18px;" class="leftNav_li" href="senior.asp">信息导航</a></li>--%>
+                        <li><a id="Nav_begin" style="font-weight: bold; font-size: 18px;" class="leftNav_li" href="">信息导航</a></li>
                         <li><span class="leftNav_block"></span></li>
                         <%--                        <li><a href="#" class="leftNav_li" onclick="add_li('yjgl_tz()','业绩管理','yejiguanli.aspx')">业绩管理</a></li>--%>
                         <%--add_li('yjgl_tz','业绩管理','yejiguanli.aspx'     function add_li(ff, row, tz_lj) {)--%>
@@ -406,7 +407,7 @@
                         <li><a href="#" id="A8" class="leftNav_li" onclick="add_li('ji_chu_zi_liao_page_ff()','基础资料','ji_chu_zi_liao_page.aspx','ji_chu_zi_liao_page_id','8')">基础资料</a></li>
                         <li><a href="#" id="A9" class="leftNav_li" onclick="add_li('zheng_li_page_ff()','整理','zheng_li_page.aspx','zheng_li_page_id','9')">整理</a></li>
                         <%--        <li><a href="#" id="A5" class="leftNav_li" onclick="add_li('jin_xiao_cun_ff()','进销存','jin_xiao_cun.aspx','jin_xiao_cun_id')">进销存</a></li>--%>
-                        <span id="show_hide_app" style="display: &#39; none &#39;"></span>
+                        <span id="show_hide_app" style="display: &#39; none&#39;"></span>   
                     </ul>
                 </div>
 

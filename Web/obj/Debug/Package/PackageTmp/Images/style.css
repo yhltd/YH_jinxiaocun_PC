@@ -56,14 +56,16 @@ body, a {
     width: 960px;
     margin: 0 auto;
 }
+
 .Home_welcome_info {
     font-family: "Î¢ÈíÑÅºÚ","ºÚÌå","ËÎÌå";
     font-weight: normal;
     font-size: 16px;
     line-height: 40px;
     color: #b40605;
-     margin-left: 0px;
+    margin-left: 0px;
 }
+
 .welcome_info {
     font-family: "Î¢ÈíÑÅºÚ","ºÚÌå","ËÎÌå";
     font-weight: normal;
@@ -140,11 +142,11 @@ body, a {
     line-height: 28px;
     color: #333;
     padding: 0 0 0 25px;
-    background-color:#e0ecff;
+    background-color: #e0ecff;
 }
 
     .leftNav_li:hover {
-        color:black;
+        color: black;
         background-color: #ffe48d;
     }
 
@@ -243,8 +245,7 @@ body, a {
     background-color: #fff;
     padding: 20px 0 20px 20px;
     border-collapse: collapse;
-    height:450px;
-
+    height: 450px;
 }
 
 /*µÇÂ¼Ò³Ãæ    */
@@ -867,6 +868,16 @@ body, a {
     height: 30px;
     line-height: 30px;
     border: 1px solid #000000;
+    border-collapse: collapse;
+}
+
+.nolaber {
+    color: black;
+    font-size: 15px;
+    /*height: 30px;*/
+    line-height: 30px;
+    FONT-WEIGHT: bold;
+    /*border:double #d0fbf6;*/
     border-collapse: collapse;
 }
 

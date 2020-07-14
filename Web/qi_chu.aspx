@@ -75,14 +75,13 @@
             $("#dj_yh").click(function () {
 
                 var rowLength = $("#biao_ge tr").length;
-
                 var insertStr = "<tr id='del_row" + row + "' >"
                                + "<td style='font-size: 14px;padding-left: 0.5%;width: 18px;'>" + (rowLength) + "</td>"
                                + "<td ><input type='text' class='input_tr' style='width:147px;margin:1px'  id='sp_name"+row+"' name='cpname" + row + "' ></input></td>"
                                //+ "<td class='bg_bj_dm'><input type='text' style='width:318px;margin:1px' id='sp_dm' class='input_tr' name='cpname" + row + "' ></input></td>"
                                + "<td class='bg_bj_dm'>"
                                + "<select class='input_tr' id='sp_dm" + row + "' name='cpid" + row + "' onchange='bhhq(" + row + ")'>"
-                            + "<option>选择编号</option>"
+                            + "<option>选择编号</option>" 
                             +<%
                                 List<zl_and_jc_info> jichu = Session["jichu"] as  List<zl_and_jc_info> ;
                                 if (jichu!=null){
@@ -90,9 +89,16 @@
                                     {
                                         if (jichu[ji].id != "") 
                                         {
+                                            if(ji == 0){
                                         %>
-                                            +"<option value ='<%=jichu[ji].sp_dm %>'>" +<%=jichu[ji].sp_dm %> +"</option>"
+                                            + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>" 
+                                            + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>"      
                                         <%
+                                            }else{
+                                            %>
+                                            + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>"
+                                            <%
+                                            }
                                         }
                                     }
                                 }
@@ -295,9 +301,9 @@
                     <%--style="font-size: 90%; padding-left: 2%;"--%>
                     <td style="font-size: 14px; padding-left: 0.5%; width: 18px;"><%=(i+1) %></td>
                     <td class="bg_bj">
-                        <input type="text" style="width: 147px; margin: 1px;" class="input_tr" id="sp_name" name="cpid_cs<%=i%>" value="<%=qi_chu_select[i].Cpid%>" /></td>
+                        <input type="text" style="width: 147px; margin: 1px;" class="input_tr" id="sp_name" name="cpid_cs<%=i%>" value="<%=qi_chu_select[i].Cpname%>" /></td>
                     <td class="bg_bj">
-                        <input type="text" style="width: 318px; margin: 1px;" class="input_tr" id="Text1" name="cpname_cs<%=i%>" value="<%=qi_chu_select[i].Cpname%>" /></td>
+                        <input type="text" style="width: 318px; margin: 1px;" class="input_tr" id="Text1" name="cpname_cs<%=i%>" value="<%=qi_chu_select[i].Cpid%>" /></td>
                     <td class="bg_bj">
                         <input type="text" style="width: 147px; margin: 1px;" class="input_tr" id="Text2" name="cplb_cs<%=i%>" value="<%=qi_chu_select[i].Cplb%>" /></td>
                     <td class="bg_bj">

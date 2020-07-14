@@ -151,15 +151,23 @@ namespace Web
 
         protected void xia_ye_Click(object sender, EventArgs e)
         {
-            
-            try {
+
+            try
+            {
                 int dang_qian = Convert.ToInt32(Session["dq_ye_qc"]);
                 List<qi_chu_info> list = fen_ye(dang_qian + 1, 1);
                 Session["dq_ye_qc"] = dang_qian + 1;
                 Session["qi_chu_select"] = list;
             }
-            catch (Exception ex) { throw; }
-            
+            //catch (Exception ex) { throw; }
+            catch (Exception ex) 
+            {
+                int dang_qian = Convert.ToInt32(Session["dq_ye_qc"]);
+                List<qi_chu_info> list = fen_ye(dang_qian , 1);
+                Session["qi_chu_select"] = list;
+                //Response.Write(" <script>alert('已经是最后一页'); location='qi_chu.aspx';</script>");
+                Response.Write(" <script>alert('已经是最后一页');</script>");
+            }
 
 
         }
@@ -215,6 +223,7 @@ namespace Web
                             qci.Cpsl = Context.Request["cpsl" + i].ToString();
                             qci.zh_name = Session["username"].ToString();
                             qci.gs_name = Session["gs_name"].ToString();
+                            qci.Shijian = DateTime.Now.ToString("yyyy-MM-dd");
                             list_qc.Add(qci);
                             add_qichu(list_qc);
                         }

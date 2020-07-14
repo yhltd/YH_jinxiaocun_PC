@@ -17,3 +17,8 @@ C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\SDZdb\bi
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
+D:\yho117\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.dll
+D:\yho117\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
+D:\yho117\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
+D:\yho117\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb
+D:\yho117\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache

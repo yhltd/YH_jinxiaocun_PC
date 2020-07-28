@@ -38,8 +38,6 @@ namespace Web
             Server.ClearError();
             Application["error"] = error;
             Response.Redirect("~/ErrorPage/ErrorPage.aspx?Error=" + error);
-      
-
         }
 
         protected void Session_End(object sender, EventArgs e)

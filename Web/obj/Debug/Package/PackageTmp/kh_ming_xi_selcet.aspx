@@ -7,6 +7,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
      <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
+       <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
         $(function () {
             $("#select_xl").change(function () {
@@ -113,6 +114,8 @@ border-bottom: 1px dashed #a8a8a8;
                 %>
             </select>
                <input name="kui_lei" id="kui_lei" value="<%=kh_mx_xl_select[0].Gong_huo %>" type="hidden" />
+               <img class="new_jinxcxun" src="Myadmin/images/Resources/newbookChecktb.jpg" />
+             
             <asp:Button OnClick="kh_mx_select_Click" ID="Button1" class="input_tr" Text="查询" runat="server" />
 
                <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: -2%;">

@@ -25,3 +25,12 @@ C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\frmcstes
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csproj.GenerateResource.Cache
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.exe
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.pdb
+D:\yho117\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe.config
+D:\yho117\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe
+D:\yho117\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.pdb
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csprojResolveAssemblyReference.cache
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Form1.resources
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Properties.Resources.resources
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csproj.GenerateResource.Cache
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.exe
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.pdb

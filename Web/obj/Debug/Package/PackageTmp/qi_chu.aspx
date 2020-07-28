@@ -7,6 +7,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
+        <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
         function bhhq(row) {
 
@@ -74,14 +75,13 @@
             $("#dj_yh").click(function () {
 
                 var rowLength = $("#biao_ge tr").length;
-
                 var insertStr = "<tr id='del_row" + row + "' >"
                                + "<td style='font-size: 14px;padding-left: 0.5%;width: 18px;'>" + (rowLength) + "</td>"
                                + "<td ><input type='text' class='input_tr' style='width:147px;margin:1px'  id='sp_name"+row+"' name='cpname" + row + "' ></input></td>"
                                //+ "<td class='bg_bj_dm'><input type='text' style='width:318px;margin:1px' id='sp_dm' class='input_tr' name='cpname" + row + "' ></input></td>"
                                + "<td class='bg_bj_dm'>"
                                + "<select class='input_tr' id='sp_dm" + row + "' name='cpid" + row + "' onchange='bhhq(" + row + ")'>"
-                            + "<option>选择编号</option>"
+                            + "<option>选择编号</option>" 
                             +<%
                                 List<zl_and_jc_info> jichu = Session["jichu"] as  List<zl_and_jc_info> ;
                                 if (jichu!=null){
@@ -89,9 +89,16 @@
                                     {
                                         if (jichu[ji].id != "") 
                                         {
+                                            if(ji == 0){
                                         %>
-                                            +"<option value ='<%=jichu[ji].sp_dm %>'>" +<%=jichu[ji].sp_dm %> +"</option>"
+                                            + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>" 
+                                            + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>"      
                                         <%
+                                            }else{
+                                            %>
+                                            + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>"
+                                            <%
+                                            }
                                         }
                                     }
                                 }
@@ -250,6 +257,9 @@
         .qc_sc {
             margin-left: 1px;
         }
+        .new_cuku {
+            width: 28px;
+        }
     </style>
     <title></title>
 </head>
@@ -262,7 +272,8 @@
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <%--<asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="bt_select_Click">
             </asp:DropDownList>--%>
-            <asp:Button ID="Button2" class="input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
+              <img class="new_qichu" src="Myadmin/images/Resources/refresh_24.gif"  />
+             <asp:Button ID="Button2" class="qichu_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
             <div style="width: 171px; border: 1px solid #95b8e7; height: 51px; margin-left: 80%; margin-top: -3%; margin-bottom: -6%;">
                 <div style="font-size: 19%; margin-top: -5%; margin-left: 7%; background-color: white; width: 27px;">功能</div>
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_sc" Text="删除" runat="server" />
@@ -270,7 +281,7 @@
             </div>
             <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 8%;">
                 <tr id="dj_yh">
-                    <td class="auto-style1" style="padding-left: 1%; width: 18px; font-size: 92%"></td>
+                    <td class="auto-style1" style="padding-left: 1%; width: 38px; font-size: 92%">序号</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 148px; font-size: 92%">商品名称</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 321px; font-size: 92%">商品代码</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 148px; font-size: 92%">商品类别</td>
@@ -290,9 +301,9 @@
                     <%--style="font-size: 90%; padding-left: 2%;"--%>
                     <td style="font-size: 14px; padding-left: 0.5%; width: 18px;"><%=(i+1) %></td>
                     <td class="bg_bj">
-                        <input type="text" style="width: 147px; margin: 1px;" class="input_tr" id="sp_name" name="cpid_cs<%=i%>" value="<%=qi_chu_select[i].Cpid%>" /></td>
+                        <input type="text" style="width: 147px; margin: 1px;" class="input_tr" id="sp_name" name="cpid_cs<%=i%>" value="<%=qi_chu_select[i].Cpname%>" /></td>
                     <td class="bg_bj">
-                        <input type="text" style="width: 318px; margin: 1px;" class="input_tr" id="Text1" name="cpname_cs<%=i%>" value="<%=qi_chu_select[i].Cpname%>" /></td>
+                        <input type="text" style="width: 318px; margin: 1px;" class="input_tr" id="Text1" name="cpname_cs<%=i%>" value="<%=qi_chu_select[i].Cpid%>" /></td>
                     <td class="bg_bj">
                         <input type="text" style="width: 147px; margin: 1px;" class="input_tr" id="Text2" name="cplb_cs<%=i%>" value="<%=qi_chu_select[i].Cplb%>" /></td>
                     <td class="bg_bj">

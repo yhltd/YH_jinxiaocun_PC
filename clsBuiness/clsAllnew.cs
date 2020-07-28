@@ -1369,7 +1369,8 @@ namespace clsBuiness
                 foreach (ming_xi_info item in mxif)
                 {
 
-                    sql = "insert into Yh_JinXiaoCun_mingxi(_id,_openid,cpid,cpjj,cplb,cpname,cpsj,cpsl,finduser,gongsi,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name) values ('" + item.Id + "','" + item.Openid + "','" + item.Cpid + "','" + item.Cpjg + "','" + item.Cplb + "','" + item.Cpname + "','" + item.Cpsj + "','" + item.Cpsl + "','" + item.Finduser + "','" + item.Gongsi + "','" + item.Mxtype + "','" + item.Orderid + "','" + item.Shijian + "','" + item.sp_dm + "','" + item.shou_h + "','" + item.zh_name + "','" + item.gs_name + "')";
+                    //sql = "insert into Yh_JinXiaoCun_mingxi(_id,_openid,cpid,cpjj,cplb,cpname,cpsj,cpsl,finduser,gongsi,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name) values ('" + item.Id + "','" + item.Openid + "','" + item.Cpid + "','" + item.Cpjg + "','" + item.Cplb + "','" + item.Cpname + "','" + item.Cpsj + "','" + item.Cpsl + "','" + item.Finduser + "','" + item.Gongsi + "','" + item.Mxtype + "','" + item.Orderid + "','" + item.Shijian + "','" + item.sp_dm + "','" + item.shou_h + "','" + item.zh_name + "','" + item.gs_name + "')";
+                    sql = "insert into Yh_JinXiaoCun_mingxi(_openid,cpid,cpjj,cplb,cpname,cpsj,cpsl,finduser,gongsi,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name) values ('" + item.Openid + "','" + item.Cpid + "','" + item.Cpjg + "','" + item.Cplb + "','" + item.Cpname + "','" + item.Cpsj + "','" + item.Cpsl + "','" + item.Finduser + "','" + item.Gongsi + "','" + item.Mxtype + "','" + item.Orderid + "','" + item.Shijian + "','" + item.sp_dm + "','" + item.shou_h + "','" + item.zh_name + "','" + item.gs_name + "')";
                     int isrun = MySqlHelper.ExecuteSql(sql, ConStr);
 
 
@@ -1583,20 +1584,71 @@ namespace clsBuiness
             while (reader.Read())
             {
                 ming_xi_info mxi = new ming_xi_info();
-                mxi.Openid = reader.GetString(1);
-                mxi.Cpid = reader.GetString(2);
-                mxi.Cpjg = reader.GetString(3);
-                mxi.Cplb = reader.GetString(4);
-                mxi.Cpname = reader.GetString(5);
-                mxi.Cpsj = reader.GetString(6);
-                mxi.Cpsl = reader.GetString(7);
-                mxi.Finduser = reader.GetString(8);
-                mxi.Gongsi = reader.GetString(9);
-                mxi.Mxtype = reader.GetString(10);
-                mxi.Orderid = reader.GetString(11);
-                mxi.Shijian = reader.GetString(12);
-                mxi.sp_dm = reader.GetString(13);
-                mxi.shou_h = reader.GetString(14);
+                if (reader.GetValue(1) != null && reader.GetValue(1).ToString() != "")
+                {
+                    mxi.Openid = reader.GetString(1);
+                }
+                if (reader.GetValue(2) != null && reader.GetValue(2).ToString() != "")
+                {
+                    mxi.Cpid = reader.GetString(2);
+                }
+                if (reader.GetValue(3) != null && reader.GetValue(3).ToString() != "")
+                {
+                    mxi.Cpjg = reader.GetString(3);
+                }
+                if (reader.GetValue(4) != null && reader.GetValue(4).ToString() != "")
+                {
+                    mxi.Cplb = reader.GetString(4);
+                }
+                if (reader.GetValue(5) != null && reader.GetValue(5).ToString() != "")
+                {
+                    mxi.Cpname = reader.GetString(5);
+                }
+                if (reader.GetValue(6) != null && reader.GetValue(6).ToString() != "")
+                {
+                    mxi.Cpsj = reader.GetString(6);
+                } 
+                if (reader.GetValue(7) != null && reader.GetValue(7).ToString() != "")
+                {
+                    mxi.Cpsl = reader.GetString(7);
+                }
+                if (reader.GetValue(8) != null && reader.GetValue(8).ToString() != "")
+                {
+                    mxi.Finduser = reader.GetString(8);
+                } 
+                if (reader.GetValue(9) != null && reader.GetValue(9).ToString() != "")
+                {
+                    mxi.Gongsi = reader.GetString(9);
+                }
+                if (reader.GetValue(10) != null && reader.GetValue(10).ToString() != "")
+                {
+                    mxi.Mxtype = reader.GetString(10);
+                }
+                if (reader.GetValue(11) != null && reader.GetValue(11).ToString() != "")
+                {
+                    mxi.Orderid = reader.GetString(11);
+                }
+                if (reader.GetValue(12) != null && reader.GetValue(12).ToString() != "")
+                {
+                    mxi.Shijian = reader.GetString(12);
+                }
+                if (reader.GetValue(13) != null && reader.GetValue(13).ToString() != "")
+                {
+                    mxi.sp_dm = reader.GetString(13);
+                }
+                if (reader.GetValue(14) != null && reader.GetValue(14).ToString() != "")
+                {
+                    mxi.shou_h = reader.GetString(14);
+                }
+                if (reader.GetValue(15) != null && reader.GetValue(16).ToString() != "")
+                {
+                    mxi.zh_name = reader.GetString(15);
+                }
+                if (reader.GetValue(16) != null && reader.GetValue(16).ToString() != "")
+                {
+                    mxi.gs_name = reader.GetString(16);
+                }
+
                 list.Add(mxi);
             }
             reader.Close();
@@ -1721,7 +1773,7 @@ namespace clsBuiness
             string strSelect = "";
             foreach (qi_chu_info item in qci)
             {
-                strSelect = "insert into Yh_JinXiaoCun_qichushu(_id,_openid,cpid,cpjg,cpjj,cplb,cpname,cpsj,cpsl,mxtype,shijian,zh_name,gs_name) values ('" + item.Id + "','" + item.Openid + "','" + item.Cpid + "','" + item.Cpjg + "','" + item.Cpjj + "','" + item.Cplb + "','" + item.Cpname + "','" + item.Cpsj + "','" + item.Cpsl + "','" + item.Mxtype + "','" + item.Shijian + "','" + item.zh_name + "','" + item.gs_name + "')";
+                strSelect = "insert into Yh_JinXiaoCun_qichushu(_openid,cpid,cpjg,cpjj,cplb,cpname,cpsj,cpsl,mxtype,shijian,zh_name,gs_name) values ('" + item.Openid + "','" + item.Cpid + "','" + item.Cpjg + "','" + item.Cpjj + "','" + item.Cplb + "','" + item.Cpname + "','" + item.Cpsj + "','" + item.Cpsl + "','" + item.Mxtype + "','" + item.Shijian + "','" + item.zh_name + "','" + item.gs_name + "')";
                 int isrun = MySqlHelper.ExecuteSql(strSelect, ConStr);
 
             }
@@ -1839,7 +1891,7 @@ namespace clsBuiness
                 qichushu.Add(qc);
             }
 
-            sqlselect = "select sp_dm,cpname,mxtype,cplb,sum(cpsl),sum(cpsj) from Yh_JinXiaoCun_mingxi where zh_name= '" + zh_name + "' and gs_name = '" + gs_name + "' GROUP BY sp_dm,mxtype ";
+            sqlselect = "select sp_dm,cpname,mxtype,cplb,sum(cpsl),ROUND((sum(cpsl*cpsj)/sum(cpsl)),2) as 'sum(cpsj)' from Yh_JinXiaoCun_mingxi where zh_name= '" + zh_name + "' and gs_name = '" + gs_name + "' GROUP BY sp_dm,mxtype ";
             MySql.Data.MySqlClient.MySqlDataReader reader2 = MySqlHelper.ExecuteReader(sqlselect, ConStr);
             ming_xi_info mx = new ming_xi_info();
             while (reader2.Read())
@@ -1849,8 +1901,9 @@ namespace clsBuiness
                 mx.Cpname = reader2.GetString(reader2.GetOrdinal("Cpname"));
                 mx.Mxtype = reader2.GetString(reader2.GetOrdinal("Mxtype"));
                 mx.Cplb = reader2.GetString(reader2.GetOrdinal("cplb"));
-                mx.Cpsj = reader2.GetString(reader2.GetOrdinal("sum(cpsj)"));
+                mx.Cpsj = reader2.GetString(reader2.GetOrdinal("sum(cpsj)"));    //??有问题
                 mx.Cpsl = reader2.GetString(reader2.GetOrdinal("sum(cpsl)"));
+                
                 mingxi.Add(mx);
             }
             jxc_z_info jxc = new jxc_z_info();
@@ -1875,15 +1928,15 @@ namespace clsBuiness
                     jxc.Lei_bie = mingxi[mxi].Cplb;
                     if (mingxi[mxi].Mxtype == "出库")
                     {
-                        jxc.Cpje_2 = mingxi[mxi].Cpsj;
+                        jxc.Cpsj_2 = mingxi[mxi].Cpsj;
                         jxc.Cpsl_2 = mingxi[mxi].Cpsl;
-                        jxc.Cpsj_2 = (Convert.ToInt32(jxc.Cpje_2) / Convert.ToInt32(jxc.Cpsl_2)).ToString();
+                        jxc.Cpje_2 = (Convert.ToDouble(jxc.Cpsj_2)* Convert.ToDouble(jxc.Cpsl_2)).ToString();
                     }
                     else if (mingxi[mxi].Mxtype == "入库")
                     {
-                        jxc.Cpje_1 = mingxi[mxi].Cpsj;
+                        jxc.Cpsj_1 = mingxi[mxi].Cpsj;   //此处应该是单价，前端显示错误，数据库中存的是单价
                         jxc.Cpsl_1 = mingxi[mxi].Cpsl;
-                        jxc.Cpsj_1 = (Convert.ToInt32(jxc.Cpje_1) / Convert.ToInt32(jxc.Cpsl_1)).ToString();
+                        jxc.Cpje_1 = (Convert.ToDouble(jxc.Cpsj_1) * Convert.ToDouble(jxc.Cpsl_1)).ToString();
                     }
                     list.Add(jxc);
                 }
@@ -1891,15 +1944,15 @@ namespace clsBuiness
                 {
                     if (mingxi[mxi].Mxtype == "出库")
                     {
-                        list[i].Cpje_2 = mingxi[mxi].Cpsj;
+                        list[i].Cpsj_2 = mingxi[mxi].Cpsj;
                         list[i].Cpsl_2 = mingxi[mxi].Cpsl;
-                        list[i].Cpsj_2 = (Convert.ToInt32(list[i].Cpje_2) / Convert.ToInt32(list[i].Cpsl_2)).ToString();
+                        list[i].Cpje_2 = (Convert.ToDouble(list[i].Cpsj_2) * Convert.ToDouble(list[i].Cpsl_2)).ToString();
                     }
                     else if (mingxi[mxi].Mxtype == "入库")
                     {
-                        list[i].Cpje_1 = mingxi[mxi].Cpsj;
+                        list[i].Cpsj_1 = mingxi[mxi].Cpsj;
                         list[i].Cpsl_1 = mingxi[mxi].Cpsl;
-                        list[i].Cpsj_1 = (Convert.ToInt32(list[i].Cpje_1) / Convert.ToInt32(list[i].Cpsl_1)).ToString();
+                        list[i].Cpje_1 = (Convert.ToDouble(list[i].Cpsj_1) * Convert.ToDouble(list[i].Cpsl_1)).ToString();
                     }
 
                 }
@@ -1924,19 +1977,19 @@ namespace clsBuiness
                     jxc.Sp_dm = qichushu[qci].Cpid;
                     jxc.Name = qichushu[qci].Cpname;
                     jxc.Lei_bie = qichushu[qci].Cplb;
-                    jxc.Cpje_3 = qichushu[qci].Cpsj;
+                    jxc.Cpsj_3 = qichushu[qci].Cpsj;
                     jxc.Cpsl_3 = qichushu[qci].Cpsl;
-                    if (jxc.Cpje_3 != null && jxc.Cpje_3.Length > 0 && jxc.Cpje_3 != "undefined" && jxc.Cpsl_3 != null && jxc.Cpsl_3.Length > 0 && jxc.Cpsl_3 != "undefined")
-                        jxc.Cpsj_3 = (Convert.ToInt32(jxc.Cpje_3) / Convert.ToInt32(jxc.Cpsl_3)).ToString();
+                    if (jxc.Cpsj_3 != null && jxc.Cpsj_3.Length > 0 && jxc.Cpsj_3 != "undefined" && jxc.Cpsl_3 != null && jxc.Cpsl_3.Length > 0 && jxc.Cpsl_3 != "undefined")
+                        jxc.Cpje_3 = (Convert.ToDouble(jxc.Cpsj_3) * Convert.ToDouble(jxc.Cpsl_3)).ToString();
                     list.Add(jxc);
                 }
                 else
                 {
-                    list[i].Cpje_3 = qichushu[qci].Cpsj;
+                    list[i].Cpsj_3 = qichushu[qci].Cpsj;
                     list[i].Cpsl_3 = qichushu[qci].Cpsl;
-                    if (list[i].Cpje_3 != null && list[i].Cpje_3.Length > 0 && list[i].Cpje_3 != "undefined" && list[i].Cpsl_3 != null && list[i].Cpsl_3.Length > 0 && list[i].Cpsl_3 != "undefined")
+                    if (list[i].Cpsj_3 != null && list[i].Cpsj_3.Length > 0 && list[i].Cpsj_3 != "undefined" && list[i].Cpsl_3 != null && list[i].Cpsl_3.Length > 0 && list[i].Cpsl_3 != "undefined")
 
-                        list[i].Cpsj_3 = (Convert.ToInt32(list[i].Cpje_3) / Convert.ToInt32(list[i].Cpsl_3)).ToString();
+                        list[i].Cpje_3 = (Convert.ToDouble(list[i].Cpsj_3) * Convert.ToDouble(list[i].Cpsl_3)).ToString();
                 }
             }
             reader.Close();
@@ -2027,15 +2080,15 @@ namespace clsBuiness
                     jxc.Lei_bie = mingxi[mxi].Cplb;
                     if (mingxi[mxi].Mxtype == "出库")
                     {
-                        jxc.Cpje_2 = mingxi[mxi].Cpsj;
+                        jxc.Cpsj_2 = mingxi[mxi].Cpsj;
                         jxc.Cpsl_2 = mingxi[mxi].Cpsl;
-                        jxc.Cpsj_2 = (Convert.ToInt32(jxc.Cpje_2) / Convert.ToInt32(jxc.Cpsl_2)).ToString();
+                        jxc.Cpje_2 = (Convert.ToDouble(jxc.Cpsj_2) * Convert.ToDouble(jxc.Cpsl_2)).ToString();
                     }
                     else if (mingxi[mxi].Mxtype == "入库")
                     {
-                        jxc.Cpje_1 = mingxi[mxi].Cpsj;
+                        jxc.Cpsj_1 = mingxi[mxi].Cpsj;
                         jxc.Cpsl_1 = mingxi[mxi].Cpsl;
-                        jxc.Cpsj_1 = (Convert.ToInt32(jxc.Cpje_1) / Convert.ToInt32(jxc.Cpsl_1)).ToString();
+                        jxc.Cpje_1 = (Convert.ToDouble(jxc.Cpsj_1) * Convert.ToDouble(jxc.Cpsl_1)).ToString();
                     }
                     list.Add(jxc);
                 }
@@ -2043,15 +2096,15 @@ namespace clsBuiness
                 {
                     if (mingxi[mxi].Mxtype == "出库")
                     {
-                        list[i].Cpje_2 = mingxi[mxi].Cpsj;
+                        list[i].Cpsj_2 = mingxi[mxi].Cpsj;
                         list[i].Cpsl_2 = mingxi[mxi].Cpsl;
-                        list[i].Cpsj_2 = (Convert.ToInt32(list[i].Cpje_2) / Convert.ToInt32(list[i].Cpsl_2)).ToString();
+                        list[i].Cpje_2 = (Convert.ToDouble(list[i].Cpsj_2) * Convert.ToDouble(list[i].Cpsl_2)).ToString();
                     }
                     else if (mingxi[mxi].Mxtype == "入库")
                     {
-                        list[i].Cpje_1 = mingxi[mxi].Cpsj;
+                        list[i].Cpsj_1 = mingxi[mxi].Cpsj;
                         list[i].Cpsl_1 = mingxi[mxi].Cpsl;
-                        list[i].Cpsj_1 = (Convert.ToInt32(list[i].Cpje_1) / Convert.ToInt32(list[i].Cpsl_1)).ToString();
+                        list[i].Cpje_1 = (Convert.ToDouble(list[i].Cpsj_1) * Convert.ToDouble(list[i].Cpsl_1)).ToString();
                     }
 
                 }
@@ -2076,16 +2129,16 @@ namespace clsBuiness
                     jxc.Sp_dm = qichushu[qci].Cpid;
                     jxc.Name = qichushu[qci].Cpname;
                     jxc.Lei_bie = qichushu[qci].Cplb;
-                    jxc.Cpje_3 = qichushu[qci].Cpsj;
+                    jxc.Cpsj_3 = qichushu[qci].Cpsj;
                     jxc.Cpsl_3 = qichushu[qci].Cpsl;
-                    jxc.Cpsj_3 = (Convert.ToInt32(jxc.Cpje_3) / Convert.ToInt32(jxc.Cpsl_3)).ToString();
+                    jxc.Cpje_3 = (Convert.ToDouble(jxc.Cpsj_3) * Convert.ToDouble(jxc.Cpsl_3)).ToString();
                     list.Add(jxc);
                 }
                 else
                 {
-                    list[i].Cpje_3 = qichushu[qci].Cpsj;
+                    list[i].Cpsj_3 = qichushu[qci].Cpsj;
                     list[i].Cpsl_3 = qichushu[qci].Cpsl;
-                    list[i].Cpsj_3 = (Convert.ToInt32(list[i].Cpje_3) / Convert.ToInt32(list[i].Cpsl_3)).ToString();
+                    list[i].Cpje_3 = (Convert.ToDouble(list[i].Cpsj_3) * Convert.ToDouble(list[i].Cpsl_3)).ToString();
                 }
             }
             reader.Close();
@@ -2235,6 +2288,7 @@ namespace clsBuiness
 
         public List<rc_ku_info> kh_mx_xl_select(string zh_name, string gs_name)
         {
+            //string strSelect = "select shou_huo FROM Yh_JinXiaoCun_kucun where zh_name = '" + zh_name + "'and gs_name = " + gs_name + " GROUP  BY shou_huo";
             string strSelect = "select shou_huo FROM Yh_JinXiaoCun_kucun where zh_name = '" + zh_name + "'and gs_name = " + gs_name + " GROUP  BY shou_huo";
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(strSelect, ConStr);
             List<rc_ku_info> list = new List<rc_ku_info>();
@@ -2256,7 +2310,8 @@ namespace clsBuiness
 
         public List<rc_ku_info> rc_ku_kh_select(string shou_huo, string zh_name, string gs_name)
         {
-            string strSelect = "SELECT kc.ri_qi,kc.gong_huo,mx.orderid,kc.sp_dm,kc.name,kc.lei_bie,kc.shou_jia,kc.shu_liang FROM Yh_JinXiaoCun_kucun as kc INNER JOIN Yh_JinXiaoCun_mingxi as mx ON kc.ID = mx._id where kc.shou_huo = '" + shou_huo + "' and mx._openid = '2'  and kc.gs_name = '" + gs_name + "' and kc.zh_name = '" + gs_name + "' and mx.gs_name = '" + gs_name + "' and mx.zh_name = '" + zh_name + "'";
+            //string strSelect = "SELECT kc.ri_qi,kc.gong_huo,mx.orderid,kc.sp_dm,kc.name,kc.lei_bie,kc.shou_jia,kc.shu_liang FROM Yh_JinXiaoCun_kucun as kc INNER JOIN Yh_JinXiaoCun_mingxi as mx ON kc.ID = mx._id where kc.shou_huo = '" + shou_huo + "' and mx._openid = '2'  and kc.gs_name = '" + gs_name + "' and kc.zh_name = '" + gs_name + "' and mx.gs_name = '" + gs_name + "' and mx.zh_name = '" + zh_name + "'";
+            string strSelect = "SELECT kc.ri_qi,kc.gong_huo,mx.orderid,kc.sp_dm,kc.name,kc.lei_bie,kc.shou_jia,kc.shu_liang FROM Yh_JinXiaoCun_kucun as kc INNER JOIN Yh_JinXiaoCun_mingxi as mx ON kc.sp_dm = mx.sp_dm where kc.shou_huo = '" + shou_huo + "'and mx.mxtype = '出库' and kc.gs_name = '" + gs_name + "' and kc.zh_name = '" + gs_name + "' and mx.gs_name = '" + gs_name + "' and mx.zh_name = '" + zh_name + "'";
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(strSelect, ConStr);
             List<rc_ku_info> list = new List<rc_ku_info>();
             while (reader.Read())

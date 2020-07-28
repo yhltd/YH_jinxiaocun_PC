@@ -1,0 +1,9 @@
+D:\yho117\YH_jinxiaocun_PC\frmcstest\bin\x86\Debug\frmcstest.exe.config
+D:\yho117\YH_jinxiaocun_PC\frmcstest\bin\x86\Debug\frmcstest.exe
+D:\yho117\YH_jinxiaocun_PC\frmcstest\bin\x86\Debug\frmcstest.pdb
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\x86\Debug\frmcstest.csprojResolveAssemblyReference.cache
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\x86\Debug\frmcstest.Form1.resources
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\x86\Debug\frmcstest.Properties.Resources.resources
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\x86\Debug\frmcstest.csproj.GenerateResource.Cache
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\x86\Debug\frmcstest.exe
+D:\yho117\YH_jinxiaocun_PC\frmcstest\obj\x86\Debug\frmcstest.pdb

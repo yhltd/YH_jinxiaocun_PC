@@ -1,0 +1,16 @@
+D:\yho117\YH_jinxiaocun_PC\Web\bin\cfgList.config
+D:\yho117\YH_jinxiaocun_PC\Web\bin\Web.dll
+D:\yho117\YH_jinxiaocun_PC\Web\bin\Web.pdb
+D:\yho117\YH_jinxiaocun_PC\Web\bin\China_System.Common.dll
+D:\yho117\YH_jinxiaocun_PC\Web\bin\clsBuiness.dll
+D:\yho117\YH_jinxiaocun_PC\Web\bin\SDZdb.dll
+D:\yho117\YH_jinxiaocun_PC\Web\bin\ThoughtWorks.QRCode.dll
+D:\yho117\YH_jinxiaocun_PC\Web\bin\zxing.dll
+D:\yho117\YH_jinxiaocun_PC\Web\bin\MySql.Data.dll
+D:\yho117\YH_jinxiaocun_PC\Web\bin\China_System.Common.pdb
+D:\yho117\YH_jinxiaocun_PC\Web\bin\clsBuiness.pdb
+D:\yho117\YH_jinxiaocun_PC\Web\bin\ThoughtWorks.QRCode.pdb
+D:\yho117\YH_jinxiaocun_PC\Web\bin\SDZdb.pdb
+D:\yho117\YH_jinxiaocun_PC\Web\obj\x86\Debug\Web.csprojResolveAssemblyReference.cache
+D:\yho117\YH_jinxiaocun_PC\Web\obj\x86\Debug\Web.dll
+D:\yho117\YH_jinxiaocun_PC\Web\obj\x86\Debug\Web.pdb

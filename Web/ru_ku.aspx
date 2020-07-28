@@ -482,16 +482,16 @@
             <input type="hidden" id="row_i1" name="row_i" />
             <input type="hidden" id="xx_hidden" value="tj_false" />
             <div class="new_ss_div">
-               <div  class="btleft">
-                    <img   class="btaddimage" src="Myadmin/images/Resources/createNewBackup.gif"  />
-                       <asp:Button OnClick="bt_addemprt_Click" ID="btleftaddd" class="btclor" Text="添加" runat="server" Height="16px" />
+                <div class="btleft">
+                    <img class="btaddimage" src="Myadmin/images/Resources/createNewBackup.gif" />
+                    <asp:Button OnClick="bt_addemprt_Click" ID="btleftaddd" class="btclor" Text="添加" runat="server" Height="16px" />
                 </div>
 
-                <div  class="new_sslddiv">
-                  
-                    <input id="ru_cx" style="width: 39%; border-radius: 3px;" class="input_tr" name="ru_cx" placeholder="请输入商品代码"/>
+                <div class="new_sslddiv">
 
-                    <img class="new_sslddiv" src="Myadmin/images/Resources/newbookChecktb.jpg"  />
+                    <input id="ru_cx" style="width: 39%; border-radius: 3px;" class="input_tr" name="ru_cx" placeholder="请输入商品代码" />
+
+                    <img class="new_sslddiv" src="Myadmin/images/Resources/newbookChecktb.jpg" />
 
                     <asp:Button OnClick="bt_select_Click" ID="Button1" class="btclor" Text="查询" runat="server" />
                 </div>
@@ -502,7 +502,7 @@
                 <%--cellspacing="5" cellpadding="5"--%>
 
                 <tr id="dj_yh">
-                    <td class="auto-style1" style="padding-left: 1%; width: 100px; font-size: 92%; border-top: 1px dashed #a8a8a8;"></td>
+                    <%--<td class="auto-style1" style="padding-left: 1%; width: 100px; font-size: 92%; border-top: 1px dashed #a8a8a8;"></td>
                     <td class="auto-style1" style="padding-left: 1%; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品名称</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品代码</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品类别</td>
@@ -510,8 +510,17 @@
                     <td class="auto-style1" style="padding-left: 1%; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品数量</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">金额</td>
                     <td class="auto-style1" style="padding-left: 1%; width: 205px; font-size: 92%; border-top: 1px dashed #a8a8a8;">备注</td>
-                    <td class="auto-style1" style="padding-left: 0.4%; font-size: 92%; border-right: 1px dashed #a8a8a8; border-top: 1px dashed #a8a8a8;">功能</td>
-                </tr>
+                    <td class="auto-style1" style="padding-left: 0.4%; font-size: 92%; border-right: 1px dashed #a8a8a8; border-top: 1px dashed #a8a8a8;">功能</td>--%>
+                    <td class="auto-style1" style="text-align:center; width: 100px; font-size: 92%; border-top: 1px dashed #a8a8a8;"></td>
+                    <td class="auto-style1" style="text-align:center; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品名称</td>
+                    <td class="auto-style1" style="text-align:center; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品代码</td>
+                    <td class="auto-style1" style="text-align:center; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品类别</td>
+                    <td class="auto-style1" style="text-align:center; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品单价</td>
+                    <td class="auto-style1" style="text-align:center; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">商品数量</td>
+                    <td class="auto-style1" style="text-align:center; width: 130px; font-size: 92%; border-top: 1px dashed #a8a8a8;">金额</td>
+                    <td class="auto-style1" style="text-align:center; width: 205px; font-size: 92%; border-top: 1px dashed #a8a8a8;">备注</td>
+                    <td class="auto-style1" style="text-align:center; font-size: 92%; border-right: 1px dashed #a8a8a8; border-top: 1px dashed #a8a8a8;">功能</td>
+                  </tr>
 
                 <%
                
@@ -522,7 +531,7 @@
                         for (int i = 0; i < ru_ku_select.Count; i++)
                         {                          
                 %>
-                <tr id="del_row0" class="dj_sj">
+                <tr id="del_row0" class="dj_sj" >
                     <td class="bg_bj_mc" style="font-size: 14px; padding-left: 1px; width: 100px;"><%=i+1 %></td>
                     <td class="bg_bj_mc">
                         <input type="text" class="input_tr" id="sp_name0" name="sp_name0" value="<%=ru_ku_select[i].Cpname%>" /></td>

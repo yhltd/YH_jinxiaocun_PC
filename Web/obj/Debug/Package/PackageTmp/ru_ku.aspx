@@ -8,7 +8,8 @@
 <head runat="server">
     <script src="/Myadmin/js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="/Myadmin/js/json2.js" type="text/javascript"></script>
-<%--    <script src="Myadmin/js/jquery-1.7.1.min.js"></script>--%>
+    <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
+    <%--    <script src="Myadmin/js/jquery-1.7.1.min.js"></script>--%>
     <script>
         $(function () {
             $("#dj_row").click(function () {
@@ -33,28 +34,29 @@
                                + "<td style='font-size: 14px;padding-left: 1px;width: 100px;'>" + (rowLength) + "</td>"
                                + "<td ><input type='text' class='input_tr'  id='sp_name" + row + "' name='sp_name" + row + "' ></input></td>"
                                + "<td class='bg_bj_dm'>"
-                               +"<select class='input_tr' id='sp_dm"+row+"' name='sp_dm"+row+"' onchange='bhhq("+row+")'>"
-                            +"<option>选择编号</option>"
+                               + "<select class='input_tr' id='sp_dm" + row + "' name='sp_dm" + row + "' onchange='bhhq(" + row + ")'>"
+                            + "<option>选择编号</option>"
                             +<%
-                                List<zl_and_jc_info> jichu = Session["jichu"] as  List<zl_and_jc_info> ;
-                                if (jichu!=null){
-                                    for (int ji = 0; ji < jichu.Count; ji++) 
-                                    {
-                                        if (jichu[ji].id != "") 
-                                        {
+        List<zl_and_jc_info> jichu = Session["jichu"] as List<zl_and_jc_info>;
+        if (jichu != null)
+        {
+            for (int ji = 0; ji < jichu.Count; ji++)
+            {
+                if (jichu[ji].id != "")
+                {
                                         %>
                                             +"<option value ='<%=jichu[ji].sp_dm %>'>" +<%=jichu[ji].sp_dm %> +"</option>"
                                         <%
-                                        }
-                                    }
-                                }
+                }
+            }
+        }
                                  %>
-                            
+
                         + "</select></td>"
-                               + "<td class='bg_bj_lb'><input type='text' id='sp_cplb"+row+"' class='input_tr' name='sp_cplb" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' onchange='zongejs(" + row + ")' id='sp_cpsj"+row+"' class='input_tr' name='sp_cpsj" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sl'><input type='text' onchange='zongejs("+row+")'  id='sp_cpsl" + row + "' class='input_tr' name='sp_cpsl" + row + "' ></input></td>"
-                               + "<td class='bg_bj_je'><input type='text' id='sp_je"+row+"' class='input_tr' name='sp_je" + row + "' ></input></td>"
+                               + "<td class='bg_bj_lb'><input type='text' id='sp_cplb" + row + "' class='input_tr' name='sp_cplb" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text' onchange='zongejs(" + row + ")' id='sp_cpsj" + row + "' class='input_tr' name='sp_cpsj" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sl'><input type='text' onchange='zongejs(" + row + ")'  id='sp_cpsl" + row + "' class='input_tr' name='sp_cpsl" + row + "' ></input></td>"
+                               + "<td class='bg_bj_je'><input type='text' id='sp_je" + row + "' class='input_tr' name='sp_je" + row + "' ></input></td>"
                                + "<td ><input type='text' class='input_tr' id='sp_bz' name='sp_bz" + row + "' ></input></td>"
                                + "<td ><input type='button' style='color:red;border-right: 1px dashed #a8a8a8' class='rk_btu'value='删除'  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
@@ -69,11 +71,11 @@
                 $("#xx_hidden").val("tj_true");
                 $("#tj_pd_id").val("tj_true");
             } else {
-              
+
                 $("#tj_pd_id").val("tj_false");
-               
+
             }
-         
+
         }
 
         //绑定change方法，如果数量和单价输入，并且都不为空的话，金额=数量*单价
@@ -119,7 +121,7 @@
             }
         })
 
-        
+
 
         $(document).on("click", "#dj_row", function () {
             //  alert("asd");
@@ -130,7 +132,7 @@
             }
         })
 
-      
+
         $(document).on("click", "#dj_row", function () {
             //  alert("asd");
             for (var i = 1; i < $("#biao_ge tr").length; i++) {
@@ -140,7 +142,7 @@
                 } else {
                 }
             }
-          
+
         })
 
         $(document).on("click", "#dj_row", function () {
@@ -175,8 +177,7 @@
             }
 
         })
-        function bhhq(row)
-        {
+        function bhhq(row) {
 
             $.ajax({
                 type: "post", //要用post方式                 
@@ -193,7 +194,7 @@
                 },
                 error: function (err) {
                     //alert(err.toString());
-                    
+
                 }
             });
         }
@@ -396,12 +397,10 @@
         }
 
         .input_tr {
-            margin: 0.1px;
+            margin: 0.1px 0.1px 0.1px 0px;
             border: 1px solid #ccc;
-            padding: 4px 0px;
+            padding: 4px 5px;
             /*border-radius: 3px;*/
-            padding-left: 5px;
-            padding-right: 5px;
             -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
             -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
@@ -481,13 +480,24 @@
 
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <input type="hidden" id="row_i1" name="row_i" />
-             <input type="hidden" id="xx_hidden" value="tj_false" />
-            <div class="ss_div">
-                <input id="ru_cx" style="width: 19%; border-radius: 3px;" class="input_tr" name="ru_cx" />
-                <asp:Button OnClick="bt_select_Click" ID="Button1" class="rk_btu" Text="查询" runat="server" />
+            <input type="hidden" id="xx_hidden" value="tj_false" />
+            <div class="new_ss_div">
+                <div class="btleft">
+                    <img class="btaddimage" src="Myadmin/images/Resources/createNewBackup.gif" />
+                    <asp:Button OnClick="bt_addemprt_Click" ID="btleftaddd" class="btclor" Text="添加" runat="server" Height="16px" />
+                </div>
+
+                <div class="new_sslddiv">
+
+                    <input id="ru_cx" style="width: 39%; border-radius: 3px;" class="input_tr" name="ru_cx" placeholder="请输入商品代码" />
+
+                    <img class="new_sslddiv" src="Myadmin/images/Resources/newbookChecktb.jpg" />
+
+                    <asp:Button OnClick="bt_select_Click" ID="Button1" class="btclor" Text="查询" runat="server" />
+                </div>
             </div>
 
-<%--            <input onclick="checkLogin1()" id="sssss" value="asd" type="button" />--%>
+            <%--            <input onclick="checkLogin1()" id="sssss" value="asd" type="button" />--%>
             <table id="biao_ge" name="bg_row" cellspacing="0" cellpadding="0">
                 <%--cellspacing="5" cellpadding="5"--%>
 
@@ -513,7 +523,7 @@
                         {                          
                 %>
                 <tr id="del_row0" class="dj_sj">
-                    <td class="bg_bj_mc" style="font-size: 14px; padding-left: 1px; width:100px;"><%=i+1 %></td>
+                    <td class="bg_bj_mc" style="font-size: 14px; padding-left: 1px; width: 100px;"><%=i+1 %></td>
                     <td class="bg_bj_mc">
                         <input type="text" class="input_tr" id="sp_name0" name="sp_name0" value="<%=ru_ku_select[i].Cpname%>" /></td>
                     <td class="bg_bj_dm">
@@ -523,9 +533,9 @@
                     <td class="bg_bj_sj">
                         <input type="text" class="input_tr" onchange="zongejs(0)" id="sp_cpsj0" name="sp_cpsj0" value="<%=ru_ku_select[i].Cpsj%>" /></td>
                     <td class="bg_bj_sl">
-                        <input type="text" class="input_tr"  onchange="zongejs(0)"  id="sp_cpsl0" name="sp_cpsl0" value="<%=ru_ku_select[i].Cpsl%>" /></td>
+                        <input type="text" class="input_tr" onchange="zongejs(0)" id="sp_cpsl0" name="sp_cpsl0" value="<%=ru_ku_select[i].Cpsl%>" /></td>
                     <td class="bg_bj_je">
-                        <input type="text" class="input_tr"    id="sp_je" name="sp_je0" value="<%=ru_ku_select[i].Cpjg%>" /></td>
+                        <input type="text" class="input_tr" id="sp_je" name="sp_je0" value="<%=ru_ku_select[i].Cpjg%>" /></td>
                     <td class="bg_bj_bz">
                         <input type="text" class="input_tr" id="sp_bz" name="sp_bz0" value="<%=ru_ku_select[i].shou_h%>" /></td>
                     <td class="bg_bj">
@@ -538,38 +548,38 @@
                     {
                 %>
                 <tr id="del_row0" class="dj_sj">
-                    <td class="bg_bj_mc" style="font-size: 14px; padding-left:1px; width:100px;">
+                    <td class="bg_bj_mc" style="font-size: 14px; padding-left: 1px; width: 100px;">
                         <% int aa = 0; %><%= aa+=1 %>
                     </td>
                     <td class="bg_bj_mc">
-                        
+
                         <input type="text" class="input_tr" id="sp_name0" name="sp_name0" /></td>
                     <td class="bg_bj_dm">
                         <select class="input_tr" id="sp_dm0" name="sp_dm0" onchange="bhhq(0)">
                             <option>选择编号</option>
                             <%
-                                List<zl_and_jc_info> jichu = Session["jichu"] as  List<zl_and_jc_info> ;
-                                if (jichu!=null){
-                                    for (int ji = 0; ji < jichu.Count; ji++) 
-                                    {
-                                        if (jichu[ji].id != "") 
-                                        {
-                                        %>
-                                            <option value="<%=jichu[ji].sp_dm %>"><%=jichu[ji].sp_dm %></option>
-                                        <%
-                                        }
-                                    }
-                                }
-                                 %>
-                            
+                           List<zl_and_jc_info> jichu = Session["jichu"] as List<zl_and_jc_info>;
+                           if (jichu != null)
+                           {
+                               for (int ji = 0; ji < jichu.Count; ji++)
+                               {
+                                   if (jichu[ji].id != "")
+                                   {
+                            %>
+                            <option value="<%=jichu[ji].sp_dm %>"><%=jichu[ji].sp_dm %></option>
+                            <%
+                                   }
+                               }
+                           }
+                            %>
                         </select>
                         <%--<input type="text" class="input_tr" id="sp_dm" name="sp_dm0" />--%></td>
                     <td class="bg_bj_lb">
                         <input type="text" class="input_tr" id="sp_cplb0" name="sp_cplb0" /></td>
                     <td class="bg_bj_sj">
-                        <input type="text"  onchange="zongejs(0)"  class="input_tr" id="sp_cpsj0" name="sp_cpsj0" /></td>
+                        <input type="text" onchange="zongejs(0)" class="input_tr" id="sp_cpsj0" name="sp_cpsj0" /></td>
                     <td class="bg_bj_sl">
-                        <input type="text" onchange="zongejs(0)"  class="input_tr" id="sp_cpsl0" name="sp_cpsl0" /></td>
+                        <input type="text" onchange="zongejs(0)" class="input_tr" id="sp_cpsl0" name="sp_cpsl0" /></td>
                     <td class="bg_bj_je">
                         <input type="text" class="input_tr" id="sp_je0" name="sp_je0" /></td>
                     <td class="bg_bj_bz">
@@ -578,7 +588,7 @@
                         <input type='button' style="color: red;" class='rk_btu' value='删除' onclick='del_row(0)' /></td>
                 </tr>
                 <%
-               }
+                    }
                 %>
             </table>
 
@@ -595,47 +605,45 @@
                 </div>
                 <div class="ghf_css" style="padding-left: 6%">
                     <label>供货方：</label>
-                    <select style="width: 13%" id="gh_f_id" class="input_tr" name="gongsi" >
-                                                    <option>选择供货方</option>
-                            <%
-                                List<zl_and_jc_info> jichuc = Session["jichu"] as  List<zl_and_jc_info> ;
-                                if (jichuc != null)
+                    <select style="width: 13%" id="gh_f_id" class="input_tr" name="gongsi">
+                        <option>选择供货方</option>
+                        <%
+                            List<zl_and_jc_info> jichuc = Session["jichu"] as List<zl_and_jc_info>;
+                            if (jichuc != null)
+                            {
+                                for (int ji = 0; ji < jichuc.Count; ji++)
                                 {
-                                    for (int ji = 0; ji < jichuc.Count; ji++) 
+                                    if (jichuc[ji].id != "")
                                     {
-                                        if (jichuc[ji].id != "") 
-                                        {
-                                        %>
-                                            <option value="<%=jichuc[ji].Gong_huo %>"><%=jichuc[ji].Gong_huo %></option>
-                                        <%
-                                        }
+                        %>
+                        <option value="<%=jichuc[ji].Gong_huo %>"><%=jichuc[ji].Gong_huo %></option>
+                        <%
                                     }
                                 }
-                                 %>
-
+                            }
+                        %>
                     </select>
                     <%--<input type="text" style="width: 10%" id="gh_f_id" class="input_tr" name="gongsi" />--%>
                 </div>
                 <div class="shf_css" style="">
                     <label>收货方：</label>
-                    <select style="width: 12%" id="sh_f_id" class="input_tr" name="shou_h"  >
-                                                    <option>选择收货</option>
-                            <%
-                                List<zl_and_jc_info> jichub = Session["jichu"] as  List<zl_and_jc_info> ;
-                                if (jichub != null)
+                    <select style="width: 12%" id="sh_f_id" class="input_tr" name="shou_h">
+                        <option>选择收货</option>
+                        <%
+                            List<zl_and_jc_info> jichub = Session["jichu"] as List<zl_and_jc_info>;
+                            if (jichub != null)
+                            {
+                                for (int ji = 0; ji < jichub.Count; ji++)
                                 {
-                                    for (int ji = 0; ji < jichub.Count; ji++) 
+                                    if (jichub[ji].id != "")
                                     {
-                                        if (jichub[ji].id != "") 
-                                        {
-                                        %>
-                                            <option value="<%=jichub[ji].shou_huo %>"><%=jichub[ji].shou_huo %></option>
-                                        <%
-                                        }
+                        %>
+                        <option value="<%=jichub[ji].shou_huo %>"><%=jichub[ji].shou_huo %></option>
+                        <%
                                     }
                                 }
-                                 %>
-
+                            }
+                        %>
                     </select>
                     <%--<input type="text" style="width: 14%" id="sh_f_id" class="input_tr" name="shou_h" />--%>
                 </div>

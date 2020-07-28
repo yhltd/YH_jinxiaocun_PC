@@ -7,6 +7,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
+    <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
         function del_row(row) {
             var rowIndex = $("#del_row_cs1").context.rowIndex;
@@ -88,8 +89,8 @@
             }
 
         td {
-           border-left: 1px dashed #a8a8a8;
-border-bottom: 1px dashed #a8a8a8;
+            border-left: 1px dashed #a8a8a8;
+            border-bottom: 1px dashed #a8a8a8;
             font-size: 84%;
         }
 
@@ -121,7 +122,8 @@ border-bottom: 1px dashed #a8a8a8;
         .hidden_load {
             display: none;
         }
-               .input_tr_sc {
+
+        .input_tr_sc {
             margin-top: 3%;
             margin-left: 17%;
             border: 1px solid #ccc;
@@ -143,9 +145,8 @@ border-bottom: 1px dashed #a8a8a8;
                 box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
             }
 
-         .input_tr_tj {
-             margin-left: 11%;
-          
+        .input_tr_tj {
+            margin-left: 11%;
             border: 1px solid #ccc;
             padding: 4px 0px;
             /*border-radius: 3px;*/
@@ -166,10 +167,10 @@ border-bottom: 1px dashed #a8a8a8;
             }
 
 
-              .input_tr_sx {
-         margin-bottom: 2%;
-          margin-left: 4%; 
-           border: 1px solid #ccc;
+        .input_tr_sx {
+            margin-bottom: 2%;
+            margin-left: 4%;
+            border: 1px solid #ccc;
             padding: 4px 0px;
             /*border-radius: 3px;*/
             padding-left: 5px;
@@ -179,9 +180,9 @@ border-bottom: 1px dashed #a8a8a8;
             -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
             -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
             transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-             }
+        }
 
-         .input_tr_sx:focus {
+            .input_tr_sx:focus {
                 border-color: #66afe9;
                 outline: 0;
                 -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
@@ -193,27 +194,28 @@ border-bottom: 1px dashed #a8a8a8;
 <body>
     <form id="form1" runat="server">
         <div style="margin-top: 5%;">
-                  <input type="hidden" id="xx_hidden" value="tj_false" />
-           <%-- <asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="jczl_select_load">
+            <input type="hidden" id="xx_hidden" value="tj_false" />
+            <%-- <asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="jczl_select_load">
             </asp:DropDownList>--%>
-              <asp:Button ID="Button2" class="input_tr_sx" OnClick="jczl_select_load" Text="刷新数据" runat="server" />
-              <div style="width: 171px;border: 1px solid #95b8e7;height: 51px;margin-left: 80%;margin-top: -6%;margin-bottom: 2%;">
+            <img class="new_mingxijichushiliao" src="Myadmin/images/Resources/refresh_24.gif" />
+            <asp:Button ID="Button2" class="newinput_tr_sx" OnClick="jczl_select_load" Text="刷新数据" runat="server" />
+            <div style="width: 171px; border: 1px solid #95b8e7; height: 51px; margin-left: 80%; margin-top: -6%; margin-bottom: 2%;">
                 <div style="font-size: 19%; margin-top: -5%; margin-left: 7%; background-color: white; width: 27px;">功能</div>
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_sc" Text="删除" runat="server" />
                 <asp:Button OnClick="jczl_tj" ID="dj_row" class="input_tr_tj" Text="提交" runat="server" />
             </div>
-              <input type="hidden" id="tj_pd_id"  name="tj_pd" />
+            <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <input type="hidden" id="row_i1" name="row_i" />
             <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="">
                 <tr id="dj_yh">
-                        <td class="auto-style1" style="width: 22px; padding-left: 1%;"></td>
+                    <td class="auto-style1" style="width: 22px; padding-left: 1%;"></td>
                     <td class="auto-style1" style="width: 170px; padding-left: 1%;">商品代码</td>
                     <td class="auto-style1" style="width: 170px; padding-left: 1%;">商品名称</td>
                     <td class="auto-style1" style="width: 170px; padding-left: 1%;">商品类别</td>
                     <td class="auto-style1" style="width: 170px; padding-left: 1%;">商品单位</td>
                     <td class="auto-style1" style="width: 170px; padding-left: 1%;">客户名称</td>
                     <td class="auto-style1" style="width: 170px; padding-left: 1%;">供应名称</td>
-                    <td class="auto-style1" style="width: 47px; padding-left: 1%;border-right: 1px dashed #a8a8a8;">功能</td>
+                    <td class="auto-style1" style="width: 47px; padding-left: 1%; border-right: 1px dashed #a8a8a8;">功能</td>
                 </tr>
                 <%
                     List<zl_and_jc_info> jczj_select = Session["jczj_select"] as List<zl_and_jc_info>;
@@ -224,7 +226,7 @@ border-bottom: 1px dashed #a8a8a8;
                 %>
                 <tr id="del_row_cs<%=i%>">
                     <%--style="font-size: 90%; padding-left: 2%;"--%>
-                    <td style="font-size: 14px;padding-left: 0.5%;width: 22px;"><%=(i+1) %></td>
+                    <td style="font-size: 14px; padding-left: 0.5%; width: 22px;"><%=(i+1) %></td>
                     <td class="bg_bj">
                         <input type="text" style="width: 165px;" class="input_tr" id="sp_name" name="sp_dm_cs<%=i%>" value="<%=jczj_select[i].sp_dm%>" /></td>
                     <td class="bg_bj">
@@ -247,7 +249,7 @@ border-bottom: 1px dashed #a8a8a8;
                     }
                 %>
             </table>
-          
+
 
         </div>
 

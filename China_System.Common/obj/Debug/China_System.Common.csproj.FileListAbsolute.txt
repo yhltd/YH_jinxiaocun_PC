@@ -51,3 +51,12 @@ C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\China_Sy
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.csprojResolveAssemblyReference.cache
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.dll
 C:\bake40mypc\Devlop\YH_jinxiaocun_PC\YH_jinxiaocun_PC\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.pdb
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\bin\Debug\China_System.Common.dll
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\bin\Debug\China_System.Common.pdb
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\bin\Debug\MySql.Data.dll
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\bin\Debug\MySql.Data.Entity.dll
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.dll
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.pdb
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.csprojResolveAssemblyReference.cache
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.dll
+D:\yho116\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.pdb

@@ -51,11 +51,7 @@
             left: 0px;
         }
 
-        .auto-style2 {
-            width: 404px;
-            height: 53px;
-        }
-    </style>
+        </style>
 </head>
 
 <body>
@@ -98,7 +94,9 @@
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <asp:DropDownList ID="DropDownList1" runat="server" Style="color: wheat; background-color: black" class="select_w150"></asp:DropDownList>
+                                        <asp:DropDownList ID="DropDownList1" runat="server" Style="color: wheat; background-color: black" class="select_w150" DataSourceID="SqlDataSource1" DataTextField="systemName" DataValueField="systemName" AutoPostBack="true" OnSelectedIndexChanged="bian"></asp:DropDownList>
+
+                                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:bds28428944_dbConnectionString %>" SelectCommand="SELECT [systemName] FROM [all_systems]"></asp:SqlDataSource>
 
                                     </td>
                                 </tr>
@@ -110,9 +108,9 @@
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <input name="gs_name" type="text" class="select_w150" id="gs_name" size="16" maxlength="100" value="" /></td>
+                                        <asp:DropDownList ID="DropDownList2" runat="server" Style="color: wheat; background-color: black" class="select_w150" ></asp:DropDownList>
+                                        </td>
                                 </tr>
-                                <tr>
 
                                 <tr>
                                     <td height="60">

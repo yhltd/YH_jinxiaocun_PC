@@ -8,11 +8,11 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body  style="    margin: 0;">
     <form id="form1" runat="server">
     <div>
         <asp:Label ID="Label1" runat="server" Height="30px" Text="姓名：" Width="80px"></asp:Label>
-        <asp:TextBox ID="TextBox1" runat="server"  CssClass="top_select_input" ></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server"  CssClass="top_select_input"  Height="30px" Width="150px"></asp:TextBox>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click1" Text="搜索"  CssClass="top_bt" />
         <asp:Button ID="Button3" runat="server" OnClick="Button3_Click1" Text="所有"  CssClass="top_bt" />
         <br />
@@ -244,7 +244,7 @@
             </SelectParameters>
         </asp:SqlDataSource>
     
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="返回"  CssClass="top_bt" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="返回"  CssClass="top_bt"  style="margin-left:46%;"/>
     </div>
     </form>
 </body>

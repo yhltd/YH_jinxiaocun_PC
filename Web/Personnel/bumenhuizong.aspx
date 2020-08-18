@@ -8,7 +8,7 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body  style="    margin: 0;">
     <form id="form1" runat="server">
     <div>
         <asp:Label ID="Label1" runat="server" Height="30px" Text="部门：" Width="80px"></asp:Label>

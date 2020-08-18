@@ -488,21 +488,47 @@
     <Content Include="Personnel\bumenxiangqing1.aspx" />
     <Content Include="Personnel\css\common.css" />
     <Content Include="Personnel\css\gridview.css" />
+    <Content Include="Personnel\css\iframe_d.css" />
     <Content Include="Personnel\css\index.css" />
+    <Content Include="Personnel\css\index2.css" />
+    <Content Include="Personnel\css\mingxi.css" />
     <Content Include="Personnel\css\peizhi.css" />
     <Content Include="Personnel\css\quanxian.css" />
     <Content Include="Personnel\gerensuode.aspx" />
     <Content Include="Personnel\gerenxinxi.aspx" />
     <Content Include="Personnel\gongzimingxi.aspx" />
+    <Content Include="Personnel\gongzimingxiUpd.aspx" />
     <Content Include="Personnel\gongzitiao.aspx" />
     <Content Include="Personnel\head.aspx" />
+    <Content Include="Personnel\images\关闭.png" />
     <Content Include="Personnel\images\删除.png" />
+    <Content Include="Personnel\images\放大.png" />
     <Content Include="Personnel\images\添加.png" />
+    <Content Include="Personnel\images\缩小.png" />
     <Content Include="Personnel\index.aspx" />
+    <Content Include="Personnel\js\iframe_d.js" />
+    <Content Include="Personnel\js\jquery-2.1.4.min.js" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Personnel\js\jqueryui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Personnel\js\jqueryui\jquery-ui.css" />
+    <Content Include="Personnel\js\jqueryui\jquery-ui.min.js" />
     <Content Include="Personnel\kaoqin.aspx" />
     <Content Include="Personnel\kaoqinAdd.aspx" />
     <Content Include="Personnel\kaoqinjilu.aspx" />
     <Content Include="Personnel\kaoqinjiluAdd.aspx" />
+    <Content Include="Personnel\kaoqinUpd.aspx" />
     <Content Include="Personnel\mingxiAdd.aspx" />
     <Content Include="Personnel\peizhi.aspx" />
     <Content Include="Personnel\quanxian.aspx" />
@@ -859,6 +885,13 @@
     <Compile Include="Personnel\gongzimingxi.aspx.designer.cs">
       <DependentUpon>gongzimingxi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personnel\gongzimingxiUpd.aspx.cs">
+      <DependentUpon>gongzimingxiUpd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\gongzimingxiUpd.aspx.designer.cs">
+      <DependentUpon>gongzimingxiUpd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Personnel\gongzitiao.aspx.cs">
       <DependentUpon>gongzitiao.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -907,6 +940,13 @@
     </Compile>
     <Compile Include="Personnel\kaoqinjiluAdd.aspx.designer.cs">
       <DependentUpon>kaoqinjiluAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\kaoqinUpd.aspx.cs">
+      <DependentUpon>kaoqinUpd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\kaoqinUpd.aspx.designer.cs">
+      <DependentUpon>kaoqinUpd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Personnel\mingxiAdd.aspx.cs">
       <DependentUpon>mingxiAdd.aspx</DependentUpon>

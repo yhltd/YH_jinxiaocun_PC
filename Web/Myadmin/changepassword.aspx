@@ -63,7 +63,7 @@
 <body class="trbackcolor">
     <div class="headerContainer">
         <div class="logo">
-            <a href="http://www.yhocn.com" target="_blank">
+            <a href="http://www.yhocn.cn" target="_blank">
                 <img src="/Myadmin/images/top_bg.jpg" alt="Logo" style="width: 100%" height="40px" title="管理系统" />
             </a>
         </div>

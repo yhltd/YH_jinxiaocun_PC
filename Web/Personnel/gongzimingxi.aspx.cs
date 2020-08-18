@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -10,8 +11,17 @@ namespace Web.Personnel
     public partial class gongzimingxi : System.Web.UI.Page
     {
         string[] str = null;
+        protected void GridView1_RowUpdating(object sender, GridViewEditEventArgs e)
+        {
+            int b = e.NewEditIndex;
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>updinput(" + b + ");</script>");
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
             str = (string[])Session["arr5"];
             if (str[1].ToString() == "0")
             {
@@ -75,6 +85,24 @@ namespace Web.Personnel
                     e.Row.Cells[0].Enabled = false;
                 }
             }
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("../Personnel/gongzimingxi.aspx");
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] a = new string[55];
+            for (int i = 2; i <= 55; i++)
+            {
+                a[i - 2] = GridView1.Rows[GridView1.SelectedIndex].Cells[i + 1].Text;
+            }
+            a[54] = GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            string result = js.Serialize(a); //upUser(" + result + ");iframe_d_open
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
         }
     }
 }

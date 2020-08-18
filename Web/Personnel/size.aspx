@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div  style="    margin: 0;">
      <img src="images/small.jpg" style="float: left; height: 30px;" />
         <img src="images/big.jpg" style="float: left; height: 30px;" />
    

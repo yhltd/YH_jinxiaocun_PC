@@ -16,6 +16,10 @@ namespace Web.Personnel
         SqlCommand cmd = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
             conn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
             if (conn.State == ConnectionState.Closed)
             {

@@ -11,7 +11,10 @@ namespace Web.Personnel
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -24,7 +27,7 @@ namespace Web.Personnel
             GridView1.DataSourceID = "SqlDataSource2";
             GridView1.DataBind();
         }
-        protected void Button3_Click(object sender, EventArgs e)
+        protected void Button3_Click1(object sender, EventArgs e)
         {
             GridView1.DataSourceID = "SqlDataSource1";
             GridView1.DataBind();

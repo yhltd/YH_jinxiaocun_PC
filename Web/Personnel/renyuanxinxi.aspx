@@ -8,14 +8,14 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
     <script>
         function a() {
             var a= document.getelementbyid("header") 
             a.style.width="7%"
         }
     </script>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server"  style="    margin: 0;">
     <div>
         <asp:Label ID="Label1" runat="server" Height="30px" Text="姓名：" Width="80px"></asp:Label>
     <asp:TextBox ID="TextBox1" runat="server" CssClass="top_select_input" Height="30px" Width="150px" ></asp:TextBox>

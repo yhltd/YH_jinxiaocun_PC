@@ -17,7 +17,10 @@ namespace Web.Personnel
         string[] a;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
             a = Request.QueryString[0].Split(',');
             if (a[0] == "修改")
             {
@@ -121,6 +124,7 @@ namespace Web.Personnel
             a = Request.QueryString[0].Split(',');
             Session["qx1"]=a[2];
             Session["id1"] = a[1];
+            Session["aaaa"] = "0";
             Server.Transfer("../Personnel/quanxian.aspx");
         }
     }

@@ -28,6 +28,11 @@ namespace Web.Personnel
         string[] strstr12 = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
+            //aaaa = 0;
             conn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
             if (conn.State == ConnectionState.Closed)
             {
@@ -113,164 +118,166 @@ namespace Web.Personnel
             strstr10 = (string[])Session["arrarr10"];
             strstr11 = (string[])Session["arrarr11"];
             strstr12 = (string[])Session["arrarr12"];
+            if (Session["aaaa"].ToString() == "0")
+            {
             if (strstr1[1].ToString() == "1")
             {
-                    CheckBox1.Checked = true;
-                }
+                CheckBox1.Checked = true;
+            }
             if (strstr1[2].ToString() == "1")
-                {
-                    CheckBox2.Checked = true;
-                }
+            {
+                CheckBox2.Checked = true;
+            }
             if (strstr1[3].ToString() == "1")
-                {
-                    CheckBox3.Checked = true;
-                }
+            {
+                CheckBox3.Checked = true;
+            }
             if (strstr1[4].ToString() == "1")
-                {
-                    CheckBox4.Checked = true;
-                }
+            {
+                CheckBox4.Checked = true;
+            }
             if (strstr1[5].ToString() == "1")
-                {
-                    CheckBox5.Checked = true;
-                }
+            {
+                CheckBox5.Checked = true;
+            }
 
 
 
 
             if (strstr2[1].ToString() == "1")
-                {
-                    CheckBox6.Checked = true;
-                }
+            {
+                CheckBox6.Checked = true;
+            }
             if (strstr2[2].ToString() == "1")
-                {
-                    CheckBox7.Checked = true;
-                }
+            {
+                CheckBox7.Checked = true;
+            }
             if (strstr2[3].ToString() == "1")
-                {
-                    CheckBox8.Checked = true;
-                }
+            {
+                CheckBox8.Checked = true;
+            }
             if (strstr2[4].ToString() == "1")
-                {
-                    CheckBox9.Checked = true;
-                }
+            {
+                CheckBox9.Checked = true;
+            }
             if (strstr2[5].ToString() == "1")
-                {
-                    CheckBox10.Checked = true;
-                }
+            {
+                CheckBox10.Checked = true;
+            }
 
 
 
 
             if (strstr3[2].ToString() == "1")
-                {
-                    CheckBox11.Checked = true;
-                }
+            {
+                CheckBox11.Checked = true;
+            }
             if (strstr3[3].ToString() == "1")
-                {
-                    CheckBox12.Checked = true;
-                }
+            {
+                CheckBox12.Checked = true;
+            }
             if (strstr3[4].ToString() == "1")
-                {
-                    CheckBox13.Checked = true;
-                }
+            {
+                CheckBox13.Checked = true;
+            }
             if (strstr3[5].ToString() == "1")
-                {
-                    CheckBox14.Checked = true;
-                }
+            {
+                CheckBox14.Checked = true;
+            }
 
 
             if (strstr4[1].ToString() == "1")
-                {
-                    CheckBox15.Checked = true;
-                }
+            {
+                CheckBox15.Checked = true;
+            }
             if (strstr4[2].ToString() == "1")
-                {
-                    CheckBox16.Checked = true;
-                }
+            {
+                CheckBox16.Checked = true;
+            }
             if (strstr4[3].ToString() == "1")
-                {
-                    CheckBox17.Checked = true;
-                }
+            {
+                CheckBox17.Checked = true;
+            }
             if (strstr4[5].ToString() == "1")
-                {
-                    CheckBox18.Checked = true;
-                }
+            {
+                CheckBox18.Checked = true;
+            }
 
 
 
             if (strstr5[1].ToString() == "1")
-                {
-                    CheckBox19.Checked = true;
-                }
+            {
+                CheckBox19.Checked = true;
+            }
             if (strstr5[2].ToString() == "1")
-                {
-                    CheckBox20.Checked = true;
-                }
+            {
+                CheckBox20.Checked = true;
+            }
             if (strstr5[3].ToString() == "1")
-                {
-                    CheckBox21.Checked = true;
-                }
+            {
+                CheckBox21.Checked = true;
+            }
             if (strstr5[4].ToString() == "1")
-                {
-                    CheckBox22.Checked = true;
-                }
+            {
+                CheckBox22.Checked = true;
+            }
             if (strstr5[5].ToString() == "1")
-                {
-                    CheckBox23.Checked = true;
-                }
+            {
+                CheckBox23.Checked = true;
+            }
 
 
 
             if (strstr6[2].ToString() == "1")
-                {
-                    CheckBox24.Checked = true;
-                }
+            {
+                CheckBox24.Checked = true;
+            }
             if (strstr6[3].ToString() == "1")
-                {
-                    CheckBox25.Checked = true;
-                }
+            {
+                CheckBox25.Checked = true;
+            }
             if (strstr6[4].ToString() == "1")
-                {
-                    CheckBox26.Checked = true;
-                }
+            {
+                CheckBox26.Checked = true;
+            }
             if (strstr6[5].ToString() == "1")
-                {
-                    CheckBox27.Checked = true;
-                }
+            {
+                CheckBox27.Checked = true;
+            }
 
 
 
             if (strstr7[1].ToString() == "1")
-                {
-                    CheckBox28.Checked = true;
-                }
+            {
+                CheckBox28.Checked = true;
+            }
             if (strstr7[2].ToString() == "1")
-                {
-                    CheckBox29.Checked = true;
-                }
+            {
+                CheckBox29.Checked = true;
+            }
             if (strstr7[3].ToString() == "1")
-                {
-                    CheckBox30.Checked = true;
-                }
+            {
+                CheckBox30.Checked = true;
+            }
             if (strstr7[4].ToString() == "1")
-                {
-                    CheckBox31.Checked = true;
-                }
+            {
+                CheckBox31.Checked = true;
+            }
             if (strstr7[5].ToString() == "1")
-                {
-                    CheckBox32.Checked = true;
-                }
+            {
+                CheckBox32.Checked = true;
+            }
 
 
 
             if (strstr8[4].ToString() == "1")
-                {
-                    CheckBox33.Checked = true;
-                }
+            {
+                CheckBox33.Checked = true;
+            }
             if (strstr8[5].ToString() == "1")
-                {
-                    CheckBox34.Checked = true;
-                }
+            {
+                CheckBox34.Checked = true;
+            }
 
 
 
@@ -278,46 +285,48 @@ namespace Web.Personnel
 
 
             if (strstr9[4].ToString() == "1")
-                {
-                    CheckBox35.Checked = true;
-                }
+            {
+                CheckBox35.Checked = true;
+            }
             if (strstr9[5].ToString() == "1")
-                {
-                    CheckBox36.Checked = true;
-                }
+            {
+                CheckBox36.Checked = true;
+            }
 
 
 
             if (strstr10[4].ToString() == "1")
-                {
-                    CheckBox37.Checked = true;
-                }
+            {
+                CheckBox37.Checked = true;
+            }
             if (strstr10[5].ToString() == "1")
-                {
-                    CheckBox38.Checked = true;
-                }
+            {
+                CheckBox38.Checked = true;
+            }
 
 
 
             if (strstr11[4].ToString() == "1")
-                {
-                    CheckBox39.Checked = true;
-                }
+            {
+                CheckBox39.Checked = true;
+            }
             if (strstr11[5].ToString() == "1")
-                {
-                    CheckBox40.Checked = true;
-                }
+            {
+                CheckBox40.Checked = true;
+            }
 
 
 
             if (strstr12[4].ToString() == "1")
-                {
-                    CheckBox41.Checked = true;
-                }
+            {
+                CheckBox41.Checked = true;
+            }
             if (strstr12[5].ToString() == "1")
-                {
-                    CheckBox42.Checked = true;
-                }
+            {
+                CheckBox42.Checked = true;
+            }
+            Session["aaaa"] = "1";
+            }
         }
 
         protected void Button3_Click(object sender, EventArgs e)
@@ -340,10 +349,10 @@ namespace Web.Personnel
                     }
                     if (i == 1 || i == 6 || i == 15 || i == 19 || i == 28)
                     {
-                        string a = ((CheckBox)this.FindControl("CheckBox" + i.ToString())).Checked.ToString();
                         if (((CheckBox)this.FindControl("CheckBox" + i.ToString())).Checked.ToString() == "True")
                         {
                             sql += "[add]='1',";
+                            Boolean v =CheckBox3.Checked;
                         }
                         else
                         {
@@ -399,13 +408,8 @@ namespace Web.Personnel
                 
                 cmd = new SqlCommand(sql, conn);
                cmd.ExecuteScalar();
+               //ClientScript.RegisterStartupScript(this.GetType(), "", "<script>a()</script>");
         }
-
-        protected void Button14_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         protected void Button14_Click1(object sender, EventArgs e)
         {
             Server.Transfer("../Personnel/renyuanxinxiAdd.aspx");

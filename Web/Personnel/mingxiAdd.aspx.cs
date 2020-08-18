@@ -16,7 +16,10 @@ namespace Web.Personnel
         SqlCommand cmd = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -31,9 +34,9 @@ namespace Web.Personnel
                 string sqlStr = "insert into gongzi_gongzimingxi (B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,AE,AF,AG,AH,AI,AJ,AK,AL,AM,AN,AO,AP,AQ,AR,ASA,ATA,AU,AV,AW,AX,AY,AZ,BA,BB,BC,BD) VALUES (";
                 for (int i = 1; i < 55; i++)
                 {
-                    if (Request.Form["TextBox" + i] != "")
+                    if (Request.Form["input" + i] != "")
                     {
-                        sqlStr += "'" + Request.Form["TextBox" + i] + "',";
+                        sqlStr += "'" + Request.Form["input" + i] + "',";
                     }
                     else if (i == 2 || i == 3 || i == 4 || i == 5 || i == 52 || i == 54)
                     {

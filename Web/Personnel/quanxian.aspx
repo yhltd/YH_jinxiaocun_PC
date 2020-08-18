@@ -40,11 +40,11 @@
         }
         </style>
 </head>
-<body>
+<body style="    margin: 0;">
     <form id="form1" runat="server">
     <div class="first">
         <div class="two">
-            <asp:Button ID="Button1" runat="server" Text="考勤表" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label43" runat="server" Text="考勤：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label1" runat="server" Text="添加"></asp:Label>
             <asp:CheckBox ID="CheckBox1" runat="server" />
@@ -61,7 +61,7 @@
             <asp:Label ID="Label5" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox5" runat="server" />
             <br />
-            <asp:Button ID="Button2" runat="server" Text="人员信息管理" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label44" runat="server" Text="人员信息管理：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label6" runat="server" Text="添加"></asp:Label>
             <asp:CheckBox ID="CheckBox6" runat="server" />
@@ -78,7 +78,7 @@
             <asp:Label ID="Label10" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox10" runat="server" />
             <br />
-            <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="报盘" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label45" runat="server" Text="工资明细：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label11" runat="server" Text="删除"></asp:Label>
             <asp:CheckBox ID="CheckBox11" runat="server" />
@@ -92,7 +92,7 @@
             <asp:Label ID="Label14" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox14" runat="server" />
             <br />
-            <asp:Button ID="Button4" runat="server" Text="配置表" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label46" runat="server" Text="考勤记录：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label15" runat="server" Text="添加"></asp:Label>
             <asp:CheckBox ID="CheckBox15" runat="server" />
@@ -106,7 +106,7 @@
             <asp:Label ID="Label18" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox18" runat="server" />
             <br />
-            <asp:Button ID="Button5" runat="server" Text="工资明细" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label47" runat="server" Text="配置表：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label19" runat="server" Text="添加"></asp:Label>
             <asp:CheckBox ID="CheckBox19" runat="server" />
@@ -123,7 +123,7 @@
             <asp:Label ID="Label23" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox23" runat="server" />
             <br />
-            <asp:Button ID="Button6" runat="server" Text="报税" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label48" runat="server" Text="报盘：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label24" runat="server" Text="删除"></asp:Label>
             <asp:CheckBox ID="CheckBox24" runat="server" />
@@ -137,7 +137,7 @@
             <asp:Label ID="Label27" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox27" runat="server" />
             <br />
-            <asp:Button ID="Button7" runat="server" Text="考勤记录" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label49" runat="server" Text="报税：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label28" runat="server" Text="添加"></asp:Label>
             <asp:CheckBox ID="CheckBox28" runat="server" />
@@ -154,7 +154,7 @@
             <asp:Label ID="Label32" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox32" runat="server" />
             <br />
-            <asp:Button ID="Button8" runat="server" Text="部门汇总" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label50" runat="server" Text="部门汇总：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label33" runat="server" Text="搜索"></asp:Label>
             <asp:CheckBox ID="CheckBox33" runat="server" />
@@ -162,7 +162,7 @@
             <asp:Label ID="Label34" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox34" runat="server" />
             <br />
-            <asp:Button ID="Button9" runat="server" Text="社保" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label51" runat="server" Text="社保：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label35" runat="server" Text="搜索"></asp:Label>
             <asp:CheckBox ID="CheckBox35" runat="server" />
@@ -170,7 +170,7 @@
             <asp:Label ID="Label36" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox36" runat="server" />
             <br />
-            <asp:Button ID="Button10" runat="server" Text="个人信息" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label52" runat="server" Text="个人信息：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label37" runat="server" Text="搜索"></asp:Label>
             <asp:CheckBox ID="CheckBox37" runat="server" />
@@ -178,7 +178,7 @@
             <asp:Label ID="Label38" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox38" runat="server" />
             <br />
-            <asp:Button ID="Button11" runat="server" Text="个人所得税" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label53" runat="server" Text="个人所得税：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label39" runat="server" Text="搜索"></asp:Label>
             <asp:CheckBox ID="CheckBox39" runat="server" />
@@ -186,7 +186,7 @@
             <asp:Label ID="Label40" runat="server" Text="查看"></asp:Label>
             <asp:CheckBox ID="CheckBox40" runat="server" />
             <br />
-            <asp:Button ID="Button12" runat="server" Text="工资条" Height="40px" Width="200px" CssClass="qx" />
+            <asp:Label ID="Label54" runat="server" Text="工资条：" Height="40px" Width="200px"></asp:Label>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label41" runat="server" Text="搜索"></asp:Label>
             <asp:CheckBox ID="CheckBox41" runat="server" />

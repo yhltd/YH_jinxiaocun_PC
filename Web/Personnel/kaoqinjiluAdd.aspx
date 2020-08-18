@@ -8,7 +8,7 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
     <form id="form1" runat="server">
     <div style="margin-left: 400px">
     

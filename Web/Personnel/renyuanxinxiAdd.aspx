@@ -8,13 +8,19 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
     <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
-    <script>
-        function MyFun() {
-            alert("该用户名已存在！");
-        }
-    </script>
+    <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
+    <script src="js/jqueryui/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="js/jqueryui/jquery-ui.css"/>
+        <script type="text/javascript">
+            $(function updinput() {
+                $("[name='TextBox7']").datepicker({ dateFormat: 'yy-mm-dd' });
+            })
+            function MyFun() {
+                alert("该用户名已存在！");
+            }
+        </script>
     <form id="form1" runat="server">
         <div style="margin-left: 280px">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -16,6 +16,10 @@ namespace Web.Personnel
         SqlCommand cmd = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
             TextBox2.Text = Session["year"].ToString();
             TextBox3.Text = Session["moth"].ToString();
             TextBox4.Text = "0";

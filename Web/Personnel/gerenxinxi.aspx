@@ -8,7 +8,13 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
+    <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
+    <%--<script type="text/javascript">
+        function a(){
+            alert("修改成功！")
+        }
+    </script>--%>
     <form id="form1" runat="server">
     <div>
     

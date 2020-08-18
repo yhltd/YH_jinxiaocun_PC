@@ -8,8 +8,44 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
+    <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
+    <script src="js/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/iframe_d.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/iframe_d.css"/>
+    <link rel="stylesheet" href="js/jqueryui/jquery-ui.css"/>
+    <script type="text/javascript">
+        function updinput(e) {
+            if (e < 8) {
+                var iName = "GridView1$ctl0" + (2 + parseInt(e)) + "$ctl06";
+                var iName2 = "GridView1$ctl0" + (2 + parseInt(e)) + "$ctl55";
+            } else {
+                var iName = "GridView1$ctl" + (2 + parseInt(e)) + "$ctl06";
+                var iName2 = "GridView1$ctl" + (2 + parseInt(e)) + "$ctl55";
+            }
+            $("[name='" + iName + "']").datepicker({ dateFormat: 'yy-mm-dd' });
+            $("[name='" + iName2 + "']").datepicker({ dateFormat: 'yy-mm-dd' });
+        };
+        function upUser(e) {
+            console.log($(".iframe_d"))
+            iframe_d_open({
+                title: "工资明细修改",//头部
+                shadeClose: true, //点击遮罩层关闭
+                area: {            //弹窗大小
+                    x: '600',
+                    y: '500'
+                },
+                content: 'gongzimingxiUpd.aspx?strs=' + e,     //路径
+                maxmin: true,      //最大化最小化按钮
+                z_index: 100        //层级
+            })
+        }
+    </script>
     <form id="form1" runat="server">
+    <div class="iframe_d">
+
+
+    </div>
     <div  ><%--style="margin-left: 40px"--%>
         <asp:Label ID="Label1" runat="server" Height="30px" Text="搜索类型：" Width="80px"></asp:Label>
         <asp:DropDownList ID="DropDownList1" CssClass="top_option" runat="server" Height="30px" Width="150px">
@@ -21,19 +57,22 @@
         <asp:TextBox ID="TextBox1" CssClass="top_select_input" runat="server" Height="30px" Width="150px"></asp:TextBox>
         <asp:Button ID="Button1" CssClass="top_bt" runat="server" OnClick="Button1_Click" Text="搜索" Height="30px" Width="80px" />
         <asp:Button ID="Button2" CssClass="top_bt" runat="server" OnClick="Button2_Click" Text="添加" Width="80px" Height="30px" />
-    
         <asp:Button ID="Button3" CssClass="top_bt" runat="server"  Text="所有" OnClientClick="aa" OnClick="Button3_Click" Height="30px" Width="80px"/>
-    
-        <asp:GridView ID="GridView1" runat="server" CssClass="grid_view" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" ScrollBars="Auto" Width="400px" HeaderStyle-BorderStyle="None" AllowPaging="True"  OnRowCreated="aaa">
+        <asp:Button ID="Button4" CssClass="top_bt" runat="server"  Text="刷新" OnClientClick="aa"  Height="30px" Width="80px" OnClick="Button4_Click"/>
+        <asp:GridView ID="GridView1" runat="server" CssClass="grid_view" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" ScrollBars="Auto" Width="400px" HeaderStyle-BorderStyle="None" AllowPaging="True"  OnRowCreated="aaa" OnRowEditing="GridView1_RowUpdating" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
-                <asp:CommandField ButtonType="Button" ShowEditButton="True" ItemStyle-CssClass="bt_upd1">
+                <asp:CommandField ButtonType="Button" ShowSelectButton="True" ItemStyle-CssClass="bt_upd1" SelectText="修改">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:CommandField>
-                <asp:CommandField ShowDeleteButton="True" ButtonType="Button" ItemStyle-CssClass="bt_upd2">
+                <asp:CommandField ButtonType="Button" ShowEditButton="True" ItemStyle-CssClass="bt_upd2">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:CommandField>
+                <%--<asp:CommandField ShowDeleteButton="True" ButtonType="Button" >
+                <HeaderStyle Wrap="False" />
+                <ItemStyle Wrap="False" />
+                </asp:CommandField>--%>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id"  Visible="false"/>
                 <asp:BoundField DataField="B" HeaderText="姓名" SortExpression="B" >
                 <HeaderStyle Wrap="False" />
@@ -53,7 +92,7 @@
                 </asp:BoundField>
                 <asp:BoundField DataField="F" HeaderText="入职时间" SortExpression="F" >
                 <HeaderStyle Wrap="False" />
-                <ItemStyle Wrap="False" />
+                <ItemStyle Wrap="False" CssClass="date" />
                 </asp:BoundField>
                 <asp:BoundField DataField="G" HeaderText="基本工资" SortExpression="G" >
                 <HeaderStyle Wrap="False" />
@@ -755,5 +794,6 @@
         </asp:SqlDataSource>
     </div>
     </form>
+    
 </body>
 </html>

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
     <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
     <script>
         function MyFun() {

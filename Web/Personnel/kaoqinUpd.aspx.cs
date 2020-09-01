@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -44,7 +45,8 @@ namespace Web.Personnel
             {
                 string a = Request["strs"].ToString();
                 string[] bb = a.Split(new char[1] { ',' });
-                conn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
+                string conString = ConfigurationManager.AppSettings["yao"];
+                conn = new SqlConnection(conString);  //数据库连接。
                 if (conn.State == ConnectionState.Closed)
                 {
                     conn.Open();

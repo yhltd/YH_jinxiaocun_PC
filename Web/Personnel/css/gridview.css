@@ -28,13 +28,13 @@
 .top_option {
     height: 30px;
     width: 124px;
-    border-radius: 5px;
+    border-radius: 0px;
     display: inline-flexbox;
 }
 .top_select_input {
     height: 25px;
     border: 1px solid #494f59;
-    border-radius: 5px;
+    border-radius: 0px;
     margin-left: 10px;
     text-align:center;
     width: 52px;
@@ -114,7 +114,7 @@
     background-color: #009688;
     border: none;
     color: white;
-    border-radius: 5px;
+    border-radius: 0px;
     position:static;
     left :0;
     z-index:2;
@@ -135,15 +135,15 @@
 .input1 {
      height: 25px;
     border: 1px solid #494f59;
-    border-radius: 5px;
+    border-radius: 0px;
     margin-left: 10px;
     text-align:center;
     width: 120px;
 }
 .input2 {
-     height: 25px;
+    height: 25px;
     border: 1px solid #494f59;
-    border-radius: 5px;
+    border-radius: 0px;
     margin-left: 10px;
     text-align:center;
     width: 60px;

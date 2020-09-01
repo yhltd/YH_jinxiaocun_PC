@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -29,7 +30,8 @@ namespace Web.Personnel
             input2.Value = Session["moth"].ToString();//DateTime.Now.Month.ToString();
             DateTime dt2 = DateTime.Parse(Session["year"].ToString() + "/" + Session["moth"].ToString() + "/1").AddMonths(1).AddDays(-1);
             int x = dt2.Day;
-            conn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
+            string conString = ConfigurationManager.AppSettings["yao"];
+            conn = new SqlConnection(conString);  //数据库连接。
             if (conn.State == ConnectionState.Closed)
             {
                 conn.Open();
@@ -88,7 +90,8 @@ namespace Web.Personnel
         {
             if (Request.Form["TextBox1"] != "" && Request.Form["TextBox2"] != "" && Request.Form["TextBox3"] != "")
             {
-                conn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
+                string conString = ConfigurationManager.AppSettings["yao"];
+                conn = new SqlConnection(conString);  //数据库连接。
                 if (conn.State == ConnectionState.Closed)
                 {
                     conn.Open();

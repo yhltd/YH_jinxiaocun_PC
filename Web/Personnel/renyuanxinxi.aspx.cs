@@ -78,7 +78,7 @@ namespace Web.Personnel
                 string value8 = GridView1.Rows[RowRemark].Cells[10].Text;
                 string value9 = GridView1.Rows[RowRemark].Cells[11].Text;
                 string value10 = GridView1.Rows[RowRemark].Cells[12].Text;
-                Server.Transfer("../Personnel/renyuanxinxiAdd.aspx?修改," + valueId + "," + value1 + "," + value2 + "," + value3 + "," + value4 + "," + value5 + "," + value6 + "," + value7 + "," + value8 + "," + value9 + "," + value10);
+                Server.Transfer("../Personnel/renyuanxinxiAdd.aspx?修改," + valueId + "," + value1 + "," + value2 + "," + value3 + "," + value4 + "," + value5 + "," + value6 + "," + value7 + "," + value10 + "," + value8 + "," + value9);
             }
         }
 

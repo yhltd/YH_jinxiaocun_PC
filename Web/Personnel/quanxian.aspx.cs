@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -33,7 +34,8 @@ namespace Web.Personnel
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
             }
             //aaaa = 0;
-            conn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
+            string conString = ConfigurationManager.AppSettings["yao"];
+            conn = new SqlConnection(conString);  //数据库连接。
             if (conn.State == ConnectionState.Closed)
             {
                 conn.Open();
@@ -335,7 +337,8 @@ namespace Web.Personnel
 
         protected void Button13_Click(object sender, EventArgs e)
         {
-            conn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
+            string conString = ConfigurationManager.AppSettings["yao"];
+            conn = new SqlConnection(conString);  //数据库连接。
                 if (conn.State == ConnectionState.Closed)
                 {
                     conn.Open();

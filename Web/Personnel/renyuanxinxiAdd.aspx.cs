@@ -88,22 +88,22 @@ namespace Web.Personnel
             }
             else if (Request.Form["TextBox6"].ToString() == "")
             {
-                Label16.Text = "* 入职时间不能为空！";
+                Label16.Text = "* 银行卡号不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox7"].ToString() == "")
             {
-                Label17.Text = "* 账号不能为空！";
+                Label17.Text = "* 入职时间不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox9"].ToString() == "")
             {
-                Label19.Text = "* 密码不能为空！";
+                Label19.Text = "* 账号不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox10"].ToString() == "")
             {
-                Label20.Text = "* 姓名不能为空！";
+                Label20.Text = "* 密码不能为空！";
                 yanzheng = 1;
             }
             if (Request.Form["TextBox4"].ToString() != "")

@@ -46,7 +46,7 @@
             </ul>
         </div>
         <div class="div_iframe">
-            <iframe id="Iframe2" class="Iframe" name="ifrMain" src="" ></iframe>
+            <iframe id="Iframe2" class="Iframe" name="ifrMain" src="../Personnel/wuquanxian.aspx?1" ></iframe>
         </div>
         </form>
 </body>

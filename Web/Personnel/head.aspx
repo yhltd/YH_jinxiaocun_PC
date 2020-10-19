@@ -12,17 +12,17 @@
 </head>
 <body  style="    margin: 0;">
     <form id="form1" runat="server">
-        <div class="logo">
+        <%--<div class="logo">
             <a href="http://www.yhocn.cn" target="_blank">
                 <img src="images/top_bg.jpg" alt="Logo" style="width: 100%" height="40px" title="管理系统" />
             </a>
-        </div>
-        <div class="header_logo">
+        </div>--%>
+        <%--<div class="header_logo">
             <div class="header_logo_con" style="margin-left: 2%;">
                 <img src="images/tm_logo.png" style="float: left; margin-top: -1%; height: 67px;" />
                 <h1 class="h1_logo">云合人事管理</h1>
             </div>
-        </div>
+        </div>--%>
         <div class="header_login_info">
             <div class="header_login_info_con">
 

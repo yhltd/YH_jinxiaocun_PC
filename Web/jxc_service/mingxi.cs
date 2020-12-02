@@ -71,7 +71,5 @@ namespace Web.jxc_service
 
             return result;
         }
-
-
     }
 }

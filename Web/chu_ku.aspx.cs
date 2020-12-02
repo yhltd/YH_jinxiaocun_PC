@@ -96,7 +96,7 @@ namespace Web
             items infoList = new items();
             JavaScriptSerializer js = new JavaScriptSerializer();
             infoList = js.Deserialize<items>(list);
-            mingxi r = new mingxi();
+            Web.jxc_service.mingxi r = new mingxi();
             string result = r.insertMingxi(infoList, user.gongsi, user.name, "出库").ToString();
             return result;
         }

@@ -7,11 +7,13 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace Web {
-    
-    
-    public partial class login {
-        
+namespace Web
+{
+
+
+    public partial class login
+    {
+
         /// <summary>
         /// Head1 控件。
         /// </summary>
@@ -20,7 +22,7 @@ namespace Web {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// MyForm 控件。
         /// </summary>
@@ -29,7 +31,7 @@ namespace Web {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm MyForm;
-        
+
         /// <summary>
         /// DropDownList1 控件。
         /// </summary>
@@ -38,7 +40,7 @@ namespace Web {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-        
+
         /// <summary>
         /// SqlDataSource1 控件。
         /// </summary>
@@ -47,7 +49,7 @@ namespace Web {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
-        
+
         /// <summary>
         /// DropDownList2 控件。
         /// </summary>
@@ -56,7 +58,7 @@ namespace Web {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
-        
+
         /// <summary>
         /// image 控件。
         /// </summary>
@@ -65,7 +67,7 @@ namespace Web {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button image;
-        
+
         /// <summary>
         /// btcreate 控件。
         /// </summary>

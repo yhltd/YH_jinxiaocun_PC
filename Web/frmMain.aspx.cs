@@ -19,19 +19,26 @@ namespace Web
 
         public List<clsuserinfo> NewsList;
         public static string nowpage;
-
+        private static clsuserinfo user;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            HtmlControl frame1 = (HtmlControl)this.FindControl("frame1");
+            user = (clsuserinfo)Session["user"];
+            if (user != null)
+            {
+                userName.InnerHtml = user.name;
+                HtmlControl frame1 = (HtmlControl)this.FindControl("frame1");
 
-            clsAllnew allbewn = new clsAllnew();
+                clsAllnew allbewn = new clsAllnew();
 
-            allbewn.inputcookvalue("入库");
+                allbewn.inputcookvalue("入库");
 
-            NewMethod();
-
+                NewMethod();
+            }
+            else {
+                Response.Write("<script>alert('请登录！');location='/Myadmin/Login.aspx';</script>");
+            }
         }
 
         private void NewMethod()
@@ -73,7 +80,10 @@ namespace Web
 
         }
 
-
+        protected void goUserManager_Click(Object sender, EventArgs e)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>goUserManager(" + user.AdminIS=="true"?"1":"0" + ");</script>");
+        }
 
     }
 }

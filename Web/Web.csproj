@@ -47,8 +47,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\packages\NPOI.Excel.2.1.1\lib\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\dll\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -57,18 +59,6 @@
     <Reference Include="MySql.Data.Entity, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\MySql.Data.Entity.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI">
-      <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OOXML">
-      <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.OOXML.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -100,7 +90,6 @@
     <Content Include="frmReadIDCare.aspx" />
     <Content Include="frmUserManger.aspx" />
     <Content Include="GenericErrorPage.html" />
-    <Content Include="Global.asax" />
     <Content Include="Images\account.css" />
     <Content Include="Images\style.css" />
     <Content Include="Images\uploadify.css" />
@@ -208,7 +197,7 @@
     <Content Include="Myadmin\HouTai\dist\js\waves.js" />
     <Content Include="Myadmin\HouTai\InsertUser.aspx" />
     <Content Include="Myadmin\HouTai\YongHuGuanli.aspx" />
-    <Content Include="Myadmin\js\index.js" />
+    <Content Include="Myadmin\images\gs_logo.png" />
     <Content Include="Myadmin\logout.aspx" />
     <Content Include="Myadmin\changepassword.aspx" />
     <Content Include="Myadmin\js\jquery-1.7.1.min.js" />
@@ -481,36 +470,6 @@
     <Content Include="Myadmin\PicUpload\init.js" />
     <Content Include="Myadmin\PicUpload\UpLoad_Class.asp" />
     <Content Include="NoAccess.html" />
-    <Content Include="Personnel\baopan.aspx" />
-    <Content Include="Personnel\baoshui.aspx" />
-    <Content Include="Personnel\bumenhuizong.aspx" />
-    <Content Include="Personnel\bumenxiangqing.aspx" />
-    <Content Include="Personnel\bumenxiangqing1.aspx" />
-    <Content Include="Personnel\css\common.css" />
-    <Content Include="Personnel\css\gridview.css" />
-    <Content Include="Personnel\css\index.css" />
-    <Content Include="Personnel\css\peizhi.css" />
-    <Content Include="Personnel\css\quanxian.css" />
-    <Content Include="Personnel\gerensuode.aspx" />
-    <Content Include="Personnel\gerenxinxi.aspx" />
-    <Content Include="Personnel\gongzimingxi.aspx" />
-    <Content Include="Personnel\gongzitiao.aspx" />
-    <Content Include="Personnel\head.aspx" />
-    <Content Include="Personnel\images\删除.png" />
-    <Content Include="Personnel\images\添加.png" />
-    <Content Include="Personnel\index.aspx" />
-    <Content Include="Personnel\kaoqin.aspx" />
-    <Content Include="Personnel\kaoqinAdd.aspx" />
-    <Content Include="Personnel\kaoqinjilu.aspx" />
-    <Content Include="Personnel\kaoqinjiluAdd.aspx" />
-    <Content Include="Personnel\mingxiAdd.aspx" />
-    <Content Include="Personnel\peizhi.aspx" />
-    <Content Include="Personnel\quanxian.aspx" />
-    <Content Include="Personnel\renyuanxinxi.aspx" />
-    <Content Include="Personnel\renyuanxinxiAdd.aspx" />
-    <Content Include="Personnel\shebao.aspx" />
-    <Content Include="Personnel\size.aspx" />
-    <Content Include="Personnel\wuquanxian.aspx" />
     <Content Include="qi_chu.aspx" />
     <Content Include="ru_ku.aspx" />
     <Content Include="sample\index.html" />
@@ -624,6 +583,7 @@
     <Content Include="Scripts\layui\lay\modules\tree.js" />
     <Content Include="Scripts\layui\lay\modules\upload.js" />
     <Content Include="Scripts\layui\lay\modules\util.js" />
+    <Content Include="Scripts\main_js.js" />
     <Content Include="Scripts\My97DatePicker\calendar.js" />
     <Content Include="Scripts\My97DatePicker\config.js" />
     <Content Include="Scripts\My97DatePicker\lang\en.js" />
@@ -723,9 +683,6 @@
     <Compile Include="frmUserManger.aspx.designer.cs">
       <DependentUpon>frmUserManger.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="ImportData.aspx.cs">
       <DependentUpon>ImportData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -747,6 +704,9 @@
     <Compile Include="ji_chu_zi_liao_page.aspx.designer.cs">
       <DependentUpon>ji_chu_zi_liao_page.aspx</DependentUpon>
     </Compile>
+    <Compile Include="jxc_service\jxc_user.cs" />
+    <Compile Include="jxc_service\mingxi.cs" />
+    <Compile Include="jxc_service\ServicePage.cs" />
     <Compile Include="kh_ming_xi_selcet.aspx.cs">
       <DependentUpon>kh_ming_xi_selcet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -802,167 +762,6 @@
     </Compile>
     <Compile Include="Myadmin\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\baopan.aspx.cs">
-      <DependentUpon>baopan.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\baopan.aspx.designer.cs">
-      <DependentUpon>baopan.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\baoshui.aspx.cs">
-      <DependentUpon>baoshui.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\baoshui.aspx.designer.cs">
-      <DependentUpon>baoshui.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\bumenhuizong.aspx.cs">
-      <DependentUpon>bumenhuizong.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\bumenhuizong.aspx.designer.cs">
-      <DependentUpon>bumenhuizong.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\bumenxiangqing.aspx.cs">
-      <DependentUpon>bumenxiangqing.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\bumenxiangqing.aspx.designer.cs">
-      <DependentUpon>bumenxiangqing.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\bumenxiangqing1.aspx.cs">
-      <DependentUpon>bumenxiangqing1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\bumenxiangqing1.aspx.designer.cs">
-      <DependentUpon>bumenxiangqing1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\gerensuode.aspx.cs">
-      <DependentUpon>gerensuode.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\gerensuode.aspx.designer.cs">
-      <DependentUpon>gerensuode.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\gerenxinxi.aspx.cs">
-      <DependentUpon>gerenxinxi.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\gerenxinxi.aspx.designer.cs">
-      <DependentUpon>gerenxinxi.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\gongzimingxi.aspx.cs">
-      <DependentUpon>gongzimingxi.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\gongzimingxi.aspx.designer.cs">
-      <DependentUpon>gongzimingxi.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\gongzitiao.aspx.cs">
-      <DependentUpon>gongzitiao.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\gongzitiao.aspx.designer.cs">
-      <DependentUpon>gongzitiao.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\head.aspx.cs">
-      <DependentUpon>head.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\head.aspx.designer.cs">
-      <DependentUpon>head.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\kaoqin.aspx.cs">
-      <DependentUpon>kaoqin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\kaoqin.aspx.designer.cs">
-      <DependentUpon>kaoqin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\kaoqinAdd.aspx.cs">
-      <DependentUpon>kaoqinAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\kaoqinAdd.aspx.designer.cs">
-      <DependentUpon>kaoqinAdd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\kaoqinjilu.aspx.cs">
-      <DependentUpon>kaoqinjilu.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\kaoqinjilu.aspx.designer.cs">
-      <DependentUpon>kaoqinjilu.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\kaoqinjiluAdd.aspx.cs">
-      <DependentUpon>kaoqinjiluAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\kaoqinjiluAdd.aspx.designer.cs">
-      <DependentUpon>kaoqinjiluAdd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\mingxiAdd.aspx.cs">
-      <DependentUpon>mingxiAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\mingxiAdd.aspx.designer.cs">
-      <DependentUpon>mingxiAdd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\peizhi.aspx.cs">
-      <DependentUpon>peizhi.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\peizhi.aspx.designer.cs">
-      <DependentUpon>peizhi.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\quanxian.aspx.cs">
-      <DependentUpon>quanxian.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\quanxian.aspx.designer.cs">
-      <DependentUpon>quanxian.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\renyuanxinxi.aspx.cs">
-      <DependentUpon>renyuanxinxi.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\renyuanxinxi.aspx.designer.cs">
-      <DependentUpon>renyuanxinxi.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\renyuanxinxiAdd.aspx.cs">
-      <DependentUpon>renyuanxinxiAdd.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\renyuanxinxiAdd.aspx.designer.cs">
-      <DependentUpon>renyuanxinxiAdd.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\shebao.aspx.cs">
-      <DependentUpon>shebao.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\shebao.aspx.designer.cs">
-      <DependentUpon>shebao.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\size.aspx.cs">
-      <DependentUpon>size.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\size.aspx.designer.cs">
-      <DependentUpon>size.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\wuquanxian.aspx.cs">
-      <DependentUpon>wuquanxian.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Personnel\wuquanxian.aspx.designer.cs">
-      <DependentUpon>wuquanxian.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="qi_chu.aspx.cs">
@@ -1041,9 +840,9 @@
     <Folder Include="Myadmin\KEditor\attached\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\China_System.Common\China_System.Common.csproj">
+    <ProjectReference Include="..\China_System.Common\Order.Common.csproj">
       <Project>{6d44b559-6900-4076-b906-565d758f43b3}</Project>
-      <Name>China_System.Common</Name>
+      <Name>Order.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\clsBuiness\clsBuiness.csproj">
       <Project>{e7bbc086-51fe-4b4a-a4bb-94ccb17b76b0}</Project>
@@ -1304,7 +1103,6 @@
     <Content Include="Myadmin\HouTai\src\scss\widgets\profile.scss" />
     <Content Include="Myadmin\HouTai\src\scss\widgets\steamline.scss" />
     <Content Include="Myadmin\HouTai\src\scss\widgets\widgets.scss" />
-    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
     <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />
     <Content Include="Scripts\layui\font\iconfont.eot" />
@@ -1322,6 +1120,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Myadmin\login.aspx.resx">
+      <DependentUpon>login.aspx.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1345,6 +1148,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
@@ -1354,7 +1160,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52590</DevelopmentServerPort>
+          <DevelopmentServerPort>61346</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

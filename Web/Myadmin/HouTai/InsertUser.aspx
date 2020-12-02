@@ -7,76 +7,107 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <style type="text/css">
-         .btn {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor:pointer;
-        }
 
         #main 
         {
-           /*margin: 0 auto; */
-            /*margin-left: 271px;
-            margin-top: 122px;*/
-            height: 354px;
-            color: white;
-            line-height: 40px;
-            font-weight: bolder;
-            font-family: "微软雅黑";
-            background-color: #00C5CD;
-            width: 473px;
-            padding: 51px;
-            /* margin: 1px; */
-            padding: 59px;
+            margin: auto;
+            height: 412px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-            #main span 
-            {
-                margin-right: 10%;
-            }
+        #main span 
+        {
+            margin-right: 10%;
+        }
         #us 
         {
-            padding: 10%;
-            padding-left: 18%;
+            height: 80%;
+            width: 80%;
         }
-        #queren {
-            margin-left: 138%;
+        .input_tr {
+            order: 1px solid #eee;
+            width: 224px;
+            height: 40px;
+            border-radius: 3px;
+            padding-left: 16px;
+        }
+        .table_tr
+        {
+            display: flex;
+            height: 60px;
+            align-items: center;
+            justify-content: center;
+        }
+        .table_text
+        {
+            text-align: right;
+            width: 20%;
+            
+        }
+        .table_input
+        {
+            width: 200px;
+            height: 35px;
+            border: 1px solid #eee;
+            padding-left: 20px;
+            border-radius: 3px;
+        }
+        .go
+        {
+            height: 40px;
+            width: 100px;
+            background-color: #009688;
+            border: none;
+            color: white;
+            border-radius: 3px;
+            box-shadow: 2px 2px 5px black;
+            padding:0;
+            cursor: pointer;
+        }
+        .go:active
+        {
+            height: 40px;
+            width: 100px;
+            background-color: #03685F;
+            border: none;
+            color: white;
+            border-radius: 3px;
+            padding:0;
+            box-shadow: 2px 2px 5px black;
+            cursor: pointer;
         }
     </style>
 </head>
-<body style ="margin: 0;">
+<body style ="margin: auto;">
     <form id="form1" runat="server">
         <div id="main">
             <table id ="us">
-                <tr>
-                    <td>用户名：</td>
-                    <td><asp:TextBox ID="Name" runat="server"></asp:TextBox></td>
+                <tr class="table_tr">
+                    <td class="table_text">用户名：</td>
+                    <td><asp:TextBox CssClass="table_input" ID="Name" runat="server"></asp:TextBox></td>
                 </tr>
-                <tr>
-                    <td>密码： </td>
-                    <td><asp:TextBox ID="Pwd" runat="server" ></asp:TextBox></td>
+                <tr class="table_tr">
+                    <td class="table_text">密码： </td>
+                    <td><asp:TextBox CssClass="table_input" ID="Pwd" runat="server" ></asp:TextBox></td>
                 </tr>
-                <tr>
-                    <td>确认密码：</td>
-                    <td><asp:TextBox ID="Qrpwd" runat="server"></asp:TextBox></td>
+                <tr class="table_tr">
+                    <td class="table_text">确认密码：</td>
+                    <td><asp:TextBox CssClass="table_input" ID="Qrpwd" runat="server"></asp:TextBox></td>
                 </tr>
-                <tr>
-                    <td>用户权限：</td>
-                    <td><select id="quanxian" runat="server">
+                <tr class="table_tr">
+                    <td class="table_text">用户权限：</td>
+                    <td><select class="input_tr" id="quanxian" runat="server">
                         <option>管理员</option>
                         <option>普通用户</option>
                 </select></td>
                 </tr>
-                <tr>
-                    <td><asp:Button ID="queren" CssClass="btn"  Text="确认提交" OnClick="queren_Click" runat="server"/></td>
+                <tr class="table_tr">
+                    <td>
+                        <asp:Button ID="queren" CssClass="go"  Text="确认提交" OnClick="queren_Click" runat="server"/>
+                    </td>
                 </tr>
             </table>
-<%--            公司：<asp:TextBox ID="gongsi" runat="server"></asp:TextBox>--%>
     </form>
 </body>
 </html>

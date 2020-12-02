@@ -19,11 +19,10 @@ namespace Web
         private int row_count;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            shuaxin();
             try
             {
                 this.dj_row.Attributes.Add("onclick", "javascript:pd_tj_ff();");
-                bt_select_Click(sender, e);
                 string act = Request["act"] == null ? "" : Request["act"].ToString();
                 if (Session["username"] != null && Session["gs_name"] != null)
                 {
@@ -31,9 +30,8 @@ namespace Web
                     {
                         selectNameAndLebie(Request["id"].ToString());
                     }
-            
-                        List<zl_and_jc_info> jc = selectjichuziliao(Session["username"].ToString(), Session["gs_name"].ToString());
-                        Session["jichu"] = jc;
+                    List<zl_and_jc_info> jc = selectjichuziliao(Session["username"].ToString(), Session["gs_name"].ToString());
+                    Session["jichu"] = jc;
                     
                     List<qi_chu_info> list = select_row(Session["username"].ToString(), Session["gs_name"].ToString());
                     row_count = list.Count;
@@ -44,7 +42,7 @@ namespace Web
                 }
                 else
                 {
-                    Response.Write(" <script>alert('请登录'); location='../Myadmin/login.aspx';</script>");
+                    Response.Write(" <script>alert('请登录'); window.parent.location.href='/Myadmin/Login.aspx'");
                 }
             }
             catch (Exception ex)
@@ -59,8 +57,12 @@ namespace Web
 
         protected void bt_select_Click(object sender, EventArgs e)
         {
-            
-            try {
+            shuaxin();
+        }
+
+        private void shuaxin() {
+            try
+            {
                 if (Session["username"] != null && Session["gs_name"] != null)
                 {
                     List<qi_chu_info> list = select_chuku(Session["username"].ToString(), Session["gs_name"].ToString());
@@ -69,16 +71,14 @@ namespace Web
                 }
                 else
                 {
-                    Response.Write(" <script>alert('请登录'); location='../Myadmin/login.aspx';</script>");
+                    Response.Write(" <script>alert('请登录'); window.parent.location.href='/Myadmin/Login.aspx'");
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
-                
+
                 throw;
             }
-           
-
         }
 
         public List<qi_chu_info> select_chuku(string zh_name, string gs_name)
@@ -117,18 +117,11 @@ namespace Web
             {
                 if (getlist[li].sp_dm.Equals(id))
                 {
-
                     zl.name = getlist[li].name;
                     zl.lei_bie = getlist[li].lei_bie;
-
                 }
             }
-            //return json
-            //return zl;
-            //Context.Response.ContentType = "text/plain";
             Response.Write("[{\"name\":\"" + zl.name + "\",\"leibie\":\"" + zl.lei_bie + "\",\"company\":\"无用户\"}]");
-            //Response.Write(JSONObj);
-            //一定要加，不然前端接收失败
             Response.End();
         }
 
@@ -230,7 +223,7 @@ namespace Web
                     }
                     for (int i = 0; i < row_count; i++)
                     {
-                        update_qichu(Context.Request["cpid_cs" + i].ToString(), Context.Request["cpname_cs" + i].ToString(), Context.Request["cplb_cs" + i].ToString(), Context.Request["cpsj_cs" + i].ToString(), Context.Request["cpsl_cs" + i].ToString());
+                        update_qichu(Context.Request["id" + i].ToString(),Context.Request["cpid_cs" + i].ToString(), Context.Request["cpname_cs" + i].ToString(), Context.Request["cplb_cs" + i].ToString(), Context.Request["cpsj_cs" + i].ToString(), Context.Request["cpsl_cs" + i].ToString());
                     }
                     Response.Write(" <script>alert('提交成功'); location='qi_chu.aspx';</script>");
                 }
@@ -246,12 +239,11 @@ namespace Web
 
         }
 
-        public int update_qichu(string cpid, string cpname, string cplb, string cpsj, string cpsl)
+        public int update_qichu(string id,string cpid, string cpname, string cplb, string cpsj, string cpsl)
         {
             clsAllnew buiness = new clsBuiness.clsAllnew();
-            int isrun = buiness.update_qichu(cpid, cpname, cplb, cpsj, cpsl);
+            int isrun = buiness.update_qichu(id,cpid, cpname, cplb, cpsj, cpsl);
             return isrun;
-
         }
 
 
@@ -261,21 +253,18 @@ namespace Web
             
             try
             {
-                List<qi_chu_info> list = select_row(Session["username"].ToString(), Session["gs_name"].ToString());
+                List<qi_chu_info> list = Session["qi_chu_select"] as List<qi_chu_info>; 
                 for (int i = 0; i < row_count; i++)
                 {
                     string name = Request["Checkbox_bd" + i];
 
-                    if (name == null)
-                    {
-
-                    }
-                    else
+                    if (name != null)
                     {
                         if (Convert.ToInt32(name) == i)
                         {
-                            del_qichu_ff(list[i].Cpid);
-                            Response.Write(" <script>alert('删除成功'); location='qi_chu.aspx';</script>");
+                            del_qichu_ff(list[i].Id);
+                            shuaxin();
+                            Response.Write(" <script>alert('删除成功');</script>");
                         }
                     }
                 }

@@ -157,10 +157,7 @@
 
                         <asp:ButtonField ButtonType="Button" Text="删除" HeaderText="删除" CommandName="Btn_Operation">
                             <ItemStyle HorizontalAlign="Center" Width="25%"></ItemStyle>
-
                         </asp:ButtonField>
-
-
                     </Columns>
                 </asp:GridView>
             </div>

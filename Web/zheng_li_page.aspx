@@ -68,188 +68,128 @@
 
     </script>
     <style type="text/css">
-        .input_tr {
-            border: 1px solid #ccc;
-            padding: 4px 0px;
-            /*border-radius: 3px;*/
-            padding-left: 5px;
-            padding-right: 5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        .input_tr
+        {
+            border: none;
+            height: 90%;
+            width: 90%;
         }
 
-            .input_tr:focus {
-                border-color: #66afe9;
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            }
-
-        td {
-            border-left: 1px dashed #a8a8a8;
-            border-bottom: 1px dashed #a8a8a8;
-            font-size: 84%;
+        td
+        {
+            text-align: center;
+            height: 40px;
+            background-color: white;
+            border: 0.5px solid #f2f2f2;
+            font-size: 4px;
         }
 
-        table {
-            /*border: 1px dashed #a8A8A8;*/
+        .auto-style1
+        {
+            height: 49px;
+            text-align: center;
+            background-color: #2F4056;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
         }
 
-        tr:nth-child(2n-1) input {
-            background-color: #eeeeee;
+        .input_tr_sc
+        {
         }
 
-        tr:nth-child(2n) input {
-            background-color: #ffffff;
+        .input_tr_tj
+        {
+            width: 91px;
+            height: 30px;
+            border: none;
+            background-color: #009688;
+            color: white;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-left: 10px;
         }
 
-
-        #biao_ge tr:nth-of-type(odd) {
-            background-color: #eeeef6;
+        .hidden_load
+        {
         }
 
-        .auto-style1 {
-            border-top: 1px dashed #a8a8a8;
-            color: black;
-            height: 33px;
-            background-color: #eeeef6;
+        .input_tr_sx
+        {
         }
-
-        .input_tr_sc {
-            margin-top: 3%;
-            margin-left: 17%;
-            border: 1px solid #ccc;
-            padding: 4px 0px;
-            /*border-radius: 3px;*/
-            padding-left: 5px;
-            padding-right: 5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        .top-div
+        {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: start;
+            align-items: center;
         }
-
-            .input_tr_sc:focus {
-                border-color: #66afe9;
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            }
-
-        .input_tr_tj {
-            margin-left: 11%;
-            border: 1px solid #ccc;
-            padding: 4px 0px;
-            /*border-radius: 3px;*/
-            padding-left: 5px;
-            padding-right: 5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        }
-
-            .input_tr_tj:focus {
-                border-color: #66afe9;
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            }
-
-        .hidden_load {
-            display: none;
-        }
-
-        .input_tr_sx {
-            margin-bottom: 2%;
-            margin-left: 4%;
-            border: 1px solid #ccc;
-            padding: 4px 0px;
-            /*border-radius: 3px;*/
-            padding-left: 5px;
-            padding-right: 5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        }
-
-            .input_tr_sx:focus {
-                border-color: #66afe9;
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            }
     </style>
     <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="margin-top: 5%;">
+        <div>
 
             <input type="hidden" id="xx_hidden" value="tj_false" />
-
-            <%-- <asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="zl_select_load">
-            </asp:DropDownList>--%>
-            <img class="new_mingxijichushiliao" src="Myadmin/images/Resources/refresh_24.gif" />
-            <asp:Button ID="Button2" class="zhengli_input_tr_sx" OnClick="zl_select_load" Text="刷新数据" runat="server" />
-            <div style="width: 171px; border: 1px solid #95b8e7; height: 51px; margin-left: 80%; margin-top: -6%; margin-bottom: 2%;">
-                <div style="font-size: 19%; margin-top: -5%; margin-left: 7%; background-color: white; width: 27px;">功能</div>
-                <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_sc" Text="删除" runat="server" />
+            
+            <div class="top-div">
+                <asp:Button ID="Button2" class="input_tr_tj" OnClick="zl_select_load" Text="刷新数据" runat="server" />
                 <asp:Button OnClick="zl_tj" ID="dj_row" class="input_tr_tj" Text="提交" runat="server" />
+                <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_tj" Text="删除" runat="server" />
             </div>
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <input type="hidden" id="row_i1" name="row_i" />
-            <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="">
-                <tr id="dj_yh">
-                    <td class="auto-style1" style="width: 22px; padding-left: 1%;"></td>
-                    <td class="auto-style1" style="width: 257px; padding-left: 1%;">商品代码</td>
-                    <td class="auto-style1" style="width: 301px; padding-left: 1%;">商品名称</td>
-                    <td class="auto-style1" style="width: 257px; padding-left: 1%;">商品类别</td>
-                    <td class="auto-style1" style="width: 257px; padding-left: 1%;">商品单位</td>
-                    <td class="auto-style1" style="width: 47px; padding-left: 1%; border-right: 1px dashed #a8a8a8;">功能</td>
-                </tr>
-                <%
-                    List<zl_and_jc_info> zl_and_jc_info = Session["zl_and_jc_select"] as List<zl_and_jc_info>;
-                    if (zl_and_jc_info != null)
-                    {
-                        for (int i = 0; i < zl_and_jc_info.Count; i++)
-                        {                          
-                %>
-                <tr id="del_row_cs<%=i %>">
-                    <%--style="font-size: 90%; padding-left: 2%;"--%>
-                    <td style="font-size: 14px; padding-left: 0.5%; width: 22px;"><%=(i+1) %></td>
-                    <td class="bg_bj">
-                        <input type="text" style="width: 244px; margin: 0.2%;" class="input_tr" id="sp_name" name="sp_dm_cs<%=i %>" value="<%=zl_and_jc_info[i].sp_dm %>" /></td>
-                    <td class="bg_bj">
-                        <input type="text" style="width: 288px; margin: 0.2%;" class="input_tr" id="Text1" name="name_cs<%=i %>" value="<%=zl_and_jc_info[i].name %>" /></td>
-                    <td class="bg_bj">
-                        <input type="text" style="width: 244px; margin: 0.2%;" class="input_tr" id="Text2" name="lei_bie_cs<%=i %>" value="<%=zl_and_jc_info[i].lei_bie %>" /></td>
-                    <td class="bg_bj">
-                        <input type="text" style="width: 244px; margin: 0.2%;" class="input_tr" id="ck_dj<%=i %>" name="dan_wei_cs<%=i %>" value="<%=zl_and_jc_info[i].dan_wei %>" /></td>
-                    <td class="bg_bj" style="border-right: 1px dashed #a8a8a8;">
-                        <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i %>" value="<%=zl_and_jc_info[i].id %>" /><input id="checkbox" style="margin-left: 30%;" name="Checkbox_bd<%=i %>" value=" <%=i %>" type="checkbox" /></td>
+            <div class="table_div">
+                <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="width: 100%">
+                    <tr id="dj_yh">
+                        <th class="auto-style1" style="width: 70px">序号</th>
+                        <th class="auto-style1" style="width: 228px">商品代码</th>
+                        <th class="auto-style1" style="width: 228px">商品名称</th>
+                        <th class="auto-style1" style="width: 228px">商品类别</th>
+                        <th class="auto-style1" style="width: 228px">商品单位</th>
+                        <th class="auto-style1" style="width: 70px">功能</th>
+                    </tr>
+                    <%
+                        List<zl_and_jc_info> zl_and_jc_info = Session["zl_and_jc_select"] as List<zl_and_jc_info>;
+                        if (zl_and_jc_info != null)
+                        {
+                            for (int i = 0; i < zl_and_jc_info.Count; i++)
+                            {                          
+                    %>
+                    <tr id="del_row_cs<%=i %>">
+                        <%--style="font-size: 90%; padding-left: 2%;"--%>
+                        <td style="font-size: 14px; padding-left: 0.5%; width: 22px;"><%=(i+1) %></td>
+                        <td class="bg_bj">
+                            <input type="text"class="input_tr" id="sp_name" name="sp_dm_cs<%=i %>" value="<%=zl_and_jc_info[i].sp_dm %>" /></td>
+                        <td class="bg_bj">
+                            <input type="text" class="input_tr" id="Text1" name="name_cs<%=i %>" value="<%=zl_and_jc_info[i].name %>" /></td>
+                        <td class="bg_bj">
+                            <input type="text" class="input_tr" id="Text2" name="lei_bie_cs<%=i %>" value="<%=zl_and_jc_info[i].lei_bie %>" /></td>
+                        <td class="bg_bj">
+                            <input type="text" class="input_tr" id="ck_dj<%=i %>" name="dan_wei_cs<%=i %>" value="<%=zl_and_jc_info[i].dan_wei %>" /></td>
+                        <td class="bg_bj">
+                            <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i %>" value="<%=zl_and_jc_info[i].id %>" /><input id="checkbox" name="Checkbox_bd<%=i %>" value=" <%=i %>" type="checkbox" /></td>
 
-                </tr>
+                    </tr>
 
-                <%
-                    }
-                    }
-                %>
-            </table>
+                    <%
+                            }
+                        }
+                    %>
+                </table>
+            </div>
 
-            <div style="margin-left: 41%; margin-top: 4%;">
+            <%--<div style="margin-left: 41%; margin-top: 4%;">
                 <asp:Button CssClass="input_tr" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
                 <asp:Button CssClass="input_tr" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
                 <asp:Button CssClass="input_tr" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
                 <asp:Button CssClass="input_tr" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
-            </div>
+            </div>--%>
         </div>
     </form>
 </body>

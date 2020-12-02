@@ -12,79 +12,71 @@ namespace Web.Myadmin.HouTai
     {
         clsAllnew can = new clsAllnew();
         protected List<userTable> YongHutable;
-        //protected Repeater UserRep;
+        private clsuserinfo user;
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = (clsuserinfo)Session["user"];
+            if (user == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
+            
             if (!IsPostBack)
             {
-                SelectUser();
                 string act = Request["act"] == null ? "" : Request["act"].ToString();
                 if (act.Equals("PostUser"))
                 {
                     string id = Request["id"] == null ? "" : Request["id"].ToString();
                     string gongsi = Request["gongsi"] == null ? "" : Request["gongsi"].ToString();
-                    delete(id, gongsi);
+                    Response.Write(delete(id, gongsi));
+                    Response.End();
                 }
+                this.SelectUser();
             }
         }
-        public void delete(string id, string gongsi)
+        public int delete(string id, string gongsi)
         {
             try
             {
                 int i = can.del_Usertable(id, gongsi);
-                if (i > 0)
-                {
-                    Response.Write("[{\"endtext\":\"删除成功\"}]");
-                    SelectUser();
-                }
-                else
-                {
-                    Response.Write("[{\"endtext\":\"删除失败\"}]");
-                }
-                //Response.Write(JSONObj);
-                //一定要加，不然前端接收失败
-                Response.End();
+                SelectUser();
+                return i;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
         }
 
         private void SelectUser()
         {
-            if (Session["username"] != null && !Session["gs_name"].ToString().Equals(string.Empty))
+            List<userTable> list = can.selectUser(user.gongsi);
+            //YongHutable = list;
+            YongHutable = new List<userTable>();
+            foreach (userTable ut in list)
             {
-                List<userTable> list = can.selectUser().FindAll(f => f.gongsi != null && f.gongsi.Equals(Session["gs_name"].ToString()));
-                //YongHutable = list;
-                YongHutable = new List<userTable>();
-                foreach (userTable ut in list)
+                userTable addut = new userTable();
+                addut._id = ut._id;
+                addut.Btype = ut.Btype;
+                addut.Createdate = ut.Createdate;
+                addut._openid = ut._openid;
+                addut.gongsi = ut.gongsi;
+                addut.jigoudaima = ut.jigoudaima;
+                addut.name = ut.name;
+                addut.password = ut.password;
+                addut.mi_bao = ut.mi_bao;
+                if (ut.AdminIS != null && ut.AdminIS.Equals("是"))
                 {
-                    userTable addut = new userTable();
-                    addut._id = ut._id;
-                    addut.Btype = ut.Btype;
-                    addut.Createdate = ut.Createdate;
-                    addut._openid = ut._openid;
-                    addut.gongsi = ut.gongsi;
-                    addut.jigoudaima = ut.jigoudaima;
-                    addut.name = ut.name;
-                    addut.password = ut.password;
-                    addut.mi_bao = ut.mi_bao;
-                    if (ut.AdminIS != null && ut.AdminIS.Equals("是"))
-                    {
-                        addut.AdminIS = "管理员";
-                    }
-                    else
-                    {
-                        addut.AdminIS = "普通用户";
-                    }
-                    YongHutable.Add(addut);
+                    addut.AdminIS = "管理员";
                 }
-                UserFor.DataSource = YongHutable;
-                UserFor.DataBind();
+                else
+                {
+                    addut.AdminIS = "普通用户";
+                }
+                YongHutable.Add(addut);
             }
+            UserFor.DataSource = YongHutable;
+            UserFor.DataBind();
         }
 
         protected void BTN_ShuaXing_Click(object sender, EventArgs e)
@@ -92,7 +84,6 @@ namespace Web.Myadmin.HouTai
             try
             {
                 SelectUser();
-                Response.Write("<script>alert('刷新成功！')</script>");
             }
             catch (Exception ex)
             {

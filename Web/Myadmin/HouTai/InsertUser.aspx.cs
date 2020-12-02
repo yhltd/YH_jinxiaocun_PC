@@ -26,7 +26,7 @@ namespace Web.Myadmin.HouTai
                         id = Request["id"].ToString();
                         gongsi = Request["gs"].ToString();
                         can = new clsAllnew();
-                        userTable ut = can.selectUser().Find(f => f.name.Equals(id) && f.gongsi.Equals(gongsi));
+                        userTable ut = can.selectUser(gongsi).Find(f => f.name.Equals(id) && f.gongsi.Equals(gongsi));
                         Name.Text = ut.name;
                         Pwd.Text = ut.password;
                         Qrpwd.Text = ut.password;

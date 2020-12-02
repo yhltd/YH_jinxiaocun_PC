@@ -79,9 +79,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\China_System.Common\China_System.Common.csproj">
+    <ProjectReference Include="..\China_System.Common\Order.Common.csproj">
       <Project>{6d44b559-6900-4076-b906-565d758f43b3}</Project>
-      <Name>China_System.Common</Name>
+      <Name>Order.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\SDZdb\SDZdb.csproj">
       <Project>{0a37e57d-9e55-4378-935d-acd76fab4609}</Project>

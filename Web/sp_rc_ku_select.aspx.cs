@@ -18,53 +18,43 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.shuaxin();
         }
         protected void rc_ku_select_load(object sender, EventArgs e)
         {
-            
+            shuaxin();
+        }
+
+        private void shuaxin() {
             try
             {
                 if (Session["username"] == null && Session["gs_name"] == null)
                 {
-                    Response.Write("<script>alert('请登录！');location='/Myadmin/Login.aspx';</script>");
+                    Response.Write("<script>alert('请登录！');window.parent.location.href='../Myadmin/Login.aspx';</script>");
                 }
                 else
                 {
-                    List<rc_ku_info> list = rc_ku_xl_select(Session["username"].ToString(), Session["gs_name"].ToString());
+                    List<string> list = rc_ku_xl_select(Session["username"].ToString(), Session["gs_name"].ToString());
                     Session["rc_ku_xl_select"] = list;
+                    Session["selectSp"] = null;
                 }
             }
             catch (Exception ex) { throw; }
-            
-           
         }
         protected void rc_ku_select_Click(object sender, EventArgs e)
         {
-            
-            try
+            string spname = Context.Request["kui_lei"].ToString();
+            string username = Session["username"].ToString();
+            string gs_name = Session["gs_name"].ToString();
+            if (!spname.Equals("请选择"))
             {
-                //int shou_jia_r = 0;
-                //int shu_liang_r = 0;
-                //int jin_e_r = 0;
-                //int shou_jia_c = 0;
-                //int shu_liang_c = 0;
-                //int jin_e_c = 0;
-                List<rc_ku_info> list = rc_ku_r_select(Context.Request["kui_lei"].ToString(), Session["username"].ToString(), Session["gs_name"].ToString());
-                List<rc_ku_info> lista = rc_ku_select(Context.Request["kui_lei"].ToString(), Session["username"].ToString(), Session["gs_name"].ToString());
+                List<rc_ku_info> lista = rc_ku_select(spname, username, gs_name);
                 Session["selectSp"] = lista;
-                Session["rc_ku_r_select"] = list;
             }
-            catch (Exception ex) { throw; }
-            
-        }
-
-
-        public List<rc_ku_info> rc_ku_r_select(string name, string zh_name, string gs_name)
-        {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<rc_ku_info> list = buiness.rc_ku_r_select(name, zh_name, gs_name);
-            return list;
+            else
+            {
+                Session["selectSp"] = null;
+            }
         }
         public List<rc_ku_info> rc_ku_select(string name, string zh_name, string gs_name)
         {
@@ -72,17 +62,11 @@ namespace Web
             List<rc_ku_info> list = buiness.rc_ku_select(name, zh_name, gs_name);
             return list;
         }
-        public List<rc_ku_info> rc_ku_c_select(string name)
-        {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<rc_ku_info> list = buiness.rc_ku_c_select(name);
-            return list;
-        }
 
-        public List<rc_ku_info> rc_ku_xl_select(string zh_name, string gs_name)
+        public List<string> rc_ku_xl_select(string zh_name, string gs_name)
         {
             clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<rc_ku_info> list = buiness.rc_ku_xl_select(zh_name, gs_name);
+            List<string> list = buiness.rc_ku_xl_select(zh_name, gs_name);
             return list;
         }
     }

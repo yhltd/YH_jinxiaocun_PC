@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDZdb", "SDZdb\SDZdb.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "frmcstest", "frmcstest\frmcstest.csproj", "{3F725C4B-B7EF-4AD8-B623-BC60060E01E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "China_System.Common", "China_System.Common\China_System.Common.csproj", "{6D44B559-6900-4076-B906-565D758F43B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Common", "China_System.Common\Order.Common.csproj", "{6D44B559-6900-4076-B906-565D758F43B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -42,7 +42,7 @@ namespace SDZdb
         public string sp_dm { get; set; }
         public string shou_h { get; set; }
         public string zh_name { get; set; }
-        public string gs_name { get; set; } 
+        public string gs_name { get; set; }
     }
 
     public class qi_chu_info
@@ -59,10 +59,24 @@ namespace SDZdb
         public string Mxtype { get; set; }
         public string Shijian { get; set; }
         public string zh_name { get; set; }
-        public string gs_name { get; set; } 
+        public string gs_name { get; set; }
     }
 
-    public class ku_cun {
+    public class item
+    {
+        public string id;
+        public string num;
+        public string price;
+    }
+    public class items
+    {
+        public string gonghuo;
+        public string orderid;
+        public List<item> itemList;
+    }
+
+    public class ku_cun
+    {
         public string Name { get; set; }
         public string Shou_jia { get; set; }
         public string Jin_jia { get; set; }
@@ -79,7 +93,7 @@ namespace SDZdb
         public string Bei_zhu { get; set; }
         public string Id { get; set; }
         public string zh_name { get; set; }
-        public string gs_name { get; set; } 
+        public string gs_name { get; set; }
     }
 
     public class jxc_1_info
@@ -95,8 +109,8 @@ namespace SDZdb
     public class jxc_2_info
     {
 
-        
-        public string Cpsj{ get; set; }
+
+        public string Cpsj { get; set; }
         public string Cpsl { get; set; }
         public string Cpje { get; set; }
     }
@@ -120,38 +134,43 @@ namespace SDZdb
 
     public class jxc_z_info
     {
-        public string ID { get; set; }
-        public string Sp_dm { get; set; }
-        public string Name { get; set; }
-        public string Lei_bie { get; set; }
-        public string Cpsj_1 { get; set; }
-        public string Cpsl_1 { get; set; }
-        public string Cpsj_2 { get; set; }
-        public string Cpsl_2 { get; set; }
-        public string Cpsj_3 { get; set; }
-        public string Cpsl_3 { get; set; }
-        public string Cpje_1{ get; set; }
-        public string Cpje_2 { get; set; }
-        public string Cpje_3 { get; set; }
-        public string jc_jc { get; set; }
-        public string jc_dj { get; set; }
-        public string jc_je { get; set; }
-        public string yl_tx { get; set; }
+        public string code { get; set; }
+        public string name { get; set; }
+        public string type { get; set; }
+        public string num1 { get; set; }
+        public string price1 { get; set; }
+        public string num2 { get; set; }
+        public string price2 { get; set; }
+        public string num3 { get; set; }
+        public string price3 { get; set; }
+        public string num4 { get; set; }
+        public string price4 { get; set; }
+
+        public string stock { get; set; }
     }
 
     public class rc_ku_info
     {
         public string Ri_qi { get; set; }
-        public string Gong_huo { get; set; }
         public string Orderid { get; set; }
         public string Sp_dm { get; set; }
         public string Name { get; set; }
-        public string Lei_bie { get; set; }
-        public string Shou_jia { get; set; }
-        public string Shu_liang { get; set; }
-        public string Shou_jia_2 { get; set; }
-        public string Shu_liang_2{ get; set; }
-       
+        public string num1 { get; set; }
+        public string price1 { get; set; }
+        public string num2 { get; set; }
+        public string price2 { get; set; }
+
+    }
+
+    public class rc_ku_info_select
+    {
+        public string date { get; set; }
+        public string come { get; set; }
+        public string order { get; set; }
+        public string code { get; set; }
+        public string name { get; set; }
+        public string num { get; set; }
+        public string price { get; set; }
     }
 
     public class zl_and_jc_info
@@ -160,24 +179,25 @@ namespace SDZdb
         public string name { get; set; }
         public string lei_bie { get; set; }
         public string dan_wei { get; set; }
+        public string allSL { get; set; }
         public string shou_huo { get; set; }
         public string Gong_huo { get; set; }
         public string id { get; set; }
         public string zh_name { get; set; }
-        public string gs_name { get; set; } 
+        public string gs_name { get; set; }
 
     }
 
     public class yong_liao_set_info
     {
         public string cp_name { get; set; }
-        public string yl_dm { get; set; }    
+        public string yl_dm { get; set; }
         public string yl_name { get; set; }
         public string yl_sl { get; set; }
         public string id { get; set; }
         public string yl_tx { get; set; }
         public string zh_name { get; set; }
-        public string gs_name { get; set; } 
+        public string gs_name { get; set; }
     }
     public class clCard_info
     {
@@ -263,7 +283,7 @@ namespace SDZdb
         public string mark3 { get; set; }
         public string mark4 { get; set; }
         public string mark5 { get; set; }
-     
+
     }
 
     public class userTable

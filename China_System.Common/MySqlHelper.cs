@@ -13,6 +13,11 @@ namespace Order.Common
 
         private static string connstr = "";//根据自己的实际
 
+        public MySqlHelper(string sqlStr)
+        {
+            connstr = sqlStr;
+        }
+
 
         #region 执行查询语句，返回MySqlDataReader
         /// <summary>
@@ -20,9 +25,9 @@ namespace Order.Common
         /// </summary>
         /// <param name="sqlString"></param>
         /// <returns></returns>
-        public static MySqlDataReader ExecuteReader(string sqlString, string connstr1)
+        public MySqlDataReader ExecuteReader(string sqlString)
         {
-            MySqlConnection connection = new MySqlConnection(connstr1);
+            MySqlConnection connection = new MySqlConnection(connstr);
             MySqlCommand cmd = new MySqlCommand(sqlString, connection);
             MySqlDataReader myReader = null;
             try
@@ -45,6 +50,40 @@ namespace Order.Common
                 }
             }
         }
+        #endregion
+
+        #region 执行查询语句，返回查询行数
+        public static int getCount(string sql)
+        {
+            MySqlConnection connection = new MySqlConnection(connstr);
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
+            MySqlDataReader myReader = null;
+            int count = 0;
+            try
+            {
+                connection.Open();
+                myReader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (myReader.Read())
+                {
+                    count++;
+                }
+                return count;
+            }
+            catch (System.Data.SqlClient.SqlException e)
+            {
+                connection.Close();
+                throw new Exception(e.Message);
+            }
+            finally
+            {
+                if (myReader == null)
+                {
+                    cmd.Dispose();
+                    connection.Close();
+                }
+            }
+        }
+
         #endregion
 
         #region 执行带参数的查询语句，返回MySqlDataReader
@@ -88,9 +127,9 @@ namespace Order.Common
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static int ExecuteSql(string sql, string ConStr)
+        public int ExecuteSql(string sql)
         {
-            using (MySqlConnection conn = new MySqlConnection(ConStr))
+            using (MySqlConnection conn = new MySqlConnection(connstr))
             {
                 using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                 {
@@ -122,7 +161,7 @@ namespace Order.Common
         /// <param name="sqlString"></param>
         /// <param name="cmdParms"></param>
         /// <returns></returns>
-        public static int ExecuteSql(string sqlString,string ConStr, params MySqlParameter[] cmdParms)
+        public static int ExecuteSql(string sqlString, string ConStr, params MySqlParameter[] cmdParms)
         {
             using (MySqlConnection connection = new MySqlConnection(ConStr))
             {

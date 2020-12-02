@@ -12,22 +12,31 @@ using Order.Common;
 using clsBuiness;
 using System.Reflection;
 using System.IO;
+using Web.jxc_service;
 
 namespace Web
 {
     public partial class ming_xi : System.Web.UI.Page
     {
+        private static ServicePage page = new ServicePage();
+        private static clsuserinfo user;
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = (clsuserinfo)Session["user"];
+            page.countPage = this.getCountPage();
 
             try
             {
-                if (Session["username"] == null && Session["gs_name"] == null)
+                if (user == null)
                 {
-                    Response.Write("<script>alert('请登录！');location='/Myadmin/Login.aspx';</script>");
+                    Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
                 }
                 else
                 {
+                    if (Session["ming_xi_select_dd"] == null)
+                    {
+                        this.ming_xi_select(user.name, user.gongsi);
+                    }
                     if (Convert.ToInt32(Session["dq_ye_mx_dd"]) == 0)
                     {
                         Session["dq_ye_mx_dd"] = 0;
@@ -51,7 +60,7 @@ namespace Web
                 foreach (ming_xi_info dr in gtlist)
                 {
 
-                    sw.WriteLine(dr.Orderid + "\t" + dr.sp_dm + "\t" + dr.Cpname + "\t" + dr.Cplb + "\t" + dr.Cpjg + "\t" + dr.Cpsl + "\t" + dr.Mxtype + "\t" + dr.Shijian + "\t" + dr.Gongsi + "\t" + dr.shou_h);
+                    sw.WriteLine(dr.Orderid + "\t" + dr.sp_dm + "\t" + dr.Cpname + "\t" + dr.Cplb + "\t" + dr.Cpsj + "\t" + dr.Cpsl + "\t" + dr.Mxtype + "\t" + dr.Shijian + "\t" + dr.gs_name + "\t" + dr.shou_h);
 
                 }
 
@@ -66,7 +75,6 @@ namespace Web
                 Response.Write(sw);
 
                 Response.End();
-                Response.Write(" <script>alert('保存成功'); location='ming_xi.aspx';</script>");
             }
             else
             {
@@ -79,8 +87,8 @@ namespace Web
 
             try
             {
-                List<ming_xi_info> list = ming_xi_select(Session["username"].ToString(), Session["gs_name"].ToString());
-                Session["ming_xi_select_dd"] = list;
+                page.nowPage = 1;
+                ming_xi_select(Session["username"].ToString(), Session["gs_name"].ToString());
             }
             catch (Exception ex) { throw; }
 
@@ -88,13 +96,24 @@ namespace Web
 
         }
 
-        public List<ming_xi_info> ming_xi_select(string zh_name, string gs_name)
+        public int getCountPage()
         {
             try
             {
                 clsAllnew buiness = new clsBuiness.clsAllnew();
-                List<ming_xi_info> list = buiness.ming_xi_select(zh_name, gs_name);
-                return list;
+                int allCount = buiness.getPageCount(user.name, user.gongsi);
+                return (int)Math.Ceiling(Convert.ToDouble((float)allCount / (float)page.pageCount));
+            }
+            catch (Exception ex) { throw; }
+        }
+
+        public void ming_xi_select(string zh_name, string gs_name)
+        {
+            try
+            {
+                clsAllnew buiness = new clsBuiness.clsAllnew();
+                List<ming_xi_info> list = buiness.ming_xi_select(zh_name, gs_name, page.getLimit1(), page.getLimit2());
+                Session["ming_xi_select_dd"] = list;
             }
             catch (Exception ex) { throw; }
 
@@ -102,69 +121,59 @@ namespace Web
 
         protected void shou_ye_Click(object sender, EventArgs e)
         {
-
-            try
+            if (page.nowPage == 1)
             {
-                Session["dq_ye_mx_dd"] = 0;
-                List<ming_xi_info> list = fen_ye(0, 4);
-                Session["ming_xi_select_dd"] = list;
+                Response.Write("<script>alert('已经是第一页');</script>");
             }
-            catch (Exception ex) { throw; }
-
+            else
+            {
+                page.nowPage = 1;
+                this.ming_xi_select(user.name, user.gongsi);
+                Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+            }
         }
 
         protected void shang_ye_Click(object sender, EventArgs e)
         {
-
-            try
+            if (page.nowPage == 1)
             {
-                int dang_qian = Convert.ToInt32(Session["dq_ye_mx_dd"]);
-                if (dang_qian > 0)
-                {
-                    List<ming_xi_info> list = fen_ye(dang_qian - 1, 4);
-                    Session["dq_ye_mx_dd"] = dang_qian - 1;
-                    Session["ming_xi_select_dd"] = list;
-                }
+                Response.Write("<script>alert('已经是第一页');</script>");
             }
-            catch (Exception ex) { throw; }
-
-
+            else
+            {
+                page.nowPage--;
+                this.ming_xi_select(user.name, user.gongsi);
+                Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+            }
         }
 
         protected void xia_ye_Click(object sender, EventArgs e)
         {
-
-            try
+            if (page.countPage < (page.nowPage + 1))
             {
-                int dang_qian = Convert.ToInt32(Session["dq_ye_mx_dd"]);
-                List<ming_xi_info> list = fen_ye(dang_qian + 1, 4);
-                Session["dq_ye_mx_dd"] = dang_qian + 1;
-                Session["ming_xi_select_dd"] = list;
+                Response.Write("<script>alert('已经是最后一页');</script>");
             }
-            catch (Exception ex) { throw; }
-
-
+            else
+            {
+                page.nowPage++;
+                this.ming_xi_select(user.name, user.gongsi);
+                Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+            }
 
         }
 
         protected void mo_ye_Click(object sender, EventArgs e)
         {
-
-            try
+            if (page.nowPage == page.countPage)
             {
-                Session["dq_ye_mx_dd"] = select_row().Count - 1;
-                List<ming_xi_info> list = fen_ye(select_row().Count - 1, 4);
-                Session["ming_xi_select_dd"] = list;
+                Response.Write("<script>alert('已经是最后一页');</script>");
             }
-            catch (Exception ex) { throw; }
-
-        }
-
-        public List<ming_xi_info> fen_ye(int y_c, int e_c)
-        {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<ming_xi_info> list = buiness.ru_ku_fenye(y_c, e_c, Session["username"].ToString(), Session["gs_name"].ToString());
-            return list;
+            else
+            {
+                page.nowPage = page.countPage;
+                this.ming_xi_select(user.name, user.gongsi);
+                Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+            }
         }
 
         public List<ming_xi_info> select_row()

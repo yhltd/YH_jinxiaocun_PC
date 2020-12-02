@@ -11,195 +11,130 @@
      <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
 
-        function aaa(row) {
-            var inputValue = document.getElementById("cun_liang" + row).value;
-            if (inputValue <= 20) {
-                document.getElementById("ti_xing" + row).style.backgroundColor = "red";
-
-            } else {
-                document.getElementById("ti_xing" + row).style.backgroundColor = "green";
-
-            }
-
-            //$("#dj_js" + row).text($("#ck_sl" + row).val() * $("#ck_dj" + row).val());
-
-
-        }
+        $(function () {
+            var windowHeight = window.innerHeight;
+            $(".table_div").css("height", windowHeight * 0.8)
+        })
     </script>
     <title></title>
     <style type="text/css">
-        .bk_nr {
-            height: 21px;
-            font-size: 1%;
-            padding-left: 1%;
+        .top-fun
+        {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .bk_bt {
-            border-top: 1px dashed #a8a8a8;
-            padding-left: 1%;
-            font-size: 92%;
-            color: black;
-            width: 47px;
-            height: 33px;
-            background-color: #eeeeee;
+        .input_tr
+        {
+            width: 91px;
+            height: 30px;
+            border: none;
+            background-color: #009688;
+            color: white;
+            cursor: pointer;
+            border-radius: 2px;
+            margin-left: 10px;
         }
-
-        bk_bt_t {
-            border-top: 1px dashed #a8a8a8;
-            padding-left: 1%;
-            font-size: 92%;
-            color: black;
-            width: 84px;
-            height: 33px;
-            background-color: #eeeeee;
+        .table_div
+        {
+            width: 100%;
+            overflow: scroll;
         }
-
-        .hidden_load {
-            display: none;
+        .bk_bt
+        {
+            height: 49px;
+            text-align: center;
+            background-color: #2F4056;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
         }
-
-        td {
-            border-left: 1px dashed #a8a8a8;
-            border-bottom: 1px dashed #a8a8a8;
+        .auto-style1
+        {
+            text-align: center;
+            height: 40px;
+            background-color: white;
+            border: 0.5px solid #f2f2f2;
+            font-size: 4px;
         }
-
-        table {
-            /*border: 1px dashed #a8A8A8;*/
+        .time_select
+        {
+            width: 150px;
+            height: 30px;
+            border: 1px solid #F0F0F0;
+            border-radius: 3px;
         }
-
-
-        tr:nth-child(2n-1) input {
-            background-color: #eeeef6;
-            /*偶数input*/
+        .input_select
+        {
+            width: 150px;
+            border: none;
+            height: 64%;
+            border: 1px solid #F0F0F0;
+            border-radius: 3px;
         }
-
-        tr:nth-child(2n) input {
-            /*奇数input*/
-            background-color: #ffffff;
+        .right
+        {
+            margin-left: 127px;
         }
-
-
-        .biao_ge tr:nth-of-type(odd) {
-            background-color: #eeeef6;
-            /*偶数行*/
+        .none
+        {
+            background-color: none;
         }
-
-        .biao_ge tr:nth-of-type(even) {
-            /*奇数行*/
-        }
-
-        input {
-            border: 1px solid #ccc;
-            padding: 4px 0px;
-            /*border-radius: 3px;*/
-            padding-left: 5px;
-            padding-right: 5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        }
-
-            input:focus {
-                border-color: #66afe9;
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            }
-
-        .input_tr {
-            margin-top: 2%;
-            /*margin-left: 3%;*/
-            border: 1px solid #ccc;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-        }
-        .auto-style1 {
-            width: 126px;
-        }
-        .auto-style2 {
-            height: 21px;
-            font-size: 1%;
-            padding-left: 1%;
-            width: 126px;
-        }
-        .auto-style3 {
-            width: 99px;
-        }
-        .auto-style4 {
-            height: 21px;
-            font-size: 1%;
-            padding-left: 1%;
-            width: 99px;
-        }
-        .auto-style7 {
-            width: 133px;
-        }
-        .auto-style9 {
-            width: 132px;
-        }
-        .auto-style12 {
-            width: 208px;
+        .page_bt
+        {
+            border: none;
+            background-color: #009688;
+            color: white;
+            width: 50px;
+            height: 25px;
+            border-radius: 2px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <img class="new_qichu" src="Myadmin/images/Resources/refresh_24.gif" />
-            <asp:Button ID="Button2" class="input_tr" OnClick="jxc_load" Text="刷新数据" runat="server" />
-            <%-- <asp:DropDownList CssClass="hidden_load" ID="DropDownList1" runat="server" OnLoad="jxc_load">
-            </asp:DropDownList>--%>
-            <img class="new_mingxisave" src="Myadmin/images/Resources/arrow.jpg" />
-            <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" />
-            <div class="sp_css" style="position: absolute; width: 100%; left: 85%; top: -2%;">
-                <label style="margin-left: -35%;">商品代码：</label><input type="text" style="width: 10%; margin-right: 3%;" class="input_tr" name="sp_dm" />
-                <span>
-                    <label> 商品名称：</label><input type="text" style="width: 10%" class="input_tr" name="sp_mc" /></span>
-            </div>
-            <br />
-            <br />
-            <div class="rq_css" style="margin-left: 63%; margin-top: -2.2%; margin-bottom: -2%;">
+            <div class="top-fun">
+                <label class="top-text">商品代码：</label>
+                <input type="text" class="input_select" name="code" />
+                <label class="top-text">起始日期：</label>
+                <input type="date" class="time_select" name="time_start" />
+                <label class="top-text">截止日期：</label>
+                <input type="date" class="time_select" name="time_end" />
+                <asp:Button ID="Button1" class="input_tr" OnClick="jxc_select" Text="查询" runat="server" />
 
-                <label style="margin-left: -35%;">起始日期：</label><input type="date" style="width: 27%" class="input_tr" name="time_qs" />
-                <label style="margin-left: 9%;">截止日期：</label><input type="date" style="width: 27%" class="input_tr" name="time_jz" />
-                  <img class="new_jinxcxun" src="Myadmin/images/Resources/newbookChecktb.jpg"  />
-                   <asp:Button ID="Button1" class="input_tr_ck" OnClick="time_select" Text="查询" runat="server" />
+                <asp:Button ID="Button2" class="input_tr right" OnClick="jxc_load" Text="刷新数据" runat="server" />
+                <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" />
             </div>
-
-            <div>
-                <table cellspacing="0" cellpadding="0" id="Table4" style="margin-left: 28.4%; margin-bottom: -8.1%; margin-top: 5%;">
-                    <tr id="Tr8">
-                        <td class="auto-style9" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">期初</td>
-                        <td class="auto-style7" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">进货</td>
-                        <td class="auto-style7" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px;">出货</td>
-                        <td class="auto-style12" style="background-color: #eeeeee; border-top: 1px dashed #a8a8a8; padding-left: 10px; border-right: 1px dashed #a8a8a8;">结存</td>
+                
+            <div class="table_div">
+                <table cellspacing="0" cellpadding="0" class="biao_ge" name="bg_row" style="width: 100%">
+                    <tr id="Tr1">
+                        <th colspan="1" rowspan="2" class="bk_bt">序号</th>
+                        <th colspan="1" rowspan="2" class="bk_bt" style="width: 130px">商品代码</th>
+                        <th colspan="1" rowspan="2" class="bk_bt" style="width: 150px">商品名称</th>
+                        <td colspan="1" rowspan="2" class="bk_bt">商品类别</td>
+                        <td colspan="2" rowspan="1" class="bk_bt" style="width: 140px">期初</td>
+                        <td colspan="2" rowspan="1" class="bk_bt" style="width: 140px">入库</td>
+                        <td colspan="2" rowspan="1" class="bk_bt" style="width: 140px">出库</td>
+                        <td colspan="2" rowspan="1" class="bk_bt" style="width: 140px">结存</td>
+                        <th colspan="1" rowspan="2" class="bk_bt">边缘存量</th>
                     </tr>
-
-                </table>
-                <table cellspacing="0" cellpadding="0" class="biao_ge" name="bg_row" style="margin-top: 8%; margin-left: 0%;">
                     <tr id="dj_yh">
-                        <td class="bk_bt_t" style="padding-left: 1%; width: 18px; border-top: 1px dashed #a8a8a8;"></td>
-                        <td class="bk_bt_t" style="padding-left: 1%; width: 100px; border-top: 1px dashed #a8a8a8;">商品代码</td>
-                        <td class="auto-style1" style="padding-left: 1%; border-top: 1px dashed #a8a8a8;">商品名称</td>
-                        <td class="auto-style3" style="padding-left: 1%; border-top: 1px dashed #a8a8a8;">商品类别</td>
-                        <td class="bk_bt">数量</td>
-                        <td class="bk_bt">单价</td>
-                        <td class="bk_bt">金额</td>
-                        <td class="bk_bt">数量</td>
-                        <td class="bk_bt">单价</td>
-                        <td class="bk_bt">金额</td>
-                        <td class="bk_bt">数量</td>
-                        <td class="bk_bt">单价</td>
-                        <td class="bk_bt">金额</td>
-                        <td class="bk_bt">结存</td>
-                        <td class="bk_bt">单价</td>
-                        <td class="bk_bt">金额</td>
-                        <td style="background-color: #eeeeee; padding-left: 1%; width: 100px; border-top: 1px dashed #a8a8a8;">边缘存量</td>
-                        <td class="" style="background-color: #eeeeee; border-right: 1px dashed #a8a8a8; border-top: 1px dashed #a8a8a8; padding-left: 1%; width: 50px;">缺货提醒</td>
+                        <th class="bk_bt" style="width: 70px">数量</th>
+                        <th class="bk_bt" style="width: 70px">金额</th>
+                        <th class="bk_bt" style="width: 70px">数量</th>
+                        <th class="bk_bt" style="width: 70px">金额</th>
+                        <th class="bk_bt" style="width: 70px">数量</th>
+                        <th class="bk_bt" style="width: 70px">金额</th>
+                        <th class="bk_bt" style="width: 70px">结存</th>
+                        <th class="bk_bt" style="width: 70px">金额</th>
                     </tr>
                     <%
                
@@ -209,57 +144,28 @@
                             for (int i = 0; i < jxc_z_select.Count; i++)
                             {                          
                     %>
-                    <tr id="Tr1">
-                        <td style="font-size: 12px; padding-left: 0.5%; width: 18px;"><%=(i+1) %></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Sp_dm%></td>
-                        <td class="auto-style2"><%=jxc_z_select[i].Name%></td>
-                        <td class="auto-style4"><%=jxc_z_select[i].Lei_bie%></td>
+                    <tr class="dj_yh">
+                        <td class="auto-style1"><%=(i+1) %></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].code%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].name%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].type%></td>
 
 
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpsl_3%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpsj_3%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpje_3%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].num1%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].price1%></td>
 
 
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpsl_1%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpsj_1%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpje_1%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].num2%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].price2%></td>
 
 
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpsl_2%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpsj_2%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].Cpje_2%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].num3%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].price3%></td>
 
-                        <td class="bk_nr"><%=jxc_z_select[i].jc_jc%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].jc_dj%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].jc_je%></td>
-                        <td class="bk_nr"><%=jxc_z_select[i].yl_tx%></td>
-                        <%
-                                if (jxc_z_select[i].yl_tx == "")
-                                { 
-                        %>
+                        <td class="auto-style1"><%=jxc_z_select[i].num4%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].price4%></td>
 
-                        <td style="background-color: red; border-right: 1px dashed #a8a8a8;"></td>
-                        <%
-                                
-                                }
-                                else if (Convert.ToInt32(jxc_z_select[i].yl_tx) <= 20)
-                                {
-                            
-                        %>
-
-                        <td style="background-color: red; border-right: 1px dashed #a8a8a8;"></td>
-                        <%
-                                }
-                                else
-                                {
-                        %>
-
-                        <td style="background-color: green; border-right: 1px dashed #a8a8a8;"></td>
-                        <%
-                                
-                                }
-                        %>
+                        <td class="auto-style1"><%=jxc_z_select[i].stock%></td>
                     </tr>
                     <%
                  
@@ -267,11 +173,13 @@
                         }
                     %>
                 </table>
-
-
-
             </div>
-
+            <div style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
+                <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
+                <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
+                <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
+                <asp:Button CssClass="page_bt" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
+            </div>
         </div>
     </form>
 </body>

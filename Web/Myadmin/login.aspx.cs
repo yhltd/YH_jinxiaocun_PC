@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.jxc_service;
 
 namespace Web
 {
@@ -25,41 +26,10 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             version = "建议使用IE浏览器-当前系统版本: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-          
-
             if (!Page.IsPostBack)
             {
-
-                //List<string> itemi = new List<string>();
-
-                //var myCol = System.Configuration.ConfigurationManager.AppSettings;
-                //for (int i = 0; i < myCol.Count; i++)
-                //{
-
-                //    itemi.Add(myCol.AllKeys[i]);
-
-                //}
-
-                //DataTable dt = new DataTable();
-                ////dap.Fill(dt); 
-                //DropDownList1.Items.Clear();
-                //DropDownList1.DataSource = itemi;
-
                 DropDownList1.DataBind();
                 DropDownList1.Items.Insert(0, new ListItem("选择", "绑定数据"));
-
-                //HttpCookie cookie1 = Request.Cookies["MyCook"];
-
-                //if (cookie1 != null &&cookie1["servename"]!=null&& cookie1["servename"].ToString() != "")
-                //{
-
-                //    DropDownList1.SelectedItem.Text = HttpUtility.UrlDecode(cookie1["servename"].ToString());
-
-
-
-                //}
-
-
             }
         }
 
@@ -68,7 +38,8 @@ namespace Web
         SqlCommand cmd = null;
         protected void bian(object sender, EventArgs e)
         {
-            if (DropDownList1.SelectedItem.Text == "云合人事管理系统") {
+            if (DropDownList1.SelectedItem.Text == "云合人事管理系统")
+            {
                 conn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
                 if (conn.State == ConnectionState.Closed)
                 {
@@ -78,18 +49,21 @@ namespace Web
                 cmd = new SqlCommand(sqlStr, conn);
                 str = cmd.ExecuteReader();
                 DropDownList2.Items.Clear();
-                int a=0;
+                int a = 0;
                 List<string> itemi = new List<string>();
-                while (str.Read()) { 
-                    a=a+1;
+                while (str.Read())
+                {
+                    a = a + 1;
                     itemi.Add(str[0].ToString());
                 }
                 DropDownList2.DataSource = itemi;
                 DropDownList2.DataBind();
-            }else if (DropDownList1.SelectedItem.Text == "服务器_jxc"){
+            }
+            else if (DropDownList1.SelectedItem.Text == "服务器_jxc")
+            {
                 DataTable dt = new DataTable();
                 string ConStr = "server=yhocn.cn;user=root;password=Lyh07910;database=YH_jinxiaocun_PC;pooling=true;";
-                string sql="select gongsi from yh_jinxiaocun_user GROUP BY gongsi";
+                string sql = "select gongsi from yh_jinxiaocun_user GROUP BY gongsi";
                 MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(sql, ConStr);
                 DropDownList2.Items.Clear();
                 int a = 0;
@@ -108,7 +82,7 @@ namespace Web
             Session.Timeout = 10000;
             string username = Request.Form["username"];
             Session["username"] = username;
-            
+
             string txtSAPPassword = Request.Form["password"];
             string gs_name = DropDownList2.SelectedItem.Text;
             Session["gs_name"] = gs_name;
@@ -149,91 +123,27 @@ namespace Web
             }
             else if (servename.ToString() == "服务器_jxc")
             {
-                string ab = DropDownList1.SelectedValue;//获取DropDownList中你设定的Value值
-                Cache["servename"] = servename;
-                //   Session["servename"] = servename;
+                jxc_user user = new jxc_user();
+                int result = user.loginAndGetUser(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim());
+                string msg = "";
 
-                HttpCookie cookie = new HttpCookie("MyCook");//初使化并设置Cookie的名称
-
-                cookie.Values.Set("servename", HttpUtility.UrlEncode(servename));
-                cookie.Expires = System.DateTime.Now.AddYears(100);
-
-                Response.SetCookie(cookie);
-                HttpCookie cookie1 = Request.Cookies["MyCook"];
-
-                if (cookie1 != null && cookie1["servename"].ToString() != "")
+                if (result == 1)
                 {
-                    string dsdd = cookie1["servename"].ToString();
-                }
-
-                user = username;
-                pass = txtSAPPassword;
-
-                NewMethoduserFind(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim());
-            }
-        }
-        private bool NewMethoduserFind(string user, string pass, string gs_name)
-        {
-
-            try
-            {
-                clsAllnew BusinessHelp = new clsAllnew();
-
-                List<clsuserinfo> userlist_Server = new List<clsuserinfo>();
-                string strSelect = "select * from Yh_JinXiaoCun_user where name='" + user + "'";
-
-                userlist_Server = BusinessHelp.findUser(strSelect.Trim());
-
-                if (userlist_Server.Count > 0 && userlist_Server[0].Btype == "lock")
-                {
-
-                    return false;
-                }
-                if (userlist_Server.Count > 0 && userlist_Server[0].password.ToString().Trim() == pass.Trim() && userlist_Server[0].name.ToString().Trim() == user.Trim() && userlist_Server[0].gongsi.ToString().Trim() == gs_name.Trim())
-                {
-                    string servename = DropDownList1.SelectedItem.Text;//这是获取选中的文本值
-
-                    alterinfo1 = "登录成功";
-
-                    if (userlist_Server[0].AdminIS == "true")
-                    {
-                        HttpCookie cookie = new HttpCookie("adminCook");//初使化并设置Cookie的名称
-
-                        cookie.Values.Set("AdminIS", HttpUtility.UrlEncode("true"));
-                        cookie.Expires = System.DateTime.Now.AddYears(10);
-
-                        Response.SetCookie(cookie);
-
-
-                    }
                     Response.Redirect("~/frmMain.aspx");
-                    logis++;
+                    return;
                 }
-                if (logis == 0)
+                else if (result == 0)
                 {
-                    pass = "";
-
-                    alterinfo1 = "登录失败，请确认用户名和密码或联系系统管理员，谢谢";
-
-                    return false;
-                
+                    msg = "用户名密码错误！";
                 }
+                else
+                {
 
-               
-                return false;
-
-
+                    msg = "用户已被锁定！";
+                }
+                Response.Write("<script id='alert'>alert('" + msg + "')</script>");
             }
-            catch (Exception ex)
-            {
-
-                return false; ;
-
-                throw;
-            }
-
         }
-
         protected void HtmlBtcreate_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/frmUserManger.aspx");
@@ -254,6 +164,11 @@ namespace Web
         {
             Response.Redirect("~/frmReadIDCare.aspx?dengluleibie=nologin");
 
+
+        }
+
+        private void InitializeComponent()
+        {
 
         }
 

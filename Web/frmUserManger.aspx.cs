@@ -233,12 +233,12 @@ namespace Web
         private void InitialSystemInfo()
         {
             clsAllnew BusinessHelp = new clsAllnew();
+            clsuserinfo user = (clsuserinfo)Session["user"];
             Result_Server = new List<clsuserinfo>();
 
-            Result_Server = BusinessHelp.ReadUserlistfromServer();
+            Result_Server = BusinessHelp.ReadUserlistfromServer(user.gongsi);
             this.gvList.AutoGenerateColumns = false;
             sortablePendingOrderList = new SortableBindingList<clsuserinfo>(Result_Server);
-            //this.bindingSource1.DataSource = sortablePendingOrderList;
             this.gvList.DataSource = sortablePendingOrderList;
             this.gvList.DataBind();
         }

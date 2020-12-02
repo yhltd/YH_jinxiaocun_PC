@@ -12,6 +12,10 @@ namespace Web.Personnel
         string[] str = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
             str = (string[])Session["arr9"];
             if (str[4].ToString() == "0")
             {

@@ -12,6 +12,10 @@ namespace Web.Personnel
         string[] str = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
             str = (string[])Session["arr12"];
             if (str[4].ToString() == "0")
             {
@@ -33,22 +37,27 @@ namespace Web.Personnel
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            if (Request.Form["DropDownList1"].ToString() != "" && Request.Form["DropDownList2"].ToString() != "" ) {
-                Session["bm1"] = Request.Form["DropDownList1"].ToString();
-                Session["zw1"] = Request.Form["DropDownList2"].ToString();
-                GridView1.DataSourceID = "SqlDataSource4";
-                GridView1.DataBind();
-            }
-            else if (Request.Form["DropDownList1"].ToString() != "" && Request.Form["DropDownList2"].ToString() == "")
-            {
-                Session["bm1"] = Request.Form["DropDownList1"].ToString();
-                GridView1.DataSourceID = "SqlDataSource2";
-                GridView1.DataBind();
-            }else if(Request.Form["DropDownList2"].ToString() != "" ){
-                Session["zw1"] = Request.Form["DropDownList2"].ToString();
-                GridView1.DataSourceID = "SqlDataSource3";
-                GridView1.DataBind();
-            }
+            Session["bm1"] = Request.Form["DropDownList1"].ToString();
+            Session["zw1"] = Request.Form["DropDownList2"].ToString();
+            Session["rq1"] = Request.Form["DropDownList3"].ToString() + "-" + Request.Form["DropDownList4"].ToString();
+            GridView1.DataSourceID = "SqlDataSource2";
+            GridView1.DataBind();
+            //if (Request.Form["DropDownList1"].ToString() != "" && Request.Form["DropDownList2"].ToString() != "" ) {
+            //    Session["bm1"] = Request.Form["DropDownList1"].ToString();
+            //    Session["zw1"] = Request.Form["DropDownList2"].ToString();
+            //    GridView1.DataSourceID = "SqlDataSource4";
+            //    GridView1.DataBind();
+            //}
+            //else if (Request.Form["DropDownList1"].ToString() != "" && Request.Form["DropDownList2"].ToString() == "")
+            //{
+            //    Session["bm1"] = Request.Form["DropDownList1"].ToString();
+            //    GridView1.DataSourceID = "SqlDataSource2";
+            //    GridView1.DataBind();
+            //}else if(Request.Form["DropDownList2"].ToString() != "" ){
+            //    Session["zw1"] = Request.Form["DropDownList2"].ToString();
+            //    GridView1.DataSourceID = "SqlDataSource3";
+            //    GridView1.DataBind();
+            //}
         }
     }
 }

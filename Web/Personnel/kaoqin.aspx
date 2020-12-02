@@ -5,14 +5,73 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="../../Scripts/layui/layui.all.js"></script>
+    <script src="../../Scripts/layui/lay/modules/layer.js"></script>
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
-    <script>
+<body  style="    margin: 0;">
+    <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="js/iframe_d.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/iframe_d.css"/>
+    <script type="text/javascript">
         function a(){
         alert("无权限！")
         }
+        function upUser(e) {
+            iframe_d_open({
+                title: "考勤修改",//头部
+                shadeClose: true, //点击遮罩层关闭
+                area: {            //弹窗大小
+                    x: '600',
+                    y: '500'
+                },
+                content: 'kaoqinUpd.aspx?strs=' + e,     //路径
+                maxmin: true,      //最大化最小化按钮
+                z_index: 100        //层级
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        //layer.open({
+        //    type: 1, 
+        //    title:'考勤修改', //这里content是一个普通的String
+        //    offse: 'auto',
+        //    maxmin: true,
+        //});
+        //function upUser(e) {
+            //var id = $(this).data("id")
+            //var gongsi = $(this).data("gongsi")
+            //var strs = json.parse(e)
+        //    title = '修改用户';
+        //    url = 'kaoqinUpd.aspx?strs=' + e;
+        //    layui.use('layer', function () {
+        //        var layer = layui.layer;
+        //    });
+        //    layer.open({
+        //        type: 2,
+        //        title: '考勤修改',
+        //        maxmin: true,
+        //        shadeClose: true, //点击遮罩关闭层
+        //        area: ['623px', '454px'],
+        //        content: url,
+        //        scrollbar: false,
+        //        data: { "type": "insert" },
+        //        success: function (layero, index) {
+        //            var iframeBody = document.getElementById($('.layui-layer-content').find('iframe').prop('id')).contentWindow.document.body;
+        //            $(".manage_location_wrap", iframeBody).appendTo(iframeBody);
+        //            $('.container,header,footer', iframeBody).remove();
+        //        },
+        //        yes: function (index) {
+        //            console.log(11556156);
+        //            shwoAddrs();
+        //        },
+        //        cancel: function () {
+        //            console.log(11556156);
+        //        }
+        //    })
+        //}
+        
     </script>
     <form id="form1" runat="server">
     <div>
@@ -51,252 +110,255 @@
         <asp:Button ID="Button1" CssClass="top_bt" runat="server" OnClick="Button1_Click" Text="搜索" Height="30px" Width="80px" />
         <asp:Button ID="Button2" CssClass="top_bt" runat="server"  Text="添加" OnClientClick="aa" OnClick="Button2_Click" Height="30px" Width="80px"/>
         <asp:Button ID="Button3" CssClass="top_bt" runat="server"  Text="所有" OnClientClick="aa" OnClick="Button3_Click" Height="30px" Width="80px"/>
-        <asp:GridView ID="GridView1" AllowPaging="True" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceId="SqlDataSource1" OnRowCreated="aaa">
+        <asp:Button ID="Button4" CssClass="top_bt" runat="server"  Text="刷新" OnClientClick="aa"  Height="30px" Width="80px" OnClick="Button4_Click"/>
+        <asp:GridView ID="GridView1" AllowPaging="True" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceId="SqlDataSource1" OnRowCreated="aaa" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1">
             <Columns>
-                <asp:CommandField  ButtonType="Button" ShowEditButton="true" ItemStyle-CssClass="bt_upd1" ControlStyle-Width="170px">
+                <asp:CommandField ButtonType="Button" ShowSelectButton="True" ItemStyle-CssClass="bt_upd1" SelectText="修改">
                     <ControlStyle Font-Bold="True" Width="50px" />
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:CommandField>
-                <asp:CommandField ShowDeleteButton="True" ButtonType="Button" ItemStyle-CssClass="bt_upd2">
-                        <ControlStyle Font-Bold="True" Width="50px" />
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:CommandField>
-                <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" Visible="false"/>
+                <%--<asp:CommandField ButtonType="Button" ShowEditButton="true" ItemStyle-CssClass="bt_upd2" ControlStyle-Width="170px">
+                    <ControlStyle Font-Bold="True" Width="50px" />
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:CommandField>--%>
+                <asp:CommandField  ButtonType="Button" ShowDeleteButton="True" ItemStyle-CssClass="bt_upd2">
+                    <ControlStyle Font-Bold="True" Width="50px" />
+                    <HeaderStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:CommandField>
+                <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" Visible="false" />
                 <asp:BoundField DataField="year" HeaderText="年" SortExpression="year" ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
-
+                    <ControlStyle Width="70%"></ControlStyle>
                     <HeaderStyle HorizontalAlign="Center" Width="3%" />
                     <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                <asp:BoundField DataField="moth" HeaderText="月" SortExpression="moth"  ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
-
+                </asp:BoundField>
+                <asp:BoundField DataField="moth" HeaderText="月" SortExpression="moth" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="name" HeaderText="姓名" SortExpression="name"  ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="name" HeaderText="姓名" SortExpression="name" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="5%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="E" HeaderText="1" SortExpression="E"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="E" HeaderText="1" SortExpression="E" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="F" HeaderText="2" SortExpression="F"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="F" HeaderText="2" SortExpression="F" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="G" HeaderText="3" SortExpression="G"  ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="G" HeaderText="3" SortExpression="G" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="H" HeaderText="4" SortExpression="H"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="H" HeaderText="4" SortExpression="H" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="I" HeaderText="5" SortExpression="I"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="I" HeaderText="5" SortExpression="I" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="J" HeaderText="6" SortExpression="J"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="J" HeaderText="6" SortExpression="J" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="K" HeaderText="7" SortExpression="K"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="K" HeaderText="7" SortExpression="K" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
+                    <HeaderStyle HorizontalAlign="Center" Width="2%" />
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="L" HeaderText="8" SortExpression="L" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="L" HeaderText="8" SortExpression="L"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="M" HeaderText="9" SortExpression="M" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="M" HeaderText="9" SortExpression="M"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="N" HeaderText="10" SortExpression="N" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="N" HeaderText="10" SortExpression="N"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="O" HeaderText="11" SortExpression="O" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="O" HeaderText="11" SortExpression="O"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="P" HeaderText="12" SortExpression="P" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="P" HeaderText="12" SortExpression="P"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="Q" HeaderText="13" SortExpression="Q" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Q" HeaderText="13" SortExpression="Q"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="R" HeaderText="14" SortExpression="R" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="R" HeaderText="14" SortExpression="R"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="S" HeaderText="15" SortExpression="S" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="S" HeaderText="15" SortExpression="S"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="T" HeaderText="16" SortExpression="T" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="T" HeaderText="16" SortExpression="T"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="U" HeaderText="17" SortExpression="U" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="U" HeaderText="17" SortExpression="U"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="V" HeaderText="18" SortExpression="V" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="V" HeaderText="18" SortExpression="V"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="W" HeaderText="19" SortExpression="W" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="W" HeaderText="19" SortExpression="W"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="X" HeaderText="20" SortExpression="X" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="X" HeaderText="20" SortExpression="X"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="Y" HeaderText="21" SortExpression="Y" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Y" HeaderText="21" SortExpression="Y"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="Z" HeaderText="22" SortExpression="Z" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Z" HeaderText="22" SortExpression="Z"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AA" HeaderText="23" SortExpression="AA" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AA" HeaderText="23" SortExpression="AA"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AB" HeaderText="24" SortExpression="AB" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AB" HeaderText="24" SortExpression="AB"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AC" HeaderText="25" SortExpression="AC" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AC" HeaderText="25" SortExpression="AC"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AD" HeaderText="26" SortExpression="AD" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AD" HeaderText="26" SortExpression="AD"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AE" HeaderText="27" SortExpression="AE" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AE" HeaderText="27" SortExpression="AE"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AF" HeaderText="28" SortExpression="AF" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AF" HeaderText="28" SortExpression="AF"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AG" HeaderText="29" SortExpression="AG" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AG" HeaderText="29" SortExpression="AG"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AH" HeaderText="30" SortExpression="AH" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AH" HeaderText="30" SortExpression="AH"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AI" HeaderText="31" SortExpression="AI" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="2%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AI" HeaderText="31" SortExpression="AI"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
-
-                    <HeaderStyle HorizontalAlign="Center" Width="2%" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
-                <asp:BoundField DataField="AJ" HeaderText="全勤天数" SortExpression="AJ"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AJ" HeaderText="全勤天数" SortExpression="AJ" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="4%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AK" HeaderText="实际天数" SortExpression="AK"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AK" HeaderText="实际天数" SortExpression="AK" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="4%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AL" HeaderText="请假/小时" SortExpression="AL"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AL" HeaderText="请假/小时" SortExpression="AL" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
 
                     <HeaderStyle HorizontalAlign="Center" Width="4%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AM" HeaderText="加班/小时" SortExpression="AM"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AM" HeaderText="加班/小时" SortExpression="AM" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
                     <HeaderStyle HorizontalAlign="Center" Width="4%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AN" HeaderText="迟到天数" SortExpression="AN"   ControlStyle-Width="70%">
-<ControlStyle Width="70%"></ControlStyle>
+                <asp:BoundField DataField="AN" HeaderText="迟到天数" SortExpression="AN" ControlStyle-Width="70%">
+                    <ControlStyle Width="70%"></ControlStyle>
                     <HeaderStyle HorizontalAlign="Center" Width="4%" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AO" HeaderText="AO" SortExpression="AO" Visible="false"/>
+                <asp:BoundField DataField="AO" HeaderText="AO" SortExpression="AO" Visible="false" />
             </Columns>
             <HeaderStyle CssClass="header" Font-Bold="False" BorderStyle="None" />
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
@@ -490,6 +552,10 @@
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
+         <div class="iframe_d">
+
+
+    </div>
     </form>
 </body>
 </html>

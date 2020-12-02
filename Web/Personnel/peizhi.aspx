@@ -13,7 +13,7 @@
         //    document.getElementById("SqlDataSource2").SelectCommand = "SELECT [yi], [er] FROM [gongzi_shezhi];";
         //}
     </script>
-<body>
+<body  style="    margin: 0;">
     <form id="form1" runat="server">
     <div class="div1">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" AllowPaging="True" OnRowCreated="aaa">
@@ -81,7 +81,7 @@
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="添加一行"  CssClass="top_bt" Height="30px" Width="80px" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="添加一行"  CssClass="top_bt" Height="30px" Width="80px" style="margin-left:46%;"/>
         </div>
     </form>
     

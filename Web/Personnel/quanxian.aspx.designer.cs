@@ -22,13 +22,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Button1 控件。
+        /// Label43 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Label Label43;
         
         /// <summary>
         /// Label1 控件。
@@ -121,13 +121,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox5;
         
         /// <summary>
-        /// Button2 控件。
+        /// Label44 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.Label Label44;
         
         /// <summary>
         /// Label6 控件。
@@ -220,13 +220,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox10;
         
         /// <summary>
-        /// Button3 控件。
+        /// Label45 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button3;
+        protected global::System.Web.UI.WebControls.Label Label45;
         
         /// <summary>
         /// Label11 控件。
@@ -301,13 +301,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox14;
         
         /// <summary>
-        /// Button4 控件。
+        /// Label46 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button4;
+        protected global::System.Web.UI.WebControls.Label Label46;
         
         /// <summary>
         /// Label15 控件。
@@ -382,13 +382,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox18;
         
         /// <summary>
-        /// Button5 控件。
+        /// Label47 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button5;
+        protected global::System.Web.UI.WebControls.Label Label47;
         
         /// <summary>
         /// Label19 控件。
@@ -481,13 +481,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox23;
         
         /// <summary>
-        /// Button6 控件。
+        /// Label48 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.Label Label48;
         
         /// <summary>
         /// Label24 控件。
@@ -562,13 +562,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox27;
         
         /// <summary>
-        /// Button7 控件。
+        /// Label49 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button7;
+        protected global::System.Web.UI.WebControls.Label Label49;
         
         /// <summary>
         /// Label28 控件。
@@ -661,13 +661,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox32;
         
         /// <summary>
-        /// Button8 控件。
+        /// Label50 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button8;
+        protected global::System.Web.UI.WebControls.Label Label50;
         
         /// <summary>
         /// Label33 控件。
@@ -706,13 +706,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox34;
         
         /// <summary>
-        /// Button9 控件。
+        /// Label51 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button9;
+        protected global::System.Web.UI.WebControls.Label Label51;
         
         /// <summary>
         /// Label35 控件。
@@ -751,13 +751,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox36;
         
         /// <summary>
-        /// Button10 控件。
+        /// Label52 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button10;
+        protected global::System.Web.UI.WebControls.Label Label52;
         
         /// <summary>
         /// Label37 控件。
@@ -796,13 +796,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox38;
         
         /// <summary>
-        /// Button11 控件。
+        /// Label53 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button11;
+        protected global::System.Web.UI.WebControls.Label Label53;
         
         /// <summary>
         /// Label39 控件。
@@ -841,13 +841,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.CheckBox CheckBox40;
         
         /// <summary>
-        /// Button12 控件。
+        /// Label54 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button12;
+        protected global::System.Web.UI.WebControls.Label Label54;
         
         /// <summary>
         /// Label41 控件。

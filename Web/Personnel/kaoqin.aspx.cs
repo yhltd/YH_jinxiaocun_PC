@@ -5,6 +5,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,6 +17,11 @@ namespace Web.Personnel
         string[] str = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["gongsi"].ToString() == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+
+            }
             str = (string[])Session["arr1"];
             if (str[1].ToString() == "0")
             {
@@ -33,7 +39,7 @@ namespace Web.Personnel
             {
             Server.Transfer("../Personnel/wuquanxian.aspx");
             }
-        }
+        } 
         protected void Button1_Click(object sender, EventArgs e)
         {
             Session["year"] = Request.Form["DropDownList1"];
@@ -67,6 +73,23 @@ namespace Web.Personnel
                     e.Row.Cells[0].Enabled = false;
                 }
             }
+        }
+
+        protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            string[] a = new string[40];
+            for(int i=2;i<=41;i++){
+             a[i-2] = GridView1.Rows[GridView1.SelectedIndex].Cells[i+1].Text;
+            }
+            a[39] = GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString();
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            string result = js.Serialize(a); //upUser(" + result + ");iframe_d_open
+            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("../Personnel/kaoqin.aspx");
         }
     }
 }

@@ -8,7 +8,7 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
     <form id="form1" runat="server">
     <div>
     
@@ -42,10 +42,7 @@
         </asp:SqlDataSource>
     
         <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="刷新"    CssClass="top_bt" />
-&nbsp;&nbsp;&nbsp;&nbsp;
-    
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="刷新"    CssClass="top_bt" style="margin-left:46%;"/>
     </div>
     </form>
 </body>

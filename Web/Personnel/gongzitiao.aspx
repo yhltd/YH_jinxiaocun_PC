@@ -8,7 +8,7 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
     <form id="form1" runat="server">
     <div>
     
@@ -24,6 +24,43 @@
 &nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label2" runat="server" Height="30px" Text="职务：" Width="80px"></asp:Label>
         <asp:DropDownList ID="DropDownList2" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="zhiwu" DataValueField="zhiwu" >
+        <asp:ListItem></asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="Label3" runat="server" Height="30px" Text="年：" Width="80px"></asp:Label>
+        <asp:DropDownList ID="DropDownList3" runat="server" Height="30px" Width="150px"  CssClass="top_select_input">
+            <asp:ListItem></asp:ListItem>
+            <asp:ListItem>2018</asp:ListItem>
+            <asp:ListItem>2019</asp:ListItem>
+            <asp:ListItem>2020</asp:ListItem>
+            <asp:ListItem>2021</asp:ListItem>
+            <asp:ListItem>2022</asp:ListItem>
+            <asp:ListItem>2023</asp:ListItem>
+            <asp:ListItem>2024</asp:ListItem>
+            <asp:ListItem>2025</asp:ListItem>
+            <asp:ListItem>2026</asp:ListItem>
+            <asp:ListItem>2027</asp:ListItem>
+            <asp:ListItem>2028</asp:ListItem>
+            <asp:ListItem>2029</asp:ListItem>
+            <asp:ListItem>2030</asp:ListItem>
+            <asp:ListItem>2031</asp:ListItem>
+            <asp:ListItem>2032</asp:ListItem>
+            <asp:ListItem>2033</asp:ListItem>
+        </asp:DropDownList>
+        <asp:Label ID="Label4" runat="server" Height="30px" Text="月：" Width="80px"></asp:Label>
+        <asp:DropDownList ID="DropDownList4" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" >
+            <asp:ListItem></asp:ListItem>
+            <asp:ListItem>01</asp:ListItem>
+            <asp:ListItem>02</asp:ListItem>
+            <asp:ListItem>03</asp:ListItem>
+            <asp:ListItem>04</asp:ListItem>
+            <asp:ListItem>05</asp:ListItem>
+            <asp:ListItem>06</asp:ListItem>
+            <asp:ListItem>07</asp:ListItem>
+            <asp:ListItem>08</asp:ListItem>
+            <asp:ListItem>09</asp:ListItem>
+            <asp:ListItem>10</asp:ListItem>
+            <asp:ListItem>11</asp:ListItem>
+            <asp:ListItem>12</asp:ListItem>
         </asp:DropDownList>
         <asp:Button ID="Button1" runat="server" Height="30px" Text="搜索" OnClick="Button1_Click" Width="80px"  CssClass="top_bt" />
         <asp:Button ID="Button2" runat="server" Height="30px" Text="所有" OnClick="Button2_Click" Width="80px"  CssClass="top_bt" />
@@ -255,7 +292,7 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString48 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] = @C) AND ([D] = @D))">
+        <%--<asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString48 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] = @C) AND ([D] = @D))">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />
@@ -267,14 +304,16 @@
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="D" SessionField="zw1" Type="String" />
             </SelectParameters>
-        </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] = @C))">
+        </asp:SqlDataSource>--%>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] like '%'+@C+'%') AND ([D] like '%'+@D+'%') AND ([BC] like '%'+@BC+'%'))">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />
+                <asp:SessionParameter Name="D" SessionField="zw1" Type="String" />
+                <asp:SessionParameter Name="BC" SessionField="rq1" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString45 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE ([BD] = @BD)">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString45 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE ([BD] = @BD)  ">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
             </SelectParameters>

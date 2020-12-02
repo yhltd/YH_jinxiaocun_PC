@@ -10,30 +10,48 @@
 .bt_upd1{
 	position: sticky;
 	left: 0px;
-    z-index:21;
+    z-index:3;
     width:100px;
+    background-color:white;
 }
- .bt_upd2{
-        position: sticky;
-        left:90px;
-    z-index:20;
+.bt_upd2{
+    position: sticky;
+    left:90px;
+    z-index:2;
+    width:100px;
+    background-color:white;
+    }
+.bt_upd3{
+    position: sticky;
+    left:180px;
+    z-index:2;
     width:100px;
     }
 .top_option {
     height: 30px;
     width: 124px;
-    border-radius: 5px;
+    border-radius: 0px;
     display: inline-flexbox;
+    border: 1px solid #e6e6e6;
 }
 .top_select_input {
     height: 25px;
-    border: 1px solid #494f59;
-    border-radius: 5px;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
     margin-left: 10px;
     text-align:center;
+    width: 52px;
+}
+.top_select_input:hover {
+    height: 25px;
+    border: 1px solid #333;
+    border-radius: 2px;
+    margin-left: 10px;
+    text-align:center;
+    width: 52px;
 }
 .top_bt {
-    background-color: #494f59;
+    background-color: #009688;
     border: none;
     color: white;
     border-radius: 5px;
@@ -45,7 +63,7 @@
     cursor:pointer;
     width: 84px;
     height: 33px;
-    background-color: #494f59;
+    background-color: #009688;
     border: none;
     color: white;
     border-radius: 5px;
@@ -73,19 +91,19 @@
 .bt_upd1 input {
     width: 50px;
     height: 33px;
-    background-color: #494f59;
+    background-color: #009688;
     border: none;
     color: white;
     border-radius: 5px;
     position:static;
     left :0;
-    z-index:21;
+    z-index:3;
 }
 .bt_upd1 input:hover {
     cursor:pointer;
     width: 50px;
     height: 33px;
-    background-color: #494f59;
+    background-color: #009688;
     border: none;
     color: white;
     border-radius: 5px;
@@ -93,19 +111,30 @@
 .bt_upd2 input {
     width: 50px;
     height: 33px;
-    background-color: #494f59;
+    background-color: #009688;
     border: none;
     color: white;
     border-radius: 5px;
     position:static;
     left :0;
-    z-index:20;
+    z-index:2;
+}
+.bt_upd3 input {
+    width: 50px;
+    height: 33px;
+    background-color: #009688;
+    border: none;
+    color: white;
+    border-radius: 0px;
+    position:static;
+    left :0;
+    z-index:2;
 }
 .bt_upd2 input:hover {
     cursor:pointer;
     width: 50px;
     height: 33px;
-    background-color: #494f59;
+    background-color: #009688;
     border: none;
     color: white;
     border-radius: 5px;
@@ -113,4 +142,20 @@
 .bt_upd1 input:checked {
     position: sticky;
 	left: 110px;
+}
+.input1 {
+     height: 25px;
+    border: 1px solid #494f59;
+    border-radius: 0px;
+    margin-left: 10px;
+    text-align:center;
+    width: 120px;
+}
+.input2 {
+    height: 25px;
+    border: 1px solid #494f59;
+    border-radius: 0px;
+    margin-left: 10px;
+    text-align:center;
+    width: 60px;
 }

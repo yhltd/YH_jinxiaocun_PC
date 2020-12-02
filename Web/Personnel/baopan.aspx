@@ -8,13 +8,13 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
     <form id="form1" runat="server">
     <div>
     
         <asp:Label ID="Label1" runat="server" Height="30px" Text="姓名：" Width="80px"></asp:Label>
     
-        <asp:TextBox ID="TextBox1" runat="server" CssClass="top_select_input" ></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server" CssClass="top_select_input"  Height="30px" Width="150px" ></asp:TextBox>
         <asp:Button ID="Button2" runat="server" Text="搜索" OnClick="Button2_Click" CssClass="top_bt" />
         <asp:Button ID="Button3" runat="server" Height="30px" Text="所有" Width="80px" OnClick="Button3_Click" CssClass="top_bt" />
         <br />

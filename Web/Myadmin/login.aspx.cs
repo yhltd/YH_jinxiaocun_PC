@@ -117,7 +117,6 @@ namespace Web
                             Response.Write("<script id='alert'>alert('输入密码有误，请重试')</script>");
                         }
                         conn.Close();
-                        Response.Redirect("../Personnel/login.aspx");
                     }
                 }
             }

@@ -8,7 +8,7 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body>
+<body style="    margin: 0;">
     <form id="form1" runat="server">
     <div>
     
@@ -61,7 +61,7 @@
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" Visible="false"/>
                 <asp:BoundField DataField="name" HeaderText="姓名" SortExpression="name"   ControlStyle-Width="80%" >
                     <HeaderStyle HorizontalAlign="Center"  Width="11%"/>
-                    <ItemStyle HorizontalAlign="Center" />
+                    <ItemStyle HorizontalAlign="Center"/>
                 </asp:BoundField>
                 <asp:BoundField DataField="C" HeaderText="年" SortExpression="C"   ControlStyle-Width="80%" >
                     <HeaderStyle HorizontalAlign="Center"  Width="11%"/>

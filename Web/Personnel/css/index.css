@@ -7,21 +7,22 @@
     height:  177px;
 }
 
-.firstdiv {
+/*.firstdiv {
     width: 13%;
     height: 100%;
     float: left;
-}
+}*/
 .div_iframe {
     float: left;
-    width: 87%;
-    height:100%;
+    width: 85%;
+    height:95%;
 }
 
 .Iframe {
     width: 100%;
     height: 100%;
     border-radius:5px;
+    border:none;
 }
 
 .items {
@@ -79,11 +80,11 @@
     border: 1px solid #494f59;
 }
 body {
-height:97%;
+height:100%;
 }
 html {
 height: 100%;
 }
 #form1 {
-height: 78%;
+height: 100%;
 }

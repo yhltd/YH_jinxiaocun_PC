@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Web.Http;
+using Web.finance;
+using Web.finance.util;
 
 namespace Web
 {
@@ -22,12 +25,12 @@ namespace Web
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Application_Error(object sender, EventArgs e)

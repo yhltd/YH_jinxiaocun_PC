@@ -10,7 +10,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.finance.util;
 using Web.jxc_service;
+using Web.Service;
 
 namespace Web
 {
@@ -76,19 +78,33 @@ namespace Web
                 DropDownList2.DataSource = itemi;
                 DropDownList2.DataBind();
             }
+            else if (DropDownList1.SelectedItem.Text == "云合未来财务系统") {
+                DropDownList2.Items.Clear();
+                AccountService accountService = new AccountService(false);
+                try
+                {
+                    DropDownList2.DataSource = accountService.getCompanys();
+                }
+                catch 
+                {
+                    Response.Write("<script>alert('网络超时，请稍后再试。')</script>");
+                }
+                
+                DropDownList2.DataBind();
+            }
         }
         protected void HtmlBtn_Click(object sender, EventArgs e)
         {
-            Session.Timeout = 10000;
-            string username = Request.Form["username"];
-            Session["username"] = username;
-
-            string txtSAPPassword = Request.Form["password"];
-            string gs_name = DropDownList2.SelectedItem.Text;
-            Session["gs_name"] = gs_name;
             string servename = DropDownList1.SelectedItem.Text;//这是获取选中的文本值
+            string gs_name = DropDownList2.SelectedItem.Text;
+            string username = Request.Form["username"];
+            string txtSAPPassword = Request.Form["password"];
             if (servename.ToString() == "云合人事管理系统")
             {
+                Session.Timeout = 10000;
+                Session["username"] = username;
+                Session["gs_name"] = gs_name;
+
                 if (gs_name != null || username != null || txtSAPPassword != null)
                 {
                     if (gs_name != null && username != null && txtSAPPassword != null)
@@ -122,6 +138,10 @@ namespace Web
             }
             else if (servename.ToString() == "服务器_jxc")
             {
+                Session.Timeout = 10000;
+                Session["username"] = username;
+                Session["gs_name"] = gs_name;
+
                 jxc_user user = new jxc_user();
                 int result = user.loginAndGetUser(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim());
                 string msg = "";
@@ -141,6 +161,20 @@ namespace Web
                     msg = "用户已被锁定！";
                 }
                 Response.Write("<script id='alert'>alert('" + msg + "')</script>");
+            }
+            else if (servename.ToString() == "云合未来财务系统") { 
+                AccountService accountService = new AccountService(false);
+                string token = accountService.login(gs_name.Trim(), username.Trim(), txtSAPPassword.Trim());
+                if (token.Equals(""))
+                {
+                    Response.Write("<script>alert('用户名密码错误')</script>");
+                    Response.Close();
+                }
+                else {
+                    FinanceToken.getFinanceCheckToken().setToken(token);
+                    Response.Redirect("../finance/web/view/index.aspx");
+                    Response.Close();
+                }
             }
         }
         protected void HtmlBtcreate_Click(object sender, EventArgs e)

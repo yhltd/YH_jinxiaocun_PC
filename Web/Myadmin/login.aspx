@@ -22,16 +22,6 @@
             }
 
         }
-
-        //$(document).ready(function () {
-
-        //    $('select').addClass("form-control");
-
-        //});
-        //$(document).ready(function () {
-
-        //});
-
     </script>
     <style type="text/css">
         .auto-style1 {

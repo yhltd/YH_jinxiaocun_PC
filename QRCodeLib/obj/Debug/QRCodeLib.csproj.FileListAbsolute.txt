@@ -68,3 +68,5 @@ D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWor
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.pdb
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.dll.CodeAnalysisLog.xml
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.dll.lastcodeanalysissucceeded

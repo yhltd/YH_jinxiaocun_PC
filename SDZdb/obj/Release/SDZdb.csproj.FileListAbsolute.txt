@@ -12,3 +12,8 @@ D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\bin\Release\SDZdb.pdb
 D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\obj\Release\SDZdb.csprojResolveAssemblyReference.cache
 D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\obj\Release\SDZdb.dll
 D:\yho110\进销存\YH_jinxiaocun_PC\SDZdb\obj\Release\SDZdb.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\SDZdb\bin\Release\SDZdb.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\SDZdb\bin\Release\SDZdb.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\SDZdb\obj\Release\SDZdb.csprojResolveAssemblyReference.cache
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\SDZdb\obj\Release\SDZdb.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\SDZdb\obj\Release\SDZdb.pdb

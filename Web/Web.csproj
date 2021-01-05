@@ -47,6 +47,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\NPOI.Excel.2.1.1\lib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -57,6 +60,10 @@
     <Reference Include="MySql.Data.Entity, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NPOI">
       <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.dll</HintPath>
@@ -71,14 +78,29 @@
       <HintPath>..\packages\NPOI.Excel.2.1.1\lib\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -95,6 +117,1012 @@
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage\ErrorPage.aspx" />
     <Content Include="FileNotFound.html" />
+    <Content Include="finance\web\assets\css\chart.css" />
+    <Content Include="finance\web\assets\css\error.css" />
+    <Content Include="finance\web\assets\css\index.css" />
+    <Content Include="finance\web\assets\css\items.css" />
+    <Content Include="finance\web\assets\css\main.css" />
+    <Content Include="finance\web\assets\css\simpleAccounting.css" />
+    <Content Include="finance\web\assets\css\subject_ledger.css" />
+    <Content Include="finance\web\assets\css\update_user.css" />
+    <Content Include="finance\web\assets\css\voucherSummary.css" />
+    <Content Include="finance\web\assets\js\chart.js" />
+    <Content Include="finance\web\assets\js\department.js" />
+    <Content Include="finance\web\assets\js\EasyUI\changelog.txt" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\accordion\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\accordion\header.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\accordion\_content.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\animation\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\animation\fade.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\animation\pop.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\animation\slide.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\badge\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\badge\button.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\badge\list.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\badge\tabs.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\button\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\button\group.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\button\style.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\button\switch.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\datagrid\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\datagrid\rowediting.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\datalist\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\datalist\group.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\datalist\selection.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\dialog\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\dialog\message.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\form\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\images\login1.jpg" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\images\modem.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\images\more.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\images\pda.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\images\scanner.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\images\tablet.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\input\numberspinner.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\input\textbox.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\layout\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\menu\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\menu\menubar.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\panel\ajax.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\panel\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\panel\nav.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\panel\_content.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\simplelist\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\simplelist\button.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\simplelist\group.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\simplelist\image.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\simplelist\link.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\tabs\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\tabs\nav.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\tabs\pill.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\toolbar\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\toolbar\button.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\toolbar\menu.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\tree\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo-mobile\tree\dnd.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\ajax.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\expandable.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\horizontal.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\multiple.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\tools.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\_content.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\calendar\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\calendar\custom.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\calendar\disabledate.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\calendar\firstday.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\calendar\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\calendar\weeknumber.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\checkbox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\customformat.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\dynamicdata.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\group.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\icons.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\itemicon.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\multiline.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\multiple.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\navigation.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\remotedata.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\remotejsonp.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combogrid\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combogrid\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combogrid\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combogrid\initvalue.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combogrid\multiple.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combogrid\navigation.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combogrid\setvalue.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotreegrid\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotreegrid\multiple.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotree\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotree\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotree\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotree\initvalue.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotree\multiple.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotree\test.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combo\animation.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combo\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\aligncolumns.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\cacheeditor.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\cellediting.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\cellstyle.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\checkbox.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\clientpagination.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\columngroup.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\complextoolbar.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\contextmenu.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\custompager.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\footer.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\formatcolumns.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\frozencolumns.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\frozenrows.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\mergecells.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\multisorting.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\rowborder.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\rowediting.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\rowstyle.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\selection.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\simpletoolbar.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\transform.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datalist\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datalist\checkbox.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datalist\group.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datalist\multiselect.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datalist\remotedata.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\buttons.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\clone.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\dateformat.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\events.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\restrict.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\sharedcalendar.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datebox\validate.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datetimebox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datetimebox\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datetimebox\initvalue.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datetimebox\showseconds.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datetimespinner\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datetimespinner\clearicon.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datetimespinner\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datetimespinner\format.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\demo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\dialog\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\dialog\complextoolbar.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\dialog\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\dialog\toolbarbuttons.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\draggable\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\draggable\constrain.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\draggable\snap.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\droppable\accept.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\droppable\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\droppable\sort.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\easyloader\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\filebox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\filebox\buttonalign.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\filebox\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\form\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\form\floatinglabel.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\form\load.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\form\validateonsubmit.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\addremove.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\autoheight.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\collapsetitle.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\complex.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\customcollapsetitle.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\full.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\nestedlayout.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\nocollapsible.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\_content.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\linkbutton\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\linkbutton\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\linkbutton\group.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\linkbutton\iconalign.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\linkbutton\plain.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\linkbutton\size.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\linkbutton\style.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\linkbutton\toggle.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\maskedbox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menubutton\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menubutton\alignment.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menubutton\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menubutton\nav.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menu\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menu\customitem.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menu\events.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menu\inline.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\menu\nav.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\messager\alert.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\messager\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\messager\interactive.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\messager\position.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberbox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberbox\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberbox\format.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberbox\range.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberspinner\align.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberspinner\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberspinner\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberspinner\increment.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\numberspinner\range.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\pagination\attaching.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\pagination\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\pagination\custombuttons.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\pagination\layout.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\pagination\links.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\pagination\simple.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\customtools.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\footer.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\halign.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\loadcontent.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\nestedpanel.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\paneltools.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\panel\_content.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\passwordbox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\passwordbox\flash.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\passwordbox\test.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\passwordbox\validatepassword.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\progressbar\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\progressbar\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\propertygrid\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\propertygrid\customcolumns.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\propertygrid\groupformat.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\radiobutton\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\resizable\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\searchbox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\searchbox\category.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\searchbox\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\sidemenu\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\sidemenu\sidemenu_style.css" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\sidemenu\style.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\slider\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\slider\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\slider\formattip.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\slider\nonlinear.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\slider\range.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\slider\rule.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\slider\vertical.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\splitbutton\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\splitbutton\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\switchbutton\action.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\switchbutton\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\autoheight.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\dropdown.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\fixedwidth.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\hover.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\images\modem.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\images\pda.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\images\scanner.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\images\tablet.png" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\nestedtabs.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\striptools.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\style.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\tabimage.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\tabposition.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\tabstools.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\_content.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tagbox\autocomplete.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tagbox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tagbox\button.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tagbox\format.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tagbox\style.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tagbox\validate.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\textbox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\textbox\button.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\textbox\clearicon.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\textbox\custom.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\textbox\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\textbox\icons.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\textbox\multiline.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\textbox\size.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\timepicker\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\timepicker\hour24.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\timespinner\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\timespinner\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\timespinner\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\timespinner\hour12.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\timespinner\range.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\ajax.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\customcontent.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\customstyle.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\position.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\toolbar.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\tooltipdialog.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\_content.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tooltip\_dialog.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\checkbox.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\clientpagination.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\contextmenu.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\customcheckbox.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\editable.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\footer.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\lines.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\reports.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\actions.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\animation.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\checkbox.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\contextmenu.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\customcheckbox.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\dnd.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\editable.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\formatting.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\icons.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\lazyload.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\lines.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\validatebox\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\validatebox\customtooltip.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\validatebox\errorplacement.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\validatebox\validateonblur.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\window\basic.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\window\borderstyle.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\window\customtools.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\window\fluid.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\window\footer.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\window\inlinewindow.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\window\modalwindow.html" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\window\windowlayout.html" />
+    <Content Include="finance\web\assets\js\EasyUI\easyloader.js" />
+    <Content Include="finance\web\assets\js\EasyUI\jquery.easyui.min.js" />
+    <Content Include="finance\web\assets\js\EasyUI\jquery.easyui.mobile.js" />
+    <Content Include="finance\web\assets\js\EasyUI\jquery.min.js" />
+    <Content Include="finance\web\assets\js\EasyUI\license_freeware.txt" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-af.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-am.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-ar.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-bg.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-ca.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-cs.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-cz.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-da.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-de.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-el.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-en.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-es.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-fa.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-fr.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-it.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-jp.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-ko.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-nl.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-pl.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-pt_BR.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-ru.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-sv_SE.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-tr.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-ua.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-zh_CN.js" />
+    <Content Include="finance\web\assets\js\EasyUI\locale\easyui-lang-zh_TW.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\copy.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.accordion.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.calendar.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.checkbox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.combo.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.combobox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.combogrid.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.combotree.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.combotreegrid.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.datagrid.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.datalist.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.datebox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.datetimebox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.datetimespinner.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.dialog.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.draggable.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.droppable.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.filebox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.form.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.layout.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.linkbutton.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.maskedbox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.menu.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.menubutton.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.messager.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.mobile.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.numberbox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.numberspinner.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.pagination.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.panel.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.parser.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.passwordbox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.progressbar.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.propertygrid.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.radiobutton.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.resizable.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.searchbox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.sidemenu.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.slider.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.spinner.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.splitbutton.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.switchbutton.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.tabs.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.tagbox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.textbox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.timepicker.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.timespinner.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.tooltip.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.tree.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.treegrid.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.validatebox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.window.js" />
+    <Content Include="finance\web\assets\js\EasyUI\readme.txt" />
+    <Content Include="finance\web\assets\js\EasyUI\src\easyloader.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.accordion.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.calendar.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.combobox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.datebox.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.draggable.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.droppable.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.form.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.linkbutton.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.menu.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.parser.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.progressbar.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.propertygrid.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.resizable.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.slider.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.tabs.js" />
+    <Content Include="finance\web\assets\js\EasyUI\src\jquery.window.js" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\angular.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\accordion.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\calendar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\checkbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\combo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\combobox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\datagrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\datalist.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\datebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\dialog.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\easyui.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\filebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\flex.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\accordion_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\calendar_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\combo_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\datagrid_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\datebox_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\layout_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\linkbutton_bg.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\loading.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\menu_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\messager_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\pagination_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\panel_tools.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\passwordbox_close.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\passwordbox_open.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\searchbox_button.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\slider_handle.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\spinner_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\tabs_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\tagbox_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\tree_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\images\validatebox_warning.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\layout.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\linkbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\menu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\menubutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\messager.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\numberbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\pagination.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\panel.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\passwordbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\progressbar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\propertygrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\radiobutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\searchbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\sidemenu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\slider.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\spinner.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\splitbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\switchbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\tabs.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\tagbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\textbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\timepicker.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\tooltip.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\tree.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\validatebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\black\window.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\accordion.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\calendar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\checkbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\combo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\combobox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\datagrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\datalist.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\datebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\dialog.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\easyui.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\filebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\flex.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\accordion_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\calendar_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\combo_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\datagrid_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\datebox_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\layout_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\linkbutton_bg.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\loading.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\menu_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\messager_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\pagination_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\panel_tools.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\passwordbox_close.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\passwordbox_open.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\searchbox_button.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\slider_handle.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\spinner_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\tabs_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\tagbox_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\tree_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\images\validatebox_warning.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\layout.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\linkbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\menu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\menubutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\messager.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\numberbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\pagination.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\panel.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\passwordbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\progressbar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\propertygrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\radiobutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\searchbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\sidemenu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\slider.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\spinner.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\splitbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\switchbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\tabs.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\tagbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\textbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\timepicker.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\tooltip.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\tree.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\validatebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\bootstrap\window.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\color.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\accordion.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\calendar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\checkbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\combo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\combobox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\datagrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\datalist.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\datebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\dialog.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\easyui.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\filebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\flex.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\accordion_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\calendar_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\combo_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\datagrid_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\datebox_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\layout_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\linkbutton_bg.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\loading.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\menu_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\messager_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\pagination_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\panel_tools.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\passwordbox_close.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\passwordbox_open.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\searchbox_button.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\slider_handle.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\spinner_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\tabs_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\tagbox_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\tree_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\images\validatebox_warning.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\layout.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\linkbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\menu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\menubutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\messager.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\numberbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\pagination.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\panel.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\passwordbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\progressbar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\propertygrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\radiobutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\searchbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\sidemenu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\slider.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\spinner.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\splitbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\switchbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\tabs.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\tagbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\textbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\timepicker.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\tooltip.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\tree.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\validatebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\default\window.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\accordion.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\calendar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\checkbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\combo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\combobox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\datagrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\datalist.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\datebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\dialog.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\easyui.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\filebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\flex.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\accordion_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\calendar_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\combo_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\datagrid_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\datebox_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\layout_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\linkbutton_bg.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\loading.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\menu_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\messager_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\pagination_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\panel_tools.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\passwordbox_close.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\passwordbox_open.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\searchbox_button.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\slider_handle.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\spinner_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\tabs_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\tagbox_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\tree_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\images\validatebox_warning.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\layout.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\linkbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\menu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\menubutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\messager.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\numberbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\pagination.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\panel.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\passwordbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\progressbar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\propertygrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\radiobutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\searchbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\sidemenu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\slider.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\spinner.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\splitbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\switchbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\tabs.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\tagbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\textbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\timepicker.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\tooltip.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\tree.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\validatebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\gray\window.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icon.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\back.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\cancel.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\clear.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\cut.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\edit_add.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\edit_remove.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\filesave.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\filter.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\help.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\large_chart.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\large_clipart.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\large_picture.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\large_shapes.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\large_smartart.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\lock.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\man.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\mini_add.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\mini_edit.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\mini_refresh.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\more.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\no.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\ok.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\pencil.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\print.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\redo.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\reload.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\search.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\sum.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\tip.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\icons\undo.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\accordion.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\calendar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\checkbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\combo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\combobox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\datagrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\datalist.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\datebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\dialog.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\easyui.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\filebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\flex.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\accordion_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\calendar_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\combo_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\datagrid_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\datebox_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\layout_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\linkbutton_bg.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\loading.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\menu_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\menu_arrows1.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\menu_arrows2.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\messager_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\pagination_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\panel_tools.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\passwordbox_close.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\passwordbox_open.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\searchbox_button.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\slider_handle.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\spinner_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\tabs_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\tagbox_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\tree_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\images\validatebox_warning.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\layout.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\linkbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\menu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\menubutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\messager.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\numberbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\pagination.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\panel.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\passwordbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\progressbar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\propertygrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\radiobutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\searchbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\sidemenu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\slider.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\spinner.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\splitbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\switchbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\tabs.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\tagbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\textbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\timepicker.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\tooltip.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\tree.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\validatebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-blue\window.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\accordion.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\calendar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\checkbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\combo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\combobox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\datagrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\datalist.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\datebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\dialog.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\easyui.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\filebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\flex.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\accordion_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\calendar_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\combo_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\datagrid_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\datebox_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\layout_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\linkbutton_bg.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\loading.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\menu_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\messager_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\pagination_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\panel_tools.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\passwordbox_close.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\passwordbox_open.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\searchbox_button.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\slider_handle.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\spinner_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\tabs_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\tagbox_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\tree_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\validatebox_warning.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\layout.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\linkbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\menu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\menubutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\messager.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\numberbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\pagination.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\panel.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\passwordbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\progressbar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\propertygrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\radiobutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\searchbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\sidemenu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\slider.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\spinner.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\splitbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\switchbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\tabs.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\tagbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\textbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\timepicker.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\tooltip.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\tree.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\validatebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\window.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\accordion.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\calendar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\checkbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\combo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\combobox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\datagrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\datalist.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\datebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\dialog.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\easyui.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\filebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\flex.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\accordion_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\calendar_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\combo_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\datagrid_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\datebox_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\layout_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\linkbutton_bg.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\loading.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\menu_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\messager_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\pagination_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\panel_tools.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\passwordbox_close.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\passwordbox_open.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\searchbox_button.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\slider_handle.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\spinner_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\tabs_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\tagbox_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\tree_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\validatebox_warning.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\layout.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\linkbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\menu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\menubutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\messager.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\numberbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\pagination.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\panel.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\passwordbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\progressbar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\propertygrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\radiobutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\searchbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\sidemenu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\slider.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\spinner.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\splitbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\switchbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\tabs.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\tagbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\textbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\timepicker.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\tooltip.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\tree.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\validatebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\window.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\accordion.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\calendar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\checkbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\combo.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\combobox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\datagrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\datalist.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\datebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\dialog.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\easyui.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\filebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\flex.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\accordion_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\blank.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\calendar_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\combo_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\datagrid_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\datebox_arrow.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\layout_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\linkbutton_bg.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\loading.gif" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\menu_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\messager_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\pagination_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\panel_tools.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\passwordbox_close.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\passwordbox_open.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\searchbox_button.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\slider_handle.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\spinner_arrows.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\tabs_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\tagbox_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\tree_icons.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\images\validatebox_warning.png" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\layout.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\linkbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\menu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\menubutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\messager.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\numberbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\pagination.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\panel.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\passwordbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\progressbar.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\propertygrid.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\radiobutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\searchbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\sidemenu.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\slider.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\spinner.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\splitbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\switchbutton.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\tabs.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\tagbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\textbox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\timepicker.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\tooltip.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\tree.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\validatebox.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\metro\window.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\mobile.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\react.css" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\vue.css" />
+    <Content Include="finance\web\assets\js\EChart\echarts.js" />
+    <Content Include="finance\web\assets\js\EChart\shine.js" />
+    <Content Include="finance\web\assets\js\error.js" />
+    <Content Include="finance\web\assets\js\index.js" />
+    <Content Include="finance\web\assets\js\items.js" />
+    <Content Include="finance\web\assets\js\flow.js" />
+    <Content Include="finance\web\assets\js\liabilities.js" />
+    <Content Include="finance\web\assets\js\main.js" />
+    <Content Include="finance\web\assets\js\parsing.js" />
+    <Content Include="finance\web\assets\js\profit.js" />
+    <Content Include="finance\web\assets\js\simpleAccounting.js" />
+    <Content Include="finance\web\assets\js\simpleData.js" />
+    <Content Include="finance\web\assets\js\subject_ledger.js" />
+    <Content Include="finance\web\assets\js\update_user.js" />
+    <Content Include="finance\web\assets\js\voucherSummary.js" />
+    <Content Include="finance\web\view\chart.aspx" />
+    <Content Include="finance\web\view\department.aspx" />
+    <Content Include="finance\web\view\error.aspx" />
+    <Content Include="finance\web\view\index.aspx" />
+    <Content Include="finance\web\view\instructions.aspx" />
+    <Content Include="finance\web\view\invalid.aspx" />
+    <Content Include="finance\web\view\items.aspx" />
+    <Content Include="finance\web\view\flow.aspx" />
+    <Content Include="finance\web\view\liabilities.aspx" />
+    <Content Include="finance\web\view\new_user.aspx" />
+    <Content Include="finance\web\view\profit.aspx" />
+    <Content Include="finance\web\view\simpleAccounting.aspx" />
+    <Content Include="finance\web\view\simpleData.aspx" />
+    <Content Include="finance\web\view\subject_ledger.aspx" />
+    <Content Include="finance\web\view\update_do.aspx" />
+    <Content Include="finance\web\view\update_pwd.aspx" />
+    <Content Include="finance\web\view\web_service\accounting.asmx" />
+    <Content Include="finance\web\view\web_service\chart.asmx" />
+    <Content Include="finance\web\view\web_service\department.asmx" />
+    <Content Include="finance\web\view\web_service\index.asmx" />
+    <Content Include="finance\web\view\web_service\financing.asmx" />
+    <Content Include="finance\web\view\web_service\investment.asmx" />
+    <Content Include="finance\web\view\web_service\management.asmx" />
+    <Content Include="finance\web\view\web_service\simpleAccounting.asmx" />
+    <Content Include="finance\web\view\web_service\simpleData.asmx" />
+    <Content Include="finance\web\view\web_service\space.asmx" />
+    <Content Include="finance\web\view\web_service\updateUser.asmx" />
+    <Content Include="finance\web\view\web_service\voucherSummary.asmx" />
+    <Content Include="finance\web\view\voucherSummary.aspx" />
+    <Content Include="finance\web\view\web_service\voucherWord.asmx" />
     <Content Include="frmMain.aspx" />
     <Content Include="frmNav.aspx" />
     <Content Include="frmReadIDCare.aspx" />
@@ -733,6 +1761,292 @@
     <Compile Include="ErrorPage\ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="finance\entiy\AccountingItem.cs" />
+    <Compile Include="finance\entiy\Charts.cs" />
+    <Compile Include="finance\entiy\DepartmentItem.cs" />
+    <Compile Include="finance\entiy\Flow.cs" />
+    <Compile Include="finance\entiy\Liabilities.cs" />
+    <Compile Include="finance\entiy\Profit.cs" />
+    <Compile Include="finance\entiy\VoucherSummaryItem.cs" />
+    <Compile Include="finance\model\Account.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\Accounting.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\AccountingModel.cs" />
+    <Compile Include="finance\model\AccountModel.cs" />
+    <Compile Include="finance\model\CommonModel.cs" />
+    <Compile Include="finance\model\control_soft_time.cs">
+      <DependentUpon>SoftTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\Department.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\DepartmentModel.cs" />
+    <Compile Include="finance\model\Finance.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Finance.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\Finance.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\Finance.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Finance.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\FinancingModel.cs" />
+    <Compile Include="finance\model\FinancingExpenditure.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\FinancingIncome.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\InvestmentModel.cs" />
+    <Compile Include="finance\model\InvestmentExpenditure.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\InvestmentIncome.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\FlowModel.cs" />
+    <Compile Include="finance\model\LiabilitiesModel.cs" />
+    <Compile Include="finance\model\ManagementModel.cs" />
+    <Compile Include="finance\model\ManagementExpenditure.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\ManagementIncome.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\ProfitModel.cs" />
+    <Compile Include="finance\model\SimpleAccounting.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\SimpleAccountingModel.cs" />
+    <Compile Include="finance\model\SimpleData.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\SimpleDataModel.cs" />
+    <Compile Include="finance\model\SoftTime.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SoftTime.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\SoftTime.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SoftTime.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\SoftTime.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SoftTime.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\SpaceModel.cs" />
+    <Compile Include="finance\model\VoucherSummary.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\VoucherSummaryModel.cs" />
+    <Compile Include="finance\model\VoucherWord.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\VoucherWordModel.cs" />
+    <Compile Include="finance\service\AccountingService.cs" />
+    <Compile Include="finance\service\AccountService.cs" />
+    <Compile Include="finance\service\ChartsService.cs" />
+    <Compile Include="finance\service\DepartmentService.cs" />
+    <Compile Include="finance\service\FinancingService.cs" />
+    <Compile Include="finance\service\InvestmentService.cs" />
+    <Compile Include="finance\service\FlowService.cs" />
+    <Compile Include="finance\service\LiabilitiesService.cs" />
+    <Compile Include="finance\service\ManagementService.cs" />
+    <Compile Include="finance\service\ProfitService.cs" />
+    <Compile Include="finance\service\SimpleAccountingService.cs" />
+    <Compile Include="finance\service\SimpleDataService.cs" />
+    <Compile Include="finance\service\VoucherSummaryService.cs" />
+    <Compile Include="finance\service\VoucherWordService.cs" />
+    <Compile Include="finance\util\FinancePage.cs" />
+    <Compile Include="finance\util\FinanceSpace.cs" />
+    <Compile Include="finance\util\FinanceToken.cs" />
+    <Compile Include="finance\util\FinanceJson.cs" />
+    <Compile Include="finance\util\FinanceResultData.cs" />
+    <Compile Include="finance\util\FinanceRSA.cs" />
+    <Compile Include="finance\util\FinanceToError.cs" />
+    <Compile Include="finance\web\view\chart.aspx.cs">
+      <DependentUpon>chart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\chart.aspx.designer.cs">
+      <DependentUpon>chart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\department.aspx.cs">
+      <DependentUpon>department.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\department.aspx.designer.cs">
+      <DependentUpon>department.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\instructions.aspx.cs">
+      <DependentUpon>instructions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\instructions.aspx.designer.cs">
+      <DependentUpon>instructions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\invalid.aspx.cs">
+      <DependentUpon>invalid.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\invalid.aspx.designer.cs">
+      <DependentUpon>invalid.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\items.aspx.cs">
+      <DependentUpon>items.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\items.aspx.designer.cs">
+      <DependentUpon>items.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\flow.aspx.cs">
+      <DependentUpon>flow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\flow.aspx.designer.cs">
+      <DependentUpon>flow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\liabilities.aspx.cs">
+      <DependentUpon>liabilities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\liabilities.aspx.designer.cs">
+      <DependentUpon>liabilities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\new_user.aspx.cs">
+      <DependentUpon>new_user.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\new_user.aspx.designer.cs">
+      <DependentUpon>new_user.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\profit.aspx.cs">
+      <DependentUpon>profit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\profit.aspx.designer.cs">
+      <DependentUpon>profit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\simpleAccounting.aspx.cs">
+      <DependentUpon>simpleAccounting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\simpleAccounting.aspx.designer.cs">
+      <DependentUpon>simpleAccounting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\simpleData.aspx.cs">
+      <DependentUpon>simpleData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\simpleData.aspx.designer.cs">
+      <DependentUpon>simpleData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\subject_ledger.aspx.cs">
+      <DependentUpon>subject_ledger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\subject_ledger.aspx.designer.cs">
+      <DependentUpon>subject_ledger.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\update_do.aspx.cs">
+      <DependentUpon>update_do.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\update_do.aspx.designer.cs">
+      <DependentUpon>update_do.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\update_pwd.aspx.cs">
+      <DependentUpon>update_pwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\update_pwd.aspx.designer.cs">
+      <DependentUpon>update_pwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\accounting.asmx.cs">
+      <DependentUpon>accounting.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\chart.asmx.cs">
+      <DependentUpon>chart.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\department.asmx.cs">
+      <DependentUpon>department.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\index.asmx.cs">
+      <DependentUpon>index.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\financing.asmx.cs">
+      <DependentUpon>financing.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\investment.asmx.cs">
+      <DependentUpon>investment.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\management.asmx.cs">
+      <DependentUpon>management.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\simpleAccounting.asmx.cs">
+      <DependentUpon>simpleAccounting.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\simpleData.asmx.cs">
+      <DependentUpon>simpleData.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\space.asmx.cs">
+      <DependentUpon>space.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\updateUser.asmx.cs">
+      <DependentUpon>updateUser.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\voucherSummary.asmx.cs">
+      <DependentUpon>voucherSummary.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\voucherSummary.aspx.cs">
+      <DependentUpon>voucherSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\voucherSummary.aspx.designer.cs">
+      <DependentUpon>voucherSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\voucherWord.asmx.cs">
+      <DependentUpon>voucherWord.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="frmMain.aspx.cs">
       <DependentUpon>frmMain.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1093,12 +2407,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="App_Start\" />
+    <Folder Include="finance\download\" />
+    <Folder Include="finance\web\assets\img\" />
     <Folder Include="Myadmin\KEditor\attached\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\China_System.Common\China_System.Common.csproj">
+    <ProjectReference Include="..\China_System.Common\Order.Common.csproj">
       <Project>{6d44b559-6900-4076-b906-565d758f43b3}</Project>
-      <Name>China_System.Common</Name>
+      <Name>Order.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\clsBuiness\clsBuiness.csproj">
       <Project>{e7bbc086-51fe-4b4a-a4bb-94ccb17b76b0}</Project>
@@ -1360,6 +2677,67 @@
     <Content Include="Myadmin\HouTai\src\scss\widgets\steamline.scss" />
     <Content Include="Myadmin\HouTai\src\scss\widgets\widgets.scss" />
     <Content Include="packages.config" />
+    <Content Include="finance\web\assets\js\Jquery.js" />
+    <EntityDeploy Include="finance\model\Finance.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Finance.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="finance\model\Finance.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Finance.edmx</DependentUpon>
+      <LastGenOutput>Finance.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="finance\model\Finance.edmx.diagram">
+      <DependentUpon>Finance.edmx</DependentUpon>
+    </Content>
+    <Content Include="finance\model\Finance.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Finance.edmx</DependentUpon>
+      <LastGenOutput>Finance.cs</LastGenOutput>
+    </Content>
+    <Content Include="finance\web\assets\js\EasyUI\demo\accordion\datagrid_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\combobox_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combobox\combobox_data2.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combogrid\datagrid_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotreegrid\treegrid_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\combotree\tree_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\datagrid_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\datagrid_data2.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datagrid\products.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\datalist\datalist_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\form\form_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\datagrid_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\propertygrid_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\layout\tree_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\propertygrid\propertygrid_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tabs\tree_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tagbox\tagbox_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\treegrid_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\treegrid_data2.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\treegrid\treegrid_data3.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\tree_data1.json" />
+    <Content Include="finance\web\assets\js\EasyUI\demo\tree\tree_data2.json" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.calendar" />
+    <Content Include="finance\web\assets\js\EasyUI\plugins\jquery.timepicker" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material-teal\images\Thumbs.db" />
+    <Content Include="finance\web\assets\js\EasyUI\themes\material\images\Thumbs.db" />
+    <EntityDeploy Include="finance\model\SoftTime.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SoftTime.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="finance\model\SoftTime.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SoftTime.edmx</DependentUpon>
+      <LastGenOutput>SoftTime.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="finance\model\SoftTime.edmx.diagram">
+      <DependentUpon>SoftTime.edmx</DependentUpon>
+    </Content>
+    <Content Include="finance\model\SoftTime.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SoftTime.edmx</DependentUpon>
+      <LastGenOutput>SoftTime.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
     <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />
     <Content Include="Scripts\layui\font\iconfont.eot" />
@@ -1377,6 +2755,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1409,7 +2790,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52590</DevelopmentServerPort>
+          <DevelopmentServerPort>57814</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

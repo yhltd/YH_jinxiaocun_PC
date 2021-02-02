@@ -106,3 +106,36 @@
     height: 50px;
     font-size: 14px;
 }
+
+
+.alert
+{
+    display: flex;
+    width: 330px;
+    box-sizing: border-box;
+    position: fixed;
+    right: -500px;
+    top: 16px;
+    z-index: 2014;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 12px 0px;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid rgb(235, 238, 245);
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.alert-close
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    color: #909399;
+    font-size: 16px;
+}
+
+.alert-close::before {
+    content: "\e6db";
+}

@@ -140,19 +140,18 @@ var left_data = [{
 
 function tolink(e) {
     if (e.text == "使用说明") {
-        //$("#instruction-dialog").dialog({
-        //    title: '提示',
-        //    width: 350,
-        //    model: false,
-        //    toolbar: [{
-        //        text: '下载',
-        //        iconCls: 'icon-ok',
-        //        handler: function () {
-                    
-        //        }
-        //    }]
-        //})
-        $("#main-iframe").attr("src", e.url);
+        $("#instruction-dialog").dialog({
+            title: '提示',
+            width: 350,
+            model: false,
+            toolbar: [{
+                text: '下载',
+                iconCls: 'icon-ok',
+                handler: function () {
+                    $("#main-iframe").attr("src", e.url);
+                }
+            }]
+        })
     }else if (e.text != '数据空间') {
         $("#main-iframe").attr("src", e.url);
     } else {
@@ -161,33 +160,12 @@ function tolink(e) {
 }
 
 function getInstruction() {
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/space.asmx/getSpace",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                alert(result.msg);
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
+        loading: true
+    }, function (result) {
+        if (result.code == 200) {
+            alert(result.msg);
         }
     })
 }

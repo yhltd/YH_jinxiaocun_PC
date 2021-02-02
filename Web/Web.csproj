@@ -1084,6 +1084,7 @@
     <Content Include="finance\web\assets\js\index.js" />
     <Content Include="finance\web\assets\js\items.js" />
     <Content Include="finance\web\assets\js\flow.js" />
+    <Content Include="finance\web\assets\js\Jquery.js" />
     <Content Include="finance\web\assets\js\liabilities.js" />
     <Content Include="finance\web\assets\js\main.js" />
     <Content Include="finance\web\assets\js\parsing.js" />
@@ -2677,7 +2678,6 @@
     <Content Include="Myadmin\HouTai\src\scss\widgets\steamline.scss" />
     <Content Include="Myadmin\HouTai\src\scss\widgets\widgets.scss" />
     <Content Include="packages.config" />
-    <Content Include="finance\web\assets\js\Jquery.js" />
     <EntityDeploy Include="finance\model\Finance.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Finance.Designer.cs</LastGenOutput>

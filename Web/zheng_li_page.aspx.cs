@@ -26,6 +26,8 @@ namespace Web
             {
                 Session["dq_ye_zl"] = 0;
             }
+
+            this.zl_select_load(sender, e);
         }
         protected void zl_select_load(object sender, EventArgs e)
         {
@@ -64,7 +66,8 @@ namespace Web
                     if (Convert.ToInt32(name) == i)
                     {
                         del_zl_ff(list[i].id);
-                        Response.Write(" <script>alert('删除成功'); location='zheng_li_page.aspx';</script>");
+                        Response.Write(" <script>alert('删除成功');</script>");
+                        this.zl_select_load(sender, e);
                     }
                 }
             }
@@ -104,8 +107,8 @@ namespace Web
                     update_zl(Context.Request["sp_dm_cs" + i].ToString(), Context.Request["name_cs" + i].ToString(), Context.Request["lei_bie_cs" + i].ToString(), Context.Request["dan_wei_cs" + i].ToString(), Context.Request["id_cs" + i].ToString());
 
                 }
-                Response.Write(" <script>alert('提交成功'); location='zheng_li_page.aspx';</script>");
-
+                Response.Write(" <script>alert('提交成功');</script>");
+                this.zl_select_load(sender, e);
             }
         }
 

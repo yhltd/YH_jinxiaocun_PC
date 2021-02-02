@@ -95,7 +95,6 @@ namespace Web.Myadmin.HouTai
         protected void BTN_Insert_Click(object sender, EventArgs e)
         {
 
-
         }
 
         protected void Unnamed_Click(object sender, EventArgs e)

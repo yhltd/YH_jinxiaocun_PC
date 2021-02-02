@@ -39,15 +39,12 @@ function getAccounting() {
         zlevel: 0,
     });
 
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/chart.asmx/getAccounting",
-        dataType: "xml",
-        success: function (data) {
-            myChart.hideLoading();
-
-            data = getJson(data).data
+        loading: false
+    }, function (result) {
+        if (result.code == 200) {
+            data = result.data;
 
             var options = {
                 title: {
@@ -100,16 +97,9 @@ function getAccounting() {
             }
 
             myChart.setOption(options);
-        },
-        error: function (err) {
-            myChart.hideLoading();
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
+    }, function () {
+        myChart.hideLoading();
     })
 }
 
@@ -124,16 +114,13 @@ function getSummary(data) {
         zlevel: 0,
     });
 
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/chart.asmx/getSummary",
-        dataType: "xml",
-        success: function (data) {
-            myChart.hideLoading();
+        loading: false
+    }, function (result) {
+        if (result.code == 200) {
+            data = result.data;
 
-            data = getJson(data).data;
-            
             var options = {
                 title: {
                     text: "凭证金额"
@@ -184,16 +171,9 @@ function getSummary(data) {
             }
 
             myChart.setOption(options);
-        },
-        error: function (err) {
-            myChart.hideLoading();
-            alert("错误！");
-        },
-        complete: function (XMLHttpRequest, status) {
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
+    }, function () {
+        myChart.hideLoading();
     })
 }
 
@@ -209,15 +189,12 @@ function getAccountingBalance(data) {
         zlevel: 0,
     });
 
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/chart.asmx/getAccountingBalance",
-        dataType: "xml",
-        success: function (data) {
-            myChart.hideLoading();
-
-            data = getJson(data).data;
+        loading: false
+    }, function (result) {
+        if (result.code == 200) {
+            data = result.data;
 
             var options = {
                 title: {
@@ -269,16 +246,9 @@ function getAccountingBalance(data) {
             }
 
             myChart.setOption(options);
-        },
-        error: function (err) {
-            myChart.hideLoading();
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
+    }, function () {
+        myChart.hideLoading();
     })
 }
 
@@ -294,15 +264,12 @@ function getLiabilities(data) {
         zlevel: 0,
     });
 
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/chart.asmx/getLiabilities",
-        dataType: "xml",
-        success: function (data) {
-            myChart.hideLoading();
-
-            data = getJson(data).data;
+        loading: false
+    }, function (result) {
+        if (result.code == 200) {
+            data = result.data;
 
             var options = {
                 title: {
@@ -354,16 +321,9 @@ function getLiabilities(data) {
             }
 
             myChart.setOption(options);
-        },
-        error: function (err) {
-            myChart.hideLoading();
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
+    }, function () {
+        myChart.hideLoading();
     })
 }
 
@@ -378,16 +338,13 @@ function getProfit(data) {
         maskColor: 'rgba(255, 255, 255,0.3)',
         zlevel: 0,
     });
-
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    
+    ajaxUtil({
         url: "web_service/chart.asmx/getProfit",
-        dataType: "xml",
-        success: function (data) {
-            myChart.hideLoading();
-
-            data = getJson(data).data;
+        loading: false
+    }, function (result) {
+        if (result.code == 200) {
+            data = result.data;
 
             var options = {
                 title: {
@@ -439,16 +396,9 @@ function getProfit(data) {
             }
 
             myChart.setOption(options);
-        },
-        error: function (err) {
-            myChart.hideLoading();
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
+    }, function () {
+        myChart.hideLoading();
     })
 }
 
@@ -464,15 +414,12 @@ function getFlow(data) {
         zlevel: 0,
     });
 
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/chart.asmx/getFlow",
-        dataType: "xml",
-        success: function (data) {
-            myChart.hideLoading();
-
-            data = getJson(data).data;
+        loading: false
+    }, function (result) {
+        if (result.code == 200) {
+            data = result.data;
 
             var options = {
                 title: {
@@ -524,15 +471,8 @@ function getFlow(data) {
             }
 
             myChart.setOption(options);
-        },
-        error: function (err) {
-            myChart.hideLoading();
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
+    }, function () {
+        myChart.hideLoading();
     })
 }

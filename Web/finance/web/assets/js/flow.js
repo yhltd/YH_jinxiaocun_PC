@@ -33,41 +33,17 @@ function getList() {
     if (page.selectParamsMap.year == '' || page.selectParamsMap.month == '') {
         getYearAndMonth();
     }
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/voucherSummary.asmx/getFlowList",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
+        loading: true,
         data: {
             financePageJson: JSON.stringify(page)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                setTable(result.data)
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
-    })
+    }, function (result) {
+        if (result.code == 200) {
+            setTable(result.data)
+        }
+    });
 }
 
 function setTable(data) {

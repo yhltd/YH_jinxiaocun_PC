@@ -10,38 +10,17 @@ $(function () {
 })
 
 function getList() {
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/department.asmx/getList",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
+        loading: true,
         data: {
             financePageJson: JSON.stringify(page)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                setTable(result.data)
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
-    })
+    }, function (result) {
+        if (result.code == 200) {
+            setTable(result.data)
+        }
+    });
 }
 
 //设置表格信息
@@ -150,40 +129,20 @@ function toUpd() {
         var item = getSelected()[0]
         item.department1 = params.department1;
         item.man = params.man;
-        $.ajax({
-            type: 'Post',
-            timeout: 5000,
+
+        ajaxUtil({
             url: "web_service/department.asmx/update",
-            beforeSend: function () {
-                $.messager.progress({
-                    top: 150,
-                    title: '提示',
-                    msg: '正在加载',
-                    text: ''
-                });
-            },
+            loading: true,
             data: {
                 newDepartmentJson: JSON.stringify(item)
-            },
-            dataType: "xml",
-            success: function (data) {
-                var result = getJson(data);
-                alert(result.msg);
-                if (result.code == 200) {
-                    $('#update').window('close');
-                    getList();
-                }
-            },
-            error: function (err) {
-                alert("错误！")
-            },
-            complete: function (XMLHttpRequest, status) {
-                $.messager.progress('close');
-                if (status == 'timeout') {
-                    alert("网络超时，请稍后再试。");
-                }
             }
-        })
+        }, function (result) {
+            if (result.code == 200) {
+                alert(result.msg)
+                $('#update').window('close');
+                getList();
+            }
+        });
     }
 }
 
@@ -210,39 +169,19 @@ function del(rows) {
     for (var i = 0 ; i < rows.length; i++) {
         ids.push(rows[i].id)
     }
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+
+    ajaxUtil({
         url: "web_service/department.asmx/delete",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
+        loading: true,
         data: {
             idsJson: JSON.stringify(ids)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                alert(result.msg);
-                getList();
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
-    })
+    }, function (result) {
+        if (result.code == 200) {
+            alert(result.msg);
+            getList();
+        }
+    });
 }
 
 function toResetNew() {
@@ -251,45 +190,22 @@ function toResetNew() {
 
 function toNew() {
     var updatePwdForm = $('#newForm').serialize();
-    var params = JSON.parse(formToJson(decodeURIComponent(updatePwdForm, true)))
+    var params = JSON.parse(formToJson(decodeURIComponent(updatePwdForm, true)));
     if (checkForm(params)) {
-        $.ajax({
-            type: 'Post',
-            timeout: 5000,
+
+        ajaxUtil({
             url: "web_service/department.asmx/add",
-            beforeSend: function () {
-                $.messager.progress({
-                    top: 150,
-                    title: '提示',
-                    msg: '正在加载',
-                    text: ''
-                });
-            },
+            loading: true,
             data: {
                 departmentJson: JSON.stringify(params)
-            },
-            dataType: "xml",
-            success: function (data) {
-                var result = getJson(data);
-                alert(result.msg)
-                if (result.code == 200) {
-                    $('#new').window('close')
-                    getList();
-                } else if (result.code == 401) {
-                    window.location.href = "../../view/invalid.aspx"
-                }
-            },
-            error: function (err) {
-                alert("错误！")
-            },
-            complete: function (XMLHttpRequest, status) {
-                $.messager.progress('close');
-                if (status == 'timeout') {
-                    alert("网络超时，请稍后再试。");
-                }
             }
-        })
-        
+        }, function (result) {
+            if (result.code == 200) {
+                alert(result.msg);
+                $('#new').window('close');
+                getList();
+            }
+        });
     }
 }
 

@@ -121,6 +121,7 @@
                 for (var i = 1; i <= row; i++) {
                     del_row(i)
                 }
+                row = 1;
                 getList();
             })
         })

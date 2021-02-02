@@ -17,7 +17,7 @@
         function bhhq(row) {
             $.ajax({
                 type: "post", 
-                url: "ru_ku.aspx?act=PostUser&id=" + $("#sp_dm" + row).val(),
+                url: "qi_chu.aspx?act=PostUser&id=" + $("#sp_dm" + row).val(),
                 dataType: "json",
                 data: {},
                 success: function (data) {
@@ -130,6 +130,10 @@
                 $("#tj_pd_id").val("tj_false");
             }
 
+        }
+
+        function getJs(row) {
+            $('#dj_js' + row).text($('#ck_dj' + row).val() * $('#ck_sl' + row).val())
         }
 
         $(document).on("click", "#dj_row", function () {
@@ -252,9 +256,9 @@
                         <td class="bg_bj">
                             <input type="text" class="input_tr" id="Text2" name="cplb_cs<%=i%>" value="<%=qi_chu_select[i].Cplb%>" /></td>
                         <td class="bg_bj">
-                            <input type="text" class="input_tr" id="ck_dj<%=i%>" name="cpsj_cs<%=i%>" value="<%=qi_chu_select[i].Cpsj%>" /></td>
+                            <input type="text" class="input_tr" onchange="getJs(<%=i%>)" id="ck_dj<%=i%>" name="cpsj_cs<%=i%>" value="<%=qi_chu_select[i].Cpsj%>" /></td>
                         <td class="bg_bj">
-                            <input type="text" class="input_tr" id="ck_sl<%=i%>" name="cpsl_cs<%=i%>" value="<%=qi_chu_select[i].Cpsl%>" /></td>
+                            <input type="text" class="input_tr" onchange="getJs(<%=i%>)" id="ck_sl<%=i%>" name="cpsl_cs<%=i%>" value="<%=qi_chu_select[i].Cpsl%>" /></td>
                         <td class="bg_bj" id="dj_js<%=i%>">
                             <%=int.Parse(qi_chu_select[i].Cpsj)*int.Parse(qi_chu_select[i].Cpsl)%>
                         </td>

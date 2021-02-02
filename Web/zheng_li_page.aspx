@@ -16,11 +16,8 @@
 
         $(function () {
             $("#dj_row").click(function () {
-
                 $("#row_i1").val($("#biao_ge tr").length);
-
             })
-
         })
 
         $(document).ready(function () {

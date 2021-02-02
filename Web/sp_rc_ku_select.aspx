@@ -26,6 +26,10 @@
             position: sticky;
             top: 0;
         }
+        .header-bottom
+        {
+            top: 49px;
+        }
 
         .input_tr {
             width: 91px;
@@ -104,10 +108,10 @@
                         <th colspan="2" rowspan="1" class="auto-style1" style="width: 140px;">出库</th>
                     </tr>
                     <tr id="dj_yh">
-                        <th class="auto-style1" style="width: 70px">数量</th>
-                        <th class="auto-style1" style="width: 70px">金额</th>
-                        <th class="auto-style1" style="width: 70px">数量</th>
-                        <th class="auto-style1" style="width: 70px">金额</th>
+                        <th class="auto-style1 header-bottom" style="width: 70px">数量</th>
+                        <th class="auto-style1 header-bottom" style="width: 70px">金额</th>
+                        <th class="auto-style1 header-bottom" style="width: 70px">数量</th>
+                        <th class="auto-style1 header-bottom" style="width: 70px">金额</th>
                     </tr>
 
                     <%

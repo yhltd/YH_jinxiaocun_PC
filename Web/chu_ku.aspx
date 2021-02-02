@@ -27,22 +27,22 @@
             })
             $('#dj_yh').click(function () {
                 var newTr = '';
-                newTr += "<tr id='del_row' + row + ''>"
-                newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value,' + row + ')' id='checkbox' + row + '' value='0'></checkbox></td>"
-                newTr += "<td class='item_td'>' + row + '</td>"
-                newTr += "<td class='item_td' id='sp_name' + row + ''></td>"
+                newTr += "<tr id='del_row" + row + "'>"
+                newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='0'></checkbox></td>"
+                newTr += "<td class='item_td'>" + row + "</td>"
+                newTr += "<td class='item_td' id='sp_name" + row + "></td>"
                 newTr += "<td class='item_td'>"
-                newTr += "<select class='input_tr' id='sp_dm' + row + '' name='sp_dm' + row + '' onchange='bhhq(' + row + ')'>"
+                newTr += "<select class='input_tr' id='sp_dm" + row + "' name='sp_dm" + row + "' onchange='bhhq(" + row + "')'>"
                 newTr += "<option value='选择编号'>选择编号</option>"
                 for (var i = 0; i < list.length; i++) {
-                    newTr += "<option class='option_list' value='' + i + ''>' + list[i].sp_dm + '</option>"
+                    newTr += "<option class='option_list' value='" + i + "'>" + list[i].sp_dm + "</option>"
                 }
                 newTr += '</select></td>'
-                newTr += "<td class='item_td' id='sp_cplb' + row + ''></td>"
-                newTr += "<td class='item_td' id='sp_cpsj' + row + ''></td>"
-                newTr += "<td class='item_td' id='sp_cpsl' + row + ''><input id='num' + row + '' type='number' autocomplete='off' class='table_input' placeholder='总数量：'/></td>"
-                newTr += "<td class='item_td' id='sp_cpprice' + row + ''><input id='price' + row + '' type='number' autocomplete='off' class='table_input'/></td>"
-                newTr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(' + row + ')'/></td>"
+                newTr += "<td class='item_td' id='sp_cplb" + row + "'></td>"
+                newTr += "<td class='item_td' id='sp_cpsj" + row + "'></td>"
+                newTr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' placeholder='总数量：'/></td>"
+                newTr += "<td class='item_td' id='sp_cpprice' + row + ''><input id='price" + row + "' type='number' autocomplete='off' class='table_input'/></td>"
+                newTr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/></td>"
                 newTr += '</tr>'
                 $('#biao_ge').append(newTr);
                 row++;
@@ -121,6 +121,7 @@
                 for (var i = 1; i <= row; i++) {
                     del_row(i)
                 }
+                row = 1;
                 getList();
             })
         })
@@ -170,27 +171,27 @@
         function setList(result) {
             var insertStr = '';
             for (var j = 0; j < result.length; j++) {
-                insertStr += '<tr id='del_row' + row + ''>'
-                insertStr += '<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value,' + row + ')' id='checkbox' + row + '' value='' + result[j].id + ''></checkbox></td>'
-                insertStr += '<td class='item_td'>' + row + '</td>'
-                insertStr += '<td class='item_td' id='sp_name' + row + ''>' + result[j].name + '</td>'
-                insertStr += '<td class='item_td'>'
-                insertStr += '<select class='input_tr' id='sp_dm' + row + '' onchange='bhhq(' + row + ')' name='sp_dm' + row + ''>'
-                insertStr += '<option>选择编号</option>'
+                insertStr += "<tr id='del_row" + row + "'>"
+                insertStr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='" + result[j].id + "'></checkbox></td>"
+                insertStr += "<td class='item_td'>" + row + "</td>"
+                insertStr += "<td class='item_td' id='sp_name" + row + "'>" + result[j].name + "</td>"
+                insertStr += "<td class='item_td'>"
+                insertStr += "<select class='input_tr' id='sp_dm" + row + "' onchange='bhhq(" + row + ")' name='sp_dm" + row + "'>"
+                insertStr += "<option>选择编号</option>"
                 for (var i = 0; i < result.length; i++) {
                     if (result[i].sp_dm == result[j].sp_dm) {
-                        insertStr += '<option class='option_list' selected value='' + i + ''>' + result[i].sp_dm + '</option>'
+                        insertStr += "<option class='option_list' selected value='" + i + "'>" + result[i].sp_dm + "</option>"
                         continue;
                     }
-                    insertStr += '<option class='option_list' value='' + i + ''>' + result[i].sp_dm + '</option>'
+                    insertStr += "<option class='option_list' value='" + i + "'>" + result[i].sp_dm + "</option>"
                 }
-                insertStr += '</select></td>'
-                insertStr += '<td class='item_td' id='sp_cplb' + row + ''>' + result[j].lei_bie + '</td>'
-                insertStr += '<td class='item_td' id='sp_cpsj' + row + ''>' + result[j].dan_wei + '</td>'
-                insertStr += '<td class='item_td' id='sp_cpsl' + row + ''><input id='num' + row + '' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value,' + result[j].id + ',' + row + ')' placeholder='总数量：' + result[j].allSL + ''/></td>'
-                insertStr += '<td class='item_td' id='sp_cpprice' + row + ''><input id='price' + row + '' type='number' autocomplete='off' oninput='bindInput_price(this.value,' + result[j].id + ')' class='table_input' /></td>'
-                insertStr += '<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(' + row + ')'/></td>'
-                insertStr += '</tr>'
+                insertStr += "</select></td>"
+                insertStr += "<td class='item_td' id='sp_cplb" + row + "'>" + result[j].lei_bie + "</td>"
+                insertStr += "<td class='item_td' id='sp_cpsj" + row + "'>" + result[j].dan_wei + "</td>"
+                insertStr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].allSL + "'/></td>"
+                insertStr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' type='number' autocomplete='off' oninput='bindInput_price(this.value," + result[j].id + ")' class='table_input' /></td>"
+                insertStr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/></td>"
+                insertStr += "</tr>"
                 row++;
             }
             $('#biao_ge').append(insertStr);
@@ -223,7 +224,7 @@
                 success: function (result) {
                     var gonghuo = ''
                     for (var i = 0; i < result.length; i++) {
-                        gonghuo += '<option class='option_list' value='' + result[i] + ''>' + result[i] + '</option>'
+                        gonghuo += '<option class="option_list" value="' + result[i] + '">' + result[i] + '</option>'
                     }
                     $('.gonghuo_select').append(gonghuo);
                     ruku.gonghuo = result[0]

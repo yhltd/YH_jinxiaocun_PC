@@ -61,38 +61,17 @@ $(function () {
     经营收入
 **/
 function getListFinancingExpenditure() {
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/financing.asmx/getExpenditureList",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
+        loading: true,
         data: {
             financePageJson: JSON.stringify(pageFinancingExpenditure)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                setTableFinancingExpenditure(result.data)
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
-    })
+    }, function (result) {
+        if (result.code == 200) {
+            setTableFinancingExpenditure(result.data)
+        }
+    });
 }
 
 function setTableFinancingExpenditure(data) {
@@ -189,41 +168,19 @@ function updFinancingExpenditure() {
         var item = $('#data-table-financingExpenditure').datagrid("getSelections")[0];
         item.financingExpenditure1 = params.financingExpenditure1;
 
-        
-        $.ajax({
-            type: 'Post',
-            timeout: 5000,
+        ajaxUtil({
             url: "web_service/financing.asmx/updExpenditure",
-            beforeSend: function () {
-                $.messager.progress({
-                    top: 150,
-                    title: '提示',
-                    msg: '正在加载',
-                    text: ''
-                });
-            },
+            loading: true,
             data: {
                 newExpenditure: JSON.stringify(item)
-            },
-            dataType: "xml",
-            success: function (data) {
-                var result = getJson(data);
-                alert(result.msg);
-                if (result.code == 200) {
-                    $('#upd-financingExpenditure-window').window('close');
-                    getListFinancingExpenditure();
-                }
-            },
-            error: function (err) {
-                alert("错误！")
-            },
-            complete: function (XMLHttpRequest, status) {
-                $.messager.progress('close');
-                if (status == 'timeout') {
-                    alert("网络超时，请稍后再试。");
-                }
             }
-        })
+        }, function (result) {
+            alert(result.msg);
+            if (result.code == 200) {
+                $('#upd-financingExpenditure-window').window('close');
+                getListFinancingExpenditure();
+            }
+        });
     } else {
         alert("请输入项目名称")
     }
@@ -234,44 +191,23 @@ function addFinancingExpenditure() {
     var params = JSON.parse(formToJson(decodeURIComponent(form_, true)))
     if (params.financingExpenditure1 != "") {
         
-        $.ajax({
-            type: 'Post',
-            timeout: 5000,
+        ajaxUtil({
             url: "web_service/financing.asmx/addExpenditure",
-            beforeSend: function () {
-                $.messager.progress({
-                    top: 150,
-                    title: '提示',
-                    msg: '正在加载',
-                    text: ''
-                });
-            },
+            loading: true,
             data: {
                 expenditureJson: JSON.stringify({
                     id: 0,
                     financingExpenditure1: params.financingExpenditure1,
                     company: ''
                 })
-            },
-            dataType: "xml",
-            success: function (data) {
-                var result = getJson(data);
-                alert(result.msg);
-                if (result.code == 200) {
-                    $('#add-financingExpenditure-window').window('close');
-                    getListFinancingExpenditure();
-                }
-            },
-            error: function (err) {
-                alert("错误！")
-            },
-            complete: function (XMLHttpRequest, status) {
-                $.messager.progress('close');
-                if (status == 'timeout') {
-                    alert("网络超时，请稍后再试。");
-                }
             }
-        })
+        }, function (result) {
+            alert(result.msg);
+            if (result.code == 200) {
+                $('#add-financingExpenditure-window').window('close');
+                getListFinancingExpenditure();
+            }
+        });
     } else {
         alert("请输入项目名称")
     }
@@ -282,39 +218,19 @@ function delFinancingExpenditure(rows) {
     for (var i = 0 ; i < rows.length; i++) {
         ids.push(rows[i].id)
     }
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+
+    ajaxUtil({
         url: "web_service/financing.asmx/delExpenditure",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
+        loading: true,
         data: {
             idsJson: JSON.stringify(ids)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                alert(result.msg);
-                getListFinancingExpenditure();
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
-    })
+    }, function (result) {
+        alert(result.msg);
+        if (result.code == 200) {
+            getListFinancingExpenditure();
+        }
+    });
 }
 
 
@@ -324,38 +240,17 @@ function delFinancingExpenditure(rows) {
 **/
 function getListFinancingIncome() {
     
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/financing.asmx/getIncomeList",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
+        loading: true,
         data: {
             financePageJson: JSON.stringify(pageFinancingIncome)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                setTableFinancingIncome(result.data)
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
-    })
+    }, function (result) {
+        if (result.code == 200) {
+            setTableFinancingIncome(result.data)
+        }
+    });
 }
 
 function setTableFinancingIncome(data) {
@@ -451,40 +346,20 @@ function updFinancingIncome() {
     if (params.financingIncome1 != "") {
         var item = $('#data-table-financingIncome').datagrid("getSelections")[0];
         item.financingIncome1 = params.financingIncome1;
-        $.ajax({
-            type: 'Post',
-            timeout: 5000,
+
+        ajaxUtil({
             url: "web_service/financing.asmx/updIncome",
-            beforeSend: function () {
-                $.messager.progress({
-                    top: 150,
-                    title: '提示',
-                    msg: '正在加载',
-                    text: ''
-                });
-            },
+            loading: true,
             data: {
                 newIncome: JSON.stringify(item)
-            },
-            dataType: "xml",
-            success: function (data) {
-                var result = getJson(data);
-                alert(result.msg);
-                if (result.code == 200) {
-                    $('#upd-financingIncome-window').window('close');
-                    getListFinancingIncome();
-                }
-            },
-            error: function (err) {
-                alert("错误！")
-            },
-            complete: function (XMLHttpRequest, status) {
-                $.messager.progress('close');
-                if (status == 'timeout') {
-                    alert("网络超时，请稍后再试。");
-                }
             }
-        })
+        }, function (result) {
+            alert(result.msg);
+            if (result.code == 200) {
+                $('#upd-financingIncome-window').window('close');
+                getListFinancingIncome();
+            }
+        });
     } else {
         alert("请输入项目名称")
     }
@@ -494,44 +369,24 @@ function addFinancingIncome() {
     var form_ = $('#add-financingIncome-form').serialize();
     var params = JSON.parse(formToJson(decodeURIComponent(form_, true)))
     if (params.financingIncome1 != "") {
-        $.ajax({
-            type: 'Post',
-            timeout: 5000,
+
+        ajaxUtil({
             url: "web_service/financing.asmx/addIncome",
-            beforeSend: function () {
-                $.messager.progress({
-                    top: 150,
-                    title: '提示',
-                    msg: '正在加载',
-                    text: ''
-                });
-            },
+            loading: true,
             data: {
                 incomeJson: JSON.stringify({
                     id: 0,
                     financingIncome1: params.financingIncome1,
                     company: ''
                 })
-            },
-            dataType: "xml",
-            success: function (data) {
-                var result = getJson(data);
-                alert(result.msg);
-                if (result.code == 200) {
-                    $('#add-financingIncome-window').window('close');
-                    getListFinancingIncome();
-                }
-            },
-            error: function (err) {
-                alert("错误！")
-            },
-            complete: function (XMLHttpRequest, status) {
-                $.messager.progress('close');
-                if (status == 'timeout') {
-                    alert("网络超时，请稍后再试。");
-                }
             }
-        })
+        }, function (result) {
+            alert(result.msg);
+            if (result.code == 200) {
+                $('#add-financingIncome-window').window('close');
+                getListFinancingIncome();
+            }
+        });
     } else {
         alert("请输入项目名称")
     }
@@ -542,39 +397,19 @@ function delFinancingIncome(rows) {
     for (var i = 0 ; i < rows.length; i++) {
         ids.push(rows[i].id)
     }
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+
+    ajaxUtil({
         url: "web_service/financing.asmx/delIncome",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
+        loading: true,
         data: {
             idsJson: JSON.stringify(ids)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                alert(result.msg);
-                getListFinancingIncome();
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
-    })
+    }, function (result) {
+        alert(result.msg);
+        if (result.code == 200) {
+            getListFinancingIncome();
+        }
+    });
 }
 
 
@@ -584,41 +419,17 @@ function delFinancingIncome(rows) {
 **/
 function getListInvestmentExpenditure() {
     
-    $.ajax({
-        type: 'Post',
-        timeout: 5000,
+    ajaxUtil({
         url: "web_service/investment.asmx/getExpenditureList",
-        beforeSend: function () {
-            $.messager.progress({
-                top: 150,
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
+        loading: true,
         data: {
             financePageJson: JSON.stringify(pageInvestmentExpenditure)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                setTableInvestmentExpenditure(result.data)
-            }
-        },
-        error: function (err) {
-            alert("错误！")
-        },
-        complete: function (XMLHttpRequest, status) {
-            $.messager.progress('close');
-            if (status == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            }
         }
-    })
+    }, function (result) {
+        if (result.code == 200) {
+            setTableInvestmentExpenditure(result.data)
+        }
+    });
 }
 
 function setTableInvestmentExpenditure(data) {
@@ -714,40 +525,20 @@ function updInvestmentExpenditure() {
     if (params.investmentExpenditure1 != "") {
         var item = $('#data-table-investmentExpenditure').datagrid("getSelections")[0];
         item.investmentExpenditure1 = params.investmentExpenditure1;
-        $.ajax({
-            type: 'Post',
-            timeout: 5000,
+
+        ajaxUtil({
             url: "web_service/investment.asmx/updExpenditure",
-            beforeSend: function () {
-                $.messager.progress({
-                    top: 150,
-                    title: '提示',
-                    msg: '正在加载',
-                    text: ''
-                });
-            },
+            loading: true,
             data: {
                 newExpenditure: JSON.stringify(item)
-            },
-            dataType: "xml",
-            success: function (data) {
-                var result = getJson(data);
-                alert(result.msg);
-                if (result.code == 200) {
-                    $('#upd-investmentExpenditure-window').window('close');
-                    getListInvestmentExpenditure();
-                }
-            },
-            error: function (err) {
-                alert("错误！")
-            },
-            complete: function (XMLHttpRequest, status) {
-                $.messager.progress('close');
-                if (status == 'timeout') {
-                    alert("网络超时，请稍后再试。");
-                }
             }
-        })
+        }, function (result) {
+            alert(result.msg);
+            if (result.code == 200) {
+                $('#upd-investmentExpenditure-window').window('close');
+                getListInvestmentExpenditure();
+            }
+        });
     } else {
         alert("请输入项目名称")
     }

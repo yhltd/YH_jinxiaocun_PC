@@ -75,5 +75,9 @@
     <div id="instruction-dialog" style="padding: 40px;display: none;">
         <div style="font-weight: bold">云合未来财务系统-使用说明</div>
     </div>
+
+    <div id="alert" class="alert">
+        <div class="alert-close">X</div>
+    </div>
 </body>
 </html>

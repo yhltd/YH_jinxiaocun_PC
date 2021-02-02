@@ -197,6 +197,13 @@ namespace Web
 
         public List<ming_xi_info> ri_qi_select(string time_qs, string time_jz, string zh_name, string gs_name)
         {
+            if (time_qs.Equals(string.Empty)) {
+                time_qs = "1999-01-01";
+            }
+            if (time_jz.Equals(string.Empty)) {
+                time_jz = "2999-12-31";
+            }
+
             clsAllnew buiness = new clsBuiness.clsAllnew();
             List<ming_xi_info> list = buiness.ri_qi_select(time_qs, time_jz, zh_name, gs_name);
             return list;

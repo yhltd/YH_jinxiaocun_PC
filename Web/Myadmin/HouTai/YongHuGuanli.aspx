@@ -93,6 +93,10 @@
                 }
             }
         }
+
+        function shuaxin() {
+            window.location.href = window.location.href;
+        }
         
         function queren( id,gongsi )
         {
@@ -108,6 +112,7 @@
                     success: function (data) {
                         if (data == '1') {
                             alert("删除成功")
+                            shuaxin();
                         } else {
                             alert("删除失败")
                         }
@@ -145,11 +150,9 @@
                     $('.container,header,footer', iframeBody).remove();
                 },
                 yes: function (index) {
-                    console.log(11556156);
-                    shwoAddrs();
                 },
                 cancel: function () {
-                    console.log(11556156);
+                    shuaxin();
                 }
             })
         }
@@ -175,6 +178,7 @@
                     shwoAddrs();
                 },
                 cancel: function () {
+                    shuaxin();
                 }
             })
         }

@@ -65,5 +65,3 @@ D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\clsBuiness\bin\Debug\SDZdb.pdb
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.csprojResolveAssemblyReference.cache
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\clsBuiness\bin\Debug\clsBuiness.dll.CodeAnalysisLog.xml
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\clsBuiness\bin\Debug\clsBuiness.dll.lastcodeanalysissucceeded

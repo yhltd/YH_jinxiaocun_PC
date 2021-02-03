@@ -1,0 +1,25 @@
+﻿#new
+{
+    display: flex;
+}
+.accordion-item
+{
+    height: 100%;
+    overflow:auto;
+    padding: 10px;
+}
+.accordion-item-main
+{
+    display: flex;
+    width: 100%;
+    height: 80%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .accordion-item-main > div
+    {
+        width: 30%;
+        height: 100%;
+
+    }

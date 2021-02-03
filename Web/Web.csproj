@@ -2739,6 +2739,7 @@
       <LastGenOutput>SoftTime.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
+    <None Include="Properties\PublishProfiles\jxc_test.pubxml" />
     <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />
     <Content Include="Scripts\layui\font\iconfont.eot" />
     <Content Include="Scripts\layui\font\iconfont.ttf" />

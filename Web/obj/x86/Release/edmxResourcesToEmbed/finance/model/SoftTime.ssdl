@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bds28428944_dbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="bds28428944_dbModelStoreContainer">
+    <EntitySet Name="control_soft_time" EntityType="bds28428944_dbModel.Store.control_soft_time" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="control_soft_time">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="255" />
+    <Property Name="starttime" Type="nchar" MaxLength="255" />
+    <Property Name="endtime" Type="nchar" MaxLength="255" />
+    <Property Name="soft_name" Type="nchar" MaxLength="255" />
+    <Property Name="denglushijian" Type="nchar" MaxLength="255" />
+    <Property Name="password" Type="nchar" MaxLength="255" />
+    <Property Name="pid" Type="nchar" MaxLength="255" />
+    <Property Name="mark1" Type="nchar" MaxLength="255" />
+    <Property Name="mark2" Type="nchar" MaxLength="255" />
+    <Property Name="mark3" Type="nchar" MaxLength="255" />
+    <Property Name="mark4" Type="nchar" MaxLength="255" />
+    <Property Name="mark5" Type="nchar" MaxLength="255" />
+  </EntityType>
+</Schema>

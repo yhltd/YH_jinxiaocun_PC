@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StockModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ServerEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="yh_jinxiaocun_chanpin" EntityType="StockModel.yh_jinxiaocun_chanpin" />
+    <EntitySet Name="yh_jinxiaocun_chuhuofang" EntityType="StockModel.yh_jinxiaocun_chuhuofang" />
+    <EntitySet Name="yh_jinxiaocun_chuhuofang1" EntityType="StockModel.yh_jinxiaocun_chuhuofang1" />
+    <EntitySet Name="yh_jinxiaocun_jichuziliao" EntityType="StockModel.yh_jinxiaocun_jichuziliao" />
+    <EntitySet Name="yh_jinxiaocun_jinhuofang" EntityType="StockModel.yh_jinxiaocun_jinhuofang" />
+    <EntitySet Name="yh_jinxiaocun_jinhuofang1" EntityType="StockModel.yh_jinxiaocun_jinhuofang1" />
+    <EntitySet Name="yh_jinxiaocun_kucun" EntityType="StockModel.yh_jinxiaocun_kucun" />
+    <EntitySet Name="yh_jinxiaocun_mingxi" EntityType="StockModel.yh_jinxiaocun_mingxi" />
+    <EntitySet Name="yh_jinxiaocun_qichushu" EntityType="StockModel.yh_jinxiaocun_qichushu" />
+    <EntitySet Name="yh_jinxiaocun_user" EntityType="StockModel.yh_jinxiaocun_user" />
+    <EntitySet Name="yh_jinxiaocun_yongliaosheding" EntityType="StockModel.yh_jinxiaocun_yongliaosheding" />
+    <EntitySet Name="yh_jinxiaocun_zhengli" EntityType="StockModel.yh_jinxiaocun_zhengli" />
+  </EntityContainer>
+  <EntityType Name="yh_jinxiaocun_chanpin">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="C_openid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="bigImg" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="finduser" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gongsi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="value0" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="value1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="value2" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="value3" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="value4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="value5" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_chuhuofang">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_openid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="finduser" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gongsi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lianxidizhi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lianxifangshi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="C_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_chuhuofang1">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="C_openid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="finduser" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gongsi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lianxidizhi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lianxifangshi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_jichuziliao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="sp_dm" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lei_bie" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="dan_wei" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="shou_huo" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gong_huo" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gs_name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="mark1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_jinhuofang">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="C_openid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="finduser" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gongsi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lianxidizhi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lianxifangshi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_jinhuofang1">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="C_openid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="finduser" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gongsi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lianxidizhi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lianxifangshi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_kucun">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="shou_jia" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="jin_jia" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lei_bie" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="mx_lb" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="shu_liang" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="jia_ge" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ri_qi" Type="DateTime" Precision="0" />
+    <Property Name="gong_huo" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="shou_huo" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="dan_hao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="tou_xiang" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="sp_dm" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="bei_zhu" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_mingxi">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="C_openid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpjj" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cplb" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpname" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpsj" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpsl" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="finduser" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gongsi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="mxtype" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="orderid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="shijian" Type="DateTime" Precision="0" />
+    <Property Name="sp_dm" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="shou_h" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_qichushu">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="C_openid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpjg" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpjj" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cplb" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpname" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpsj" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="cpsl" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="mxtype" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="shijian" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="mark1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_user">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AdminIS" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Btype" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Createdate" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="C_openid" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gongsi" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="jigoudaima" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="password" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="mi_bao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_yongliaosheding">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="sp_dm" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="yuan_liao_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="yuan_liao_sl" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="yl_tx" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_zhengli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="sp_dm" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="lei_bie" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="dan_wei" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

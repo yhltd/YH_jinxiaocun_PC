@@ -193,22 +193,22 @@
 
                     <%
                
-                        List<ming_xi_info> ming_xi_select_dd = Session["ming_xi_select_dd"] as List<ming_xi_info>;
+                        System.Collections.Generic.List<Web.Server.yh_jinxiaocun_mingxi> ming_xi_select_dd = Session["ming_xi_select_dd"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_mingxi>;
                         if (ming_xi_select_dd != null)
                         {
                             for (int i = 0; i < ming_xi_select_dd.Count; i++)
                             {                          
                     %>
-                    <tr id="Tr1" class="tr_<%=ming_xi_select_dd[i].Openid %>">
+                    <tr id="Tr1" class="tr_<%=ming_xi_select_dd[i]._openid %>">
                         <td class="bg_bj"><%=(i+1) %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].Orderid %></td>
+                        <td class="bg_bj"><%=ming_xi_select_dd[i].orderid %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].sp_dm %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].Cpname %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].Cplb %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].Cpsj %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].Cpsl %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].Mxtype %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].Shijian %></td>
+                        <td class="bg_bj"><%=ming_xi_select_dd[i].cpname %></td>
+                        <td class="bg_bj"><%=ming_xi_select_dd[i].cplb %></td>
+                        <td class="bg_bj"><%=ming_xi_select_dd[i].cpsj %></td>
+                        <td class="bg_bj"><%=ming_xi_select_dd[i].cpsl %></td>
+                        <td class="bg_bj"><%=ming_xi_select_dd[i].mxtype %></td>
+                        <td class="bg_bj"><%=ming_xi_select_dd[i].shijian %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].zh_name %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].shou_h %></td>
                     </tr>

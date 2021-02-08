@@ -497,7 +497,7 @@ function setTableInvestmentExpenditure(data) {
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
-            { field: 'investmentExpenditure1', align: 'center', title: '经营收入', width: 300 },
+            { field: 'investmentExpenditure1', align: 'center', title: '筹资支出', width: 300 },
         ]]
     })
 
@@ -737,7 +737,7 @@ function setTableInvestmentIncome(data) {
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
-            { field: 'investmentIncome1', align: 'center', title: '经营收入', width: 300 },
+            { field: 'investmentIncome1', align: 'center', title: '筹资收入', width: 300 },
         ]]
     })
 
@@ -1002,7 +1002,7 @@ function setTableManagementExpenditure(data) {
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
-            { field: 'managementExpenditure1', align: 'center', title: '经营收入', width: 300 },
+            { field: 'managementExpenditure1', align: 'center', title: '投资收入', width: 300 },
         ]]
     })
 
@@ -1268,7 +1268,7 @@ function setTableManagementIncome(data) {
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
-            { field: 'managementIncome1', align: 'center', title: '经营收入', width: 300 },
+            { field: 'managementIncome1', align: 'center', title: '投资支出', width: 300 },
         ]]
     })
 

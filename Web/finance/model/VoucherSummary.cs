@@ -18,7 +18,7 @@ namespace Web.finance.model
         public string word { get; set; }
         public string no { get; set; }
         public string @abstract { get; set; }
-        public string code { get; set; }
+        public int code { get; set; }
         public string department { get; set; }
         public string expenditure { get; set; }
         public string note { get; set; }

@@ -152,7 +152,7 @@
                         <th class="auto-style1" style="width: 70px">功能</th>
                     </tr>
                     <%
-                        List<zl_and_jc_info> zl_and_jc_info = Session["zl_and_jc_select"] as List<zl_and_jc_info>;
+                        System.Collections.Generic.List<Web.Server.yh_jinxiaocun_zhengli> zl_and_jc_info = Session["zl_and_jc_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_zhengli>;
                         if (zl_and_jc_info != null)
                         {
                             for (int i = 0; i < zl_and_jc_info.Count; i++)
@@ -180,13 +180,6 @@
                     %>
                 </table>
             </div>
-
-            <%--<div style="margin-left: 41%; margin-top: 4%;">
-                <asp:Button CssClass="input_tr" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
-                <asp:Button CssClass="input_tr" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
-                <asp:Button CssClass="input_tr" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
-                <asp:Button CssClass="input_tr" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
-            </div>--%>
         </div>
     </form>
 </body>

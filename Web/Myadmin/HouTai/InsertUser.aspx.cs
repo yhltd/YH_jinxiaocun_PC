@@ -6,35 +6,44 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using clsBuiness;
 using SDZdb;
+using Web.Server;
 namespace Web.Myadmin.HouTai
 {
     public partial class InsertUser : System.Web.UI.Page
     {
-        protected clsAllnew can;
+        private static yh_jinxiaocun_user user;
+
         private string type;
         private string id;
         private string gongsi;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            user = (yh_jinxiaocun_user)Session["user"];
+            if (user == null)
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
+            else
             {
                 if (Request["type"] != null)
                 {
                     type = Request["type"].ToString();
-                    if (type == "update")
+                    Name.ReadOnly = type == "update";
+                    if (Name.ReadOnly)
                     {
                         id = Request["id"].ToString();
                         gongsi = Request["gs"].ToString();
-                        can = new clsAllnew();
-                        userTable ut = can.selectUser(gongsi).Find(f => f.name.Equals(id) && f.gongsi.Equals(gongsi));
+                        UserModel u = new UserModel();
+                        yh_jinxiaocun_user ut = u.getList(gongsi).Find(f => f._id.Equals(id) && f.gongsi.Equals(gongsi));
                         Name.Text = ut.name;
+                        
                         Pwd.Text = ut.password;
                         Qrpwd.Text = ut.password;
                         if (ut.AdminIS.Equals("true"))
                         {
                             quanxian.Items[0].Selected = true;
                         }
-                        else 
+                        else
                         {
                             quanxian.Items[1].Selected = true;
                         }
@@ -47,6 +56,7 @@ namespace Web.Myadmin.HouTai
         {
             try
             {
+                UserModel u = new UserModel();
                 string type ="";
                 if (Request["type"] != null)
                 {
@@ -54,27 +64,23 @@ namespace Web.Myadmin.HouTai
                 }
                 if (!type.Equals(string.Empty) && type.Equals("insert"))
                 {
-                    if (Pwd.Text.Equals(Qrpwd.Text))
+                    if (Request.Form["Pwd"].ToString().Equals(Request.Form["Qrpwd"].ToString()))
                     {
-                        can = new clsAllnew();
-                        userTable ut = new userTable();
-                        ut.name = Name.Text;
-                        ut.password = Pwd.Text;
-                        ut._id = Name.Text;
-                        if (Session["gs_name"] != null)
-                        {
-                            ut.gongsi = Session["gs_name"].ToString();
-                        }
+                        yh_jinxiaocun_user uer = new yh_jinxiaocun_user();
+                        uer.name = Request.Form["Name"];
+                        uer.password = Request.Form["Pwd"];
+                        uer._id = Request.Form["Name"];
+                        uer.gongsi = user.gongsi;
                         if (quanxian.Items[quanxian.SelectedIndex].Text.Equals("管理员"))
                         {
-                            ut.AdminIS = "true";
+                            uer.AdminIS = "true";
                         }
                         else
                         {
-                            ut.AdminIS = "false";
+                            uer.AdminIS = "false";
                         }
 
-                        int pd = can.add_User(ut);
+                        int pd = u.add(uer);
                         if (pd > 0)
                         {
                             Response.Write("<script>alert('添加成功！');layer.close(layer.index);</script>");
@@ -87,27 +93,23 @@ namespace Web.Myadmin.HouTai
                 }
                 else 
                 {
-                    if (Pwd.Text.Equals(Qrpwd.Text))
+                    if (Request.Form["Pwd"].ToString().Equals(Request.Form["Qrpwd"].ToString()))
                     {
-                        can = new clsAllnew();
-                        userTable ut = new userTable();
-                        ut._id = id;
-                        ut.name = Name.Text;
-                        ut.password = Pwd.Text;
-                        ut._id = Name.Text;
-                        if (Session["gs_name"] != null)
-                        {
-                            ut.gongsi = Session["gs_name"].ToString();
-                        }
+                        yh_jinxiaocun_user uer = new yh_jinxiaocun_user();
+                        uer._id = id;
+                        uer.name = Request.Form["Name"];
+                        uer.password = Request.Form["Pwd"];
+                        uer._id = Request.Form["Name"];
+                        uer.gongsi = user.gongsi;
                         if (quanxian.Items[quanxian.SelectedIndex].Text.Equals("管理员"))
                         {
-                            ut.AdminIS = "true";
+                            uer.AdminIS = "true";
                         }
                         else
                         {
-                            ut.AdminIS = "false";
+                            uer.AdminIS = "false";
                         }
-                        int pd = can.up_User(ut);
+                        int pd = u.update(uer);
                         if (pd > 0)
                         {
                             Response.Write("<script>alert('修改成功！');layer.close(layer.index);</script>");
@@ -119,9 +121,9 @@ namespace Web.Myadmin.HouTai
                     }
                 }
             }
-            catch (Exception ex) 
+            catch
             {
-                throw ex;
+                Response.Write("<script>alert('错误！')</script>");
             }
         }
     }

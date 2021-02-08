@@ -49,26 +49,37 @@ namespace Web.finance.model
         /// <param name="financePage">分页对象</param>
         /// <param name="company">公司</param>
         /// <returns>有pageList的分页对象</returns>
-        public FinancePage<VoucherSummaryItem> getList(FinancePage<VoucherSummaryItem> financePage, string company) {
-            //公司
-            var companyParam = new SqlParameter("@company", company);
-            //查询最小行数
-            var minPageParam = new SqlParameter("@minPage", financePage.getMin());
-            //查询最大行数
-            var maxPageParam = new SqlParameter("@maxPage", financePage.getMax());
-
-            //查询条件
-            //凭证字
-            var wordParam = new SqlParameter("@word", financePage.selectParamsMap["word"]);
+        public FinancePage<VoucherSummaryItem> getList(FinancePage<VoucherSummaryItem> financePage, string company)         {
             //年
-            var yearParam = new SqlParameter("@year", financePage.selectParamsMap["year"]);
+            string year = financePage.selectParamsMap["year"];
             //月
-            var monthParam = new SqlParameter("@month", financePage.selectParamsMap["month"]);
+            string month = financePage.selectParamsMap["month"];
 
-            string sql = "select * from (select isnull((select name from Accounting where code = LEFT (vs.code, 4)),'')+isnull((select '-'+name from Accounting where code = LEFT (vs.code, 6) and code != LEFT (vs.code, 4)),'')+isnull((select '-'+name from Accounting where code = LEFT (vs.code, 8) and code != LEFT (vs.code, 6)),'') as fullName,vs.id,vs.word,vs.[no],voucherDate,vs.abstract,vs.code,vs.department,vs.expenditure,vs.note,vs.man,ac.name,isnull(ac.load,0) as load,isnull(ac.borrowed,0) as borrowed,vs.money,vs.real,ROW_NUMBER() over(order by vs.id) rownum from VoucherSummary as vs left join Accounting as ac on vs.code = ac.code and ac.company = @company where vs.company = @company) t where t.rownum > @minPage and t.rownum < @maxPage and t.word like '%'+@word+'%' and year(t.voucherDate) like '%'+@year+'%' and month(t.voucherDate) like '%'+@month+'%'";
+            var @params = new SqlParameter[6]{
+                //公司
+                new SqlParameter("@company", company),
+                //查询最小行数
+                new SqlParameter("@minPage", financePage.getMin()),
+                //查询最大行数
+                new SqlParameter("@maxPage", financePage.getMax()),
+                //凭证字
+                new SqlParameter("@word", financePage.selectParamsMap["word"]),
+                //年
+                new SqlParameter("@year", year),
+                //月
+                new SqlParameter("@month", month)
+            };
 
-            var result = fin.Database.SqlQuery<VoucherSummaryItem>(sql, companyParam, minPageParam, maxPageParam, wordParam, yearParam, monthParam);
-            string sqlstring = fin.Database.SqlQuery<VoucherSummaryItem>(sql, companyParam, minPageParam, maxPageParam, wordParam, yearParam, monthParam).ToString();
+            string sql = "select * from (select isnull((select name from Accounting where code = LEFT (vs.code, 4)),'')+isnull((select '-'+name from Accounting where code = LEFT (vs.code, 6) and code != LEFT (vs.code, 4)),'')+isnull((select '-'+name from Accounting where code = LEFT (vs.code, 8) and code != LEFT (vs.code, 6)),'') as fullName,vs.id,vs.word,vs.[no],voucherDate,vs.abstract,vs.code,vs.department,vs.expenditure,vs.note,vs.man,ac.name,isnull(ac.load,0) as load,isnull(ac.borrowed,0) as borrowed,vs.money,vs.real,ROW_NUMBER() over(order by vs.id) rownum from VoucherSummary as vs left join Accounting as ac on vs.code = ac.code and ac.company = @company where vs.company = @company) t where t.rownum > @minPage and t.rownum < @maxPage and t.word like '%'+@word+'%'";
+
+            if (!year.Equals(string.Empty)) {
+                sql += " and year(t.voucherDate) = @year";
+            }
+            if (!month.Equals(string.Empty)) {
+                sql += " and month(t.voucherDate) = @month";
+            }
+
+            var result = fin.Database.SqlQuery<VoucherSummaryItem>(sql, @params);
             try
             {
                 financePage.pageList = result.ToList();

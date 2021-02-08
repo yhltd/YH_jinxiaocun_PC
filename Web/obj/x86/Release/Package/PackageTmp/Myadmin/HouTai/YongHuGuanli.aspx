@@ -222,7 +222,7 @@
                             <td class='item_td'><%#Eval("name") %></td>
                             <td class='item_td'><%#Eval("password") %></td>
                             <td class='item_td'><%#Eval("gongsi") %></td>
-                            <td class='item_td'><%#Eval("AdminIS") %></td>
+                            <td class='item_td'><%#Eval("AdminIS").Equals("true") ? "管理员" : "普通用户" %></td>
                             <td class='item_td'>
                                 <input type="button" value="删除" <%--data-id ="<%#Eval("_id") %>" data-gongsi ="<%#Eval("gongsi")%>" --%> onclick="queren('<%#Eval("_id") %>','<%#Eval("gongsi") %>')" class="table_bt" id="BTN_DELETE"  />
 

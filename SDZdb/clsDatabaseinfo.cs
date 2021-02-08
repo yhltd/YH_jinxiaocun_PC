@@ -134,19 +134,28 @@ namespace SDZdb
 
     public class jxc_z_info
     {
-        public string code { get; set; }
+        public string sp_dm { get; set; }
         public string name { get; set; }
-        public string type { get; set; }
-        public string num1 { get; set; }
-        public string price1 { get; set; }
-        public string num2 { get; set; }
-        public string price2 { get; set; }
-        public string num3 { get; set; }
-        public string price3 { get; set; }
-        public string num4 { get; set; }
-        public string price4 { get; set; }
+        public string lei_bie { get; set; }
+        public string jq_cpsl { get; set; }
+        public string jq_price { get; set; }
+        public string mx_ruku_cpsl { get; set; }
+        public string mx_ruku_price { get; set; }
+        public string mx_chuku_cpsl { get; set; }
+        public string mx_chuku_price { get; set; }
+        public string jc_sl { get; set; }
+        public string jc_price { get; set; }
 
-        public string stock { get; set; }
+        public string stock { 
+            get
+            {
+                return "25";
+            }
+            set
+            {
+                this.stock = value;
+            }
+        }
     }
 
     public class rc_ku_info
@@ -185,7 +194,6 @@ namespace SDZdb
         public string id { get; set; }
         public string zh_name { get; set; }
         public string gs_name { get; set; }
-
     }
 
     public class yong_liao_set_info

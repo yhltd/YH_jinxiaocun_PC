@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bds28428944_dbModelStoreContainer" CdmEntityContainer="bds28428944_dbEntities">
+    <EntitySetMapping Name="control_soft_time">
+      <EntityTypeMapping TypeName="bds28428944_dbModel.control_soft_time">
+        <MappingFragment StoreEntitySet="control_soft_time">
+          <ScalarProperty Name="C_id" ColumnName="_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="starttime" ColumnName="starttime" />
+          <ScalarProperty Name="endtime" ColumnName="endtime" />
+          <ScalarProperty Name="soft_name" ColumnName="soft_name" />
+          <ScalarProperty Name="denglushijian" ColumnName="denglushijian" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="mark1" ColumnName="mark1" />
+          <ScalarProperty Name="mark2" ColumnName="mark2" />
+          <ScalarProperty Name="mark3" ColumnName="mark3" />
+          <ScalarProperty Name="mark4" ColumnName="mark4" />
+          <ScalarProperty Name="mark5" ColumnName="mark5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

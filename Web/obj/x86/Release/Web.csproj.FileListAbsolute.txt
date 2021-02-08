@@ -6,7 +6,6 @@ D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\clsBuiness.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\EntityFramework.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\ICSharpCode.SharpZipLib.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\MySql.Data.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\MySql.Data.Entity.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Newtonsoft.Json.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.OOXML.dll
@@ -34,3 +33,4 @@ D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Htt
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\x86\Release\Web.csprojResolveAssemblyReference.cache
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\x86\Release\Web.dll
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\x86\Release\Web.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\MySql.Data.Entity.dll

@@ -21,8 +21,8 @@
                 dataType: "json",
                 data: {},
                 success: function (data) {
-                    $("#sp_cplb" + row).val(data[0].leibie)
-                    $("#sp_name" + row).val(data[0].name)
+                    $("#sp_cplb" + row).val(data.lei_bie)
+                    $("#sp_name" + row).val(data.name)
                 },
                 error: function (err) {
 
@@ -73,28 +73,17 @@
                 var insertStr = "<tr id='del_row" + row + "' >"
                                + "<td style='font-size: 14px;padding-left: 0.5%;width: 18px;'>" + (rowLength) + "</td>"
                                + "<td ><input type='text' class='input_tr' style='width:147px;margin:1px'  id='sp_name"+row+"' name='cpname" + row + "' ></input></td>"
-                               //+ "<td class='bg_bj_dm'><input type='text' style='width:318px;margin:1px' id='sp_dm' class='input_tr' name='cpname" + row + "' ></input></td>"
                                + "<td class='bg_bj_dm'>"
                                + "<select class='input_tr' id='sp_dm" + row + "' name='cpid" + row + "' onchange='bhhq(" + row + ")'>"
                             + "<option>选择编号</option>" 
                             +<%
-                                List<zl_and_jc_info> jichu = Session["jichu"] as  List<zl_and_jc_info> ;
+        System.Collections.Generic.List<Web.ServerEntity.JinChuZiLiaoItem> jichu = Session["jichu"] as System.Collections.Generic.List<Web.ServerEntity.JinChuZiLiaoItem>;
                                 if (jichu!=null){
                                     for (int ji = 0; ji < jichu.Count; ji++) 
                                     {
-                                        if (jichu[ji].id != "") 
-                                        {
-                                            if(ji == 0){
                                         %>
-                                            + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>" 
-                                            + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>"      
-                                        <%
-                                            }else{
-                                            %>
                                             + "<option value ='<%=jichu[ji].sp_dm %>'><%=jichu[ji].sp_dm %></option>"
                                             <%
-                                            }
-                                        }
                                     }
                                 }
                                  %>
@@ -108,14 +97,10 @@
                                + "</tr>";
                 $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
                 row++;
+                $('#row_i1').val(row);
             });
-
-            //$("#row_del_htl" + i).click(function () {
-            //    $("#del_row" + i + "").remove();
-            //});
             function click(obj) {
                 alert($(obj).context.innerHTML);
-
             }
 
         });
@@ -238,7 +223,7 @@
                         <td class="auto-style1" style="width: 100px;">功能</td>
                     </tr>
                     <%
-                        List<qi_chu_info> qi_chu_select = Session["qi_chu_select"] as List<qi_chu_info>;
+                        System.Collections.Generic.List<Web.Server.yh_jinxiaocun_qichushu> qi_chu_select = Session["qi_chu_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_qichushu>;
                         if (qi_chu_select != null)
                         {
                             for (int i = 0; i < qi_chu_select.Count; i++)
@@ -247,20 +232,20 @@
                     <tr id="del_row_cs<%=i%>">
                         <%--style="font-size: 90%; padding-left: 2%;"--%>
                         <td style="font-size: 14px; padding-left: 0.5%; width: 18px;"><%=(i+1) %>
-                            <input class="input_tr" type="hidden" id="id<%=i%>" name="id<%=i%>" value="<%=qi_chu_select[i].Id%>" />
+                            <input class="input_tr" type="hidden" id="id<%=i%>" name="id<%=i%>" value="<%=qi_chu_select[i]._id%>" />
                         </td>
                         <td class="bg_bj">
-                            <input type="text" class="input_tr" id="sp_name" name="cpname_cs<%=i%>" value="<%=qi_chu_select[i].Cpname%>" /></td>
+                            <input type="text" class="input_tr" id="sp_name" name="cpname_cs<%=i%>" value="<%=qi_chu_select[i].cpname%>" /></td>
                         <td class="bg_bj">
-                            <input type="text" class="input_tr" id="Text1" name="cpid_cs<%=i%>" value="<%=qi_chu_select[i].Cpid%>" /></td>
+                            <input type="text" class="input_tr" id="Text1" name="cpid_cs<%=i%>" value="<%=qi_chu_select[i].cpid%>" /></td>
                         <td class="bg_bj">
-                            <input type="text" class="input_tr" id="Text2" name="cplb_cs<%=i%>" value="<%=qi_chu_select[i].Cplb%>" /></td>
+                            <input type="text" class="input_tr" id="Text2" name="cplb_cs<%=i%>" value="<%=qi_chu_select[i].cplb%>" /></td>
                         <td class="bg_bj">
-                            <input type="text" class="input_tr" onchange="getJs(<%=i%>)" id="ck_dj<%=i%>" name="cpsj_cs<%=i%>" value="<%=qi_chu_select[i].Cpsj%>" /></td>
+                            <input type="text" class="input_tr" onchange="getJs(<%=i%>)" id="ck_dj<%=i%>" name="cpsj_cs<%=i%>" value="<%=qi_chu_select[i].cpsj%>" /></td>
                         <td class="bg_bj">
-                            <input type="text" class="input_tr" onchange="getJs(<%=i%>)" id="ck_sl<%=i%>" name="cpsl_cs<%=i%>" value="<%=qi_chu_select[i].Cpsl%>" /></td>
+                            <input type="text" class="input_tr" onchange="getJs(<%=i%>)" id="ck_sl<%=i%>" name="cpsl_cs<%=i%>" value="<%=qi_chu_select[i].cpsl%>" /></td>
                         <td class="bg_bj" id="dj_js<%=i%>">
-                            <%=int.Parse(qi_chu_select[i].Cpsj)*int.Parse(qi_chu_select[i].Cpsl)%>
+                            <%=qi_chu_select[i].cpsj == "" || qi_chu_select[i].cpsl == "" ? 0 : int.Parse(qi_chu_select[i].cpsj)*int.Parse(qi_chu_select[i].cpsl)%>
                         </td>
                         <td class="bg_bj" style="width: 43px;">
                             <input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>

@@ -73,13 +73,9 @@
         {
             width: 150px;
             border: none;
-            height: 64%;
+            height: 30px;
             border: 1px solid #F0F0F0;
             border-radius: 3px;
-        }
-        .right
-        {
-            margin-left: 127px;
         }
         .none
         {
@@ -95,22 +91,34 @@
             border-radius: 2px;
             cursor: pointer;
         }
+        .bottom
+        {
+            top: 49px
+        }
+        .top-fun-item
+        {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
             <div class="top-fun">
-                <label class="top-text">商品代码：</label>
-                <input type="text" class="input_select" name="code" />
-                <label class="top-text">起始日期：</label>
-                <input type="date" class="time_select" name="time_start" />
-                <label class="top-text">截止日期：</label>
-                <input type="date" class="time_select" name="time_end" />
-                <asp:Button ID="Button1" class="input_tr" OnClick="jxc_select" Text="查询" runat="server" />
-
-                <asp:Button ID="Button2" class="input_tr right" OnClick="jxc_load" Text="刷新数据" runat="server" />
-                <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" />
+                <div class="top-fun-item">
+                    <label class="top-text">商品代码：</label>
+                    <input type="text" class="input_select" name="code" />
+                    <label class="top-text">起始日期：</label>
+                    <input type="date" class="time_select" name="time_start" />
+                    <label class="top-text">截止日期：</label>
+                    <input type="date" class="time_select" name="time_end" />
+                    <asp:Button ID="Button1" class="input_tr" OnClick="jxc_select" Text="查询" runat="server" />
+                </div>
+                <div class="top-fun-item">
+                    <asp:Button ID="Button2" class="input_tr" OnClick="jxc_load" Text="刷新数据" runat="server" />
+                    <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" />
+                </div>
             </div>
                 
             <div class="table_div">
@@ -127,18 +135,18 @@
                         <th colspan="1" rowspan="2" class="bk_bt">边缘存量</th>
                     </tr>
                     <tr id="dj_yh">
-                        <th class="bk_bt" style="width: 70px">数量</th>
-                        <th class="bk_bt" style="width: 70px">金额</th>
-                        <th class="bk_bt" style="width: 70px">数量</th>
-                        <th class="bk_bt" style="width: 70px">金额</th>
-                        <th class="bk_bt" style="width: 70px">数量</th>
-                        <th class="bk_bt" style="width: 70px">金额</th>
-                        <th class="bk_bt" style="width: 70px">结存</th>
-                        <th class="bk_bt" style="width: 70px">金额</th>
+                        <th class="bk_bt bottom" style="width: 70px">数量</th>
+                        <th class="bk_bt bottom" style="width: 70px">金额</th>
+                        <th class="bk_bt bottom" style="width: 70px">数量</th>
+                        <th class="bk_bt bottom" style="width: 70px">金额</th>
+                        <th class="bk_bt bottom" style="width: 70px">数量</th>
+                        <th class="bk_bt bottom" style="width: 70px">金额</th>
+                        <th class="bk_bt bottom" style="width: 70px">结存</th>
+                        <th class="bk_bt bottom" style="width: 70px">金额</th>
                     </tr>
                     <%
                
-                        List<jxc_z_info> jxc_z_select = Session["jxc_z_select"] as List<jxc_z_info>;
+                        System.Collections.Generic.List<jxc_z_info> jxc_z_select = Session["jxc_z_select"] as System.Collections.Generic.List<jxc_z_info>;
                         if (jxc_z_select != null)
                         {
                             for (int i = 0; i < jxc_z_select.Count; i++)
@@ -146,24 +154,24 @@
                     %>
                     <tr class="dj_yh">
                         <td class="auto-style1"><%=(i+1) %></td>
-                        <td class="auto-style1"><%=jxc_z_select[i].code%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].sp_dm%></td>
                         <td class="auto-style1"><%=jxc_z_select[i].name%></td>
-                        <td class="auto-style1"><%=jxc_z_select[i].type%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].lei_bie%></td>
 
 
-                        <td class="auto-style1"><%=jxc_z_select[i].num1%></td>
-                        <td class="auto-style1"><%=jxc_z_select[i].price1%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].jq_cpsl%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].jq_price%></td>
 
 
-                        <td class="auto-style1"><%=jxc_z_select[i].num2%></td>
-                        <td class="auto-style1"><%=jxc_z_select[i].price2%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].mx_ruku_cpsl%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].mx_ruku_price%></td>
 
 
-                        <td class="auto-style1"><%=jxc_z_select[i].num3%></td>
-                        <td class="auto-style1"><%=jxc_z_select[i].price3%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].mx_chuku_cpsl%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].mx_chuku_price%></td>
 
-                        <td class="auto-style1"><%=jxc_z_select[i].num4%></td>
-                        <td class="auto-style1"><%=jxc_z_select[i].price4%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].jc_sl%></td>
+                        <td class="auto-style1"><%=jxc_z_select[i].jc_price%></td>
 
                         <td class="auto-style1"><%=jxc_z_select[i].stock%></td>
                     </tr>

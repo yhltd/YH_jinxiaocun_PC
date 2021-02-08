@@ -255,10 +255,13 @@ function setTable(data) {
         height: 470,
         frozenColumns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
-            { field: 'rownum', align: 'center', title: '序号', width: 50 },
+            {
+                field: 'rownum', align: 'center', title: '序号', width: 50, formatter: function (value, row, index) {
+                    return index + 1;
+                }
+            },
         ]],
         columns: [[
-            { field: 'calss', align: 'center', title: '科目类别', width: 100, hidden: true },
 		    { field: 'code', align: 'center', title: '科目代码', width: 100 },
 		    { field: 'name', align: 'center', title: '科目名称', width: 200 },
             { field: 'grade', align: 'center', title: '科目等级', width: 70 },

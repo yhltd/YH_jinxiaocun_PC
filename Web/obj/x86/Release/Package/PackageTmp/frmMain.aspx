@@ -2,7 +2,7 @@
 
 <%--<!DOCTYPE html>--%>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" style="padding-top: 60px">
 <head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="images/uploadify.css" />
@@ -99,12 +99,12 @@
         }
         .window_iframe {
             height: 100%;
-            width: 96%;
+            width: 99%;
             background-color: white;
         }
         .top_div {
             width: 100%;
-            height: 8%;
+            min-height: 60px;
             position: fixed;
             top: 0;
             border-bottom: 1px solid #dcdfe6;
@@ -186,7 +186,7 @@
         {
             width: 100%;
             display: flex;
-            margin-top: 4%;
+            height: 100%;
             z-index: 20;
         }
     </style>

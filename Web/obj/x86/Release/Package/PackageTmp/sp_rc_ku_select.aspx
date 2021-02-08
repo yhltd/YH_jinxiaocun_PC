@@ -81,20 +81,29 @@
                 <select class="select_xl" name="kui_lei">
                     <option>请选择</option>
                     <%           
-                        List<string> rc_ku_xl_select = Session["rc_ku_xl_select"] as List<string>;
+                        System.Collections.Generic.List<string> rc_ku_xl_select = Session["rc_ku_xl_select"] as System.Collections.Generic.List<string>;
                         if (rc_ku_xl_select != null)
                         {
                             for (int i = 0; i < rc_ku_xl_select.Count; i++)
-                            {                          
-                    %>
-                    <option><%=rc_ku_xl_select[i]%></option>
-                    <%
+                            {
+                                if (Session["cpname"].ToString() == rc_ku_xl_select[i])
+                                {
+                                    %>
+                                    <option selected="selected"><%=rc_ku_xl_select[i]%></option>
+                                    <%
+                                }
+                                else
+                                {
+                                    %>
+                                    <option><%=rc_ku_xl_select[i]%></option>
+                                    <%
+                                }
+                            }
                         }
-                       
                     %>
                 </select>
                 <asp:Button OnClick="rc_ku_select_Click" ID="Button1" CssClass="input_tr" Text="查询" runat="server" />
-                <asp:Button OnClick="rc_ku_select_Click" ID="Button2" CssClass="input_tr" Text="清空" runat="server" />
+                <asp:Button OnClick="rc_ku_select_load" ID="Button2" CssClass="input_tr" Text="清空" runat="server" />
             </div>
 
             <div class="table_div">
@@ -115,32 +124,26 @@
                     </tr>
 
                     <%
-                            }
-                            List<rc_ku_info> rc_ku_r_select = Session["selectSp"] as List<rc_ku_info>;
+                        System.Collections.Generic.List<Web.ServerEntity.MingXiItem> mingxi = Session["selectSp"] as System.Collections.Generic.List<Web.ServerEntity.MingXiItem>;
 
 
-                            if (rc_ku_r_select == null)
+                        if (mingxi != null)
+                        {
+                            for (int i = 0; i < mingxi.Count; i++)
                             {
+                                %>
+                                <tr id="Tr1">
 
-                            }
-                            else
-                            {
-                                for (int i = 0; i < rc_ku_r_select.Count; i++)
-                                {
-                       
-                    %>
-                    <tr id="Tr1">
-
-                        <td class="td_css"><%=rc_ku_r_select[i].Ri_qi %></td>
-                        <td class="td_css"><%=rc_ku_r_select[i].Orderid %></td>
-                        <td class="td_css"><%=rc_ku_r_select[i].Sp_dm %></td>
-                        <td class="td_css"><%=rc_ku_r_select[i].Name %></td>
-                        <td class="td_css"><%=rc_ku_r_select[i].num1 %></td>
-                        <td class="td_css"><%=rc_ku_r_select[i].price1 %></td>
-                        <td class="td_css"><%=rc_ku_r_select[i].num2 %></td>
-                        <td class="td_css"><%=rc_ku_r_select[i].price2 %></td>
-                    </tr>
-                    <%
+                                    <td class="td_css"><%=mingxi[i].shijian %></td>
+                                    <td class="td_css"><%=mingxi[i].orderid %></td>
+                                    <td class="td_css"><%=mingxi[i].sp_dm %></td>
+                                    <td class="td_css"><%=mingxi[i].cpname %></td>
+                                    <td class="td_css"><%=mingxi[i].ruku_num %></td>
+                                    <td class="td_css"><%=mingxi[i].ruku_price %></td>
+                                    <td class="td_css"><%=mingxi[i].chuku_num %></td>
+                                    <td class="td_css"><%=mingxi[i].chuku_price %></td>
+                                </tr>
+                                <%
                             }
                         }
                     %>

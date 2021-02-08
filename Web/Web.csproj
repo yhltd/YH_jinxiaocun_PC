@@ -57,8 +57,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data.Entity, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MySql.Data.Entity">
       <HintPath>..\dll\MySql.Data.Entity.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -2349,6 +2348,67 @@
     <Compile Include="ru_ku.aspx.designer.cs">
       <DependentUpon>ru_ku.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ServerEntity\JinChuZiLiaoItem.cs" />
+    <Compile Include="ServerEntity\MingXiItem.cs" />
+    <Compile Include="Server\JinChuModel.cs" />
+    <Compile Include="Server\JinHuoModel.cs" />
+    <Compile Include="Server\MingxiModel.cs" />
+    <Compile Include="Server\QiChuModel.cs" />
+    <Compile Include="Server\Server.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Server.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\Server.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\Server.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Server.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Server\ShouHuoModel.cs" />
+    <Compile Include="Server\StockModel.cs" />
+    <Compile Include="Server\UserModel.cs" />
+    <Compile Include="Server\yh_jinxiaocun_chanpin.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_chuhuofang.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_chuhuofang1.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_jichuziliao.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_jinhuofang.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_jinhuofang1.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_kucun.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_mingxi.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_qichushu.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_user.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_yongliaosheding.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_zhengli.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\ZhengLiModel.cs" />
     <Compile Include="sp_rc_ku_select.aspx.cs">
       <DependentUpon>sp_rc_ku_select.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2745,6 +2805,23 @@
     <Content Include="Scripts\layui\font\iconfont.ttf" />
     <Content Include="Scripts\layui\font\iconfont.woff" />
     <Content Include="Scripts\layui\font\iconfont.woff2" />
+    <EntityDeploy Include="Server\Server.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Server.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Server\Server.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Server.edmx</DependentUpon>
+      <LastGenOutput>Server.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Server\Server.edmx.diagram">
+      <DependentUpon>Server.edmx</DependentUpon>
+    </Content>
+    <Content Include="Server\Server.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Server.edmx</DependentUpon>
+      <LastGenOutput>Server.cs</LastGenOutput>
+    </Content>
     <None Include="副本 Web.Debug.config">
       <DependentUpon>副本 Web.config</DependentUpon>
     </None>
@@ -2791,7 +2868,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>57814</DevelopmentServerPort>
+          <DevelopmentServerPort>54351</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.SessionState;
 using System.Web.Services;
+using Web.Server;
 
 
 namespace Web
@@ -17,14 +18,14 @@ namespace Web
     {
         protected System.Web.UI.HtmlControls.HtmlGenericControl frame1;
 
-        public List<clsuserinfo> NewsList;
+
         public static string nowpage;
-        private static clsuserinfo user;
+        private static yh_jinxiaocun_user user;
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            user = (clsuserinfo)Session["user"];
+            user = (yh_jinxiaocun_user)Session["user"];
             if (user != null)
             {
                 userName.InnerHtml = user.name;

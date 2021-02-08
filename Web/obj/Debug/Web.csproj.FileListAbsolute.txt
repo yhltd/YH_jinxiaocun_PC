@@ -93,42 +93,6 @@ D:\yho117\YH_jinxiaocun_PC\Web\bin\SDZdb.pdb
 D:\yho117\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
 D:\yho117\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
 D:\yho117\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\cfgList.config
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Web.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Web.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\China_System.Common.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\clsBuiness.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\ICSharpCode.SharpZipLib.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\MySql.Data.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\MySql.Data.Entity.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.OOXML.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.OpenXml4Net.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.OpenXmlFormats.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\SDZdb.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\ThoughtWorks.QRCode.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zxing.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\China_System.Common.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\clsBuiness.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\ThoughtWorks.QRCode.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\SDZdb.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Web.Http.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Web.Http.WebHost.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Net.Http.Formatting.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Newtonsoft.Json.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Web.Http.xml
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Web.Http.WebHost.xml
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Net.Http.Formatting.xml
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Newtonsoft.Json.xml
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Http.resources.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\EntityFramework.dll
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\EntityFramework.xml
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\EntityFramework.resources.dll
 C:\Down\微信\WeChat File\WeChat Files\l1023847500\FileStorage\File\2020-12\YH_jinxiaocun_PC\Web\bin\cfgList.config
 C:\Down\微信\WeChat File\WeChat Files\l1023847500\FileStorage\File\2020-12\YH_jinxiaocun_PC\Web\bin\Web.dll
 C:\Down\微信\WeChat File\WeChat Files\l1023847500\FileStorage\File\2020-12\YH_jinxiaocun_PC\Web\bin\Web.pdb
@@ -156,3 +120,39 @@ C:\Down\微信\WeChat File\WeChat Files\l1023847500\FileStorage\File\2020-12\YH_
 C:\Down\微信\WeChat File\WeChat Files\l1023847500\FileStorage\File\2020-12\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
 C:\Down\微信\WeChat File\WeChat Files\l1023847500\FileStorage\File\2020-12\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
 C:\Down\微信\WeChat File\WeChat Files\l1023847500\FileStorage\File\2020-12\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\cfgList.config
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Web.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Web.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\China_System.Common.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\clsBuiness.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\EntityFramework.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\ICSharpCode.SharpZipLib.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\MySql.Data.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Newtonsoft.Json.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.OOXML.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.OpenXml4Net.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\NPOI.OpenXmlFormats.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\SDZdb.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Net.Http.Formatting.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Web.Http.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Web.Http.WebHost.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\ThoughtWorks.QRCode.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zxing.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\China_System.Common.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\clsBuiness.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\ThoughtWorks.QRCode.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\SDZdb.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\EntityFramework.xml
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\Newtonsoft.Json.xml
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Net.Http.Formatting.xml
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Web.Http.xml
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\System.Web.Http.WebHost.xml
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\EntityFramework.resources.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Http.resources.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
+D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\Web\bin\MySql.Data.Entity.dll

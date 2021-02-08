@@ -262,7 +262,7 @@ body, a {
     border-collapse: collapse;
 }
 .rightContentfrmain {
-    height: 95%;
+    height: 100%;
     background-color: white;
     z-index: 10;
     display: flex;

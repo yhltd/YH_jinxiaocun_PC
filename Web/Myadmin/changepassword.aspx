@@ -7,7 +7,9 @@
     <style type="text/css">
         .text_sc {
             margin-bottom: 2%;
-            padding-left:1%;
+            border: none;
+            border: 1px solid #f2f2f2;
+            border-radius: 3px;
         }
          .text_mb {
             margin-bottom: 1%;
@@ -61,57 +63,23 @@
     <title>修改密码</title>
 </head>
 <body class="trbackcolor">
-    <div class="headerContainer">
-        <div class="logo">
-            <a href="http://www.yhocn.cn" target="_blank">
-                <img src="/Myadmin/images/top_bg.jpg" alt="Logo" style="width: 100%" height="40px" title="管理系统" />
-            </a>
-        </div>
-        <hr />
-        <div class="pageOperation"><a href="/Myadmin/login.aspx" style="margin-left: 82%;" target="_blank">网站首页</a> &nbsp;| &nbsp;<a href="/Myadmin/changepassword.aspx" target="_blank">密码修改</a> &nbsp;| &nbsp;<a href="logout.aspx">退出登录</a> </div>
-
-    </div>
     <form id="form1" runat="server">
         <div>
             <div>
-                <br />
-                <span style="float: left; margin-top: -2%;margin-left: 2%;">当前位置： 用户管理>修改密码</span>
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div>
                 <table cellpadding="0" cellspacing="0" border="0" width="83%" style="margin-left: 14.5%;margin-top: 4%;">
                     <tbody>
-                        <%--style="padding-left: 150px;"--%>
                         <tr>
                             <th width="30%" class="textfield1"></th>
                             <td>
-                                <asp:TextBox ID="textBox6" placeholder="登录账号" runat="server" Height="46px" Width="41%" CssClass="text_sc"></asp:TextBox>
+                                <asp:TextBox ID="textBox5" placeholder="原密码" runat="server" Height="46px" Width="41%" CssClass="text_sc"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <th width="30%" class="textfield1"></th>
                             <td>
-                                <asp:TextBox ID="textBox5" placeholder="登录密码" runat="server" Height="46px" Width="41%" CssClass="text_sc"></asp:TextBox>
+                                <asp:TextBox ID="textBox4" placeholder="新密码" runat="server" Height="46px" Width="41%" CssClass="text_sc"></asp:TextBox>
                             </td>
                         </tr>
-                        <tr>
-                            <th width="30%" class="textfield1"></th>
-                            <td>
-                                <asp:TextBox ID="textBox4" placeholder="确认密码" runat="server" Height="46px" Width="41%" CssClass="text_sc"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th width="30%" class="textfield1"></th>
-                            <td>
-                                <asp:TextBox ID="textBox1" placeholder="密保" runat="server" Height="46px" Width="41%" CssClass="text_mb"></asp:TextBox>
-                            </td>
-                        </tr>
-
-
                     </tbody>
                 </table>
                 <br />
@@ -121,22 +89,9 @@
                     <tr>
                         <td align="center" colspan="5">
                             <div>
-                               <%-- onmouseover="this.className='ui-btn ui-btn-search-hover'"    onmouseout="this.className='button_gx'"--%>
                                 <asp:Button ID="button1" class="button_gx" 
                                    runat="server" Text="更新" OnClick="Button1_Click" Width="20%" Height="46px" />
-                                &nbsp;&nbsp;&nbsp;
-                                   <%-- <asp:Button ID="button2" class="button_qk" 
-                                         runat="server" Text="清空" OnClientClick="reSet();return false;" Width="10%" Height="30px" OnClick="button2_Click" />--%>
                             </div>
-                        </td>
-
-                    </tr>
-                    <tr>
-                        <td align="center" colspan="5">
-                            <br />
-                            <asp:Label ID="Label1" runat="server">
-                             <%=alterinfo1%>
-                            </asp:Label>
                         </td>
                     </tr>
                 </table>

@@ -145,7 +145,7 @@
                     <th class="auto-style1" style="width: 70px">功能</th>
                 </tr>
                 <%
-                    List<zl_and_jc_info> jczj_select = Session["jczj_select"] as List<zl_and_jc_info>;
+                    System.Collections.Generic.List<Web.Server.yh_jinxiaocun_jichuziliao> jczj_select = Session["jczj_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_jichuziliao>;
                     if (jczj_select != null)
                     {
                         for (int i = 0; i < jczj_select.Count; i++)
@@ -165,7 +165,7 @@
                     <td class="bg_bj">
                         <input type="text" class="input_tr" id="Text5" name="shou_huo_cs<%=i%>" value="<%=jczj_select[i].shou_huo%>" /></td>
                     <td class="bg_bj">
-                        <input type="text" class="input_tr" id="Text4" name="gong_huo_cs<%=i%>" value="<%=jczj_select[i].Gong_huo%>" /></td>
+                        <input type="text" class="input_tr" id="Text4" name="gong_huo_cs<%=i%>" value="<%=jczj_select[i].gong_huo%>" /></td>
                     <td class="bg_bj">
                         <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i%>" value="<%=jczj_select[i].id%>" /><input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
 
@@ -177,14 +177,6 @@
                 %>
             </table>
         </div>
-
-
-        <%--<div>
-            <asp:Button CssClass="input_tr" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
-            <asp:Button CssClass="input_tr" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
-            <asp:Button CssClass="input_tr" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
-            <asp:Button CssClass="input_tr" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
-        </div>--%>
     </form>
 </body>
 </html>

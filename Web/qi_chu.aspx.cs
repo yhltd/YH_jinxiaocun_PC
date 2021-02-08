@@ -11,48 +11,53 @@ using System.Configuration;
 using Order.Common;
 using clsBuiness;
 using System.Reflection;
+using Web.Server;
+using Web.ServerEntity;
+using System.Web.Script.Serialization;
+using Web.jxc_service;
 
 namespace Web
 {
     public partial class qi_chu : System.Web.UI.Page
     {
         private int row_count;
+        private static ServicePage page = new ServicePage();
+
+        private static yh_jinxiaocun_user user;
         protected void Page_Load(object sender, EventArgs e)
         {
-            shuaxin();
-            try
+            user = (yh_jinxiaocun_user)Session["user"];
+            if (user != null)
             {
+                page.countPage = this.select_row();
+                shuaxin();
                 this.dj_row.Attributes.Add("onclick", "javascript:pd_tj_ff();");
                 string act = Request["act"] == null ? "" : Request["act"].ToString();
-                if (Session["username"] != null && Session["gs_name"] != null)
-                {
-                    if (act.Equals("PostUser"))
-                    {
-                        selectNameAndLebie(Request["id"].ToString());
-                    }
-                    List<zl_and_jc_info> jc = selectjichuziliao(Session["username"].ToString(), Session["gs_name"].ToString());
-                    Session["jichu"] = jc;
-                    
-                    List<qi_chu_info> list = select_row(Session["username"].ToString(), Session["gs_name"].ToString());
-                    row_count = list.Count;
-                    if (Convert.ToInt32(Session["dq_ye_qc"]) == 0)
-                    {
-                        Session["dq_ye_qc"] = 0;
-                    }
-                }
-                else
-                {
-                    Response.Write(" <script>alert('请登录'); window.parent.location.href='/Myadmin/Login.aspx'");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-                //this.Button1.Attributes.Add("onclick", "javascript:return confirm('要提交吗?');");
 
-            
-          
+                if (act.Equals("PostUser"))
+                {
+                    Response.Write(selectNameAndLebie(Request["id"].ToString()));
+                    Response.End();
+                }
+
+                try
+                {
+                    List<JinChuZiLiaoItem> list = Session["jichu"] as List<JinChuZiLiaoItem>;
+                    if (list == null)
+                    {
+                        JinChuModel jin = new JinChuModel();
+                        Session["jichu"] = jin.getOutStockDetail(user.gongsi);
+                    }
+                }
+                catch 
+                {
+                    Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+                }
+            }
+            else
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
         }
 
         protected void bt_select_Click(object sender, EventArgs e)
@@ -60,225 +65,194 @@ namespace Web
             shuaxin();
         }
 
-        private void shuaxin() {
+        private void shuaxin()
+        {
             try
             {
-                if (Session["username"] != null && Session["gs_name"] != null)
-                {
-                    List<qi_chu_info> list = select_chuku(Session["username"].ToString(), Session["gs_name"].ToString());
-
-                    Session["qi_chu_select"] = list;
-                }
-                else
-                {
-                    Response.Write(" <script>alert('请登录'); window.parent.location.href='/Myadmin/Login.aspx'");
-                }
+                List<yh_jinxiaocun_qichushu> list = this.fen_ye(user.gongsi);
+                Session["qi_chu_select"] = list;
+                row_count = list.Count;
             }
-            catch (Exception ex)
+            catch
             {
-
-                throw;
+                Session["qi_chu_select"] = null;
             }
         }
 
-        public List<qi_chu_info> select_chuku(string zh_name, string gs_name)
+        public List<yh_jinxiaocun_qichushu> select_chuku()
         {
-
-            List<qi_chu_info> list = new List<qi_chu_info>();
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            list = buiness.ck_sp_select(zh_name, gs_name);
-
-            return list;
+            try
+            {
+                QiChuModel qiChuModel = new QiChuModel();
+                return qiChuModel.getQiChu(user.gongsi);
+            }
+            catch
+            {
+                return null;
+            }
         }
-        public List<zl_and_jc_info> selectjichuziliao(string zh, string gs)
+
+        public string selectNameAndLebie(object id)
         {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<zl_and_jc_info> list = buiness.select_jczl(zh, gs);
-            return list;
+            try
+            {
+                List<JinChuZiLiaoItem> list = Session["jichu"] as List<JinChuZiLiaoItem>;
+                foreach (JinChuZiLiaoItem j in list)
+                {
+                    if (j.sp_dm.Equals(id))
+                    {
+                        JavaScriptSerializer js = new JavaScriptSerializer();
+                        return js.Serialize(j);
+                    }
+                }
+                return string.Empty;
+            }
+            catch
+            {
+                return string.Empty;
+            }
         }
 
         protected void shou_ye_Click(object sender, EventArgs e)
         {
-            
-            try 
+            if (page.nowPage == 1)
             {
-                Session["dq_ye_qc"] = 0;
-                List<qi_chu_info> list = fen_ye(0, 1);
-                Session["qi_chu_select"] = list;
+                Response.Write("<script>alert('已经是第一页');</script>");
             }
-            catch (Exception ex) { throw; }
-            
-        }
-        public void selectNameAndLebie(object id)
-        {
-            zl_and_jc_info zl = new zl_and_jc_info();
-            List<zl_and_jc_info> getlist = HttpContext.Current.Session["jichu"] as List<zl_and_jc_info>;
-            for (int li = 0; li < getlist.Count; li++)
+            else
             {
-                if (getlist[li].sp_dm.Equals(id))
-                {
-                    zl.name = getlist[li].name;
-                    zl.lei_bie = getlist[li].lei_bie;
-                }
+                page.nowPage = 1;
+                this.fen_ye(user.gongsi);
+                Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
             }
-            Response.Write("[{\"name\":\"" + zl.name + "\",\"leibie\":\"" + zl.lei_bie + "\",\"company\":\"无用户\"}]");
-            Response.End();
         }
 
         protected void shang_ye_Click(object sender, EventArgs e)
         {
-            
-            try {
-                int dang_qian = Convert.ToInt32(Session["dq_ye_qc"]);
-                if (dang_qian > 0)
-                {
-                    List<qi_chu_info> list = fen_ye(dang_qian, 1);
-                    Session["dq_ye_qc"] = dang_qian - 1;
-                    Session["qi_chu_select"] = list;
-                }
+            if (page.nowPage == 1)
+            {
+                Response.Write("<script>alert('已经是第一页');</script>");
             }
-            catch (Exception ex) { throw; }
-            
-
+            else
+            {
+                page.nowPage--;
+                this.fen_ye(user.gongsi);
+                Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+            }
         }
 
         protected void xia_ye_Click(object sender, EventArgs e)
         {
-
-            try
+            if (page.countPage < (page.nowPage + 1))
             {
-                int dang_qian = Convert.ToInt32(Session["dq_ye_qc"]);
-                List<qi_chu_info> list = fen_ye(dang_qian + 1, 1);
-                Session["dq_ye_qc"] = dang_qian + 1;
-                Session["qi_chu_select"] = list;
+                Response.Write("<script>alert('已经是最后一页');</script>");
             }
-            //catch (Exception ex) { throw; }
-            catch (Exception ex) 
+            else
             {
-                int dang_qian = Convert.ToInt32(Session["dq_ye_qc"]);
-                List<qi_chu_info> list = fen_ye(dang_qian , 1);
-                Session["qi_chu_select"] = list;
-                //Response.Write(" <script>alert('已经是最后一页'); location='qi_chu.aspx';</script>");
-                Response.Write(" <script>alert('已经是最后一页');</script>");
+                page.nowPage++;
+                this.fen_ye(user.gongsi);
+                Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
             }
-
-
         }
 
         protected void mo_ye_Click(object sender, EventArgs e)
         {
-            
-            try
+            if (page.nowPage == page.countPage)
             {
-                Session["dq_ye_qc"] = select_row(Session["username"].ToString(), Session["gs_name"].ToString()).Count - 1;
-                List<qi_chu_info> list = fen_ye(select_row(Session["username"].ToString(), Session["gs_name"].ToString()).Count - 1, 1);
-                Session["qi_chu_select"] = list;
+                Response.Write("<script>alert('已经是最后一页');</script>");
             }
-            catch (Exception ex) { throw; }
-            
+            else
+            {
+                page.nowPage = page.countPage;
+                this.fen_ye(user.gongsi);
+                Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+            }
         }
 
-        public List<qi_chu_info> fen_ye(int y_c, int e_c)
+        public List<yh_jinxiaocun_qichushu> fen_ye(string gongsi)
         {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<qi_chu_info> list = buiness.ming_xi_fenye(y_c, e_c, Session["username"].ToString(), Session["gs_name"].ToString());
-            return list;
+            QiChuModel buiness = new QiChuModel();
+            return buiness.ming_xi_fenye(page.getLimit1(), page.getLimit2(), user.gongsi);
         }
 
-        public List<qi_chu_info> select_row(string zh_name, string gs_name)
+        public int select_row()
         {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<qi_chu_info> list = buiness.qi_chu_select_row(zh_name, gs_name);
-            return list;
-        }
-        protected void xxx(object sender, EventArgs e)
-        {
-
+            QiChuModel buiness = new QiChuModel();
+            int count = buiness.qi_chu_select_row(user.gongsi).Count;
+            return (int)Math.Ceiling(Convert.ToDouble((float)count / (float)page.pageCount));
         }
 
         protected void qc_tj(object sender, EventArgs e)
         {
-            
             try
             {
                 if (Context.Request["tj_pd"].ToString() == "tj_true")
                 {
-                    qi_chu_info qci = new qi_chu_info();
-                    for (int i = 1; i < (Convert.ToInt32(Context.Request["row_i"].ToString()) - row_count); i++)
+                    QiChuModel buiness = new QiChuModel();
+
+                    List<qi_chu_info> list_qc = new List<qi_chu_info>();
+                    int row = Convert.ToInt32(Request.Form["row_i"].ToString());
+                    for (int i = 1; i < row; i++)
                     {
-                        if (Context.Request["cpid" + i] != null)
+                        if (Context.Request["cpid" + i] != null)    
                         {
-                            List<qi_chu_info> list_qc = new List<qi_chu_info>();
-                            qci.Cpid = Context.Request["cpid" + i].ToString();
-                            qci.Cpname = Context.Request["cpname" + i].ToString();
-                            qci.Cplb = Context.Request["cplb" + i].ToString();
-                            qci.Cpsj = Context.Request["cpsj" + i].ToString();
-                            qci.Cpsl = Context.Request["cpsl" + i].ToString();
-                            qci.zh_name = Session["username"].ToString();
-                            qci.gs_name = Session["gs_name"].ToString();
+                            qi_chu_info qci = new qi_chu_info();
+                            qci.Cpid = Request.Form["cpid" + i].ToString();
+                            qci.Cpname = Request.Form["cpname" + i].ToString();
+                            qci.Cplb = Request.Form["cplb" + i].ToString();
+                            qci.Cpsj = Request.Form["cpsj" + i].ToString();
+                            qci.Cpsl = Request.Form["cpsl" + i].ToString();
+                            qci.zh_name = user.name;
+                            qci.gs_name = user.gongsi;
                             qci.Shijian = DateTime.Now.ToString("yyyy-MM-dd");
                             list_qc.Add(qci);
-                            add_qichu(list_qc);
                         }
                     }
+                    if (list_qc.Count > 0) {
+                        buiness.add_qichu(list_qc);
+                    }
+                    
                     for (int i = 0; i < row_count; i++)
                     {
-                        update_qichu(Context.Request["id" + i].ToString(),Context.Request["cpid_cs" + i].ToString(), Context.Request["cpname_cs" + i].ToString(), Context.Request["cplb_cs" + i].ToString(), Context.Request["cpsj_cs" + i].ToString(), Context.Request["cpsl_cs" + i].ToString());
+                        buiness.update_qichu(Context.Request["id" + i].ToString(), Context.Request["cpid_cs" + i].ToString(), Context.Request["cpname_cs" + i].ToString(), Context.Request["cplb_cs" + i].ToString(), Context.Request["cpsj_cs" + i].ToString(), Context.Request["cpsl_cs" + i].ToString());
                     }
                     Response.Write(" <script>alert('提交成功'); location='qi_chu.aspx';</script>");
                 }
             }
-            catch (Exception ex) { throw; }
-            
-            
+            catch 
+            {
+                Response.Write(" <script>alert('网络错误，请稍后再试！');</script>");
+            }
         }
-        public void add_qichu(List<qi_chu_info> list)
-        {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            buiness.add_qichu(list);
-
-        }
-
-        public int update_qichu(string id,string cpid, string cpname, string cplb, string cpsj, string cpsl)
-        {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            int isrun = buiness.update_qichu(id,cpid, cpname, cplb, cpsj, cpsl);
-            return isrun;
-        }
-
-
 
         protected void del_qichu(object sender, EventArgs e)
         {
-            
+            QiChuModel qichu = new QiChuModel();
+            Boolean result = true;
             try
             {
-                List<qi_chu_info> list = Session["qi_chu_select"] as List<qi_chu_info>; 
-                for (int i = 0; i < row_count; i++)
+                List<yh_jinxiaocun_qichushu> list = Session["qi_chu_select"] as List<yh_jinxiaocun_qichushu>;
+                for (int i = 0; i < list.Count; i++)
                 {
                     string name = Request["Checkbox_bd" + i];
-
                     if (name != null)
                     {
                         if (Convert.ToInt32(name) == i)
                         {
-                            del_qichu_ff(list[i].Id);
-                            shuaxin();
-                            Response.Write(" <script>alert('删除成功');</script>");
+                            result = qichu.del_qichu_ff(list[i]._id) > 0;
                         }
                     }
                 }
+                if (result)
+                {
+                    shuaxin();
+                    Response.Write("<script>alert('删除成功');</script>");
+                }
             }
-            catch (Exception ex) { throw; }
-            
-        }
-
-        public int del_qichu_ff(string cpid)
-        {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            int isrun = buiness.del_qichu_ff(cpid);
-            return isrun;
-
+            catch 
+            {
+                Response.Write(" <script>alert('网络错误，请稍后再试！');</script>");
+            }
         }
     }
 }

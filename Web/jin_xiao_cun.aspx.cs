@@ -13,6 +13,7 @@ using clsBuiness;
 using System.Reflection;
 using System.IO;
 using Web.jxc_service;
+using Web.Server;
 
 
 namespace Web
@@ -21,39 +22,47 @@ namespace Web
     {
         private static ServicePage page = new ServicePage();
 
+        private static yh_jinxiaocun_user user;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            page.countPage = this.getCountPage();
+            user = (yh_jinxiaocun_user)Session["user"];
+           
 
-            if (Session["username"] == null && Session["gs_name"] == null) 
+            if (user == null) 
             {
                 Response.Write("<script>alert('请登录！');window.parent.location.href='../Myadmin/Login.aspx';</script>");
             }
             else
             {
-                shuaxin();
+                try
+                {
+                    page.countPage = this.getCountPage();
+                    shuaxin();
+                }
+                catch
+                {
+                    Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+                }
             }
-            
         }
-
-       
 
         protected void jxc_load(object sender, EventArgs e)
         {
-            shuaxin();
+            try
+            {
+                shuaxin();
+            }
+            catch
+            {
+                Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+            }
         }
 
         private void shuaxin() {
-            try
-            {
-                clsAllnew buiness = new clsBuiness.clsAllnew();
-                string username = Session["username"].ToString();
-                string gongsi = Session["gs_name"].ToString();
-                page.nowPage = 1;
-                List<jxc_z_info> list = buiness.jxc_z_select(username, gongsi, page.getLimit1(), page.getLimit2());
-                Session["jxc_z_select"] = list;
-            }
-            catch (Exception ex) { throw; }
+            StockModel stock = new StockModel();
+            page.nowPage = 1;
+            Session["jxc_z_select"] = stock.jxc_z_select(user.gongsi, page.getLimit1(), page.getLimit2());
         }
 
         protected void toExcel(object sender, EventArgs e)
@@ -67,7 +76,7 @@ namespace Web
                 foreach (jxc_z_info dr in gtlist)
                 {
 
-                    sw.WriteLine(dr.code + "\t" + dr.name + "\t" + dr.type + "\t" + dr.num1 + "\t" + dr.price1 + "\t" + dr.num2 + "\t" + dr.price2 + "\t" + dr.num3 + "\t" + dr.price3 + "\t" + dr.num4 + "\t" + dr.price4 + "\t" + dr.stock);
+                    sw.WriteLine(dr.sp_dm + "\t" + dr.name + "\t" + dr.lei_bie + "\t" + dr.jq_cpsl + "\t" + dr.jq_price + "\t" + dr.mx_ruku_cpsl + "\t" + dr.mx_ruku_price + "\t" + dr.mx_chuku_cpsl + "\t" + dr.mx_chuku_price + "\t" + dr.jc_sl + "\t" + dr.jc_price + "\t" + dr.stock);
 
                 }
 
@@ -92,14 +101,11 @@ namespace Web
 
         protected void jxc_select(object sender, EventArgs e)
         {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            string username = Session["username"].ToString();
-            string gongsi = Session["gs_name"].ToString();
+            StockModel stock = new StockModel();
             string code = Context.Request["code"];
-            string time_start = Context.Request["time_start"];
-            string time_end = Context.Request["time_end"];
-            List<jxc_z_info> list = buiness.jxc_select(username, gongsi, code, time_start, time_end);
-            Session["jxc_z_select"] = list;
+            string time_start = Context.Request["time_start"] == "" ? "1999-01-01" : Context.Request["time_start"];
+            string time_end = Context.Request["time_end"] == "" ? "2999-01-01" : Context.Request["time_end"];
+            Session["jxc_z_select"] = stock.jxc_select(user.gongsi, code, time_start, time_end);
         }
 
         protected void shou_ye_Click(object sender, EventArgs e)
@@ -113,8 +119,8 @@ namespace Web
                 page.nowPage = 1;
                 string username = Session["username"].ToString();
                 string gongsi = Session["gs_name"].ToString();
-                clsAllnew buiness = new clsBuiness.clsAllnew();
-                List<jxc_z_info> list = buiness.jxc_z_select(username, gongsi, page.getLimit1(), page.getLimit2());
+                StockModel stock = new StockModel();
+                List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
             }
         }
@@ -129,8 +135,8 @@ namespace Web
                 page.nowPage--;
                 string username = Session["username"].ToString();
                 string gongsi = Session["gs_name"].ToString();
-                clsAllnew buiness = new clsBuiness.clsAllnew();
-                List<jxc_z_info> list = buiness.jxc_z_select(username, gongsi, page.getLimit1(), page.getLimit2());
+                StockModel stock = new StockModel();
+                List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
             }
         }
@@ -145,8 +151,8 @@ namespace Web
                 page.nowPage++;
                 string username = Session["username"].ToString();
                 string gongsi = Session["gs_name"].ToString();
-                clsAllnew buiness = new clsBuiness.clsAllnew();
-                List<jxc_z_info> list = buiness.jxc_z_select(username, gongsi, page.getLimit1(), page.getLimit2());
+                StockModel stock = new StockModel();
+                List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
             }
         }
@@ -161,23 +167,17 @@ namespace Web
                 page.nowPage = page.countPage;
                 string username = Session["username"].ToString();
                 string gongsi = Session["gs_name"].ToString();
-                clsAllnew buiness = new clsBuiness.clsAllnew();
-                List<jxc_z_info> list = buiness.jxc_z_select(username, gongsi, page.getLimit1(), page.getLimit2());
+                StockModel stock = new StockModel();
+                List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
             }
         }
 
         public int getCountPage()
         {
-            try
-            {
-                clsAllnew buiness = new clsBuiness.clsAllnew();
-                string username = Session["username"].ToString();
-                string gongsi = Session["gs_name"].ToString();
-                int allCount = buiness.get_jxc_PageCount(username, gongsi);
-                return (int)Math.Ceiling(Convert.ToDouble((float)allCount / (float)page.pageCount));
-            }
-            catch (Exception ex) { throw; }
+            StockModel stock = new StockModel();
+            int allCount = stock.get_jxc_PageCount(user.gongsi);
+            return (int)Math.Ceiling(Convert.ToDouble((float)allCount / (float)page.pageCount));
         }
     }
 }

@@ -43,5 +43,3 @@ D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csproj.GenerateResource.Cache
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.exe
 D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.pdb
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe.CodeAnalysisLog.xml
-D:\yhocn123\工作\jinxiaocun_pc\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe.lastcodeanalysissucceeded

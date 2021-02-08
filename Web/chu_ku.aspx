@@ -88,7 +88,7 @@
             })
 
             $('#insert_ruku').click(function () {
-                if (ruku.orderid == '') {
+                if ($('.order_id_input').val() == '') {
                     alert('请生成订单号');
                     return;
                 }
@@ -103,15 +103,9 @@
                     success: function (result) {
                         if (result > 0) {
                             alert('出库成功')
-                            ruku.gonghuo = '';
-                            ruku.orderid = '';
-                            ruku.itemList = []
-                            for (var i = 1; i <= row; i++) {
-                                $('#checkbox' + i).prop('checked', false);
-                            }
-                            $('.order_id_input').val('')
                             $('.ruku_div').css('display', 'none')
                             $('.mask').css('display', 'none')
+                            $('#shuaxin').click();
                         }
                     }
                 });
@@ -188,7 +182,7 @@
                 insertStr += "</select></td>"
                 insertStr += "<td class='item_td' id='sp_cplb" + row + "'>" + result[j].lei_bie + "</td>"
                 insertStr += "<td class='item_td' id='sp_cpsj" + row + "'>" + result[j].dan_wei + "</td>"
-                insertStr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].allSL + "'/></td>"
+                insertStr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].maxNum + "'/></td>"
                 insertStr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' type='number' autocomplete='off' oninput='bindInput_price(this.value," + result[j].id + ")' class='table_input' /></td>"
                 insertStr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/></td>"
                 insertStr += "</tr>"
@@ -235,9 +229,9 @@
         function bindInput_num(e, id, index) {
             for (var j = 0; j < list.length; j++) {
                 if (id == list[j].id) {
-                    if (parseInt(e) > list[j].allSL) {
+                    if (parseInt(e) > list[j].maxNum) {
                         alert('出库数量不能大于总数量')
-                        $('#num' + index).val('')
+                        $('#num' + (j+1)).val('')
                         return false
                     }
                 }
@@ -269,13 +263,13 @@
             }
         }
         function bhhq(row) {
-            var i = $('#sp_dm' + row).val();
+            var i = $("#sp_dm" + row).val();
             var rows = list[i];
-            $('#checkbox' + row).val(rows.id);
-            $('#sp_name' + row).text(rows.name);
-            $('#sp_cplb' + row).text(rows.lei_bie);
-            $('#sp_cpsj' + row).text(rows.dan_wei);
-            $('#num' + row).attr('placeholder', '总数量：' + rows.allSL)
+            $("#checkbox" + row).val(rows.id);
+            $("#sp_name" + row).text(rows.name);
+            $("#sp_cplb" + row).text(rows.lei_bie);
+            $("#sp_cpsj" + row).text(rows.dan_wei);
+            $("#num" + row).attr("placeholder", "总数量：" + rows.maxNum)
         }
 
         function getGongguo(e) {
@@ -440,8 +434,7 @@
     </form>
     <div class='ruku_div' style='display:none'>
         <div class='ruku_info_div'>
-            <input class='order_id_input' readonly='true' value=''/>
-            <input class='rk_bt' id='getRandom' type='button' value='生成订单号'/>
+            <input class='order_id_input' placeholder="请输入订单号" value=""/>
             <select class='gonghuo_select' onchange='getGongguo(this.value)'></select>
         </div>
         <div class='ruku_bottom_div'>

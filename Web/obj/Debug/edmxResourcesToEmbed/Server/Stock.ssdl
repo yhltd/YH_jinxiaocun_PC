@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StockModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="StockModelStoreContainer">
+    <EntitySet Name="yh_jinxiaocun_chanpin" EntityType="StockModel.Store.yh_jinxiaocun_chanpin" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_chuhuofang" EntityType="StockModel.Store.yh_jinxiaocun_chuhuofang" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_chuhuofang1" EntityType="StockModel.Store.yh_jinxiaocun_chuhuofang1" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_jichuziliao" EntityType="StockModel.Store.yh_jinxiaocun_jichuziliao" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_jinhuofang" EntityType="StockModel.Store.yh_jinxiaocun_jinhuofang" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_jinhuofang1" EntityType="StockModel.Store.yh_jinxiaocun_jinhuofang1" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_kucun" EntityType="StockModel.Store.yh_jinxiaocun_kucun" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_mingxi" EntityType="StockModel.Store.yh_jinxiaocun_mingxi" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_qichushu" EntityType="StockModel.Store.yh_jinxiaocun_qichushu" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_user" EntityType="StockModel.Store.yh_jinxiaocun_user" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_yongliaosheding" EntityType="StockModel.Store.yh_jinxiaocun_yongliaosheding" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_zhengli" EntityType="StockModel.Store.yh_jinxiaocun_zhengli" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+  </EntityContainer>
+  <EntityType Name="yh_jinxiaocun_chanpin">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="_openid" Type="varchar" MaxLength="255" />
+    <Property Name="bigImg" Type="varchar" MaxLength="255" />
+    <Property Name="finduser" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="value0" Type="varchar" MaxLength="255" />
+    <Property Name="value1" Type="varchar" MaxLength="255" />
+    <Property Name="value2" Type="varchar" MaxLength="255" />
+    <Property Name="value3" Type="varchar" MaxLength="255" />
+    <Property Name="value4" Type="varchar" MaxLength="255" />
+    <Property Name="value5" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_chuhuofang">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_openid" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu" Type="varchar" MaxLength="255" />
+    <Property Name="finduser" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="lianxidizhi" Type="varchar" MaxLength="255" />
+    <Property Name="lianxifangshi" Type="varchar" MaxLength="255" />
+    <Property Name="_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_chuhuofang1">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="_openid" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu" Type="varchar" MaxLength="255" />
+    <Property Name="finduser" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="lianxidizhi" Type="varchar" MaxLength="255" />
+    <Property Name="lianxifangshi" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_jichuziliao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="sp_dm" Type="varchar" MaxLength="255" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="lei_bie" Type="varchar" MaxLength="255" />
+    <Property Name="dan_wei" Type="varchar" MaxLength="255" />
+    <Property Name="shou_huo" Type="varchar" MaxLength="255" />
+    <Property Name="gong_huo" Type="varchar" MaxLength="255" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="zh_name" Type="varchar" MaxLength="255" />
+    <Property Name="gs_name" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="mark1" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_jinhuofang">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="_openid" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu" Type="varchar" MaxLength="255" />
+    <Property Name="finduser" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="lianxidizhi" Type="varchar" MaxLength="255" />
+    <Property Name="lianxifangshi" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_jinhuofang1">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="_openid" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu" Type="varchar" MaxLength="255" />
+    <Property Name="finduser" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="lianxidizhi" Type="varchar" MaxLength="255" />
+    <Property Name="lianxifangshi" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_kucun">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="shou_jia" Type="varchar" MaxLength="255" />
+    <Property Name="jin_jia" Type="varchar" MaxLength="255" />
+    <Property Name="lei_bie" Type="varchar" MaxLength="255" />
+    <Property Name="mx_lb" Type="varchar" MaxLength="255" />
+    <Property Name="shu_liang" Type="varchar" MaxLength="255" />
+    <Property Name="jia_ge" Type="varchar" MaxLength="255" />
+    <Property Name="ri_qi" Type="datetime" />
+    <Property Name="gong_huo" Type="varchar" MaxLength="255" />
+    <Property Name="shou_huo" Type="varchar" MaxLength="255" />
+    <Property Name="dan_hao" Type="varchar" MaxLength="255" />
+    <Property Name="tou_xiang" Type="varchar" MaxLength="255" />
+    <Property Name="sp_dm" Type="varchar" MaxLength="255" />
+    <Property Name="bei_zhu" Type="varchar" MaxLength="255" />
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="zh_name" Type="varchar" MaxLength="255" />
+    <Property Name="gs_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_mingxi">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="_openid" Type="varchar" MaxLength="255" />
+    <Property Name="cpid" Type="varchar" MaxLength="255" />
+    <Property Name="cpjj" Type="varchar" MaxLength="255" />
+    <Property Name="cplb" Type="varchar" MaxLength="255" />
+    <Property Name="cpname" Type="varchar" MaxLength="255" />
+    <Property Name="cpsj" Type="varchar" MaxLength="255" />
+    <Property Name="cpsl" Type="varchar" MaxLength="255" />
+    <Property Name="finduser" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="mxtype" Type="varchar" MaxLength="255" />
+    <Property Name="orderid" Type="varchar" MaxLength="255" />
+    <Property Name="shijian" Type="datetime" />
+    <Property Name="sp_dm" Type="varchar" MaxLength="255" />
+    <Property Name="shou_h" Type="varchar" MaxLength="255" />
+    <Property Name="zh_name" Type="varchar" MaxLength="255" />
+    <Property Name="gs_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_qichushu">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="_openid" Type="varchar" MaxLength="255" />
+    <Property Name="cpid" Type="varchar" MaxLength="255" />
+    <Property Name="cpjg" Type="varchar" MaxLength="255" />
+    <Property Name="cpjj" Type="varchar" MaxLength="255" />
+    <Property Name="cplb" Type="varchar" MaxLength="255" />
+    <Property Name="cpname" Type="varchar" MaxLength="255" />
+    <Property Name="cpsj" Type="varchar" MaxLength="255" />
+    <Property Name="cpsl" Type="varchar" MaxLength="255" />
+    <Property Name="mxtype" Type="varchar" MaxLength="255" />
+    <Property Name="shijian" Type="varchar" MaxLength="255" />
+    <Property Name="zh_name" Type="varchar" MaxLength="255" />
+    <Property Name="gs_name" Type="varchar" MaxLength="255" />
+    <Property Name="mark1" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_user">
+    <Key>
+      <PropertyRef Name="_id" />
+    </Key>
+    <Property Name="_id" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="AdminIS" Type="varchar" MaxLength="255" />
+    <Property Name="Btype" Type="varchar" MaxLength="255" />
+    <Property Name="Createdate" Type="varchar" MaxLength="255" />
+    <Property Name="_openid" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="jigoudaima" Type="varchar" MaxLength="255" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="mi_bao" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_yongliaosheding">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="sp_dm" Type="varchar" MaxLength="255" />
+    <Property Name="yuan_liao_name" Type="varchar" MaxLength="255" />
+    <Property Name="yuan_liao_sl" Type="varchar" MaxLength="255" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="yl_tx" Type="varchar" MaxLength="255" />
+    <Property Name="zh_name" Type="varchar" MaxLength="255" />
+    <Property Name="gs_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_zhengli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="sp_dm" Type="varchar" MaxLength="255" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="lei_bie" Type="varchar" MaxLength="255" />
+    <Property Name="dan_wei" Type="varchar" MaxLength="255" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="zh_name" Type="varchar" MaxLength="255" />
+    <Property Name="gs_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+</Schema>

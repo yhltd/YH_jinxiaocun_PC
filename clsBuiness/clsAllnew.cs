@@ -1861,68 +1861,6 @@ namespace clsBuiness
 
         }
 
-        public List<jxc_z_info> jxc_z_select(string zh_name, string gs_name,int limit1,int limit2)
-        {
-            string limit = " limit " + limit1 + "," + limit2;
-
-            List<jxc_z_info> list = new List<jxc_z_info>();
-            string sqlselect = "select *,(jq_cpsl+mx_ruku_cpsl-mx_chuku_cpsl) as jc_sl,(jq_price+mx_ruku_price-mx_chuku_price) as jc_price from (select jj.sp_dm,jj.name,jj.lei_bie,sum(jq.cpsl) as jq_cpsl,sum(jq.cpsl*jq.cpsj) as jq_price,mx_ruku.cpsl as mx_ruku_cpsl,mx_ruku.cp_price as mx_ruku_price,mx_chuku.cpsl as mx_chuku_cpsl,mx_chuku.cp_price as mx_chuku_price from yh_jinxiaocun_jichuziliao as jj left join yh_jinxiaocun_qichushu as jq on jj.sp_dm = jq.cpid and jq.zh_name = '" + zh_name + "' and jq.gs_name = '" + gs_name + "' left join (select jm.sp_dm,sum(jm.cpsl) as cpsl,sum(jm.cpsl*jm.cpsj) as cp_price from yh_jinxiaocun_mingxi as jm where jm.zh_name = '1' and jm.gs_name = '1' and jm.mxtype = '入库' group by jm.sp_dm) as mx_ruku on mx_ruku.sp_dm = jj.sp_dm left join (select jm.sp_dm,sum(jm.cpsl) as cpsl,sum(jm.cpsl*jm.cpsj) as cp_price from yh_jinxiaocun_mingxi as jm where jm.zh_name = '1' and jm.gs_name = '1' and jm.mxtype = '出库' group by jm.sp_dm ) as mx_chuku on mx_chuku.sp_dm = jj.sp_dm where jj.zh_name = '" + zh_name + "' and jj.gs_name = '" + gs_name + "' GROUP BY jj.sp_dm,jj.name,jj.lei_bie) as jxc" + limit;
-            MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(sqlselect, ConStr);
-            while (reader.Read())
-            {
-                jxc_z_info jxc = new jxc_z_info();
-                jxc.code = reader.IsDBNull(0) ? "" : reader.GetString("sp_dm");
-                jxc.name = reader.IsDBNull(1) ? "" : reader.GetString("name");
-                jxc.type = reader.IsDBNull(2) ? "" : reader.GetString("lei_bie");
-                jxc.num1 = reader.IsDBNull(3) ? "" : reader.GetString("jq_cpsl");
-                jxc.price1 = reader.IsDBNull(4) ? "" : reader.GetString("jq_price");
-                jxc.num2 = reader.IsDBNull(5) ? "" : reader.GetString("mx_ruku_cpsl");
-                jxc.price2 = reader.IsDBNull(6) ? "" : reader.GetString("mx_ruku_price");
-                jxc.num3 = reader.IsDBNull(7) ? "" : reader.GetString("mx_chuku_cpsl");
-                jxc.price3 = reader.IsDBNull(8) ? "" : reader.GetString("mx_chuku_price");
-                jxc.num4 = reader.IsDBNull(9) ? "" : reader.GetString("jc_sl");
-                jxc.price4 = reader.IsDBNull(10) ? "" : reader.GetString("jc_price");
-
-                jxc.stock = "25";
-                list.Add(jxc);
-            }
-            return list;
-        }
-
-        public List<jxc_z_info> jxc_select(string zh_name, string gs_name,string code,string start_time,string end_time)         {
-            start_time = start_time == "" ? start_time = "1999-01-01" : start_time;
-            end_time = end_time == "" ? end_time = "2999-01-01" : end_time;
-
-            List<jxc_z_info> list = new List<jxc_z_info>();
-            string sqlselect = "select *,(jq_cpsl+mx_ruku_cpsl-mx_chuku_cpsl) as jc_sl,(jq_price+mx_ruku_price-mx_chuku_price) as jc_price from (select jj.sp_dm,jj.name,jj.lei_bie,sum(jq.cpsl) as jq_cpsl,sum(jq.cpsl*jq.cpsj) as jq_price,mx_ruku.cpsl as mx_ruku_cpsl,mx_ruku.cp_price as mx_ruku_price,mx_chuku.cpsl as mx_chuku_cpsl,mx_chuku.cp_price as mx_chuku_price from yh_jinxiaocun_jichuziliao as jj left join yh_jinxiaocun_qichushu as jq on jj.sp_dm = jq.cpid and jq.zh_name = '" + zh_name + "' and jq.gs_name = '" + gs_name + "' left join (select jm.sp_dm,sum(jm.cpsl) as cpsl,sum(jm.cpsl*jm.cpsj) as cp_price from yh_jinxiaocun_mingxi as jm where jm.zh_name = '1' and jm.gs_name = '1' and jm.mxtype = '入库' and jm.shijian between '" + start_time + "' and '" + end_time + "' group by jm.sp_dm) as mx_ruku on mx_ruku.sp_dm = jj.sp_dm left join (select jm.sp_dm,sum(jm.cpsl) as cpsl,sum(jm.cpsl*jm.cpsj) as cp_price from yh_jinxiaocun_mingxi as jm where jm.zh_name = '1' and jm.gs_name = '1' and jm.mxtype = '出库' and jm.shijian between '" + start_time + "' and '" + end_time + "' group by jm.sp_dm ) as mx_chuku on mx_chuku.sp_dm = jj.sp_dm where jj.zh_name = '" + zh_name + "' and jj.gs_name = '" + gs_name + "' GROUP BY jj.sp_dm,jj.name,jj.lei_bie) as jxc where sp_dm like '%" + code + "%'";
-            MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(sqlselect, ConStr);
-            while (reader.Read())
-            {
-                jxc_z_info jxc = new jxc_z_info();
-                jxc.code = reader.IsDBNull(0) ? "" : reader.GetString("sp_dm");
-                jxc.name = reader.IsDBNull(1) ? "" : reader.GetString("name");
-                jxc.type = reader.IsDBNull(2) ? "" : reader.GetString("lei_bie");
-                jxc.num1 = reader.IsDBNull(3) ? "" : reader.GetString("jq_cpsl");
-                jxc.price1 = reader.IsDBNull(4) ? "" : reader.GetString("jq_price");
-                jxc.num2 = reader.IsDBNull(5) ? "" : reader.GetString("mx_ruku_cpsl");
-                jxc.price2 = reader.IsDBNull(6) ? "" : reader.GetString("mx_ruku_price");
-                jxc.num3 = reader.IsDBNull(7) ? "" : reader.GetString("mx_chuku_cpsl");
-                jxc.price3 = reader.IsDBNull(8) ? "" : reader.GetString("mx_chuku_price");
-                jxc.num4 = reader.IsDBNull(9) ? "" : reader.GetString("jc_sl");
-                jxc.price4 = reader.IsDBNull(10) ? "" : reader.GetString("jc_price");
-
-                jxc.stock = "25";
-                list.Add(jxc);
-            }
-            return list;
-        }
-
-        public int get_jxc_PageCount(string zh_name, string gs_name)
-        {
-            string sqlselect = "select *,(jq_cpsl+mx_ruku_cpsl-mx_chuku_cpsl) as jc_sl,(jq_price+mx_ruku_price-mx_chuku_price) as jc_price from (select jj.sp_dm,jj.name,jj.lei_bie,sum(jq.cpsl) as jq_cpsl,sum(jq.cpsl*jq.cpsj) as jq_price,mx_ruku.cpsl as mx_ruku_cpsl,mx_ruku.cp_price as mx_ruku_price,mx_chuku.cpsl as mx_chuku_cpsl,mx_chuku.cp_price as mx_chuku_price from yh_jinxiaocun_jichuziliao as jj left join yh_jinxiaocun_qichushu as jq on jj.sp_dm = jq.cpid and jq.zh_name = '" + zh_name + "' and jq.gs_name = '" + gs_name + "' left join (select jm.sp_dm,sum(jm.cpsl) as cpsl,sum(jm.cpsl*jm.cpsj) as cp_price from yh_jinxiaocun_mingxi as jm where jm.zh_name = '1' and jm.gs_name = '1' and jm.mxtype = '入库' group by jm.sp_dm) as mx_ruku on mx_ruku.sp_dm = jj.sp_dm left join (select jm.sp_dm,sum(jm.cpsl) as cpsl,sum(jm.cpsl*jm.cpsj) as cp_price from yh_jinxiaocun_mingxi as jm where jm.zh_name = '1' and jm.gs_name = '1' and jm.mxtype = '出库' group by jm.sp_dm ) as mx_chuku on mx_chuku.sp_dm = jj.sp_dm where jj.zh_name = '" + zh_name + "' and jj.gs_name = '" + gs_name + "' GROUP BY jj.sp_dm,jj.name,jj.lei_bie) as jxc";
-            return MySqlHelper.getCount(sqlselect);
-        }
-
 
         public List<rc_ku_info> rc_ku_select(string name, string zh_name, string gs_name) {
             rc_ku_info rki = null;
@@ -2213,7 +2151,8 @@ namespace clsBuiness
 
         public List<zl_and_jc_info> select_jczl(string zh, string gs)
         {
-            string sql = "select *,IFNULL((select sum(CASE mxtype WHEN '入库' THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi where cpname = j.name and gs_name = '" + gs + "'),0) as allSL from yh_jinxiaocun_jichuziliao as j where zh_name = '" + zh + "' and gs_name = '" + gs + "'";
+
+            string sql = "select *,IFNULL((select sum(CASE mxtype WHEN '出库' THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi where cpname = j.name and gs_name = '" + gs + "'),0) as allSL from yh_jinxiaocun_jichuziliao as j where zh_name = '" + zh + "' and gs_name = '" + gs + "'";
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(sql, ConStr);
             List<zl_and_jc_info> list = new List<zl_and_jc_info>();
             while (reader.Read())

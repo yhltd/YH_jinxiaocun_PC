@@ -12,6 +12,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Web.finance.util;
 using Web.jxc_service;
+using Web.Server;
 using Web.Service;
 
 namespace Web
@@ -19,9 +20,6 @@ namespace Web
     public partial class login : System.Web.UI.Page
     {
         public string alterinfo1;
-
-        bool is_AdminIS = false;
-        int logis = 0;
         public string user;
         public string pass;
         public string version;
@@ -63,33 +61,31 @@ namespace Web
             }
             else if (DropDownList1.SelectedItem.Text == "服务器_jxc")
             {
-                DataTable dt = new DataTable();
-                string ConStr = "server=yhocn.cn;user=root;password=Lyh07910;database=YH_jinxiaocun_PC;pooling=true;";
-                string sql = "select gongsi from yh_jinxiaocun_user GROUP BY gongsi";
-                MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(sql, ConStr);
                 DropDownList2.Items.Clear();
-                int a = 0;
-                List<string> itemi = new List<string>();
-                while (reader.Read())
+                UserModel userModel = new UserModel();
+                try
                 {
-                    a = a + 1;
-                    itemi.Add(reader[0].ToString());
+                    DropDownList2.DataSource = userModel.selectCompanys();
                 }
-                DropDownList2.DataSource = itemi;
+                catch
+                {
+                    Response.Write("<script>alert('网络超时，请稍后再试。')</script>");
+                }
                 DropDownList2.DataBind();
             }
-            else if (DropDownList1.SelectedItem.Text == "云合未来财务系统") {
+            else if (DropDownList1.SelectedItem.Text == "云合未来财务系统")
+            {
                 DropDownList2.Items.Clear();
                 AccountService accountService = new AccountService(false);
                 try
                 {
                     DropDownList2.DataSource = accountService.getCompanys();
                 }
-                catch 
+                catch
                 {
                     Response.Write("<script>alert('网络超时，请稍后再试。')</script>");
                 }
-                
+
                 DropDownList2.DataBind();
             }
         }
@@ -138,31 +134,40 @@ namespace Web
             }
             else if (servename.ToString() == "服务器_jxc")
             {
-                Session.Timeout = 10000;
-                Session["username"] = username;
-                Session["gs_name"] = gs_name;
-
-                jxc_user user = new jxc_user();
-                int result = user.loginAndGetUser(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim());
+                UserModel userModel = new UserModel();
                 string msg = "";
-
-                if (result == 1)
+                yh_jinxiaocun_user user;
+                try
                 {
-                    Response.Redirect("~/frmMain.aspx");
+                    user = userModel.login(gs_name.Trim(), username.Trim(), txtSAPPassword.Trim());
+                }
+                catch
+                {
+                    Response.Write("<script>alert('网络超时，请稍后再试。')</script>");
                     return;
                 }
-                else if (result == 0)
+                if (user != null)
                 {
-                    msg = "用户名密码错误！";
+                    if (user.Btype.Equals("锁定"))
+                    {
+                        msg = "用户已被锁定！";
+                    }
+                    else
+                    {
+                        Session.Timeout = 10000;
+                        Session["user"] = user;
+                        Response.Redirect("~/frmMain.aspx");
+                        return;
+                    }
                 }
                 else
                 {
-
-                    msg = "用户已被锁定！";
+                    msg = "用户名密码错误！";
                 }
                 Response.Write("<script id='alert'>alert('" + msg + "')</script>");
             }
-            else if (servename.ToString() == "云合未来财务系统") { 
+            else if (servename.ToString() == "云合未来财务系统")
+            {
                 AccountService accountService = new AccountService(false);
                 string token = accountService.login(gs_name.Trim(), username.Trim(), txtSAPPassword.Trim());
                 if (token.Equals(""))
@@ -170,7 +175,8 @@ namespace Web
                     Response.Write("<script>alert('用户名密码错误')</script>");
                     Response.Close();
                 }
-                else {
+                else
+                {
                     FinanceToken.getFinanceCheckToken().setToken(token);
                     Response.Redirect("../finance/web/view/index.aspx");
                     Response.Close();

@@ -18,8 +18,6 @@
             itemList: []
         }
         $(function () {
-            var windowHeight = window.innerHeight;
-            $("#table_div").css("height", windowHeight * 0.8)
             getList();
             getGongHuoList();
             $("#dj_row").click(function () {
@@ -57,39 +55,14 @@
                 }
             })
 
-
-
-            $("#getRandom").click(function () {
-                var rand = Math.floor(Math.random() * (9999999 - 99999)) + 99999;
-                var is = true;
-                do {
-                    $.ajax({
-                        type: "Post",
-                        url: "ru_ku.aspx",
-                        data: {
-                            act: "checkOrder",
-                            order_id: "RK" + rand
-                        },
-                        async: false,
-                        dataType: "json",
-                        success: function (result) {
-                            if (result == -1) {
-                                ruku.orderid = "RK" + rand
-                                $(".order_id_input").val("RK" + rand)
-                                is = false;
-                            }
-                        }
-                    });
-                } while (is)
-            })
             $("#back_ruku").click(function () {
                 $(".ruku_div").css("display", "none")
                 $(".mask").css("display", "none")
             })
 
             $("#insert_ruku").click(function () {
-                if (ruku.orderid == "") {
-                    alert("请生成订单号");
+                if ($('.order_id_input').val() == "") {
+                    alert("请输入订单号");
                     return;
                 }
                 $.ajax({
@@ -103,15 +76,9 @@
                     success: function (result) {
                         if (result > 0) {
                             alert("入库成功")
-                            ruku.gonghuo = "";
-                            ruku.orderid = "";
-                            ruku.itemList = []
-                            for (var i = 1; i <= row; i++) {
-                                $("#checkbox" + i).prop("checked", false);
-                            }
-                            $(".order_id_input").val("")
                             $(".ruku_div").css("display", "none")
                             $(".mask").css("display", "none")
+                            $('#shuaxin').click();
                         }
                     }
                 });
@@ -188,7 +155,7 @@
                 insertStr += "</select></td>"
                 insertStr += "<td class='item_td' id='sp_cplb" + row + "'>" + result[j].lei_bie + "</td>"
                 insertStr += "<td class='item_td' id='sp_cpsj" + row + "'>" + result[j].dan_wei + "</td>"
-                insertStr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].allSL + "'/></td>"
+                insertStr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].maxNum + "'/></td>"
                 insertStr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' type='number' autocomplete='off' oninput='bindInput_price(this.value," + result[j].id + ")' class='table_input' /></td>"
                 insertStr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/></td>"
                 insertStr += "</tr>"
@@ -200,15 +167,17 @@
         function getList() {
             var insertStr = "";
             $.ajax({
-                type: "Post",
+                type: "post",
                 url: "ru_ku.aspx",
                 data: {
-                    act: "newSp"
+                    act: 'newSp'
                 },
-                dataType: "json",
                 success: function (result) {
                     list = result;
-                    setList(result);
+                    setList(JSON.parse(result));
+                },
+                error: function (err) {
+                    console.log(err);
                 }
             });
         }
@@ -266,7 +235,7 @@
             $("#sp_name" + row).text(rows.name);
             $("#sp_cplb" + row).text(rows.lei_bie);
             $("#sp_cpsj" + row).text(rows.dan_wei);
-            $("#num" + row).attr("placeholder", "总数量：" + rows.allSL)
+            $("#num" + row).attr("placeholder", "总数量：" + rows.maxNum)
         }
 
         function getGongguo(e) {
@@ -406,7 +375,7 @@
                 <input id="ru_bt" class="rk_bt" type="button" value="入库"/> 
                 <input id="shuaxin" class="rk_bt" type="button" value="刷新"/> 
             </div> 
-            <div id="table_div" style="width:100%;height:420px;overflow:scroll;">
+            <div id="table_div" style="width:100%;overflow:scroll;">
 
                 <table id="biao_ge" name="bg_row" cellspacing="0" cellpadding="0">
                     <tr id="dj_yh">
@@ -432,8 +401,7 @@
     </form>
     <div class="ruku_div" style="display:none">
         <div class="ruku_info_div">
-            <input class="order_id_input" readonly="true" value=""/>
-            <input class="rk_bt" id="getRandom" type="button" value="生成订单号"/>
+            <input class="order_id_input" placeholder="订单号" value=""/>
             <select class="gonghuo_select" onchange="getGongguo(this.value)"></select>
         </div>
         <div class="ruku_bottom_div">

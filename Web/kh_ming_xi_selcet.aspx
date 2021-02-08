@@ -74,12 +74,24 @@
                 <select class="select_xl" name="gonghuo">
                     <option>请选择</option>
                     <%           
-                        List<string> kh_mx_xl_select = Session["kh_mx_xl_select"] as List<string>;
-                        for (int i = 0; i < kh_mx_xl_select.Count; i++)
-                        {                          
-                    %>
-                    <option><%=kh_mx_xl_select[i]%></option>
-                    <%
+                        System.Collections.Generic.List<string> shouhuo = Session["kh_mx_xl_select"] as System.Collections.Generic.List<string>;
+                        if (shouhuo != null)
+                        {
+                            for (int i = 0; i < shouhuo.Count; i++)
+                            {                          
+                                if(Session["shouhuo"].ToString() == shouhuo[i])
+                                {
+                                    %>
+                                    <option selected="selected"><%=shouhuo[i]%></option>
+                                    <%
+                                }
+                                else
+                                {
+                                    %>
+                                    <option><%=shouhuo[i]%></option>
+                                    <%
+                                }
+                            }
                         }
                     %>
                 </select>
@@ -101,27 +113,27 @@
 
                     <%
                
-                        List<rc_ku_info_select> rk_mx_select = Session["rk_mx_select"] as List<rc_ku_info_select>;
+                        System.Collections.Generic.List<Web.ServerEntity.MingXiItem> mingxi = Session["rk_mx_select"] as System.Collections.Generic.List<Web.ServerEntity.MingXiItem>;
 
 
-                        if (rk_mx_select == null)
+                        if (mingxi == null)
                         {
 
                         }
                         else
                         {
-                            for (int i = 0; i < rk_mx_select.Count; i++)
+                            for (int i = 0; i < mingxi.Count; i++)
                             {
                        
                     %>
                     <tr id="Tr1">
-                        <td><%=rk_mx_select[i].date %></td>
-                        <td><%=rk_mx_select[i].come%></td>
-                        <td><%=rk_mx_select[i].order %></td>
-                        <td><%=rk_mx_select[i].code %></td>
-                        <td><%=rk_mx_select[i].name %></td>
-                        <td><%=rk_mx_select[i].num %></td>
-                        <td><%=rk_mx_select[i].price %></td>
+                        <td><%=mingxi[i].shijian %></td>
+                        <td><%=mingxi[i].shou_h%></td>
+                        <td><%=mingxi[i].orderid %></td>
+                        <td><%=mingxi[i].sp_dm %></td>
+                        <td><%=mingxi[i].cpname %></td>
+                        <td><%=mingxi[i].cpsl %></td>
+                        <td><%=mingxi[i].ruku_price %></td>
                     </tr>
                     <%
                         }

@@ -13,54 +13,57 @@ using clsBuiness;
 using System.Reflection;
 using System.IO;
 using Web.jxc_service;
+using Web.Server;
 
 namespace Web
 {
     public partial class ming_xi : System.Web.UI.Page
     {
         private static ServicePage page = new ServicePage();
-        private static clsuserinfo user;
+        private static yh_jinxiaocun_user user;
         protected void Page_Load(object sender, EventArgs e)
         {
-            user = (clsuserinfo)Session["user"];
-            page.countPage = this.getCountPage();
+            user = (yh_jinxiaocun_user)Session["user"];
 
-            try
+            if (user != null)
             {
-                if (user == null)
+                try
                 {
-                    Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
-                }
-                else
-                {
-                    if (Session["ming_xi_select_dd"] == null)
+                    page.countPage = this.getCountPage();
+                    List<yh_jinxiaocun_mingxi> list = Session["ming_xi_select_dd"] as List<yh_jinxiaocun_mingxi>;
+                    if (list == null)
                     {
-                        this.ming_xi_select(user.name, user.gongsi);
+                        this.ming_xi_select(user.gongsi);
                     }
                     if (Convert.ToInt32(Session["dq_ye_mx_dd"]) == 0)
                     {
                         Session["dq_ye_mx_dd"] = 0;
                     }
                 }
+                catch
+                {
+                    Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+                }
             }
-            catch (Exception ex) { throw; }
-
-
+            else
+            {
+                Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
         }
         protected void toExcel(object sender, EventArgs e)
         {
 
-            List<ming_xi_info> gtlist = Session["ming_xi_select_dd"] as List<ming_xi_info>;
-            if (gtlist != null)
+            List<yh_jinxiaocun_mingxi> list = ri_qi_select(string.Empty, string.Empty, user.gongsi);
+            if (list != null)
             {
                 StringWriter sw = new StringWriter();
 
                 sw.WriteLine("订单号\t商品代码\t商品名称\t商品类别\t价格\t数量\t明细类型\t时间\t公司名\t收货方");
 
-                foreach (ming_xi_info dr in gtlist)
+                foreach (yh_jinxiaocun_mingxi mingxi in list)
                 {
 
-                    sw.WriteLine(dr.Orderid + "\t" + dr.sp_dm + "\t" + dr.Cpname + "\t" + dr.Cplb + "\t" + dr.Cpsj + "\t" + dr.Cpsl + "\t" + dr.Mxtype + "\t" + dr.Shijian + "\t" + dr.gs_name + "\t" + dr.shou_h);
+                    sw.WriteLine(mingxi.orderid + "\t" + mingxi.sp_dm + "\t" + mingxi.cpname + "\t" + mingxi.cplb + "\t" + mingxi.cpsj + "\t" + mingxi.cpsl + "\t" + mingxi.mxtype + "\t" + mingxi.shijian + "\t" + mingxi.gongsi + "\t" + mingxi.shou_h);
 
                 }
 
@@ -88,35 +91,25 @@ namespace Web
             try
             {
                 page.nowPage = 1;
-                ming_xi_select(Session["username"].ToString(), Session["gs_name"].ToString());
+                ming_xi_select(user.gongsi);
             }
-            catch (Exception ex) { throw; }
-
-
-
+            catch
+            {
+                Session["ming_xi_select_dd"] = null;
+            }
         }
 
         public int getCountPage()
         {
-            try
-            {
-                clsAllnew buiness = new clsBuiness.clsAllnew();
-                int allCount = buiness.getPageCount(user.name, user.gongsi);
-                return (int)Math.Ceiling(Convert.ToDouble((float)allCount / (float)page.pageCount));
-            }
-            catch (Exception ex) { throw; }
+            MingxiModel mingxi = new MingxiModel();
+            int allCount = mingxi.getPageCount(user.gongsi);
+            return (int)Math.Ceiling(Convert.ToDouble((float)allCount / (float)page.pageCount));
         }
 
-        public void ming_xi_select(string zh_name, string gs_name)
+        public void ming_xi_select(string gs_name)
         {
-            try
-            {
-                clsAllnew buiness = new clsBuiness.clsAllnew();
-                List<ming_xi_info> list = buiness.ming_xi_select(zh_name, gs_name, page.getLimit1(), page.getLimit2());
-                Session["ming_xi_select_dd"] = list;
-            }
-            catch (Exception ex) { throw; }
-
+            MingxiModel buiness = new MingxiModel();
+            Session["ming_xi_select_dd"] = buiness.ming_xi_select(gs_name, page.getLimit1(), page.getLimit2());
         }
 
         protected void shou_ye_Click(object sender, EventArgs e)
@@ -128,7 +121,7 @@ namespace Web
             else
             {
                 page.nowPage = 1;
-                this.ming_xi_select(user.name, user.gongsi);
+                this.ming_xi_select(user.gongsi);
                 Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
             }
         }
@@ -142,7 +135,7 @@ namespace Web
             else
             {
                 page.nowPage--;
-                this.ming_xi_select(user.name, user.gongsi);
+                this.ming_xi_select(user.gongsi);
                 Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
             }
         }
@@ -156,7 +149,7 @@ namespace Web
             else
             {
                 page.nowPage++;
-                this.ming_xi_select(user.name, user.gongsi);
+                this.ming_xi_select(user.gongsi);
                 Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
             }
 
@@ -171,16 +164,9 @@ namespace Web
             else
             {
                 page.nowPage = page.countPage;
-                this.ming_xi_select(user.name, user.gongsi);
+                this.ming_xi_select(user.gongsi);
                 Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
             }
-        }
-
-        public List<ming_xi_info> select_row()
-        {
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<ming_xi_info> list = buiness.ru_ku_select_row();
-            return list;
         }
 
         protected void rq_select(object sender, EventArgs e)
@@ -188,25 +174,28 @@ namespace Web
 
             try
             {
-                List<ming_xi_info> list = ri_qi_select(Context.Request["time_qs"].ToString(), Context.Request["time_jz"].ToString(), Session["username"].ToString(), Session["gs_name"].ToString());
-                Session["ming_xi_select_dd"] = list;
+                Session["ming_xi_select_dd"] = ri_qi_select(Context.Request["time_qs"].ToString(), Context.Request["time_jz"].ToString(), user.gongsi);
             }
-            catch (Exception ex) { throw; }
+            catch
+            {
+                Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+            }
 
         }
 
-        public List<ming_xi_info> ri_qi_select(string time_qs, string time_jz, string zh_name, string gs_name)
+        public List<yh_jinxiaocun_mingxi> ri_qi_select(string time_qs, string time_jz, string gs_name)
         {
-            if (time_qs.Equals(string.Empty)) {
+            if (time_qs.Equals(string.Empty))
+            {
                 time_qs = "1999-01-01";
             }
-            if (time_jz.Equals(string.Empty)) {
+            if (time_jz.Equals(string.Empty))
+            {
                 time_jz = "2999-12-31";
             }
 
-            clsAllnew buiness = new clsBuiness.clsAllnew();
-            List<ming_xi_info> list = buiness.ri_qi_select(time_qs, time_jz, zh_name, gs_name);
-            return list;
+            MingxiModel mingxi = new MingxiModel();
+            return mingxi.ri_qi_select(time_qs, time_jz, gs_name);
         }
     }
 }

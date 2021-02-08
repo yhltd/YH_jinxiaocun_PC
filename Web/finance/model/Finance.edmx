@@ -4,151 +4,150 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace='FinanceModel.Store' Alias='Self' Provider='System.Data.SqlClient' ProviderManifestToken='2008' xmlns:store='http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator' xmlns='http://schemas.microsoft.com/ado/2009/11/edm/ssdl'>
-        <EntityContainer Name='FinanceModelStoreContainer'>
-          <EntitySet Name='Account' EntityType='FinanceModel.Store.Account' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='Accounting' EntityType='FinanceModel.Store.Accounting' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='Department' EntityType='FinanceModel.Store.Department' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='FinancingExpenditure' EntityType='FinanceModel.Store.FinancingExpenditure' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='FinancingIncome' EntityType='FinanceModel.Store.FinancingIncome' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='InvestmentExpenditure' EntityType='FinanceModel.Store.InvestmentExpenditure' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='InvestmentIncome' EntityType='FinanceModel.Store.InvestmentIncome' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='ManagementExpenditure' EntityType='FinanceModel.Store.ManagementExpenditure' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='ManagementIncome' EntityType='FinanceModel.Store.ManagementIncome' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='SimpleAccounting' EntityType='FinanceModel.Store.SimpleAccounting' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='SimpleData' EntityType='FinanceModel.Store.SimpleData' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='VoucherSummary' EntityType='FinanceModel.Store.VoucherSummary' store:Type='Tables' Schema='dbo' />
-          <EntitySet Name='VoucherWord' EntityType='FinanceModel.Store.VoucherWord' store:Type='Tables' Schema='dbo' />
+    <Schema Namespace="FinanceModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FinanceModelStoreContainer">
+          <EntitySet Name="Account" EntityType="FinanceModel.Store.Account" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Accounting" EntityType="FinanceModel.Store.Accounting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Department" EntityType="FinanceModel.Store.Department" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FinancingExpenditure" EntityType="FinanceModel.Store.FinancingExpenditure" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FinancingIncome" EntityType="FinanceModel.Store.FinancingIncome" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InvestmentExpenditure" EntityType="FinanceModel.Store.InvestmentExpenditure" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InvestmentIncome" EntityType="FinanceModel.Store.InvestmentIncome" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ManagementExpenditure" EntityType="FinanceModel.Store.ManagementExpenditure" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ManagementIncome" EntityType="FinanceModel.Store.ManagementIncome" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SimpleAccounting" EntityType="FinanceModel.Store.SimpleAccounting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SimpleData" EntityType="FinanceModel.Store.SimpleData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VoucherSummary" EntityType="FinanceModel.Store.VoucherSummary" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VoucherWord" EntityType="FinanceModel.Store.VoucherWord" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
-        <EntityType Name='Account'>
+        <EntityType Name="Account">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
-          <Property Name='pwd' Type='varchar' MaxLength='255' />
-          <Property Name='do' Type='varchar' MaxLength='255' />
-          <Property Name='name' Type='varchar' MaxLength='255' />
-          <Property Name='salt' Type='varchar' MaxLength='32' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="pwd" Type="varchar" MaxLength="255" />
+          <Property Name="do" Type="varchar" MaxLength="255" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="salt" Type="varchar" MaxLength="32" />
         </EntityType>
-        <EntityType Name='Accounting'>
+        <EntityType Name="Accounting">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='code' Type='int' Nullable='false' />
-          <Property Name='name' Type='varchar' Nullable='false' MaxLength='255' />
-          <Property Name='direction' Type='bit' Nullable='false' />
-          <Property Name='load' Type='money' />
-          <Property Name='borrowed' Type='money' />
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="code" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="direction" Type="bit" Nullable="false" />
+          <Property Name="load" Type="money" />
+          <Property Name="borrowed" Type="money" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='Department'>
+        <EntityType Name="Department">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='department' Type='varchar' Nullable='false' MaxLength='255' />
-          <Property Name='man' Type='varchar' Nullable='false' MaxLength='255' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="department" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="man" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='FinancingExpenditure'>
+        <EntityType Name="FinancingExpenditure">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='financingExpenditure' Type='varchar' MaxLength='255' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="financingExpenditure" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='FinancingIncome'>
+        <EntityType Name="FinancingIncome">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='financingIncome' Type='varchar' MaxLength='255' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="financingIncome" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='InvestmentExpenditure'>
+        <EntityType Name="InvestmentExpenditure">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='investmentExpenditure' Type='varchar' MaxLength='255' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="investmentExpenditure" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='InvestmentIncome'>
+        <EntityType Name="InvestmentIncome">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='investmentIncome' Type='varchar' MaxLength='255' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="investmentIncome" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='ManagementExpenditure'>
+        <EntityType Name="ManagementExpenditure">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='managementExpenditure' Type='varchar' MaxLength='255' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="managementExpenditure" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='ManagementIncome'>
+        <EntityType Name="ManagementIncome">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='managementIncome' Type='varchar' MaxLength='255' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="managementIncome" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='SimpleAccounting'>
+        <EntityType Name="SimpleAccounting">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
-          <Property Name='accounting' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="accounting" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='SimpleData'>
+        <EntityType Name="SimpleData">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
-          <Property Name='project' Type='varchar' MaxLength='255' />
-          <Property Name='receivable' Type='money' />
-          <Property Name='receipts' Type='money' />
-          <Property Name='cope' Type='money' />
-          <Property Name='payment' Type='money' />
-          <Property Name='accounting' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="project" Type="varchar" MaxLength="255" />
+          <Property Name="receivable" Type="money" />
+          <Property Name="receipts" Type="money" />
+          <Property Name="cope" Type="money" />
+          <Property Name="payment" Type="money" />
+          <Property Name="accounting" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name='VoucherSummary'>
+        <EntityType Name="VoucherSummary">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='word' Type='varchar' Nullable='false' MaxLength='255' />
-          <Property Name='no' Type='varchar' Nullable='false' MaxLength='1000' />
-          <Property Name='abstract' Type='varchar' MaxLength='255' />
-          <Property Name='code' Type='varchar' Nullable='false' MaxLength='255' />
-          <Property Name='department' Type='varchar' Nullable='false' MaxLength='255' />
-          <Property Name='expenditure' Type='varchar' Nullable='false' MaxLength='255' />
-          <Property Name='note' Type='varchar' MaxLength='255' />
-          <Property Name='man' Type='varchar' MaxLength='255' />
-          <Property Name='money' Type='money' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
-          <Property Name='voucherDate' Type='datetime' />
-          <Property Name='real' Type='money' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="word" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="no" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="abstract" Type="varchar" MaxLength="255" />
+          <Property Name="code" Type="int" Nullable="false" />
+          <Property Name="department" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="expenditure" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="note" Type="varchar" MaxLength="255" />
+          <Property Name="man" Type="varchar" MaxLength="255" />
+          <Property Name="money" Type="money" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="voucherDate" Type="datetime" />
+          <Property Name="real" Type="money" />
         </EntityType>
-        <EntityType Name='VoucherWord'>
+        <EntityType Name="VoucherWord">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='int' Nullable='false' StoreGeneratedPattern='Identity' />
-          <Property Name='word' Type='varchar' MaxLength='255' />
-          <Property Name='company' Type='varchar' MaxLength='255' />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="word" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace='FinanceModel' Alias='Self' p1:UseStrongSpatialTypes='false' xmlns:annotation='http://schemas.microsoft.com/ado/2009/02/edm/annotation' xmlns:p1='http://schemas.microsoft.com/ado/2009/02/edm/annotation' xmlns='http://schemas.microsoft.com/ado/2009/11/edm'>
@@ -276,7 +275,7 @@
           <Property Name='word' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
           <Property Name='no' Type='String' Nullable='false' MaxLength='1000' Unicode='false' FixedLength='false' />
           <Property Name='abstract' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='code' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name='code' Type='Int32' Nullable='false' />
           <Property Name='department' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
           <Property Name='expenditure' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
           <Property Name='note' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />

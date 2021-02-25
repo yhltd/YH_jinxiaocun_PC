@@ -62,7 +62,7 @@
             </div>
             <div class="form-item">
 		        <label for="money">借贷金额:</label>
-		        <input class="input easyui-validatebox" autocomplete="off" type="text" name="money"/>
+		        <input class="input easyui-validatebox" autocomplete="off" type="number" name="money"/>
             </div>
             <div class="form-item">
 		        <label for="department">部门:</label>
@@ -78,7 +78,7 @@
             </div>
             <div class="form-item">
 		        <label for="real">实收/付:</label>
-		        <input class="input easyui-validatebox" autocomplete="off" type="text" name="real"/>
+		        <input class="input easyui-validatebox" autocomplete="off" type="number" name="real"/>
             </div>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toUpdVoucherSummary()" class="btn" type="button">确认修改</button>
@@ -111,7 +111,7 @@
             </div>
             <div class="form-item">
 		        <label for="money">借贷金额:</label>
-		        <input class="input easyui-validatebox" autocomplete="off" type="text" name="money"/>
+		        <input class="input easyui-validatebox" autocomplete="off" type="number" name="money"/>
             </div>
             <div class="form-item">
 		        <label for="department">部门:</label>
@@ -127,7 +127,7 @@
             </div>
             <div class="form-item">
 		        <label for="real">实收/付:</label>
-		        <input class="input easyui-validatebox" autocomplete="off" type="text" name="real"/>
+		        <input class="input easyui-validatebox" autocomplete="off" type="number" name="real"/>
             </div>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toAddVoucherSummary()" class="btn" type="button">确认新增</button>

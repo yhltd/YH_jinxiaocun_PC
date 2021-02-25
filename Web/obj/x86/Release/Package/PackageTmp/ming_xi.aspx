@@ -116,7 +116,7 @@
             width: 200px;
         }
         .time_select {
-            width: 150px;
+            width: 190px;
             height: 30px;
             border: 1px solid #F0F0F0;
             border-radius: 3px;
@@ -163,9 +163,9 @@
                 
                 <div class="select_div">
                     <label class="lable_select">起始日期：</label>
-                    <input type="date" class="time_select" name="time_qs" />
+                    <input type="datetime-local" class="time_select" name="time_qs" />
                     <label class="lable_select">截止日期：</label>
-                    <input type="date" class="time_select" name="time_jz" />
+                    <input type="datetime-local" class="time_select" name="time_jz" />
                     <asp:Button ID="Button3" class="qichu_input_tr_tj" OnClick="rq_select" Text="查询" runat="server" />
                 </div>
                 <div class="funcion_top">
@@ -208,7 +208,7 @@
                         <td class="bg_bj"><%=ming_xi_select_dd[i].cpsj %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].cpsl %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].mxtype %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].shijian %></td>
+                        <td class="bg_bj"><%=ming_xi_select_dd[i].shijian.GetValueOrDefault().ToString("g") %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].zh_name %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].shou_h %></td>
                     </tr>

@@ -124,7 +124,7 @@
     <Property Name="word" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="no" Type="varchar" Nullable="false" MaxLength="1000" />
     <Property Name="abstract" Type="varchar" MaxLength="255" />
-    <Property Name="code" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="code" Type="int" Nullable="false" />
     <Property Name="department" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="expenditure" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="note" Type="varchar" MaxLength="255" />

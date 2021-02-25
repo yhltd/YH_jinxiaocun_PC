@@ -196,7 +196,7 @@
     <form id="form1" runat="server">
         <div class="top_div">
             <a href="http://www.yhocn.cn" target="_blank" class="leftNav_li_header">
-                <img class="logo" src="Myadmin/images/tm_logo.png"/>
+                <img class="logo" src="Personnel/images/tm_logo.png"/>
                 云合未来进销存
             </a>
             <div class="function_top">

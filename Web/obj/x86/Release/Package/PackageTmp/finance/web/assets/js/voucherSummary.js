@@ -510,7 +510,7 @@ function toAddVoucherSummary() {
     }
 }
 
-function toResetUpdVoucherSummary() {
+function toResetAddVoucherSummary() {
     $('#add-voucherSummary-form').form('reset')
 }
 

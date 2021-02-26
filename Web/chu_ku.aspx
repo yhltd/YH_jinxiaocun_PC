@@ -28,11 +28,11 @@
             $('#dj_yh').click(function () {
                 var newTr = '';
                 newTr += "<tr id='del_row" + row + "'>"
-                newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='0'></checkbox></td>"
+                newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='0' /></td>"
                 newTr += "<td class='item_td'>" + row + "</td>"
-                newTr += "<td class='item_td' id='sp_name" + row + "></td>"
+                newTr += "<td class='item_td' id='sp_name" + row + "'></td>"
                 newTr += "<td class='item_td'>"
-                newTr += "<select class='input_tr' id='sp_dm" + row + "' name='sp_dm" + row + "' onchange='bhhq(" + row + "')'>"
+                newTr += "<select class='input_tr' id='sp_dm" + row + "' name='sp_dm" + row + "' onchange='bhhq(" + row + ")'>"
                 newTr += "<option value='选择编号'>选择编号</option>"
                 for (var i = 0; i < list.length; i++) {
                     newTr += "<option class='option_list' value='" + i + "'>" + list[i].sp_dm + "</option>"
@@ -92,6 +92,7 @@
                     alert('请生成订单号');
                     return;
                 }
+                ruku.orderid = $('.order_id_input').val()
                 $.ajax({
                     type: 'Post',
                     url: 'chu_ku.aspx',
@@ -103,6 +104,7 @@
                     success: function (result) {
                         if (result > 0) {
                             alert('出库成功')
+                            ruku.itemList = [];
                             $('.ruku_div').css('display', 'none')
                             $('.mask').css('display', 'none')
                             $('#shuaxin').click();

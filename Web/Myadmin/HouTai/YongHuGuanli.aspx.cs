@@ -33,19 +33,20 @@ namespace Web.Myadmin.HouTai
                 this.SelectUser();
             }
         }
-        public string delete(string id)
+        public int delete(string id)
         {
             string msg = string.Empty;
             UserModel s = new UserModel();
+            int result = 0;
             try
             {
-                msg = s.delete(id) > 0 ? "删除成功" : "未删除";
+                result = s.delete(id);
             }
             catch
             {
-                msg = "网络错误，请稍后再试。";
+                result = -1;
             }
-            return "<script>alert('" + msg + "');</script>";
+            return result;
         }
 
         private void SelectUser()

@@ -27,11 +27,11 @@ namespace Web.finance.web.view
                 //清除缓冲区流中的所有头
                 Response.ClearHeaders();
                 //设置流内容类型
-                Response.ContentType = "application/pdf";
+                Response.ContentType = "application/octet-stream";
                 //设置下载方式=>附件
-                Response.AddHeader("Content-Disposition", "attachment;filename=云合未来财务系统_使用说明.pdf");
+                Response.AddHeader("Content-Disposition", "attachment;filename=云合未来财务系统_使用说明.rar");
                 //获取文件的绝对路径
-                string filename = Server.MapPath("../../download/云合未来财务系统_使用说明.pdf");
+                string filename = Server.MapPath("download/云合未来财务系统_使用说明.rar");
                 //将文件直接写入HTTP响应输出流
                 Response.TransmitFile(filename);
             }

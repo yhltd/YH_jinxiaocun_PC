@@ -24,6 +24,7 @@
                 $("#row_i1").val($("#biao_ge tr").length);
             })
             $("#dj_yh").click(function () {
+                var myList = JSON.parse(list)
                 var newTr = "";
                 newTr += "<tr id='del_row" + row + "'>"
                 newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='0'></checkbox></td>"
@@ -32,8 +33,8 @@
                 newTr += "<td class='item_td'>"
                 newTr += "<select class='input_tr' id='sp_dm" + row + "' name='sp_dm" + row + "' onchange='bhhq(" + row + ")'>"
                 newTr += "<option value='选择编号'>选择编号</option>"
-                for (var i = 0; i < list.length; i++) {
-                    newTr += "<option class='option_list' value='" + i + "'>" + list[i].sp_dm + "</option>"
+                for (var i = 0; i < myList.length; i++) {
+                    newTr += "<option class='option_list' value='" + i + "'>" + myList[i].sp_dm + "</option>"
                 }
                 newTr += "</select></td>"
                 newTr += "<td class='item_td' id='sp_cplb" + row + "'></td>"
@@ -65,6 +66,7 @@
                     alert("请输入订单号");
                     return;
                 }
+                ruku.orderid = $('.order_id_input').val()
                 $.ajax({
                     type: "Post",
                     url: "ru_ku.aspx",
@@ -76,6 +78,7 @@
                     success: function (result) {
                         if (result > 0) {
                             alert("入库成功")
+                            ruku.itemList = [];
                             $(".ruku_div").css("display", "none")
                             $(".mask").css("display", "none")
                             $('#shuaxin').click();
@@ -218,9 +221,10 @@
             }
         }
         function bindInput_select(e) {
+            var ll = JSON.parse(list);
             for (var i = 1; i < row; i++) {
                 var name = $("#sp_name" + i).text();
-                var dm = list[$("#sp_dm" + i).val()].sp_dm;
+                var dm = ll[$("#sp_dm" + i).val()].sp_dm;
                 if (name.indexOf(e) == -1 && dm.indexOf(e) == -1) {
                     $("#del_row" + i).css("display", "none");
                 } else {
@@ -230,7 +234,7 @@
         }
         function bhhq(row) {
             var i = $("#sp_dm" + row).val();
-            var rows = list[i];
+            var rows = JSON.parse(list)[i];
             $("#checkbox" + row).val(rows.id);
             $("#sp_name" + row).text(rows.name);
             $("#sp_cplb" + row).text(rows.lei_bie);

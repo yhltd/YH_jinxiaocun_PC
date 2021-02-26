@@ -4,7 +4,7 @@
   <edmx:Designer xmlns='http://schemas.microsoft.com/ado/2009/11/edmx'>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId='c59a35f445484d219c8225b65e936da9' Name='关系图1'>
+      <Diagram DiagramId='c59a35f445484d219c8225b65e936da9' Name='关系图1' ZoomLevel="111">
         <EntityTypeShape EntityType='FinanceModel.Account' Width='1.5' PointX='0.75' PointY='0.75' IsExpanded='true' />
         <EntityTypeShape EntityType='FinanceModel.Accounting' Width='1.5' PointX='2.75' PointY='0.75' IsExpanded='true' />
         <EntityTypeShape EntityType='FinanceModel.Department' Width='1.5' PointX='4.75' PointY='0.75' IsExpanded='true' />

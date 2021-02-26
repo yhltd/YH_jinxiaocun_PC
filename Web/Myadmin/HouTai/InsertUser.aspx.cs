@@ -112,7 +112,7 @@ namespace Web.Myadmin.HouTai
                         int pd = u.update(uer);
                         if (pd > 0)
                         {
-                            Response.Write("<script>alert('修改成功！');layer.close(layer.index);</script>");
+                            Response.Write("<script>alert('修改成功！');</script>");
                         }
                     }
                     else 

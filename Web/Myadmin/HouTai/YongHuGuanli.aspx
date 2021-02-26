@@ -108,21 +108,13 @@
                     type: "post", //要用post方式                 
                     url: "YongHuGuanli.aspx?act=PostUser&id=" + id +"&gongsi="+gongsi,
                     dataType: "json",
-                    data: {},
                     success: function (data) {
-                        if (data == '1') {
-                            alert("删除成功")
-                            shuaxin();
-                        } else {
-                            alert("删除失败")
-                        }
-                        history.go(0)
+                        console.log("delete", data);
+                        shuaxin();
                     },
                     error: function (err) {
                     }
                 });
-
-                return true;
             }
         }
         $('#BTN_DELETE').click(function () {
@@ -177,7 +169,7 @@
                 yes: function (index) {
                     shwoAddrs();
                 },
-                cancel: function () {
+                end: function () {
                     shuaxin();
                 }
             })

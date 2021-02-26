@@ -12,12 +12,12 @@
     <form id="form1" runat="server">
     <div>
         <asp:Label ID="Label1" runat="server" Height="30px" Text="部门：" Width="80px"></asp:Label>
-        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="bumen" DataValueField="bumen" CssClass="top_select_input" Height="30px" Width="150px" >
+        <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="C" DataValueField="C" CssClass="top_select_input" Height="30px" Width="150px" >
         </asp:DropDownList>
         <asp:Button ID="Button1" runat="server" Text="搜索" OnClick="Button1_Click"  CssClass="top_bt" />
         <asp:Button ID="Button2" runat="server" Text="部门详情" OnClick="Button2_Click"  CssClass="top_bt" />
         <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="所有"  CssClass="top_bt" />
-        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString26 %>" SelectCommand="SELECT [bumen], [gongsi] FROM [gongzi_peizhi] WHERE ([gongsi] = @gongsi)">
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString26 %>" SelectCommand="SELECT [C], [BD] FROM [gongzi_gongzimingxi] WHERE ([BD] = @gongsi)  GROUP BY [C], [BD]">
             <SelectParameters>
                 <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />
             </SelectParameters>

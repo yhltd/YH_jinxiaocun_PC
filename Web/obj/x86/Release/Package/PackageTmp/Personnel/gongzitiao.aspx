@@ -13,17 +13,22 @@
     <div>
     
         <asp:Label ID="Label1" runat="server" Height="30px" Text="部门：" Width="80px"></asp:Label>
-        <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="bumen" DataValueField="bumen" >
+        <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="C" DataValueField="C" >
             <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [gongsi], [bumen], [zhiwu] FROM [gongzi_peizhi] WHERE ([gongsi] = @gongsi)">
+        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [C] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) GROUP BY [C],[BD]">
+            <SelectParameters>
+                <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [D] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) GROUP BY [BD], [D]">
             <SelectParameters>
                 <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
 &nbsp;&nbsp;&nbsp;
-        <asp:Label ID="Label2" runat="server" Height="30px" Text="职务：" Width="80px"></asp:Label>
-        <asp:DropDownList ID="DropDownList2" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="zhiwu" DataValueField="zhiwu" >
+        <asp:Label ID="Label2" runat="server" Height="30px" Text="岗位：" Width="80px"></asp:Label>
+        <asp:DropDownList ID="DropDownList2" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" DataSourceID="SqlDataSource4" DataTextField="D" DataValueField="D" >
         <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="Label3" runat="server" Height="30px" Text="年：" Width="80px"></asp:Label>
@@ -305,12 +310,22 @@
                 <asp:SessionParameter Name="D" SessionField="zw1" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>--%>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] like '%'+@C+'%') AND ([D] like '%'+@D+'%') AND ([BC] like '%'+@BC+'%'))">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] like '%'+@C+'%') AND ([D] like '%'+@D+'%') AND (Year([BC]) like '%'+@N+'%'))">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />
                 <asp:SessionParameter Name="D" SessionField="zw1" Type="String" />
-                <asp:SessionParameter Name="BC" SessionField="rq1" Type="String" />
+                <asp:SessionParameter Name="N" SessionField="Nian" Type="String" />
+                <%--<asp:SessionParameter Name="Y" SessionField="Yue" Type="String" />--%>
+            </SelectParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] like '%'+@C+'%') AND ([D] like '%'+@D+'%') AND (Year([BC]) like '%'+@N+'%') AND (Month([BC]) = @Y))">
+            <SelectParameters>
+                <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
+                <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />
+                <asp:SessionParameter Name="D" SessionField="zw1" Type="String" />
+                <asp:SessionParameter Name="N" SessionField="Nian" Type="String" />
+                <asp:SessionParameter Name="Y" SessionField="Yue" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString45 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE ([BD] = @BD)  ">

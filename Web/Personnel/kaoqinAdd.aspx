@@ -26,14 +26,14 @@
         <p style="margin-left: 240px">
             <br />
         <asp:Label ID="Label1" runat="server" Height="30px" Text="年份：" Width="60px"></asp:Label>
-        <input id="input1" runat="server" type="number" height="40px" class="input1" />
-        <%--<asp:TextBox ID="TextBox1" runat="server" Height="30px" Width="113px"  CssClass="top_select_input"></asp:TextBox>--%>
+        <%--<input id="input1" runat="server" type="number" height="40px" class="input1" />--%>
+        <asp:TextBox ID="TextBox1" runat="server" Height="30px" Width="113px"  CssClass="top_select_input" TextMode="Number"></asp:TextBox>
         <asp:Label ID="Label2" runat="server" Height="30px" Text="月份：" Width="60px"></asp:Label>
-        <input id="input2" runat="server" type="number" height="40px" width="100px" class="input1" />
-        <%--<asp:TextBox ID="TextBox2" runat="server" Height="30px" Width="113px" CssClass="top_select_input"></asp:TextBox>--%>
+        <%--<input id="input2" runat="server" type="number" height="40px" width="100px" class="input1" />--%>
+        <asp:TextBox ID="TextBox2" runat="server" Height="30px" Width="113px" CssClass="top_select_input" TextMode="Number"></asp:TextBox>
         <asp:Label ID="Label3" runat="server" Height="30px" Text="姓名：" Width="60px"></asp:Label>
         <%--<input id="input3" runat="server" type="number" height="40px"  class="input1" />--%>
-        <asp:TextBox ID="TextBox3" runat="server" Height="30px" CssClass="input1"></asp:TextBox>
+        <asp:TextBox ID="TextBox3" runat="server" Height="30px"  Width="113px" CssClass="top_select_input" ></asp:TextBox>
         <br />
         <br />
         <asp:Label ID="Label4" runat="server" Height="30px" Text="1：" Width="30px"></asp:Label>
@@ -111,20 +111,20 @@
         <br />
         <br />
         <asp:Label ID="Label35" runat="server" Height="30px" Text="全勤:" Width="41px"></asp:Label>
-        <input id="input35" runat="server" type="number" height="30px" class="input2" />
-        <%--<asp:TextBox ID="TextBox35" runat="server" Height="30px" Width="58px" CssClass="top_select_input"></asp:TextBox>--%>
+        <%--<input id="input35" runat="server"  height="30px" width="100spx" class="input2" />--%>
+        <asp:TextBox ID="TextBox35" runat="server" Height="30px" Width="58px" CssClass="top_select_input" TextMode="Number"></asp:TextBox>
         <asp:Label ID="Label36" runat="server" Height="30px" Text="实际:" Width="41px"></asp:Label>
-        <input id="input36" runat="server" type="number" height="30px" width="100px" class="input2" />
-        <%--<asp:TextBox ID="TextBox36" runat="server" Height="30px" Width="58px" CssClass="top_select_input"></asp:TextBox>--%>
+        <%--<input id="input36" runat="server"  height="30px" width="100px" class="input2" />--%>
+        <asp:TextBox ID="TextBox36" runat="server" Height="30px" Width="58px" CssClass="top_select_input" TextMode="Number"></asp:TextBox>
         <asp:Label ID="Label37" runat="server" Height="30px" Text="请假:" Width="41px"></asp:Label>
-        <input id="input37" runat="server" type="number" height="30px" width="100px" class="input2" />
-        <%--<asp:TextBox ID="TextBox37" runat="server" Height="30px" Width="58px" CssClass="top_select_input"></asp:TextBox>--%>
+        <%--<input id="input37" runat="server"  height="30px" width="100px" class="input2" />--%>
+        <asp:TextBox ID="TextBox37" runat="server" Height="30px" Width="58px" CssClass="top_select_input" TextMode="Number"></asp:TextBox>
         <asp:Label ID="Label38" runat="server" Height="30px" Text="加班:" Width="41px"></asp:Label>
-        <input id="input38" runat="server" type="number" height="30px" width="100px" class="input2" />
-        <%--<asp:TextBox ID="TextBox38" runat="server" Height="30px" Width="58px" CssClass="top_select_input"></asp:TextBox>--%>
+        <%--<input id="input38" runat="server"  height="30px" width="100px" class="input2" />--%>
+        <asp:TextBox ID="TextBox38" runat="server" Height="30px" Width="58px" CssClass="top_select_input" TextMode="Number"></asp:TextBox>
         <asp:Label ID="Label39" runat="server" Height="30px" Text="迟到:" Width="41px"></asp:Label>
-        <input id="input39" runat="server" type="number" height="30px" width="100px" class="input2" />
-        <%--<asp:TextBox ID="TextBox39" runat="server" Height="30px" Width="58px" CssClass="top_select_input"></asp:TextBox>--%>
+        <%--<input id="input39" runat="server"  height="30px" width="100px" class="input2" />--%>
+        <asp:TextBox ID="TextBox39" runat="server" Height="30px" Width="58px" CssClass="top_select_input" TextMode="Number"></asp:TextBox>
         <br />
         <br />
         </p>

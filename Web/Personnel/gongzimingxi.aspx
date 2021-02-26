@@ -65,14 +65,14 @@
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:CommandField>
-                <asp:CommandField ButtonType="Button" ShowEditButton="True" ItemStyle-CssClass="bt_upd2">
-                <HeaderStyle Wrap="False" />
-                <ItemStyle Wrap="False" />
-                </asp:CommandField>
-                <%--<asp:CommandField ShowDeleteButton="True" ButtonType="Button" >
+                <%--<asp:CommandField ButtonType="Button" ShowEditButton="True" ItemStyle-CssClass="bt_upd2">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:CommandField>--%>
+                <asp:CommandField ShowDeleteButton="True" ButtonType="Button"  ItemStyle-CssClass="bt_upd2">
+                <HeaderStyle Wrap="False" />
+                <ItemStyle Wrap="False" />
+                </asp:CommandField>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id"  Visible="false"/>
                 <asp:BoundField DataField="B" HeaderText="姓名" SortExpression="B" >
                 <HeaderStyle Wrap="False" />

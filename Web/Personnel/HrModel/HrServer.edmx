@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="yaoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="yaoModelStoreContainer">
+          <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.Store.gongzi_gongzimingxi" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="gongzi_gongzimingxi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="B" Type="varchar" MaxLength="255" />
+          <Property Name="C" Type="varchar" MaxLength="255" />
+          <Property Name="D" Type="varchar" MaxLength="255" />
+          <Property Name="E" Type="varchar" MaxLength="255" />
+          <Property Name="F" Type="varchar" MaxLength="255" />
+          <Property Name="G" Type="varchar" MaxLength="255" />
+          <Property Name="H" Type="varchar" MaxLength="255" />
+          <Property Name="I" Type="varchar" MaxLength="255" />
+          <Property Name="J" Type="varchar" MaxLength="255" />
+          <Property Name="K" Type="varchar" MaxLength="255" />
+          <Property Name="L" Type="varchar" MaxLength="255" />
+          <Property Name="M" Type="varchar" MaxLength="255" />
+          <Property Name="N" Type="varchar" MaxLength="255" />
+          <Property Name="O" Type="varchar" MaxLength="255" />
+          <Property Name="P" Type="varchar" MaxLength="255" />
+          <Property Name="Q" Type="varchar" MaxLength="255" />
+          <Property Name="R" Type="varchar" MaxLength="255" />
+          <Property Name="S" Type="varchar" MaxLength="255" />
+          <Property Name="T" Type="varchar" MaxLength="255" />
+          <Property Name="U" Type="varchar" MaxLength="255" />
+          <Property Name="V" Type="varchar" MaxLength="255" />
+          <Property Name="W" Type="varchar" MaxLength="255" />
+          <Property Name="X" Type="varchar" MaxLength="255" />
+          <Property Name="Y" Type="varchar" MaxLength="255" />
+          <Property Name="Z" Type="varchar" MaxLength="255" />
+          <Property Name="AA" Type="varchar" MaxLength="255" />
+          <Property Name="AB" Type="varchar" MaxLength="255" />
+          <Property Name="AC" Type="varchar" MaxLength="255" />
+          <Property Name="AD" Type="varchar" MaxLength="255" />
+          <Property Name="AE" Type="varchar" MaxLength="255" />
+          <Property Name="AF" Type="varchar" MaxLength="255" />
+          <Property Name="AG" Type="varchar" MaxLength="255" />
+          <Property Name="AH" Type="varchar" MaxLength="255" />
+          <Property Name="AI" Type="varchar" MaxLength="255" />
+          <Property Name="AJ" Type="varchar" MaxLength="255" />
+          <Property Name="AK" Type="varchar" MaxLength="255" />
+          <Property Name="AL" Type="varchar" MaxLength="255" />
+          <Property Name="AM" Type="varchar" MaxLength="255" />
+          <Property Name="AN" Type="varchar" MaxLength="255" />
+          <Property Name="AO" Type="varchar" MaxLength="255" />
+          <Property Name="AP" Type="varchar" MaxLength="255" />
+          <Property Name="AQ" Type="varchar" MaxLength="255" />
+          <Property Name="AR" Type="varchar" MaxLength="255" />
+          <Property Name="ASA" Type="varchar" MaxLength="255" />
+          <Property Name="ATA" Type="varchar" MaxLength="255" />
+          <Property Name="AU" Type="varchar" MaxLength="255" />
+          <Property Name="AV" Type="varchar" MaxLength="255" />
+          <Property Name="AW" Type="varchar" MaxLength="255" />
+          <Property Name="AX" Type="varchar" MaxLength="255" />
+          <Property Name="AY" Type="varchar" MaxLength="255" />
+          <Property Name="AZ" Type="varchar" MaxLength="255" />
+          <Property Name="BA" Type="varchar" MaxLength="255" />
+          <Property Name="BB" Type="varchar" MaxLength="255" />
+          <Property Name="BC" Type="varchar" MaxLength="255" />
+          <Property Name="BD" Type="varchar" MaxLength="255" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="yaoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="yaoEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.gongzi_gongzimingxi" />
+        </EntityContainer>
+        <EntityType Name="gongzi_gongzimingxi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="B" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="C" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="D" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="E" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="F" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="G" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="H" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="I" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="J" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="K" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="L" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="M" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="N" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="O" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="P" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Q" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="R" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="S" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="T" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="U" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="V" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="W" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="X" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Y" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Z" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AB" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AC" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AD" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AE" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AF" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AG" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AH" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AI" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AJ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AK" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AL" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AM" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AN" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AO" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AP" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AQ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AR" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ASA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="ATA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AU" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AV" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AW" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AX" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AY" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="AZ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="BA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="BB" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="BC" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="BD" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="yaoModelStoreContainer" CdmEntityContainer="yaoEntities">
+          <EntitySetMapping Name="gongzi_gongzimingxi">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_gongzimingxi">
+              <MappingFragment StoreEntitySet="gongzi_gongzimingxi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="D" ColumnName="D" />
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="F" ColumnName="F" />
+                <ScalarProperty Name="G" ColumnName="G" />
+                <ScalarProperty Name="H" ColumnName="H" />
+                <ScalarProperty Name="I" ColumnName="I" />
+                <ScalarProperty Name="J" ColumnName="J" />
+                <ScalarProperty Name="K" ColumnName="K" />
+                <ScalarProperty Name="L" ColumnName="L" />
+                <ScalarProperty Name="M" ColumnName="M" />
+                <ScalarProperty Name="N" ColumnName="N" />
+                <ScalarProperty Name="O" ColumnName="O" />
+                <ScalarProperty Name="P" ColumnName="P" />
+                <ScalarProperty Name="Q" ColumnName="Q" />
+                <ScalarProperty Name="R" ColumnName="R" />
+                <ScalarProperty Name="S" ColumnName="S" />
+                <ScalarProperty Name="T" ColumnName="T" />
+                <ScalarProperty Name="U" ColumnName="U" />
+                <ScalarProperty Name="V" ColumnName="V" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="Z" ColumnName="Z" />
+                <ScalarProperty Name="AA" ColumnName="AA" />
+                <ScalarProperty Name="AB" ColumnName="AB" />
+                <ScalarProperty Name="AC" ColumnName="AC" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="AE" ColumnName="AE" />
+                <ScalarProperty Name="AF" ColumnName="AF" />
+                <ScalarProperty Name="AG" ColumnName="AG" />
+                <ScalarProperty Name="AH" ColumnName="AH" />
+                <ScalarProperty Name="AI" ColumnName="AI" />
+                <ScalarProperty Name="AJ" ColumnName="AJ" />
+                <ScalarProperty Name="AK" ColumnName="AK" />
+                <ScalarProperty Name="AL" ColumnName="AL" />
+                <ScalarProperty Name="AM" ColumnName="AM" />
+                <ScalarProperty Name="AN" ColumnName="AN" />
+                <ScalarProperty Name="AO" ColumnName="AO" />
+                <ScalarProperty Name="AP" ColumnName="AP" />
+                <ScalarProperty Name="AQ" ColumnName="AQ" />
+                <ScalarProperty Name="AR" ColumnName="AR" />
+                <ScalarProperty Name="ASA" ColumnName="ASA" />
+                <ScalarProperty Name="ATA" ColumnName="ATA" />
+                <ScalarProperty Name="AU" ColumnName="AU" />
+                <ScalarProperty Name="AV" ColumnName="AV" />
+                <ScalarProperty Name="AW" ColumnName="AW" />
+                <ScalarProperty Name="AX" ColumnName="AX" />
+                <ScalarProperty Name="AY" ColumnName="AY" />
+                <ScalarProperty Name="AZ" ColumnName="AZ" />
+                <ScalarProperty Name="BA" ColumnName="BA" />
+                <ScalarProperty Name="BB" ColumnName="BB" />
+                <ScalarProperty Name="BC" ColumnName="BC" />
+                <ScalarProperty Name="BD" ColumnName="BD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

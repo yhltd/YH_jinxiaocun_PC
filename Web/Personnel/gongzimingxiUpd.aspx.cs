@@ -29,15 +29,18 @@ namespace Web.Personnel
 
                     if (i == 1 || i == 4 || i == 51 || i == 3 || i == 22 || i == 49 || i == 2 || i == 52)
                     {
-                        ((HtmlInputText)this.FindControl("input" + i.ToString())).Value = aa[i-1];
+                        //((HtmlInputText)this.FindControl("TextBox" + i.ToString())).Value = aa[i-1];
+                        ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
                     }
                     else if (i == 5 || i == 50 || i == 47)
                     {
-                        ((HtmlInputGenericControl)this.FindControl("input" + (i).ToString())).Value = aa[i-1];
+                        //((HtmlInputGenericControl)this.FindControl("TextBox" + i.ToString())).Value = aa[i - 1];
+                        ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
                     }
                     else
                     {
-                        ((HtmlInputControl)this.FindControl("input" + (i).ToString())).Value = aa[i-1];
+                        //((HtmlInputControl)this.FindControl("TextBox" + (i).ToString())).Value = aa[i - 1];
+                        ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
                     }
                 }
             }
@@ -60,10 +63,10 @@ namespace Web.Personnel
             {
                 if (i < 54)
                 {
-                    sqlStr += sqlarry[i - 1] + "='" + Request.Form["input" + i] + "',";
+                    sqlStr += sqlarry[i - 1] + "='" + Request.Form["TextBox" + i] + "',";
                 }
                 else {
-                    sqlStr += sqlarry[i - 1] + "='" + Request.Form["input" + i] + "'";
+                    sqlStr += sqlarry[i - 1] + "='" + Request.Form["TextBox" + i] + "'";
                 }
             }
             sqlStr += " where id='"+bb[54]+"';";
@@ -72,7 +75,7 @@ namespace Web.Personnel
             conn.Close();
             for (int i = 2; i < 34; i++)
             {
-                aa[i] = Request.Form["input" + i];
+                aa[i] = Request.Form["TextBox" + i];
             }
         }
     }

@@ -2235,6 +2235,25 @@
     <Compile Include="Personnel\head.aspx.designer.cs">
       <DependentUpon>head.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_gongzimingxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\HrMingXiModel.cs" />
+    <Compile Include="Personnel\HrModel\HrServer.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HrServer.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\HrServer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\HrServer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HrServer.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Personnel\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2797,6 +2816,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SoftTime.edmx</DependentUpon>
       <LastGenOutput>SoftTime.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Personnel\HrModel\HrServer.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HrServer.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Personnel\HrModel\HrServer.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HrServer.edmx</DependentUpon>
+      <LastGenOutput>HrServer.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Personnel\HrModel\HrServer.edmx.diagram">
+      <DependentUpon>HrServer.edmx</DependentUpon>
+    </Content>
+    <Content Include="Personnel\HrModel\HrServer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HrServer.edmx</DependentUpon>
+      <LastGenOutput>HrServer.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
     <None Include="Properties\PublishProfiles\jxc_test.pubxml" />

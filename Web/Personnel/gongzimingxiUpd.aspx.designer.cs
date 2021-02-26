@@ -40,13 +40,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// input1 控件。
+        /// Textbox1 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText input1;
+        protected global::System.Web.UI.WebControls.TextBox Textbox1;
         
         /// <summary>
         /// Label19 控件。
@@ -58,13 +58,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label19;
         
         /// <summary>
-        /// input19 控件。
+        /// Textbox19 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input19;
+        protected global::System.Web.UI.WebControls.TextBox Textbox19;
         
         /// <summary>
         /// Label37 控件。
@@ -76,13 +76,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label37;
         
         /// <summary>
-        /// input37 控件。
+        /// Textbox37 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input37;
+        protected global::System.Web.UI.WebControls.TextBox Textbox37;
         
         /// <summary>
         /// Label2 控件。
@@ -94,13 +94,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// input2 控件。
+        /// Textbox2 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText input2;
+        protected global::System.Web.UI.WebControls.TextBox Textbox2;
         
         /// <summary>
         /// Label20 控件。
@@ -112,13 +112,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label20;
         
         /// <summary>
-        /// input20 控件。
+        /// Textbox20 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input20;
+        protected global::System.Web.UI.WebControls.TextBox Textbox20;
         
         /// <summary>
         /// Label38 控件。
@@ -130,13 +130,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label38;
         
         /// <summary>
-        /// input38 控件。
+        /// Textbox38 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input38;
+        protected global::System.Web.UI.WebControls.TextBox Textbox38;
         
         /// <summary>
         /// Label3 控件。
@@ -148,13 +148,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// input3 控件。
+        /// Textbox3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText input3;
+        protected global::System.Web.UI.WebControls.TextBox Textbox3;
         
         /// <summary>
         /// Label21 控件。
@@ -166,13 +166,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label21;
         
         /// <summary>
-        /// input21 控件。
+        /// Textbox21 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input21;
+        protected global::System.Web.UI.WebControls.TextBox Textbox21;
         
         /// <summary>
         /// Label39 控件。
@@ -184,13 +184,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label39;
         
         /// <summary>
-        /// input39 控件。
+        /// Textbox39 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input39;
+        protected global::System.Web.UI.WebControls.TextBox Textbox39;
         
         /// <summary>
         /// Label4 控件。
@@ -202,13 +202,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// input4 控件。
+        /// Textbox4 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText input4;
+        protected global::System.Web.UI.WebControls.TextBox Textbox4;
         
         /// <summary>
         /// Label22 控件。
@@ -220,13 +220,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label22;
         
         /// <summary>
-        /// input22 控件。
+        /// Textbox22 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText input22;
+        protected global::System.Web.UI.WebControls.TextBox Textbox22;
         
         /// <summary>
         /// Label40 控件。
@@ -238,13 +238,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label40;
         
         /// <summary>
-        /// input40 控件。
+        /// Textbox40 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input40;
+        protected global::System.Web.UI.WebControls.TextBox Textbox40;
         
         /// <summary>
         /// Label5 控件。
@@ -256,13 +256,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// input5 控件。
+        /// Textbox5 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input5;
+        protected global::System.Web.UI.WebControls.TextBox Textbox5;
         
         /// <summary>
         /// Label23 控件。
@@ -274,13 +274,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label23;
         
         /// <summary>
-        /// input23 控件。
+        /// Textbox23 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input23;
+        protected global::System.Web.UI.WebControls.TextBox Textbox23;
         
         /// <summary>
         /// Label41 控件。
@@ -292,13 +292,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label41;
         
         /// <summary>
-        /// input32 控件。
+        /// Textbox32 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input32;
+        protected global::System.Web.UI.WebControls.TextBox Textbox32;
         
         /// <summary>
         /// Label6 控件。
@@ -310,13 +310,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// input6 控件。
+        /// Textbox6 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input6;
+        protected global::System.Web.UI.WebControls.TextBox Textbox6;
         
         /// <summary>
         /// Label24 控件。
@@ -328,13 +328,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label24;
         
         /// <summary>
-        /// input24 控件。
+        /// Textbox24 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input24;
+        protected global::System.Web.UI.WebControls.TextBox Textbox24;
         
         /// <summary>
         /// Label42 控件。
@@ -346,13 +346,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label42;
         
         /// <summary>
-        /// input33 控件。
+        /// Textbox33 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input33;
+        protected global::System.Web.UI.WebControls.TextBox Textbox33;
         
         /// <summary>
         /// Label7 控件。
@@ -364,13 +364,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// input7 控件。
+        /// Textbox7 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input7;
+        protected global::System.Web.UI.WebControls.TextBox Textbox7;
         
         /// <summary>
         /// Label25 控件。
@@ -382,13 +382,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label25;
         
         /// <summary>
-        /// input25 控件。
+        /// Textbox25 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input25;
+        protected global::System.Web.UI.WebControls.TextBox Textbox25;
         
         /// <summary>
         /// Label43 控件。
@@ -400,13 +400,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label43;
         
         /// <summary>
-        /// input43 控件。
+        /// Textbox43 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input43;
+        protected global::System.Web.UI.WebControls.TextBox Textbox43;
         
         /// <summary>
         /// Label8 控件。
@@ -418,13 +418,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
-        /// input8 控件。
+        /// Textbox8 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input8;
+        protected global::System.Web.UI.WebControls.TextBox Textbox8;
         
         /// <summary>
         /// Label26 控件。
@@ -436,13 +436,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label26;
         
         /// <summary>
-        /// input26 控件。
+        /// Textbox26 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input26;
+        protected global::System.Web.UI.WebControls.TextBox Textbox26;
         
         /// <summary>
         /// Label44 控件。
@@ -454,13 +454,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label44;
         
         /// <summary>
-        /// input44 控件。
+        /// Textbox44 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input44;
+        protected global::System.Web.UI.WebControls.TextBox Textbox44;
         
         /// <summary>
         /// Label9 控件。
@@ -472,13 +472,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// input9 控件。
+        /// Textbox9 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input9;
+        protected global::System.Web.UI.WebControls.TextBox Textbox9;
         
         /// <summary>
         /// Label27 控件。
@@ -490,13 +490,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label27;
         
         /// <summary>
-        /// input27 控件。
+        /// Textbox27 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input27;
+        protected global::System.Web.UI.WebControls.TextBox Textbox27;
         
         /// <summary>
         /// Label45 控件。
@@ -508,13 +508,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label45;
         
         /// <summary>
-        /// input45 控件。
+        /// Textbox45 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input45;
+        protected global::System.Web.UI.WebControls.TextBox Textbox45;
         
         /// <summary>
         /// Label10 控件。
@@ -526,13 +526,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// input10 控件。
+        /// Textbox10 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input10;
+        protected global::System.Web.UI.WebControls.TextBox Textbox10;
         
         /// <summary>
         /// Label28 控件。
@@ -544,13 +544,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label28;
         
         /// <summary>
-        /// input28 控件。
+        /// Textbox28 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input28;
+        protected global::System.Web.UI.WebControls.TextBox Textbox28;
         
         /// <summary>
         /// Label46 控件。
@@ -562,13 +562,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label46;
         
         /// <summary>
-        /// input46 控件。
+        /// Textbox46 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input46;
+        protected global::System.Web.UI.WebControls.TextBox Textbox46;
         
         /// <summary>
         /// Label11 控件。
@@ -580,13 +580,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// input11 控件。
+        /// Textbox11 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input11;
+        protected global::System.Web.UI.WebControls.TextBox Textbox11;
         
         /// <summary>
         /// Label29 控件。
@@ -598,13 +598,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label29;
         
         /// <summary>
-        /// input29 控件。
+        /// Textbox29 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input29;
+        protected global::System.Web.UI.WebControls.TextBox Textbox29;
         
         /// <summary>
         /// Label47 控件。
@@ -616,13 +616,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label47;
         
         /// <summary>
-        /// input47 控件。
+        /// Textbox47 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input47;
+        protected global::System.Web.UI.WebControls.TextBox Textbox47;
         
         /// <summary>
         /// Label12 控件。
@@ -634,13 +634,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
-        /// input12 控件。
+        /// Textbox12 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input12;
+        protected global::System.Web.UI.WebControls.TextBox Textbox12;
         
         /// <summary>
         /// Label30 控件。
@@ -652,13 +652,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label30;
         
         /// <summary>
-        /// input30 控件。
+        /// Textbox30 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input30;
+        protected global::System.Web.UI.WebControls.TextBox Textbox30;
         
         /// <summary>
         /// Label48 控件。
@@ -670,13 +670,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label48;
         
         /// <summary>
-        /// input48 控件。
+        /// Textbox48 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input48;
+        protected global::System.Web.UI.WebControls.TextBox Textbox48;
         
         /// <summary>
         /// Label13 控件。
@@ -688,13 +688,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// input13 控件。
+        /// Textbox13 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input13;
+        protected global::System.Web.UI.WebControls.TextBox Textbox13;
         
         /// <summary>
         /// Label31 控件。
@@ -706,13 +706,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label31;
         
         /// <summary>
-        /// input31 控件。
+        /// Textbox31 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input31;
+        protected global::System.Web.UI.WebControls.TextBox Textbox31;
         
         /// <summary>
         /// Label49 控件。
@@ -724,13 +724,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label49;
         
         /// <summary>
-        /// input49 控件。
+        /// Textbox49 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText input49;
+        protected global::System.Web.UI.WebControls.TextBox Textbox49;
         
         /// <summary>
         /// Label14 控件。
@@ -742,13 +742,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// input14 控件。
+        /// Textbox14 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input14;
+        protected global::System.Web.UI.WebControls.TextBox Textbox14;
         
         /// <summary>
         /// Label32 控件。
@@ -760,13 +760,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label32;
         
         /// <summary>
-        /// input41 控件。
+        /// Textbox41 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input41;
+        protected global::System.Web.UI.WebControls.TextBox Textbox41;
         
         /// <summary>
         /// Label50 控件。
@@ -778,13 +778,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label50;
         
         /// <summary>
-        /// input50 控件。
+        /// Textbox50 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input50;
+        protected global::System.Web.UI.WebControls.TextBox Textbox50;
         
         /// <summary>
         /// Label15 控件。
@@ -796,13 +796,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// input15 控件。
+        /// Textbox15 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input15;
+        protected global::System.Web.UI.WebControls.TextBox Textbox15;
         
         /// <summary>
         /// Label33 控件。
@@ -814,13 +814,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label33;
         
         /// <summary>
-        /// input42 控件。
+        /// Textbox42 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input42;
+        protected global::System.Web.UI.WebControls.TextBox Textbox42;
         
         /// <summary>
         /// Label51 控件。
@@ -832,13 +832,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label51;
         
         /// <summary>
-        /// input51 控件。
+        /// Textbox51 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText input51;
+        protected global::System.Web.UI.WebControls.TextBox Textbox51;
         
         /// <summary>
         /// Label16 控件。
@@ -850,13 +850,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label16;
         
         /// <summary>
-        /// input16 控件。
+        /// Textbox16 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input16;
+        protected global::System.Web.UI.WebControls.TextBox Textbox16;
         
         /// <summary>
         /// Label34 控件。
@@ -868,13 +868,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label34;
         
         /// <summary>
-        /// input34 控件。
+        /// Textbox34 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input34;
+        protected global::System.Web.UI.WebControls.TextBox Textbox34;
         
         /// <summary>
         /// Label52 控件。
@@ -886,13 +886,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label52;
         
         /// <summary>
-        /// input52 控件。
+        /// Textbox52 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText input52;
+        protected global::System.Web.UI.WebControls.TextBox Textbox52;
         
         /// <summary>
         /// Label17 控件。
@@ -904,13 +904,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label17;
         
         /// <summary>
-        /// input17 控件。
+        /// Textbox17 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input17;
+        protected global::System.Web.UI.WebControls.TextBox Textbox17;
         
         /// <summary>
         /// Label35 控件。
@@ -922,13 +922,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label35;
         
         /// <summary>
-        /// input35 控件。
+        /// Textbox35 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input35;
+        protected global::System.Web.UI.WebControls.TextBox Textbox35;
         
         /// <summary>
         /// Label53 控件。
@@ -940,13 +940,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label53;
         
         /// <summary>
-        /// input53 控件。
+        /// Textbox53 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input53;
+        protected global::System.Web.UI.WebControls.TextBox Textbox53;
         
         /// <summary>
         /// Label18 控件。
@@ -958,13 +958,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label18;
         
         /// <summary>
-        /// input18 控件。
+        /// Textbox18 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input18;
+        protected global::System.Web.UI.WebControls.TextBox Textbox18;
         
         /// <summary>
         /// Label36 控件。
@@ -976,13 +976,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label36;
         
         /// <summary>
-        /// input36 控件。
+        /// Textbox36 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input36;
+        protected global::System.Web.UI.WebControls.TextBox Textbox36;
         
         /// <summary>
         /// Label54 控件。
@@ -994,13 +994,13 @@ namespace Web.Personnel {
         protected global::System.Web.UI.WebControls.Label Label54;
         
         /// <summary>
-        /// input54 控件。
+        /// Textbox54 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl input54;
+        protected global::System.Web.UI.WebControls.TextBox Textbox54;
         
         /// <summary>
         /// Button1 控件。

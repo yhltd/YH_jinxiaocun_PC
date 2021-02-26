@@ -29,13 +29,13 @@ namespace Web.Personnel
                     string b = ((TextBox)this.FindControl("TextBox" + (i + 1).ToString())).ToString();
                     ((TextBox)this.FindControl("TextBox" + (i + 1).ToString())).Text = aa[i].ToString();
                 }
-                input1.Value = aa[0].ToString();
-                input2.Value = aa[1].ToString();
-                input35.Value = aa[34].ToString();
-                input36.Value = aa[35].ToString();
-                input37.Value = aa[36].ToString();
-                input38.Value = aa[37].ToString();
-                input39.Value = aa[38].ToString();
+                TextBox1.Text = aa[0].ToString();
+                TextBox2.Text = aa[1].ToString();
+                TextBox35.Text = aa[34].ToString();
+                TextBox36.Text = aa[35].ToString();
+                TextBox37.Text = aa[36].ToString();
+                TextBox38.Text = aa[37].ToString();
+                TextBox39.Text = aa[38].ToString();
             }
         }
 

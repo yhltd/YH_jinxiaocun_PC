@@ -49,10 +49,15 @@ namespace Web.Personnel
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Session["year"] = Request.Form["DropDownList1"];
-            Session["moth"] = Request.Form["DropDownList2"];
-            Server.Transfer("../Personnel/kaoqinAdd.aspx");
-            //Response.Write(javascript:window.open("../Personnel/kaoqinAdd.aspx"));
+            try
+            {
+                Session["year"] = Request.Form["DropDownList1"];
+                Session["moth"] = Request.Form["DropDownList2"];
+                Server.Transfer("../Personnel/kaoqinAdd.aspx", true);
+            }
+            catch (Exception ex) {
+                Response.Write("<script>window.location.href = '../Personnel/kaoqinAdd.aspx'</script>");
+            }
         }
         protected void Button3_Click(object sender, EventArgs e)
         {

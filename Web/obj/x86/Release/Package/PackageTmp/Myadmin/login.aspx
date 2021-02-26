@@ -109,7 +109,7 @@
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <input name="username" type="text" class="select_w150" id="username" size="16" maxlength="100" value="<%=user%>" /></td>
+                                        <input name="username" autocomplete="off" type="text" class="select_w150" id="username" size="16" maxlength="100" value="<%=user%>" /></td>
                                 </tr>
 
                                 <tr>

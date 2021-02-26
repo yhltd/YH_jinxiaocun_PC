@@ -33,7 +33,7 @@
     <form id="form1" runat="server" style="height:100%">
         <div class="header_login_info_con">
             <div style="width:33%">
-                <img src="images/tm_logo.png" style="float: left; margin-top: -1%; height: 67px;" />
+                <img src="../Personnel/images/tm_logo.png" style="float: left; margin-top: -1%; height: 67px;" />
                 <div class="logo">云合人事管理</div>
             </div>
             <div>

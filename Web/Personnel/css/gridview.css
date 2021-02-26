@@ -88,6 +88,15 @@
     border: 0.5px solid #E6E6E6;
     /*width:100px;*/
 }
+.header td {
+    height: 40px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    /*background-color: white;*/
+    border: 0.5px solid #E6E6E6;
+    /*width:100px;*/
+}
 .bt_upd1 input {
     width: 50px;
     height: 33px;

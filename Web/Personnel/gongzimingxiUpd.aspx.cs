@@ -29,7 +29,7 @@ namespace Web.Personnel
 
                     if (i == 1 || i == 4 || i == 51 || i == 3 || i == 22 || i == 49 || i == 2 || i == 52)
                     {
-                        //((HtmlInputText)this.FindControl("TextBox" + i.ToString())).Value = aa[i-1];
+                        
                         ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
                     }
                     else if (i == 5 || i == 50 || i == 47)

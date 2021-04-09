@@ -127,7 +127,6 @@ body, a {
     height: 100%;
 }
 .leftNav_li_header {
-    width: 16%;
     height: 100%;
     display: flex;
     flex-direction: row;

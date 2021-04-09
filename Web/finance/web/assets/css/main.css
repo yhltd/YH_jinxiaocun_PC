@@ -106,6 +106,28 @@
     height: 50px;
     font-size: 14px;
 }
+.toolbar + .main-item
+{
+    position: absolute;
+    top: 70px;
+    bottom: 20px;
+}
+#main > .main-item
+{
+    left: 20px;
+    right: 20px;
+}
+
+.main-item > .datagrid
+{
+    width: 100%;
+}
+
+
+.main-item > .easyui-pagination
+{
+    width: 100%;
+}
 
 
 .alert

@@ -236,16 +236,11 @@ namespace clsBuiness
                     if (cookie1 != null && cookie1["servename"].ToString() != "")
                     {
                         rev_servename = cookie1["servename"].ToString();
-
-                        // var rev_servename = HttpContext.Current.Session["servename"];
                         if (rev_servename != "" && rev_servename != null)
                         {
-
-                            //ConStr = System.Web.Configuration.WebConfigurationManager.AppSettings[cookie1["servename"].ToString()];
                             ConStr = System.Web.Configuration.WebConfigurationManager.AppSettings[HttpUtility.UrlDecode(cookie1["servename"].ToString()).ToString()];
 
                             ConStrPIC = ConStr.Replace("Provider=SQLOLEDB;", "");
-
                         }
                     }
                 }
@@ -256,43 +251,12 @@ namespace clsBuiness
 
         public List<clsuserinfo> findUser(string findtext)
         {
-            //string strSelect = "select * from JNOrder_User where name='" + findtext + "'";
             MySql.Data.MySqlClient.MySqlDataReader reader = MySqlHelper.ExecuteReader(findtext, ConStr);
             List<clsuserinfo> ClaimReport_Server = new List<clsuserinfo>();
 
             while (reader.Read())
             {
                 clsuserinfo item = new clsuserinfo();
-                //if (reader.GetValue(0) != null && Convert.ToString(reader.GetValue(0)) != "")
-                //    item.Order_id = reader.GetString(0);
-                //if (reader.GetValue(1) != null && Convert.ToString(reader.GetValue(1)) != "")
-                //    item.name = reader.GetString(1);
-                //if (reader.GetValue(2) != null && Convert.ToString(reader.GetValue(2)) != "")
-                //    item.password = reader.GetString(2);
-                //if (reader.GetValue(3) != null && Convert.ToString(reader.GetValue(3)) != "")
-                //    item.Createdate = reader.GetString(3);
-                //if (reader.GetValue(4) != null && Convert.ToString(reader.GetValue(4)) != "")
-                //    item.Btype = reader.GetString(4);
-                //if (reader.GetValue(5) != null && Convert.ToString(reader.GetValue(5)) != "")
-                //    item.denglushijian = reader.GetString(5);
-                //if (reader.GetValue(6) != null && Convert.ToString(reader.GetValue(6)) != "")
-                //    item.jigoudaima = reader.GetString(6);
-
-
-                //if (reader.GetValue(7) != null && Convert.ToString(reader.GetValue(7)) != "")
-                //    item.userTime = reader.GetString(7);
-
-                //if (reader.GetValue(8) != null && Convert.ToString(reader.GetValue(8)) != "")
-                //    item.AdminIS = reader.GetString(8);
-
-                //if (reader.GetValue(9) != null && Convert.ToString(reader.GetValue(9)) != "")
-                //    item.Input_Date = reader.GetString(9);
-
-                //if (reader.GetValue(10) != null && Convert.ToString(reader.GetValue(10)) != "")
-                //    item.mibao = reader.GetString(10);
-
-                //if (reader.GetValue(11) != null && Convert.ToString(reader.GetValue(11)) != "")
-                //    item.xiajilist = reader.GetString(11);
                 if (reader.GetValue(7) != null && Convert.ToString(reader.GetValue(7)) != "")
                     item.name = reader.GetString(7);
                 if (reader.GetValue(8) != null && Convert.ToString(reader.GetValue(8)) != "")
@@ -301,7 +265,6 @@ namespace clsBuiness
                     item.mibao = reader.GetString(9);
                 if (reader.GetValue(0) != null && Convert.ToString(reader.GetValue(0)) != "")
                     item.Order_id = reader.GetString(0);
-                //ClaimReport_Server.Add(item);
                 if (reader.GetValue(5) != null && Convert.ToString(reader.GetValue(5)) != "")
                     item.gongsi = reader.GetString(5);
 
@@ -309,7 +272,6 @@ namespace clsBuiness
                     item.AdminIS = reader.GetString(1);
 
                 ClaimReport_Server.Add(item);
-                //这里做数据处理....
             }
             return ClaimReport_Server;
 

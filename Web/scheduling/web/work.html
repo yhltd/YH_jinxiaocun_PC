@@ -1,0 +1,454 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="static/css/main.css">
+    <link href="static/element/index.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="static/vue/vue.js"></script>
+    <script type="text/javascript" src="static/element/index.js"></script>
+    <script type="text/javascript" src="static/axios/axios.js"></script>
+    <script src="static/js/main.js"></script>
+
+    <title>云合排产管理系统</title>
+</head>
+<body>
+    <div id="work">
+        <el-container>
+            <el-main v-loading="loading">
+                <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="5">
+                        <el-input placeholder="订单号" v-model="orderId" clearable></el-input>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-button-group>
+                            <el-button 
+                                icon="el-icon-search" 
+                                type="primary" 
+                                @click="workList">查询</el-button>
+                            <el-button 
+                                icon="el-icon-refresh" 
+                                type="primary" 
+                                @click="initWorkList"></el-button>
+                            <el-button 
+                                icon="el-icon-circle-plus-outline" 
+                                type="primary" 
+                                @click="openAddDrawer"></el-button>
+                            <!--<el-button 
+                                icon="el-icon-delete" 
+                                type="primary"
+                                @click="deleteDialogVisible = true"></el-button>-->
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+                <el-table :data="list" :row-style="rowIsInsert">
+                    <el-table-column 
+                        v-for="(item,index) in tableHead" 
+                        :key="index" 
+                        :label="item.label" 
+                        :property="item.property"
+                        :width="item.width"
+                        :fixed="item.fixed"
+                    ></el-table-column>
+                </el-table>
+                <el-pagination 
+                    background 
+                    layout="prev, pager, next" 
+                    :current-page.sync="now"
+                    :total="total"
+                    :page-size="size"
+                    :hide-on-single-page="total <= size" 
+                    @current-change="workList"
+                    style="margin-top: 10px"
+                ></el-pagination>
+            </el-main>
+        </el-container>
+
+        <el-drawer
+            title="新增排产明细"
+            :visible.sync="addVisible"
+            direction="ltr"
+            :modal="false"
+            size="80%"
+            ref="addDrawer"
+            v-loading="saveLoading"
+        >
+            <el-form 
+                :model="work"
+                :rules="rules"
+                ref="addForm"
+            >
+                <el-form-item label="是否插单">
+                    <el-switch v-model="work.is_insert" active-value="1" inactive-value="0"></el-switch>
+                </el-form-item>
+                <transition name="el-zoom-in-top">
+                    <el-form-item label="编号" prop="row_num" v-show="work.is_insert == 1">
+                        <el-select 
+                            v-model="work.row_num" 
+                            filterable 
+                            placeholder="请选择插入的编号"
+                            style="width: 230px"
+                        >
+                            <el-option 
+                                v-for="row in rowList" 
+                                :key="row.rowNum" 
+                                :label="row.rowNum" 
+                                :value="row.rowNum"
+                            >
+                                <span style="float: left">编号：{{row.rowNum}}</span>
+                                <span class="option-tag">订单号：{{row.orderId}}</span>
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </transition>
+                <el-form-item label="订单号" prop="order_id">
+                    <el-select 
+                        v-model="work.order_id" 
+                        filterable 
+                        placeholder="请选择订单号" 
+                        :loading="orderLoading"
+                        @change="orderChange"
+                        style="width: 230px"
+                    >
+                        <el-option 
+                            v-for="order in orderList" 
+                            :key="order.id" 
+                            :label="order.order_id" 
+                            :value="order.id"
+                        >
+                            <span style="float: left">{{order.order_id}}</span>
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="使用模块" prop="moduleList">
+                    <el-select 
+                        v-model="work.moduleList" 
+                        filterable 
+                        multiple 
+                        placeholder="请选择使用模块" 
+                        :loading="moduleLoading"
+                        collapse-tags
+                        style="width: 230px;"
+                    >
+                        <el-option 
+                            v-for="module in moduleList" 
+                            :key="module.id" 
+                            :label="module.name" 
+                            :value="module.id"
+                        >
+                            <span style="float: left">{{module.name}}</span>
+                            <span class="option-tag">效率：{{module.num}}</span>
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="可生产数量" prop="setNum">
+                    <el-input :value="work.setNum" readonly style="width: 230px;"></el-input>
+                </el-form-item>
+                <el-form-item label="生产数量" prop="work_num">
+                    <el-input v-model.number="work.work_num" style="width: 230px;"></el-input>
+                </el-form-item>
+                <el-form-item label="开始生产日期" prop="work_start_date">
+                    <el-date-picker v-model="work.work_start_date" type="datetime" placeholder="请选择日期" style="width: 230px;"></el-date-picker>
+                </el-form-item>
+            </el-form>
+            <el-button 
+                type="primary" 
+                icon="el-icon-upload"
+                @click="addWork('addForm')"
+                style="margin-top: 20px;"
+            >保存</el-button>
+        </el-drawer>
+
+
+        <!--<el-dialog title="删除排产明细" :visible.sync="deleteDialogVisible" :modal="false" @open="deleteDialogOpen">
+            <el-checkbox 
+                v-for="row in rowList"
+                v-model="row.checked" 
+                :label="row.orderId" 
+                border>
+                <div>{{row.orderId}} 编号：{{row.rowNum}}</div>
+            </el-checkbox>
+        </el-dialog>-->
+    </div>
+
+    <script>
+        new Vue({
+            el: '#work',
+            data: {
+                now: 1,
+                size: 20,
+                total: 0,
+                list: [],
+                rowList: [],
+                orderId: '',
+                loading: false,
+
+                tableHead: [],
+
+                addVisible: false,
+
+                orderLoading: false,
+                orderList: [],
+
+                moduleLoading: false,
+                moduleList: [],
+
+                saveLoading: false,
+                work: {},
+                rules: {
+                    //row_num: [
+                    //    { required: this.work.is_insert != 0 && this.work.is_insert != undefined , message: '编号不能为空', trigger: 'blur' }
+                    //],
+                    moduleList: [
+                        { required: true, message: '使用模块不能为空', trigger: 'blur' }
+                    ],
+                    order_id: [
+                        { required: true, message: '订单号不能为空', trigger: 'blur' }
+                    ],
+                    work_num: [
+                        { required: true, message: '生产数量不能为空', trigger: 'blur' },
+                        { type: 'number', message: '生产数量必须为数字值' }
+                    ],
+                    work_start_date: [
+                        { required: true, message: '开始生产日期不能为空', trigger: 'blur' }
+                    ]
+                },
+
+                deleteDialogVisible: false,
+                deleteList: []
+            },
+            methods: {
+                workList: function () {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('work/page'), {
+                        nowPage: _this.now,
+                        pageCount: _this.size,
+                        orderId: _this.orderId
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.total = res.data.total;
+                            _this.list = res.data.pageList == null ? [] : res.data.pageList ;
+                            _this.header();
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+
+                header: function () {
+                    this.rowList = [];
+
+                    var defaultHeader = [
+                        {
+                            label: '编号',
+                            property: 'row_num',
+                            width: 60,
+                            fixed: 'left'
+                        } ,{
+                            label: '订单号',
+                            property: 'orderId',
+                            width: 160,
+                            fixed: 'left'
+                        }, {
+                            label: '所属模块',
+                            property: 'moduleInfo.name',
+                            width: 120
+                        }, {
+                            label: '模块效率/时',
+                            property: 'moduleInfo.num',
+                            width: 100
+                        }, {
+                            label: '生产数量',
+                            property: 'work_num',
+                            width: 100
+                        }, {
+                            label: '开始生产日期',
+                            property: 'work_start_date',
+                            width: 200
+                        }
+                    ];
+
+                    var flowHeader = [];
+                    if (this.list == null || this.list == '') return;
+                    
+                    for (var i = 0; i < this.list.length; i++) {
+                        if(this.rowList.find(row => row.rowNum == this.list[i].row_num) == undefined){
+                            this.rowList.push({
+                                rowNum: this.list[i].row_num,
+                                orderId: this.list[i].orderId
+                            });
+                        }
+
+                        for (var key_ in this.list[i].workDayList) {
+                            var item_ = this.list[i].workDayList[key_]
+                            var dateTime = formatDate(item_.dateTime, 'yyyy-MM-dd')
+                            for(var x = 0; x < this.list.length; x++){
+                                if(this.list[x][dateTime] == undefined) this.list[x][dateTime] = 0;
+                                if(flowHeader.find(f => f.label == dateTime) == undefined){
+                                    flowHeader.push({
+                                        label: dateTime,
+                                        property: dateTime,
+                                        width: 120
+                                    })
+                                }
+                            }
+                            this.list[i][dateTime] = item_.work_num.toFixed(1)
+                        }
+                    }
+
+                    this.tableHead = defaultHeader.concat(flowHeader);
+                },
+
+                initWorkList: function () {
+                    this.orderId = '';
+                    this.workList();
+                },
+
+                openAddDrawer: function () {
+                    this.addVisible = true;
+                    this.getOrderList();
+                    this.getModuleList();
+                },
+
+                getOrderList: function () {
+                    var _this = this;
+                    _this.orderLoading = true;
+                    axios.post(myUrl('order/list'), {}).then(function (res) {
+                        if (res.code == 200) {
+                            _this.orderList = res.data
+                        }
+                        _this.orderLoading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.orderLoading = false;
+                    })
+                },
+
+                getModuleList: function () {
+                    var _this = this;
+                    _this.moduleLoading = true;
+                    axios.post(myUrl('module/list_num_is'), {}).then(function (res) {
+                        if (res.code == 200) {
+                            _this.moduleList = res.data
+                        }
+                        _this.moduleLoading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.moduleLoading = false;
+                    })
+                },
+
+                orderChange: function(){
+                    var orderId = this.work.order_id;
+                    var order = this.orderList.find(o => o.id == orderId);
+                    this.work.setNum = order != undefined ? order.set_num : 0;
+                },
+
+                addWork: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if(valid){
+                            if(_this.work.work_num > _this.work.setNum){
+                                _this.$message({
+                                    message: '生产数量不能大于可生产数量',
+                                    type: 'warning'
+                                });
+                                return;
+                            }
+                            _this.saveLoading = true;
+                            axios.post(myUrl('work/save'), {
+                                workDetail: {
+                                    order_id: _this.work.order_id,
+                                    work_num: _this.work.work_num,
+                                    work_start_date: _this.work.work_start_date,
+                                    row_num: _this.work.row_num,
+                                    is_insert: _this.work.is_insert
+                                },
+                                workModuleIdList: _this.work.moduleList
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.workList();
+                                    _this.$refs.addDrawer.closeDrawer();
+                                    _this.work = {};
+                                }
+                                _this.saveLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.saveLoading = false;
+                            })
+                        }
+                    })
+                },
+
+                rowIsInsert: function(row){
+                    console.log(row.row.is_insert)
+                    return row.row.is_insert > 0 ? {
+                        'background-color': '#FDF5E6'
+                    } : {};
+                },
+
+                deleteDialogOpen: function(){
+                    console.log(this.rowList)
+                }
+            },
+            mounted: function () {
+                this.workList();
+            }
+        })
+    </script>
+
+    <style>
+        .el-form
+        {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: start;
+
+        }
+        .el-form-item
+        {
+            margin-right: 10px
+        }
+        .option-tag
+        {
+            color: #8492a6;
+            font-size: 13px;
+            margin-left: 10px;
+        }
+
+        .el-checkbox.is-bordered
+        {
+            width: 100%;
+            border: 0;
+            border-bottom: 1px solid #f2f2f2;
+            border-radius: 0;
+            margin: 0;
+        }
+
+            .el-checkbox.is-bordered + .el-checkbox.is-bordered
+            {
+                margin: 0;
+            }
+    </style>
+</body>
+</html>

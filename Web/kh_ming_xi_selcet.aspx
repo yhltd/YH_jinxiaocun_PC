@@ -9,10 +9,6 @@
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
-        $(function () {
-            var windowHeight = window.innerHeight;
-            $(".table_div").css("height", windowHeight * 0.8)
-        })
     </script>
     <style type="text/css">
         .auto-style1
@@ -52,7 +48,7 @@
         {
             width: 185px;
             height: 73%;
-            border: 1px solid #F0F0F0;
+            border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
         .top-div
@@ -64,13 +60,17 @@
             justify-content: start;
             align-items: center;
         }
+        .table_div
+        {
+            overflow-y: auto;
+        }
     </style>
     <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <div class="top-div">
+            <div class="d-header top-div">
                 <select class="select_xl" name="gonghuo">
                     <option>请选择</option>
                     <%           
@@ -99,7 +99,7 @@
                 <asp:Button OnClick="kh_mx_select_load" ID="Button1" class="input_tr" Text="清空" runat="server" />
             </div>
 
-            <div class="table_div">
+            <div class="d-main table_div">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="width: 100%">
                     <tr id="dj_yh">
                         <th class="auto-style1" style="width: 150px;">日期</th>

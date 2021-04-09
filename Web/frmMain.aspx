@@ -2,7 +2,7 @@
 
 <%--<!DOCTYPE html>--%>
 
-<html xmlns="http://www.w3.org/1999/xhtml" style="padding-top: 60px">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" type="text/css" href="images/uploadify.css" />
@@ -105,8 +105,6 @@
         .top_div {
             width: 100%;
             min-height: 60px;
-            position: fixed;
-            top: 0;
             border-bottom: 1px solid #dcdfe6;
             z-index: 20;
             display: flex;
@@ -186,8 +184,10 @@
         {
             width: 100%;
             display: flex;
-            height: 100%;
             z-index: 20;
+            position: absolute;
+            top: 61px;
+            bottom: 0;
         }
     </style>
 

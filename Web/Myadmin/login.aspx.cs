@@ -12,6 +12,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Web.finance.util;
 using Web.jxc_service;
+using Web.scheduling;
 using Web.Server;
 using Web.Service;
 
@@ -86,6 +87,12 @@ namespace Web
                     Response.Write("<script>alert('网络超时，请稍后再试。')</script>");
                 }
 
+                DropDownList2.DataBind();
+            }
+            else if (DropDownList1.SelectedItem.Text.Equals("云合排产管理系统"))
+            {
+                DropDownList2.Items.Clear();
+                DropDownList2.DataSource = UserInfoService.companyList();
                 DropDownList2.DataBind();
             }
         }
@@ -173,13 +180,21 @@ namespace Web
                 if (token.Equals(""))
                 {
                     Response.Write("<script>alert('用户名密码错误')</script>");
-                    Response.Close();
                 }
                 else
                 {
                     FinanceToken.getFinanceCheckToken().setToken(token);
                     Response.Redirect("../finance/web/view/index.aspx");
-                    Response.Close();
+                }
+            }
+            else if (servename.ToString().Equals("云合排产管理系统")) {
+                if (!UserInfoService.login(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim()))
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('用户名密码错误！')", true);
+                }
+                else 
+                {
+                    Response.Redirect("../scheduling/web/index.html");
                 }
             }
         }

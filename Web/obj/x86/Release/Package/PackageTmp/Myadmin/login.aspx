@@ -69,13 +69,6 @@
 
                     <div class="center">
                         <div class="inner">
-                            <%--     &nbsp;<p>&nbsp;</p>--%>
-                            <%--         <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>--%>
                             <table cellpadding="0" cellspacing="0" id="innnertalbe">
                                 <tr>
                                     <td height="60">
@@ -125,8 +118,6 @@
                                 <tr>
                                     <td height="49"></td>
                                     <td class="auto-style1">
-
-                                        <%--<asp:Button  name="image" runat="server" type="submit" class="LoginSub" OnClientClick="CheckLogin()" onclick="CheckLogin()" value=" 登 录 " />--%>
                                         <asp:Button ID="image" runat="server" Text=" 登 录 " class="LoginSub" OnClick="HtmlBtn_Click" OnClientClick="CheckLogin()" />
 
                                         <asp:Button ID="btcreate" runat="server" Text=" 找回密码 " class="LoginSub" OnClick="Btchangepas_Click" Visible="true" />

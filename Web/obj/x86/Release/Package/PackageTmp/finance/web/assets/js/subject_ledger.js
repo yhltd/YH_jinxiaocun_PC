@@ -252,7 +252,7 @@ function setTable(data) {
             }
         }],
         data: data.pageList,
-        height: 470,
+        height: '100%',
         frozenColumns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
             {

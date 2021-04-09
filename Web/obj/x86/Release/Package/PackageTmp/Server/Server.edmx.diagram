@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5c9151210d234c5baade2b8ed10ad082" Name="关系图1" ZoomLevel="92">
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_chanpin" Width="1.625" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_chuhuofang" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_chuhuofang1" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_jichuziliao" Width="2.5" PointX="0.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_jinhuofang" Width="2.125" PointX="3.25" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_jinhuofang1" Width="1.875" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_kucun" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_mingxi" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_qichushu" Width="2.625" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_user" Width="2.625" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_yongliaosheding" Width="1.5" PointX="4.375" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_zhengli" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_chanpin" Width="1.625" PointX="0.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_chuhuofang" Width="1.5" PointX="2.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_chuhuofang1" Width="1.5" PointX="3.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_jichuziliao" Width="2.5" PointX="0.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_jinhuofang" Width="2.125" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_jinhuofang1" Width="1.875" PointX="5.125" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_kucun" Width="1.5" PointX="5.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_mingxi" Width="1.5" PointX="4.625" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_qichushu" Width="1.875" PointX="6.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_user" Width="2.625" PointX="0.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_yongliaosheding" Width="1.5" PointX="3.125" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_zhengli" Width="1.5" PointX="7" PointY="5" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -2,7 +2,7 @@
 var width = window.innerWidth;
 
 $(function () {
-    $("#main").css({ "height": height + "px", "width": width + "px" })
+    $("#main").css({ "height": height + "px" })
     $("#main-item").css({ "height": height + "px", "width": width - 20 + "px" })
 })
 

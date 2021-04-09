@@ -10,11 +10,6 @@
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
      <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
-
-        $(function () {
-            var windowHeight = window.innerHeight;
-            $(".table_div").css("height", windowHeight * 0.8)
-        })
     </script>
     <title></title>
     <style type="text/css">
@@ -66,7 +61,7 @@
         {
             width: 150px;
             height: 30px;
-            border: 1px solid #F0F0F0;
+            border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
         .input_select
@@ -74,7 +69,7 @@
             width: 150px;
             border: none;
             height: 30px;
-            border: 1px solid #F0F0F0;
+            border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
         .none

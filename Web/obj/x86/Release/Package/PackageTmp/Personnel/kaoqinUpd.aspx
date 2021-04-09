@@ -16,7 +16,7 @@
         }
     </script>
     <form id="form1" runat="server">
-        <p style="margin-left: 240px;Width:620px;Height:460px " >
+        <p style="margin-left: 240px;Width: 700px;Height:460px " >
             <br />
         <asp:Label ID="Label1" runat="server" Height="30px" Text="年份：" Width="60px"></asp:Label>
         <%--<input id="input1" runat="server" type="number" height="40px" class="input1" />--%>

@@ -18,8 +18,6 @@
             itemList: []
         }
         $(function () {
-            var windowHeight = window.innerHeight;
-            $('#table_div').css('height', windowHeight * 0.8)
             getList();
             getGongHuoList();
             $('#dj_row').click(function () {
@@ -344,10 +342,10 @@
         }
 
         .select_input {
-            width: 100%;
+            width: 300px;
             border: none;
             height: 64%;
-            border: 1px solid #F0F0F0;
+            border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
         .ruku_div {
@@ -406,12 +404,12 @@
             <input type='hidden' id='tj_pd_id' name='tj_pd' />
             <input type='hidden' id='row_i1' name='row_i' />
             <input type='hidden' id='xx_hidden' value='tj_false' />
-            <div class='new_ss_div'>
+            <div class='d-header new_ss_div'>
                 <input id='ru_cx' class='select_input' autocomplete='off' oninput='bindInput_select(this.value)' placeholder='按商品名称/商品代码搜索' />
                 <input id='ru_bt' class='rk_bt' type='button' value='出库'/> 
                 <input id='shuaxin' class='rk_bt' type='button' value='刷新'/> 
             </div> 
-            <div id='table_div' style='width:100%;height:420px;overflow:scroll;' >
+            <div class="d-main" id='table_div' style='width:100%;overflow:scroll;' >
                 <table id='biao_ge' name='bg_row' cellspacing='0' cellpadding='0'>
                     <tr id='dj_yh'>
                         <td class='auto-style1' style='width: 100px'>出库</td>
@@ -426,7 +424,7 @@
                       </tr>
                 </table>
             </div>
-            <div style='width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;'>
+            <div class="d-footer" style='width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;'>
                 <asp:Button CssClass='page_bt' ID='shou_ye' OnClick='shou_ye_Click' Text='首页' runat='server' />
                 <asp:Button CssClass='page_bt' ID='shang_ye' OnClick='shang_ye_Click' Text='上一页' runat='server' />
                 <asp:Button CssClass='page_bt' ID='xia_ye' OnClick='xia_ye_Click' Text='下一页' runat='server' />

@@ -26,15 +26,14 @@
             }
         }
         $(function () {
-            $("#html").css("height", window.screen.availHeight - window.screenTop + "px")
-            $("#html").css("width", window.screen.availWidth + "px")
+            $("#html").css("height", "100%")
         })
     </script>
     <form id="form1" runat="server" style="height:100%">
         <div class="header_login_info_con">
             <div style="width:33%">
                 <img src="../Personnel/images/tm_logo.png" style="float: left; margin-top: -1%; height: 67px;" />
-                <div class="logo">云合人事管理</div>
+                <div class="logo">云合人事管理系统</div>
             </div>
             <div>
                 <span class="fl welcome_info">你好         ！　　你的账号：<%=Session["username"] %></span>

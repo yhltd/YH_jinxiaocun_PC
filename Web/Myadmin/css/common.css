@@ -870,7 +870,7 @@ table.gridview_m {
 
 .new_ss_div {
     width: 500px;
-    height: 60px;
+    height: 50px;
     display: flex;
     align-items: center;
 }
@@ -1012,4 +1012,27 @@ table.gridview_m {
     font-size: 18pt;
     /*margin: 0 auto;*/
     /*padding: 0 0 0 0px;*/
+}
+
+
+.d-header
+{
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.d-main
+{
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    bottom: 70px;
+}
+
+.d-footer
+{
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }

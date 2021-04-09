@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="schedulingModelStoreContainer" CdmEntityContainer="schedulingEntities">
+    <EntitySetMapping Name="module_info">
+      <EntityTypeMapping TypeName="schedulingModel.module_info">
+        <MappingFragment StoreEntitySet="module_info">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="module_type">
+      <EntityTypeMapping TypeName="schedulingModel.module_type">
+        <MappingFragment StoreEntitySet="module_type">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_info">
+      <EntityTypeMapping TypeName="schedulingModel.user_info">
+        <MappingFragment StoreEntitySet="user_info">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_code" ColumnName="user_code" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="holiday_config">
+      <EntityTypeMapping TypeName="schedulingModel.holiday_config">
+        <MappingFragment StoreEntitySet="holiday_config">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="day_or_reset" ColumnName="day_or_reset" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="time_config">
+      <EntityTypeMapping TypeName="schedulingModel.time_config">
+        <MappingFragment StoreEntitySet="time_config">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="night_end" ColumnName="night_end" />
+          <ScalarProperty Name="night_start" ColumnName="night_start" />
+          <ScalarProperty Name="noon_end" ColumnName="noon_end" />
+          <ScalarProperty Name="noon_start" ColumnName="noon_start" />
+          <ScalarProperty Name="morning_end" ColumnName="morning_end" />
+          <ScalarProperty Name="morning_start" ColumnName="morning_start" />
+          <ScalarProperty Name="week" ColumnName="week" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bom_info">
+      <EntityTypeMapping TypeName="schedulingModel.bom_info">
+        <MappingFragment StoreEntitySet="bom_info">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="norms" ColumnName="norms" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_bom">
+      <EntityTypeMapping TypeName="schedulingModel.order_bom">
+        <MappingFragment StoreEntitySet="order_bom">
+          <ScalarProperty Name="use_num" ColumnName="use_num" />
+          <ScalarProperty Name="bom_id" ColumnName="bom_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_info">
+      <EntityTypeMapping TypeName="schedulingModel.order_info">
+        <MappingFragment StoreEntitySet="order_info">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="set_num" ColumnName="set_num" />
+          <ScalarProperty Name="set_date" ColumnName="set_date" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="norms" ColumnName="norms" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="work_detail">
+      <EntityTypeMapping TypeName="schedulingModel.work_detail">
+        <MappingFragment StoreEntitySet="work_detail">
+          <ScalarProperty Name="is_insert" ColumnName="is_insert" />
+          <ScalarProperty Name="row_num" ColumnName="row_num" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />
+          <ScalarProperty Name="work_num" ColumnName="work_num" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="work_module">
+      <EntityTypeMapping TypeName="schedulingModel.work_module">
+        <MappingFragment StoreEntitySet="work_module">
+          <ScalarProperty Name="module_id" ColumnName="module_id" />
+          <ScalarProperty Name="work_id" ColumnName="work_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

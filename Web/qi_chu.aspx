@@ -9,10 +9,6 @@
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
         <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
-        $(function () {
-            var windowHeight = window.innerHeight;
-            $(".table_div").css("height", windowHeight*0.8)
-        })
         
         function bhhq(row) {
             $.ajax({
@@ -175,7 +171,6 @@
         .table_div
         {
             width:100%;
-            height:70%;
             overflow:scroll;
         }
         .page_bt
@@ -205,12 +200,12 @@
             <input type="hidden" id="xx_hidden" value="tj_false" />
             <input type="hidden" id="row_i1" name="row_i" />
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
-            <div class="fun_div">
+            <div class="d-header fun_div">
                 <asp:Button ID="Button2" class="qichu_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="qichu_input_tr_tj" Text="删除" runat="server" />
                 <asp:Button OnClick="qc_tj" ID="dj_row" class="qichu_input_tr_tj" Text="提交" runat="server" />
             </div>
-            <div class="table_div">
+            <div class="d-main table_div">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 1%;">
                     <tr id="dj_yh">
                         <td class="auto-style1" style="width: 100px;">序号</td>
@@ -257,7 +252,7 @@
                 </table>
             </div>
 
-            <div style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
+            <div class="d-footer" style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
                 <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />

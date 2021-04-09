@@ -89,6 +89,7 @@
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.DynamicData" />
@@ -115,6 +116,7 @@
     <Content Include="ck_san.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage\ErrorPage.aspx" />
+    <Content Include="ErrorPage\sErrorPage.aspx" />
     <Content Include="FileNotFound.html" />
     <Content Include="finance\web\assets\css\chart.css" />
     <Content Include="finance\web\assets\css\error.css" />
@@ -125,6 +127,9 @@
     <Content Include="finance\web\assets\css\subject_ledger.css" />
     <Content Include="finance\web\assets\css\update_user.css" />
     <Content Include="finance\web\assets\css\voucherSummary.css" />
+    <Content Include="finance\web\assets\img\down-arrow.png" />
+    <Content Include="finance\web\assets\img\empty-image-error.png" />
+    <Content Include="finance\web\assets\img\tm_logo.png" />
     <Content Include="finance\web\assets\js\chart.js" />
     <Content Include="finance\web\assets\js\department.js" />
     <Content Include="finance\web\assets\js\EasyUI\changelog.txt" />
@@ -1132,6 +1137,7 @@
     <Content Include="Images\account.css" />
     <Content Include="Images\style.css" />
     <Content Include="Images\uploadify.css" />
+    <Content Include="Images\zhuangyu_03.jpg" />
     <Content Include="ImportData.aspx" />
     <Content Include="jin_xiao_cun.aspx" />
     <Content Include="ji_chu_zi_liao_page.aspx" />
@@ -1236,6 +1242,90 @@
     <Content Include="Myadmin\HouTai\dist\js\waves.js" />
     <Content Include="Myadmin\HouTai\InsertUser.aspx" />
     <Content Include="Myadmin\HouTai\YongHuGuanli.aspx" />
+    <Content Include="Myadmin\images\1221111.jpg" />
+    <Content Include="Myadmin\images\gbg.jpg" />
+    <Content Include="Myadmin\images\gs_logo.png" />
+    <Content Include="Myadmin\images\indexbg.jpg" />
+    <Content Include="Myadmin\images\Resources\20130125023819888_easyicon_cn_48.ico" />
+    <Content Include="Myadmin\images\Resources\201507150359113750.jpg" />
+    <Content Include="Myadmin\images\Resources\20160118035180712.jpg" />
+    <Content Include="Myadmin\images\Resources\44.ico" />
+    <Content Include="Myadmin\images\Resources\about.ico" />
+    <Content Include="Myadmin\images\Resources\add.ico" />
+    <Content Include="Myadmin\images\Resources\arrow.jpg" />
+    <Content Include="Myadmin\images\Resources\bookAddtb.jpg" />
+    <Content Include="Myadmin\images\Resources\bookBorrowtb.jpg" />
+    <Content Include="Myadmin\images\Resources\bookModiAndDeltb.jpg" />
+    <Content Include="Myadmin\images\Resources\bookOrdertb.jpg" />
+    <Content Include="Myadmin\images\Resources\bookTypeAddtb.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnAdd.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnAddDir.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnDel.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnExit.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnHuiFu.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnModify.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnPrint.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnReport.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnSend.jpg" />
+    <Content Include="Myadmin\images\Resources\BtnSerch.jpg" />
+    <Content Include="Myadmin\images\Resources\clear_co.gif" />
+    <Content Include="Myadmin\images\Resources\createNewBackup %282%29.gif" />
+    <Content Include="Myadmin\images\Resources\createNewBackup.gif" />
+    <Content Include="Myadmin\images\Resources\da.jpg" />
+    <Content Include="Myadmin\images\Resources\DelFile.jpg" />
+    <Content Include="Myadmin\images\Resources\Ding.jpg" />
+    <Content Include="Myadmin\images\Resources\download.ico" />
+    <Content Include="Myadmin\images\Resources\edit.gif" />
+    <Content Include="Myadmin\images\Resources\exittb.jpg" />
+    <Content Include="Myadmin\images\Resources\experts.jpg" />
+    <Content Include="Myadmin\images\Resources\favic111on.ico" />
+    <Content Include="Myadmin\images\Resources\favicon.ico" />
+    <Content Include="Myadmin\images\Resources\fix.jpg" />
+    <Content Include="Myadmin\images\Resources\gif_47_005.gif" />
+    <Content Include="Myadmin\images\Resources\guestphoto.jpg" />
+    <Content Include="Myadmin\images\Resources\hack.jpg" />
+    <Content Include="Myadmin\images\Resources\ico.ico" />
+    <Content Include="Myadmin\images\Resources\icon_find.gif" />
+    <Content Include="Myadmin\images\Resources\image029.jpg" />
+    <Content Include="Myadmin\images\Resources\jia1.jpg" />
+    <Content Include="Myadmin\images\Resources\Jump.jpg" />
+    <Content Include="Myadmin\images\Resources\junxian-icon.5a180.png" />
+    <Content Include="Myadmin\images\Resources\login-btn.jpg" />
+    <Content Include="Myadmin\images\Resources\Man.jpg" />
+    <Content Include="Myadmin\images\Resources\monument-valley.jpg" />
+    <Content Include="Myadmin\images\Resources\newbookChecktb.jpg" />
+    <Content Include="Myadmin\images\Resources\pdf.ico" />
+    <Content Include="Myadmin\images\Resources\People1.ico" />
+    <Content Include="Myadmin\images\Resources\psd24876副本.jpg" />
+    <Content Include="Myadmin\images\Resources\pulse.ico" />
+    <Content Include="Myadmin\images\Resources\QianShou.jpg" />
+    <Content Include="Myadmin\images\Resources\QQ图片20180922210629.jpg" />
+    <Content Include="Myadmin\images\Resources\QQ图片20180922210639.jpg" />
+    <Content Include="Myadmin\images\Resources\QuDing.jpg" />
+    <Content Include="Myadmin\images\Resources\readerAddtb.jpg" />
+    <Content Include="Myadmin\images\Resources\readerModiAndDeltb.jpg" />
+    <Content Include="Myadmin\images\Resources\refresh_24.gif" />
+    <Content Include="Myadmin\images\Resources\ReLoad.jpg" />
+    <Content Include="Myadmin\images\Resources\save.gif" />
+    <Content Include="Myadmin\images\Resources\save.jpg" />
+    <Content Include="Myadmin\images\Resources\searchimg.jpg" />
+    <Content Include="Myadmin\images\Resources\SelectAll.jpg" />
+    <Content Include="Myadmin\images\Resources\ShenPiNo.jpg" />
+    <Content Include="Myadmin\images\Resources\ShenPiNo1.jpg" />
+    <Content Include="Myadmin\images\Resources\ShenPiOK.jpg" />
+    <Content Include="Myadmin\images\Resources\ShenPiOK1.jpg" />
+    <Content Include="Myadmin\images\Resources\sticon.ico" />
+    <Content Include="Myadmin\images\Resources\Submit.jpg" />
+    <Content Include="Myadmin\images\Resources\SubmitCaoGao.jpg" />
+    <Content Include="Myadmin\images\Resources\touxiang.jpg" />
+    <Content Include="Myadmin\images\Resources\u-bg.jpg" />
+    <Content Include="Myadmin\images\Resources\update.jpg" />
+    <Content Include="Myadmin\images\Resources\UpLoad.jpg" />
+    <Content Include="Myadmin\images\Resources\view.gif" />
+    <Content Include="Myadmin\images\ru_tm.png" />
+    <Content Include="Myadmin\images\tm_logo.png" />
+    <Content Include="Myadmin\images\top_bg.jpg" />
+    <Content Include="Myadmin\images\ui-bg_error.gif" />
     <Content Include="Myadmin\js\index.js" />
     <Content Include="Myadmin\logout.aspx" />
     <Content Include="Myadmin\changepassword.aspx" />
@@ -1540,6 +1630,7 @@
     <Content Include="Personnel\images\rili.png" />
     <Content Include="Personnel\images\shebao.png" />
     <Content Include="Personnel\images\shezhi.png" />
+    <Content Include="Personnel\images\tm_logo.png" />
     <Content Include="Personnel\images\关闭.png" />
     <Content Include="Personnel\images\删除.png" />
     <Content Include="Personnel\images\放大.png" />
@@ -1581,6 +1672,28 @@
     <Content Include="ru_ku.aspx" />
     <Content Include="sample\index.html" />
     <Content Include="sample\jquery.js" />
+    <Content Include="scheduling\controller\bom.asmx" />
+    <Content Include="scheduling\controller\holidayConfig.asmx" />
+    <Content Include="scheduling\controller\module.asmx" />
+    <Content Include="scheduling\controller\moduleType.asmx" />
+    <Content Include="scheduling\controller\order.asmx" />
+    <Content Include="scheduling\controller\timeConfig.asmx" />
+    <Content Include="scheduling\controller\user.asmx" />
+    <Content Include="scheduling\controller\work.asmx" />
+    <Content Include="scheduling\controller\summary.asmx" />
+    <Content Include="scheduling\web\bom.html" />
+    <Content Include="scheduling\web\order.html" />
+    <Content Include="scheduling\web\summary.html" />
+    <Content Include="scheduling\web\time.html" />
+    <Content Include="scheduling\web\index.html" />
+    <Content Include="scheduling\web\module.html" />
+    <Content Include="scheduling\web\static\axios\axios.js" />
+    <Content Include="scheduling\web\static\css\main.css" />
+    <Content Include="scheduling\web\static\element\index.js" />
+    <Content Include="scheduling\web\static\element\index.css" />
+    <Content Include="scheduling\web\static\js\main.js" />
+    <Content Include="scheduling\web\static\vue\vue.js" />
+    <Content Include="scheduling\web\work.html" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
@@ -1760,6 +1873,13 @@
     </Compile>
     <Compile Include="ErrorPage\ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage\sErrorPage.aspx.cs">
+      <DependentUpon>sErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage\sErrorPage.aspx.designer.cs">
+      <DependentUpon>sErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="finance\entiy\AccountingItem.cs" />
     <Compile Include="finance\entiy\Charts.cs" />
@@ -2367,6 +2487,119 @@
     <Compile Include="ru_ku.aspx.designer.cs">
       <DependentUpon>ru_ku.aspx</DependentUpon>
     </Compile>
+    <Compile Include="scheduling\controller\bom.asmx.cs">
+      <DependentUpon>bom.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\holidayConfig.asmx.cs">
+      <DependentUpon>holidayConfig.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\module.asmx.cs">
+      <DependentUpon>module.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\moduleType.asmx.cs">
+      <DependentUpon>moduleType.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\order.asmx.cs">
+      <DependentUpon>order.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\timeConfig.asmx.cs">
+      <DependentUpon>timeConfig.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\user.asmx.cs">
+      <DependentUpon>user.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\work.asmx.cs">
+      <DependentUpon>work.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\summary.asmx.cs">
+      <DependentUpon>summary.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\dao\BomDao.cs" />
+    <Compile Include="scheduling\dao\CommonDao.cs" />
+    <Compile Include="scheduling\dao\HolidayDao.cs" />
+    <Compile Include="scheduling\dao\ModuleDao.cs" />
+    <Compile Include="scheduling\dao\ModuleTypeDao.cs" />
+    <Compile Include="scheduling\dao\OrderBomDao.cs" />
+    <Compile Include="scheduling\dao\OrderDao.cs" />
+    <Compile Include="scheduling\dao\TimeConfigDao.cs" />
+    <Compile Include="scheduling\dao\UserInfoDao.cs" />
+    <Compile Include="scheduling\dao\WorkDetailDao.cs" />
+    <Compile Include="scheduling\dao\WorkModuleDao.cs" />
+    <Compile Include="scheduling\model\BomInfoItem.cs" />
+    <Compile Include="scheduling\model\bom_info.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\holiday_config.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\ModuleItem.cs" />
+    <Compile Include="scheduling\model\module_info.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\module_type.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\order_bom.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\order_info.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\Scheduling.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Scheduling.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\Scheduling.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\Scheduling.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Scheduling.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\time_config.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\user_info.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\WorkDay.cs" />
+    <Compile Include="scheduling\model\WorkItem.cs" />
+    <Compile Include="scheduling\model\WorkSummary.cs" />
+    <Compile Include="scheduling\model\work_detail.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\work_module.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\service\BomService.cs" />
+    <Compile Include="scheduling\service\HolidayService.cs" />
+    <Compile Include="scheduling\service\ModuleService.cs" />
+    <Compile Include="scheduling\service\ModuleTypeService.cs" />
+    <Compile Include="scheduling\service\OrderInfoService.cs" />
+    <Compile Include="scheduling\service\TimeConfigService.cs" />
+    <Compile Include="scheduling\service\UserInfoService.cs" />
+    <Compile Include="scheduling\service\WorkDetailService.cs" />
+    <Compile Include="scheduling\service\WorkModuleService.cs" />
+    <Compile Include="scheduling\utils\ErrorUtil.cs" />
+    <Compile Include="scheduling\utils\JsonUtil.cs" />
+    <Compile Include="scheduling\utils\PageUtil.cs" />
+    <Compile Include="scheduling\utils\ResultUtil.cs" />
+    <Compile Include="scheduling\utils\RsaUtil.cs" />
+    <Compile Include="scheduling\utils\TimeError.cs" />
+    <Compile Include="scheduling\utils\TokenUtil.cs" />
     <Compile Include="ServerEntity\JinChuZiLiaoItem.cs" />
     <Compile Include="ServerEntity\MingXiItem.cs" />
     <Compile Include="Server\JinChuModel.cs" />
@@ -2488,8 +2721,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="finance\download\" />
-    <Folder Include="finance\web\assets\img\" />
     <Folder Include="Myadmin\KEditor\attached\" />
   </ItemGroup>
   <ItemGroup>
@@ -2834,6 +3065,7 @@
       <DependentUpon>HrServer.edmx</DependentUpon>
       <LastGenOutput>HrServer.cs</LastGenOutput>
     </Content>
+    <Content Include="finance\web\view\download\云合未来财务系统_使用说明.rar" />
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
     <None Include="Properties\PublishProfiles\jxc_test.pubxml" />
     <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />
@@ -2858,6 +3090,25 @@
       <DependentUpon>Server.edmx</DependentUpon>
       <LastGenOutput>Server.cs</LastGenOutput>
     </Content>
+    <EntityDeploy Include="scheduling\model\Scheduling.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Scheduling.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="scheduling\model\Scheduling.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Scheduling.edmx</DependentUpon>
+      <LastGenOutput>Scheduling.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="scheduling\model\Scheduling.edmx.diagram">
+      <DependentUpon>Scheduling.edmx</DependentUpon>
+    </Content>
+    <Content Include="scheduling\model\Scheduling.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Scheduling.edmx</DependentUpon>
+      <LastGenOutput>Scheduling.cs</LastGenOutput>
+    </Content>
+    <Content Include="scheduling\web\static\element\fonts\element-icons.ttf" />
+    <Content Include="scheduling\web\static\element\fonts\element-icons.woff" />
     <None Include="副本 Web.Debug.config">
       <DependentUpon>副本 Web.config</DependentUpon>
     </None>
@@ -2904,7 +3155,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>54351</DevelopmentServerPort>
+          <DevelopmentServerPort>55963</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

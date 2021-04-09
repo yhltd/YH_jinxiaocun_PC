@@ -1,0 +1,363 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="static/css/main.css">
+    <link href="static/element/index.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="static/vue/vue.js"></script>
+    <script type="text/javascript" src="static/element/index.js"></script>
+    <script type="text/javascript" src="static/axios/axios.js"></script>
+    <script src="static/js/main.js"></script>
+
+    <title>云合排产管理系统</title>
+</head>
+<body>
+    <div id="order">
+        <el-container>
+            <el-main>
+                <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="5">
+                        <el-input placeholder="产品名称" v-model="productName" clearable></el-input>
+                    </el-col>
+                    <el-col :span="5">
+                        <el-input placeholder="订单号" v-model="orderId" clearable></el-input>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-button-group>
+                            <el-button icon="el-icon-search" type="primary" @click="getList">查询</el-button>
+                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getInitList"></el-button>
+                            <el-button icon="el-icon-circle-plus-outline" type="primary" @click="addVisible = true"></el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+                <el-table :data="list" v-loading="loading" style="width: 100%">
+                    <el-table-column type="expand">
+                        <template slot-scope="props">
+                            <el-form
+                                :model="props.row"
+                                :rules="rules"
+                                ref="updateForm"
+                                label-width="80px"
+                            >
+                                <el-form-item label="产品编码" prop="code">
+                                    <el-input v-model="props.row.code" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="产品名称" prop="product_name">
+                                    <el-input v-model="props.row.product_name" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="规格" prop="norms">
+                                    <el-input v-model="props.row.norms" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="下单数量" prop="set_num">
+                                    <el-input v-model.number="props.row.set_num" style="width: 220px"></el-input>
+                                </el-form-item>
+                            </el-form>
+                            <el-button 
+                                type="primary" 
+                                icon="el-icon-upload"
+                                :loading="updateLoading"
+                                @click="updateOrder('updateForm')"
+                            >保存</el-button>
+                        </template>
+                    </el-table-column>
+                    <el-table-column width="150" prop="order_id" label="订单号" sortable></el-table-column>
+                    <el-table-column width="120" prop="code" label="产品编码" sortable></el-table-column>
+                    <el-table-column width="120" prop="product_name" label="产品名称" sortable></el-table-column>
+                    <el-table-column width="120" prop="norms" label="规格" sortable></el-table-column>
+                    <el-table-column width="120" prop="set_date" label="下单日期" sortable :formatter="dateFormat"></el-table-column>
+                    <el-table-column width="100" prop="set_num" label="下单数量" sortable></el-table-column>
+                    <el-table-column width="100" label="操作">
+                        <template slot-scope="scope">
+                            <el-popconfirm title="确定删除吗？" @confirm="deleteOrder(scope.row.id)" hide-icon>
+                                <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
+                            </el-popconfirm>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination 
+                    background 
+                    layout="prev, pager, next" 
+                    :current-page.sync="now"
+                    :total="total"
+                    :page-size="size"
+                    :hide-on-single-page="total <= size" 
+                    @current-change="getList"
+                    style="margin-top: 10px"
+                ></el-pagination>
+            </el-main>
+        </el-container>
+
+        <el-drawer
+            title="新增订单"
+            :visible.sync="addVisible"
+            direction="ltr"
+            :modal="false"
+            size="85%"
+            ref="addDrawer"
+            v-loading="saveLoading"
+        >
+            <el-form
+                :model="order"
+                :rules="rules"
+                ref="addForm"
+                label-width="80px"
+                label-position="left"
+                status-icon
+            >
+                <el-form-item label="订单号" prop="order_id">
+                    <el-input v-model="order.order_id"></el-input>
+                </el-form-item>
+                <el-form-item label="产品编码" prop="code">
+                    <el-input v-model="order.code"></el-input>
+                </el-form-item>
+                <el-form-item label="产品名称" prop="product_name">
+                    <el-input v-model="order.product_name"></el-input>
+                </el-form-item>
+                <el-form-item label="规格" prop="norms">
+                    <el-input v-model="order.norms"></el-input>
+                </el-form-item>
+                <el-form-item label="下单数量" prop="set_num">
+                    <el-input v-model.number="order.set_num"></el-input>
+                </el-form-item>
+            </el-form>
+            <el-table :data="bomList" v-loading="bomLoading" height="200">
+                <el-table-column prop="code" label="物料编码" sortable></el-table-column>
+                <el-table-column prop="name" label="物料名称" sortable></el-table-column>
+                <el-table-column prop="comment" label="描述" sortable></el-table-column>
+                <el-table-column prop="useNum" label="使用数量" sortable> 
+                    <template slot-scope="scope">
+                        <el-input v-model.number="scope.row.useNum"></el-input>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-button 
+                type="primary" 
+                icon="el-icon-upload"
+                @click="addOrder('addForm')"
+                style="float: right; margin-top: 20px"
+            >保存</el-button>
+        </el-drawer>
+    </div>
+
+    <script>
+        var validateOrder = function (rule, value, callback) {
+            if (value === '') {
+                callback(new Error('请输入订单号'));
+            } else {
+                axios.post(myUrl('order/checkOrder'), {
+                    orderId: value
+                }).then(function (res) {
+                    if (res.code < 0) {
+                        callback(new Error('订单号已存在'));
+                    } else {
+                        callback();
+                    }
+                }).catch(function (err) {
+                    callback(new Error('订单号已存在'));
+                })
+            }
+        }
+
+        new Vue({
+            el: '#order',
+            data: {
+                now: 1,
+                size: 20,
+                total: 0,
+                list: [],
+                loading: false,
+
+                productName: '',
+                orderId: '',
+
+                rules: {
+                    order_id: [
+                        { validator: validateOrder, trigger: 'blur' }
+                    ],
+                    code: [
+                        { required: true, message: '产品编码不能为空', trigger: 'blur' }
+                    ],
+                    product_name: [
+                        { required: true, message: '产品名称不能为空', trigger: 'blur' }
+                    ],
+                    set_num: [
+                        { required: true, message: '下单数量不能为空', trigger: 'blur' },
+                        { type: 'number', message: '下单数量必须为数字值' }
+                    ]
+                },
+                bomList: [],
+                bomLoading: false,
+                order: {},
+                addVisible: false,
+                saveLoading: false,
+
+                updateLoading: false
+            },
+            methods: {
+                getList: function () {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('order/page'), {
+                        nowPage: _this.now,
+                        pageCount: _this.size,
+                        productName: _this.productName,
+                        orderId: _this.orderId
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.total = res.data.total;
+                            _this.list = res.data.pageList
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+                getInitList: function () {
+                    this.productName = '';
+                    this.orderId = '';
+                    this.getList();
+                },
+
+                dateFormat: function (row, column, cellValue, index) {
+                    return formatDate(cellValue, 'yyyy-MM-dd');
+                },
+
+                getBomList: function () {
+                    var _this = this;
+                    _this.bomLoading = true;
+                    axios.post(myUrl('bom/list'), {}).then(function (res) {
+                        if (res.code == 200) {
+                            _this.bomList = res.data
+                        }
+                        _this.bomLoading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.bomLoading = false;
+                    })
+                },
+
+                addOrder: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.saveLoading = true;
+                            var bomList = [];
+                            for (var i = 0; i < _this.bomList.length; i++) {
+                                if (_this.bomList[i].useNum != '' && _this.bomList[i].useNum > 0 && _this.bomList[i].useNum != undefined) {
+                                    bomList.push({
+                                        id: _this.bomList[i].id,
+                                        useNum: _this.bomList[i].useNum
+                                    })
+                                }
+                            }
+                            
+                            if (bomList.length == 0) {
+                                _this.saveLoading = false;
+                                _this.$message({
+                                    message: '请输入当前订单所用物料',
+                                    type: 'warning'
+                                });
+                                return false;
+                            }
+
+                            axios.post(myUrl('order/save'), {
+                                orderInfo: _this.order,
+                                bomList: bomList
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.getList();
+                                }
+                                _this.saveLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.saveLoading = false;
+                            })
+                        }
+                    })
+                },
+
+                updateOrder: function(formName){
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.updateLoading = true;
+                            axios.post(myUrl('order/update'), {
+                                orderInfo: _this.$refs[formName].model
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.getList();
+                                    _this.$refs.addDrawer.closeDrawer();
+                                }
+                                _this.updateLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.updateLoading = false;
+                            })
+                        }
+                    })
+                },
+
+                deleteOrder: function (id) {
+                    var _this = this;
+                    axios.post(myUrl('order/delete'), {
+                        id: id,
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'success'
+                            });
+                            _this.getList();
+                        }
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                    })
+                }
+            },
+            mounted: function () {
+                this.getList();
+                this.getBomList();
+            }
+        })
+    </script>
+
+    <style>
+        .el-form
+        {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: start;
+
+        }
+        .el-form-item
+        {
+            margin-right: 10px
+        }
+    </style>
+</body>
+</html>

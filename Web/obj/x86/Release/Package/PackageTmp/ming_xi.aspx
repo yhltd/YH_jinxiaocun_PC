@@ -95,7 +95,7 @@
                 box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
             }
         .rq_css {
-            width: 81%;
+            width: 100%;
             height: 50px;
             display: flex;
             flex-direction: row;
@@ -103,7 +103,6 @@
             align-items: center;
         }
         .lable_select {
-            width: 91px;
             font-size: 15px;
         }
         .select_div {
@@ -118,7 +117,7 @@
         .time_select {
             width: 190px;
             height: 30px;
-            border: 1px solid #F0F0F0;
+            border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
         .bg_bj {
@@ -158,7 +157,7 @@
     </script>
     <form id="form1" runat="server">
         <div>
-            <div class="rq_css">
+            <div class="d-header rq_css">
                 
                 
                 <div class="select_div">
@@ -175,7 +174,7 @@
                 </div>
             </div>
 
-            <div class="table_div" style="width:100%;height:420px;overflow:scroll;">
+            <div class="d-main table_div" style="width:100%;overflow:scroll;">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row">
                     <tr id="dj_yh">                     
                         <td class="auto-style1" style="width: 50px">序号</td>
@@ -218,7 +217,7 @@
                     %>
                 </table>
             </div>
-            <div style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
+            <div class="d-footer" style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
                 <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />

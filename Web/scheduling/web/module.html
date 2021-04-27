@@ -41,10 +41,15 @@
                         <span>模块管理</span>
                     </div>
                     <el-row type="flex" justify="start" align="middle">
-                        <el-col :span="4">
+                        <el-col :span="6">
                             <el-button-group>
                                 <el-button size="medium" icon="el-icon-circle-plus-outline" type="primary" @click="addModuleDrawerVisible = true"></el-button>
                                 <el-button size="medium" icon="el-icon-refresh" type="primary" @click="getModulePage"></el-button>
+                                <el-button 
+                                    size="medium" 
+                                    icon="el-icon-printer" 
+                                    type="primary" 
+                                    @click="toExcel"></el-button>
                             </el-button-group>
                         </el-col>
                         <el-col :span="6">
@@ -245,7 +250,7 @@
                     })
                 },
                 moduleTypeDelete: function (index) {
-                    var _this = this;
+                    var _this = this
                     _this.moduleTypeLoading = true;
                     axios.post(myUrl('moduleType/delete'), {
                         id: _this.moduleTypeList[index].id
@@ -311,8 +316,10 @@
 
                 getModuleList: function(){
                     var _this = this;
+                    _this.moduleLoading = true;
                     axios.post(myUrl('module/list'), {}).then(function (res) {
                         _this.moduleList = res.data;
+                        _this.moduleLoading = false;
                     })
                 },
 
@@ -423,6 +430,15 @@
                         });
                         _this.moduleLoading = false;
                     })
+                },
+                toExcel: function(){
+                    var columns = {
+                        type_id: '模块类别',
+                        name: '名称',
+                        num: '效率',
+                        parent_id: '父模块'
+                    }
+                    exportExcel(this.modulePage.pageList, columns, '模块管理');
                 }
             },
             mounted: function () {

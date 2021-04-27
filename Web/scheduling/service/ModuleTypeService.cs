@@ -12,6 +12,8 @@ namespace Web.scheduling.service
     {
         private static ModuleTypeDao mtdo = new ModuleTypeDao();
 
+        private static ModuleService ms = new ModuleService();
+
         private static ModuleDao md = new ModuleDao();
 
         private static CommonDao cd = new CommonDao();
@@ -65,11 +67,12 @@ namespace Web.scheduling.service
         /// <returns></returns>
         public Boolean delete(int id) 
         {
-            if(cd.delete<module_type>(id))
+            List<module_info> moduleList = md.listByTypeId(id);
+            foreach (module_info moduleInfo in moduleList)
             {
-                return md.deleteByTypeId(id);
+                ms.delete(moduleInfo.id);
             }
-            return false;
+            return cd.delete<module_type>(id);
         }
     }
 }

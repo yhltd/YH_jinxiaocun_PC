@@ -33,18 +33,11 @@ namespace Web.scheduling
         /// <returns>是否登录成功</returns>
         public static Boolean login(string userCode, string pwd, string company)
         {
-            try
+            List<user_info> list = udo.list(userCode, pwd, company);
+            if (list.Count > 0)
             {
-                List<user_info> list = udo.list(userCode, pwd, company);
-                if (list.Count > 0)
-                {
-                    TokenUtil.setToken(list[0]);
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
+                TokenUtil.setToken(list[0]);
+                return true;
             }
             return false;
         }

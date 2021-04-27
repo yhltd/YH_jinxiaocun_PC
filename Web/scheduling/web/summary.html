@@ -37,6 +37,9 @@
                             ></el-option>
                         </el-select>
                     </el-col>
+                    <el-col :span="6">
+                        <el-input v-model="orderId" placeholder="查询订单号" clearable></el-input>
+                    </el-col>
                     <el-col :span="8">
                         <el-button-group>
                             <el-button icon="el-icon-search" type="primary" @click="getList">查询</el-button>
@@ -80,6 +83,7 @@
                 loading: false,
 
                 typeId: '',
+                orderId: '',
 
                 moduleTypeList: [],
                 moduleTypeLoading: false
@@ -91,7 +95,8 @@
                     axios.post(myUrl('summary/page'), {
                         nowPage: _this.now,
                         pageCount: _this.size,
-                        typeId: _this.typeId == '' ? -1 : _this.typeId
+                        typeId: _this.typeId == '' ? -1 : _this.typeId,
+                        orderId: _this.orderId
                     }).then(function (res) {
                         if (res.code == 200) {
                             _this.total = res.data.total

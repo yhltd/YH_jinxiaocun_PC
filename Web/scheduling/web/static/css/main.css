@@ -31,3 +31,8 @@ div, button
     padding: 0 20px;
     overflow: auto;
 }
+
+.el-table-column--selection .cell
+{
+    padding: 0 10px;
+}

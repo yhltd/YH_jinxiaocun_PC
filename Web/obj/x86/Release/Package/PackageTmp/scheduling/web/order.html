@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <link rel="stylesheet" href="static/css/main.css">
     <link href="static/element/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/css/main.css">
 
     <script type="text/javascript" src="static/vue/vue.js"></script>
     <script type="text/javascript" src="static/element/index.js"></script>
@@ -65,13 +65,13 @@
                             >保存</el-button>
                         </template>
                     </el-table-column>
-                    <el-table-column width="150" prop="order_id" label="订单号" sortable></el-table-column>
-                    <el-table-column width="120" prop="code" label="产品编码" sortable></el-table-column>
-                    <el-table-column width="120" prop="product_name" label="产品名称" sortable></el-table-column>
-                    <el-table-column width="120" prop="norms" label="规格" sortable></el-table-column>
-                    <el-table-column width="120" prop="set_date" label="下单日期" sortable :formatter="dateFormat"></el-table-column>
-                    <el-table-column width="100" prop="set_num" label="下单数量" sortable></el-table-column>
-                    <el-table-column width="100" label="操作">
+                    <el-table-column prop="order_id" label="订单号" sortable></el-table-column>
+                    <el-table-column prop="code" label="产品编码" sortable></el-table-column>
+                    <el-table-column prop="product_name" label="产品名称" sortable></el-table-column>
+                    <el-table-column prop="norms" label="规格" sortable></el-table-column>
+                    <el-table-column prop="set_date" label="下单日期" sortable :formatter="dateFormat"></el-table-column>
+                    <el-table-column prop="set_num" label="下单数量" sortable></el-table-column>
+                    <el-table-column label="操作">
                         <template slot-scope="scope">
                             <el-popconfirm title="确定删除吗？" @confirm="deleteOrder(scope.row.id)" hide-icon>
                                 <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
@@ -125,13 +125,14 @@
                     <el-input v-model.number="order.set_num"></el-input>
                 </el-form-item>
             </el-form>
-            <el-table :data="bomList" v-loading="bomLoading" height="200">
+            <el-table ref="bomTable" :data="bomList" v-loading="bomLoading">
+                <el-table-column type="selection" width="55"></el-table-column>
                 <el-table-column prop="code" label="物料编码" sortable></el-table-column>
                 <el-table-column prop="name" label="物料名称" sortable></el-table-column>
                 <el-table-column prop="comment" label="描述" sortable></el-table-column>
                 <el-table-column prop="useNum" label="使用数量" sortable> 
                     <template slot-scope="scope">
-                        <el-input v-model.number="scope.row.useNum"></el-input>
+                        <el-input @input="setUseNum(scope.$index, scope.row.useNum)" size="small" v-model.number="scope.row.useNum"></el-input>
                     </template>
                 </el-table-column>
             </el-table>
@@ -139,14 +140,14 @@
                 type="primary" 
                 icon="el-icon-upload"
                 @click="addOrder('addForm')"
-                style="float: right; margin-top: 20px"
+                style="margin-top: 20px"
             >保存</el-button>
         </el-drawer>
     </div>
 
     <script>
         var validateOrder = function (rule, value, callback) {
-            if (value === '') {
+            if (value == '' || value == undefined) {
                 callback(new Error('请输入订单号'));
             } else {
                 axios.post(myUrl('order/checkOrder'), {
@@ -336,6 +337,15 @@
                             title: err.msg
                         });
                     })
+                },
+
+                setUseNum: function (index, val) {
+                    var result = val != '';
+                    if (typeof val == 'string' && result) {
+                        this.bomList[index].useNum = '';
+                        return;
+                    }
+                    this.$refs.bomTable.toggleRowSelection(this.bomList[index], result);
                 }
             },
             mounted: function () {
@@ -358,6 +368,17 @@
         {
             margin-right: 10px
         }
+
+        .bom-option
+        {
+            height: 50px;
+            min-height: 50px;
+            line-height: 50px;
+        }
+            .bom-option > span + span
+            {
+                margin-left: 10px
+            }
     </style>
 </body>
 </html>

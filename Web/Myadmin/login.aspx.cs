@@ -179,7 +179,7 @@ namespace Web
                 string token = accountService.login(gs_name.Trim(), username.Trim(), txtSAPPassword.Trim());
                 if (token.Equals(""))
                 {
-                    Response.Write("<script>alert('用户名密码错误')</script>");
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('用户名密码错误！')", true);
                 }
                 else
                 {
@@ -188,13 +188,19 @@ namespace Web
                 }
             }
             else if (servename.ToString().Equals("云合排产管理系统")) {
-                if (!UserInfoService.login(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim()))
+                try
                 {
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('用户名密码错误！')", true);
+                    if (!UserInfoService.login(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim()))
+                    {
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('用户名密码错误！')", true);
+                    }
+                    else
+                    {
+                        Response.Redirect("../scheduling/web/index.html");
+                    }
                 }
-                else 
-                {
-                    Response.Redirect("../scheduling/web/index.html");
+                catch (Exception ex) {
+                    Response.Write(ex.Message);
                 }
             }
         }

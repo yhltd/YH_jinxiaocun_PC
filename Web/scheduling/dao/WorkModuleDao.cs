@@ -21,15 +21,16 @@ namespace Web.scheduling.dao
             }
         }
 
-        
-        public List<WorkSummary> listBySummary(string company, int typeId, int skip, int take)
+
+        public List<WorkSummary> listBySummary(string company, string orderId, int typeId, int skip, int take)
         {
             var @params = new SqlParameter[]{
                 new SqlParameter("@typeId", typeId),
-                new SqlParameter("@company", company)
+                new SqlParameter("@company", company),
+                new SqlParameter("@orderId", orderId)
             };
 
-            string sql = "select mt.name as type,mi.name as name,mi.num as num,(select name from module_info where id = mi.parent_id) as parentName,sum(wd.work_num) as workNum from module_info as mi left join work_module as wm on wm.module_id = mi.id left join module_type as mt on mi.type_id = mt.id left join work_detail as wd on wm.work_id = wd.id where wd.company = @company " + (typeId > 0 ? "and mi.type_id = @typeId" : "") + " group by mt.name,mi.name,mi.num,mi.parent_id";
+            string sql = "select mt.name as type,mi.name as name,mi.num as num,(select name from module_info where id = mi.parent_id) as parentName,sum(wd.work_num) as workNum from work_module as wm left join module_info as mi on wm.module_id = mi.id left join module_type as mt on mi.type_id = mt.id left join work_detail as wd on wm.work_id = wd.id left join order_info as o on wd.order_id = o.id where wd.company = @company " + (typeId > 0 ? "and mi.type_id = @typeId" : "") + " and o.order_id like '%' + @orderId + '%' group by mt.name,mi.name,mi.num,mi.parent_id";
             using (se = new schedulingEntities())
             {
                 var result = se.Database.SqlQuery<WorkSummary>(sql, @params).OrderBy(w => w.type).Skip(skip).Take(take);
@@ -37,14 +38,15 @@ namespace Web.scheduling.dao
             }
         }
 
-        public int SummaryCount(string company, int typeId) 
+        public int SummaryCount(string company, int typeId, string orderId) 
         {
             var @params = new SqlParameter[]{
                 new SqlParameter("@typeId", typeId),
-                new SqlParameter("@company", company)
+                new SqlParameter("@company", company),
+                new SqlParameter("@orderId", orderId)
             };
 
-            string sql = "select mt.name as type,mi.name as name,mi.num as num,(select name from module_info where id = mi.parent_id) as parentName,sum(wd.work_num) as workNum from work_module as wm left join module_info as mi on wm.module_id = mi.id left join module_type as mt on mi.type_id = mt.id left join work_detail as wd on wm.work_id = wd.id where wd.company = @company " + (typeId > 0 ? "and mi.type_id = @typeId" : "") + " group by mt.name,mi.name,mi.num,mi.parent_id";
+            string sql = "select mt.name as type,mi.name as name,mi.num as num,(select name from module_info where id = mi.parent_id) as parentName,sum(wd.work_num) as workNum from work_module as wm left join module_info as mi on wm.module_id = mi.id left join module_type as mt on mi.type_id = mt.id left join work_detail as wd on wm.work_id = wd.id left join order_info as o on wd.order_id = o.id where wd.company = @company " + (typeId > 0 ? "and mi.type_id = @typeId" : "") + " and o.order_id like '%' + @orderId + '%' group by mt.name,mi.name,mi.num,mi.parent_id";
             using (se = new schedulingEntities())
             {
                 var result = se.Database.SqlQuery<WorkSummary>(sql, @params).OrderBy(w => w.type).Count();

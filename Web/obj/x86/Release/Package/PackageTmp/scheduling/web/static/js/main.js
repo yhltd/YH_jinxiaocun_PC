@@ -34,6 +34,49 @@ function formatDate(date, format) {
     });
 }
 
+function exportExcel(data, columns, exportName) {
+    var table = '<table border="1px" cellspacing="0" cellpadding="0">';
+
+    table += '<thead>';
+    for (var column in columns) {
+        table += '<th>' + columns[column] + '</th>';
+    }
+    table += '</thead>';
+
+    table += '<tbody>';
+    for (var i = 0; i < data.length; i++) {
+        table += '<tr>'
+        for (var column in columns) {
+            var cell = data[i][column];
+            if (cell == undefined || cell == null || cell == NaN) cell = "";
+            table += '<td>' + cell + '</td>';
+        }
+        table += '</tr>'
+    }
+    table += '</tbody>';
+
+    table += '</table>';
+
+    var html = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+    html += '<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+    html += '<meta http-equiv="content-type" content="application/vnd.ms-excel';
+    html += '; charset=UTF-8">';
+    html += "<head>";
+    html += "</head>";
+    html += "<body>";
+    html += table;
+    html += "</body>";
+    html += "</html>";
+    var uri = 'data:application/vnd.ms-excel;charset=utf-8,' + encodeURIComponent(html);
+    var link = document.createElement("a");
+    link.href = uri;
+    link.style = "visibility:hidden";
+    link.download = exportName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 axios.interceptors.response.use(function (response) {
     var data = response.data.d;
     if (data != '') data = JSON.parse(data)
@@ -51,3 +94,4 @@ axios.interceptors.response.use(function (response) {
         msg: '错误'
     });
 })
+

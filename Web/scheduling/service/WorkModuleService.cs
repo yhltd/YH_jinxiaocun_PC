@@ -30,13 +30,13 @@ namespace Web.scheduling.service
         /// <param name="pageCount">每页显示行数</param>
         /// <param name="typeId">模块类别id，-1为查询全部</param>
         /// <returns></returns>
-        public PageUtil<WorkSummary> list(int nowPage, int pageCount, int typeId)
+        public PageUtil<WorkSummary> list(int nowPage, int pageCount, int typeId, string orderId)
         {
             PageUtil<WorkSummary> page = new PageUtil<WorkSummary>();
             page.nowPage = nowPage;
             page.pageCount = pageCount;
-            page.total = wmd.SummaryCount(user.company, typeId);
-            page.pageList = wmd.listBySummary(user.company, typeId, page.getSkip(), page.getTake());
+            page.total = wmd.SummaryCount(user.company, typeId, orderId);
+            page.pageList = wmd.listBySummary(user.company, orderId, typeId, page.getSkip(), page.getTake());
             return page;
         }
     }

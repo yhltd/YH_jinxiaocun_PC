@@ -108,5 +108,12 @@ namespace Web.scheduling.dao
                 return se.Database.ExecuteSqlCommand(sql, param) > 0;
             }
         }
+
+        public List<module_info> listByTypeId(int typeId) { 
+            using(se = new schedulingEntities()){
+                var result = se.module_info.Where(m => m.type_id == typeId);
+                return result.ToList();
+            }
+        }
     }
 }

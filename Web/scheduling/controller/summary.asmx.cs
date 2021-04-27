@@ -22,12 +22,12 @@ namespace Web.scheduling.controller
         private WorkModuleService wms;
 
         [WebMethod]
-        public string page(int nowPage, int pageCount, int typeId)
+        public string page(int nowPage, int pageCount, int typeId, string orderId)
         {
             try
             {
                 wms = new WorkModuleService();
-                return ResultUtil.success(wms.list(nowPage, pageCount, typeId), "查询成功");
+                return ResultUtil.success(wms.list(nowPage, pageCount, typeId, orderId), "查询成功");
             }
             catch (ErrorUtil err)
             {

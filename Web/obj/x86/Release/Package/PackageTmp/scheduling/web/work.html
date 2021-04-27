@@ -12,6 +12,9 @@
     <script type="text/javascript" src="static/vue/vue.js"></script>
     <script type="text/javascript" src="static/element/index.js"></script>
     <script type="text/javascript" src="static/axios/axios.js"></script>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.1.0/echarts.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-echarts/4.0.2/vue-echarts.min.js"></script>
     <script src="static/js/main.js"></script>
 
     <title>云合排产管理系统</title>
@@ -24,7 +27,7 @@
                     <el-col :span="5">
                         <el-input placeholder="订单号" v-model="orderId" clearable></el-input>
                     </el-col>
-                    <el-col :span="8">
+                    <el-col :span="12">
                         <el-button-group>
                             <el-button 
                                 icon="el-icon-search" 
@@ -42,6 +45,10 @@
                                 icon="el-icon-delete" 
                                 type="primary"
                                 @click="deleteDialogVisible = true"></el-button>-->
+                            <el-button 
+                                icon="el-icon-tickets" 
+                                type="primary" 
+                                @click="setDate">今日生产计划</el-button>
                         </el-button-group>
                     </el-col>
                 </el-row>
@@ -173,11 +180,33 @@
                 <div>{{row.orderId}} 编号：{{row.rowNum}}</div>
             </el-checkbox>
         </el-dialog>-->
+
+        <el-drawer title="今日生产计划" :visible.sync="tVisible" direction="ttb" size="80%" :modal="false">
+            <el-date-picker 
+                v-model="nowDate" 
+                type="date" 
+                placeholder="选择日期" 
+                value-format="yyyy-MM-dd" 
+                @change="tDay">
+            </el-date-picker>
+            <el-table :data="tList">
+                <el-table-column property="orderId" label="订单号"></el-table-column>
+                <el-table-column property="moduleName" label="模块"></el-table-column>
+                <el-table-column property="num" label="效率/时"></el-table-column>
+                <el-table-column property="workNum" label="生产数量"></el-table-column>
+            </el-table>
+
+            <!--<chart :options="orgOptions" :auto-resize="true"></chart>-->
+        </el-drawer>
+
     </div>
 
     <script>
         new Vue({
             el: '#work',
+            components: {
+                'chart': VueECharts
+            },
             data: {
                 now: 1,
                 size: 20,
@@ -219,7 +248,25 @@
                 },
 
                 deleteDialogVisible: false,
-                deleteList: []
+                deleteList: [],
+
+                tVisible: false,
+                nowDate: '',
+                tList: [],
+
+                //orgOptions: {
+                //    xAxis: {
+                //        type: 'category',
+                //        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                //    },
+                //    yAxis: {
+                //        type: 'value'
+                //    },
+                //    series: [{
+                //        data: [820, 932, 901, 934, 1290, 1330, 1320],
+                //        type: 'line'
+                //    }]
+                //}
             },
             methods: {
                 workList: function () {
@@ -400,14 +447,35 @@
                 },
 
                 rowIsInsert: function(row){
-                    console.log(row.row.is_insert)
                     return row.row.is_insert > 0 ? {
                         'background-color': '#FDF5E6'
                     } : {};
                 },
 
                 deleteDialogOpen: function(){
-                    console.log(this.rowList)
+                    
+                },
+
+                setDate: function(){
+                    this.nowDate = formatDate(new Date, "yyyy-MM-dd")
+                    this.tDay();
+                    this.tVisible = true;
+                },
+
+                tDay: function(){
+                    console.log(this.list)
+                    this.tList = [];
+                    for(var i = 0;i<this.list.length;i++){
+                        var workNum = this.list[i][this.nowDate];
+                        if(workNum > 0){
+                            this.tList.push({
+                                orderId: this.list[i].orderId,
+                                moduleName: this.list[i].moduleInfo.name,
+                                num: this.list[i].moduleInfo.num,
+                                workNum: workNum
+                            })
+                        }
+                    }
                 }
             },
             mounted: function () {
@@ -423,12 +491,13 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: start;
-
         }
+
         .el-form-item
         {
-            margin-right: 10px
+            margin-right: 10px;
         }
+
         .option-tag
         {
             color: #8492a6;

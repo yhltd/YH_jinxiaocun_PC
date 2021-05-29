@@ -27,6 +27,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel","BOM");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 bs = new BomService();
                 return ResultUtil.success(bs.list(), "查询成功");
 
@@ -46,6 +57,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "BOM");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 bs = new BomService();
                 return ResultUtil.success(bs.page(nowPage, pageCount, code, name, type), "查询成功");
 
@@ -65,6 +87,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "BOM");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 bs = new BomService();
                 if (bs.save(bomInfo))
                 {
@@ -89,6 +122,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "BOM");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 bs = new BomService();
                 if (bs.update(bomInfo))
                 {
@@ -114,6 +158,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("del", "BOM");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 bs = new BomService();
                 if (bs.delete(id))
                 {

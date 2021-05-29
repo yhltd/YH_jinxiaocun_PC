@@ -27,6 +27,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel","工作时间及休息日");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 hs = new HolidayService();
                 return ResultUtil.success(hs.page(page), "查询成功");
             }
@@ -45,6 +56,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("del", "工作时间及休息日");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 hs = new HolidayService();
                 if (hs.delete(id))
                 {
@@ -69,6 +91,17 @@ namespace Web.scheduling.controller
         [WebMethod]
         public string save(string holiday)
         {
+            UserInfoService us = new UserInfoService();
+            string quanxian_save1 = us.new_quanxian("add", "工作时间及休息日");
+            if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+            {
+            }
+            else
+            {
+
+                return ResultUtil.error("没有权限！");
+            }
+
             try
             {
                 hs = new HolidayService();

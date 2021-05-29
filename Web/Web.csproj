@@ -1673,16 +1673,25 @@
     <Content Include="sample\index.html" />
     <Content Include="sample\jquery.js" />
     <Content Include="scheduling\controller\bom.asmx" />
+    <Content Include="scheduling\controller\department_new.asmx" />
     <Content Include="scheduling\controller\holidayConfig.asmx" />
     <Content Include="scheduling\controller\module.asmx" />
     <Content Include="scheduling\controller\moduleType.asmx" />
     <Content Include="scheduling\controller\order.asmx" />
+    <Content Include="scheduling\controller\paibanbiaoInfo.asmx" />
+    <Content Include="scheduling\controller\paibanDetail.asmx" />
+    <Content Include="scheduling\controller\renyuan.asmx" />
     <Content Include="scheduling\controller\timeConfig.asmx" />
     <Content Include="scheduling\controller\user.asmx" />
     <Content Include="scheduling\controller\work.asmx" />
     <Content Include="scheduling\controller\summary.asmx" />
+    <Content Include="scheduling\model\Scheduling.edmx.sql" />
     <Content Include="scheduling\web\bom.html" />
+    <Content Include="scheduling\web\department_new.html" />
     <Content Include="scheduling\web\order.html" />
+    <Content Include="scheduling\web\paiban.html" />
+    <Content Include="scheduling\web\paibanbiao_renyuan.html" />
+    <Content Include="scheduling\web\paiban_detail.html" />
     <Content Include="scheduling\web\summary.html" />
     <Content Include="scheduling\web\time.html" />
     <Content Include="scheduling\web\index.html" />
@@ -2491,6 +2500,10 @@
       <DependentUpon>bom.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="scheduling\controller\department_new.asmx.cs">
+      <DependentUpon>department_new.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="scheduling\controller\holidayConfig.asmx.cs">
       <DependentUpon>holidayConfig.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -2505,6 +2518,18 @@
     </Compile>
     <Compile Include="scheduling\controller\order.asmx.cs">
       <DependentUpon>order.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\paibanbiaoInfo.asmx.cs">
+      <DependentUpon>paibanbiaoInfo.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\paibanDetail.asmx.cs">
+      <DependentUpon>paibanDetail.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\renyuan.asmx.cs">
+      <DependentUpon>renyuan.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="scheduling\controller\timeConfig.asmx.cs">
@@ -2525,17 +2550,24 @@
     </Compile>
     <Compile Include="scheduling\dao\BomDao.cs" />
     <Compile Include="scheduling\dao\CommonDao.cs" />
+    <Compile Include="scheduling\dao\DepartmentDao.cs" />
     <Compile Include="scheduling\dao\HolidayDao.cs" />
     <Compile Include="scheduling\dao\ModuleDao.cs" />
     <Compile Include="scheduling\dao\ModuleTypeDao.cs" />
     <Compile Include="scheduling\dao\OrderBomDao.cs" />
     <Compile Include="scheduling\dao\OrderDao.cs" />
+    <Compile Include="scheduling\dao\PaibanbiaoInfoDao.cs" />
+    <Compile Include="scheduling\dao\PaibanDetailDao.cs" />
+    <Compile Include="scheduling\dao\RenyuanDao.cs" />
     <Compile Include="scheduling\dao\TimeConfigDao.cs" />
     <Compile Include="scheduling\dao\UserInfoDao.cs" />
     <Compile Include="scheduling\dao\WorkDetailDao.cs" />
     <Compile Include="scheduling\dao\WorkModuleDao.cs" />
     <Compile Include="scheduling\model\BomInfoItem.cs" />
     <Compile Include="scheduling\model\bom_info.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\department.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\holiday_config.cs">
@@ -2552,6 +2584,15 @@
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\order_info.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\paibanbiao_detail.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\paibanbiao_info.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\paibanbiao_renyuan.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\Scheduling.Context.cs">
@@ -2585,10 +2626,14 @@
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\service\BomService.cs" />
+    <Compile Include="scheduling\service\DepartmentService.cs" />
     <Compile Include="scheduling\service\HolidayService.cs" />
     <Compile Include="scheduling\service\ModuleService.cs" />
     <Compile Include="scheduling\service\ModuleTypeService.cs" />
+    <Compile Include="scheduling\service\PaibanbiaoInfoService.cs" />
+    <Compile Include="scheduling\service\PaiBanDetailService.cs" />
     <Compile Include="scheduling\service\OrderInfoService.cs" />
+    <Compile Include="scheduling\service\RenyuanService.cs" />
     <Compile Include="scheduling\service\TimeConfigService.cs" />
     <Compile Include="scheduling\service\UserInfoService.cs" />
     <Compile Include="scheduling\service\WorkDetailService.cs" />

@@ -18,5 +18,6 @@ namespace Web.scheduling.model
         public string user_code { get; set; }
         public string password { get; set; }
         public string company { get; set; }
+        public string department_name { get; set; }
     }
 }

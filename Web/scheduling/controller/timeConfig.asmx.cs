@@ -25,6 +25,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "工作时间及休息日");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 tcs = new TimeConfigService();
                 return ResultUtil.success(tcs.list(), "查询成功");
             }
@@ -43,6 +54,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add","工作时间及休息日");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 tcs = new TimeConfigService();
                 timeConfig = tcs.save(timeConfig);
                 if (timeConfig.id > 0)
@@ -69,6 +91,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "工作时间及休息日");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 tcs = new TimeConfigService();
                 if (tcs.update(timeConfig))
                 {

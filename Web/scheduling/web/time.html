@@ -17,7 +17,7 @@
     <title>云合排产管理系统</title>
 </head>
 <body>
-    <div id="time">
+    <div id="time" style="display: none;" :style="{display: 'block'}">
         <el-container>
             <el-main>
                 <!-- 工作时间配置-->
@@ -248,6 +248,12 @@
                                     type: 'success'
                                 });
                             }
+                            if (res.code == 500) {
+                                _this.$notify({
+                                    title: res.msg,
+                                    type: 'error'
+                                });
+                            }
                         }).catch(function(err){
                             _this.$notify.error({
                                 title: err.msg
@@ -263,6 +269,12 @@
                                 _this.$notify({
                                     title: res.msg,
                                     type: 'success'
+                                });
+                            }
+                            if (res.code == 500) {
+                                _this.$notify({
+                                    title: res.msg,
+                                    type: 'error'
                                 });
                             }
                         }).catch(function(err){
@@ -295,6 +307,12 @@
                                     _this.holidayIsFinish = true;
                             }
                             _this.holidayPage.nowPage++;
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
                         }
                         _this.holidayIsLoading = false;
                     }).catch(function (err) {
@@ -330,6 +348,12 @@
                                 _this.getHolidayPage();
                                 _this.holidayIsAdd = false;
                             }
+                            if (res.code == 500) {
+                                _this.$notify({
+                                    title: res.msg,
+                                    type: 'error'
+                                });
+                            }
                             _this.holidayDarwerLoading = false
                         }).catch(function (err) {
                             _this.$notify.error({
@@ -351,6 +375,12 @@
                                 _this.holidayPage.nowPage = 1;
                                 _this.holidayPage.pageList = [];
                                 _this.getHolidayPage();
+                            }
+                            if (res.code == 500) {
+                                _this.$notify({
+                                    title: res.msg,
+                                    type: 'error'
+                                });
                             }
                             _this.holidayDarwerLoading = false
                         }).catch(function (err) {

@@ -17,7 +17,7 @@
     <title>云合排产管理系统</title>
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="display: none;" :style="{display: 'block'}">
         <el-menu mode="horizontal" background-color="#314057" text-color="#fff" active-text-color="#fff">
             <div class="menu-box" @click="collapse = !collapse">
                 <i v-if="collapse" class="el-icon-s-unfold"></i>
@@ -59,6 +59,22 @@
                     <el-menu-item index="汇总" data-src="summary.html">
                         <i class="el-icon-document"></i>
                         <span slot="title">汇总</span>
+                    </el-menu-item>
+                    <el-menu-item index="部门" data-src="department_new.html">
+                        <i class="el-icon-office-building"></i>
+                        <span slot="title">部门</span>
+                    </el-menu-item>
+                    <el-menu-item index="人员信息" data-src="paibanbiao_renyuan.html">
+                        <i class="el-icon-user-solid"></i>
+                        <span slot="title">人员信息</span>
+                    </el-menu-item>
+                    <el-menu-item index="排班" data-src="paiban.html">
+                        <i class="el-icon-user-solid"></i>
+                        <span slot="title">排班</span>
+                    </el-menu-item>
+                    <el-menu-item index="排班明细" data-src="paiban_detail.html">
+                        <i class="el-icon-user-solid"></i>
+                        <span slot="title">排班明细</span>
                     </el-menu-item>
                 </el-menu>
             </div>

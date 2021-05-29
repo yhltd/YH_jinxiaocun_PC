@@ -31,3 +31,8 @@ D:\yho116\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
 D:\yho116\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
 D:\yho116\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
 D:\yho116\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb
+E:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.dll
+E:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
+E:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
+E:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
+E:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb

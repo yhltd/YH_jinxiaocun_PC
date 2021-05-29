@@ -11,6 +11,10 @@
     <EntitySet Name="order_info" EntityType="schedulingModel.order_info" />
     <EntitySet Name="work_detail" EntityType="schedulingModel.work_detail" />
     <EntitySet Name="work_module" EntityType="schedulingModel.work_module" />
+    <EntitySet Name="department" EntityType="schedulingModel.department" />
+    <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.paibanbiao_renyuan" />
+    <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.paibanbiao_detail" />
+    <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.paibanbiao_info" />
   </EntityContainer>
   <EntityType Name="module_info">
     <Key>
@@ -42,6 +46,7 @@
     <Property Name="user_code" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="company" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="department_name" MaxLength="255" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="holiday_config">
     <Key>
@@ -120,5 +125,81 @@
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Int32" Name="work_id" Nullable="false" />
     <Property Type="Int32" Name="module_id" Nullable="false" />
+  </EntityType>
+  <EntityType Name="department">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="add" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="del" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="upd" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="sel" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="view_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="paibanbiao_renyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="staff_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="phone_number" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="banci" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="id_number" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="b" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="c" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="d" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="e" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="f" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="g" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="h" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="i" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="j" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="k" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="l" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="m" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="n" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="paibanbiao_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="staff_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="phone_number" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="banci" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="id_number" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="b" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="c" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="d" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="e" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="f" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="g" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="h" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="i" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="j" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="k" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="paibanbiao_info">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="paibanbiao_detail_id" />
+    <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="renshu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="plan_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="remarks1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="remarks2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="remarks3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="remarks4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="remarks5" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

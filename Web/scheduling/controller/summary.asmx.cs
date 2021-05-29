@@ -26,6 +26,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel","汇总");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 wms = new WorkModuleService();
                 return ResultUtil.success(wms.list(nowPage, pageCount, typeId, orderId), "查询成功");
             }

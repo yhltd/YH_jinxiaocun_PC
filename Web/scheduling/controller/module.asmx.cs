@@ -40,6 +40,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add","模块单位");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ms = new ModuleService();
                 return ResultUtil.success(ms.save(moduleInfo), "保存成功");
             }
@@ -58,6 +69,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "模块单位");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ms = new ModuleService();
                 return ResultUtil.success(ms.update(moduleInfo), "保存成功");
             }
@@ -78,6 +100,17 @@ namespace Web.scheduling.controller
             {
                 try
                 {
+                    UserInfoService us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("del", "模块单位");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+
+                        return ResultUtil.error("没有权限！");
+                    }
+
                     ms = new ModuleService();
                     if (ms.delete(id))
                     {
@@ -105,6 +138,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "模块单位");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ms = new ModuleService();
                 return ResultUtil.success(ms.page(modulePage, moduleType), "查询成功");
             }
@@ -123,6 +167,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "模块单位");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ms = new ModuleService();
                 return ResultUtil.success(ms.list(), "查询成功");
             }
@@ -141,6 +196,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "模块单位");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ms = new ModuleService();
                 return ResultUtil.success(ms.listByNum(true), "查询成功");
             }
@@ -159,6 +225,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "模块单位");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ms = new ModuleService();
                 return ResultUtil.success(ms.listByNum(false), "查询成功");
             }

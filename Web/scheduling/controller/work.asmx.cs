@@ -25,6 +25,17 @@ namespace Web.scheduling.controller
         [WebMethod]
         public string page(int nowPage, int pageCount, string orderId)
         {
+            UserInfoService us = new UserInfoService();
+            string quanxian_save1 = us.new_quanxian("sel","排产");
+            if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+            {
+            }
+            else
+            {
+
+                return ResultUtil.error("没有权限！");
+            }
+
             try
             {
                 wds = new WorkDetailService();
@@ -52,6 +63,17 @@ namespace Web.scheduling.controller
             {
                 try
                 {
+                    UserInfoService us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("add", "排产");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+
+                        return ResultUtil.error("没有权限！");
+                    }
+
                     wds = new WorkDetailService();
                     if (wds.save(workDetail, workModuleIdList))
                     {

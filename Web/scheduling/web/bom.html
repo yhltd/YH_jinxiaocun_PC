@@ -17,7 +17,7 @@
     <title>云合排产管理系统</title>
 </head>
 <body>
-    <div id="bom">
+    <div id="bom" style="display: none;" :style="{display: 'block'}">
         <el-container>
             <el-main>
                 <el-row :gutter="10" style="margin-bottom: 20px">
@@ -201,6 +201,12 @@
                             _this.total = res.data.total;
                             _this.list = res.data.pageList
                         }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
                         _this.loading = false;
                     }).catch(function (err) {
                         _this.$notify.error({
@@ -230,6 +236,12 @@
                                     });
                                     _this.getList();
                                 }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
                                 _this.updateLoading = false;
                             }).catch(function (err) {
                                 _this.$notify.error({
@@ -252,6 +264,12 @@
                                 type: 'success'
                             });
                             _this.getList();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
                         }
                         _this.loading = false;
                     }).catch(function (err) {
@@ -276,6 +294,12 @@
                                     });
                                     _this.getList();
                                     _this.$refs.addDrawer.closeDrawer();
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
                                 }
                                 _this.saveLoading = false;
                             }).catch(function (err) {

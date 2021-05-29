@@ -49,12 +49,10 @@
         <div class="inners">
             <p>
                 <span style="font-size: 12pt"  align="left" class="font_gray"><%=version%></span>
-
             </p>
             <div class="lefts">
-
                 <p align="left" class="pname">
-                    <b><span style="font-size: 38pt">云和未来-进销存</span></b>
+                    <b><span style="font-size: 36pt">云和未来一体化系统</span></b>
                 </p>
             </div>
 

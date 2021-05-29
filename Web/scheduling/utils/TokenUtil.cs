@@ -17,6 +17,12 @@ namespace Web.scheduling.utils
             DateTime dateTime = DateTime.Now.AddHours(VALID_NUM);
             HttpRuntime.Cache.Insert("scheduling_token", token, null, dateTime, TimeSpan.Zero);
         }
+        public static void setToken_dp(user_info user)
+        {
+            string token = RsaUtil.RSAEncryption(JsonUtil.toJson(user));
+            DateTime dateTime = DateTime.Now.AddHours(VALID_NUM);
+            HttpRuntime.Cache.Insert("scheduling_token_dp", token, null, dateTime, TimeSpan.Zero);
+        }
 
         public static user_info getToken()
         {

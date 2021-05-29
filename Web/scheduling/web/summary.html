@@ -17,7 +17,7 @@
     <title>云合排产管理系统</title>
 </head>
 <body>
-    <div id="summary">
+    <div id="summary" style="display: none;" :style="{display: 'block'}">
         <el-container>
             <el-main>
                 <el-row :gutter="10" style="margin-bottom: 20px">
@@ -102,6 +102,12 @@
                             _this.total = res.data.total
                             _this.list = res.data.pageList
                         }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
                         _this.loading = false
                     }).catch(function (err) {
                         _this.$notify.error({
@@ -117,6 +123,12 @@
                     axios.post(myUrl('moduleType/list'), {}).then(function (res) {
                         if (res.code == 200) {
                             _this.moduleTypeList = res.data;
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
                         }
                         _this.moduleTypeLoading = false
                     }).catch(function (err) {

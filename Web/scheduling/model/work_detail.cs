@@ -20,6 +20,6 @@ namespace Web.scheduling.model
         public System.DateTime work_start_date { get; set; }
         public string company { get; set; }
         public Nullable<int> row_num { get; set; }
-        public int is_insert { get; set; }
+        public Nullable<int> is_insert { get; set; }
     }
 }

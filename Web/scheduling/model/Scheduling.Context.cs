@@ -35,5 +35,9 @@ namespace Web.scheduling.model
         public DbSet<order_info> order_info { get; set; }
         public DbSet<work_detail> work_detail { get; set; }
         public DbSet<work_module> work_module { get; set; }
+        public DbSet<department> department { get; set; }
+        public DbSet<paibanbiao_renyuan> paibanbiao_renyuan { get; set; }
+        public DbSet<paibanbiao_detail> paibanbiao_detail { get; set; }
+        public DbSet<paibanbiao_info> paibanbiao_info { get; set; }
     }
 }

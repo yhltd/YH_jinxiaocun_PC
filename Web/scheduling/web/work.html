@@ -20,7 +20,7 @@
     <title>云合排产管理系统</title>
 </head>
 <body>
-    <div id="work">
+    <div id="work" style="display: none;" :style="{display: 'block'}">
         <el-container>
             <el-main v-loading="loading">
                 <el-row :gutter="10" style="margin-bottom: 20px">
@@ -49,6 +49,12 @@
                                 icon="el-icon-tickets" 
                                 type="primary" 
                                 @click="setDate">今日生产计划</el-button>
+                           
+                            <el-button 
+                                icon="el-icon-tickets" 
+                                type="primary" 
+                                @click="statistics">统计</el-button>
+                                
                         </el-button-group>
                     </el-col>
                 </el-row>
@@ -189,6 +195,7 @@
                 value-format="yyyy-MM-dd" 
                 @change="tDay">
             </el-date-picker>
+
             <el-table :data="tList">
                 <el-table-column property="orderId" label="订单号"></el-table-column>
                 <el-table-column property="moduleName" label="模块"></el-table-column>
@@ -199,9 +206,41 @@
             <!--<chart :options="orgOptions" :auto-resize="true"></chart>-->
         </el-drawer>
 
+        <el-drawer title="统计" :visible.sync="tjVisible" direction="ttb" size="80%" :modal="false">
+             <el-date-picker 
+                v-model="startDate" 
+                type="date" 
+                placeholder="选择日期" 
+                value-format="yyyy-MM-dd">                
+            </el-date-picker>
+            <!--<el-date-picker 
+                v-model="endDate"
+                type="date" 
+                placeholder="结束日期" 
+                value-format="yyyy-MM-dd">
+            </el-date-picker>-->
+            <el-button 
+                icon="el-icon-tickets" 
+                type="primary" 
+                @click="tjnum"
+                >统计</el-button>
+            <el-table :data="tjList">
+                <el-table-column property="orderId" label="订单号"></el-table-column>
+                <el-table-column property="moduleName" label="模块"></el-table-column>
+                <el-table-column property="workNum" label="生产数量"></el-table-column>
+                <el-table-column property="surplusNum" label="剩余数量"></el-table-column>
+            </el-table>
+        </el-drawer>
+
     </div>
 
+
     <script>
+        
+    </script>
+
+    <script>
+
         new Vue({
             el: '#work',
             components: {
@@ -251,9 +290,12 @@
                 deleteList: [],
 
                 tVisible: false,
+                tjVisible: false,
                 nowDate: '',
+                startDate: '',
+                endDate: '',
                 tList: [],
-
+                tjList: [],
                 //orgOptions: {
                 //    xAxis: {
                 //        type: 'category',
@@ -281,6 +323,12 @@
                             _this.total = res.data.total;
                             _this.list = res.data.pageList == null ? [] : res.data.pageList ;
                             _this.header();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
                         }
                         _this.loading = false;
                     }).catch(function (err) {
@@ -373,6 +421,12 @@
                         if (res.code == 200) {
                             _this.orderList = res.data
                         }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
                         _this.orderLoading = false;
                     }).catch(function (err) {
                         _this.$notify.error({
@@ -388,6 +442,12 @@
                     axios.post(myUrl('module/list_num_is'), {}).then(function (res) {
                         if (res.code == 200) {
                             _this.moduleList = res.data
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
                         }
                         _this.moduleLoading = false;
                     }).catch(function (err) {
@@ -435,6 +495,12 @@
                                     _this.$refs.addDrawer.closeDrawer();
                                     _this.work = {};
                                 }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
                                 _this.saveLoading = false;
                             }).catch(function (err) {
                                 _this.$notify.error({
@@ -476,37 +542,100 @@
                             })
                         }
                     }
-                }
+                },
+
+                statistics:function(){
+                    this.startDate = formatDate(new Date, "yyyy-MM-dd")
+                    this.endDate = formatDate(new Date, "yyyy-MM-dd")
+                    this.tjnum();
+                    this.tjVisible = true;
+                },
+
+                tjnum: function(){
+                    console.log(this.list)
+                    this.tList=[];
+                    tList= removeDuplicatedItem(this.list)
+                    console.log(tList)
+                    this.tjList = [];
+                    for(var j=0;j<tList.length;j++){
+                        var workNumto=0;
+                        var shengyushuliangto=0;
+                        var moduleInfo_name;
+                        for(var i = 0;i<this.list.length;i++){                     
+                            var workNum = this.list[i][this.startDate];
+                            var surplusNum=0;
+                            if(workNum > 0){
+                                if(tList[j]==this.list[i].orderId)
+                                {    
+                                    workNumto=workNumto+parseFloat(workNum),
+                                    shengyushuliangto=shengyushuliangto+this.list[i].work_num,
+                                    moduleInfo_name=this.list[i].moduleInfo.name,
+                                    console.log(workNumto)
+                                }
+                            }
+                        }
+                        this.tjList.push({
+                            orderId: tList[j],
+                            moduleName: moduleInfo_name,
+                            workNum: workNumto,
+                            surplusNum: shengyushuliangto-workNumto
+                        })
+
+
+                        //var orderId=this.list[i].orderId
+                        //var workNum = this.list[i][this.startDate];
+                        //var surplusNum=0;
+                        //if(workNum > 0){
+                        //    this.tjList.push({
+                        //        orderId: this.list[i].orderId,
+                        //        moduleName: this.list[i].moduleInfo.name,
+                        //        workNum: workNum,
+                        //        surplusNum: this.list[i].work_num-workNum
+                        //    })
+                        //}
+                    }
+                },
+                
             },
             mounted: function () {
                 this.workList();
             }
         })
+
+        function removeDuplicatedItem(ar) {
+            var ret = [];
+            console.log("122212")
+            for (var i = 0, j = ar.length; i < j; i++) {
+                console.log(ar[i].orderId)
+                if (ret.indexOf(ar[i].orderId) === -1) {
+                    ret.push(ar[i].orderId);
+                }
+            }
+
+            return ret;
+        
+        }
     </script>
 
     <style>
-        .el-form
-        {
+        .el-form {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: start;
         }
 
-        .el-form-item
-        {
+        .el-form-item {
             margin-right: 10px;
         }
 
-        .option-tag
-        {
+        .option-tag {
             color: #8492a6;
             font-size: 13px;
             margin-left: 10px;
         }
 
-        .el-checkbox.is-bordered
-        {
+        .el-checkbox.is-bordered {
             width: 100%;
             border: 0;
             border-bottom: 1px solid #f2f2f2;
@@ -514,8 +643,7 @@
             margin: 0;
         }
 
-            .el-checkbox.is-bordered + .el-checkbox.is-bordered
-            {
+            .el-checkbox.is-bordered + .el-checkbox.is-bordered {
                 margin: 0;
             }
     </style>

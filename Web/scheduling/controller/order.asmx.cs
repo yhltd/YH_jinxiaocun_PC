@@ -27,6 +27,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel","订单");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ois = new OrderInfoService();
                 if (ois.checkOrderId(orderId))
                 {
@@ -52,6 +63,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel","订单");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ois = new OrderInfoService();
                 return ResultUtil.success(ois.page(nowPage, pageCount, productName, orderId), "查询成功");
             }
@@ -70,6 +92,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "订单");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ois = new OrderInfoService();
                 return ResultUtil.success(ois.list(), "查询成功");
             }
@@ -90,6 +123,16 @@ namespace Web.scheduling.controller
             {
                 try
                 {
+                    UserInfoService us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("add", "订单");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+                        return ResultUtil.error("没有权限！");
+                    }
+
                     ois = new OrderInfoService();
                     if (bomList.Count == 0 || bomList == null)
                     {
@@ -121,6 +164,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "订单");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ois = new OrderInfoService();
                 if (ois.update(orderInfo))
                 {
@@ -148,6 +202,17 @@ namespace Web.scheduling.controller
             {
                 try
                 {
+                    UserInfoService us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("del", "订单");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+
+                        return ResultUtil.error("没有权限！");
+                    }
+
                     ois = new OrderInfoService();
                     if (ois.delete(id))
                     {

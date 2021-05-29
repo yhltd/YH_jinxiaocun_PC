@@ -28,6 +28,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "汇总");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 mts = new ModuleTypeService();
                 return ResultUtil.success(mts.list(), "查询成功");
             }
@@ -46,6 +57,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "模块单位");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 mts = new ModuleTypeService();
                 moduleType = mts.save(moduleType);
                 if (moduleType.id > 0)
@@ -70,6 +92,17 @@ namespace Web.scheduling.controller
         [WebMethod]
         public string delete(int id)
         {
+            UserInfoService us = new UserInfoService();
+            string quanxian_save1 = us.new_quanxian("del", "模块单位");
+            if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+            {
+            }
+            else
+            {
+
+                return ResultUtil.error("没有权限！");
+            }
+
             using (TransactionScope tran = new TransactionScope())
             {
                 try

@@ -17,7 +17,7 @@
     <title>云合排产管理系统</title>
 </head>
 <body>
-    <div id="module">
+    <div id="module" style="display: none;" :style="{display: 'block'}">
         <el-container>
             <el-main>
                 <!-- 模块类别-->
@@ -243,6 +243,12 @@
                             if (res.data != undefined) _this.moduleTypeList = res.data;
                             _this.moduleTypeLoading = false;
                         }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
                     }).catch(function (err) {
                         _this.$notify.error({
                             title: err.msg
@@ -263,6 +269,12 @@
                             _this.moduleTypeList.splice(index, 1);
                             _this.moduleTypeLoading = false;
                             _this.getModulePage();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
                         }
                     }).catch(function (err) {
                         _this.$notify.error({
@@ -304,6 +316,12 @@
                             if (res.code == 200) {
                                 _this.moduleTypeList.push(res.data);
                                 _this.moduleTypeLoading = false
+                            }
+                            if (res.code == 500) {
+                                _this.$notify({
+                                    title: res.msg,
+                                    type: 'error'
+                                });
                             }
                         }).catch(function (err) {
                             _this.$notify.error({
@@ -370,6 +388,12 @@
                                     _this.getModulePage();
                                     _this.$refs.moduleDrawer.closeDrawer();
                                 }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
                                 _this.moduleLoading = false;
                             }).catch(function(err){
                                 _this.$notify.error({
@@ -394,6 +418,12 @@
                                     _this.$notify({
                                         title: res.msg,
                                         type: 'success'
+                                    });
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
                                     });
                                 }
                                 _this.moduleLoading = false;
@@ -422,6 +452,12 @@
                                 _this.modulePage.nowPage--;
                             }
                             _this.getModulePage();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
                         }
                         _this.moduleLoading = false;
                     }).catch(function(err){

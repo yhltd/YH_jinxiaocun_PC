@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link href="static/element/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/css/main.css">
+
+    <script type="text/javascript" src="static/vue/vue.js"></script>
+    <script type="text/javascript" src="static/element/index.js"></script>
+    <script type="text/javascript" src="static/axios/axios.js"></script>
+    <script src="static/js/main.js"></script>
+
+    <title>云合排产管理系统</title>
+</head>
+<body>
+  <div id="department" style="display: none;" :style="{display: 'block'}">
+        <el-container>
+            <el-main>
+                <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="8">
+                        <el-button-group>
+                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList">刷新</el-button>
+                            <el-button icon="el-icon-circle-plus-outline" type="primary" @click="deptVisible = true">添加</el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+                <el-table
+                    :data="list"
+                    v-loading="loading"    
+                    style="width: 100%;margin-top: 10px;"
+                >
+                    <el-table-column type="expand">
+                        <template slot-scope="props">
+                            <el-form
+                                :model="props.row"
+                                :rules="departmentRules"
+                                ref="updateForm"
+                                label-width="80px"
+                            >
+                                <el-form-item label="部门名称" prop="department_name">
+                                    <el-input v-model="props.row.department_name" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="页面名称" prop="view_name">
+                                    <el-select v-model="props.row.view_name" style="width: 220px">
+                                        <el-option v-for="view_name in viewNameOptions"
+                                            :label="view_name.text"
+                                            :key="view_name.value"
+                                            :value="view_name.value"
+                                        ></el-option>
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item label="添加" prop="add">
+                                    <el-select v-model="props.row.add" style="width: 220px">
+                                        <el-option v-for="add in options"
+                                            :label="add.text"
+                                            :key="add.value"
+                                            :value="add.value"
+                                        ></el-option>
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item label="删除" prop="del">
+                                    <el-select v-model="props.row.del" style="width: 220px">
+                                        <el-option v-for="del in options"
+                                            :label="del.text"
+                                            :key="del.value"
+                                            :value="del.value"
+                                        ></el-option>
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item label="修改" prop="upd">
+                                    <el-select v-model="props.row.upd" style="width: 220px">
+                                        <el-option v-for="upd in options"
+                                            :label="upd.text"
+                                            :key="upd.value"
+                                            :value="upd.value"
+                                        ></el-option>
+                                    </el-select>
+                                </el-form-item>
+                                <el-form-item label="查询" prop="sel">
+                                    <el-select v-model="props.row.sel" style="width: 220px">
+                                        <el-option v-for="sel in options"
+                                            :label="sel.text"
+                                            :key="sel.value"
+                                            :value="sel.value"
+                                        ></el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-form>
+
+                            <el-button 
+                                type="primary" 
+                                icon="el-icon-upload"
+                                :loading="updateLoading"
+                                @click="updateDepartment('updateForm')"
+                            >保存</el-button>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column prop="department_name" label="部门名称" sortable></el-table-column>
+                    <el-table-column prop="view_name" label="页面名称" sortable></el-table-column>
+                    <el-table-column prop="add" label="添加" sortable></el-table-column>
+                    <el-table-column prop="del" label="删除" sortable></el-table-column>
+                    <el-table-column prop="upd" label="修改" sortable></el-table-column>
+                    <el-table-column prop="sel" label="查询" sortable></el-table-column>
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                            <el-popconfirm title="确定删除吗？" @confirm="deleteDepartment(scope.row.id)" hide-icon>
+                                <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
+                            </el-popconfirm>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination 
+                    background 
+                    layout="prev, pager, next" 
+                    :current-page.sync="now"
+                    :total="total"
+                    :page-size="size"
+                    :hide-on-single-page="total <= size" 
+                    @current-change="getList"
+                    style="margin-top: 10px"
+                ></el-pagination>
+            </el-main>
+        </el-container>
+
+         <el-drawer
+            title="新增部门"
+            :visible.sync="deptVisible"
+            direction="ltr"
+            :modal="false"
+            size="50%"
+            ref="departmentDrawer"
+             v-loading="saveLoading"
+        >
+            <el-form
+                :model="department"
+                :rules="departmentRules"
+                ref="addDepartment"
+               label-width="80px"
+                label-position="left"
+                status-icon
+            >
+                <el-form-item label="部门" prop="department_name">
+                    <el-input v-model="department.department_name" style="width: 300px"></el-input>
+                </el-form-item>
+                <el-form-item label="页面名" prop="view_name">
+                    <el-select v-model="department.view_name" style="width: 300px">
+                        <el-option v-for="viewName in viewNameOptions"
+                            :label="viewName.text"
+                            :key="viewName.value"
+                            :value="viewName.value"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="添加" prop="add">
+                    <el-select v-model="department.add" style="width: 300px">
+                        <el-option v-for="add in options"
+                            :label="add.text"
+                            :key="add.value"
+                            :value="add.value"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="删除" prop="del" >
+                    <el-select v-model="department.del" style="width: 300px">
+                        <el-option v-for="del in options"
+                            :label="del.text"
+                            :key="del.value"
+                            :value="del.value"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="修改" prop="upd">
+                    <el-select v-model="department.upd" style="width: 300px">
+                        <el-option v-for="upd in options"
+                            :label="upd.text"
+                            :key="upd.value"
+                            :value="upd.value"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="查询" prop="sel">
+                    <el-select v-model="department.sel" style="width: 300px">
+                        <el-option v-for="sel in options"
+                            :label="sel.text"
+                            :key="sel.value"
+                            :value="sel.value"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <el-button 
+                type="primary" 
+                icon="el-icon-upload"
+                style="margin-left:100px"
+                @click="addDepartment('addDepartment')"
+            >保存</el-button>
+        </el-drawer>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#department',
+            data: {
+                options: [
+                    { value: "是", text: "是" },
+                    { value: "否", text: "否" },
+                ],
+                viewNameOptions: [
+                    { value: "模块单位", text: "模块单位" },
+                    { value: "工作时间及休息日", text: "工作时间及休息日" },
+                    { value: "BOM", text: "BOM" },
+                    { value: "订单", text: "订单" },
+                    { value: "排产", text: "排产" },
+                    { value: "汇总", text: "汇总" },
+                    { value: "部门", text: "部门" },
+                ],
+                now: 1,
+                size: 20,
+                total: 0,
+                list: [],
+                loading: false,
+                updateLoading:false,
+                saveLoading:false,
+                deptVisible: false,
+
+
+                department: {},
+                departmentRules: {
+                    department_name: [
+                        { required: true, message: '部门名称不能为空', trigger: 'blur' }
+                    ],
+                    view_name: [
+                        { required: true, message: '页面名称不能为空', trigger: 'blur' }
+                    ],
+                },
+            },
+            methods: {
+                getList: function () {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('department_new/departmentList'), {
+                        nowPage: _this.now,
+                        pageCount: _this.size,
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.total = res.data.total
+                            _this.list = res.data.pageList
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+                addDepartment: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.loading = true;
+                        axios.post(myUrl('department_new/save'), {
+                            departmentList: _this.$refs[formName].model
+                 
+                        }).then(function (res) {
+                            if (res.code == 200) {
+                               // _this.total = res.data.total
+                                // _this.list = res.data.pageList
+                                _this.deptVisible= false,
+                                _this.getList();
+                            }
+                            if (res.code == 500) {
+                                _this.$notify({
+                                    title: res.msg,
+                                    type: 'error'
+                                });
+
+                            }
+                            _this.loading = false;
+                        }).catch(function (err) {
+                            _this.$notify.error({
+                                title: err.msg
+                            });
+                            _this.loading = false;
+                        })
+                    }
+                 })
+                },
+
+                //addDepartment1: function (formName) {
+                //    var _this = this;
+                //    _this.$refs[formName].validate(function (valid) {
+                //        if (valid) {
+                //            //_this.saveLoading = true;
+                //            axios.post(myUrl('department_new/departmentList'), {
+                //                departmentInfo: _this.department
+                //            }).then(function (res) {
+                //                if (res.code == 200) {
+                //                    _this.$notify({
+                //                        title: res.msg,
+                //                        type: 'success'
+                //                    });
+                //                    _this.getList();
+                //                    _this.$refs.addDepartment.closeDrawer();
+                //                }
+                //                // _this.saveLoading = false;
+                //            }).catch(function (err) {
+                //                _this.$notify.error({
+                //                    title: err.msg
+                //                });
+                //                // _this.saveLoading = false;
+                //            })
+                //        }
+                //    })
+                //},
+
+                deleteDepartment: function (id) {
+                    var _this = this;
+                    axios.post(myUrl('department_new/delete'), {
+                        id: id,
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'success'
+                            });
+                            _this.getList();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+
+                        }
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                    })
+                },
+
+                updateDepartment: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.updateLoading = true;
+                            axios.post(myUrl('department_new/update'), {
+                                department: _this.$refs[formName].model
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.getList();
+                                   // _this.$refs.addDrawer.closeDrawer();
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+
+                                }
+                                _this.updateLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.updateLoading = false;
+                            })
+                        }
+                    })
+                },
+
+            },
+
+            mounted: function () {
+                this.getList();
+            }
+        })
+    </script>
+</body>

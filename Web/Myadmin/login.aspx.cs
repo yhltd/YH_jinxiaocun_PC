@@ -26,7 +26,7 @@ namespace Web
         public string version;
         protected void Page_Load(object sender, EventArgs e)
         {
-            version = "建议使用IE浏览器-当前系统版本: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            version = "建议使用谷歌浏览器效果最好- 当前系统版本: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             if (!Page.IsPostBack)
             {
                 DropDownList1.DataBind();

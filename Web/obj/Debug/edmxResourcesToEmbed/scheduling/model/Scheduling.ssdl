@@ -126,7 +126,6 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
     <Property Name="paibanbiao_detail_id" Type="int" />
     <Property Name="riqi" Type="varchar" MaxLength="255" />
     <Property Name="renshu" Type="varchar" MaxLength="255" />
@@ -137,6 +136,7 @@
     <Property Name="remarks3" Type="varchar" MaxLength="255" />
     <Property Name="remarks4" Type="varchar" MaxLength="255" />
     <Property Name="remarks5" Type="varchar" MaxLength="255" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
   </EntityType>
   <EntityType Name="paibanbiao_renyuan">
     <Key>

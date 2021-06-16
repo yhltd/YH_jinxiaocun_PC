@@ -1692,6 +1692,9 @@
     <Content Include="scheduling\web\paiban.html" />
     <Content Include="scheduling\web\paibanbiao_renyuan.html" />
     <Content Include="scheduling\web\paiban_detail.html" />
+    <Content Include="scheduling\web\static\img\image1.jpeg" />
+    <Content Include="scheduling\web\static\img\image3.jpeg" />
+    <Content Include="scheduling\web\static\img\image4.jpeg" />
     <Content Include="scheduling\web\summary.html" />
     <Content Include="scheduling\web\time.html" />
     <Content Include="scheduling\web\index.html" />

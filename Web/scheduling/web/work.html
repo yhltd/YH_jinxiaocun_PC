@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+    <link rel="stylesheet" type="text/css" href="../assets/css/chart.css"/>
     <link rel="stylesheet" href="static/css/main.css">
     <link href="static/element/index.css" rel="stylesheet" />
 
@@ -16,6 +17,18 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.1.0/echarts.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/vue-echarts/4.0.2/vue-echarts.min.js"></script>
     <script src="static/js/main.js"></script>
+    <style>
+        .labelStyle .el-form-item__label {
+            color:white;
+        }
+        /*.inputStyle .el-input {
+            background:	#1E90FF;
+            color:#1E90FF;
+        }*/
+        .inputStyle .el-input__inner[SuccessColor="success"] {
+            background-color:#1E90FF;
+        }
+    </style>
 
     <title>云合排产管理系统</title>
 </head>
@@ -27,7 +40,7 @@
                     <el-col :span="5">
                         <el-input placeholder="订单号" v-model="orderId" clearable></el-input>
                     </el-col>
-                    <el-col :span="12">
+                    <el-col :span="15">
                         <el-button-group>
                             <el-button 
                                 icon="el-icon-search" 
@@ -49,11 +62,15 @@
                                 icon="el-icon-tickets" 
                                 type="primary" 
                                 @click="setDate">今日生产计划</el-button>
-                           
                             <el-button 
                                 icon="el-icon-tickets" 
                                 type="primary" 
                                 @click="statistics">统计</el-button>
+                            <el-button
+                                icon="el-icon-s-marketing"
+                                type="primary" 
+                                @click="chartVisible=true;getSelect()"
+                                >图表</el-button>
                                 
                         </el-button-group>
                     </el-col>
@@ -175,8 +192,113 @@
                 style="margin-top: 20px;"
             >保存</el-button>
         </el-drawer>
+        <el-drawer
+            title="图表"
+            :visible.sync="chartVisible"
+            direction="ltr"
+            :modal="false"
+            size="95%"
+            ref="chartDrawer"
+        >
+            <el-form 
+                :model="work"
+                ref="chartForm"
+                style="background: url('static/img/image4.jpeg') no-repeat center!important;background-size:100% 100%"
+            >
+                <!--style="background: url('static/img/image3.jpeg') no-repeat center!important;background-size:100% 100%"-->
+                
+                <el-form-item label="选择开始日期：" class="labelStyle" >
+                    <el-date-picker 
+                        style="width:150px"
+                        v-model="startDate" 
+                        type="date" 
+                        placeholder="选择开始日期" 
+                        value-format="yyyy-MM-dd" 
+                        @change="tDay">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label="选择结束日期：" class="labelStyle">
+                    <el-date-picker 
+                        style="width:150px"
+                        v-model="endDate" 
+                        type="date" 
+                        placeholder="选择结束日期" 
+                        value-format="yyyy-MM-dd" 
+                        @change="tDay">
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item prop="orderId" label="请选择订单号：" class="labelStyle">
+                    <el-select 
+                        style="width:150px"
+                        v-model="list.orderId" 
+                        filterable 
+                        placeholder="请选择订单号" 
+                        style="width: 230px"
+                    >
+                        <el-option 
+                            v-for="info in options" 
+                            :key="info.orderId" 
+                            :label="info.orderId" 
+                            :value="info.orderId"
+                        >
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="请选择模块：" class="labelStyle">
+                    <el-select 
+                        style="width:150px"
+                        v-model="list.moudleInfo" 
+                        filterable 
+                        placeholder="请选择模块" 
+                        style="width: 230px"
+                    >
+                        <el-option 
+                            v-for="info in module" 
+                            :key="info.name" 
+                            :label="info.name" 
+                            :value="info.name"
+                        >
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <el-button-group>
+                        <el-button 
+                            icon="el-icon-search" 
+                            type="success" 
+                            style="margin-top:40px"
+                            @click="getChart">生成</el-button>
+                    </el-button-grou>
+                </el-form-item>
+                    
+                <!--<div class="chart-item">
+                    <div id="accountingBalance"></div>
+                </div>
+                <div class="chart-item">
+                    <div id="liabilities"></div>
+                </div>-->
 
+                <!--<el-form-item label="天数：" class="labelStyle"  style="margin-left:600px;width:200px">
+                    <el-input v-model="list.days" class="inputStyle" ></el-input>
+                </el-form-item>
+                <el-form-item label="数量：" class="labelStyle" style="margin-left:600px;width:200px">   
+                    <el-input v-model="list.num" class="inputStyle" ></el-input>
+                </el-form-item>-->
+                <chart :options="orgOptions" :auto-resize="true" ></chart>
+                    
+                <chart :options="barOptions" :auto-resize="true"></chart>
+                 <!--disabled="true"-->
+                
 
+            
+
+            
+            </el-form>
+            
+            <!--<p style="margin-left:50px;margin-bottom:250px">
+                <b><span style="font-size: 25pt;color:#FFFFFF">排产生产计划</span></b>
+            </p>-->
+        </el-drawer>
         <!--<el-dialog title="删除排产明细" :visible.sync="deleteDialogVisible" :modal="false" @open="deleteDialogOpen">
             <el-checkbox 
                 v-for="row in rowList"
@@ -246,7 +368,10 @@
             components: {
                 'chart': VueECharts
             },
-            data: {
+            data:{
+                edit:true,
+                options:[],
+                module:[],
                 now: 1,
                 size: 20,
                 total: 0,
@@ -258,7 +383,7 @@
                 tableHead: [],
 
                 addVisible: false,
-
+                chartVisible: false,
                 orderLoading: false,
                 orderList: [],
 
@@ -296,19 +421,140 @@
                 endDate: '',
                 tList: [],
                 tjList: [],
-                //orgOptions: {
-                //    xAxis: {
-                //        type: 'category',
-                //        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-                //    },
-                //    yAxis: {
-                //        type: 'value'
-                //    },
-                //    series: [{
-                //        data: [820, 932, 901, 934, 1290, 1330, 1320],
-                //        type: 'line'
-                //    }]
-                //}
+                orgOptions: {
+                    title: {
+                        text: "排产折线图",
+                        textStyle:{
+                            color:'#FFFFFF', //颜色
+                            fontStyle:'normal', //风格
+                            fontWeight:'normal', //粗细
+                            fontFamily:'Microsoft yahei', //字体
+                            fontSize:20, //大小
+                            align:'center' //水平对齐
+                        },
+                        //textAlign: 'center'
+                    },
+                    tooltip: {
+                        trigger: "axis",
+                        axisPointer: {
+                            type: "shadow"
+                        }
+                    },
+                    xAxis: {
+                        nameTextStyle: {
+                            fontSize:15,
+                            color:'#FFFFFF', //颜色
+                        },
+                        name: '日期',
+                        type: 'category',
+                        data: [],
+                        axisLine:{
+                            lineStyle:{
+                                color:'#FFFFFF',
+                                width:4,//这里是为了突出显示加上的
+                            }
+                        },
+                    },
+                    yAxis: {
+                        nameTextStyle: {
+                            fontSize:15,
+                            color:'#FFFFFF', //颜色
+                        },
+                        name: '数量',
+                        type: 'value',
+                        axisLine:{
+                            lineStyle:{
+                                color:'#FFFFFF',
+                                width:4,//这里是为了突出显示加上的
+                            }
+                        },
+                    },
+                    series: [{
+                        //symbol: 'circle',//折线点设置为实心点
+
+                        symbolSize: 4,   //折线点的大小
+                        type: 'line',//折线图
+                        data: [],
+                        itemStyle: {
+                            normal: {
+                                color: "#5078DB",//折线点的颜色
+                                lineStyle: {
+                                    color: "#F4422C"//折线的颜色
+                                }
+                            }
+                        },
+                    }],
+                    grid:{
+                        x:22,
+                        height:300,
+                        width:500,
+                    },
+                },
+                barOptions: {
+                    title: {
+                        text: "排产柱状图",
+                        textStyle:{
+                            color:'#FFFFFF', //颜色
+                            fontStyle:'normal', //风格
+                            fontWeight:'normal', //粗细
+                            fontFamily:'Microsoft yahei', //字体
+                            fontSize:20, //大小
+                            align:'center' //水平对齐
+                        },
+                    },
+                    tooltip: {
+                        trigger: "axis",
+                        axisPointer: {
+                            type: "shadow"
+                        }
+                    },
+                    xAxis: {
+                        nameTextStyle: {
+                            fontSize:15,
+                            color:'#FFFFFF', //颜色
+                        },
+                        name: '日期',
+                        type: 'category',
+                        data: [],
+                        axisLine:{
+                            lineStyle:{
+                                color:'#FFFFFF',
+                                width:4,//这里是为了突出显示加上的
+                            }
+                        },
+
+                    },
+                    yAxis: {
+                        nameTextStyle: {
+                            fontSize:15,
+                            color:'#FFFFFF', //颜色
+                        },
+                        axisLine:{
+                            lineStyle:{
+                                color:'#FFFFFF',
+                                width:4,//这里是为了突出显示加上的
+                            }
+                        },
+                        name: '数量',
+                        type: 'value'
+                    },
+                    series: [{
+                        type: 'bar',//折线图
+                        data: [],
+                        itemStyle: {
+                            normal: {
+                                color: "#F4422C",//折线点的颜色
+                                
+                            }
+                        },
+                    }],
+                    grid:{
+                        x:22,
+                        height:300,
+                        width:500,
+                    },
+                },
+
             },
             methods: {
                 workList: function () {
@@ -549,6 +795,89 @@
                     this.endDate = formatDate(new Date, "yyyy-MM-dd")
                     this.tjnum();
                     this.tjVisible = true;
+                },
+
+                getChart:function(){
+                    var orderId=this.list.orderId;
+                    var moudleInfo=this.list.moudleInfo;
+                    this.orgOptions.xAxis.data=[];
+                    this.orgOptions.series[0].data=[];
+                    this.barOptions.xAxis.data=[];
+                    this.barOptions.series[0].data=[];
+                    var startDate=""
+                    var endDate=""
+                    if(this.startDate==""){
+                        startDate="1900/01/01"
+                    }else if(this.startDate==null){
+                        startDate="1900/01/01"
+                    }else{
+                        startDate=this.startDate
+                    }
+                    if(this.endDate==""){
+                        endDate="2200/12/31"
+                    }else if(this.endDate==null){
+                        endDate="2200/12/31"
+                    }else{
+                        endDate=this.endDate
+                    }
+
+
+                    if(moudleInfo==''||typeof(moudleInfo)=="undefined"){
+                        for(var i=0;i<this.list.length;i++){
+                            if(orderId==this.list[i].orderId){
+                                for(var key in this.list[i]){
+                                    if(key!="company"&&key!="id"&&key!="is_insert"&&key!="is_insert"&&key!="moduleInfo"&&key!="orderId"&&key!="order_id"&&key!="row_num"&&key!="workDayList"&&key!="num"&&key!="work_num"&&key!="work_start_date"&&this.list[i][key]!=0&&key<=endDate&&key>startDate){
+                                        this.orgOptions.xAxis.data.push(key)
+                                        this.orgOptions.series[0].data.push(this.list[i][key])
+                                        this.barOptions.xAxis.data.push(key)
+                                        this.barOptions.series[0].data.push(this.list[i][key])
+                                    }
+                                }
+                            }
+                        }
+                        this.list.days=new Date(endDate)-new Date(startDate)
+                        var a=1
+                    }else if(this.moudleInfo!=''){
+                        var mdi=[];
+                        for(var i=0;i<this.list.length;i++){
+                            mdi.push(this.list[i].moduleInfo)
+                        }
+                        for(var i=0;i<this.list.length;i++){
+                            if(orderId==this.list[i].orderId&&moudleInfo==mdi[i].name){
+                                for(var key in this.list[i]){
+                                    if(key!="company"&&key!="id"&&key!="is_insert"&&key!="is_insert"&&key!="moduleInfo"&&key!="orderId"&&key!="order_id"&&key!="row_num"&&key!="workDayList"&&key!="num"&&key!="work_num"&&key!="work_start_date"&&this.list[i][key]!=0&&key<=endDate&&key>startDate){
+                                        this.orgOptions.xAxis.data.push(key)
+                                        this.orgOptions.series[0].data.push(this.list[i][key])
+                                        this.barOptions.xAxis.data.push(key)
+                                        this.barOptions.series[0].data.push(this.list[i][key])
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+
+                getSelect:function(){
+                    this.options =[];
+                    var tempData =this.list;
+                    var hash = {};
+                    tempData = tempData.reduce(function (info, next) {
+                        hash[next.orderId] ? '' : hash[next.orderId] = true && info.push(next);
+                        return info;
+                    }, []);
+                    this.options = tempData;
+
+                    this.module=[];
+                    tempData =this.list;
+                    hash = {};
+                    tempData = tempData.reduce(function (info, next) {
+                        hash[next.moduleInfo.name] ? '' : hash[next.moduleInfo.name] = true && info.push(next);
+                        return info;
+                    }, []);
+                    for(var i=0;i<tempData.length;i++){
+                        this.module.push(tempData[i].moduleInfo)
+                    }
+
                 },
 
                 tjnum: function(){

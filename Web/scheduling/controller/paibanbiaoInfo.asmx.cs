@@ -21,12 +21,12 @@ namespace Web.scheduling.controller
     {
         private PaibanbiaoInfoService pis;
         [WebMethod]
-        public string infoList(int nowPage, int pageCount)
+        public string infoList(int nowPage, int pageCount,string department_name,string plan_name)
         {
             try
             {
                 pis = new PaibanbiaoInfoService();
-                return ResultUtil.success(pis.list(nowPage, pageCount), "查询成功");
+                return ResultUtil.success(pis.list(nowPage, pageCount,department_name,plan_name), "查询成功");
             }
             catch (ErrorUtil err)
             {

@@ -22,12 +22,12 @@ namespace Web.scheduling.controller
         private PaiBanDetailService pds;
 
         [WebMethod]
-        public string getList(int nowPage, int pageCount)
+        public string getList(int nowPage, int pageCount,string staff_name,string banci)
         {
             try
             {
                 pds = new PaiBanDetailService();
-                return ResultUtil.success(pds.list(nowPage, pageCount), "查询成功");
+                return ResultUtil.success(pds.list(nowPage, pageCount,staff_name,banci), "查询成功");
             }
             catch (ErrorUtil err)
             {

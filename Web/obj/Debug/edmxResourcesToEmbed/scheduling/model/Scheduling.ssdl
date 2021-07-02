@@ -7,6 +7,7 @@
     <EntitySet Name="module_info" EntityType="schedulingModel.Store.module_info" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="module_type" EntityType="schedulingModel.Store.module_type" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="order_bom" EntityType="schedulingModel.Store.order_bom" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="order_check" EntityType="schedulingModel.Store.order_check" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="order_info" EntityType="schedulingModel.Store.order_info" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.Store.paibanbiao_detail" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.Store.paibanbiao_info" store:Type="Tables" Schema="dbo" />
@@ -87,6 +88,17 @@
     <Property Name="bom_id" Type="int" Nullable="false" />
     <Property Name="use_num" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="order_check">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_number" Type="varchar" MaxLength="255" />
+    <Property Name="moudle" Type="varchar" MaxLength="255" />
+    <Property Name="riqi" Type="varchar" MaxLength="255" />
+    <Property Name="num" Type="float" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="order_info">
     <Key>
       <PropertyRef Name="id" />
@@ -99,6 +111,7 @@
     <Property Name="set_date" Type="datetime2" Precision="0" />
     <Property Name="set_num" Type="int" Nullable="false" />
     <Property Name="company" Type="varchar" MaxLength="255" />
+    <Property Name="is_complete" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="paibanbiao_detail">
     <Key>

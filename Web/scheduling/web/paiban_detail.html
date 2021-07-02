@@ -21,8 +21,15 @@
         <el-container>
             <el-main>
                 <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="6">
+                        <el-input v-model="staff_name" placeholder="查询姓名" clearable></el-input>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input v-model="banci" placeholder="查询班次" clearable></el-input>
+                    </el-col>
                     <el-col :span="8">
                         <el-button-group>
+                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getList">查询</el-button>
                             <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList">刷新</el-button>
                         </el-button-group>
                     </el-col>
@@ -57,7 +64,6 @@
                                 <el-form-item label="日期" prop="c">
                                     <el-input v-model="props.row.c" style="width: 220px"></el-input>
                                 </el-form-item>
-
 
                             </el-form>
                             <el-button 
@@ -111,7 +117,9 @@
                 loading: false,
                 addLoading:false,
                 updateLoading:false,
-                planName:'',
+                planName: '',
+                banci: '',
+                staff_name:'',
                 
             },
             methods: {
@@ -121,6 +129,8 @@
                     axios.post(myUrl('paibanDetail/getList'), {
                         nowPage: _this.now,
                         pageCount: _this.size,
+                        staff_name: _this.staff_name,
+                        banci:_this.banci,
                     }).then(function (res) {
                         if (res.code == 200) {
                             _this.total = res.data.total

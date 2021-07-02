@@ -1678,6 +1678,7 @@
     <Content Include="scheduling\controller\module.asmx" />
     <Content Include="scheduling\controller\moduleType.asmx" />
     <Content Include="scheduling\controller\order.asmx" />
+    <Content Include="scheduling\controller\orderCheck.asmx" />
     <Content Include="scheduling\controller\paibanbiaoInfo.asmx" />
     <Content Include="scheduling\controller\paibanDetail.asmx" />
     <Content Include="scheduling\controller\renyuan.asmx" />
@@ -1687,6 +1688,7 @@
     <Content Include="scheduling\controller\summary.asmx" />
     <Content Include="scheduling\model\Scheduling.edmx.sql" />
     <Content Include="scheduling\web\bom.html" />
+    <Content Include="scheduling\web\check.html" />
     <Content Include="scheduling\web\department_new.html" />
     <Content Include="scheduling\web\order.html" />
     <Content Include="scheduling\web\paiban.html" />
@@ -2523,6 +2525,10 @@
       <DependentUpon>order.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="scheduling\controller\orderCheck.asmx.cs">
+      <DependentUpon>orderCheck.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="scheduling\controller\paibanbiaoInfo.asmx.cs">
       <DependentUpon>paibanbiaoInfo.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -2558,6 +2564,7 @@
     <Compile Include="scheduling\dao\ModuleDao.cs" />
     <Compile Include="scheduling\dao\ModuleTypeDao.cs" />
     <Compile Include="scheduling\dao\OrderBomDao.cs" />
+    <Compile Include="scheduling\dao\OrderCheckDao.cs" />
     <Compile Include="scheduling\dao\OrderDao.cs" />
     <Compile Include="scheduling\dao\PaibanbiaoInfoDao.cs" />
     <Compile Include="scheduling\dao\PaibanDetailDao.cs" />
@@ -2584,6 +2591,9 @@
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\order_bom.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\order_check.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\order_info.cs">
@@ -2633,6 +2643,7 @@
     <Compile Include="scheduling\service\HolidayService.cs" />
     <Compile Include="scheduling\service\ModuleService.cs" />
     <Compile Include="scheduling\service\ModuleTypeService.cs" />
+    <Compile Include="scheduling\service\OrderCheckService.cs" />
     <Compile Include="scheduling\service\PaibanbiaoInfoService.cs" />
     <Compile Include="scheduling\service\PaiBanDetailService.cs" />
     <Compile Include="scheduling\service\OrderInfoService.cs" />

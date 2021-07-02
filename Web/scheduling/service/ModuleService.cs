@@ -49,7 +49,13 @@ namespace Web.scheduling.service
         {
             if (cd.delete<module_info>(id))
             {
-                return wdd.deleteByModuleId(id) && wmd.deleteByModuleId(id);
+                if (wdd.deleteByModuleId(id) && wmd.deleteByModuleId(id)) { }
+                else if (wdd.deleteByModuleId(id)==false && wmd.deleteByModuleId(id)) { }
+                else if (wdd.deleteByModuleId(id) && wmd.deleteByModuleId(id)==false) { }
+                else if (wdd.deleteByModuleId(id) == false && wmd.deleteByModuleId(id) == false) { }
+
+                //return wdd.deleteByModuleId(id) && wmd.deleteByModuleId(id);
+                return true;
             }
             return false;
         }

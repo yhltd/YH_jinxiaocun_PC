@@ -96,5 +96,46 @@ namespace Web.scheduling.controller
                 }
             }
         }
+
+        [WebMethod]
+        public string deleteWork(int rowNum)
+        {
+            using (TransactionScope tran = new TransactionScope())
+            {
+                try
+                {
+                    UserInfoService us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("del", "排产");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+
+                        return ResultUtil.error("没有权限！");
+                    }
+
+                    wds = new WorkDetailService();
+                    if (wds.deleteWork(rowNum))
+                    {
+                        return ResultUtil.success("删除成功");
+                    }
+                    else
+                    {
+                        return ResultUtil.success("删除失败");
+                    }
+
+                }
+                catch (ErrorUtil err)
+                {
+                    return ResultUtil.fail(401, err.Message);
+                }
+                catch
+                {
+                    return ResultUtil.error("删除失败");
+                }
+            }
+        }
+
     }
 }

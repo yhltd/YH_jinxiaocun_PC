@@ -30,13 +30,13 @@ namespace Web.scheduling.service
         /// <param name="nowPage">当前页</param>
         /// <param name="pageCount">每页显示行数</param>
         /// <returns></returns>
-        public PageUtil<paibanbiao_info> list(int nowPage, int pageCount)
+        public PageUtil<paibanbiao_info> list(int nowPage, int pageCount,string department_name,string plan_name)
         {
             PageUtil<paibanbiao_info> page = new PageUtil<paibanbiao_info>();
             page.nowPage = nowPage;
             page.pageCount = pageCount;
             page.total = pi.Count();
-            page.pageList = pi.getList(page.getSkip(), page.getTake());
+            page.pageList = pi.getList(page.getSkip(), page.getTake(), department_name, plan_name);
                 //pi.getList(page.getSkip(), page.getTake());
             return page;
         }

@@ -202,5 +202,11 @@ namespace Web.scheduling.service
             }
             return true;
         }
+
+        public Boolean deleteWork(int rowNum)
+        {
+            return wdd.deleteWork<work_detail>(rowNum);
+        }
+
     }
 }

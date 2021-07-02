@@ -86,6 +86,15 @@ namespace Web.scheduling.service
             return list;
         }
 
+        /// <summary>
+        /// 查询所有部门
+        /// </summary>
+        public List<department> getDepartment()
+        {
+            List<department> list = rd.getDepartment(user.company);
+            return list;
+        }
+
         //public List<paibanbiao_renyuan> paibanList(String a, String b, String c, String d)
         //{
 

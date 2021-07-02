@@ -21,8 +21,15 @@
         <el-container>
             <el-main>
                 <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="6">
+                        <el-input v-model="department_name" placeholder="查询部门" clearable></el-input>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input v-model="plan_name" placeholder="查询计划名称" clearable></el-input>
+                    </el-col>
                     <el-col :span="8">
                         <el-button-group>
+                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getInfoList">查询</el-button>
                             <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getInfoList">刷新</el-button>
                             <el-button icon="el-icon-circle-plus-outline" type="primary" @click="openAddForm">添加</el-button>
                         </el-button-group>
@@ -81,7 +88,7 @@
                     :total="total"
                     :page-size="size"
                     :hide-on-single-page="total <= size" 
-                    @current-change="getList"
+                    @current-change="getInfoList"
                     style="margin-top: 10px"
                 ></el-pagination>
 
@@ -148,7 +155,8 @@
                             :label="order.department_name" 
                             :value="order.department_name"
                         >
-                            <span style="float: left">{{order.department_name}}</span>
+
+                            <!--<span style="float: left">{{order.department_name}}</span>-->
                         </el-option>
                     </el-select>               
                 </el-form-item>
@@ -227,6 +235,8 @@
                 lunhuanjiangetianshu:'',
                 startDate: '',
                 endDate: '',
+                department_name:'',
+                plan_name:'',
                 banciOptions: [
                     { value: 1, text: 1 },
                     { value: 2, text: 2 },
@@ -272,6 +282,11 @@
                     axios.post(myUrl('renyuan/getAllList'), {}).then(function (res) {
                         if (res.code == 200) {
                             _this.orderList = res.data
+                            //部门去重
+                            //
+                            //
+                            //
+
                         }
                         if (res.code == 500) {
                             _this.$notify({
@@ -321,6 +336,7 @@
 
 
                 addForm: function(){
+                    //this.addLoading=true;
                     var renyuan =[];
                     var infolList=[];
                     for (var i = 0; i < this.$refs.check.selection.length; i++) {
@@ -353,17 +369,20 @@
                             //    type: 'success'
                             // });
                             alert("保存成功！")
+                            this.addLoading=false;
                         }
                         if (res.code == 500) {
                             _this.$notify({
                                 title: res.msg,
                                 type: 'error'
                             });
+                            this.addLoading=false;
                         }
                     }).catch(function (err) {
                        // _this.$notify.error({
                        //     title: err.msg
-                       // });
+                        // });
+                        this.addLoading=false;
                     })
                 },
                 
@@ -373,6 +392,8 @@
                     axios.post(myUrl('paibanbiaoInfo/infoList'), {
                         nowPage: _this.now,
                         pageCount: _this.size,
+                        department_name:_this.department_name,
+                        plan_name:_this.plan_name,
                     }).then(function (res) {
                         if (res.code == 200) {
                             _this.total = res.data.total

@@ -52,13 +52,13 @@ namespace Web.scheduling.service
         /// <param name="nowPage">当前页</param>
         /// <param name="pageCount">每页显示行数</param>
         /// <returns></returns>
-        public PageUtil<paibanbiao_detail> list(int nowPage, int pageCount)
+        public PageUtil<paibanbiao_detail> list(int nowPage, int pageCount,string staff_name,string banci)
         {
             PageUtil<paibanbiao_detail> page = new PageUtil<paibanbiao_detail>();
             page.nowPage = nowPage;
             page.pageCount = pageCount;
             page.total = pbd.Count();
-            page.pageList = pbd.getList(page.getSkip(), page.getTake(), user.company);
+            page.pageList = pbd.getList(page.getSkip(), page.getTake(), user.company,staff_name,banci);
             return page;
         }
 

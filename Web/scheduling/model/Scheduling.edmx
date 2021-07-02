@@ -12,6 +12,7 @@
           <EntitySet Name="module_info" EntityType="schedulingModel.Store.module_info" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="module_type" EntityType="schedulingModel.Store.module_type" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="order_bom" EntityType="schedulingModel.Store.order_bom" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="order_check" EntityType="schedulingModel.Store.order_check" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="order_info" EntityType="schedulingModel.Store.order_info" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.Store.paibanbiao_detail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.Store.paibanbiao_info" store:Type="Tables" Schema="dbo" />
@@ -92,6 +93,17 @@
           <Property Name="bom_id" Type="int" Nullable="false" />
           <Property Name="use_num" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="order_check">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_number" Type="varchar" MaxLength="255" />
+          <Property Name="moudle" Type="varchar" MaxLength="255" />
+          <Property Name="riqi" Type="varchar" MaxLength="255" />
+          <Property Name="num" Type="float" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="order_info">
           <Key>
             <PropertyRef Name="id" />
@@ -104,6 +116,7 @@
           <Property Name="set_date" Type="datetime2" Precision="0" />
           <Property Name="set_num" Type="int" Nullable="false" />
           <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="is_complete" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="paibanbiao_detail">
           <Key>
@@ -237,6 +250,7 @@
           <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.paibanbiao_renyuan" />
           <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.paibanbiao_detail" />
           <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.paibanbiao_info" />
+          <EntitySet Name="order_check" EntityType="schedulingModel.order_check" />
         </EntityContainer>
         <EntityType Name="module_info">
           <Key>
@@ -327,6 +341,7 @@
           <Property Type="DateTime" Name="set_date" Precision="0" />
           <Property Type="Int32" Name="set_num" Nullable="false" />
           <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="is_complete" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="work_detail">
           <Key>
@@ -424,6 +439,17 @@
           <Property Type="String" Name="remarks4" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="remarks5" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="order_check">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="order_number" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="moudle" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="num" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -514,7 +540,8 @@
     <EntitySetMapping Name="order_info">
       <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.order_info)">
         <MappingFragment StoreEntitySet="order_info">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="is_complete" ColumnName="is_complete" />
+                <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="product_name" ColumnName="product_name" />
           <ScalarProperty Name="norms" ColumnName="norms" />
@@ -623,6 +650,18 @@
                 <ScalarProperty Name="renshu" ColumnName="renshu" />
                 <ScalarProperty Name="riqi" ColumnName="riqi" />
                 <ScalarProperty Name="paibanbiao_detail_id" ColumnName="paibanbiao_detail_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_check">
+            <EntityTypeMapping TypeName="schedulingModel.order_check">
+              <MappingFragment StoreEntitySet="order_check">
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="riqi" ColumnName="riqi" />
+                <ScalarProperty Name="moudle" ColumnName="moudle" />
+                <ScalarProperty Name="order_number" ColumnName="order_number" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

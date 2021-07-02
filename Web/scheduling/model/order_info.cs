@@ -22,5 +22,6 @@ namespace Web.scheduling.model
         public Nullable<System.DateTime> set_date { get; set; }
         public int set_num { get; set; }
         public string company { get; set; }
+        public string is_complete { get; set; }
     }
 }

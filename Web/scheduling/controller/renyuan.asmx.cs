@@ -27,6 +27,27 @@ namespace Web.scheduling.controller
 
         //private int lunhuanjiangetianshu = 0;
 
+
+        [WebMethod]
+        public string getDepartment()
+        {
+            try
+            {
+                rs = new RenyuanService();
+                return ResultUtil.success(rs.getDepartment(), "查询成功");
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return ResultUtil.error("查询失败");
+            }
+        }
+
+
         [WebMethod]
         public string getList(int nowPage, int pageCount)
         {
@@ -222,7 +243,7 @@ namespace Web.scheduling.controller
                 startDate_weeki = (((int)DateTime.Parse(startDate.ToString("yyyy-MM-dd")).DayOfWeek).ToString());
 
                 GetWeekCHA(nowwenk);
-                for (int i = 0; i < reday; i++)
+                for (int i = 0; i <= reday; i++)
                 {
                     int indexi = 0;
                     weeki = (((int)DateTime.Parse(dtnextday.ToString("yyyy-MM-dd")).DayOfWeek).ToString());

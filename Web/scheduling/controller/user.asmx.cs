@@ -18,7 +18,7 @@ namespace Web.scheduling.controller
     [System.Web.Script.Services.ScriptService]
     public class user : System.Web.Services.WebService
     {
-
+        private user_info userinfo;
         private UserInfoService uis;
 
         [WebMethod]
@@ -48,6 +48,20 @@ namespace Web.scheduling.controller
             {
                 return ResultUtil.error("修改失败");
             }
+        }
+
+        [WebMethod]
+        public string getUsername()
+        {
+            userinfo = TokenUtil.getToken();
+            return ResultUtil.success(userinfo.user_code, "查询成功");
+        }
+
+        [WebMethod]
+        public string getDepartment()
+        {
+            userinfo = TokenUtil.getToken();
+            return ResultUtil.success(userinfo.department_name, "查询成功");
         }
     }
 }

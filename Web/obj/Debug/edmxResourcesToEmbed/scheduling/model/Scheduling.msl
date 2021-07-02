@@ -85,6 +85,7 @@
     <EntitySetMapping Name="order_info">
       <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.order_info)">
         <MappingFragment StoreEntitySet="order_info">
+          <ScalarProperty Name="is_complete" ColumnName="is_complete" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="product_name" ColumnName="product_name" />
@@ -194,6 +195,18 @@
           <ScalarProperty Name="renshu" ColumnName="renshu" />
           <ScalarProperty Name="riqi" ColumnName="riqi" />
           <ScalarProperty Name="paibanbiao_detail_id" ColumnName="paibanbiao_detail_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_check">
+      <EntityTypeMapping TypeName="schedulingModel.order_check">
+        <MappingFragment StoreEntitySet="order_check">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="riqi" ColumnName="riqi" />
+          <ScalarProperty Name="moudle" ColumnName="moudle" />
+          <ScalarProperty Name="order_number" ColumnName="order_number" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

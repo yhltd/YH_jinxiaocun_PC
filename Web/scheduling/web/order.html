@@ -32,6 +32,7 @@
                             <el-button icon="el-icon-search" type="primary" @click="getList">查询</el-button>
                             <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getInitList"></el-button>
                             <el-button icon="el-icon-circle-plus-outline" type="primary" @click="addVisible = true"></el-button>
+                            <el-button  icon="el-icon-printer" type="primary" @click="toExcel"></el-button>
                         </el-button-group>
                     </el-col>
                 </el-row>
@@ -56,6 +57,9 @@
                                 <el-form-item label="下单数量" prop="set_num">
                                     <el-input v-model.number="props.row.set_num" style="width: 220px"></el-input>
                                 </el-form-item>
+                                <el-form-item label="是否完成" prop="is_complete">
+                                    <el-input v-model="props.row.is_complete" style="width: 220px"></el-input>
+                                </el-form-item>
                             </el-form>
                             <el-button 
                                 type="primary" 
@@ -71,6 +75,7 @@
                     <el-table-column prop="norms" label="规格" sortable></el-table-column>
                     <el-table-column prop="set_date" label="下单日期" sortable :formatter="dateFormat"></el-table-column>
                     <el-table-column prop="set_num" label="下单数量" sortable></el-table-column>
+                    <el-table-column prop="is_complete" label="是否完成" sortable></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <el-popconfirm title="确定删除吗？" @confirm="deleteOrder(scope.row.id)" hide-icon>
@@ -196,10 +201,21 @@
                 order: {},
                 addVisible: false,
                 saveLoading: false,
-
                 updateLoading: false
             },
             methods: {
+                toExcel: function () {
+                    var columns = {
+                        order_id:'订单号',
+                        code: '产品编码',
+                        product_name: '产品名称',
+                        norms: '规格',
+                        set_date: '下单日期',
+                        set_num: '下单数量',
+                        is_complete:'是否完成',
+                    }
+                    exportExcel(this.list, columns, '订单');
+                },
                 getList: function () {
                     var _this = this;
                     _this.loading = true;

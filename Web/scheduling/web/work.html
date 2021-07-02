@@ -45,7 +45,7 @@
                             <el-button 
                                 icon="el-icon-search" 
                                 type="primary" 
-                                @click="workList">查询</el-button>
+                                @click="workList"></el-button>
                             <el-button 
                                 icon="el-icon-refresh" 
                                 type="primary" 
@@ -61,7 +61,7 @@
                             <el-button 
                                 icon="el-icon-tickets" 
                                 type="primary" 
-                                @click="setDate">今日生产计划</el-button>
+                                @click="setDate">生产计划</el-button>
                             <el-button 
                                 icon="el-icon-tickets" 
                                 type="primary" 
@@ -71,15 +71,24 @@
                                 type="primary" 
                                 @click="chartVisible=true;getSelect()"
                                 >图表</el-button>
-                                
                         </el-button-group>
                     </el-col>
+                    <el-col :span="5">
+                        <el-input placeholder="删除" v-model="row_num" type="number" clearable></el-input>
+                    </el-col>
+                    <el-button-group>
+                        <el-button
+                            icon="el-icon-delete"
+                            type="danger" 
+                            @click="deleteWork();"
+                        >删除</el-button>
+                    </el-button-group>
                 </el-row>
                 <el-table :data="list" :row-style="rowIsInsert">
                     <el-table-column 
                         v-for="(item,index) in tableHead" 
                         :key="index" 
-                        :label="item.label" 
+                        :label="item.label"
                         :property="item.property"
                         :width="item.width"
                         :fixed="item.fixed"
@@ -186,7 +195,7 @@
                 </el-form-item>
             </el-form>
             <el-button 
-                type="primary" 
+                type="primary"
                 icon="el-icon-upload"
                 @click="addWork('addForm')"
                 style="margin-top: 20px;"
@@ -213,7 +222,7 @@
                         v-model="startDate" 
                         type="date" 
                         placeholder="选择开始日期" 
-                        value-format="yyyy-MM-dd" 
+                        value-format="yyyy-MM-dd"
                         @change="tDay">
                     </el-date-picker>
                 </el-form-item>
@@ -390,6 +399,8 @@
                 moduleLoading: false,
                 moduleList: [],
 
+                row_num:'',
+
                 saveLoading: false,
                 work: {},
                 rules: {
@@ -484,11 +495,11 @@
                             }
                         },
                     }],
-                    grid:{
-                        x:22,
-                        height:300,
-                        width:500,
-                    },
+                    //grid:{
+                    //    x:22,
+                    //    height:300,
+                    //    width:500,
+                    //},
                 },
                 barOptions: {
                     title: {
@@ -548,11 +559,11 @@
                             }
                         },
                     }],
-                    grid:{
-                        x:22,
-                        height:300,
-                        width:500,
-                    },
+                    //grid:{
+                    //    x:22,
+                    //    height:300,
+                    //    width:500,
+                    //},
                 },
 
             },
@@ -923,6 +934,28 @@
                         //    })
                         //}
                     }
+                },
+                deleteWork: function () {
+                    var _this = this;
+                    axios.post(myUrl('work/deleteWork'), {
+                        rowNum: _this.row_num
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.workList();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        
+                    })
                 },
                 
             },

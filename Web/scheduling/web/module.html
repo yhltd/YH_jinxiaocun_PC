@@ -84,7 +84,7 @@
                                     label-position="left"
                                 >
                                     <el-form-item label="模块类别" prop="type_id">
-                                        <el-select v-model="props.row.type_id" placeholder="请选择模块类别">
+                                        <el-select v-model="props.row.type_id" placeholder="请选择模块类别"  style="width: 300px">
                                             <el-option 
                                                 v-for="moduleType in moduleTypeList" 
                                                 :key="moduleType.id" 
@@ -97,10 +97,10 @@
                                         <el-input v-model="props.row.name" placeholder="请输入名称" style="width: 300px"></el-input>
                                     </el-form-item>
                                     <el-form-item label="效率" prop="num">
-                                        <el-input v-model.number="props.row.num" style="width: 250px"></el-input>
+                                        <el-input v-model.number="props.row.num" style="width: 300px"></el-input>
                                     </el-form-item>
                                     <el-form-item label="父模块" prop="parent_id">
-                                        <el-select v-model="props.row.parent_id" filterable clearable>
+                                        <el-select v-model="props.row.parent_id" filterable clearable  style="width: 300px">
                                             <el-option 
                                                 v-for="module in moduleList" 
                                                 :key="module.id" 
@@ -110,7 +110,7 @@
                                         </el-select>
                                     </el-form-item>
                                     <el-form-item>
-                                        <el-button type="primary" style="width: 100px" @click="updateModule('moduleUpdateForm')">保存</el-button>
+                                        <el-button type="primary" style="width: 300px" @click="updateModule('moduleUpdateForm')">保存</el-button>
                                     </el-form-item>
                                 </el-form>
                             </template>
@@ -126,7 +126,7 @@
                             width="120"
                         >
                             <template slot-scope="scope">
-                                <el-popconfirm title="确定删除吗？" @confirm="deleteModule(scope.row.id)" hide-icon>
+                                <el-popconfirm title="后面排产也许正在使用模块，确定删除吗？" @confirm="deleteModule(scope.row.id)" hide-icon>
                                     <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
                                 </el-popconfirm>
                             </template>

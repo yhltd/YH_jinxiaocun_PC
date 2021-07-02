@@ -44,6 +44,7 @@
                         <el-button-group>
                             <el-button icon="el-icon-search" type="primary" @click="getList">查询</el-button>
                             <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList"></el-button>
+                            <el-button  icon="el-icon-printer" type="primary" @click="toExcel"></el-button>
                         </el-button-group>
                     </el-col>
                 </el-row>
@@ -89,6 +90,16 @@
                 moduleTypeLoading: false
             },
             methods: {
+                toExcel: function () {
+                    var columns = {
+                        type: '模块类别',
+                        name: '名称',
+                        num: '效率',
+                        parentName: '父模块',
+                        workNum: '合计产量'
+                    }
+                    exportExcel(this.list, columns, '汇总');
+                },
                 getList: function () {
                     var _this = this;
                     _this.loading = true;
@@ -139,6 +150,7 @@
                     })
                 }
             },
+            
             mounted: function () {
                 this.getList();
                 this.getModuleTypeList();

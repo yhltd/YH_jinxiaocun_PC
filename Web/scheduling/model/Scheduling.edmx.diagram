@@ -19,6 +19,7 @@
         <EntityTypeShape EntityType="schedulingModel.paibanbiao_renyuan" Width="1.5" PointX="10.5" PointY="3" />
         <EntityTypeShape EntityType="schedulingModel.paibanbiao_detail" Width="1.5" PointX="0.75" PointY="5" />
         <EntityTypeShape EntityType="schedulingModel.paibanbiao_info" Width="1.5" PointX="2.875" PointY="5.125" />
+        <EntityTypeShape EntityType="schedulingModel.order_check" Width="1.5" PointX="4.75" PointY="5.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

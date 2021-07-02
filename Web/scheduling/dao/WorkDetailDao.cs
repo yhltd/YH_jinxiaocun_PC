@@ -1,5 +1,7 @@
-﻿using System;
+﻿using clsBuiness;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -47,5 +49,48 @@ namespace Web.scheduling.dao
                 return se.Database.ExecuteSqlCommand(sql, param) > 0;
             }
         }
+
+        //public Boolean deleteWork(int rowNum)
+        //{
+        //    using (se = new schedulingEntities())
+        //    {
+        //        var param = new SqlParameter("@rowNum", rowNum);
+        //        var sql = "delete from work_detail where row_num=@rowNum";
+        //        return se.Database.ExecuteSqlCommand(sql, param) > 0;
+        //    }
+        //}
+
+        public Boolean deleteWork<T>(int id) where T : class
+        {
+            //var param = new SqlParameter("@row_num", rowNum);
+            //var sql = "delete from work_detail where row_num=@row_num";
+            //using (se = new schedulingEntities())
+            //{
+            //    se.Entry<T>(se.Set<T>().Find(id)).State = EntityState.Deleted;
+            //    return se.SaveChanges() > 0;
+
+            //    //return se.Database.ExecuteSqlCommand(sql, param) > 0;
+            //}
+            //rowNum = 82;
+            //using (se = new schedulingEntities())
+            //{
+
+            //    string sql = "delete from work_detail where id = @id";
+            //    var param = new SqlParameter("@id", rowNum);
+            //    return se.Database.ExecuteSqlCommand(sql, param) > 0;
+            //}
+            //delete from work_detail where row_num=@row_num
+
+            //clsAllnew BusinessHelp = new clsAllnew();
+            //string sql2 = "delete from work_detail where   id='" + 82 + "'";
+
+            ////BusinessHelp.Readt_PICServer(sql2);
+            //BusinessHelp.deleteCard(sql2);
+
+            return true;
+
+        }
+
+
     }
 }

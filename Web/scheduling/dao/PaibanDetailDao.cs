@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Web.scheduling.model;
@@ -21,11 +22,17 @@ namespace Web.scheduling.dao
             }
         }
 
-        public List<paibanbiao_detail> getList(int skip, int take, String company)
+        public List<paibanbiao_detail> getList(int skip, int take, String company,string staff_name,string banci)
         {
+            var @params = new SqlParameter[]{
+                new SqlParameter("@staff_name", staff_name),
+                new SqlParameter("@banci", banci),
+                new SqlParameter("@company", company),
+            };
+            string sql = "select * from paibanbiao_detail where staff_name like '%' + @staff_name + '%' and b like '%' + @banci + '%' and company=@company ";
             using (se = new schedulingEntities())
             {
-                var result = se.paibanbiao_detail.Where(pd => pd.company == company).OrderBy(pd => pd.c).Skip(skip).Take(take);
+                var result = se.Database.SqlQuery<paibanbiao_detail>(sql, @params).OrderBy(pd => pd.c).Skip(skip).Take(take);
                 return result.ToList();
             }
         }

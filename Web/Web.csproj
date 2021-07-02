@@ -1707,6 +1707,7 @@
     <Content Include="scheduling\web\static\element\index.css" />
     <Content Include="scheduling\web\static\js\main.js" />
     <Content Include="scheduling\web\static\vue\vue.js" />
+    <Content Include="scheduling\web\userInfo.html" />
     <Content Include="scheduling\web\work.html" />
     <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />

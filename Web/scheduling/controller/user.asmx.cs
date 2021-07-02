@@ -63,5 +63,105 @@ namespace Web.scheduling.controller
             userinfo = TokenUtil.getToken();
             return ResultUtil.success(userinfo.department_name, "查询成功");
         }
+
+
+        [WebMethod]
+        public string getList(int nowPage, int pageCount, string user_code)
+        {
+
+            try
+            {
+                uis = new UserInfoService();
+                return ResultUtil.success(uis.getList(nowPage, pageCount, user_code), "查询成功");
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return ResultUtil.error("查询失败");
+            }
+        }
+
+
+        [WebMethod]
+        public string save(user_info user_info)
+        {
+            try
+            {
+                uis = new UserInfoService();
+                if (uis.save(user_info))
+                {
+
+                    return ResultUtil.success("保存成功");
+                }
+                else
+                {
+                    return ResultUtil.error("保存失败");
+                }
+
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch
+            {
+                return ResultUtil.error("查询失败");
+            }
+        }
+
+        [WebMethod]
+        public string delete(int id)
+        {
+            try
+            {
+                uis = new UserInfoService();
+                if (uis.delete(id))
+                {
+                    return ResultUtil.success("删除成功");
+                }
+                else
+                {
+                    return ResultUtil.error("删除失败");
+                }
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch
+            {
+                return ResultUtil.error("删除失败");
+            }
+        }
+
+        [WebMethod]
+        public string update(user_info user_info)
+        {
+            try
+            {
+                uis = new UserInfoService();
+                if (uis.update(user_info))
+                {
+                    return ResultUtil.success("修改成功");
+                }
+                else
+                {
+                    return ResultUtil.error("修改失败");
+                }
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch
+            {
+                return ResultUtil.error("修改失败");
+            }
+        }
+
     }
 }

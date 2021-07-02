@@ -138,5 +138,55 @@ namespace Web.scheduling
             return quanxian_save;
 
         }
+
+        /// <summary>
+        /// 查询user_info
+        /// </summary>
+        /// <param name="nowPage">当前页</param>
+        /// <param name="pageCount">每页显示行数</param>
+        /// <returns></returns>
+        public PageUtil<user_info> getList(int nowPage, int pageCount,string user_code)
+        {
+            user = TokenUtil.getToken();
+            string company = user.company;
+            PageUtil<user_info> page = new PageUtil<user_info>();
+            page.nowPage = nowPage;
+            page.pageCount = pageCount;
+            page.total = udo.Count();
+            page.pageList = udo.getlist(page.getSkip(), page.getTake(), company, user_code);
+            return page;
+        }
+
+        /// <summary>
+        /// 新增账号
+        /// </summary>
+        /// <returns></returns>
+        public Boolean save(user_info user_info)
+        {
+            user = TokenUtil.getToken();
+            user_info.company = user.company;
+            return udo.add<user_info>(user_info) != null;
+        }
+
+        /// <summary>
+        /// 删除账号
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        public Boolean delete(int id)
+        {
+            return udo.delete<user_info>(id);
+        }
+
+        /// <summary>
+        /// 修改账号
+        /// </summary>
+        /// <param name="orderInfo"></param>
+        /// <returns></returns>
+        public Boolean update(user_info user_info)
+        {
+            return udo.update<user_info>(user_info);
+        }
+
     }
 }

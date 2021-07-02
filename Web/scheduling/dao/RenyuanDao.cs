@@ -92,7 +92,6 @@ namespace Web.scheduling.dao
         {
             var @params = new SqlParameter[] { 
                 new SqlParameter("@company", company),
-            
             };
             string sql = "select * from department where company=@company ";
             using (se = new schedulingEntities())

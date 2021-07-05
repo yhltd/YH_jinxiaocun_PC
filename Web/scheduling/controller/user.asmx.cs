@@ -71,6 +71,16 @@ namespace Web.scheduling.controller
 
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "账号管理");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 uis = new UserInfoService();
                 return ResultUtil.success(uis.getList(nowPage, pageCount, user_code), "查询成功");
             }
@@ -91,6 +101,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "账号管理");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 uis = new UserInfoService();
                 if (uis.save(user_info))
                 {
@@ -118,6 +138,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("del", "账号管理");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 uis = new UserInfoService();
                 if (uis.delete(id))
                 {
@@ -143,6 +173,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "账号管理");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 uis = new UserInfoService();
                 if (uis.update(user_info))
                 {

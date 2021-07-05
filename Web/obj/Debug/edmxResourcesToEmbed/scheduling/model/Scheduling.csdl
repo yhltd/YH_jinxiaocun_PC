@@ -3,7 +3,6 @@
   <EntityContainer Name="schedulingEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="module_info" EntityType="schedulingModel.module_info" />
     <EntitySet Name="module_type" EntityType="schedulingModel.module_type" />
-    <EntitySet Name="user_info" EntityType="schedulingModel.user_info" />
     <EntitySet Name="holiday_config" EntityType="schedulingModel.holiday_config" />
     <EntitySet Name="time_config" EntityType="schedulingModel.time_config" />
     <EntitySet Name="bom_info" EntityType="schedulingModel.bom_info" />
@@ -16,6 +15,9 @@
     <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.paibanbiao_detail" />
     <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.paibanbiao_info" />
     <EntitySet Name="order_check" EntityType="schedulingModel.order_check" />
+    <EntitySet Name="user_info1" EntityType="schedulingModel.user_info1" />
+    <EntitySet Name="work_detail2" EntityType="schedulingModel.work_detail2" />
+    <EntitySet Name="user_info" EntityType="schedulingModel.user_info" />
   </EntityContainer>
   <EntityType Name="module_info">
     <Key>
@@ -35,19 +37,6 @@
     <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="user_info">
-    <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="user_code" />
-      <PropertyRef Name="password" />
-      <PropertyRef Name="company" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="user_code" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="company" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Type="String" Name="department_name" MaxLength="255" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="holiday_config">
     <Key>
@@ -115,7 +104,7 @@
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Int32" Name="order_id" Nullable="false" />
     <Property Type="Int32" Name="work_num" Nullable="false" />
-    <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="0" />
+    <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="7" />
     <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="row_num" />
     <Property Type="Int32" Name="is_insert" />
@@ -214,5 +203,37 @@
     <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="Double" Name="num" />
     <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="user_info1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="user_code" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="work_detail2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="order_id" Nullable="false" />
+    <Property Type="Int32" Name="work_num" Nullable="false" />
+    <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="0" />
+    <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="row_num" />
+    <Property Type="Int32" Name="is_insert" />
+  </EntityType>
+  <EntityType Name="user_info">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="user_code" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

@@ -18,16 +18,10 @@
           <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.Store.paibanbiao_info" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.Store.paibanbiao_renyuan" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="time_config" EntityType="schedulingModel.Store.time_config" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" store:Schema="dbo" store:Name="user_info">
-            <DefiningQuery>SELECT 
-      [user_info].[id] AS [id], 
-      [user_info].[user_code] AS [user_code], 
-      [user_info].[password] AS [password], 
-      [user_info].[company] AS [company], 
-      [user_info].[department_name] AS [department_name]
-      FROM [dbo].[user_info] AS [user_info]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user_info1" EntityType="schedulingModel.Store.user_info1" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="work_detail" EntityType="schedulingModel.Store.work_detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="work_detail2" EntityType="schedulingModel.Store.work_detail2" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="work_module" EntityType="schedulingModel.Store.work_module" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="bom_info">
@@ -195,15 +189,19 @@
           <Property Name="night_end" Type="varchar" MaxLength="8" />
           <Property Name="company" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--生成过程中发现错误:
-      警告 6002: 表/视图“scheduling.dbo.user_info”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
-      -->
         <EntityType Name="user_info">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="user_code" />
-            <PropertyRef Name="password" />
-            <PropertyRef Name="company" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_code" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="department_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="user_info1">
+          <Key>
+            <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="user_code" Type="varchar" Nullable="false" MaxLength="255" />
@@ -212,6 +210,18 @@
           <Property Name="department_name" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="work_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="work_num" Type="int" Nullable="false" />
+          <Property Name="work_start_date" Type="datetime2" Nullable="false" />
+          <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="row_num" Type="int" />
+          <Property Name="is_insert" Type="int" />
+        </EntityType>
+        <EntityType Name="work_detail2">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -238,7 +248,6 @@
         <EntityContainer Name="schedulingEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="module_info" EntityType="schedulingModel.module_info" />
           <EntitySet Name="module_type" EntityType="schedulingModel.module_type" />
-          <EntitySet Name="user_info" EntityType="schedulingModel.user_info" />
           <EntitySet Name="holiday_config" EntityType="schedulingModel.holiday_config" />
           <EntitySet Name="time_config" EntityType="schedulingModel.time_config" />
           <EntitySet Name="bom_info" EntityType="schedulingModel.bom_info" />
@@ -251,6 +260,9 @@
           <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.paibanbiao_detail" />
           <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.paibanbiao_info" />
           <EntitySet Name="order_check" EntityType="schedulingModel.order_check" />
+          <EntitySet Name="user_info1" EntityType="schedulingModel.user_info1" />
+          <EntitySet Name="work_detail2" EntityType="schedulingModel.work_detail2" />
+          <EntitySet Name="user_info" EntityType="schedulingModel.user_info" />
         </EntityContainer>
         <EntityType Name="module_info">
           <Key>
@@ -270,19 +282,6 @@
           <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="user_info">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="user_code" />
-            <PropertyRef Name="password" />
-            <PropertyRef Name="company" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="user_code" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="company" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Type="String" Name="department_name" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="holiday_config">
           <Key>
@@ -350,7 +349,7 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="order_id" Nullable="false" />
           <Property Type="Int32" Name="work_num" Nullable="false" />
-          <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="7" />
           <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="row_num" />
           <Property Type="Int32" Name="is_insert" />
@@ -450,6 +449,38 @@
           <Property Type="Double" Name="num" />
           <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="user_info1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="user_code" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="work_detail2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="Int32" Name="work_num" Nullable="false" />
+          <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="0" />
+          <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="row_num" />
+          <Property Type="Int32" Name="is_insert" />
+        </EntityType>
+        <EntityType Name="user_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="user_code" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -474,17 +505,6 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="company" ColumnName="company" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="user_info">
-      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.user_info)">
-        <MappingFragment StoreEntitySet="user_info">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="user_code" ColumnName="user_code" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="company" ColumnName="company" />
-          <ScalarProperty Name="department_name" ColumnName="department_name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -662,6 +682,41 @@
                 <ScalarProperty Name="riqi" ColumnName="riqi" />
                 <ScalarProperty Name="moudle" ColumnName="moudle" />
                 <ScalarProperty Name="order_number" ColumnName="order_number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_info1">
+            <EntityTypeMapping TypeName="schedulingModel.user_info1">
+              <MappingFragment StoreEntitySet="user_info1">
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_code" ColumnName="user_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="work_detail2">
+            <EntityTypeMapping TypeName="schedulingModel.work_detail2">
+              <MappingFragment StoreEntitySet="work_detail2">
+                <ScalarProperty Name="is_insert" ColumnName="is_insert" />
+                <ScalarProperty Name="row_num" ColumnName="row_num" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />
+                <ScalarProperty Name="work_num" ColumnName="work_num" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_info">
+            <EntityTypeMapping TypeName="schedulingModel.user_info">
+              <MappingFragment StoreEntitySet="user_info">
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_code" ColumnName="user_code" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

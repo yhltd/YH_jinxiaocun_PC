@@ -193,7 +193,9 @@
                              }).then(function (res) {
                                  if (res.code == 200) {
                                      _this.deptVisible = false,
+                                     _this.addVisible = false,
                                      _this.getList();
+                                     
                                  }
                                  if (res.code == 500) {
                                      _this.$notify({

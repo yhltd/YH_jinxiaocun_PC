@@ -50,18 +50,19 @@ namespace Web.scheduling.dao
             }
         }
 
-        //public Boolean deleteWork(int rowNum)
-        //{
-        //    using (se = new schedulingEntities())
-        //    {
-        //        var param = new SqlParameter("@rowNum", rowNum);
-        //        var sql = "delete from work_detail where row_num=@rowNum";
-        //        return se.Database.ExecuteSqlCommand(sql, param) > 0;
-        //    }
-        //}
-
-        public Boolean deleteWork<T>(int id) where T : class
+        public Boolean deleteWork(int rowNum)
         {
+            using (se = new schedulingEntities())
+            {
+                var param = new SqlParameter("@rowNum", rowNum);
+                var sql = "delete from work_detail where row_num=@rowNum";
+                return se.Database.ExecuteSqlCommand(sql, param) > 0;
+            }
+        }
+
+        public Boolean deleteWork1<T>(int id) where T : class
+        {
+            
             //var param = new SqlParameter("@row_num", rowNum);
             //var sql = "delete from work_detail where row_num=@row_num";
             //using (se = new schedulingEntities())

@@ -118,6 +118,7 @@ namespace Web.scheduling.controller
                     wds = new WorkDetailService();
                     if (wds.deleteWork(rowNum))
                     {
+                        tran.Complete();
                         return ResultUtil.success("删除成功");
                     }
                     else

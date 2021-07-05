@@ -205,7 +205,9 @@ namespace Web.scheduling.service
 
         public Boolean deleteWork(int rowNum)
         {
-            return wdd.deleteWork<work_detail>(rowNum);
+
+            //return wdd.deleteWork<work_detail>(rowNum);
+            return wdd.deleteWork(rowNum);
         }
 
     }

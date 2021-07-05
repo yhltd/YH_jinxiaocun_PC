@@ -7,7 +7,6 @@
       <Diagram DiagramId="4350026406e54725a6d0651787f52f1a" Name="关系图1" ZoomLevel="67">
         <EntityTypeShape EntityType="schedulingModel.module_info" Width="1.5" PointX="0.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="schedulingModel.module_type" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="schedulingModel.user_info" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="schedulingModel.holiday_config" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="schedulingModel.time_config" Width="1.5" PointX="2.875" PointY="2.25" />
         <EntityTypeShape EntityType="schedulingModel.bom_info" Width="1.5" PointX="6.625" PointY="0.5" />
@@ -20,6 +19,9 @@
         <EntityTypeShape EntityType="schedulingModel.paibanbiao_detail" Width="1.5" PointX="0.75" PointY="5" />
         <EntityTypeShape EntityType="schedulingModel.paibanbiao_info" Width="1.5" PointX="2.875" PointY="5.125" />
         <EntityTypeShape EntityType="schedulingModel.order_check" Width="1.5" PointX="4.75" PointY="5.125" />
+        <EntityTypeShape EntityType="schedulingModel.user_info1" Width="1.5" PointX="9.5499056026106253" PointY="23.688586752716724" />
+        <EntityTypeShape EntityType="schedulingModel.work_detail2" Width="1.5" PointX="7.7557580544407285" PointY="25.77181395598306" />
+        <EntityTypeShape EntityType="schedulingModel.user_info" Width="1.5" PointX="0.75" PointY="2.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

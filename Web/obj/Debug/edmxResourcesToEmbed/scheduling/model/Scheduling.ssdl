@@ -13,16 +13,10 @@
     <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.Store.paibanbiao_info" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.Store.paibanbiao_renyuan" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="time_config" EntityType="schedulingModel.Store.time_config" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" store:Schema="dbo" store:Name="user_info">
-      <DefiningQuery>SELECT 
-      [user_info].[id] AS [id], 
-      [user_info].[user_code] AS [user_code], 
-      [user_info].[password] AS [password], 
-      [user_info].[company] AS [company], 
-      [user_info].[department_name] AS [department_name]
-      FROM [dbo].[user_info] AS [user_info]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="user_info1" EntityType="schedulingModel.Store.user_info1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="work_detail" EntityType="schedulingModel.Store.work_detail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="work_detail2" EntityType="schedulingModel.Store.work_detail2" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="work_module" EntityType="schedulingModel.Store.work_module" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
   <EntityType Name="bom_info">
@@ -190,15 +184,19 @@
     <Property Name="night_end" Type="varchar" MaxLength="8" />
     <Property Name="company" Type="varchar" MaxLength="50" />
   </EntityType>
-  <!--生成过程中发现错误:
-      警告 6002: 表/视图“scheduling.dbo.user_info”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
-      -->
   <EntityType Name="user_info">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="user_code" />
-      <PropertyRef Name="password" />
-      <PropertyRef Name="company" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_code" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="department_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="user_info1">
+    <Key>
+      <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="user_code" Type="varchar" Nullable="false" MaxLength="255" />
@@ -207,6 +205,18 @@
     <Property Name="department_name" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="work_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="work_num" Type="int" Nullable="false" />
+    <Property Name="work_start_date" Type="datetime2" Nullable="false" />
+    <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="row_num" Type="int" />
+    <Property Name="is_insert" Type="int" />
+  </EntityType>
+  <EntityType Name="work_detail2">
     <Key>
       <PropertyRef Name="id" />
     </Key>

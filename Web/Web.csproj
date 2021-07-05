@@ -2630,10 +2630,16 @@
     <Compile Include="scheduling\model\user_info.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
+    <Compile Include="scheduling\model\user_info1.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
     <Compile Include="scheduling\model\WorkDay.cs" />
     <Compile Include="scheduling\model\WorkItem.cs" />
     <Compile Include="scheduling\model\WorkSummary.cs" />
     <Compile Include="scheduling\model\work_detail.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\work_detail2.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\work_module.cs">

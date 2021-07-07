@@ -241,8 +241,12 @@ namespace Web.scheduling.controller
                 bool isnew_time = false;
                 int bencijialejigeren = 0;
                 startDate_weeki = (((int)DateTime.Parse(startDate.ToString("yyyy-MM-dd")).DayOfWeek).ToString());
-
+                if (startDate_weeki == "0")
+                {
+                    startDate_weeki = "7";
+                }
                 GetWeekCHA(nowwenk);
+                int diwuzhouxunhuan = 0;
                 for (int i = 0; i <= reday; i++)
                 {
                     int indexi = 0;
@@ -371,10 +375,10 @@ namespace Web.scheduling.controller
                     }
                     else
                     {
-                        if (i % 28 == 0)
-                        {
-                            index_xunhuanday28 = 0;
-                        }                     
+                        //if (i % 28 == 0)
+                        //{
+                        //    index_xunhuanday28 = 0;
+                        //}                     
                         foreach (paibanbiao_renyuan item in renyuan)
                         {
                             paibanbiao_renyuan temp = new paibanbiao_renyuan();
@@ -404,9 +408,26 @@ namespace Web.scheduling.controller
                             temp.c = dtnextday.ToString("yyyy-MM-dd");
                             temp.b = "无";
                             #endregion
+                            
                             //如果起始日期不是周一情况
-                            if (startDate_weeki != "1")
+                            if (startDate_weeki != "1" && diwuzhouxunhuan != 1)
                             {
+
+                                if (index_xunhuanday28 % 21 == 0 && i>10)
+                                {
+                                    //因为第一周执行完后index_xunhuanday28=0，剩余三周加起来共计21天，循环是从0开始
+                                    index_xunhuanday28 = 0;
+                                    diwuzhouxunhuan = 1;
+                                }
+                            }
+                            if (startDate_weeki != "1" && diwuzhouxunhuan==0)
+                            {
+
+                                //if (index_xunhuanday28 % 20 == 0)
+                                //{
+                                //    //因为第一周执行完后index_xunhuanday28=0，剩余三周加起来共计21天，循环是从0开始
+                                //    index_xunhuanday28 = 0;
+                                //} 
                                 if (index_xunhuanday28 <= (6 - Convert.ToInt32(startDate_weeki) + 1) && isrunnew_week1 == true)
                                 //if (6 - Convert.ToInt32(index_xunhuanday28) + 1 == Convert.ToInt32(startDate_weeki) && isrunnew_week1 == true)
                                 {
@@ -417,8 +438,9 @@ namespace Web.scheduling.controller
                                 {
                                     isrunnew_week1 = false;
 
-                                    index_xunhuanday28 = 0;
+                                    //index_xunhuanday28 = 0;
                                     //   diyicijieyu = "br";
+                                    index_xunhuanday28 = -1;
 
                                     indexi++;
                                     renyuan_wordplan.Add(temp);
@@ -621,6 +643,11 @@ namespace Web.scheduling.controller
                             }
                             else
                             {
+                                if (index_xunhuanday28 % 28 == 0)
+                                {
+                                    //因为第一周是周一，剩余四周加起来共计28天，循环是从0开始
+                                    index_xunhuanday28 = 0;
+                                } 
                                 if (index_xunhuanday28 <= 6)
                                 {
                                     //第一班

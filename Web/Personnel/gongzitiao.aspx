@@ -13,7 +13,7 @@
     <div>
     
         <asp:Label ID="Label1" runat="server" Height="30px" Text="部门："></asp:Label>
-        <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="C" DataValueField="C" >
+        <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="C" DataValueField="C" >
             <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [C] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) GROUP BY [C],[BD]">
@@ -28,11 +28,11 @@
         </asp:SqlDataSource>
 &nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label2" runat="server" Height="30px" Text="岗位："></asp:Label>
-        <asp:DropDownList ID="DropDownList2" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" DataSourceID="SqlDataSource4" DataTextField="D" DataValueField="D" >
+        <asp:DropDownList ID="DropDownList2" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" DataSourceID="SqlDataSource4" DataTextField="D" DataValueField="D" >
         <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="Label3" runat="server" Height="30px" Text="年："></asp:Label>
-        <asp:DropDownList ID="DropDownList3" runat="server" Height="30px" Width="150px"  CssClass="top_select_input">
+        <asp:DropDownList ID="DropDownList3" runat="server" Height="30px" Width="120px"  CssClass="top_select_input">
             <asp:ListItem></asp:ListItem>
             <asp:ListItem>2018</asp:ListItem>
             <asp:ListItem>2019</asp:ListItem>
@@ -52,7 +52,7 @@
             <asp:ListItem>2033</asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="Label4" runat="server" Height="30px" Text="月："></asp:Label>
-        <asp:DropDownList ID="DropDownList4" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" >
+        <asp:DropDownList ID="DropDownList4" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" >
             <asp:ListItem></asp:ListItem>
             <asp:ListItem>01</asp:ListItem>
             <asp:ListItem>02</asp:ListItem>
@@ -69,6 +69,7 @@
         </asp:DropDownList>
         <asp:Button ID="Button1" runat="server" Height="30px" Text="搜索" OnClick="Button1_Click" CssClass="top_bt" />
         <asp:Button ID="Button2" runat="server" Height="30px" Text="所有" OnClick="Button2_Click" CssClass="top_bt" />
+        <asp:Button ID="Button3" runat="server" Height="30px" Text="生成Excel" OnClick="toExcel" CssClass="top_bt" />
         <br />
     
         <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="id">

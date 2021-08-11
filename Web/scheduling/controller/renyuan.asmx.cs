@@ -33,6 +33,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "人员信息");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 rs = new RenyuanService();
                 return ResultUtil.success(rs.getDepartment(), "查询成功");
             }
@@ -53,6 +63,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "人员信息");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 rs = new RenyuanService();
                 return ResultUtil.success(rs.list(nowPage, pageCount), "查询成功");
             }
@@ -72,6 +93,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "人员信息");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 rs = new RenyuanService();
                 if (rs.add(renyuanList))
                 {
@@ -98,6 +130,16 @@ namespace Web.scheduling.controller
             {
                 try
                 {
+                    us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("del", "人员信息");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+                        return ResultUtil.error("没有权限！");
+                    }
+
                     rs = new RenyuanService();
                     if (rs.delete(id))
                     {
@@ -124,6 +166,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "人员信息");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 rs = new RenyuanService();
                 if (rs.update(renyuanList))
                 {
@@ -149,6 +201,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "排班");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 rs = new RenyuanService();
                 return ResultUtil.success(rs.getAllList(), "查询成功");
             }
@@ -187,6 +250,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "排班");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
 
                 List<paibanbiao_renyuan> renyuan_wordplan = new List<paibanbiao_renyuan>();
 

@@ -44,6 +44,7 @@ namespace Web.Personnel
                     }
                 }
             }
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -78,5 +79,6 @@ namespace Web.Personnel
                 aa[i] = Request.Form["TextBox" + i];
             }
         }
+
     }
 }

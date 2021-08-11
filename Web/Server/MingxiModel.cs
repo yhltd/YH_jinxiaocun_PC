@@ -119,5 +119,15 @@ namespace Web.Server
                 return result.ToList();
             }
         }
+
+        public int del_mingxi(int cpid)
+        {
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string sql = "DELETE FROM yh_jinxiaocun_mingxi WHERE _id = '" + cpid + "'";
+                return sen.Database.ExecuteSqlCommand(sql); ;
+            }
+
+        }
     }
 }

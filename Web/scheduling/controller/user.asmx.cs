@@ -72,6 +72,8 @@ namespace Web.scheduling.controller
             try
             {
                 UserInfoService us = new UserInfoService();
+
+
                 string quanxian_save1 = us.new_quanxian("sel", "账号管理");
                 if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
                 {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -106,6 +107,43 @@ namespace Web.Personnel
             //    GridView1.DataSourceID = "SqlDataSource3";
             //    GridView1.DataBind();
             //}
+        }
+
+        protected void toExcel(object sender, EventArgs e)
+        {
+            //List<yh_jinxiaocun_mingxi> list = ri_qi_select(string.Empty, string.Empty, user.gongsi);
+            HrMingXiModel hm = new HrMingXiModel();
+            List<gongzi_gongzimingxi> list = hm.gongzitiao_list(Session["gongsi"].ToString());
+            if (list != null)
+            {
+                StringWriter sw = new StringWriter();
+
+                sw.WriteLine("姓名\t部门\t岗位\t身份证号\t入职时间\t基本工资\t绩效工资\t岗位工资\t当月合计工资\t跨度工资\t职称津贴\t月出勤天数\t加班时间\t加班费\t全勤应发\t缺勤天数\t缺勤扣款\t迟到天数\t迟到扣款\t应发工资\t社保基数\t医疗基数\t公积金基数\t年金基数\t企业养老\t企业失业\t企业医疗\t企业工伤\t企业生育\t企业公积金\t企业年金\t滞纳金\t利息\t企业小计\t个人养老\t个人失业\t个人医疗\t个人生育\t个人公积金\t个人年金4%\t滞纳金\t利息\t个人小计\t税前工资\t应税工资\t税率\t扣除数\t代扣个人所得税\t年金1%\t实发工资\t验算公式");
+
+                foreach (gongzi_gongzimingxi gongzitiao in list)
+                {
+
+                    sw.WriteLine(gongzitiao.B + "\t" + gongzitiao.C + "\t" + gongzitiao.D + "\t" + gongzitiao.E + "\t" + gongzitiao.F + "\t" + gongzitiao.G + "\t" + gongzitiao.H + "\t" + gongzitiao.I + "\t" + gongzitiao.J + "\t" + gongzitiao.K + "\t" + gongzitiao.L + "\t" + gongzitiao.M + "\t" + gongzitiao.N + "\t" + gongzitiao.O + "\t" + gongzitiao.P + "\t" + gongzitiao.Q + "\t" + gongzitiao.R + "\t" + gongzitiao.S + "\t" + gongzitiao.T + "\t" + gongzitiao.U + "\t" + gongzitiao.V + "\t" + gongzitiao.W + "\t" + gongzitiao.X + "\t" + gongzitiao.Y + "\t" + gongzitiao.Z + "\t" + gongzitiao.AA + "\t" + gongzitiao.AB + "\t" + gongzitiao.AC + "\t" + gongzitiao.AD + "\t" + gongzitiao.AE + "\t" + gongzitiao.AF + "\t" + gongzitiao.AG + "\t" + gongzitiao.AH + "\t" + gongzitiao.AI + "\t" + gongzitiao.AJ + "\t" + gongzitiao.AK + "\t" + gongzitiao.AL + "\t" + gongzitiao.AM + "\t" + gongzitiao.AN + "\t" + gongzitiao.AO + "\t" + gongzitiao.AP + "\t" + gongzitiao.AQ + "\t" + gongzitiao.AR + "\t" + gongzitiao.ASA + "\t" + gongzitiao.ATA + "\t" + gongzitiao.AU + "\t" + gongzitiao.AV + "\t" + gongzitiao.AW + "\t" + gongzitiao.AX + "\t" + gongzitiao.AY + "\t" + gongzitiao.AZ);
+
+                }
+
+                sw.Close();
+
+                Response.AddHeader("Content-Disposition", "attachment; filename=工资条.xls");
+
+                Response.ContentType = "application/ms-excel";
+
+                Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+
+                Response.Write(sw);
+
+                Response.End();
+            }
+            else
+            {
+                Response.Write(" <script>alert('保存失败'); location='ming_xi.aspx';</script>");
+            }
+
         }
     }
 }

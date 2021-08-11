@@ -166,6 +166,7 @@
                     <label class="lable_select">截止日期：</label>
                     <input type="datetime-local" class="time_select" name="time_jz" />
                     <asp:Button ID="Button3" class="qichu_input_tr_tj" OnClick="rq_select" Text="查询" runat="server" />
+                    <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="qichu_input_tr_tj" Text="删除" runat="server" />
                 </div>
                 <div class="funcion_top">
                     <asp:Button ID="Button2" class="qichu_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
@@ -188,6 +189,7 @@
                         <td class="auto-style1" style="width: 140px">时间</td>
                         <td class="auto-style1" style="width: 100px">公司名</td>
                         <td class="auto-style1" style="width: 100px">收/进货方</td>
+                        <td class="auto-style1" style="width: 50px">功能</td>
                     </tr>
 
                     <%
@@ -210,6 +212,7 @@
                         <td class="bg_bj"><%=ming_xi_select_dd[i].shijian.GetValueOrDefault().ToString("g") %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].zh_name %></td>
                         <td class="bg_bj"><%=ming_xi_select_dd[i].shou_h %></td>
+                        <td class="bg_bj" style="width: 43px;"><input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
                     </tr>
                     <%
                             }

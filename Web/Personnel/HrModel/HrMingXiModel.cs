@@ -31,5 +31,19 @@ namespace Web.Personnel.HrModel
                 return result.ToList();
             }
         }
+
+        public List<gongzi_gongzimingxi> gongzitiao_list(string a)
+        {
+            using (yaoEntities y = new yaoEntities())
+            {
+                var @params = new SqlParameter[]{
+                    new SqlParameter("@a", a),
+                };
+
+                string sql = "SELECT * FROM [gongzi_gongzimingxi] WHERE ([BD] = '" + @a + "')";
+                var result = y.Database.SqlQuery<gongzi_gongzimingxi>(sql, @params);
+                return result.ToList();
+            }
+        }
     }
 }

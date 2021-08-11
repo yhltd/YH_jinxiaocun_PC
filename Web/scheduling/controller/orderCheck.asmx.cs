@@ -20,6 +20,7 @@ namespace Web.scheduling.controller
     public class orderCheck : System.Web.Services.WebService
     {
         private OrderCheckService ocs;
+        private UserInfoService us;
 
         [WebMethod]
         public string getList(int nowPage, int pageCount,string order_number,string moudle)
@@ -27,6 +28,16 @@ namespace Web.scheduling.controller
 
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "排产核对");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ocs = new OrderCheckService();
                 return ResultUtil.success(ocs.getList(nowPage, pageCount, order_number, moudle), "查询成功");
             }
@@ -47,6 +58,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "排产核对");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ocs = new OrderCheckService();
                 if (ocs.save(order_check))
                 {
@@ -73,6 +94,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("del", "排产核对");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ocs = new OrderCheckService();
                 if (ocs.delete(id))
                 {
@@ -98,6 +129,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "排产核对");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 ocs = new OrderCheckService();
                 if (ocs.update(order_check))
                 {
@@ -117,9 +158,5 @@ namespace Web.scheduling.controller
                 return ResultUtil.error("修改失败");
             }
         }
-
-
-
-
     }
 }

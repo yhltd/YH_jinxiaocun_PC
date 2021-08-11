@@ -99,6 +99,20 @@ namespace Web
             }
         }
 
+        protected void shuaxin()
+        {
+
+            try
+            {
+                page.nowPage = 1;
+                ming_xi_select(user.gongsi);
+            }
+            catch
+            {
+                Session["ming_xi_select_dd"] = null;
+            }
+        }
+
         public int getCountPage()
         {
             MingxiModel mingxi = new MingxiModel();
@@ -196,6 +210,36 @@ namespace Web
 
             MingxiModel mingxi = new MingxiModel();
             return mingxi.ri_qi_select(time_qs, time_jz, gs_name);
+        }
+
+        protected void del_mingxi(object sender, EventArgs e)
+        {
+            MingxiModel mingxi = new MingxiModel();
+            Boolean result = true;
+            try
+            {
+                List<yh_jinxiaocun_mingxi> list = Session["ming_xi_select_dd"] as List<yh_jinxiaocun_mingxi>;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    string name = Request["Checkbox_bd" + i];
+                    if (name != null)
+                    {
+                        if (Convert.ToInt32(name) == i)
+                        {
+                            result = mingxi.del_mingxi(list[i]._id) > 0;
+                        }
+                    }
+                }
+                if (result)
+                {
+                    shuaxin();
+                    Response.Write("<script>alert('删除成功');</script>");
+                }
+            }
+            catch
+            {
+                Response.Write(" <script>alert('网络错误，请稍后再试！');</script>");
+            }
         }
     }
 }

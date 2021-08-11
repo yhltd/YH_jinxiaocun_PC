@@ -224,7 +224,8 @@ namespace Web
                 Response.Write(" <script>alert('网络错误，请稍后再试！');</script>");
             }
         }
-
+        
+        //后加的删除
         protected void del_qichu(object sender, EventArgs e)
         {
             QiChuModel qichu = new QiChuModel();

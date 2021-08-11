@@ -21,11 +21,24 @@ namespace Web.scheduling.controller
     {
         private PaiBanDetailService pds;
 
+        private UserInfoService us;
+
         [WebMethod]
         public string getList(int nowPage, int pageCount,string staff_name,string banci)
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "排班明细");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 pds = new PaiBanDetailService();
                 return ResultUtil.success(pds.list(nowPage, pageCount,staff_name,banci), "查询成功");
             }
@@ -46,6 +59,17 @@ namespace Web.scheduling.controller
             {
                 try
                 {
+                    us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("del", "排班明细");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+
+                        return ResultUtil.error("没有权限！");
+                    }
+
                     pds = new PaiBanDetailService();
                     if (pds.delete(id))
                     {
@@ -72,6 +96,17 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "排班明细");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
                 pds = new PaiBanDetailService();
                 if (pds.update(updateList))
                 {

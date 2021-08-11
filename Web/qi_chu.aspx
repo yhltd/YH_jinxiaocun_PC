@@ -243,7 +243,8 @@
                             <%=qi_chu_select[i].cpsj == "" || qi_chu_select[i].cpsl == "" ? 0 : int.Parse(qi_chu_select[i].cpsj)*int.Parse(qi_chu_select[i].cpsl)%>
                         </td>
                         <td class="bg_bj" style="width: 43px;">
-                            <input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
+                            <input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" />
+                        </td>
                     </tr>
                     <%
                             }

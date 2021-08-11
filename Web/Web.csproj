@@ -1134,6 +1134,7 @@
     <Content Include="frmUserManger.aspx" />
     <Content Include="GenericErrorPage.html" />
     <Content Include="Global.asax" />
+    <Content Include="gongyingshang.aspx" />
     <Content Include="Images\account.css" />
     <Content Include="Images\style.css" />
     <Content Include="Images\uploadify.css" />
@@ -1141,6 +1142,7 @@
     <Content Include="ImportData.aspx" />
     <Content Include="jin_xiao_cun.aspx" />
     <Content Include="ji_chu_zi_liao_page.aspx" />
+    <Content Include="kehu.aspx" />
     <Content Include="kh_ming_xi_selcet.aspx" />
     <Content Include="ming_xi.aspx" />
     <Content Include="Myadmin\HouTai\admin.aspx" />
@@ -2213,6 +2215,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="gongyingshang.aspx.cs">
+      <DependentUpon>gongyingshang.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gongyingshang.aspx.designer.cs">
+      <DependentUpon>gongyingshang.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ImportData.aspx.cs">
       <DependentUpon>ImportData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2237,6 +2246,13 @@
     <Compile Include="jxc_service\jxc_user.cs" />
     <Compile Include="jxc_service\mingxi.cs" />
     <Compile Include="jxc_service\ServicePage.cs" />
+    <Compile Include="kehu.aspx.cs">
+      <DependentUpon>kehu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="kehu.aspx.designer.cs">
+      <DependentUpon>kehu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="kh_ming_xi_selcet.aspx.cs">
       <DependentUpon>kh_ming_xi_selcet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2669,6 +2685,8 @@
     <Compile Include="ServerEntity\JinChuZiLiaoItem.cs" />
     <Compile Include="ServerEntity\MingXiItem.cs" />
     <Compile Include="Server\JinChuModel.cs" />
+    <Compile Include="Server\ChuHuoFangModel.cs" />
+    <Compile Include="Server\JinHuoFangModel.cs" />
     <Compile Include="Server\JinHuoModel.cs" />
     <Compile Include="Server\MingxiModel.cs" />
     <Compile Include="Server\QiChuModel.cs" />

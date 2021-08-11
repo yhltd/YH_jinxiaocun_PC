@@ -19,12 +19,24 @@ namespace Web.scheduling.controller
     [System.Web.Script.Services.ScriptService]
     public class paibanbiaoInfo : System.Web.Services.WebService
     {
+        private UserInfoService us;
+
         private PaibanbiaoInfoService pis;
         [WebMethod]
         public string infoList(int nowPage, int pageCount,string department_name,string plan_name)
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "排班");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 pis = new PaibanbiaoInfoService();
                 return ResultUtil.success(pis.list(nowPage, pageCount,department_name,plan_name), "查询成功");
             }
@@ -46,6 +58,16 @@ namespace Web.scheduling.controller
             {
                 try
                 {
+                    us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("del", "排班");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+                        return ResultUtil.error("没有权限！");
+                    }
+
                     pis = new PaibanbiaoInfoService();
                     if (pis.delete(id))
                     {
@@ -72,6 +94,16 @@ namespace Web.scheduling.controller
         {
             try
             {
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "排班");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
                 pis = new PaibanbiaoInfoService();
                 if (pis.update(infoList))
                 {

@@ -216,6 +216,8 @@
                     <li><a href="#" id="j_c" class="leftNav_li" onclick="add_li('j_c','sp_rc_ku_select.aspx')">商品进出查询</a></li>
                     <li><a href="#" id="c_h" class="leftNav_li" onclick="add_li('c_h','kh_ming_xi_selcet.aspx')">客户出货查询</a></li>
                     <li><a href="#" id="z_l" class="leftNav_li" onclick="add_li('z_l','ji_chu_zi_liao_page.aspx')">基础资料</a></li>
+                    <li><a href="#" id="k_h" class="leftNav_li" onclick="add_li('k_h','kehu.aspx')">客户资料</a></li>
+                    <li><a href="#" id="g_y" class="leftNav_li" onclick="add_li('g_y','gongyingshang.aspx')">供应商资料</a></li>
                     <li><a href="#" id="l_l" class="leftNav_li" onclick="add_li('l_l','zheng_li_page.aspx')">整理</a></li> 
                 </ul>
             </div>

@@ -16,11 +16,11 @@ namespace Web.scheduling.dao
         /// </summary>
         /// <param name="company"></param>
         /// <returns></returns>
-        public List<department> getList(int skip, int take)
+        public List<department> getList(int skip, int take, string company)
         {
             using (se = new schedulingEntities())
             {
-                var result = se.department.OrderBy(d => d.department_name).Skip(skip).Take(take);
+                var result = se.department.Where(b => b.company == company).OrderBy(d => d.department_name).Skip(skip).Take(take);
                 return result.ToList();
             }
         }
@@ -63,11 +63,11 @@ namespace Web.scheduling.dao
             }
         }
 
-        public List<department> getListByName(String departmentName) 
+        public List<department> getListByName(String departmentName,string company) 
         {
             using (se = new schedulingEntities())
             {
-                var result = from d in se.department where d.department_name == departmentName select d;
+                var result = from d in se.department where d.department_name == departmentName && d.company==company select d;
                 return result.ToList();
             }
         }

@@ -21,6 +21,8 @@ namespace Web.scheduling.controller
     {
 
         private BomService bs;
+       
+        
 
         [WebMethod]
         public string list()

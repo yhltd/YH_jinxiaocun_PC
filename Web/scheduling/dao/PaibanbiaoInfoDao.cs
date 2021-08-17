@@ -27,13 +27,14 @@ namespace Web.scheduling.dao
         /// </summary>
         /// <param name="company"></param>
         /// <returns></returns>
-        public List<paibanbiao_info> getList(int skip, int take, string department_name, string plan_name)
+        public List<paibanbiao_info> getList(int skip, int take, string department_name, string plan_name,string company)
         {
             var @params = new SqlParameter[]{
                 new SqlParameter("@department_name", department_name),
                 new SqlParameter("@plan_name", plan_name),
+                new SqlParameter("@remarks1",company),
             };
-            string sql = "select * from paibanbiao_info where department_name like '%'+ @department_name +'%' and plan_name like '%'+ @plan_name +'%'";
+            string sql = "select * from paibanbiao_info where department_name like '%'+ @department_name +'%' and plan_name like '%'+ @plan_name +'%' and remarks1=@remarks1";
             using (se = new schedulingEntities())
             {
                 //var result = se.Database.SqlQuery<WorkSummary>(sql, @params).OrderBy(w => w.type).Skip(skip).Take(take);

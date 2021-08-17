@@ -36,7 +36,8 @@ namespace Web.scheduling.service
             page.nowPage = nowPage;
             page.pageCount = pageCount;
             page.total = pi.Count();
-            page.pageList = pi.getList(page.getSkip(), page.getTake(), department_name, plan_name);
+            string company = user.company;
+            page.pageList = pi.getList(page.getSkip(), page.getTake(), department_name, plan_name, company);
                 //pi.getList(page.getSkip(), page.getTake());
             return page;
         }

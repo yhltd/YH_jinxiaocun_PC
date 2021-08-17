@@ -132,7 +132,7 @@
                         <td><%=mingxi[i].orderid %></td>
                         <td><%=mingxi[i].sp_dm %></td>
                         <td><%=mingxi[i].cpname %></td>
-                        <td><%=mingxi[i].cpsl %></td>
+                        <td><%=mingxi[i].ruku_num %></td>
                         <td><%=mingxi[i].ruku_price %></td>
                     </tr>
                     <%

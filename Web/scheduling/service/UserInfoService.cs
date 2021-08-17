@@ -50,7 +50,7 @@ namespace Web.scheduling
         public static List<user_info> NewFind_dp(string userCode, string pwd, string company)
         {
             List<user_info> list = udo.list(userCode, pwd, company);
-            List<department> dList = dd.getListByName(list[0].department_name);
+            List<department> dList = dd.getListByName(list[0].department_name,company);
             return list;
         }
 
@@ -64,7 +64,7 @@ namespace Web.scheduling
         public List<department> NewFind_dpnew(string userCode, string pwd, string company)
         {
             List<user_info> list = udo.list(userCode, pwd, company);
-            List<department> dList = dd.getListByName(list[0].department_name);
+            List<department> dList = dd.getListByName(list[0].department_name,company);
             return dList;
         } 
 

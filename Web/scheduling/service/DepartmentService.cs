@@ -31,11 +31,12 @@ namespace Web.scheduling.service
         /// <returns></returns>
         public PageUtil<department> list(int nowPage, int pageCount)
         {
+            user = TokenUtil.getToken();
             PageUtil<department> page = new PageUtil<department>();
             page.nowPage = nowPage;
             page.pageCount = pageCount;
             page.total = dd.DepartmentCount();
-            page.pageList = dd.getList(page.getSkip(), page.getTake());
+            page.pageList = dd.getList(page.getSkip(), page.getTake(),user.company);
             return page;
         }
 

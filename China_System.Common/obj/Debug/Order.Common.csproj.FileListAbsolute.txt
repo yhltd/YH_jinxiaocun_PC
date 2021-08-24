@@ -22,3 +22,11 @@ E:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.pdb
 E:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\Order.Common.csprojResolveAssemblyReference.cache
 E:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.dll
 E:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.pdb
+D:\yho135\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\China_System.Common.dll
+D:\yho135\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\China_System.Common.pdb
+D:\yho135\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\MySql.Data.dll
+D:\yho135\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.dll
+D:\yho135\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.pdb
+D:\yho135\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\Order.Common.csprojResolveAssemblyReference.cache
+D:\yho135\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.dll
+D:\yho135\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.pdb

@@ -70,5 +70,16 @@ namespace Web.scheduling.dao
                 return se.SaveChanges() > 0;
             }
         }
+
+        public Boolean delete2(string e)
+        {
+            using (se = new schedulingEntities())
+            {
+                var param = new SqlParameter("@e", e);
+                var sql = "delete from paibanbiao_detail where e=@e";
+                return se.Database.ExecuteSqlCommand(sql, param) > 0;
+            }
+        }
+
     }
 }

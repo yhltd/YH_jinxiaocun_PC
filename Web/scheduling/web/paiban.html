@@ -75,7 +75,7 @@
                     <el-table-column prop="department_name" label="部门" sortable></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
-                            <el-popconfirm title="确定删除吗？"  @confirm="deleteInfo(scope.row.id)" hide-icon>
+                            <el-popconfirm title="确定删除吗？"  @confirm="deleteInfo(scope.row.id,scope.row.remarks2)" hide-icon>
                                 <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
                             </el-popconfirm>
                         </template>
@@ -220,6 +220,7 @@
                 list: [],
                 infoList:[],
                 departmentList: [],
+                department:[],
                 renyuanList: [],
                 checkList:[],
                 work: {},
@@ -254,6 +255,7 @@
                         
                     }).then(function (res) {
                         if (res.code == 200) {
+                            _this.getInfoList()
                             _this.departmentList = res.data
                         }
                         if (res.code == 500) {
@@ -286,6 +288,15 @@
                             //
                             //
                             //
+                            for (var i = 0; i < _this.orderList.length; i++) {
+                                if (_this.department.indexOf(_this.orderList[i].department_name) == -1) {
+                                    _this.department.push(_this.orderList[i].department_name)
+                                }
+                            }
+                            _this.orderList = [];
+                            for (var i = 0; i < _this.department.length; i++) {
+                                _this.orderList.push({ department_name: _this.department[i] })
+                            }
 
                         }
                         if (res.code == 500) {
@@ -336,7 +347,8 @@
 
 
                 addForm: function(){
-                    //this.addLoading=true;
+                    var _this = this;
+                    _this.addLoading=true;
                     var renyuan =[];
                     var infolList=[];
                     for (var i = 0; i < this.$refs.check.selection.length; i++) {
@@ -368,8 +380,10 @@
                             //    title: res.msg,
                             //    type: 'success'
                             // });
-                            alert("保存成功！")
-                            this.addLoading=false;
+                            alert("保存成功！");
+                            _this.addLoading=false;
+                            _this.getInfoList();
+                            
                         }
                         if (res.code == 500) {
                             _this.$notify({
@@ -414,10 +428,11 @@
                     })
                 },
 
-                deleteInfo: function (id) {
+                deleteInfo: function (id,remarks2) {
                     var _this = this;
                     axios.post(myUrl('paibanbiaoInfo/delete'), {
                         id: id,
+                        e: remarks2,
                     }).then(function (res) {
                         if (res.code == 200) {
                             _this.$notify({
@@ -425,6 +440,7 @@
                                 type: 'success'
                             });
                             _this.getInfoList();
+
                         }
                         if (res.code == 500) {
                             _this.$notify({

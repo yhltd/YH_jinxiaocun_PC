@@ -52,7 +52,7 @@ namespace Web.scheduling.controller
         }
 
         [WebMethod]
-        public string delete(int id)
+        public string delete(int id,string e)
         {
 
             {
@@ -69,7 +69,7 @@ namespace Web.scheduling.controller
                     }
 
                     pis = new PaibanbiaoInfoService();
-                    if (pis.delete(id))
+                    if (pis.delete(id,e))
                     {
                         return ResultUtil.success("删除成功");
                     }

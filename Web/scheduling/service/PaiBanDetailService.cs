@@ -74,6 +74,11 @@ namespace Web.scheduling.service
             return pbd.delete<paibanbiao_detail>(id);
         }
 
+        public Boolean delete2(string remarks2)
+        {
+            return pbd.delete2<paibanbiao_detail>(remarks2);
+        }
+
         /// <summary>
         /// 修改人员信息
         /// </summary>

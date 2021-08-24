@@ -91,6 +91,32 @@ namespace Web.scheduling.controller
             }
         }
 
+        public string delete2(string remarks2)
+        {
+            {
+                try
+                {
+                    pds = new PaiBanDetailService();
+                    if (pds.delete2(remarks2))
+                    {
+                        return ResultUtil.success("删除成功");
+                    }
+                    else
+                    {
+                        return ResultUtil.error("删除失败");
+                    }
+                }
+                catch (ErrorUtil err)
+                {
+                    return ResultUtil.fail(401, err.Message);
+                }
+                catch
+                {
+                    return ResultUtil.error("删除失败");
+                }
+            }
+        }
+
         [WebMethod]
         public string update(paibanbiao_detail updateList)
         {

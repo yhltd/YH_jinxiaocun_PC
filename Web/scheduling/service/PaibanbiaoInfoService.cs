@@ -47,10 +47,15 @@ namespace Web.scheduling.service
         /// </summary>
         /// <param name="id">id</param>
         /// <returns></returns>
-        public Boolean delete(int id)
+        public Boolean delete(int id,string e)
         {
+            Boolean flag = false;
             PaibanbiaoInfoDao pi = new PaibanbiaoInfoDao();
-            return pi.delete<paibanbiao_info>(id);
+            if (pi.delete<paibanbiao_info>(id) && pi.delete2(e))
+            {
+                flag = true;
+            }
+            return flag;
         }
 
         /// <summary>

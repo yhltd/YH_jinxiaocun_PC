@@ -192,6 +192,10 @@
                                  user_info: _this.$refs[formName].model
                              }).then(function (res) {
                                  if (res.code == 200) {
+                                     _this.$notify({
+                                         title: res.msg,
+                                         type: 'success'
+                                     });
                                      _this.deptVisible = false,
                                      _this.addVisible = false,
                                      _this.getList();

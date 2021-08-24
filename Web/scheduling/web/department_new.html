@@ -280,6 +280,10 @@
                  
                         }).then(function (res) {
                             if (res.code == 200) {
+                                _this.$notify({
+                                    title: res.msg,
+                                    type: 'success'
+                                });
                                 //_this.total = res.data.total
                                 // _this.list = res.data.pageList
                                 _this.deptVisible= false,

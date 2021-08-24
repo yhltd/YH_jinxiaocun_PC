@@ -64,5 +64,25 @@ namespace Web.scheduling.dao
                 return se.SaveChanges() > 0;
             }
         }
+
+        public Boolean delete2<T>(string e) where T : class
+        {
+            using (se = new schedulingEntities())
+            {
+                se.Entry<T>(se.Set<T>().Find(e)).State = EntityState.Deleted;
+                return se.SaveChanges() > 0;
+            }
+        }
+
+        public Boolean deleteWork(int rowNum)
+        {
+            using (se = new schedulingEntities())
+            {
+                var param = new SqlParameter("@rowNum", rowNum);
+                var sql = "delete from work_detail where row_num=@rowNum";
+                return se.Database.ExecuteSqlCommand(sql, param) > 0;
+            }
+        }
+
     }
 }

@@ -219,6 +219,10 @@
                                  if (res.code == 200) {
                                      //_this.total = res.data.total
                                      // _this.list = res.data.pageList
+                                     _this.$notify({
+                                         title: res.msg,
+                                         type: 'success'
+                                     });
                                      _this.deptVisible = false,
                                      _this.getList();
                                  }

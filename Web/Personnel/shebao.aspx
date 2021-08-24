@@ -93,13 +93,13 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString40 %>" SelectCommand="select C ,sum(cast(Z as float))as Z,sum(cast(AJ as float))as AJ,sum(cast(Z as float)+cast(AJ as float))as count1,sum(cast(AA as float))as AA,sum (CAST(AK as float))as AK,sum(cast(AA as float)+cast(AK as float))as count2,sum(cast(AC as float))as AC,sum(cast(AD as float))as AD,sum(cast(Z as float)+cast(AA as float)+cast(AC as float)+cast(AD as float))as count3,sum(cast(AJ as float)+cast(AK as float))as count4 from gongzi_gongzimingxi where (([BD] = @BD) AND ([C] = @C)) group by C">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString40 %>" SelectCommand="select C ,sum(cast(Z as float))as Z,sum(cast(AJ as float))as AJ,sum(cast(Z as float)+cast(AJ as float))as count1,sum(cast(AA as float))as AA,sum (CAST(AK as float))as AK,sum(cast(AA as float)+cast(AK as float))as count2,sum(cast(AC as float))as AC,sum(cast(AD as float))as AD,sum(cast(Z as float)+cast(AA as float)+cast(AC as float)+cast(AD as float))as count3,sum(cast(AJ as float)+cast(AK as float))as count4 from gongzi_gongzimingxi where (([BD] like '%'+ @BD +'%') AND ([C] like '%'+ @C +'%')) group by C">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString34 %>" SelectCommand="select C ,sum(cast(Z as float))as Z,sum(cast(AJ as float))as AJ,sum(cast(Z as float)+cast(AJ as float))as count1,sum(cast(AA as float))as AA,sum (CAST(AK as float))as AK,sum(cast(AA as float)+cast(AK as float))as count2,sum(cast(AC as float))as AC,sum(cast(AD as float))as AD,sum(cast(Z as float)+cast(AA as float)+cast(AC as float)+cast(AD as float))as count3,sum(cast(AJ as float)+cast(AK as float))as count4 from gongzi_gongzimingxi where ([BD] = @BD)  group by C">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString34 %>" SelectCommand="select C ,sum(cast(Z as float))as Z,sum(cast(AJ as float))as AJ,sum(cast(Z as float)+cast(AJ as float))as count1,sum(cast(AA as float))as AA,sum (CAST(AK as float))as AK,sum(cast(AA as float)+cast(AK as float))as count2,sum(cast(AC as float))as AC,sum(cast(AD as float))as AD,sum(cast(Z as float)+cast(AA as float)+cast(AC as float)+cast(AD as float))as count3,sum(cast(AJ as float)+cast(AK as float))as count4 from gongzi_gongzimingxi where ([BD] like '%'+ @BD +'%')  group by C">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
             </SelectParameters>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="yaoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="yaoModelStoreContainer">
+    <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.Store.gongzi_gongzimingxi" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="gongzi_gongzimingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+    <Property Name="AI" Type="varchar" MaxLength="255" />
+    <Property Name="AJ" Type="varchar" MaxLength="255" />
+    <Property Name="AK" Type="varchar" MaxLength="255" />
+    <Property Name="AL" Type="varchar" MaxLength="255" />
+    <Property Name="AM" Type="varchar" MaxLength="255" />
+    <Property Name="AN" Type="varchar" MaxLength="255" />
+    <Property Name="AO" Type="varchar" MaxLength="255" />
+    <Property Name="AP" Type="varchar" MaxLength="255" />
+    <Property Name="AQ" Type="varchar" MaxLength="255" />
+    <Property Name="AR" Type="varchar" MaxLength="255" />
+    <Property Name="ASA" Type="varchar" MaxLength="255" />
+    <Property Name="ATA" Type="varchar" MaxLength="255" />
+    <Property Name="AU" Type="varchar" MaxLength="255" />
+    <Property Name="AV" Type="varchar" MaxLength="255" />
+    <Property Name="AW" Type="varchar" MaxLength="255" />
+    <Property Name="AX" Type="varchar" MaxLength="255" />
+    <Property Name="AY" Type="varchar" MaxLength="255" />
+    <Property Name="AZ" Type="varchar" MaxLength="255" />
+    <Property Name="BA" Type="varchar" MaxLength="255" />
+    <Property Name="BB" Type="varchar" MaxLength="255" />
+    <Property Name="BC" Type="varchar" MaxLength="255" />
+    <Property Name="BD" Type="varchar" MaxLength="255" />
+  </EntityType>
+</Schema>

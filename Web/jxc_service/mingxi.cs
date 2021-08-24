@@ -15,7 +15,7 @@ namespace Web.jxc_service
 
         public mingxi()
         {
-            sqlStr = ConfigurationManager.AppSettings["服务器_jxc"].ToString();
+            sqlStr = ConfigurationManager.AppSettings["云合未来进销存系统"].ToString();
         }
 
         public int checkOrder_id(string order_id, string gongsi)

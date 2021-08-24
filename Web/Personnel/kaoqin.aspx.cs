@@ -89,7 +89,8 @@ namespace Web.Personnel
             a[39] = GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString();
             JavaScriptSerializer js = new JavaScriptSerializer();
             string result = js.Serialize(a); //upUser(" + result + ");iframe_d_open
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
+           ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
+    
         }
 
         protected void Button4_Click(object sender, EventArgs e)

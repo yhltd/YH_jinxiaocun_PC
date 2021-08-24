@@ -101,7 +101,7 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString14 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)" SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE (([K] = @K) AND ([C] = @C) AND ([D] = @D))" UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString14 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)" SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE (([K]like '%'+ @K +'%') AND ([C] like '%'+ @C +'%') AND ([D] like '%'+ @D +'%'))" UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -136,7 +136,7 @@
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString13 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)"  SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE ([K] = @K)"  UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString13 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)"  SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE ([K] like '%'+ @K +'%')"  UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
             <SelectParameters>
                 <asp:SessionParameter Name="K" SessionField="gongsi" Type="String"/>
             </SelectParameters>

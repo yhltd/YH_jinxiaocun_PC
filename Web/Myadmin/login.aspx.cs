@@ -60,7 +60,7 @@ namespace Web
                 DropDownList2.DataSource = itemi;
                 DropDownList2.DataBind();
             }
-            else if (DropDownList1.SelectedItem.Text == "服务器_jxc")
+            else if (DropDownList1.SelectedItem.Text == "云合未来进销存系统")
             {
                 DropDownList2.Items.Clear();
                 UserModel userModel = new UserModel();
@@ -139,7 +139,7 @@ namespace Web
                     }
                 }
             }
-            else if (servename.ToString() == "服务器_jxc")
+            else if (servename.ToString() == "云合未来进销存系统")
             {
                 UserModel userModel = new UserModel();
                 string msg = "";

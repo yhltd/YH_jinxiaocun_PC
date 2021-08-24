@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="schedulingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="schedulingModelStoreContainer">
+    <EntitySet Name="bom_info" EntityType="schedulingModel.Store.bom_info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="department" EntityType="schedulingModel.Store.department" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="holiday_config" EntityType="schedulingModel.Store.holiday_config" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="module_info" EntityType="schedulingModel.Store.module_info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="module_type" EntityType="schedulingModel.Store.module_type" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="order_bom" EntityType="schedulingModel.Store.order_bom" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="order_check" EntityType="schedulingModel.Store.order_check" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="order_info" EntityType="schedulingModel.Store.order_info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.Store.paibanbiao_detail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.Store.paibanbiao_info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.Store.paibanbiao_renyuan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="time_config" EntityType="schedulingModel.Store.time_config" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="user_info1" EntityType="schedulingModel.Store.user_info1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="work_detail" EntityType="schedulingModel.Store.work_detail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="work_detail2" EntityType="schedulingModel.Store.work_detail2" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="work_module" EntityType="schedulingModel.Store.work_module" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="bom_info">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="norms" Type="varchar" MaxLength="255" />
+    <Property Name="comment" Type="varchar" MaxLength="255" />
+    <Property Name="unit" Type="varchar" MaxLength="255" />
+    <Property Name="size" Type="float" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+    <Property Name="type" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="department">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="department_name" Type="varchar" MaxLength="255" />
+    <Property Name="add" Type="varchar" MaxLength="5" />
+    <Property Name="del" Type="varchar" MaxLength="5" />
+    <Property Name="upd" Type="varchar" MaxLength="5" />
+    <Property Name="sel" Type="varchar" MaxLength="5" />
+    <Property Name="view_name" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="holiday_config">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="day_or_reset" Type="date" Nullable="false" />
+    <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="module_info">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="type_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="num" Type="float" />
+    <Property Name="parent_id" Type="int" />
+    <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="module_type">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="order_bom">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="bom_id" Type="int" Nullable="false" />
+    <Property Name="use_num" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="order_check">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_number" Type="varchar" MaxLength="255" />
+    <Property Name="moudle" Type="varchar" MaxLength="255" />
+    <Property Name="riqi" Type="varchar" MaxLength="255" />
+    <Property Name="num" Type="float" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="order_info">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="product_name" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="norms" Type="varchar" MaxLength="255" />
+    <Property Name="order_id" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="set_date" Type="datetime2" Precision="0" />
+    <Property Name="set_num" Type="int" Nullable="false" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+    <Property Name="is_complete" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="paibanbiao_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="staff_name" Type="varchar" MaxLength="255" />
+    <Property Name="phone_number" Type="varchar" MaxLength="255" />
+    <Property Name="banci" Type="varchar" MaxLength="255" />
+    <Property Name="department_name" Type="varchar" MaxLength="255" />
+    <Property Name="id_number" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+    <Property Name="b" Type="varchar" MaxLength="255" />
+    <Property Name="c" Type="varchar" MaxLength="255" />
+    <Property Name="d" Type="varchar" MaxLength="255" />
+    <Property Name="e" Type="varchar" MaxLength="255" />
+    <Property Name="f" Type="varchar" MaxLength="255" />
+    <Property Name="g" Type="varchar" MaxLength="255" />
+    <Property Name="h" Type="varchar" MaxLength="255" />
+    <Property Name="i" Type="varchar" MaxLength="255" />
+    <Property Name="j" Type="varchar" MaxLength="255" />
+    <Property Name="k" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="paibanbiao_info">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="paibanbiao_detail_id" Type="int" />
+    <Property Name="riqi" Type="varchar" MaxLength="255" />
+    <Property Name="renshu" Type="varchar" MaxLength="255" />
+    <Property Name="plan_name" Type="varchar" MaxLength="255" />
+    <Property Name="department_name" Type="varchar" MaxLength="255" />
+    <Property Name="remarks1" Type="varchar" MaxLength="255" />
+    <Property Name="remarks2" Type="varchar" MaxLength="255" />
+    <Property Name="remarks3" Type="varchar" MaxLength="255" />
+    <Property Name="remarks4" Type="varchar" MaxLength="255" />
+    <Property Name="remarks5" Type="varchar" MaxLength="255" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="paibanbiao_renyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="staff_name" Type="varchar" MaxLength="255" />
+    <Property Name="phone_number" Type="varchar" MaxLength="255" />
+    <Property Name="banci" Type="varchar" MaxLength="255" />
+    <Property Name="department_name" Type="varchar" MaxLength="255" />
+    <Property Name="id_number" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+    <Property Name="b" Type="varchar" MaxLength="255" />
+    <Property Name="c" Type="varchar" MaxLength="255" />
+    <Property Name="d" Type="varchar" MaxLength="255" />
+    <Property Name="e" Type="varchar" MaxLength="255" />
+    <Property Name="f" Type="varchar" MaxLength="255" />
+    <Property Name="g" Type="varchar" MaxLength="255" />
+    <Property Name="h" Type="varchar" MaxLength="255" />
+    <Property Name="i" Type="varchar" MaxLength="255" />
+    <Property Name="j" Type="varchar" MaxLength="255" />
+    <Property Name="k" Type="varchar" MaxLength="255" />
+    <Property Name="l" Type="varchar" MaxLength="255" />
+    <Property Name="m" Type="varchar" MaxLength="255" />
+    <Property Name="n" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="time_config">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="week" Type="int" />
+    <Property Name="morning_start" Type="varchar" MaxLength="8" />
+    <Property Name="morning_end" Type="varchar" MaxLength="8" />
+    <Property Name="noon_start" Type="varchar" MaxLength="8" />
+    <Property Name="noon_end" Type="varchar" MaxLength="8" />
+    <Property Name="night_start" Type="varchar" MaxLength="8" />
+    <Property Name="night_end" Type="varchar" MaxLength="8" />
+    <Property Name="company" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="user_info">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_code" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="department_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="user_info1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_code" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="password" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="department_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="work_detail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="work_num" Type="int" Nullable="false" />
+    <Property Name="work_start_date" Type="datetime2" Nullable="false" />
+    <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="row_num" Type="int" />
+    <Property Name="is_insert" Type="int" />
+  </EntityType>
+  <EntityType Name="work_detail2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="work_num" Type="int" Nullable="false" />
+    <Property Name="work_start_date" Type="datetime2" Nullable="false" Precision="0" />
+    <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="row_num" Type="int" />
+    <Property Name="is_insert" Type="int" />
+  </EntityType>
+  <EntityType Name="work_module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="work_id" Type="int" Nullable="false" />
+    <Property Name="module_id" Type="int" Nullable="false" />
+  </EntityType>
+</Schema>

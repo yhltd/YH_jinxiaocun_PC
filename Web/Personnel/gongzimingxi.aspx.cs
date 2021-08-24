@@ -87,10 +87,10 @@ namespace Web.Personnel
             }
         }
 
-        protected void Button4_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("../Personnel/gongzimingxi.aspx");
-        }
+    //    protected void Button4_Click(object sender, EventArgs e)
+   //     {
+    //        Server.Transfer("../Personnel/gongzimingxi.aspx");
+  //      }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {

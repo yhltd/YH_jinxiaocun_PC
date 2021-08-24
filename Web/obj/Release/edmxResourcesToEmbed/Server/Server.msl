@@ -47,6 +47,7 @@
     <EntitySetMapping Name="yh_jinxiaocun_jichuziliao">
       <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_jichuziliao">
         <MappingFragment StoreEntitySet="yh_jinxiaocun_jichuziliao">
+          <ScalarProperty Name="maxNum" ColumnName="maxNum" />
           <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="lei_bie" ColumnName="lei_bie" />

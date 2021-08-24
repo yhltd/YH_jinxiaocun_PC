@@ -15,12 +15,12 @@ namespace Web.jxc_service
 
         public jxc_user()
         {
-            sqlStr = ConfigurationManager.AppSettings["服务器_jxc"].ToString();
+            sqlStr = ConfigurationManager.AppSettings["云合未来进销存系统"].ToString();
         }
 
         public int loginAndGetUser(string name, string pwd, string company)
         {
-            string sql = "select * from yh_jinxiaocun_user where name = '" + name + "' and password = '" + pwd + "' and gongsi = '" + company + "'";
+            string sql = "select * from yh_jinxiaocun_user where name = '" + name + "' and password = '" + pwd + "' and gongsi = '" + company +  "'";
             ms = new Order.Common.MySqlHelper(sqlStr);
             MySqlDataReader read = ms.ExecuteReader(sql);
             if (read.HasRows)

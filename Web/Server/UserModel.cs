@@ -66,7 +66,7 @@ namespace Web.Server
         public int add(yh_jinxiaocun_user user) {
             using (ServerEntities sen = new ServerEntities())
             {
-                string sql = "insert into yh_jinxiaocun_user(name,password,_id,gongsi,AdminIS) values('" + user.name + "','" + user.password + "','" + user._id + "','" + user.gongsi + "','" + user.AdminIS + "')";
+                string sql = "insert into yh_jinxiaocun_user(name,password,_id,gongsi,AdminIS,Btype) values('" + user.name + "','" + user.password + "','" + user._id + "','" + user.gongsi + "','" + user.AdminIS + "','" + user.Btype + "')";
                 return sen.Database.ExecuteSqlCommand(sql);
             }
         }

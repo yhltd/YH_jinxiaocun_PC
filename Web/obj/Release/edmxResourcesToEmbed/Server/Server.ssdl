@@ -68,6 +68,7 @@
     <Property Name="zh_name" Type="varchar" MaxLength="255" />
     <Property Name="gs_name" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="mark1" Type="varchar" MaxLength="255" />
+    <Property Name="maxNum" Type="int" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_jinhuofang">
     <Key>

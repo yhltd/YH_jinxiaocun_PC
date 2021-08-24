@@ -46,7 +46,7 @@ namespace Web.Server
         public List<yh_jinxiaocun_mingxi> ming_xi_select(string gs_name, int limit1, int limit2)
         {
             using (ServerEntities sen = new ServerEntities()) {
-                string sql = "select * from yh_jinxiaocun_mingxi where gs_name = '" + gs_name + "' limit " + limit1 + "," + limit2;
+                string sql = "select * from yh_jinxiaocun_mingxi where zh_name = '" + gs_name + "' limit " + limit1 + "," + limit2;
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql);
                 return result.ToList();
             }
@@ -56,7 +56,7 @@ namespace Web.Server
         {
             using (ServerEntities sen = new ServerEntities())
             {
-                string sql = "SELECT * FROM Yh_JinXiaoCun_mingxi where gs_name = '" + gs_name + "'";
+                string sql = "SELECT * FROM Yh_JinXiaoCun_mingxi where zh_name = '" + gs_name + "'";
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql);
                 return result.ToList().Count;
             }

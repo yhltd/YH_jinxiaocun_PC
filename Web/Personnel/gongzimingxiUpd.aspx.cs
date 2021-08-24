@@ -78,6 +78,7 @@ namespace Web.Personnel
             {
                 aa[i] = Request.Form["TextBox" + i];
             }
+            Server.Transfer("../Personnel/gongzimingxi.aspx");
         }
 
     }

@@ -123,6 +123,7 @@
         </p>
         <p style="margin-left: 500px">
         <asp:Button ID="Button1" runat="server" Height="28px" OnClick="Button1_Click" Text="修改" Width="84px"  CssClass="top_bt"/>
+        <script src="~/Personnel/kaoqin.aspx"></script>
         </p>
     </form>
 </body>

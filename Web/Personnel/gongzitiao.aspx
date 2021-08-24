@@ -16,12 +16,12 @@
         <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="C" DataValueField="C" >
             <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [C] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) GROUP BY [C],[BD]">
+        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [C] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) ">
             <SelectParameters>
                 <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [D] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) GROUP BY [BD], [D]">
+        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [D] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) ">
             <SelectParameters>
                 <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />
             </SelectParameters>

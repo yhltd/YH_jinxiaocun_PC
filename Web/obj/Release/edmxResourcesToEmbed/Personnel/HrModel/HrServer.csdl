@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="yaoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="yaoEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.gongzi_gongzimingxi" />
+  </EntityContainer>
+  <EntityType Name="gongzi_gongzimingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="C" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="D" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="E" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="F" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="G" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="H" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="I" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="J" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="K" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="L" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="M" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="N" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="O" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="P" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Q" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="R" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="S" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="T" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="U" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="V" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="W" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="X" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Y" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Z" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AB" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AC" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AD" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AE" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AF" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AG" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AH" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AI" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AJ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AK" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AL" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AM" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AN" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AO" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AP" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AQ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AR" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ASA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ATA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AU" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AV" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AW" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AX" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AY" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AZ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="BA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="BB" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="BC" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="BD" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+</Schema>

@@ -85,14 +85,14 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString43 %>" SelectCommand="select id,B,C,D,Z,AJ,(Z+AJ)AS count1,AA,AK,(AA+AK)AS count2,AC,AD,(Z+AA+AC+AD)AS count3,(AJ+AK)AS count4 FROM gongzi_gongzimingxi WHERE (([BD]=@BD) AND ([B]=@B) AND ([C]=@C))">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString43 %>" SelectCommand="select id,B,C,D,Z,AJ,(Z+AJ)AS count1,AA,AK,(AA+AK)AS count2,AC,AD,(Z+AA+AC+AD)AS count3,(AJ+AK)AS count4 FROM gongzi_gongzimingxi WHERE (([BD] like '%'+ @BD +'%') AND ([B] like '%'+ @B +'%') AND ([C] like '%'+ @C +'%'))">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />
                 <asp:SessionParameter Name="B" SessionField="xm1" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString42 %>" SelectCommand="select id,B,C,D,Z,AJ,(Z+AJ)AS count1,AA,AK,(AA+AK)AS count2,AC,AD,(Z+AA+AC+AD)AS count3,(AJ+AK)AS count4 FROM gongzi_gongzimingxi WHERE (([BD]=@BD) AND ([C]=@C))">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString42 %>" SelectCommand="select id,B,C,D,Z,AJ,(Z+AJ)AS count1,AA,AK,(AA+AK)AS count2,AC,AD,(Z+AA+AC+AD)AS count3,(AJ+AK)AS count4 FROM gongzi_gongzimingxi WHERE (([BD] like '%'+ @BD +'%') AND ([C] like '%'+ @C +'%'))">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />

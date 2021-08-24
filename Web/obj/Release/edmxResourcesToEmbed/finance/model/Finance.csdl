@@ -124,7 +124,7 @@
     <Property Name="word" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="no" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
     <Property Name="abstract" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="code" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="code" Type="Int32" Nullable="false" />
     <Property Name="department" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="expenditure" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="note" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />

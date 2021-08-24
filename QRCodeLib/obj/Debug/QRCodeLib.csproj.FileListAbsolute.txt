@@ -76,3 +76,10 @@ E:\yhltd129\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.dll
 E:\yhltd129\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.pdb
 E:\yhltd129\工作\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.dll
 E:\yhltd129\工作\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.pdb
+D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.frmtest.resources
+D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.Properties.Resources.resources
+D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\QRCodeLib.csproj.GenerateResource.Cache
+D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.dll
+D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.pdb
+D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.dll
+D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.pdb

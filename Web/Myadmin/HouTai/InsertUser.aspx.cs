@@ -70,9 +70,12 @@ namespace Web.Myadmin.HouTai
                         uer.name = Request.Form["Name"];
                         uer.password = Request.Form["Pwd"];
                         uer._id = Request.Form["Name"];
+                        uer.Btype = Request.Form["Name"];
                         uer.gongsi = user.gongsi;
+                        //uer.AdminIS= Request.Form["quanxian"];
                         if (quanxian.Items[quanxian.SelectedIndex].Text.Equals("管理员"))
                         {
+                            
                             uer.AdminIS = "true";
                         }
                         else
@@ -99,10 +102,13 @@ namespace Web.Myadmin.HouTai
                         uer._id = id;
                         uer.name = Request.Form["Name"];
                         uer.password = Request.Form["Pwd"];
-                        uer._id = Request.Form["Name"];
+                        uer.Btype = Request.Form["Pwd"];
                         uer.gongsi = user.gongsi;
+                        //uer.AdminIS = "false";
+
                         if (quanxian.Items[quanxian.SelectedIndex].Text.Equals("管理员"))
                         {
+
                             uer.AdminIS = "true";
                         }
                         else

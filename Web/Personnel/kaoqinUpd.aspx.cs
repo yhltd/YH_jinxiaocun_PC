@@ -56,24 +56,31 @@ namespace Web.Personnel
                 cmd = new SqlCommand(sqlStr, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                
                 for (int i = 2; i < 34; i++)
                 {
                     aa[i] = Request.Form["TextBox" + i];
                 }
-                aa[0]=Request.Form["input1"];
-                aa[1]=Request.Form["input2"];
-                aa[34]=Request.Form["input35"];
-                aa[35]=Request.Form["input36"];
-                aa[36]=Request.Form["input37"];
-                aa[37]=Request.Form["input38"];
-                aa[38]=Request.Form["input39"];
+                aa[0] = Request.Form["TextBox1"];
+                aa[1] = Request.Form["TextBox2"];
+                aa[34] = Request.Form["TextBox35"];
+                aa[35] = Request.Form["TextBox36"];
+                aa[36] = Request.Form["TextBox37"];
+                aa[37] = Request.Form["TextBox38"];
+                aa[38] = Request.Form["TextBox39"];
+                Server.Transfer("../Personnel/kaoqin.aspx");
+        
             }
             else
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "", "<script>MyFun();</script>");
             }
+           
+            
         }
 
+
+        
         protected void Button2_Click(object sender, EventArgs e)
         {
 

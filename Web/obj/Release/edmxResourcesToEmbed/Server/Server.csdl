@@ -68,6 +68,7 @@
     <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="gs_name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="mark1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="maxNum" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_jinhuofang">
     <Key>

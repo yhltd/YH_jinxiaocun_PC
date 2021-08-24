@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="yaoModelStoreContainer" CdmEntityContainer="yaoEntities">
+    <EntitySetMapping Name="gongzi_gongzimingxi">
+      <EntityTypeMapping TypeName="yaoModel.gongzi_gongzimingxi">
+        <MappingFragment StoreEntitySet="gongzi_gongzimingxi">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="B" ColumnName="B" />
+          <ScalarProperty Name="C" ColumnName="C" />
+          <ScalarProperty Name="D" ColumnName="D" />
+          <ScalarProperty Name="E" ColumnName="E" />
+          <ScalarProperty Name="F" ColumnName="F" />
+          <ScalarProperty Name="G" ColumnName="G" />
+          <ScalarProperty Name="H" ColumnName="H" />
+          <ScalarProperty Name="I" ColumnName="I" />
+          <ScalarProperty Name="J" ColumnName="J" />
+          <ScalarProperty Name="K" ColumnName="K" />
+          <ScalarProperty Name="L" ColumnName="L" />
+          <ScalarProperty Name="M" ColumnName="M" />
+          <ScalarProperty Name="N" ColumnName="N" />
+          <ScalarProperty Name="O" ColumnName="O" />
+          <ScalarProperty Name="P" ColumnName="P" />
+          <ScalarProperty Name="Q" ColumnName="Q" />
+          <ScalarProperty Name="R" ColumnName="R" />
+          <ScalarProperty Name="S" ColumnName="S" />
+          <ScalarProperty Name="T" ColumnName="T" />
+          <ScalarProperty Name="U" ColumnName="U" />
+          <ScalarProperty Name="V" ColumnName="V" />
+          <ScalarProperty Name="W" ColumnName="W" />
+          <ScalarProperty Name="X" ColumnName="X" />
+          <ScalarProperty Name="Y" ColumnName="Y" />
+          <ScalarProperty Name="Z" ColumnName="Z" />
+          <ScalarProperty Name="AA" ColumnName="AA" />
+          <ScalarProperty Name="AB" ColumnName="AB" />
+          <ScalarProperty Name="AC" ColumnName="AC" />
+          <ScalarProperty Name="AD" ColumnName="AD" />
+          <ScalarProperty Name="AE" ColumnName="AE" />
+          <ScalarProperty Name="AF" ColumnName="AF" />
+          <ScalarProperty Name="AG" ColumnName="AG" />
+          <ScalarProperty Name="AH" ColumnName="AH" />
+          <ScalarProperty Name="AI" ColumnName="AI" />
+          <ScalarProperty Name="AJ" ColumnName="AJ" />
+          <ScalarProperty Name="AK" ColumnName="AK" />
+          <ScalarProperty Name="AL" ColumnName="AL" />
+          <ScalarProperty Name="AM" ColumnName="AM" />
+          <ScalarProperty Name="AN" ColumnName="AN" />
+          <ScalarProperty Name="AO" ColumnName="AO" />
+          <ScalarProperty Name="AP" ColumnName="AP" />
+          <ScalarProperty Name="AQ" ColumnName="AQ" />
+          <ScalarProperty Name="AR" ColumnName="AR" />
+          <ScalarProperty Name="ASA" ColumnName="ASA" />
+          <ScalarProperty Name="ATA" ColumnName="ATA" />
+          <ScalarProperty Name="AU" ColumnName="AU" />
+          <ScalarProperty Name="AV" ColumnName="AV" />
+          <ScalarProperty Name="AW" ColumnName="AW" />
+          <ScalarProperty Name="AX" ColumnName="AX" />
+          <ScalarProperty Name="AY" ColumnName="AY" />
+          <ScalarProperty Name="AZ" ColumnName="AZ" />
+          <ScalarProperty Name="BA" ColumnName="BA" />
+          <ScalarProperty Name="BB" ColumnName="BB" />
+          <ScalarProperty Name="BC" ColumnName="BC" />
+          <ScalarProperty Name="BD" ColumnName="BD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

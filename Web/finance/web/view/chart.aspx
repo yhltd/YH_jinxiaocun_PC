@@ -17,8 +17,25 @@
     <script type="text/javascript" src="../assets/js/main.js"></script>
     <script type="text/javascript" src="../assets/js/parsing.js"></script>
     <script type="text/javascript" src="../assets/js/chart.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/themes/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/demo/demo.css"/>
+
+    <script type="text/javascript" src="../assets/js/EasyUI/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../assets/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+
 </head>
 <body>
+    <div style="padding-top:20px;padding-left:20px;padding-bottom:10px">
+        <div class="form-item">
+		    <label for="voucherDate">开始时间：</label>
+		    <input id="start_date" type="text" class="easyui-datebox">
+            <label for="voucherDate">  结束时间：</label>
+		    <input id="stop_date" type="text" class="easyui-datebox">
+            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()" style="margin-left:10px">查询</a>
+        </div>
+    </div>
     <div id="main-item">
         <div class="chart-item">
             <div id="accounting"></div>

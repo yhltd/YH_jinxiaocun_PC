@@ -43,10 +43,25 @@ namespace Web.finance.model
         }
 
         //凭证金额
-        public List<Charts> getSummary(string company)
+        public List<Charts> getSummary(string company,string start_date,string stop_date)
         {
-            var selectParam = new SqlParameter("@company", company);
-            string sql = "select isnull(sum(v.money),0) as [sum],a.direction from VoucherSummary as v,Accounting as a where a.company = @company and v.company = @company and a.code = v.code GROUP BY a.direction";
+            if (start_date == "")
+            {
+                start_date = "1900-01-01";
+            }
+            if (stop_date == "")
+            {
+                stop_date = "2100-12-31";
+            }
+            var selectParam = new SqlParameter[]{
+                new SqlParameter("@company", company),
+                new SqlParameter("@start_date", start_date),
+                new SqlParameter("@stop_date", stop_date),
+            };
+            
+            string sql = "select isnull(sum(v.money),0) as [sum],a.direction from VoucherSummary as v,Accounting as a where a.company = @company and v.company = @company and a.code = v.code and v.voucherDate >= @start_date and v.voucherDate <= @stop_date GROUP BY a.direction";
+
+            
 
             var result = fin.Database.SqlQuery<Charts>(sql, selectParam);
             List<Charts> list = null;
@@ -62,10 +77,22 @@ namespace Web.finance.model
         }
 
         //科目余额
-        public List<Charts> getAccountBalance(string company)
+        public List<Charts> getAccountBalance(string company, string start_date, string stop_date)
         {
-            var selectParam = new SqlParameter("@company", company);
-            string sql = "SELECT sum(a.load) +ISNULL(sum(v.money), 0) as sum_load,sum(a.borrowed) as sum_borrowed from Accounting as a LEFT JOIN VoucherSummary as v on v.code = a.code where a.company = @company GROUP BY left(a.code,1)";
+            if (start_date == "")
+            {
+                start_date = "1900-01-01";
+            }
+            if (stop_date == "")
+            {
+                stop_date = "2100-12-31";
+            }
+            var selectParam = new SqlParameter[]{
+                new SqlParameter("@company", company),
+                new SqlParameter("@start_date", start_date),
+                new SqlParameter("@stop_date", stop_date),
+            };
+            string sql = "SELECT sum(a.load) +ISNULL(sum(v.money), 0) as sum_load,sum(a.borrowed) as sum_borrowed from Accounting as a LEFT JOIN VoucherSummary as v on v.code = a.code where a.company = @company  GROUP BY left(a.code,1)";
             var result = fin.Database.SqlQuery<Charts>(sql, selectParam);
             List<Charts> list = null;
             try
@@ -79,12 +106,18 @@ namespace Web.finance.model
             return list;
         }
 
-        //现金流量
-        public List<Charts> getLiabilities(string company)
+        //资产负债
+        public List<Charts> getLiabilities(string company,string start_date,string stop_date)
         {
-            var selectParam = new SqlParameter("@company", company);
-
-            string sql = "select isnull(sum(a.sum_load),0) as sum_load,isnull(sum(sum_borrowed),0) as sum_borrowed,isnull(sum(a.sum_money),0) as sum_money from (select v.company,sum(load) as sum_load,sum(borrowed) as sum_borrowed,sum(ISNULL(v.money, 0)) as sum_money,a.code from Accounting as a left join VoucherSummary as v on a.code = v.code WHERE a.company = @company and year(v.voucherDate) = year(getDate()) GROUP BY a.code,a.name,v.company) as a  where a.company = @company or a.company is null group by left(a.code,1) HAVING left(a.code,1) in (1,2,3)";
+            if (start_date == "")
+            {
+                start_date = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            var selectParam = new SqlParameter[]{
+                new SqlParameter("@company", company),
+                new SqlParameter("@start_date", start_date),
+            };
+            string sql = "select isnull(sum(a.sum_load),0) as sum_load,isnull(sum(sum_borrowed),0) as sum_borrowed,isnull(sum(a.sum_money),0) as sum_money from (select v.company,sum(load) as sum_load,sum(borrowed) as sum_borrowed,sum(ISNULL(v.money, 0)) as sum_money,a.code from Accounting as a left join VoucherSummary as v on a.code = v.code WHERE a.company = @company and year(v.voucherDate) = year(@start_date) GROUP BY a.code,a.name,v.company) as a  where a.company = @company or a.company is null group by left(a.code,1) HAVING left(a.code,1) in (1,2,3)";
 
             List<Charts> list = new List<Charts>();
             var result = fin.Database.SqlQuery<Charts>(sql, selectParam);
@@ -101,9 +134,21 @@ namespace Web.finance.model
         }
 
         //利润合计
-        public List<Charts> getProfit(string company) {
-            var selectParam = new SqlParameter("@company", company);
-            string sql = "select isnull(sum(a.sum_month),0) as sum_month,isnull(sum(a.sum_year),0) as sum_year from (select y.sum_month,y.sum_year,a.direction from Accounting as a,(SELECT code,(SELECT sum(money) FROM VoucherSummary WHERE MONTH(voucherDate) = MONTH(GETDATE()) AND code = y.code) AS sum_month,(SELECT sum(money) FROM VoucherSummary WHERE YEAR(voucherDate) = YEAR(GETDATE()) AND code = y.code) AS sum_year FROM VoucherSummary AS y WHERE company = @company and YEAR(voucherDate) = YEAR(GETDATE()) GROUP BY y.code) as y where a.code = y.code and a.company = @company and a.direction in (0,1)) as a GROUP BY a.direction";
+        public List<Charts> getProfit(string company,string start_date,string stop_date) {
+            if (start_date == "")
+            {
+                start_date = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            if (stop_date == "")
+            {
+                stop_date = DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            var selectParam = new SqlParameter[]{
+                new SqlParameter("@company", company),
+                new SqlParameter("@start_date", start_date),
+                new SqlParameter("@stop_date", stop_date),
+            };
+            string sql = "SELECT isnull( SUM ( a.sum_month ), 0 ) AS sum_month,isnull( SUM ( a.sum_year ), 0 ) AS sum_year FROM(SELECT y.sum_month,y.sum_year,a.direction FROM Accounting AS a,(SELECT code,(SELECT SUM( money ) FROM VoucherSummary WHERE MONTH ( voucherDate ) >= MONTH ( @start_date ) AND MONTH ( voucherDate ) <= MONTH ( @stop_date ) AND code = y.code ) AS sum_month,(SELECT SUM( money ) FROM VoucherSummary WHERE YEAR ( voucherDate ) >= YEAR ( @start_date ) AND YEAR ( voucherDate ) <= YEAR ( @stop_date ) AND code = y.code ) AS sum_year FROM VoucherSummary AS y WHERE company = @company AND YEAR ( voucherDate ) >= YEAR ( @start_date ) AND YEAR ( voucherDate ) <= YEAR ( @stop_date ) GROUP BY y.code ) AS y WHERE a.code = y.code AND a.company = @company AND a.direction IN ( 0, 1)) AS a GROUP BY a.direction";
 
             List<Charts> list = new List<Charts>();
             var result = fin.Database.SqlQuery<Charts>(sql, selectParam);

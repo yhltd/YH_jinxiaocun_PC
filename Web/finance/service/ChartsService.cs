@@ -73,7 +73,7 @@ namespace Web.finance.service
         /// 获取图表凭证金额
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, decimal> getSummaryService()
+        public Dictionary<string, decimal> getSummaryService(string start_date,string stop_date)
         {
             //获取token
             string token = FinanceToken.getFinanceCheckToken().getToken();
@@ -84,10 +84,31 @@ namespace Web.finance.service
                 //创建实例
                 result = new Dictionary<string, decimal>();
                 //获取集合
-                List<Charts> resultList = common.getSummary(account.company);
+                List<Charts> resultList = common.getSummary(account.company,start_date,stop_date);
                 //return
-                result.Add("sum_borrowed", resultList[1].sum);
-                result.Add("sum_load", resultList[0].sum);
+                if (resultList.Count == 2)
+                {
+                    result.Add("sum_borrowed", resultList[1].sum);
+                    result.Add("sum_load", resultList[0].sum);
+                }
+                else {
+                    if (resultList.Count == 0)
+                    {
+                        result.Add("sum_borrowed", 0);
+                        result.Add("sum_load",0);
+                    }
+                    else if (resultList[0].direction = true)
+                    {
+                        result.Add("sum_borrowed", resultList[0].sum);
+                        result.Add("sum_load", 0);
+                    }
+                    else {
+                        result.Add("sum_borrowed", 0);
+                        result.Add("sum_load", resultList[0].sum);
+                    }
+                }
+                
+                
             }
 
             return result;
@@ -97,7 +118,7 @@ namespace Web.finance.service
         /// 获取图表科目余额
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, List<decimal>> getAccountBalanceService()
+        public Dictionary<string, List<decimal>> getAccountBalanceService(string start_date,string stop_date)
         {
             //获取token
             string token = FinanceToken.getFinanceCheckToken().getToken();
@@ -108,7 +129,7 @@ namespace Web.finance.service
                 //创建实例
                 result = new Dictionary<string, List<decimal>>();
                 //获取集合
-                List<Charts> resultList = common.getAccountBalance(account.company);
+                List<Charts> resultList = common.getAccountBalance(account.company,start_date,stop_date);
                 //年初借金数组
                 List<decimal> loadList = new List<decimal>();
                 //年初贷金数组
@@ -128,10 +149,10 @@ namespace Web.finance.service
         }
 
         /// <summary>
-        /// 获取图表现金流量
+        /// 获取图表资产负债
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, List<decimal>> getLiabilitiesService() {
+        public Dictionary<string, List<decimal>> getLiabilitiesService(string start_date,string stop_date) {
             //获取token
             string token = FinanceToken.getFinanceCheckToken().getToken();
             //返回的map
@@ -141,7 +162,7 @@ namespace Web.finance.service
                 //创建实例
                 result = new Dictionary<string, List<decimal>>();
                 //获取集合
-                List<Charts> resultList = common.getLiabilities(account.company);
+                List<Charts> resultList = common.getLiabilities(account.company,start_date,stop_date);
                 //年初借金数组
                 List<decimal> yearStart = new List<decimal>();
                 //年初贷金数组
@@ -173,7 +194,7 @@ namespace Web.finance.service
         /// 获取图表利润合计
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, List<decimal>> getProfitService()
+        public Dictionary<string, List<decimal>> getProfitService(string start_date,string stop_date)
         {
             //获取token
             string token = FinanceToken.getFinanceCheckToken().getToken();
@@ -184,7 +205,7 @@ namespace Web.finance.service
                 //创建实例
                 result = new Dictionary<string, List<decimal>>();
                 //获取集合
-                List<Charts> resultList = common.getProfit(account.company);
+                List<Charts> resultList = common.getProfit(account.company,start_date,stop_date);
                 //年初借金数组
                 List<decimal> sumYear = new List<decimal>();
                 //年初贷金数组
@@ -203,10 +224,10 @@ namespace Web.finance.service
         }
 
         /// <summary>
-        /// 获取图表资产负债
+        /// 获取图表现金流量
         /// </summary>
         /// <returns></returns>
-        public Dictionary<string, List<decimal>> getFlowService() {
+        public Dictionary<string, List<decimal>> getFlowService(string start_date,string stop_date) {
             //获取token
             string token = FinanceToken.getFinanceCheckToken().getToken();
             //返回的map
@@ -227,13 +248,13 @@ namespace Web.finance.service
                 FinancingModel financing = new FinancingModel();
 
                 //今年结余
-                sumYear.Add(management.getManagementYear(account.company, DateTime.Now));
-                sumYear.Add(investment.getInvestmentYear(account.company, DateTime.Now));
-                sumYear.Add(financing.getFinancingYear(account.company, DateTime.Now));
+                sumYear.Add(management.getManagementYear(account.company, start_date,stop_date));
+                sumYear.Add(investment.getInvestmentYear(account.company, start_date,stop_date));
+                sumYear.Add(financing.getFinancingYear(account.company, start_date,stop_date));
                 //当月结余
-                sumMonth.Add(management.getManagementMonth(account.company, DateTime.Now));
-                sumMonth.Add(investment.getInvestmentMonth(account.company, DateTime.Now));
-                sumMonth.Add(financing.getFinancingMonth(account.company, DateTime.Now));
+                sumMonth.Add(management.getManagementMonth(account.company, start_date,stop_date));
+                sumMonth.Add(investment.getInvestmentMonth(account.company, start_date, stop_date));
+                sumMonth.Add(financing.getFinancingMonth(account.company, start_date,stop_date));
                 //return
                 result.Add("sumYear", sumYear);
                 result.Add("sumMonth", sumMonth);

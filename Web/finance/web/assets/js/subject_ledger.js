@@ -21,7 +21,9 @@ var page = {
     currentPage: 1,
     pageSize: 20,
     total: 0,
-    pageList: []
+    pageList: [],
+    classid:""
+    
 }
 
 $(function () {
@@ -62,6 +64,7 @@ function getList(classId) {
         success: function (data) {
             var result = getJson(data);
             if (result.code == 200) {
+                console.log(result.data)
                 setTable(result.data)
             }
         },
@@ -573,4 +576,171 @@ function checkNew(params) {
         return false;
     }
     return true;
+}
+
+function toExcel() {
+    page.classid = $("#clases").textbox('getText')
+    var classId
+    if (page.classid == "资产类") {
+        classId = 1
+    } else if (page.classid == "负债类") {
+        classId = 2
+    } else if (page.classid == "权益类") {
+        classId = 3
+    } else if (page.classid == "成本类") {
+        classId = 4
+    } else if (page.classid == "损益类") {
+        classId = 5
+    }
+    if (classId == undefined) {
+        classId = $("#clases").combobox('getValue')
+    }
+    $.ajax({
+        type: 'Post',
+        url: "web_service/accounting.asmx/getList",
+        beforeSend: function () {
+            $.messager.progress({
+                title: '提示',
+                msg: '正在加载',
+                text: ''
+            });
+        },
+        complete: function () {
+            $.messager.progress('close');
+        },
+        data: {
+            financePageJson: JSON.stringify(page),
+            classId: classId
+        },
+        dataType: "xml",
+        success: function (data) {
+            var result = getJson(data);
+            if (result.code == 200) {
+                var array = result.data.pageList
+                console.log(result.data.pageList)
+                var header = []
+                for (var i = 0; i < array.length; i++) {
+                    var direction = array[i].direction
+                    if (direction){
+                        direction = "借"
+                    }else{
+                        direction = "贷"
+                    }
+                    var body = {
+                        rownum: array[i].rownum,
+                        code: array[i].code,
+                        name: array[i].name,
+                        grade: array[i].grade,
+                        fullName: array[i].fullName,
+                        direction: direction,
+                        money: array[i].money,
+                        detail: array[i].detail,
+                        load: array[i].load,
+                        borrowed: array[i].borrowed,
+                    }
+                    header.push(body)
+                }
+                console.log(header)
+                title = ['序号', '科目代码', '科目名称', '科目等级', '科目全程', '方向', '借贷合计', '明细', '年初借金', '年初贷金']
+                JSONToExcelConvertor(header, "voucherSummary", title)
+                
+            }
+        },
+        error: function (err) {
+            alert("错误！")
+            console.log(err)
+        }
+    })
+
+}
+
+function JSONToExcelConvertor(JSONData, FileName, title, filter) {
+    if (!JSONData)
+        return;
+    //转化json为object
+    var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+
+    var excel = "<table>";
+
+    //设置表头  
+    var row = "<tr>";
+
+    if (title) {
+        //使用标题项
+        for (var i in title) {
+            row += "<th align='center'>" + title[i] + '</th>';
+        }
+
+    }
+    else {
+        //不使用标题项
+        for (var i in arrData[0]) {
+            row += "<th align='center'>" + i + '</th>';
+        }
+    }
+
+    excel += row + "</tr>";
+
+    //设置数据  
+    for (var i = 0; i < arrData.length; i++) {
+        var row = "<tr>";
+
+        for (var index in arrData[i]) {
+            //判断是否有过滤行
+            if (filter) {
+                if (filter.indexOf(index) == -1) {
+                    var value = arrData[i][index] == null ? "" : arrData[i][index];
+                    row += '<td>' + value + '</td>';
+                }
+            }
+            else {
+                var value = arrData[i][index] == null ? "" : arrData[i][index];
+                row += "<td align='center'>" + value + "</td>";
+            }
+        }
+
+        excel += row + "</tr>";
+    }
+
+    excel += "</table>";
+
+    var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+    excelFile += '<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+    excelFile += '<meta http-equiv="content-type" content="application/vnd.ms-excel';
+    excelFile += '; charset=UTF-8">';
+    excelFile += "<head>";
+    excelFile += "<!--[if gte mso 9]>";
+    excelFile += "<xml>";
+    excelFile += "<x:ExcelWorkbook>";
+    excelFile += "<x:ExcelWorksheets>";
+    excelFile += "<x:ExcelWorksheet>";
+    excelFile += "<x:Name>";
+    excelFile += "{worksheet}";
+    excelFile += "</x:Name>";
+    excelFile += "<x:WorksheetOptions>";
+    excelFile += "<x:DisplayGridlines/>";
+    excelFile += "</x:WorksheetOptions>";
+    excelFile += "</x:ExcelWorksheet>";
+    excelFile += "</x:ExcelWorksheets>";
+    excelFile += "</x:ExcelWorkbook>";
+    excelFile += "</xml>";
+    excelFile += "<![endif]-->";
+    excelFile += "</head>";
+    excelFile += "<body>";
+    excelFile += excel;
+    excelFile += "</body>";
+    excelFile += "</html>";
+
+
+    var uri = 'data:application/vnd.ms-excel;charset=utf-8,' + encodeURIComponent(excelFile);
+
+    var link = document.createElement("a");
+    link.href = uri;
+
+    link.style = "visibility:hidden";
+    link.download = FileName + ".xls";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }

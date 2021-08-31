@@ -101,3 +101,15 @@ D:\145\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\SDZdb.pdb
 D:\145\工作\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.csprojResolveAssemblyReference.cache
 D:\145\工作\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.dll
 D:\145\工作\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.pdb
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\clsBuiness.dll
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\clsBuiness.pdb
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\China_System.Common.dll
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\log4net.dll
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\MySql.Data.dll
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\MySql.Data.Entity.dll
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\SDZdb.dll
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\China_System.Common.pdb
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\bin\Debug\SDZdb.pdb
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.csprojResolveAssemblyReference.cache
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.dll
+D:\yho135\工作\YH_jinxiaocun_PC\clsBuiness\obj\Debug\clsBuiness.pdb

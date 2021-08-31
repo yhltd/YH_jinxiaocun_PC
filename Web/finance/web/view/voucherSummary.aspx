@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../assets/js/Jquery.js"></script>
 
     <script type="text/javascript" src="../assets/js/EasyUI/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../assets/js/EasyUI/datagrid-export.js"></script>
     <script type="text/javascript" src="../assets/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../assets/css/voucherSummary.css"/>
@@ -31,6 +32,7 @@
             <span>月：</span>
             <input id="month" class="easyui-numberbox" data-options="min:1,max:12" value=""/>
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
+            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">
             <div id="data-table" class="easyui-datagrid"></div>

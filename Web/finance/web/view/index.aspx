@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>首页</title>
+    <title>云合未来财务系统</title>
 
     <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/themes/default/easyui.css"/>
     <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/themes/icon.css"/>
@@ -34,7 +34,9 @@
     <div id="main" class="easyui-layout">
         <div id="north" data-options="region:'north'" style="height: 68.9px">
             <div class="north-left">
+                <a href="http://www.yhocn.cn">
                 <img src="../assets/img/tm_logo.png" style="height: 55px;"/>
+                </a>
                 云合未来财务系统
             </div>
             <div id="north-right" class="north-left north-right">

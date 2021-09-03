@@ -133,6 +133,7 @@
     <Content Include="finance\web\assets\js\chart.js" />
     <Content Include="finance\web\assets\js\department.js" />
     <Content Include="finance\web\assets\js\EasyUI\changelog.txt" />
+    <Content Include="finance\web\assets\js\EasyUI\datagrid-export.js" />
     <Content Include="finance\web\assets\js\EasyUI\demo-mobile\accordion\basic.html" />
     <Content Include="finance\web\assets\js\EasyUI\demo-mobile\accordion\header.html" />
     <Content Include="finance\web\assets\js\EasyUI\demo-mobile\accordion\_content.html" />
@@ -2835,6 +2836,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
+    <Folder Include="finance\web\assets\js\EasyUI\App_LocalResources\" />
     <Folder Include="Myadmin\KEditor\attached\" />
   </ItemGroup>
   <ItemGroup>

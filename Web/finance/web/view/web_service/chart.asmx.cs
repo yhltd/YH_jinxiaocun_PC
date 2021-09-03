@@ -50,18 +50,18 @@ namespace Web.finance.web.view.web_service
         }
 
         [WebMethod]
-        public string getSummary() {
+        public string getSummary(string start_date,string stop_date) {
             try
             {
                 cs = new ChartsService();
-                Dictionary<string, decimal> result = cs.getSummaryService();
+                Dictionary<string, decimal> result = cs.getSummaryService(start_date,stop_date);
                 if (result != null)
                 {
                     return FinanceResultData.getFinanceResultData().success(200, result, "凭证金额");
                 }
                 else
                 {
-                    return FinanceResultData.getFinanceResultData().success(500, null, "错误");
+                    return FinanceResultData.getFinanceResultData().success(500, null, "凭证金额图表未查询到数据或数据有误");
                 }
             }
             catch (InvalidOperationException ex)
@@ -77,19 +77,19 @@ namespace Web.finance.web.view.web_service
         }
 
         [WebMethod]
-        public string getAccountingBalance()
+        public string getAccountingBalance(string start_date,string stop_date)
         {
             try
             {
                 cs = new ChartsService();
-                Dictionary<string, List<decimal>> result = cs.getAccountBalanceService();
+                Dictionary<string, List<decimal>> result = cs.getAccountBalanceService(start_date,stop_date);
                 if (result != null)
                 {
                     return FinanceResultData.getFinanceResultData().success(200, result, "科目余额");
                 }
                 else
                 {
-                    return FinanceResultData.getFinanceResultData().success(500, null, "错误");
+                    return FinanceResultData.getFinanceResultData().success(500, null, "科目余额图表未查询到数据或数据有误");
                 }
             }
             catch (InvalidOperationException ex)
@@ -106,19 +106,19 @@ namespace Web.finance.web.view.web_service
         }
 
         [WebMethod]
-        public string getLiabilities()
+        public string getLiabilities(string start_date,string stop_date)
         {
             try
             {
                 cs = new ChartsService();
-                Dictionary<string, List<decimal>> result = cs.getLiabilitiesService();
+                Dictionary<string, List<decimal>> result = cs.getLiabilitiesService(start_date,stop_date);
                 if (result != null)
                 {
                     return FinanceResultData.getFinanceResultData().success(200, result, "资产负债");
                 }
                 else
                 {
-                    return FinanceResultData.getFinanceResultData().success(500, null, "错误");
+                    return FinanceResultData.getFinanceResultData().success(500, null, "资产负债图表未查询到数据或数据有误");
                 }
             }
             catch (InvalidOperationException ex)
@@ -135,19 +135,19 @@ namespace Web.finance.web.view.web_service
         }
 
         [WebMethod]
-        public string getProfit()
+        public string getProfit(string start_date,string stop_date)
         {
             try
             {
                 cs = new ChartsService();
-                Dictionary<string, List<decimal>> result = cs.getProfitService();
+                Dictionary<string, List<decimal>> result = cs.getProfitService(start_date,stop_date);
                 if (result != null)
                 {
                     return FinanceResultData.getFinanceResultData().success(200, result, "利润合计");
                 }
                 else
                 {
-                    return FinanceResultData.getFinanceResultData().success(500, null, "错误");
+                    return FinanceResultData.getFinanceResultData().success(500, null, "利润合计图表未查询到数据或数据有误");
                 }
             }
             catch (InvalidOperationException ex)
@@ -164,19 +164,19 @@ namespace Web.finance.web.view.web_service
         }
 
         [WebMethod]
-        public string getFlow()
+        public string getFlow(string start_date,string stop_date)
         {
             try
             {
                 cs = new ChartsService();
-                Dictionary<string, List<decimal>> result = cs.getFlowService();
+                Dictionary<string, List<decimal>> result = cs.getFlowService(start_date,stop_date);
                 if (result != null)
                 {
                     return FinanceResultData.getFinanceResultData().success(200, result, "现金流量");
                 }
                 else
                 {
-                    return FinanceResultData.getFinanceResultData().success(500, null, "错误");
+                    return FinanceResultData.getFinanceResultData().success(500, null, "现金流量图表未查询到数据或数据有误");
                 }
             }
             catch (InvalidOperationException ex)

@@ -1,4 +1,9 @@
-﻿$(function () {
+﻿var page = {
+    start_date: "",
+    stop_date: ""
+}
+
+$(function () {
     $(".chart-item").css({
         "width": (width-202) / 2 + 39+ "px",
         "height": (height-68) / 2 + "px"
@@ -8,6 +13,16 @@
         "width": $(".chart-item")[0].scrollWidth - 20 + "px",
         "height": $(".chart-item")[0].scrollHeight - 20 + "px"
     })
+
+    $('#add-voucherDate').datetimebox({
+        okText: '确定',
+        closeText: '关闭',
+        currentText: '当前时间',
+        panelWidth: 318,
+        panelHeight: 280,
+        width: 318,
+        height: 38
+    });
 
     //年初余额
     getAccounting();
@@ -41,6 +56,10 @@ function getAccounting() {
 
     ajaxUtil({
         url: "web_service/chart.asmx/getAccounting",
+        data: {
+            start_date: page.start_date,
+            stop_date:page.stop_date
+        },
         loading: false
     }, function (result) {
         if (result.code == 200) {
@@ -116,6 +135,10 @@ function getSummary(data) {
 
     ajaxUtil({
         url: "web_service/chart.asmx/getSummary",
+        data: {
+            start_date: page.start_date,
+            stop_date: page.stop_date
+        },
         loading: false
     }, function (result) {
         if (result.code == 200) {
@@ -172,7 +195,19 @@ function getSummary(data) {
 
             myChart.setOption(options);
         }
-    }, function () {
+        else if (result.code == 500) {
+            $.messager.alert({
+                title: "错误",//标题
+
+                msg: "凭证金额图表未查询到数据",//信息
+
+                icon: "error",//图标类型：error-错误；warning-警告; 或其他
+
+            });
+        }
+
+    },
+    function () {
         myChart.hideLoading();
     })
 }
@@ -191,6 +226,10 @@ function getAccountingBalance(data) {
 
     ajaxUtil({
         url: "web_service/chart.asmx/getAccountingBalance",
+        data: {
+            start_date: page.start_date,
+            stop_date: page.stop_date
+        },
         loading: false
     }, function (result) {
         if (result.code == 200) {
@@ -266,6 +305,10 @@ function getLiabilities(data) {
 
     ajaxUtil({
         url: "web_service/chart.asmx/getLiabilities",
+        data: {
+            start_date: page.start_date,
+            stop_date: page.stop_date
+        },
         loading: false
     }, function (result) {
         if (result.code == 200) {
@@ -341,6 +384,10 @@ function getProfit(data) {
     
     ajaxUtil({
         url: "web_service/chart.asmx/getProfit",
+        data: {
+            start_date: page.start_date,
+            stop_date: page.stop_date
+        },
         loading: false
     }, function (result) {
         if (result.code == 200) {
@@ -377,7 +424,7 @@ function getProfit(data) {
                     }
                 }],
                 series: [{
-                    name: "本月",
+                    name: "月",
                     type: "bar",
                     label: {
                         show: "true",
@@ -385,7 +432,7 @@ function getProfit(data) {
                     },
                     data: data.sumMonth
                 }, {
-                    name: "本年",
+                    name: "年",
                     type: "bar",
                     label: {
                         show: "true",
@@ -416,6 +463,10 @@ function getFlow(data) {
 
     ajaxUtil({
         url: "web_service/chart.asmx/getFlow",
+        data: {
+            start_date: page.start_date,
+            stop_date: page.stop_date
+        },
         loading: false
     }, function (result) {
         if (result.code == 200) {
@@ -452,7 +503,7 @@ function getFlow(data) {
                     splitNumber: "5"
                 }],
                 series: [{
-                    name: "本月",
+                    name: "月",
                     type: "bar",
                     label: {
                         show: "true",
@@ -460,7 +511,7 @@ function getFlow(data) {
                     },
                     data: data.sumMonth
                 }, {
-                    name: "本年",
+                    name: "年",
                     type: "bar",
                     label: {
                         show: "true",
@@ -475,4 +526,60 @@ function getFlow(data) {
     }, function () {
         myChart.hideLoading();
     })
+}
+
+function selectBtn() {
+    page.start_date = $("#start_date").textbox('getText');
+    page.stop_date = $("#stop_date").textbox('getText');
+    console.log(page.start_date);
+    console.log(page.stop_date);
+    if (page.start_date != "" && page.stop_date == "") {
+        $.messager.alert({
+            title: "错误",//标题
+
+            msg: "必须同时输入开始日期和结束日期",//信息
+
+            icon: "error",//图标类型：error-错误；warning-警告; 或其他
+
+        });
+    }
+    else if (page.start_date != "" && page.stop_date == "") {
+        $.messager.alert({
+            title: "错误",//标题
+
+            msg: "必须同时输入开始日期和结束日期",//信息
+
+            icon: "error",//图标类型：error-错误；warning-警告; 或其他
+
+        });
+    }
+    else if (page.start_date > page.stop_date) {
+        $.messager.alert({
+            title: "错误",//标题
+
+            msg: "开始日期不能大于结束日期",//信息
+
+            icon: "error",//图标类型：error-错误；warning-警告; 或其他
+
+        });
+    }
+    else {
+        //年初余额
+        getAccounting();
+
+        //凭证金额
+        getSummary();
+
+        //科目余额
+        getAccountingBalance();
+
+        //资产负债
+        getLiabilities();
+
+        //利润合计
+        getProfit();
+
+        //现金流量
+        getFlow();
+    }
 }

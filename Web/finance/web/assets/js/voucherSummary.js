@@ -3,6 +3,7 @@
     pageSize: 20,
     total: 0,
     pageList: [],
+    excelist: [],
     selectParamsMap: {
         word: "",
         year: "",
@@ -79,6 +80,8 @@ function getList() {
         success: function (data) {
             var result = getJson(data);
             if (result.code == 200) {
+                console.log(result)
+                console.log(result.data.pageList)
                 setTable(result.data)
             }
         },
@@ -602,4 +605,155 @@ function checkExamineForm(params) {
         return false;
     }
     return true;
+}
+
+function toExcel(){
+    $.ajax({
+        type: 'Post',
+        url: "web_service/voucherSummary.asmx/getVoucherSummaryList",
+        beforeSend: function () {
+            $.messager.progress({
+                title: '提示',
+                msg: '正在加载',
+                text: ''
+            });
+        },
+        complete: function () {
+            $.messager.progress('close');
+        },
+        data: {
+            financePageJson: JSON.stringify(page)
+        },
+        dataType: "xml",
+        success: function (data) {
+            var result = getJson(data);
+            if (result.code == 200) {
+                var array = result.data.pageList
+                console.log(result.data.pageList)
+                var header = []
+                for (var i = 0; i < array.length; i++) {
+                    var body = {
+                        rownum: array[i].rownum,
+                        word: array[i].word,
+                        no: array[i].no,
+                        voucherDate: new Date(parseInt(array[i].voucherDate.substr(6, 13))).toLocaleString(),
+                        abstract: array[i].abstract,
+                        code: array[i].code,
+                        fullName: array[i].fullName,
+                        load: array[i].load,
+                        borrowed: array[i].borrowed,
+                        department: array[i].department,
+                        expenditure: array[i].expenditure,
+                        note: array[i].note,
+                        man: array[i].man,
+                        money: array[i].money,
+                        real: array[i].real,
+                        not_get: array[i].money - array[i].real
+                    }
+                    header.push(body)
+                }
+                console.log(header)
+                title = ['序号','凭证字','凭证号','录入时间','摘要','科目代码','科目名称','借方金额','贷方金额','市场部','开支项目','备注','审核人','应收/付','实收/付','未收/付']
+                JSONToExcelConvertor(header, "voucherSummary", title)
+
+
+            }
+        },
+        error: function (err) {
+            alert("错误！")
+            console.log(err)
+        }
+    })
+}
+
+
+function JSONToExcelConvertor(JSONData, FileName, title, filter) {
+    if (!JSONData)
+        return;
+    //转化json为object
+    var arrData = typeof JSONData != 'object' ? JSON.parse(JSONData) : JSONData;
+
+    var excel = "<table>";
+
+    //设置表头  
+    var row = "<tr>";
+
+    if (title) {
+        //使用标题项
+        for (var i in title) {
+            row += "<th align='center'>" + title[i] + '</th>';
+        }
+
+    }
+    else {
+        //不使用标题项
+        for (var i in arrData[0]) {
+            row += "<th align='center'>" + i + '</th>';
+        }
+    }
+
+    excel += row + "</tr>";
+
+    //设置数据  
+    for (var i = 0; i < arrData.length; i++) {
+        var row = "<tr>";
+
+        for (var index in arrData[i]) {
+            //判断是否有过滤行
+            if (filter) {
+                if (filter.indexOf(index) == -1) {
+                    var value = arrData[i][index] == null ? "" : arrData[i][index];
+                    row += '<td>' + value + '</td>';
+                }
+            }
+            else {
+                var value = arrData[i][index] == null ? "" : arrData[i][index];
+                row += "<td align='center'>" + value + "</td>";
+            }
+        }
+
+        excel += row + "</tr>";
+    }
+
+    excel += "</table>";
+
+    var excelFile = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:x='urn:schemas-microsoft-com:office:excel' xmlns='http://www.w3.org/TR/REC-html40'>";
+    excelFile += '<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">';
+    excelFile += '<meta http-equiv="content-type" content="application/vnd.ms-excel';
+    excelFile += '; charset=UTF-8">';
+    excelFile += "<head>";
+    excelFile += "<!--[if gte mso 9]>";
+    excelFile += "<xml>";
+    excelFile += "<x:ExcelWorkbook>";
+    excelFile += "<x:ExcelWorksheets>";
+    excelFile += "<x:ExcelWorksheet>";
+    excelFile += "<x:Name>";
+    excelFile += "{worksheet}";
+    excelFile += "</x:Name>";
+    excelFile += "<x:WorksheetOptions>";
+    excelFile += "<x:DisplayGridlines/>";
+    excelFile += "</x:WorksheetOptions>";
+    excelFile += "</x:ExcelWorksheet>";
+    excelFile += "</x:ExcelWorksheets>";
+    excelFile += "</x:ExcelWorkbook>";
+    excelFile += "</xml>";
+    excelFile += "<![endif]-->";
+    excelFile += "</head>";
+    excelFile += "<body>";
+    excelFile += excel;
+    excelFile += "</body>";
+    excelFile += "</html>";
+
+
+    var uri = 'data:application/vnd.ms-excel;charset=utf-8,' + encodeURIComponent(excelFile);
+
+    var link = document.createElement("a");
+    link.href = uri;
+
+    link.style = "visibility:hidden";
+    link.download = FileName + ".xls";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }

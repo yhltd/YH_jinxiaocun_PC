@@ -25,6 +25,7 @@
         <div class="toolbar">
             <input id="clases" name="clases" value=""/>
             <a href="#" class="easyui-linkbutton btn-right" onclick="balanceBtn()">平衡验证</a>
+            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">
             <div id="data-table" class="easyui-datagrid"></div>
@@ -44,11 +45,11 @@
             </div>
             <div class="form-item">
 		        <label for="load">年初借金:</label>
-		        <input class="input easyui-validatebox" autocomplete="off" type="text" name="load"/>
+		        <input class="input easyui-validatebox" autocomplete="off" type="number" name="load"/>
             </div>
             <div class="form-item">
 		        <label for="borrowed">年初贷金:</label>
-		        <input class="input easyui-validatebox" autocomplete="off" type="text" name="borrowed"/>
+		        <input class="input easyui-validatebox" autocomplete="off" type="number" name="borrowed"/>
             </div>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toUpd()" class="btn" type="button">确认修改</button>

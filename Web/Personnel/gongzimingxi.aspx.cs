@@ -102,7 +102,12 @@ namespace Web.Personnel
             a[54] = GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString();
             JavaScriptSerializer js = new JavaScriptSerializer();
             string result = js.Serialize(a); //upUser(" + result + ");iframe_d_open
-            ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
+            //ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
+            Session["b"] = a[0];
+            Session["year"] = a[1];
+            Session["moth"] = a[2];
+            Session["name"] = a[4];
+            Server.Transfer("../Personnel/gongzimingxiUpd.aspx");
         }
     }
 }

@@ -264,7 +264,6 @@ E:\yhltd129\工作\YH_jinxiaocun_PC\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.
 E:\yhltd129\工作\YH_jinxiaocun_PC\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
 E:\yhltd129\工作\YH_jinxiaocun_PC\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
 E:\yhltd129\工作\YH_jinxiaocun_PC\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
-D:\145\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
 D:\145\工作\YH_jinxiaocun_PC\Web\bin\cfgList.config
 D:\145\工作\YH_jinxiaocun_PC\Web\bin\Web.dll
 D:\145\工作\YH_jinxiaocun_PC\Web\bin\Web.pdb
@@ -298,5 +297,6 @@ D:\145\工作\YH_jinxiaocun_PC\Web\bin\zh-Hans\EntityFramework.resources.dll
 D:\145\工作\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
 D:\145\工作\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Http.resources.dll
 D:\145\工作\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
+D:\145\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
 D:\145\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
 D:\145\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb

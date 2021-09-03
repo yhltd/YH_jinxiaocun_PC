@@ -12,8 +12,9 @@
     <script src="Scripts/main_js.js" type="text/javascript"></script>
     <style type="text/css">
     </style>
+    <title>云合未来进销存管理系统</title>
     <script type="text/javascript">
-
+        
         //自动加载
         $(function () {
             var windowHeight = window.innerHeight
@@ -223,7 +224,7 @@
             </div>
             <div class="mainCon1">
                 <div class="rightContentfrmain">
-                    <iframe id="Iframe1" name="ifrMain" frameborder="0" scrolling="yes" src="/ru_ku.aspx" class="window_iframe"></iframe>
+                    <iframe id="Iframe1" name="ifrMain" frameborder="0" scrolling="yes" src="/wqx1.aspx" class="window_iframe"></iframe>
                 </div>
             </div>
 

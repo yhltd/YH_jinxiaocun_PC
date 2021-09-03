@@ -17,13 +17,83 @@ namespace Web.Personnel
         SqlDataReader str = null;
         SqlCommand cmd = null;
         string[] aa = new string[55];
+        public static string a;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string a = Request["strs"].ToString();
-                string[] strs = a.Split(new char[1] { ',' });
-                aa = strs;
+                string conString = ConfigurationManager.AppSettings["yao"];
+                conn = new SqlConnection(conString);  //数据库连接。
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                string sqlStr = "select * from gongzi_gongzimingxi where B='" + Session["b"].ToString() + "' and C='" + Session["year"].ToString() + "' and D='" + Session["moth"].ToString() + "' and F='" + Session["name"].ToString() + "' ;";
+                cmd = new SqlCommand(sqlStr, conn);
+                str = cmd.ExecuteReader();
+                //string a = Request["strs"].ToString();
+                //string[] strs = a.Split(new char[1] { ',' });
+                while (str.Read())
+                {
+
+                    a = Convert.ToString(str["id"]);
+                    //(string)str["id"]; 
+                    aa[0] = (string)str["B"];
+                    aa[1] = (string)str["C"];
+                    aa[2] = (string)str["D"];
+                    aa[3] = (string)str["E"];
+                    aa[4] = (string)str["F"];
+                    aa[5] = (string)str["G"];
+                    aa[6] = (string)str["H"];
+                    aa[7] = (string)str["I"];
+                    aa[8] = (string)str["J"];
+                    aa[9] = (string)str["K"];
+                    aa[10] = (string)str["L"];
+                    aa[11] = (string)str["M"];
+                    aa[12] = (string)str["N"];
+                    aa[13] = (string)str["O"];
+                    aa[14] = (string)str["P"];
+                    aa[15] = (string)str["Q"];
+                    aa[16] = (string)str["R"];
+                    aa[17] = (string)str["S"];
+                    aa[18] = (string)str["T"];
+                    aa[19] = (string)str["U"];
+                    aa[20] = (string)str["V"];
+                    aa[21] = (string)str["W"];
+                    aa[22] = (string)str["X"];
+                    aa[23] = (string)str["Y"];
+                    aa[24] = (string)str["Z"];
+                    aa[25] = (string)str["AA"];
+                    aa[26] = (string)str["AB"];
+                    aa[27] = (string)str["AC"];
+                    aa[28] = (string)str["AD"];
+                    aa[29] = (string)str["AE"];
+                    aa[30] = (string)str["AF"];
+                    aa[31] = (string)str["AG"];
+                    aa[32] = (string)str["AH"];
+                    aa[33] = (string)str["AI"];
+                    aa[34] = (string)str["AJ"];
+                    aa[35] = (string)str["AK"];
+                    aa[36] = (string)str["AL"];
+                    aa[37] = (string)str["AM"];
+                    aa[38] = (string)str["AN"];
+                    aa[39] = (string)str["AO"];
+                    aa[40] = (string)str["AP"];
+                    aa[41] = (string)str["AQ"];
+                    aa[42] = (string)str["AR"];
+                    aa[43] = (string)str["ASA"];
+                    aa[44] = (string)str["ATA"];
+                    aa[45] = (string)str["AU"];
+                    aa[46] = (string)str["AV"];
+                    aa[47] = (string)str["AW"];
+                    aa[48] = (string)str["AX"];
+                    aa[49] = (string)str["AY"];
+                    aa[50] = (string)str["AZ"];
+                    aa[51] = (string)str["BA"];
+                    aa[52] = (string)str["BB"];
+                    aa[53] = (string)str["BC"];
+                    aa[54] = (string)str["BD"];
+                }
                 for (int i = 1; i < 54; i++)
                 {
 
@@ -50,8 +120,9 @@ namespace Web.Personnel
         protected void Button1_Click(object sender, EventArgs e)
         {
             string[] sqlarry = new string[] { "B", "C", "D", "E", " F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "ASA", "ATA", "AU", "AV", "AW", "AX", "AY", "AZ", "BA", "BB", "BC", "BD" };
-            string a = Request["strs"].ToString();
-            string[] bb = a.Split(new char[1] { ',' });
+            //string a = Request["strs"].ToString();
+            string[] bb = new string[55];
+            bb[54] = a;
             string conString = ConfigurationManager.AppSettings["yao"];
             conn = new SqlConnection(conString);  //数据库连接。
             if (conn.State == ConnectionState.Closed)
@@ -74,10 +145,10 @@ namespace Web.Personnel
             cmd = new SqlCommand(sqlStr, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
-            for (int i = 2; i < 34; i++)
-            {
-                aa[i] = Request.Form["TextBox" + i];
-            }
+            //for (int i = 2; i < 34; i++)
+            //{
+            //   aa[i] = Request.Form["TextBox" + i];
+            //}
             Server.Transfer("../Personnel/gongzimingxi.aspx");
         }
 

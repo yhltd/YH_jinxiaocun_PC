@@ -27,6 +27,10 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             user = (yh_jinxiaocun_user)Session["user"];
+            if (user.AdminIS.Equals("false"))
+            {
+                Response.Redirect("~/wqx.aspx");
+            }
             if (user != null)
             {
                 page.countPage = this.select_row();

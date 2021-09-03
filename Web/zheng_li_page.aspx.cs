@@ -24,6 +24,12 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             user = (yh_jinxiaocun_user)Session["user"];
+
+            if (user.AdminIS.Equals("false"))
+            {
+                Response.Redirect("~/wqx.aspx");
+            }
+
             if (user == null)
             {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");

@@ -52,3 +52,11 @@ E:\yhltd129\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Properties.Res
 E:\yhltd129\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csproj.GenerateResource.Cache
 E:\yhltd129\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.exe
 E:\yhltd129\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.pdb
+D:\145\工作\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe.config
+D:\145\工作\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe
+D:\145\工作\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.pdb
+D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Form1.resources
+D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Properties.Resources.resources
+D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csproj.GenerateResource.Cache
+D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.exe
+D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.pdb

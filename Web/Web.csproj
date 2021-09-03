@@ -1668,6 +1668,7 @@
     <Content Include="Personnel\renyuanxinxi.aspx" />
     <Content Include="Personnel\renyuanxinxiAdd.aspx" />
     <Content Include="Personnel\shebao.aspx" />
+    <Content Include="Personnel\shuomingshu.aspx" />
     <Content Include="Personnel\size.aspx" />
     <Content Include="Personnel\wuquanxian.aspx" />
     <Content Include="qi_chu.aspx" />
@@ -1847,6 +1848,7 @@
     <Content Include="Scripts\My97DatePicker\开发包\skin\whyGreen\img.gif" />
     <Content Include="sp_rc_ku_select.aspx" />
     <Content Include="statelist.asp" />
+    <Content Include="sysm.aspx" />
     <Content Include="test_jxc.aspx" />
     <Content Include="ViewImage.aspx" />
     <Content Include="Web.config">
@@ -2489,6 +2491,13 @@
     <Compile Include="Personnel\shebao.aspx.designer.cs">
       <DependentUpon>shebao.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personnel\shuomingshu.aspx.cs">
+      <DependentUpon>shuomingshu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\shuomingshu.aspx.designer.cs">
+      <DependentUpon>shuomingshu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Personnel\size.aspx.cs">
       <DependentUpon>size.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2752,6 +2761,13 @@
     <Compile Include="sp_rc_ku_select.aspx.designer.cs">
       <DependentUpon>sp_rc_ku_select.aspx</DependentUpon>
     </Compile>
+    <Compile Include="sysm.aspx.cs">
+      <DependentUpon>sysm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="sysm.aspx.designer.cs">
+      <DependentUpon>sysm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="test_jxc.aspx.cs">
       <DependentUpon>test_jxc.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2779,6 +2795,20 @@
     </Compile>
     <Compile Include="WebForm2.aspx.designer.cs">
       <DependentUpon>WebForm2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wqx.aspx.cs">
+      <DependentUpon>wqx.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wqx.aspx.designer.cs">
+      <DependentUpon>wqx.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wqx1.aspx.cs">
+      <DependentUpon>wqx1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wqx1.aspx.designer.cs">
+      <DependentUpon>wqx1.aspx</DependentUpon>
     </Compile>
     <Compile Include="yejiguanli.aspx.cs">
       <DependentUpon>yejiguanli.aspx</DependentUpon>
@@ -2831,6 +2861,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="wqx.aspx" />
+    <Content Include="wqx1.aspx" />
     <Content Include="yejiguanli.aspx" />
     <Content Include="yl_set_page.aspx" />
     <Content Include="zheng_li_page.aspx" />

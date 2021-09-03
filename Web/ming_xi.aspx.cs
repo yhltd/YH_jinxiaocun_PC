@@ -21,9 +21,14 @@ namespace Web
     {
         private static ServicePage page = new ServicePage();
         private static yh_jinxiaocun_user user;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             user = (yh_jinxiaocun_user)Session["user"];
+            if (user.AdminIS.Equals("false"))
+            {
+                Response.Redirect("~/wqx.aspx");
+            }
 
             if (user != null)
             {
@@ -49,6 +54,9 @@ namespace Web
             {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
             }
+
+            page.nowPage = 1;
+            ming_xi_select(user.gongsi);
         }
         protected void toExcel(object sender, EventArgs e)
         {

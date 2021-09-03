@@ -9,7 +9,7 @@
     <link href="css/index2.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
     <%--<script type="text/javascript" src="../Myadmin/js/index.js"></script>--%>
-    <title></title>
+    <title>云合人事管理系统</title>
 </head>
 <body  style="    margin: 0;">
     <script type="text/javascript">
@@ -32,10 +32,12 @@
     <form id="form1" runat="server" style="height:100%">
         <div class="header_login_info_con">
             <div style="width:33%">
-                <img src="../Personnel/images/tm_logo.png" style="float: left; margin-top: -1%; height: 67px;" />
+                <a href="http://www.yhocn.cn" target="_blank"> 
+                    <img src="../Personnel/images/tm_logo.png" style="float: left; margin-top: -1%; height: 67px;" />
+                </a>
                 <div class="logo">云合人事管理系统</div>
             </div>
-            <div>
+            <div style="width:23%">
                 <span class="fl welcome_info">你好         ！　　你的账号：<%=Session["username"] %></span>
                 <span id="myspan" runat="server" type="hidden" class="fr">
                     <a class="header_nav" href="#"></a>
@@ -61,6 +63,7 @@
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerenxinxi.aspx','个人信息')">个人信息<img src="../Personnel/images/gerenxinxi.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerensuode.aspx','个人所得税')">个人所得税<img src="../Personnel/images/gerensuodeshui.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gongzitiao.aspx','工资条')">工资条<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <%--<li><a href="#" class="leftNav_li" onclick="a('../Personnel/shuomingshu.aspx','使用说明')">使用说明下载<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>--%>
                 </ul>
             </div>
         

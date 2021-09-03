@@ -33,7 +33,13 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             user = (yh_jinxiaocun_user)Session["user"];
-            if (user != null)
+
+            if (user.AdminIS.Equals("false"))
+            {
+                Response.Redirect("~/wqx.aspx");
+            }
+
+        if(user != null)
             {
                 act = Request["act"] == null ? "" : Request["act"].ToString();
                 result = string.Empty;

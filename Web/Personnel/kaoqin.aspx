@@ -23,9 +23,9 @@
                 title: "考勤修改",//头部
                 shadeClose: true, //点击遮罩层关闭
                 area: {            //弹窗大小
-                    x: '600',
-                    y: '500'
-                },
+                  x: '600',
+                 y: '500'
+               },
                 content: 'kaoqinUpd.aspx?strs=' + e,     //路径
                 maxmin: true,      //最大化最小化按钮
                 z_index: 100        //层级

@@ -26,6 +26,7 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             user = (yh_jinxiaocun_user)Session["user"];
+            
             if (user != null)
             {
                 userName.InnerHtml = user.name;
@@ -40,6 +41,7 @@ namespace Web
             else {
                 Response.Write("<script>alert('请登录！');location='/Myadmin/Login.aspx';</script>");
             }
+          
         }
 
         private void NewMethod()

@@ -15,13 +15,14 @@
         <asp:Label ID="Label1" runat="server" Height="30px" Text="部门："></asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="C" DataValueField="C" >
             <asp:ListItem></asp:ListItem>
+             <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
-        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [C] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) ">
+        <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT NULL as [BD],NULL AS [C] UNION ALL SELECT DISTINCT [BD], [C] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi))    ">
             <SelectParameters>
                 <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT [BD], [D] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi)) ">
+        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString49 %>" SelectCommand="SELECT NULL as [BD],NULL AS [D] UNION ALL SELECT DISTINCT [BD], [D] FROM [gongzi_gongzimingxi] WHERE (([BD] = @gongsi))    ">
             <SelectParameters>
                 <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />
             </SelectParameters>
@@ -29,6 +30,7 @@
 &nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label2" runat="server" Height="30px" Text="岗位："></asp:Label>
         <asp:DropDownList ID="DropDownList2" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" DataSourceID="SqlDataSource4" DataTextField="D" DataValueField="D" >
+        <asp:ListItem></asp:ListItem>
         <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="Label3" runat="server" Height="30px" Text="年："></asp:Label>

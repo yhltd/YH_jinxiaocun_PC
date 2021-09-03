@@ -19,10 +19,10 @@ namespace Web.Personnel.HrModel
                     new SqlParameter("@e", e)
                 };
 
-                string sql = "SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = '" + @a + "') AND ([C] like '%" + @b + "%') AND ([D] like '%" + @c + "%') AND (Year([BC]) like '%" + @d + "')";
+                string sql = "SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = '" + @a + "') AND ([C] like '%" + @b + "%') AND ([D] like '%" + @c + "%') AND (Year([F]) like '%" + @d + "')";
                 if (@d != "")
                 {
-                    sql = sql + " AND (Month([BC]) = '"+  @e +"'))";
+                    sql = sql + " AND (Month([F]) = '"+  @e +"'))";
                 }
                 else {
                     sql = sql + ")";

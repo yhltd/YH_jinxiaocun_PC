@@ -153,12 +153,14 @@ namespace Web
                     Response.Write("<script>alert('网络超时，请稍后再试。')</script>");
                     return;
                 }
+                
                 if (user != null)
                 {
                     if (user.Btype.Equals("锁定"))
                     {
                         msg = "用户已被锁定！";
                     }
+              
                     else
                     {
                         Session.Timeout = 10000;

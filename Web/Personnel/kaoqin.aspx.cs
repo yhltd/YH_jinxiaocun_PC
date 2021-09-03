@@ -8,12 +8,15 @@ using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 namespace Web.Personnel
 {
     public partial class kaoqin : System.Web.UI.Page
     {
-
+        SqlConnection conn = null;
+        SqlDataReader strs = null;
+        SqlCommand cmd = null;
         string[] str = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -83,19 +86,28 @@ namespace Web.Personnel
         protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
         {
             string[] a = new string[40];
-            for(int i=2;i<=41;i++){
-             a[i-2] = GridView1.Rows[GridView1.SelectedIndex].Cells[i+1].Text;
+            for (int i = 2; i <= 41; i++)
+            {
+                a[i - 2] = GridView1.Rows[GridView1.SelectedIndex].Cells[i + 1].Text;
             }
             a[39] = GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString();
             JavaScriptSerializer js = new JavaScriptSerializer();
             string result = js.Serialize(a); //upUser(" + result + ");iframe_d_open
-           ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
-    
+            //ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
+
+            Session["b"] = a[39];
+            Session["year"] = a[0];
+            Session["moth"] = a[1];
+            Session["name"] = a[2];
+            Server.Transfer("../Personnel/kaoqinUpd.aspx");
         }
 
         protected void Button4_Click(object sender, EventArgs e)
         {
             Server.Transfer("../Personnel/kaoqin.aspx");
+            
+            
+           
         }
     }
 }

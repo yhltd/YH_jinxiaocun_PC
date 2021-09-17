@@ -26,22 +26,27 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             user = (yh_jinxiaocun_user)Session["user"];
-            
-            if (user != null)
+            try
             {
-                userName.InnerHtml = user.name;
-                HtmlControl frame1 = (HtmlControl)this.FindControl("frame1");
+                if (user != null)
+                {
+                    userName.InnerHtml = user.name;
+                    HtmlControl frame1 = (HtmlControl)this.FindControl("frame1");
 
-                clsAllnew allbewn = new clsAllnew();
+                    clsAllnew allbewn = new clsAllnew();
 
-                allbewn.inputcookvalue("入库");
+                    allbewn.inputcookvalue("入库");
 
-                NewMethod();
+                    NewMethod();
+                }
+                else
+                {
+                    Response.Write("<script>alert('请登录！');location='/Myadmin/Login.aspx';</script>");
+                }
             }
-            else {
-                Response.Write("<script>alert('请登录！');location='/Myadmin/Login.aspx';</script>");
+            catch {
+                Response.Write("<script>;location='~/wqx.aspx';</script>");
             }
-          
         }
 
         private void NewMethod()

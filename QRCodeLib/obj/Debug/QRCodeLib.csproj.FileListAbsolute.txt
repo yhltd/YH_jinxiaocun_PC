@@ -83,3 +83,4 @@ D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.dll
 D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\ThoughtWorks.QRCode.pdb
 D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.dll
 D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\ThoughtWorks.QRCode.pdb
+D:\145\工作\YH_jinxiaocun_PC\QRCodeLib\obj\Debug\QRCodeLib.csprojResolveAssemblyReference.cache

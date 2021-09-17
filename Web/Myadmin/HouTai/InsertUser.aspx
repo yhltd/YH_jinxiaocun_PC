@@ -97,10 +97,11 @@
                 </tr>
                 <tr class="table_tr">
                     <td class="table_text">用户权限：</td>
-                    <td><select class="input_tr" id="quanxian" runat="server">
+                     <td><select class="input_tr" id="quanxian" runat="server" aria-required="False" multiple="True">
                         <option>管理员</option>
                         <option>普通用户</option>
-                </select></td>
+                        </select>
+                    </td>          
                 </tr>
                 <tr class="table_tr">
                     <td>

@@ -34,18 +34,19 @@ namespace Web.Myadmin.HouTai
                     type = Request["type"].ToString();
                     Name.ReadOnly = type == "update";
                     if (Name.ReadOnly)
+
                     {
                         id = Request["id"].ToString();
-                        gongsi = Request["gs"].ToString();
+                        gongsi = user.gongsi;
                         UserModel u = new UserModel();
                         yh_jinxiaocun_user ut = u.getList(gongsi).Find(f => f._id.Equals(id) && f.gongsi.Equals(gongsi));
                         Name.Text = ut.name;
-                        
+
                         Pwd.Text = ut.password;
                         Qrpwd.Text = ut.password;
                         if (ut.AdminIS.Equals("true"))
                         {
-                            quanxian.Items[0].Selected = true;
+                           quanxian.Items[0].Selected = true;
                         }
                         else
                         {
@@ -61,7 +62,7 @@ namespace Web.Myadmin.HouTai
             try
             {
                 UserModel u = new UserModel();
-                string type ="";
+                string type = "";
                 if (Request["type"] != null)
                 {
                     type = Request["type"].ToString();
@@ -79,7 +80,7 @@ namespace Web.Myadmin.HouTai
                         //uer.AdminIS= Request.Form["quanxian"];
                         if (quanxian.Items[quanxian.SelectedIndex].Text.Equals("管理员"))
                         {
-                            
+
                             uer.AdminIS = "true";
                         }
                         else
@@ -98,43 +99,54 @@ namespace Web.Myadmin.HouTai
                         Response.Write("<script>alert('两次密码输入不一致')</script>");
                     }
                 }
+
                 else 
                 {
-                    if (Request.Form["Pwd"].ToString().Equals(Request.Form["Qrpwd"].ToString()))
-                    {
-                        yh_jinxiaocun_user uer = new yh_jinxiaocun_user();
-                        uer._id = id;
-                        uer.name = Request.Form["Name"];
-                        uer.password = Request.Form["Pwd"];
-                        uer.Btype = Request.Form["Pwd"];
-                        uer.gongsi = user.gongsi;
-                        //uer.AdminIS = "false";
-
-                        if (quanxian.Items[quanxian.SelectedIndex].Text.Equals("管理员"))
+                   
+                        if (Request.Form["Pwd"].ToString().Equals(Request.Form["Qrpwd"].ToString()))
                         {
+                            yh_jinxiaocun_user uer = new yh_jinxiaocun_user();
+                            uer._id = Request.Form["Name"];
+                            uer.name = Request.Form["Name"];
+                            uer.password = Request.Form["Pwd"];
+                            uer.Btype = Request.Form["Name"];
+                            uer.gongsi = user.gongsi;
+                            //uer.AdminIS = "false";
+                            String quanxianis = Request.Form["quanxian"];
+                            if (quanxianis.Equals("管理员"))
+                            {
 
-                            uer.AdminIS = "true";
+                                uer.AdminIS = "true";
+                            }
+                            else
+                            {
+                                uer.AdminIS = "false";
+                            }
+                            int pd = u.update(uer);
+                           
+                            if (pd > 0)
+                            {
+                                
+                                Response.Write("<script>alert('修改成功！');layer.close(layer.index);</script>");
+                                //Response.Redirect("../HouTai/InsertUser.aspx");
+                                //Response.Write("<script>layer.opener==null;layer.close();</script>");
+                                
+                            }
                         }
                         else
                         {
-                            uer.AdminIS = "false";
+                            Response.Write("<script>alert('两次密码输入不一致')</script>");
                         }
-                        int pd = u.update(uer);
-                        if (pd > 0)
-                        {
-                            Response.Write("<script>alert('修改成功！');</script>");
-                        }
-                    }
-                    else 
-                    {
-                        Response.Write("<script>alert('两次密码输入不一致')</script>");
-                    }
+                    }                 
                 }
-            }
-            catch
-            {
-                Response.Write("<script>alert('错误！')</script>");
-            }
+                catch
+                {
+                    yh_jinxiaocun_user uer = new yh_jinxiaocun_user();
+  
+                    Response.Write("<script>alert('错误！');</script>");
+                   
+                }  
         }
+        
     }
 }

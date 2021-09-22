@@ -122,10 +122,15 @@
             var gongsi = $(this).data("gongsi")
             queren(id, gongsi);
         })
+
+        //function upUser(id, gongsi)
         function upUser(id,gongsi)
         {
             title = '修改用户';
-            url = 'InsertUser.aspx?type=update&id=' + id + '&gs=' + gongsi;
+            //var id = $(this).data("id");
+            //document.getElementById(type).innerHTML = content;
+            //url = 'InsertUser.aspx?type=update&id=' + v.id + '&gs=' + v.gongsi;
+            url = 'InsertUser.aspx?type=update&id=' + id;
             layui.use('layer', function () {
                 var layer = layui.layer;
             });
@@ -142,8 +147,9 @@
                     $('.container,header,footer', iframeBody).remove();
                 },
                 yes: function (index) {
+                    shwoAddrs();
                 },
-                cancel: function () {
+                end: function () {
                     shuaxin();
                 }
             })
@@ -220,7 +226,7 @@
 
                             </td>
                             <td class='item_td'>
-                                <input type="button" value="修改"<%--data-id ="<%#Eval("_id") %>" data-gongsi ="<%#Eval("gongsi")%>" --%> onclick="upUser('<%#Eval("_id")%>','<%#Eval("gongsi")%>')" class="table_bt" id="BTN_UP" />
+                                <input type="button" value="修改" <%--data-id ="<%#Eval("_id") %>" data-gongsi ="<%#Eval("gongsi")%>" --%> onclick="upUser('<%#Eval("_id") %>','<%#Eval("gongsi") %>')"  class="table_bt" id="BTN_UP" />
 
                             </td>
                         </tr>

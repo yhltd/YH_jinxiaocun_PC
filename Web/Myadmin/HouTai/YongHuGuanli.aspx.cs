@@ -37,6 +37,21 @@ namespace Web.Myadmin.HouTai
                 this.SelectUser();
             }
         }
+        //protected void GridView1_SelectedIndexChanged1(object sender, EventArgs e)
+        //{
+            //string[] a = new string[10];
+            //for (int i = 2; i <= 41; i++)
+            //{
+                //a[i - 2] = GridView1.Rows[GridView1.SelectedIndex].Cells[i + 1].Text;
+            //}
+            //a[1] = GridView1.DataKeys[GridView1.SelectedIndex].Value.ToString();
+
+            //Session["b"] = a[39];
+            //Session["year"] = a[0];
+            //Session["moth"] = a[1];
+            //Session["name"] = a[2];
+            //Server.Transfer("../Personnel/kaoqinUpd.aspx");
+        //}
         public int delete(string id)
         {
             string msg = string.Empty;
@@ -59,7 +74,10 @@ namespace Web.Myadmin.HouTai
             UserFor.DataSource = s.getList(user.gongsi);
             UserFor.DataBind();
         }
-
+        protected void BTN_UP_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("../InsertUser.aspx");
+        }
         protected void BTN_ShuaXing_Click(object sender, EventArgs e)
         {
             try

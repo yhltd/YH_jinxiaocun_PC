@@ -48,13 +48,28 @@ var pageVoucherWord = {
 }
 
 $(function () {
-    getListFinancingExpenditure();
-    getListFinancingIncome();
-    getListInvestmentExpenditure();
-    getListInvestmentIncome();
-    getListManagementExpenditure();
-    getListManagementIncome();
-    getListVoucherWord();
+
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.kzxm_select == "是") {
+                getListFinancingExpenditure();
+                getListFinancingIncome();
+                getListInvestmentExpenditure();
+                getListInvestmentIncome();
+                getListManagementExpenditure();
+                getListManagementIncome();
+                getListVoucherWord();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+
+    
 })
 
 /*
@@ -82,56 +97,97 @@ function setTableFinancingExpenditure(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                $('#add-financingExpenditure-window').window({
-                    title: "新增",
-                    width: 400,
-                    height: 150,
-                    top: 100,
-                    collapsible: false,
-                    minimizable: false,
-                    maximizable: false,
-                    closable: true,
-                    draggable: true,
-                    resizable: false,
-                    shadow: false,
-                    modal: true
+
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_add == "是") {
+                            $('#add-financingExpenditure-window').window({
+                                title: "新增",
+                                width: 400,
+                                height: 150,
+                                top: 100,
+                                collapsible: false,
+                                minimizable: false,
+                                maximizable: false,
+                                closable: true,
+                                draggable: true,
+                                resizable: false,
+                                shadow: false,
+                                modal: true
+                            });
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
                 });
+
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table-financingExpenditure').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    $('#upd-financingExpenditure-window').window({
-                        title: "修改",
-                        width: 400,
-                        height: 150,
-                        top: 100,
-                        collapsible: false,
-                        minimizable: false,
-                        maximizable: false,
-                        closable: true,
-                        draggable: true,
-                        resizable: false,
-                        shadow: false,
-                        modal: true
-                    });
-                    $("#upd-financingExpenditure-form").form('load', sels[0]);
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_update == "是") {
+                            var sels = $('#data-table-financingExpenditure').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                $('#upd-financingExpenditure-window').window({
+                                    title: "修改",
+                                    width: 400,
+                                    height: 150,
+                                    top: 100,
+                                    collapsible: false,
+                                    minimizable: false,
+                                    maximizable: false,
+                                    closable: true,
+                                    draggable: true,
+                                    resizable: false,
+                                    shadow: false,
+                                    modal: true
+                                });
+                                $("#upd-financingExpenditure-form").form('load', sels[0]);
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table-financingExpenditure').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    delFinancingExpenditure(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_delete == "是") {
+                            var sels = $('#data-table-financingExpenditure').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                delFinancingExpenditure(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,
@@ -261,56 +317,96 @@ function setTableFinancingIncome(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                $('#add-financingIncome-window').window({
-                    title: "新增",
-                    width: 400,
-                    height: 150,
-                    top: 100,
-                    collapsible: false,
-                    minimizable: false,
-                    maximizable: false,
-                    closable: true,
-                    draggable: true,
-                    resizable: false,
-                    shadow: false,
-                    modal: true
+
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_add == "是") {
+                            $('#add-financingIncome-window').window({
+                                title: "新增",
+                                width: 400,
+                                height: 150,
+                                top: 100,
+                                collapsible: false,
+                                minimizable: false,
+                                maximizable: false,
+                                closable: true,
+                                draggable: true,
+                                resizable: false,
+                                shadow: false,
+                                modal: true
+                            });
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
                 });
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table-financingIncome').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    $('#upd-financingIncome-window').window({
-                        title: "修改",
-                        width: 400,
-                        height: 150,
-                        top: 100,
-                        collapsible: false,
-                        minimizable: false,
-                        maximizable: false,
-                        closable: true,
-                        draggable: true,
-                        resizable: false,
-                        shadow: false,
-                        modal: true
-                    });
-                    $("#upd-financingIncome-form").form('load', sels[0]);
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_update == "是") {
+                            var sels = $('#data-table-financingIncome').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                $('#upd-financingIncome-window').window({
+                                    title: "修改",
+                                    width: 400,
+                                    height: 150,
+                                    top: 100,
+                                    collapsible: false,
+                                    minimizable: false,
+                                    maximizable: false,
+                                    closable: true,
+                                    draggable: true,
+                                    resizable: false,
+                                    shadow: false,
+                                    modal: true
+                                });
+                                $("#upd-financingIncome-form").form('load', sels[0]);
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table-financingIncome').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    delFinancingIncome(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_delete == "是") {
+                            var sels = $('#data-table-financingIncome').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                delFinancingIncome(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,
@@ -440,56 +536,96 @@ function setTableInvestmentExpenditure(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                $('#add-investmentExpenditure-window').window({
-                    title: "新增",
-                    width: 400,
-                    height: 150,
-                    top: 100,
-                    collapsible: false,
-                    minimizable: false,
-                    maximizable: false,
-                    closable: true,
-                    draggable: true,
-                    resizable: false,
-                    shadow: false,
-                    modal: true
+
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_add == "是") {
+                            $('#add-investmentExpenditure-window').window({
+                                title: "新增",
+                                width: 400,
+                                height: 150,
+                                top: 100,
+                                collapsible: false,
+                                minimizable: false,
+                                maximizable: false,
+                                closable: true,
+                                draggable: true,
+                                resizable: false,
+                                shadow: false,
+                                modal: true
+                            });
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
                 });
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table-investmentExpenditure').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    $('#upd-investmentExpenditure-window').window({
-                        title: "修改",
-                        width: 400,
-                        height: 150,
-                        top: 100,
-                        collapsible: false,
-                        minimizable: false,
-                        maximizable: false,
-                        closable: true,
-                        draggable: true,
-                        resizable: false,
-                        shadow: false,
-                        modal: true
-                    });
-                    $("#upd-investmentExpenditure-form").form('load', sels[0]);
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_update == "是") {
+                            var sels = $('#data-table-investmentExpenditure').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                $('#upd-investmentExpenditure-window').window({
+                                    title: "修改",
+                                    width: 400,
+                                    height: 150,
+                                    top: 100,
+                                    collapsible: false,
+                                    minimizable: false,
+                                    maximizable: false,
+                                    closable: true,
+                                    draggable: true,
+                                    resizable: false,
+                                    shadow: false,
+                                    modal: true
+                                });
+                                $("#upd-investmentExpenditure-form").form('load', sels[0]);
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table-investmentExpenditure').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    delInvestmentExpenditure(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_delete == "是") {
+                            var sels = $('#data-table-investmentExpenditure').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                delInvestmentExpenditure(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,
@@ -680,56 +816,96 @@ function setTableInvestmentIncome(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                $('#add-investmentIncome-window').window({
-                    title: "新增",
-                    width: 400,
-                    height: 150,
-                    top: 100,
-                    collapsible: false,
-                    minimizable: false,
-                    maximizable: false,
-                    closable: true,
-                    draggable: true,
-                    resizable: false,
-                    shadow: false,
-                    modal: true
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_add == "是") {
+                            $('#add-investmentIncome-window').window({
+                                title: "新增",
+                                width: 400,
+                                height: 150,
+                                top: 100,
+                                collapsible: false,
+                                minimizable: false,
+                                maximizable: false,
+                                closable: true,
+                                draggable: true,
+                                resizable: false,
+                                shadow: false,
+                                modal: true
+                            });
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
                 });
+
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table-investmentIncome').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    $('#upd-investmentIncome-window').window({
-                        title: "修改",
-                        width: 400,
-                        height: 150,
-                        top: 100,
-                        collapsible: false,
-                        minimizable: false,
-                        maximizable: false,
-                        closable: true,
-                        draggable: true,
-                        resizable: false,
-                        shadow: false,
-                        modal: true
-                    });
-                    $("#upd-investmentIncome-form").form('load', sels[0]);
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_update == "是") {
+                            var sels = $('#data-table-investmentIncome').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                $('#upd-investmentIncome-window').window({
+                                    title: "修改",
+                                    width: 400,
+                                    height: 150,
+                                    top: 100,
+                                    collapsible: false,
+                                    minimizable: false,
+                                    maximizable: false,
+                                    closable: true,
+                                    draggable: true,
+                                    resizable: false,
+                                    shadow: false,
+                                    modal: true
+                                });
+                                $("#upd-investmentIncome-form").form('load', sels[0]);
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table-investmentIncome').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    delInvestmentIncome(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_delete == "是") {
+                            var sels = $('#data-table-investmentIncome').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                delInvestmentIncome(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,
@@ -945,56 +1121,95 @@ function setTableManagementExpenditure(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                $('#add-managementExpenditure-window').window({
-                    title: "新增",
-                    width: 400,
-                    height: 150,
-                    top: 100,
-                    collapsible: false,
-                    minimizable: false,
-                    maximizable: false,
-                    closable: true,
-                    draggable: true,
-                    resizable: false,
-                    shadow: false,
-                    modal: true
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_add == "是") {
+                            $('#add-managementExpenditure-window').window({
+                                title: "新增",
+                                width: 400,
+                                height: 150,
+                                top: 100,
+                                collapsible: false,
+                                minimizable: false,
+                                maximizable: false,
+                                closable: true,
+                                draggable: true,
+                                resizable: false,
+                                shadow: false,
+                                modal: true
+                            });
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
                 });
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table-managementExpenditure').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    $('#upd-managementExpenditure-window').window({
-                        title: "修改",
-                        width: 400,
-                        height: 150,
-                        top: 100,
-                        collapsible: false,
-                        minimizable: false,
-                        maximizable: false,
-                        closable: true,
-                        draggable: true,
-                        resizable: false,
-                        shadow: false,
-                        modal: true
-                    });
-                    $("#upd-managementExpenditure-form").form('load', sels[0]);
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_update == "是") {
+                            var sels = $('#data-table-managementExpenditure').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                $('#upd-managementExpenditure-window').window({
+                                    title: "修改",
+                                    width: 400,
+                                    height: 150,
+                                    top: 100,
+                                    collapsible: false,
+                                    minimizable: false,
+                                    maximizable: false,
+                                    closable: true,
+                                    draggable: true,
+                                    resizable: false,
+                                    shadow: false,
+                                    modal: true
+                                });
+                                $("#upd-managementExpenditure-form").form('load', sels[0]);
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table-managementExpenditure').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    delManagementExpenditure(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_delete == "是") {
+                            var sels = $('#data-table-managementExpenditure').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                delManagementExpenditure(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,
@@ -1211,56 +1426,95 @@ function setTableManagementIncome(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                $('#add-managementIncome-window').window({
-                    title: "新增",
-                    width: 400,
-                    height: 150,
-                    top: 100,
-                    collapsible: false,
-                    minimizable: false,
-                    maximizable: false,
-                    closable: true,
-                    draggable: true,
-                    resizable: false,
-                    shadow: false,
-                    modal: true
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_add == "是") {
+                            $('#add-managementIncome-window').window({
+                                title: "新增",
+                                width: 400,
+                                height: 150,
+                                top: 100,
+                                collapsible: false,
+                                minimizable: false,
+                                maximizable: false,
+                                closable: true,
+                                draggable: true,
+                                resizable: false,
+                                shadow: false,
+                                modal: true
+                            });
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
                 });
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table-managementIncome').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    $('#upd-managementIncome-window').window({
-                        title: "修改",
-                        width: 400,
-                        height: 150,
-                        top: 100,
-                        collapsible: false,
-                        minimizable: false,
-                        maximizable: false,
-                        closable: true,
-                        draggable: true,
-                        resizable: false,
-                        shadow: false,
-                        modal: true
-                    });
-                    $("#upd-managementIncome-form").form('load', sels[0]);
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_update == "是") {
+                            var sels = $('#data-table-managementIncome').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                $('#upd-managementIncome-window').window({
+                                    title: "修改",
+                                    width: 400,
+                                    height: 150,
+                                    top: 100,
+                                    collapsible: false,
+                                    minimizable: false,
+                                    maximizable: false,
+                                    closable: true,
+                                    draggable: true,
+                                    resizable: false,
+                                    shadow: false,
+                                    modal: true
+                                });
+                                $("#upd-managementIncome-form").form('load', sels[0]);
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table-managementIncome').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    delManagementIncome(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_delete == "是") {
+                            var sels = $('#data-table-managementIncome').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                delManagementIncome(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,
@@ -1473,56 +1727,95 @@ function setTableVoucherWrod(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                $('#add-voucherWord-window').window({
-                    title: "新增",
-                    width: 400,
-                    height: 150,
-                    top: 100,
-                    collapsible: false,
-                    minimizable: false,
-                    maximizable: false,
-                    closable: true,
-                    draggable: true,
-                    resizable: false,
-                    shadow: false,
-                    modal: true
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_add == "是") {
+                            $('#add-voucherWord-window').window({
+                                title: "新增",
+                                width: 400,
+                                height: 150,
+                                top: 100,
+                                collapsible: false,
+                                minimizable: false,
+                                maximizable: false,
+                                closable: true,
+                                draggable: true,
+                                resizable: false,
+                                shadow: false,
+                                modal: true
+                            });
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
                 });
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table-voucherWord').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    $('#upd-voucherWord-window').window({
-                        title: "修改",
-                        width: 400,
-                        height: 150,
-                        top: 100,
-                        collapsible: false,
-                        minimizable: false,
-                        maximizable: false,
-                        closable: true,
-                        draggable: true,
-                        resizable: false,
-                        shadow: false,
-                        modal: true
-                    });
-                    $("#upd-voucherWord-form").form('load', sels[0]);
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_update == "是") {
+                            var sels = $('#data-table-voucherWord').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                $('#upd-voucherWord-window').window({
+                                    title: "修改",
+                                    width: 400,
+                                    height: 150,
+                                    top: 100,
+                                    collapsible: false,
+                                    minimizable: false,
+                                    maximizable: false,
+                                    closable: true,
+                                    draggable: true,
+                                    resizable: false,
+                                    shadow: false,
+                                    modal: true
+                                });
+                                $("#upd-voucherWord-form").form('load', sels[0]);
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table-voucherWord').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    delVoucherWord(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kzxm_delete == "是") {
+                            var sels = $('#data-table-voucherWord').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                delVoucherWord(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,

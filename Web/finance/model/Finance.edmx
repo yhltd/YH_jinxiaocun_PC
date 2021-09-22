@@ -1,5 +1,5 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<edmx:Edmx Version='3.0' xmlns:edmx='http://schemas.microsoft.com/ado/2009/11/edmx'>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
@@ -15,6 +15,7 @@
           <EntitySet Name="InvestmentIncome" EntityType="FinanceModel.Store.InvestmentIncome" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ManagementExpenditure" EntityType="FinanceModel.Store.ManagementExpenditure" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ManagementIncome" EntityType="FinanceModel.Store.ManagementIncome" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="quanxian" EntityType="FinanceModel.Store.quanxian" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SimpleAccounting" EntityType="FinanceModel.Store.SimpleAccounting" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SimpleData" EntityType="FinanceModel.Store.SimpleData" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="VoucherSummary" EntityType="FinanceModel.Store.VoucherSummary" store:Type="Tables" Schema="dbo" />
@@ -30,6 +31,7 @@
           <Property Name="do" Type="varchar" MaxLength="255" />
           <Property Name="name" Type="varchar" MaxLength="255" />
           <Property Name="salt" Type="varchar" MaxLength="32" />
+          <Property Name="bianhao" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Accounting">
           <Key>
@@ -100,6 +102,45 @@
           <Property Name="managementIncome" Type="varchar" MaxLength="255" />
           <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="quanxian">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="kmzz_add" Type="varchar" MaxLength="255" />
+          <Property Name="kmzz_delete" Type="varchar" MaxLength="255" />
+          <Property Name="kmzz_update" Type="varchar" MaxLength="255" />
+          <Property Name="kmzz_select" Type="varchar" MaxLength="255" />
+          <Property Name="kzxm_add" Type="varchar" MaxLength="255" />
+          <Property Name="kzxm_delete" Type="varchar" MaxLength="255" />
+          <Property Name="kzxm_update" Type="varchar" MaxLength="255" />
+          <Property Name="kzxm_select" Type="varchar" MaxLength="255" />
+          <Property Name="bmsz_add" Type="varchar" MaxLength="255" />
+          <Property Name="bmsz_delete" Type="varchar" MaxLength="255" />
+          <Property Name="bmsz_update" Type="varchar" MaxLength="255" />
+          <Property Name="bmsz_select" Type="varchar" MaxLength="255" />
+          <Property Name="pzhz_add" Type="varchar" MaxLength="255" />
+          <Property Name="pzhz_delete" Type="varchar" MaxLength="255" />
+          <Property Name="pzhz_update" Type="varchar" MaxLength="255" />
+          <Property Name="pzhz_select" Type="varchar" MaxLength="255" />
+          <Property Name="znkb_select" Type="varchar" MaxLength="255" />
+          <Property Name="xjll_select" Type="varchar" MaxLength="255" />
+          <Property Name="zcfz_select" Type="varchar" MaxLength="255" />
+          <Property Name="lysy_select" Type="varchar" MaxLength="255" />
+          <Property Name="jjtz_add" Type="varchar" MaxLength="255" />
+          <Property Name="jjtz_delete" Type="varchar" MaxLength="255" />
+          <Property Name="jjtz_update" Type="varchar" MaxLength="255" />
+          <Property Name="jjtz_select" Type="varchar" MaxLength="255" />
+          <Property Name="jjzz_add" Type="varchar" MaxLength="255" />
+          <Property Name="jjzz_delete" Type="varchar" MaxLength="255" />
+          <Property Name="jjzz_update" Type="varchar" MaxLength="255" />
+          <Property Name="jjzz_select" Type="varchar" MaxLength="255" />
+          <Property Name="zhgl_add" Type="varchar" MaxLength="255" />
+          <Property Name="zhgl_delete" Type="varchar" MaxLength="255" />
+          <Property Name="zhgl_update" Type="varchar" MaxLength="255" />
+          <Property Name="zhgl_select" Type="varchar" MaxLength="255" />
+          <Property Name="bianhao" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="SimpleAccounting">
           <Key>
             <PropertyRef Name="id" />
@@ -150,292 +191,374 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace='FinanceModel' Alias='Self' p1:UseStrongSpatialTypes='false' xmlns:annotation='http://schemas.microsoft.com/ado/2009/02/edm/annotation' xmlns:p1='http://schemas.microsoft.com/ado/2009/02/edm/annotation' xmlns='http://schemas.microsoft.com/ado/2009/11/edm'>
-        <EntityContainer Name='FinanceEntities' p1:LazyLoadingEnabled='true'>
-          <EntitySet Name='Account' EntityType='FinanceModel.Account' />
-          <EntitySet Name='Accounting' EntityType='FinanceModel.Accounting' />
-          <EntitySet Name='Department' EntityType='FinanceModel.Department' />
-          <EntitySet Name='FinancingExpenditure' EntityType='FinanceModel.FinancingExpenditure' />
-          <EntitySet Name='FinancingIncome' EntityType='FinanceModel.FinancingIncome' />
-          <EntitySet Name='InvestmentExpenditure' EntityType='FinanceModel.InvestmentExpenditure' />
-          <EntitySet Name='InvestmentIncome' EntityType='FinanceModel.InvestmentIncome' />
-          <EntitySet Name='ManagementExpenditure' EntityType='FinanceModel.ManagementExpenditure' />
-          <EntitySet Name='ManagementIncome' EntityType='FinanceModel.ManagementIncome' />
-          <EntitySet Name='SimpleAccounting' EntityType='FinanceModel.SimpleAccounting' />
-          <EntitySet Name='SimpleData' EntityType='FinanceModel.SimpleData' />
-          <EntitySet Name='VoucherSummary' EntityType='FinanceModel.VoucherSummary' />
-          <EntitySet Name='VoucherWord' EntityType='FinanceModel.VoucherWord' />
+      <Schema Namespace="FinanceModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FinanceEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Account" EntityType="FinanceModel.Account" />
+          <EntitySet Name="Accounting" EntityType="FinanceModel.Accounting" />
+          <EntitySet Name="Department" EntityType="FinanceModel.Department" />
+          <EntitySet Name="FinancingExpenditure" EntityType="FinanceModel.FinancingExpenditure" />
+          <EntitySet Name="FinancingIncome" EntityType="FinanceModel.FinancingIncome" />
+          <EntitySet Name="InvestmentExpenditure" EntityType="FinanceModel.InvestmentExpenditure" />
+          <EntitySet Name="InvestmentIncome" EntityType="FinanceModel.InvestmentIncome" />
+          <EntitySet Name="ManagementExpenditure" EntityType="FinanceModel.ManagementExpenditure" />
+          <EntitySet Name="ManagementIncome" EntityType="FinanceModel.ManagementIncome" />
+          <EntitySet Name="SimpleAccounting" EntityType="FinanceModel.SimpleAccounting" />
+          <EntitySet Name="SimpleData" EntityType="FinanceModel.SimpleData" />
+          <EntitySet Name="VoucherSummary" EntityType="FinanceModel.VoucherSummary" />
+          <EntitySet Name="VoucherWord" EntityType="FinanceModel.VoucherWord" />
+          <EntitySet Name="quanxian" EntityType="FinanceModel.quanxian" />
         </EntityContainer>
-        <EntityType Name='Account'>
+        <EntityType Name="Account">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='pwd' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='do' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='name' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='salt' Type='String' MaxLength='32' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="pwd" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="do" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="salt" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="bianhao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='Accounting'>
+        <EntityType Name="Accounting">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='code' Type='Int32' Nullable='false' />
-          <Property Name='name' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='direction' Type='Boolean' Nullable='false' />
-          <Property Name='load' Type='Decimal' Precision='19' Scale='4' />
-          <Property Name='borrowed' Type='Decimal' Precision='19' Scale='4' />
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="direction" Type="Boolean" Nullable="false" />
+          <Property Name="load" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="borrowed" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='Department'>
+        <EntityType Name="Department">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='department1' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='man' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="department1" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="man" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='FinancingExpenditure'>
+        <EntityType Name="FinancingExpenditure">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='financingExpenditure1' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="financingExpenditure1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='FinancingIncome'>
+        <EntityType Name="FinancingIncome">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='financingIncome1' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="financingIncome1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='InvestmentExpenditure'>
+        <EntityType Name="InvestmentExpenditure">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='investmentExpenditure1' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="investmentExpenditure1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='InvestmentIncome'>
+        <EntityType Name="InvestmentIncome">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='investmentIncome1' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="investmentIncome1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='ManagementExpenditure'>
+        <EntityType Name="ManagementExpenditure">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='managementExpenditure1' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="managementExpenditure1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='ManagementIncome'>
+        <EntityType Name="ManagementIncome">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='managementIncome1' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="managementIncome1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='SimpleAccounting'>
+        <EntityType Name="SimpleAccounting">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='accounting' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="accounting" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='SimpleData'>
+        <EntityType Name="SimpleData">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='project' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='receivable' Type='Decimal' Precision='19' Scale='4' />
-          <Property Name='receipts' Type='Decimal' Precision='19' Scale='4' />
-          <Property Name='cope' Type='Decimal' Precision='19' Scale='4' />
-          <Property Name='payment' Type='Decimal' Precision='19' Scale='4' />
-          <Property Name='accounting' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="project" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="receivable" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="receipts" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cope" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="payment" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="accounting" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name='VoucherSummary'>
+        <EntityType Name="VoucherSummary">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='word' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='no' Type='String' Nullable='false' MaxLength='1000' Unicode='false' FixedLength='false' />
-          <Property Name='abstract' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='code' Type='Int32' Nullable='false' />
-          <Property Name='department' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='expenditure' Type='String' Nullable='false' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='note' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='man' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='money' Type='Decimal' Precision='19' Scale='4' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='voucherDate' Type='DateTime' Precision='3' />
-          <Property Name='real' Type='Decimal' Precision='19' Scale='4' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="word" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="no" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="abstract" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="code" Type="Int32" Nullable="false" />
+          <Property Name="department" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="expenditure" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="note" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="man" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="money" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="voucherDate" Type="DateTime" Precision="3" />
+          <Property Name="real" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
-        <EntityType Name='VoucherWord'>
+        <EntityType Name="VoucherWord">
           <Key>
-            <PropertyRef Name='id' />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name='id' Type='Int32' Nullable='false' p1:StoreGeneratedPattern='Identity' />
-          <Property Name='word' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
-          <Property Name='company' Type='String' MaxLength='255' Unicode='false' FixedLength='false' />
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="word" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="quanxian">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="kmzz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kmzz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kmzz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kmzz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kzxm_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kzxm_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kzxm_update" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kzxm_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="bmsz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="bmsz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="bmsz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="bmsz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pzhz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pzhz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pzhz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pzhz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="znkb_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="xjll_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zcfz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="lysy_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jjtz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jjtz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jjtz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jjtz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jjzz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jjzz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jjzz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jjzz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhgl_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhgl_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhgl_update" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhgl_select" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="bianhao" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space='C-S' xmlns='http://schemas.microsoft.com/ado/2009/11/mapping/cs'>
-        <EntityContainerMapping StorageEntityContainer='FinanceModelStoreContainer' CdmEntityContainer='FinanceEntities'>
-          <EntitySetMapping Name='Account'>
-            <EntityTypeMapping TypeName='FinanceModel.Account'>
-              <MappingFragment StoreEntitySet='Account'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='company' ColumnName='company' />
-                <ScalarProperty Name='pwd' ColumnName='pwd' />
-                <ScalarProperty Name='do' ColumnName='do' />
-                <ScalarProperty Name='name' ColumnName='name' />
-                <ScalarProperty Name='salt' ColumnName='salt' />
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FinanceModelStoreContainer" CdmEntityContainer="FinanceEntities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="FinanceModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="pwd" ColumnName="pwd" />
+                <ScalarProperty Name="do" ColumnName="do" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="bianhao" ColumnName="bianhao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='Accounting'>
-            <EntityTypeMapping TypeName='FinanceModel.Accounting'>
-              <MappingFragment StoreEntitySet='Accounting'>
-                <ScalarProperty Name='code' ColumnName='code' />
-                <ScalarProperty Name='name' ColumnName='name' />
-                <ScalarProperty Name='direction' ColumnName='direction' />
-                <ScalarProperty Name='load' ColumnName='load' />
-                <ScalarProperty Name='borrowed' ColumnName='borrowed' />
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="Accounting">
+            <EntityTypeMapping TypeName="FinanceModel.Accounting">
+              <MappingFragment StoreEntitySet="Accounting">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+                <ScalarProperty Name="load" ColumnName="load" />
+                <ScalarProperty Name="borrowed" ColumnName="borrowed" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="company" ColumnName="company" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='Department'>
-            <EntityTypeMapping TypeName='FinanceModel.Department'>
-              <MappingFragment StoreEntitySet='Department'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='department1' ColumnName='department' />
-                <ScalarProperty Name='man' ColumnName='man' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="FinanceModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="department1" ColumnName="department" />
+                <ScalarProperty Name="man" ColumnName="man" />
+                <ScalarProperty Name="company" ColumnName="company" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='FinancingExpenditure'>
-            <EntityTypeMapping TypeName='FinanceModel.FinancingExpenditure'>
-              <MappingFragment StoreEntitySet='FinancingExpenditure'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='financingExpenditure1' ColumnName='financingExpenditure' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="FinancingExpenditure">
+            <EntityTypeMapping TypeName="FinanceModel.FinancingExpenditure">
+              <MappingFragment StoreEntitySet="FinancingExpenditure">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="financingExpenditure1" ColumnName="financingExpenditure" />
+                <ScalarProperty Name="company" ColumnName="company" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='FinancingIncome'>
-            <EntityTypeMapping TypeName='FinanceModel.FinancingIncome'>
-              <MappingFragment StoreEntitySet='FinancingIncome'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='financingIncome1' ColumnName='financingIncome' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="FinancingIncome">
+            <EntityTypeMapping TypeName="FinanceModel.FinancingIncome">
+              <MappingFragment StoreEntitySet="FinancingIncome">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="financingIncome1" ColumnName="financingIncome" />
+                <ScalarProperty Name="company" ColumnName="company" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='InvestmentExpenditure'>
-            <EntityTypeMapping TypeName='FinanceModel.InvestmentExpenditure'>
-              <MappingFragment StoreEntitySet='InvestmentExpenditure'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='investmentExpenditure1' ColumnName='investmentExpenditure' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="InvestmentExpenditure">
+            <EntityTypeMapping TypeName="FinanceModel.InvestmentExpenditure">
+              <MappingFragment StoreEntitySet="InvestmentExpenditure">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="investmentExpenditure1" ColumnName="investmentExpenditure" />
+                <ScalarProperty Name="company" ColumnName="company" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='InvestmentIncome'>
-            <EntityTypeMapping TypeName='FinanceModel.InvestmentIncome'>
-              <MappingFragment StoreEntitySet='InvestmentIncome'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='investmentIncome1' ColumnName='investmentIncome' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="InvestmentIncome">
+            <EntityTypeMapping TypeName="FinanceModel.InvestmentIncome">
+              <MappingFragment StoreEntitySet="InvestmentIncome">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="investmentIncome1" ColumnName="investmentIncome" />
+                <ScalarProperty Name="company" ColumnName="company" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='ManagementExpenditure'>
-            <EntityTypeMapping TypeName='FinanceModel.ManagementExpenditure'>
-              <MappingFragment StoreEntitySet='ManagementExpenditure'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='managementExpenditure1' ColumnName='managementExpenditure' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="ManagementExpenditure">
+            <EntityTypeMapping TypeName="FinanceModel.ManagementExpenditure">
+              <MappingFragment StoreEntitySet="ManagementExpenditure">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="managementExpenditure1" ColumnName="managementExpenditure" />
+                <ScalarProperty Name="company" ColumnName="company" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='ManagementIncome'>
-            <EntityTypeMapping TypeName='FinanceModel.ManagementIncome'>
-              <MappingFragment StoreEntitySet='ManagementIncome'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='managementIncome1' ColumnName='managementIncome' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="ManagementIncome">
+            <EntityTypeMapping TypeName="FinanceModel.ManagementIncome">
+              <MappingFragment StoreEntitySet="ManagementIncome">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="managementIncome1" ColumnName="managementIncome" />
+                <ScalarProperty Name="company" ColumnName="company" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='SimpleAccounting'>
-            <EntityTypeMapping TypeName='FinanceModel.SimpleAccounting'>
-              <MappingFragment StoreEntitySet='SimpleAccounting'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='company' ColumnName='company' />
-                <ScalarProperty Name='accounting' ColumnName='accounting' />
+          <EntitySetMapping Name="SimpleAccounting">
+            <EntityTypeMapping TypeName="FinanceModel.SimpleAccounting">
+              <MappingFragment StoreEntitySet="SimpleAccounting">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="accounting" ColumnName="accounting" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='SimpleData'>
-            <EntityTypeMapping TypeName='FinanceModel.SimpleData'>
-              <MappingFragment StoreEntitySet='SimpleData'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='company' ColumnName='company' />
-                <ScalarProperty Name='project' ColumnName='project' />
-                <ScalarProperty Name='receivable' ColumnName='receivable' />
-                <ScalarProperty Name='receipts' ColumnName='receipts' />
-                <ScalarProperty Name='cope' ColumnName='cope' />
-                <ScalarProperty Name='payment' ColumnName='payment' />
-                <ScalarProperty Name='accounting' ColumnName='accounting' />
+          <EntitySetMapping Name="SimpleData">
+            <EntityTypeMapping TypeName="FinanceModel.SimpleData">
+              <MappingFragment StoreEntitySet="SimpleData">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="project" ColumnName="project" />
+                <ScalarProperty Name="receivable" ColumnName="receivable" />
+                <ScalarProperty Name="receipts" ColumnName="receipts" />
+                <ScalarProperty Name="cope" ColumnName="cope" />
+                <ScalarProperty Name="payment" ColumnName="payment" />
+                <ScalarProperty Name="accounting" ColumnName="accounting" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='VoucherSummary'>
-            <EntityTypeMapping TypeName='FinanceModel.VoucherSummary'>
-              <MappingFragment StoreEntitySet='VoucherSummary'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='word' ColumnName='word' />
-                <ScalarProperty Name='no' ColumnName='no' />
-                <ScalarProperty Name='abstract' ColumnName='abstract' />
-                <ScalarProperty Name='code' ColumnName='code' />
-                <ScalarProperty Name='department' ColumnName='department' />
-                <ScalarProperty Name='expenditure' ColumnName='expenditure' />
-                <ScalarProperty Name='note' ColumnName='note' />
-                <ScalarProperty Name='man' ColumnName='man' />
-                <ScalarProperty Name='money' ColumnName='money' />
-                <ScalarProperty Name='company' ColumnName='company' />
-                <ScalarProperty Name='voucherDate' ColumnName='voucherDate' />
-                <ScalarProperty Name='real' ColumnName='real' />
+          <EntitySetMapping Name="VoucherSummary">
+            <EntityTypeMapping TypeName="FinanceModel.VoucherSummary">
+              <MappingFragment StoreEntitySet="VoucherSummary">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="word" ColumnName="word" />
+                <ScalarProperty Name="no" ColumnName="no" />
+                <ScalarProperty Name="abstract" ColumnName="abstract" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="expenditure" ColumnName="expenditure" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="man" ColumnName="man" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="voucherDate" ColumnName="voucherDate" />
+                <ScalarProperty Name="real" ColumnName="real" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name='VoucherWord'>
-            <EntityTypeMapping TypeName='FinanceModel.VoucherWord'>
-              <MappingFragment StoreEntitySet='VoucherWord'>
-                <ScalarProperty Name='id' ColumnName='id' />
-                <ScalarProperty Name='word' ColumnName='word' />
-                <ScalarProperty Name='company' ColumnName='company' />
+          <EntitySetMapping Name="VoucherWord">
+            <EntityTypeMapping TypeName="FinanceModel.VoucherWord">
+              <MappingFragment StoreEntitySet="VoucherWord">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="word" ColumnName="word" />
+                <ScalarProperty Name="company" ColumnName="company" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quanxian">
+            <EntityTypeMapping TypeName="FinanceModel.quanxian">
+              <MappingFragment StoreEntitySet="quanxian">
+                <ScalarProperty Name="bianhao" ColumnName="bianhao" />
+                <ScalarProperty Name="zhgl_select" ColumnName="zhgl_select" />
+                <ScalarProperty Name="zhgl_update" ColumnName="zhgl_update" />
+                <ScalarProperty Name="zhgl_delete" ColumnName="zhgl_delete" />
+                <ScalarProperty Name="zhgl_add" ColumnName="zhgl_add" />
+                <ScalarProperty Name="jjzz_select" ColumnName="jjzz_select" />
+                <ScalarProperty Name="jjzz_update" ColumnName="jjzz_update" />
+                <ScalarProperty Name="jjzz_delete" ColumnName="jjzz_delete" />
+                <ScalarProperty Name="jjzz_add" ColumnName="jjzz_add" />
+                <ScalarProperty Name="jjtz_select" ColumnName="jjtz_select" />
+                <ScalarProperty Name="jjtz_update" ColumnName="jjtz_update" />
+                <ScalarProperty Name="jjtz_delete" ColumnName="jjtz_delete" />
+                <ScalarProperty Name="jjtz_add" ColumnName="jjtz_add" />
+                <ScalarProperty Name="lysy_select" ColumnName="lysy_select" />
+                <ScalarProperty Name="zcfz_select" ColumnName="zcfz_select" />
+                <ScalarProperty Name="xjll_select" ColumnName="xjll_select" />
+                <ScalarProperty Name="znkb_select" ColumnName="znkb_select" />
+                <ScalarProperty Name="pzhz_select" ColumnName="pzhz_select" />
+                <ScalarProperty Name="pzhz_update" ColumnName="pzhz_update" />
+                <ScalarProperty Name="pzhz_delete" ColumnName="pzhz_delete" />
+                <ScalarProperty Name="pzhz_add" ColumnName="pzhz_add" />
+                <ScalarProperty Name="bmsz_select" ColumnName="bmsz_select" />
+                <ScalarProperty Name="bmsz_update" ColumnName="bmsz_update" />
+                <ScalarProperty Name="bmsz_delete" ColumnName="bmsz_delete" />
+                <ScalarProperty Name="bmsz_add" ColumnName="bmsz_add" />
+                <ScalarProperty Name="kzxm_select" ColumnName="kzxm_select" />
+                <ScalarProperty Name="kzxm_update" ColumnName="kzxm_update" />
+                <ScalarProperty Name="kzxm_delete" ColumnName="kzxm_delete" />
+                <ScalarProperty Name="kzxm_add" ColumnName="kzxm_add" />
+                <ScalarProperty Name="kmzz_select" ColumnName="kmzz_select" />
+                <ScalarProperty Name="kmzz_update" ColumnName="kmzz_update" />
+                <ScalarProperty Name="kmzz_delete" ColumnName="kmzz_delete" />
+                <ScalarProperty Name="kmzz_add" ColumnName="kmzz_add" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -444,18 +567,18 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns='http://schemas.microsoft.com/ado/2009/11/edmx'>
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>
-        <DesignerProperty Name='MetadataArtifactProcessing' Value='EmbedInOutputAssembly' />
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
     </Connection>
     <Options>
       <DesignerInfoPropertySet>
-        <DesignerProperty Name='ValidateOnBuild' Value='true' />
-        <DesignerProperty Name='EnablePluralization' Value='False' />
-        <DesignerProperty Name='IncludeForeignKeysInModel' Value='True' />
-        <DesignerProperty Name='CodeGenerationStrategy' Value='无' />
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

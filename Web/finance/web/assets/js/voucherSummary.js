@@ -14,13 +14,25 @@
 var choiceCodeId = '';
 
 $(function () {
+    
     $('#word').combobox({
         valueField: 'id',
         textField: 'word'
     });
-    
     getWord("word");
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.pzhz_select == "是") {
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
 })
 
 function getWord(id) {
@@ -99,44 +111,96 @@ function setTable(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                addVoucherSummary();
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.pzhz_add == "是") {
+                            addVoucherSummary();
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    updateVoucherSummary(sels[0])
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.pzhz_update == "是") {
+                            var sels = $('#data-table').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                updateVoucherSummary(sels[0])
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    var ids = []
-                    for (var i = 0; i < sels.length; i++) {
-                        ids.push(sels[i].id)
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.pzhz_delete == "是") {
+                            var sels = $('#data-table').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                var ids = []
+                                for (var i = 0; i < sels.length; i++) {
+                                    ids.push(sels[i].id)
+                                }
+                                delVoucherSummary(ids)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
                     }
-                    delVoucherSummary(ids)
-                }
+                });
+                
             }
         }, '-', {
             text: '审核',
             iconCls: 'icon-ok',
             handler: function (e) {
-                var sels = $('#data-table').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    examineVoucherSummary()
-                }
+                
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.pzhz_update == "是") {
+                            var sels = $('#data-table').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                updateVoucherSummary(sels[0])
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
             }
         }],
         data: data.pageList,
@@ -193,10 +257,23 @@ function setTable(data) {
 }
 
 function selectBtn() {
-    page.selectParamsMap.word = $("#word").combobox('getText');
-    page.selectParamsMap.year = $("#year").textbox('getText');
-    page.selectParamsMap.month = $("#month").textbox('getText');
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.pzhz_select == "是") {
+                page.selectParamsMap.word = $("#word").combobox('getText');
+                page.selectParamsMap.year = $("#year").textbox('getText');
+                page.selectParamsMap.month = $("#month").textbox('getText');
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 }
 
 
@@ -607,63 +684,76 @@ function checkExamineForm(params) {
     return true;
 }
 
-function toExcel(){
-    $.ajax({
-        type: 'Post',
-        url: "web_service/voucherSummary.asmx/getVoucherSummaryList",
-        beforeSend: function () {
-            $.messager.progress({
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
-        data: {
-            financePageJson: JSON.stringify(page)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                var array = result.data.pageList
-                console.log(result.data.pageList)
-                var header = []
-                for (var i = 0; i < array.length; i++) {
-                    var body = {
-                        rownum: array[i].rownum,
-                        word: array[i].word,
-                        no: array[i].no,
-                        voucherDate: new Date(parseInt(array[i].voucherDate.substr(6, 13))).toLocaleString(),
-                        abstract: array[i].abstract,
-                        code: array[i].code,
-                        fullName: array[i].fullName,
-                        load: array[i].load,
-                        borrowed: array[i].borrowed,
-                        department: array[i].department,
-                        expenditure: array[i].expenditure,
-                        note: array[i].note,
-                        man: array[i].man,
-                        money: array[i].money,
-                        real: array[i].real,
-                        not_get: array[i].money - array[i].real
+function toExcel() {
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.pzhz_select == "是") {
+                $.ajax({
+                    type: 'Post',
+                    url: "web_service/voucherSummary.asmx/getVoucherSummaryList",
+                    beforeSend: function () {
+                        $.messager.progress({
+                            title: '提示',
+                            msg: '正在加载',
+                            text: ''
+                        });
+                    },
+                    complete: function () {
+                        $.messager.progress('close');
+                    },
+                    data: {
+                        financePageJson: JSON.stringify(page)
+                    },
+                    dataType: "xml",
+                    success: function (data) {
+                        var result = getJson(data);
+                        if (result.code == 200) {
+                            var array = result.data.pageList
+                            console.log(result.data.pageList)
+                            var header = []
+                            for (var i = 0; i < array.length; i++) {
+                                var body = {
+                                    rownum: array[i].rownum,
+                                    word: array[i].word,
+                                    no: array[i].no,
+                                    voucherDate: new Date(parseInt(array[i].voucherDate.substr(6, 13))).toLocaleString(),
+                                    abstract: array[i].abstract,
+                                    code: array[i].code,
+                                    fullName: array[i].fullName,
+                                    load: array[i].load,
+                                    borrowed: array[i].borrowed,
+                                    department: array[i].department,
+                                    expenditure: array[i].expenditure,
+                                    note: array[i].note,
+                                    man: array[i].man,
+                                    money: array[i].money,
+                                    real: array[i].real,
+                                    not_get: array[i].money - array[i].real
+                                }
+                                header.push(body)
+                            }
+                            console.log(header)
+                            title = ['序号', '凭证字', '凭证号', '录入时间', '摘要', '科目代码', '科目名称', '借方金额', '贷方金额', '市场部', '开支项目', '备注', '审核人', '应收/付', '实收/付', '未收/付']
+                            JSONToExcelConvertor(header, "voucherSummary", title)
+
+
+                        }
+                    },
+                    error: function (err) {
+                        alert("错误！")
+                        console.log(err)
                     }
-                    header.push(body)
-                }
-                console.log(header)
-                title = ['序号','凭证字','凭证号','录入时间','摘要','科目代码','科目名称','借方金额','贷方金额','市场部','开支项目','备注','审核人','应收/付','实收/付','未收/付']
-                JSONToExcelConvertor(header, "voucherSummary", title)
-
-
+                })
+            } else {
+                $.messager.alert('Warning', '无权限');
             }
-        },
-        error: function (err) {
-            alert("错误！")
-            console.log(err)
         }
-    })
+    });
+    
 }
 
 

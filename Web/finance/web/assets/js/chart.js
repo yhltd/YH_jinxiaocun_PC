@@ -4,43 +4,56 @@
 }
 
 $(function () {
-    $(".chart-item").css({
-        "width": (width-202) / 2 + 39+ "px",
-        "height": (height-68) / 2 + "px"
-    })
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.znkb_select == "是") {
+                $(".chart-item").css({
+                    "width": (width - 202) / 2 + 39 + "px",
+                    "height": (height - 68) / 2 + "px"
+                })
 
-    $(".chart-item > div").css({
-        "width": $(".chart-item")[0].scrollWidth - 20 + "px",
-        "height": $(".chart-item")[0].scrollHeight - 20 + "px"
-    })
+                $(".chart-item > div").css({
+                    "width": $(".chart-item")[0].scrollWidth - 20 + "px",
+                    "height": $(".chart-item")[0].scrollHeight - 20 + "px"
+                })
 
-    $('#add-voucherDate').datetimebox({
-        okText: '确定',
-        closeText: '关闭',
-        currentText: '当前时间',
-        panelWidth: 318,
-        panelHeight: 280,
-        width: 318,
-        height: 38
+                $('#add-voucherDate').datetimebox({
+                    okText: '确定',
+                    closeText: '关闭',
+                    currentText: '当前时间',
+                    panelWidth: 318,
+                    panelHeight: 280,
+                    width: 318,
+                    height: 38
+                });
+
+                //年初余额
+                getAccounting();
+
+                //凭证金额
+                getSummary();
+
+                //科目余额
+                getAccountingBalance();
+
+                //资产负债
+                getLiabilities();
+
+                //利润合计
+                getProfit();
+
+                //现金流量
+                getFlow();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
     });
-
-    //年初余额
-    getAccounting();
-
-    //凭证金额
-    getSummary();
-
-    //科目余额
-    getAccountingBalance();
-
-    //资产负债
-    getLiabilities();
     
-    //利润合计
-    getProfit();
-
-    //现金流量
-    getFlow();
 })
 
 function getAccounting() {
@@ -529,57 +542,70 @@ function getFlow(data) {
 }
 
 function selectBtn() {
-    page.start_date = $("#start_date").textbox('getText');
-    page.stop_date = $("#stop_date").textbox('getText');
-    console.log(page.start_date);
-    console.log(page.stop_date);
-    if (page.start_date != "" && page.stop_date == "") {
-        $.messager.alert({
-            title: "错误",//标题
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.znkb_select == "是") {
+                page.start_date = $("#start_date").textbox('getText');
+                page.stop_date = $("#stop_date").textbox('getText');
+                console.log(page.start_date);
+                console.log(page.stop_date);
+                if (page.start_date != "" && page.stop_date == "") {
+                    $.messager.alert({
+                        title: "错误",//标题
 
-            msg: "必须同时输入开始日期和结束日期",//信息
+                        msg: "必须同时输入开始日期和结束日期",//信息
 
-            icon: "error",//图标类型：error-错误；warning-警告; 或其他
+                        icon: "error",//图标类型：error-错误；warning-警告; 或其他
 
-        });
-    }
-    else if (page.start_date != "" && page.stop_date == "") {
-        $.messager.alert({
-            title: "错误",//标题
+                    });
+                }
+                else if (page.start_date != "" && page.stop_date == "") {
+                    $.messager.alert({
+                        title: "错误",//标题
 
-            msg: "必须同时输入开始日期和结束日期",//信息
+                        msg: "必须同时输入开始日期和结束日期",//信息
 
-            icon: "error",//图标类型：error-错误；warning-警告; 或其他
+                        icon: "error",//图标类型：error-错误；warning-警告; 或其他
 
-        });
-    }
-    else if (page.start_date > page.stop_date) {
-        $.messager.alert({
-            title: "错误",//标题
+                    });
+                }
+                else if (page.start_date > page.stop_date) {
+                    $.messager.alert({
+                        title: "错误",//标题
 
-            msg: "开始日期不能大于结束日期",//信息
+                        msg: "开始日期不能大于结束日期",//信息
 
-            icon: "error",//图标类型：error-错误；warning-警告; 或其他
+                        icon: "error",//图标类型：error-错误；warning-警告; 或其他
 
-        });
-    }
-    else {
-        //年初余额
-        getAccounting();
+                    });
+                }
+                else {
+                    //年初余额
+                    getAccounting();
 
-        //凭证金额
-        getSummary();
+                    //凭证金额
+                    getSummary();
 
-        //科目余额
-        getAccountingBalance();
+                    //科目余额
+                    getAccountingBalance();
 
-        //资产负债
-        getLiabilities();
+                    //资产负债
+                    getLiabilities();
 
-        //利润合计
-        getProfit();
+                    //利润合计
+                    getProfit();
 
-        //现金流量
-        getFlow();
-    }
+                    //现金流量
+                    getFlow();
+                }
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 }

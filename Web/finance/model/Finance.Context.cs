@@ -38,5 +38,6 @@ namespace Web.finance.model
         public DbSet<SimpleData> SimpleData { get; set; }
         public DbSet<VoucherSummary> VoucherSummary { get; set; }
         public DbSet<VoucherWord> VoucherWord { get; set; }
+        public DbSet<quanxian> quanxian { get; set; }
     }
 }

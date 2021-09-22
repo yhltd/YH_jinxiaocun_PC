@@ -30,8 +30,23 @@ $(function () {
     $("#clases").combobox({
         data: clases,
         onSelect: function (e) {
-            page.currentPage = 1
-            getList(e.classId);
+
+            ajaxUtil({
+                url: "web_service/user_management.asmx/quanxianGet",
+                loading: true,
+            }, function (result) {
+                if (result.code == 200) {
+                    quanxian = result.data
+                    if (quanxian.kmzz_select == "是") {
+                        page.currentPage = 1
+                        getList(e.classId);
+                    } else {
+                        $.messager.alert('Warning', '无权限');
+                    }
+                }
+            });
+
+            
         },
         valueField: 'classId',
         textField: 'className'
@@ -84,23 +99,37 @@ function setTable(data) {
             iconCls: 'icon-add',
             handler: function () {
 
-                $('#new').window({
-                    title: "新增",
-                    width: 800,
-                    height: 550,
-                    top: 20,
-                    collapsible: false,
-                    minimizable: false,
-                    maximizable: false,
-                    closable: true,
-                    draggable: true,
-                    resizable: false,
-                    shadow: false,
-                    modal: true,
-                    onClose: function () {
-                        clearNew();
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kmzz_add == "是") {
+                            $('#new').window({
+                                title: "新增",
+                                width: 800,
+                                height: 550,
+                                top: 20,
+                                collapsible: false,
+                                minimizable: false,
+                                maximizable: false,
+                                closable: true,
+                                draggable: true,
+                                resizable: false,
+                                shadow: false,
+                                modal: true,
+                                onClose: function () {
+                                    clearNew();
+                                }
+                            });
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
                     }
                 });
+
+                
 
                 $("#grade-list1").datalist({
                     height: 300,
@@ -235,23 +264,53 @@ function setTable(data) {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = getSelected();
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    update(sels[0])
-                }
+
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kmzz_update == "是") {
+                            var sels = getSelected();
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                update(sels[0])
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = getSelected();
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    del(sels)
-                }
+
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kmzz_delete == "是") {
+                            var sels = getSelected();
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                del(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+
+                
             }
         }],
         data: data.pageList,

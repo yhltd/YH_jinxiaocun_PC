@@ -26,7 +26,20 @@ $(function () {
         onSelect: function (e) {
             page.currentPage = 1
             page.selectParamsMap.direction = e.direction
-            getList()
+            ajaxUtil({
+                url: "web_service/user_management.asmx/quanxianGet",
+                loading: true,
+            }, function (result) {
+                if (result.code == 200) {
+                    quanxian = result.data
+                    if (quanxian.lysy_select == "是") {
+                        getList()
+                    } else {
+                        $.messager.alert('Warning', '无权限');
+                    }
+                }
+            });
+            
         },
         valueField: 'direction',
         textField: 'text'
@@ -44,9 +57,22 @@ function getYearAndMonth() {
 }
 
 function selectBtn() {
-    page.selectParamsMap.year = $("#year").textbox('getText');
-    page.selectParamsMap.month = $("#month").textbox('getText');
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.lysy_select == "是") {
+                page.selectParamsMap.year = $("#year").textbox('getText');
+                page.selectParamsMap.month = $("#month").textbox('getText');
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 }
 
 function getList() {
@@ -108,50 +134,63 @@ function setTable(data) {
 }
 
 function toExcel() {
-    if (page.selectParamsMap.year == '' || page.selectParamsMap.month == '') {
-        getYearAndMonth();
-    }
-    $.ajax({
-        type: 'Post',
-        url: "web_service/accounting.asmx/getProfitList",
-        beforeSend: function () {
-            $.messager.progress({
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
-        data: {
-            financePageJson: JSON.stringify(page)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                console.log(result.data.pageList)
-                var array = result.data.pageList
-                var header = []
-                for (var i = 0; i < array.length; i++) {
-                    var body = {
-                        name: array[i].name,
-                        sum_month: array[i].sum_month,
-                        sum_year: array[i].sum_year,
-                    }
-                    header.push(body)
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.lysy_select == "是") {
+                if (page.selectParamsMap.year == '' || page.selectParamsMap.month == '') {
+                    getYearAndMonth();
                 }
-                console.log(header)
-                title = ['科目名称', '本月合计', '本年合计']
-                JSONToExcelConvertor(header, "利益损益", title)
+                $.ajax({
+                    type: 'Post',
+                    url: "web_service/accounting.asmx/getProfitList",
+                    beforeSend: function () {
+                        $.messager.progress({
+                            title: '提示',
+                            msg: '正在加载',
+                            text: ''
+                        });
+                    },
+                    complete: function () {
+                        $.messager.progress('close');
+                    },
+                    data: {
+                        financePageJson: JSON.stringify(page)
+                    },
+                    dataType: "xml",
+                    success: function (data) {
+                        var result = getJson(data);
+                        if (result.code == 200) {
+                            console.log(result.data.pageList)
+                            var array = result.data.pageList
+                            var header = []
+                            for (var i = 0; i < array.length; i++) {
+                                var body = {
+                                    name: array[i].name,
+                                    sum_month: array[i].sum_month,
+                                    sum_year: array[i].sum_year,
+                                }
+                                header.push(body)
+                            }
+                            console.log(header)
+                            title = ['科目名称', '本月合计', '本年合计']
+                            JSONToExcelConvertor(header, "利益损益", title)
+                        }
+                    },
+                    error: function (err) {
+                        alert("错误！")
+                        console.log(err)
+                    }
+                })
+            } else {
+                $.messager.alert('Warning', '无权限');
             }
-        },
-        error: function (err) {
-            alert("错误！")
-            console.log(err)
         }
-    })
+    });
+    
 }
 
 

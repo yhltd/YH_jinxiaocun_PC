@@ -10,6 +10,7 @@
           <ScalarProperty Name="do" ColumnName="do" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="salt" ColumnName="salt" />
+          <ScalarProperty Name="bianhao" ColumnName="bianhao" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -138,6 +139,46 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="word" ColumnName="word" />
           <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="quanxian">
+      <EntityTypeMapping TypeName="FinanceModel.quanxian">
+        <MappingFragment StoreEntitySet="quanxian">
+          <ScalarProperty Name="bianhao" ColumnName="bianhao" />
+          <ScalarProperty Name="zhgl_select" ColumnName="zhgl_select" />
+          <ScalarProperty Name="zhgl_update" ColumnName="zhgl_update" />
+          <ScalarProperty Name="zhgl_delete" ColumnName="zhgl_delete" />
+          <ScalarProperty Name="zhgl_add" ColumnName="zhgl_add" />
+          <ScalarProperty Name="jjzz_select" ColumnName="jjzz_select" />
+          <ScalarProperty Name="jjzz_update" ColumnName="jjzz_update" />
+          <ScalarProperty Name="jjzz_delete" ColumnName="jjzz_delete" />
+          <ScalarProperty Name="jjzz_add" ColumnName="jjzz_add" />
+          <ScalarProperty Name="jjtz_select" ColumnName="jjtz_select" />
+          <ScalarProperty Name="jjtz_update" ColumnName="jjtz_update" />
+          <ScalarProperty Name="jjtz_delete" ColumnName="jjtz_delete" />
+          <ScalarProperty Name="jjtz_add" ColumnName="jjtz_add" />
+          <ScalarProperty Name="lysy_select" ColumnName="lysy_select" />
+          <ScalarProperty Name="zcfz_select" ColumnName="zcfz_select" />
+          <ScalarProperty Name="xjll_select" ColumnName="xjll_select" />
+          <ScalarProperty Name="znkb_select" ColumnName="znkb_select" />
+          <ScalarProperty Name="pzhz_select" ColumnName="pzhz_select" />
+          <ScalarProperty Name="pzhz_update" ColumnName="pzhz_update" />
+          <ScalarProperty Name="pzhz_delete" ColumnName="pzhz_delete" />
+          <ScalarProperty Name="pzhz_add" ColumnName="pzhz_add" />
+          <ScalarProperty Name="bmsz_select" ColumnName="bmsz_select" />
+          <ScalarProperty Name="bmsz_update" ColumnName="bmsz_update" />
+          <ScalarProperty Name="bmsz_delete" ColumnName="bmsz_delete" />
+          <ScalarProperty Name="bmsz_add" ColumnName="bmsz_add" />
+          <ScalarProperty Name="kzxm_select" ColumnName="kzxm_select" />
+          <ScalarProperty Name="kzxm_update" ColumnName="kzxm_update" />
+          <ScalarProperty Name="kzxm_delete" ColumnName="kzxm_delete" />
+          <ScalarProperty Name="kzxm_add" ColumnName="kzxm_add" />
+          <ScalarProperty Name="kmzz_select" ColumnName="kmzz_select" />
+          <ScalarProperty Name="kmzz_update" ColumnName="kmzz_update" />
+          <ScalarProperty Name="kmzz_delete" ColumnName="kmzz_delete" />
+          <ScalarProperty Name="kmzz_add" ColumnName="kmzz_add" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

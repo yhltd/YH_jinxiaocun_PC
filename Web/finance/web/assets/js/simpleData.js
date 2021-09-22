@@ -9,12 +9,38 @@
 }
 
 $(function () {
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.jjtz_select == "是") {
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 })
 
 function selectBtn() {
-    page.selectParamsMap.project = $("#project").textbox('getText');
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.jjtz_select == "是") {
+                page.selectParamsMap.project = $("#project").textbox('getText');
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 }
 
 function getList() {
@@ -56,29 +82,68 @@ function setTable(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                add();
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.jjtz_add == "是") {
+                            add();
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    update(sels[0])
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.jjtz_update == "是") {
+                            var sels = $('#data-table').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                update(sels[0])
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    del(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.jjtz_delete == "是") {
+                            var sels = $('#data-table').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                del(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,
@@ -313,54 +378,67 @@ function getAccounting(id) {
 
 
 function toExcel() {
-    $.ajax({
-        type: 'Post',
-        url: "web_service/simpleData.asmx/getSimpleDataList",
-        beforeSend: function () {
-            $.messager.progress({
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
-        data: {
-            financePageJson: JSON.stringify(page)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                console.log(result.data.pageList)
-                var array = result.data.pageList
-                var header = []
-                for (var i = 0; i < array.length; i++) {
-                    var uncollected = array[i].receivable - array[i].receipts
-                    var paid = array[i].cope - array[i].payment
-                    var body = {
-                        project: array[i].project,
-                        receivable: array[i].receivable,
-                        receipts: array[i].receipts,
-                        uncollected: uncollected,
-                        cope: array[i].cope,
-                        payment: array[i].payment,
-                        paid: paid,
-                        accounting: array[i].accounting,
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.jjtz_select == "是") {
+                $.ajax({
+                    type: 'Post',
+                    url: "web_service/simpleData.asmx/getSimpleDataList",
+                    beforeSend: function () {
+                        $.messager.progress({
+                            title: '提示',
+                            msg: '正在加载',
+                            text: ''
+                        });
+                    },
+                    complete: function () {
+                        $.messager.progress('close');
+                    },
+                    data: {
+                        financePageJson: JSON.stringify(page)
+                    },
+                    dataType: "xml",
+                    success: function (data) {
+                        var result = getJson(data);
+                        if (result.code == 200) {
+                            console.log(result.data.pageList)
+                            var array = result.data.pageList
+                            var header = []
+                            for (var i = 0; i < array.length; i++) {
+                                var uncollected = array[i].receivable - array[i].receipts
+                                var paid = array[i].cope - array[i].payment
+                                var body = {
+                                    project: array[i].project,
+                                    receivable: array[i].receivable,
+                                    receipts: array[i].receipts,
+                                    uncollected: uncollected,
+                                    cope: array[i].cope,
+                                    payment: array[i].payment,
+                                    paid: paid,
+                                    accounting: array[i].accounting,
+                                }
+                                header.push(body)
+                            }
+                            console.log(header)
+                            title = ['项目名称', '应收', '实收', '未收', '应付', '实付', '未付', '科目']
+                            JSONToExcelConvertor(header, "极简台账", title)
+                        }
+                    },
+                    error: function (err) {
+                        alert("错误！")
+                        console.log(err)
                     }
-                    header.push(body)
-                }
-                console.log(header)
-                title = ['项目名称', '应收', '实收','未收','应付','实付','未付','科目']
-                JSONToExcelConvertor(header, "极简台账", title)
+                })
+            } else {
+                $.messager.alert('Warning', '无权限');
             }
-        },
-        error: function (err) {
-            alert("错误！")
-            console.log(err)
         }
-    })
+    });
+    
 }
 
 

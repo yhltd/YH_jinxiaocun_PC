@@ -20,5 +20,6 @@ namespace Web.finance.model
         public string @do { get; set; }
         public string name { get; set; }
         public string salt { get; set; }
+        public string bianhao { get; set; }
     }
 }

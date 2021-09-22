@@ -89,6 +89,8 @@
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel.DomainServices.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ServiceModel.DomainServices.Server, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -112,6 +114,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Web.dll" />
+    <Content Include="bin\Web.pdb" />
     <Content Include="chu_ku.aspx" />
     <Content Include="ck_san.aspx" />
     <Content Include="Default.aspx" />
@@ -1089,6 +1093,7 @@
     <Content Include="finance\web\assets\js\index.js" />
     <Content Include="finance\web\assets\js\items.js" />
     <Content Include="finance\web\assets\js\flow.js" />
+    <Content Include="finance\web\assets\js\user_management.js" />
     <Content Include="finance\web\assets\js\Jquery.js" />
     <Content Include="finance\web\assets\js\liabilities.js" />
     <Content Include="finance\web\assets\js\main.js" />
@@ -1115,6 +1120,7 @@
     <Content Include="finance\web\view\subject_ledger.aspx" />
     <Content Include="finance\web\view\update_do.aspx" />
     <Content Include="finance\web\view\update_pwd.aspx" />
+    <Content Include="finance\web\view\user_management.aspx" />
     <Content Include="finance\web\view\web_service\accounting.asmx" />
     <Content Include="finance\web\view\web_service\chart.asmx" />
     <Content Include="finance\web\view\web_service\department.asmx" />
@@ -1126,9 +1132,11 @@
     <Content Include="finance\web\view\web_service\simpleData.asmx" />
     <Content Include="finance\web\view\web_service\space.asmx" />
     <Content Include="finance\web\view\web_service\updateUser.asmx" />
+    <Content Include="finance\web\view\web_service\user_management.asmx" />
     <Content Include="finance\web\view\web_service\voucherSummary.asmx" />
     <Content Include="finance\web\view\voucherSummary.aspx" />
     <Content Include="finance\web\view\web_service\voucherWord.asmx" />
+    <Content Include="finance\web\view\web_service\WebService1.asmx" />
     <Content Include="frmMain.aspx" />
     <Content Include="frmNav.aspx" />
     <Content Include="frmReadIDCare.aspx" />
@@ -1908,6 +1916,8 @@
     <Compile Include="finance\entiy\Liabilities.cs" />
     <Compile Include="finance\entiy\Profit.cs" />
     <Compile Include="finance\entiy\VoucherSummaryItem.cs" />
+    <Compile Include="finance\entiy\User_ManagementItem.cs" />
+    <Compile Include="finance\entiy\quanxianItem.cs" />
     <Compile Include="finance\model\Account.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
@@ -1939,30 +1949,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Finance.edmx</DependentUpon>
     </Compile>
-    <Compile Include="finance\model\FinancingModel.cs" />
     <Compile Include="finance\model\FinancingExpenditure.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
     <Compile Include="finance\model\FinancingIncome.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
-    <Compile Include="finance\model\InvestmentModel.cs" />
+    <Compile Include="finance\model\FinancingModel.cs" />
     <Compile Include="finance\model\InvestmentExpenditure.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
     <Compile Include="finance\model\InvestmentIncome.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
+    <Compile Include="finance\model\InvestmentModel.cs" />
     <Compile Include="finance\model\FlowModel.cs" />
     <Compile Include="finance\model\LiabilitiesModel.cs" />
-    <Compile Include="finance\model\ManagementModel.cs" />
     <Compile Include="finance\model\ManagementExpenditure.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
     <Compile Include="finance\model\ManagementIncome.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
+    <Compile Include="finance\model\ManagementModel.cs" />
     <Compile Include="finance\model\ProfitModel.cs" />
+    <Compile Include="finance\model\quanxian.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
     <Compile Include="finance\model\SimpleAccounting.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
@@ -1987,6 +2000,7 @@
       <DependentUpon>SoftTime.edmx</DependentUpon>
     </Compile>
     <Compile Include="finance\model\SpaceModel.cs" />
+    <Compile Include="finance\model\User_ManagementModel.cs" />
     <Compile Include="finance\model\VoucherSummary.cs">
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
@@ -2007,6 +2021,7 @@
     <Compile Include="finance\service\ProfitService.cs" />
     <Compile Include="finance\service\SimpleAccountingService.cs" />
     <Compile Include="finance\service\SimpleDataService.cs" />
+    <Compile Include="finance\service\User_ManagementService.cs" />
     <Compile Include="finance\service\VoucherSummaryService.cs" />
     <Compile Include="finance\service\VoucherWordService.cs" />
     <Compile Include="finance\util\FinancePage.cs" />
@@ -2128,6 +2143,13 @@
     <Compile Include="finance\web\view\update_pwd.aspx.designer.cs">
       <DependentUpon>update_pwd.aspx</DependentUpon>
     </Compile>
+    <Compile Include="finance\web\view\user_management.aspx.cs">
+      <DependentUpon>user_management.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\user_management.aspx.designer.cs">
+      <DependentUpon>user_management.aspx</DependentUpon>
+    </Compile>
     <Compile Include="finance\web\view\web_service\accounting.asmx.cs">
       <DependentUpon>accounting.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -2172,6 +2194,10 @@
       <DependentUpon>updateUser.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="finance\web\view\web_service\user_management.asmx.cs">
+      <DependentUpon>user_management.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="finance\web\view\web_service\voucherSummary.asmx.cs">
       <DependentUpon>voucherSummary.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -2185,6 +2211,10 @@
     </Compile>
     <Compile Include="finance\web\view\web_service\voucherWord.asmx.cs">
       <DependentUpon>voucherWord.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\WebService1.asmx.cs">
+      <DependentUpon>WebService1.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="frmMain.aspx.cs">
@@ -3106,23 +3136,6 @@
     <Content Include="Myadmin\HouTai\src\scss\widgets\steamline.scss" />
     <Content Include="Myadmin\HouTai\src\scss\widgets\widgets.scss" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="finance\model\Finance.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Finance.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="finance\model\Finance.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Finance.edmx</DependentUpon>
-      <LastGenOutput>Finance.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="finance\model\Finance.edmx.diagram">
-      <DependentUpon>Finance.edmx</DependentUpon>
-    </Content>
-    <Content Include="finance\model\Finance.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Finance.edmx</DependentUpon>
-      <LastGenOutput>Finance.cs</LastGenOutput>
-    </Content>
     <Content Include="finance\web\assets\js\EasyUI\demo\accordion\datagrid_data1.json" />
     <Content Include="finance\web\assets\js\EasyUI\demo\combobox\combobox_data1.json" />
     <Content Include="finance\web\assets\js\EasyUI\demo\combobox\combobox_data2.json" />
@@ -3184,6 +3197,23 @@
       <LastGenOutput>HrServer.cs</LastGenOutput>
     </Content>
     <Content Include="finance\web\view\download\云合未来财务系统_使用说明.rar" />
+    <EntityDeploy Include="finance\model\Finance.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Finance.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="finance\model\Finance.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Finance.edmx</DependentUpon>
+      <LastGenOutput>Finance.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="finance\model\Finance.edmx.diagram">
+      <DependentUpon>Finance.edmx</DependentUpon>
+    </Content>
+    <Content Include="finance\model\Finance.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Finance.edmx</DependentUpon>
+      <LastGenOutput>Finance.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
     <None Include="Properties\PublishProfiles\jxc_test.pubxml" />
     <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />

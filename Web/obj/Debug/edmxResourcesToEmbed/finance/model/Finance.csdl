@@ -14,6 +14,7 @@
     <EntitySet Name="SimpleData" EntityType="FinanceModel.SimpleData" />
     <EntitySet Name="VoucherSummary" EntityType="FinanceModel.VoucherSummary" />
     <EntitySet Name="VoucherWord" EntityType="FinanceModel.VoucherWord" />
+    <EntitySet Name="quanxian" EntityType="FinanceModel.quanxian" />
   </EntityContainer>
   <EntityType Name="Account">
     <Key>
@@ -25,6 +26,7 @@
     <Property Name="do" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="salt" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="bianhao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="Accounting">
     <Key>
@@ -141,5 +143,44 @@
     <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="word" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="quanxian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="kmzz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kmzz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kmzz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kmzz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kzxm_add" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kzxm_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kzxm_update" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kzxm_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bmsz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bmsz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bmsz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bmsz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="pzhz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="pzhz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="pzhz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="pzhz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="znkb_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xjll_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zcfz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="lysy_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jjtz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jjtz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jjtz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jjtz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jjzz_add" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jjzz_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jjzz_update" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jjzz_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhgl_add" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhgl_delete" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhgl_update" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhgl_select" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bianhao" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

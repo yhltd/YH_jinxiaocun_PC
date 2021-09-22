@@ -9,12 +9,38 @@
 }
 
 $(function () {
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.jjzz_select == "是") {
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 })
 
 function selectBtn() {
-    page.selectParamsMap.accounting = $("#accounting").textbox('getText');
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.jjzz_select == "是") {
+                page.selectParamsMap.accounting = $("#accounting").textbox('getText');
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 }
 
 function getList() {
@@ -56,29 +82,68 @@ function setTable(data) {
             text: '新增',
             iconCls: 'icon-add',
             handler: function () {
-                add();
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.jjzz_add == "是") {
+                            add();
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '修改',
             iconCls: 'icon-edit',
             handler: function () {
-                var sels = $('#data-table').datagrid("getSelections");
-                if (sels.length > 1 || sels.length == 0) {
-                    alert('请选择一行数据');
-                } else {
-                    update(sels[0])
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.jjzz_update == "是") {
+                            var sels = $('#data-table').datagrid("getSelections");
+                            if (sels.length > 1 || sels.length == 0) {
+                                alert('请选择一行数据');
+                            } else {
+                                update(sels[0])
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }, '-', {
             text: '删除',
             iconCls: 'icon-remove',
             handler: function (e) {
-                var sels = $('#data-table').datagrid("getSelections");
-                if (sels.length == 0) {
-                    alert('请至少选择一行数据');
-                } else {
-                    del(sels)
-                }
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.jjzz_delete == "是") {
+                            var sels = $('#data-table').datagrid("getSelections");
+                            if (sels.length == 0) {
+                                alert('请至少选择一行数据');
+                            } else {
+                                del(sels)
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
+                        }
+                    }
+                });
+                
             }
         }],
         data: data.pageList,

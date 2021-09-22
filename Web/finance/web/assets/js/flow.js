@@ -10,7 +10,20 @@
 }
 
 $(function () {
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.xjll_select == "是") {
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 })
 
 function getYearAndMonth() {
@@ -24,9 +37,22 @@ function getYearAndMonth() {
 }
 
 function selectBtn() {
-    page.selectParamsMap.year = $("#year").textbox('getText');
-    page.selectParamsMap.month = $("#month").textbox('getText');
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.xjll_select == "是") {
+                page.selectParamsMap.year = $("#year").textbox('getText');
+                page.selectParamsMap.month = $("#month").textbox('getText');
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 }
 
 function getList() {
@@ -75,32 +101,45 @@ function setTable(data) {
 
 
 function toExcel() {
-    if (page.selectParamsMap.year == '' || page.selectParamsMap.month == '') {
-        getYearAndMonth();
-    }
     ajaxUtil({
-        url: "web_service/voucherSummary.asmx/getFlowList",
+        url: "web_service/user_management.asmx/quanxianGet",
         loading: true,
-        data: {
-            financePageJson: JSON.stringify(page)
-        }
     }, function (result) {
         if (result.code == 200) {
-            var array = result.data.pageList
-            var header = []
-            for (var i = 0; i < array.length; i++) {
-                var body = {
-                    expenditure: array[i].expenditure,
-                    money_month: array[i].money_month,
-                    money_year: array[i].money_year,
+            quanxian = result.data
+            if (quanxian.xjll_select == "是") {
+                if (page.selectParamsMap.year == '' || page.selectParamsMap.month == '') {
+                    getYearAndMonth();
                 }
-                header.push(body)
+                ajaxUtil({
+                    url: "web_service/voucherSummary.asmx/getFlowList",
+                    loading: true,
+                    data: {
+                        financePageJson: JSON.stringify(page)
+                    }
+                }, function (result) {
+                    if (result.code == 200) {
+                        var array = result.data.pageList
+                        var header = []
+                        for (var i = 0; i < array.length; i++) {
+                            var body = {
+                                expenditure: array[i].expenditure,
+                                money_month: array[i].money_month,
+                                money_year: array[i].money_year,
+                            }
+                            header.push(body)
+                        }
+                        console.log(header)
+                        title = ['项目名称', '本月合计', '本年合计']
+                        JSONToExcelConvertor(header, "现金流量", title)
+                    }
+                });
+            } else {
+                $.messager.alert('Warning', '无权限');
             }
-            console.log(header)
-            title = ['项目名称', '本月合计', '本年合计']
-            JSONToExcelConvertor(header, "现金流量", title)
         }
     });
+    
 }
 
 

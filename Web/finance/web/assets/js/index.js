@@ -96,6 +96,9 @@ var left_data = [{
     }, {
         text: '部门设置',
         url: 'department.aspx'
+    }, {
+        text: '账号管理',
+        url: 'user_management.aspx'
     }]
 }, {
     text: '凭证处理',

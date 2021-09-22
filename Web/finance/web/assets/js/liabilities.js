@@ -29,7 +29,20 @@ $(function () {
         onSelect: function (e) {
             page.currentPage = 1
             page.selectParamsMap.classId = e.classId
-            getList()
+            ajaxUtil({
+                url: "web_service/user_management.asmx/quanxianGet",
+                loading: true,
+            }, function (result) {
+                if (result.code == 200) {
+                    quanxian = result.data
+                    if (quanxian.zcfz_select == "是") {
+                        getList()
+                    } else {
+                        $.messager.alert('Warning', '无权限');
+                    }
+                }
+            });
+            
         },
         valueField: 'classId',
         textField: 'className'
@@ -47,9 +60,22 @@ function getYearAndMonth() {
 }
 
 function selectBtn() {
-    page.selectParamsMap.year = $("#year").textbox('getText');
-    page.selectParamsMap.month = $("#month").textbox('getText');
-    getList();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.zcfz_select == "是") {
+                page.selectParamsMap.year = $("#year").textbox('getText');
+                page.selectParamsMap.month = $("#month").textbox('getText');
+                getList();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
 }
 
 function getList() {
@@ -112,49 +138,62 @@ function setTable(data) {
 
 
 function toExcel() {
-    if (page.selectParamsMap.year == '' || page.selectParamsMap.month == '') {
-        getYearAndMonth();
-    }
-    $.ajax({
-        type: 'Post',
-        url: "web_service/accounting.asmx/getLiabilitiesList",
-        beforeSend: function () {
-            $.messager.progress({
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
-        data: {
-            financePageJson: JSON.stringify(page)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                var array = result.data.pageList
-                var header = []
-                for (var i = 0; i < array.length; i++) {
-                    var body = {
-                        name: array[i].name,
-                        load: array[i].load,
-                        borrowed: array[i].borrowed,
-                    }
-                    header.push(body)
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.zcfz_select == "是") {
+                if (page.selectParamsMap.year == '' || page.selectParamsMap.month == '') {
+                    getYearAndMonth();
                 }
-                console.log(header)
-                title = ['科目名称', '年初余额', '年末余额']
-                JSONToExcelConvertor(header, "资产负债", title)
+                $.ajax({
+                    type: 'Post',
+                    url: "web_service/accounting.asmx/getLiabilitiesList",
+                    beforeSend: function () {
+                        $.messager.progress({
+                            title: '提示',
+                            msg: '正在加载',
+                            text: ''
+                        });
+                    },
+                    complete: function () {
+                        $.messager.progress('close');
+                    },
+                    data: {
+                        financePageJson: JSON.stringify(page)
+                    },
+                    dataType: "xml",
+                    success: function (data) {
+                        var result = getJson(data);
+                        if (result.code == 200) {
+                            var array = result.data.pageList
+                            var header = []
+                            for (var i = 0; i < array.length; i++) {
+                                var body = {
+                                    name: array[i].name,
+                                    load: array[i].load,
+                                    borrowed: array[i].borrowed,
+                                }
+                                header.push(body)
+                            }
+                            console.log(header)
+                            title = ['科目名称', '年初余额', '年末余额']
+                            JSONToExcelConvertor(header, "资产负债", title)
+                        }
+                    },
+                    error: function (err) {
+                        alert("错误！")
+                        console.log(err)
+                    }
+                })
+            } else {
+                $.messager.alert('Warning', '无权限');
             }
-        },
-        error: function (err) {
-            alert("错误！")
-            console.log(err)
         }
-    })
+    });
+    
 }
 
 

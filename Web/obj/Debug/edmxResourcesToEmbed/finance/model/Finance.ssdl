@@ -10,6 +10,7 @@
     <EntitySet Name="InvestmentIncome" EntityType="FinanceModel.Store.InvestmentIncome" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManagementExpenditure" EntityType="FinanceModel.Store.ManagementExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManagementIncome" EntityType="FinanceModel.Store.ManagementIncome" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="quanxian" EntityType="FinanceModel.Store.quanxian" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SimpleAccounting" EntityType="FinanceModel.Store.SimpleAccounting" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SimpleData" EntityType="FinanceModel.Store.SimpleData" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="VoucherSummary" EntityType="FinanceModel.Store.VoucherSummary" store:Type="Tables" Schema="dbo" />
@@ -25,6 +26,7 @@
     <Property Name="do" Type="varchar" MaxLength="255" />
     <Property Name="name" Type="varchar" MaxLength="255" />
     <Property Name="salt" Type="varchar" MaxLength="32" />
+    <Property Name="bianhao" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Accounting">
     <Key>
@@ -94,6 +96,45 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="managementIncome" Type="varchar" MaxLength="255" />
     <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="quanxian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="kmzz_add" Type="varchar" MaxLength="255" />
+    <Property Name="kmzz_delete" Type="varchar" MaxLength="255" />
+    <Property Name="kmzz_update" Type="varchar" MaxLength="255" />
+    <Property Name="kmzz_select" Type="varchar" MaxLength="255" />
+    <Property Name="kzxm_add" Type="varchar" MaxLength="255" />
+    <Property Name="kzxm_delete" Type="varchar" MaxLength="255" />
+    <Property Name="kzxm_update" Type="varchar" MaxLength="255" />
+    <Property Name="kzxm_select" Type="varchar" MaxLength="255" />
+    <Property Name="bmsz_add" Type="varchar" MaxLength="255" />
+    <Property Name="bmsz_delete" Type="varchar" MaxLength="255" />
+    <Property Name="bmsz_update" Type="varchar" MaxLength="255" />
+    <Property Name="bmsz_select" Type="varchar" MaxLength="255" />
+    <Property Name="pzhz_add" Type="varchar" MaxLength="255" />
+    <Property Name="pzhz_delete" Type="varchar" MaxLength="255" />
+    <Property Name="pzhz_update" Type="varchar" MaxLength="255" />
+    <Property Name="pzhz_select" Type="varchar" MaxLength="255" />
+    <Property Name="znkb_select" Type="varchar" MaxLength="255" />
+    <Property Name="xjll_select" Type="varchar" MaxLength="255" />
+    <Property Name="zcfz_select" Type="varchar" MaxLength="255" />
+    <Property Name="lysy_select" Type="varchar" MaxLength="255" />
+    <Property Name="jjtz_add" Type="varchar" MaxLength="255" />
+    <Property Name="jjtz_delete" Type="varchar" MaxLength="255" />
+    <Property Name="jjtz_update" Type="varchar" MaxLength="255" />
+    <Property Name="jjtz_select" Type="varchar" MaxLength="255" />
+    <Property Name="jjzz_add" Type="varchar" MaxLength="255" />
+    <Property Name="jjzz_delete" Type="varchar" MaxLength="255" />
+    <Property Name="jjzz_update" Type="varchar" MaxLength="255" />
+    <Property Name="jjzz_select" Type="varchar" MaxLength="255" />
+    <Property Name="zhgl_add" Type="varchar" MaxLength="255" />
+    <Property Name="zhgl_delete" Type="varchar" MaxLength="255" />
+    <Property Name="zhgl_update" Type="varchar" MaxLength="255" />
+    <Property Name="zhgl_select" Type="varchar" MaxLength="255" />
+    <Property Name="bianhao" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="SimpleAccounting">
     <Key>

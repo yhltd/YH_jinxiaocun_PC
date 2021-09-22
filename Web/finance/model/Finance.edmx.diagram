@@ -1,23 +1,24 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
-<edmx:Edmx Version='3.0' xmlns:edmx='http://schemas.microsoft.com/ado/2009/11/edmx'>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns='http://schemas.microsoft.com/ado/2009/11/edmx'>
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId='c59a35f445484d219c8225b65e936da9' Name='关系图1' ZoomLevel="111">
-        <EntityTypeShape EntityType='FinanceModel.Account' Width='1.5' PointX='0.75' PointY='0.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.Accounting' Width='1.5' PointX='2.75' PointY='0.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.Department' Width='1.5' PointX='4.75' PointY='0.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.FinancingExpenditure' Width='1.5' PointX='0.75' PointY='4.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.FinancingIncome' Width='1.5' PointX='2.75' PointY='4.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.InvestmentExpenditure' Width='1.5' PointX='4.75' PointY='3.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.InvestmentIncome' Width='1.5' PointX='6.75' PointY='0.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.ManagementExpenditure' Width='1.5' PointX='6.75' PointY='3.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.ManagementIncome' Width='1.5' PointX='4.75' PointY='6.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.SimpleAccounting' Width='1.5' PointX='6.75' PointY='6.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.SimpleData' Width='1.5' PointX='0.75' PointY='7.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.VoucherSummary' Width='1.5' PointX='8.75' PointY='0.75' IsExpanded='true' />
-        <EntityTypeShape EntityType='FinanceModel.VoucherWord' Width='1.5' PointX='8.75' PointY='5.75' IsExpanded='true' />
+      <Diagram DiagramId="0defc704d7134150ad285299d26c057a" Name="关系图1" ZoomLevel="64">
+        <EntityTypeShape EntityType="FinanceModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.Accounting" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.Department" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.FinancingExpenditure" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.FinancingIncome" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.InvestmentExpenditure" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.InvestmentIncome" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.ManagementExpenditure" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.ManagementIncome" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.SimpleAccounting" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.SimpleData" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.VoucherSummary" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.VoucherWord" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinanceModel.quanxian" Width="1.5" PointX="8.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

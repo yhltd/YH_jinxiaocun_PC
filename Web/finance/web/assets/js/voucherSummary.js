@@ -194,7 +194,8 @@ function setTable(data) {
                             if (sels.length > 1 || sels.length == 0) {
                                 alert('请选择一行数据');
                             } else {
-                                updateVoucherSummary(sels[0])
+                                //updateVoucherSummary(sels[0])
+                                examineVoucherSummary();
                             }
                         } else {
                             $.messager.alert('Warning', '无权限');
@@ -389,6 +390,17 @@ function checkForm(params) {
     return true;
 }
 
+function FormQK(params) {
+    params.word == ""
+    params.no == ""
+    params.voucherDate == ""
+    params.code == ""
+    params.money == ""
+    params.department == ""
+    params.expenditure == ""
+    params.real == ""
+}
+
 function toResetUpdVoucherSummary() {
     $('#upd-voucherSummary-form').form('reset')
 }
@@ -578,6 +590,8 @@ function toAddVoucherSummary() {
                 var result = getJson(data);
                 alert(result.msg);
                 if (result.code == 200) {
+                    toResetAddVoucherSummary();
+                    addVoucherSummary();
                     $('#add-voucherSummary-window').window('close');
                     getList();
                 }
@@ -621,7 +635,7 @@ function examineVoucherSummary() {
     $('#examine-voucherSummary-window').window({
         title: "审核",
         width: 600,
-        height: 300,
+        height: 200,
         top: 100,
         collapsible: false,
         minimizable: false,
@@ -653,7 +667,7 @@ function toExamineVoucherSummary() {
             data: {
                 idsJson: JSON.stringify(ids),
                 do: params.do,
-                examineName: params.examineName
+                //examineName: params.examineName
             },
             dataType: "xml",
             success: function (data) {
@@ -677,10 +691,11 @@ function checkExamineForm(params) {
     if (params.do == "") {
         alert("请输入操作密码")
         return false;
-    } else if (params.examineName == "") {
-        alert("请输入审核人姓名")
-        return false;
     }
+    //} else if (params.examineName == "") {
+    //    alert("请输入审核人姓名")
+    //    return false;
+    //}
     return true;
 }
 

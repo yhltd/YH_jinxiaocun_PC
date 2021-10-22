@@ -49,7 +49,26 @@ namespace Web.Personnel
             {
                 if (Request.Form["TextBox" + i] != "")
                 {
-                    sqlStr += "'" + Request.Form["TextBox" + i] + "',";
+                    if (i == 3)
+                    {
+                        if (Convert.ToInt32(Request.Form["TextBox" + i]) > 12) 
+                        {
+                            sqlStr += "'12',";
+                        }
+                        else if (Convert.ToInt32(Request.Form["TextBox" + i]) < 1)
+                        {
+                            sqlStr += "'1',";
+                        }
+                        else 
+                        {
+                            sqlStr += "'" + Request.Form["TextBox" + i] + "',";
+                        }
+                    }
+                    else 
+                    {
+                        sqlStr += "'" + Request.Form["TextBox" + i] + "',";
+                    }
+                    
                 }
                 else
                 {

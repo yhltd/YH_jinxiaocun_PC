@@ -50,9 +50,13 @@
             <div id="update-do-btn" class="north-right-float-item">
                 修改操作密码
             </div>
-            <div id="new-user-btn" class="north-right-float-item">
-                新建用户账号
+            <div id="sign-out-btn" class="north-right-float-item">
+                退出系统
             </div>
+
+            <%--<div id="new-user-btn" class="north-right-float-item">
+                新建用户账号
+            </div>--%>
         </div>
         <div id="west" data-options="region:'west'" style="width:202px">
             <div class="easyui-sidemenu" data-options="data:left_data,onSelect:tolink"></div>

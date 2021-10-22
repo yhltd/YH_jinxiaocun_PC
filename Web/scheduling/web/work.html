@@ -341,15 +341,15 @@
              <el-date-picker 
                 v-model="startDate" 
                 type="date" 
-                placeholder="选择日期" 
+                placeholder="开始日期" 
                 value-format="yyyy-MM-dd">                
             </el-date-picker>
-            <!--<el-date-picker 
+            <el-date-picker 
                 v-model="endDate"
                 type="date" 
                 placeholder="结束日期" 
                 value-format="yyyy-MM-dd">
-            </el-date-picker>-->
+            </el-date-picker>
             <el-button 
                 icon="el-icon-tickets" 
                 type="primary" 
@@ -357,9 +357,9 @@
                 >统计</el-button>
             <el-table :data="tjList">
                 <el-table-column property="orderId" label="订单号"></el-table-column>
-                <el-table-column property="moduleName" label="模块"></el-table-column>
+                <!--<el-table-column property="moduleName" label="模块"></el-table-column>-->
                 <el-table-column property="workNum" label="生产数量"></el-table-column>
-                <el-table-column property="surplusNum" label="剩余数量"></el-table-column>
+                <!--<el-table-column property="surplusNum" label="剩余数量"></el-table-column>-->
             </el-table>
         </el-drawer>
 
@@ -802,8 +802,8 @@
                 },
 
                 statistics:function(){
-                    this.startDate = formatDate(new Date, "yyyy-MM-dd")
-                    this.endDate = formatDate(new Date, "yyyy-MM-dd")
+                    this.startDate = null;//formatDate(new Date, "yyyy-MM-dd")
+                    this.endDate = null;//formatDate(new Date, "yyyy-MM-dd")
                     this.tjnum();
                     this.tjVisible = true;
                 },
@@ -892,6 +892,15 @@
                 },
 
                 tjnum: function(){
+                    var sd=this.startDate
+                    var ed=this.endDate
+                    if(sd==null){
+                        sd="1900-01-01"
+                    }
+                    if(ed==null){
+                        ed="2200-01-01"
+                    }
+
                     console.log(this.list)
                     this.tList=[];
                     tList= removeDuplicatedItem(this.list)
@@ -899,26 +908,31 @@
                     this.tjList = [];
                     for(var j=0;j<tList.length;j++){
                         var workNumto=0;
-                        var shengyushuliangto=0;
-                        var moduleInfo_name;
-                        for(var i = 0;i<this.list.length;i++){                     
-                            var workNum = this.list[i][this.startDate];
-                            var surplusNum=0;
-                            if(workNum > 0){
-                                if(tList[j]==this.list[i].orderId)
-                                {    
-                                    workNumto=workNumto+parseFloat(workNum),
-                                    shengyushuliangto=shengyushuliangto+this.list[i].work_num,
-                                    moduleInfo_name=this.list[i].moduleInfo.name,
-                                    console.log(workNumto)
+                        //var shengyushuliangto=0;
+                        //var moduleInfo_name;
+                        for(var i = 0;i<this.list.length;i++){   
+                            for(var key in this.list[j]){
+                                if(key>=sd && key<=ed){
+                                    workNumto=workNumto+parseFloat(this.list[j][key])
                                 }
                             }
+                            //var workNum = this.list[i][this.startDate];
+                            //var surplusNum=0;
+                            //if(workNum > 0){
+                            //    if(tList[j]==this.list[i].orderId)
+                            //    {    
+                            //        workNumto=workNumto+parseFloat(workNum),
+                            //        shengyushuliangto=shengyushuliangto+this.list[i].work_num,
+                            //        moduleInfo_name=this.list[i].moduleInfo.name,
+                            //        console.log(workNumto)
+                            //    }
+                            //}
                         }
                         this.tjList.push({
                             orderId: tList[j],
-                            moduleName: moduleInfo_name,
+                            //moduleName: moduleInfo_name,
                             workNum: workNumto,
-                            surplusNum: shengyushuliangto-workNumto
+                            //surplusNum: shengyushuliangto-workNumto
                         })
 
 

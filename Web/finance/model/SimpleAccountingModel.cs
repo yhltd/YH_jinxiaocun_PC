@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Web.finance.entiy;
 using Web.finance.util;
 
 namespace Web.finance.model
@@ -27,19 +28,19 @@ namespace Web.finance.model
         /// <param name="financePage">分页对象</param>
         /// <param name="company">公司名</param>
         /// <returns>有pegeList的分页对象</returns>
-        public FinancePage<SimpleAccounting> getList(FinancePage<SimpleAccounting> financePage,string company) {
-
+        public FinancePage<SimpleAccountingSummary> getList(FinancePage<SimpleAccountingSummary> financePage, string company)
+        {
             var companyParam = new SqlParameter("@company", company);
-
             var minPageParam = new SqlParameter("@minPage", financePage.getMin());
-
             var maxPageParam = new SqlParameter("@maxPage", financePage.getMax());
-
             var accountingParam = new SqlParameter("@accounting", financePage.selectParamsMap["accounting"]);
+            
+            //string sql = "select a.id,a.accounting,a.company from (select row_number() over(order by id) as rownum,* from SimpleAccounting where company = @company and accounting like '%'+@accounting+'%') as a where a.rownum > @minPage and a.rownum < @maxPage";
+            string sql = "select * from (select row_number() over(order by a.accounting desc) as ROW_ID,a.id,a.accounting,ISNULL(sum(d.receivable), 0) as receivable,ISNULL(sum(d.receipts), 0) as receipts,ISNULL(sum(d.receivable-d.receipts), 0) as notget1,ISNULL(sum(d.cope), 0) as cope,ISNULL(sum(d.payment), 0) as payment,ISNULL(sum(d.cope-d.payment), 0) as notget2 from SimpleAccounting as a LEFT JOIN SimpleData as d on a.accounting = d.accounting where a.company = @company GROUP BY a.accounting,a.company,a.id) as a where  a.ROW_ID > @minPage and a.ROW_ID < @maxPage";
 
-            string sql = "select a.id,a.accounting,a.company from (select row_number() over(order by id) as rownum,* from SimpleAccounting where company = @company and accounting like '%'+@accounting+'%') as a where a.rownum > @minPage and a.rownum < @maxPage";
 
-            var result = fin.Database.SqlQuery<SimpleAccounting>(sql, companyParam, minPageParam, maxPageParam, accountingParam);
+            var result = fin.Database.SqlQuery<SimpleAccountingSummary>(sql, companyParam, minPageParam, maxPageParam);
+            
             try
             {
                 financePage.pageList = result.ToList();

@@ -90,7 +90,14 @@ namespace Web.Personnel
         protected void Button2_Click(object sender, EventArgs e)
         {
             Session["xm1"] = Request.Form["TextBox1"];
-            GridView1.DataSourceID = "SqlDataSource2";
+            if (Request.Form["TextBox1"].Equals(""))
+            {
+                GridView1.DataSourceID = "SqlDataSource1";
+            }
+            else
+            {
+                GridView1.DataSourceID = "SqlDataSource2";
+            }
         }
         protected void Button3_Click(object sender, EventArgs e)
         {

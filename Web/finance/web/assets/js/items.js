@@ -260,6 +260,7 @@ function addFinancingExpenditure() {
         }, function (result) {
             alert(result.msg);
             if (result.code == 200) {
+                $('#add-financingExpenditure-form').form('reset');
                 $('#add-financingExpenditure-window').window('close');
                 getListFinancingExpenditure();
             }
@@ -479,6 +480,7 @@ function addFinancingIncome() {
         }, function (result) {
             alert(result.msg);
             if (result.code == 200) {
+                $('#add-financingIncome-form').form('reset');
                 $('#add-financingIncome-window').window('close');
                 getListFinancingIncome();
             }
@@ -709,6 +711,7 @@ function addInvestmentExpenditure() {
                 var result = getJson(data);
                 alert(result.msg);
                 if (result.code == 200) {
+                    $('#add-investmentExpenditure-form').form('reset');
                     $('#add-investmentExpenditure-window').window('close');
                     getListInvestmentExpenditure();
                 }
@@ -1010,6 +1013,7 @@ function addInvestmentIncome() {
                 var result = getJson(data);
                 alert(result.msg);
                 if (result.code == 200) {
+                    $('#add-investmentIncome-form').form('reset');
                     $('#add-investmentIncome-window').window('close');
                     getListInvestmentIncome();
                 }
@@ -1314,6 +1318,7 @@ function addManagementExpenditure() {
                 var result = getJson(data);
                 alert(result.msg);
                 if (result.code == 200) {
+                    $('#add-managementExpenditure-form').form('reset');
                     $('#add-managementExpenditure-window').window('close');
                     getListManagementExpenditure();
                 }
@@ -1619,6 +1624,7 @@ function addManagementIncome() {
                 var result = getJson(data);
                 alert(result.msg);
                 if (result.code == 200) {
+                    $('#add-managementIncome-form').form('reset');
                     $('#add-managementIncome-window').window('close');
                     getListManagementIncome();
                 }
@@ -1920,6 +1926,7 @@ function addVoucherWord() {
                 var result = getJson(data);
                 alert(result.msg);
                 if (result.code == 200) {
+                    $('#add-voucherWord-form').form('reset');
                     $('#add-voucherWord-window').window('close');
                     getListVoucherWord();
                 }

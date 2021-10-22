@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using Web.finance.entiy;
 using Web.finance.model;
 using Web.finance.service;
 using Web.finance.util;
@@ -20,7 +21,7 @@ namespace Web.finance.web.view.web_service
     // [System.Web.Script.Services.ScriptService]
     public class simpleAccounting : System.Web.Services.WebService
     {
-
+        private FinanceEntities fin;
         private SimpleAccountingService simpleAccountingService;
 
         /// <summary>
@@ -31,29 +32,33 @@ namespace Web.finance.web.view.web_service
         [WebMethod]
         public string getSimpleAccountingList(string financePageJson)
         {
-            //分页对象
-            FinancePage<SimpleAccounting> financePage = null;
-            try
+            using (fin = new FinanceEntities())
             {
-                //创建service层实例
-                simpleAccountingService = new SimpleAccountingService();
-                //处理json
-                financePage = FinanceJson.getFinanceJson().toObject<FinancePage<SimpleAccounting>>(financePageJson);
-                //获取处理过的分页对象
-                financePage = simpleAccountingService.getSimpleAccountingList(financePage);
+                //分页对象
+                FinancePage<SimpleAccountingSummary> financePage = null;
+                try
+                {
+                    //创建service层实例
+                    simpleAccountingService = new SimpleAccountingService();
+                    //处理json
+                    financePage = FinanceJson.getFinanceJson().toObject<FinancePage<SimpleAccountingSummary>>(financePageJson);
+                    //获取处理过的分页对象
+                    financePage = simpleAccountingService.getSimpleAccountingList(financePage);
 
-                return FinanceResultData.getFinanceResultData().success(200, financePage, "成功");
+                    return FinanceResultData.getFinanceResultData().success(200, financePage, "成功");
+                }
+                catch (InvalidOperationException ex)
+                {
+                    //身份验证不通过
+                    return FinanceResultData.getFinanceResultData().fail(401, null, ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    //未知的错误
+                    return FinanceResultData.getFinanceResultData().fail(500, null, "未知的错误");
+                }
             }
-            catch (InvalidOperationException ex)
-            {
-                //身份验证不通过
-                return FinanceResultData.getFinanceResultData().fail(401, null, ex.Message);
-            }
-            catch (Exception ex)
-            {
-                //未知的错误
-                return FinanceResultData.getFinanceResultData().fail(500, null, "未知的错误");
-            }
+            
         }
 
         /// <summary>

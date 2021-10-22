@@ -150,7 +150,15 @@ function setTable(data) {
         height: 470,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
-            { field: 'accounting', align: 'center', title: '科目名称', width: 400 }
+            { field: 'accounting', align: 'center', title: '科目名称', width: 250 },
+            { field: 'receivable', align: 'center', title: '应收', width: 250 },
+            { field: 'receipts', align: 'center', title: '实收', width: 250 },
+            { field: 'notget1', align: 'center', title: '未收', width: 250 },
+            { field: 'cope', align: 'center', title: '应付', width: 250 },
+            { field: 'payment', align: 'center', title: '实付', width: 250 },
+            { field: 'notget2', align: 'center', title: '未付', width: 250 },
+
+
         ]]
     })
 

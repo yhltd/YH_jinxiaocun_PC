@@ -23,7 +23,6 @@ var page = {
     total: 0,
     pageList: [],
     classid:""
-    
 }
 
 $(function () {
@@ -123,140 +122,139 @@ function setTable(data) {
                                     clearNew();
                                 }
                             });
+
+                            $("#grade-list1").datalist({
+                                height: 300,
+                                data: clases,
+                                valueField: "classId",
+                                textField: 'className',
+                                onClickRow: function (rowIndex, rowData) {
+                                    $.ajax({
+                                        type: 'Post',
+                                        url: "web_service/accounting.asmx/getListOfGrade",
+                                        beforeSend: function () {
+                                            $.messager.progress({
+                                                title: '提示',
+                                                msg: '正在加载',
+                                                text: ''
+                                            });
+                                        },
+                                        complete: function () {
+                                            $.messager.progress('close');
+                                        },
+                                        data: {
+                                            classId: rowData.classId,
+                                            grade: 1,
+                                            code: 0
+                                        },
+                                        dataType: "xml",
+                                        success: function (data) {
+                                            var result = getJson(data);
+                                            if (result.code == 200) {
+                                                $("#grade-list2").datalist('loadData', result.data)
+                                                setCode(1, 0, result.data.length == 0, rowData.className)
+                                            }
+
+                                        },
+                                        error: function (err) {
+                                            alert("错误！")
+                                            console.log(err)
+                                        }
+                                    })
+                                }
+                            });
+
+                            $("#grade-list2").datalist({
+                                height: 300,
+                                valueField: "code",
+                                textField: 'name',
+                                onClickRow: function (rowIndex, rowData) {
+                                    $.ajax({
+                                        type: 'Post',
+                                        url: "web_service/accounting.asmx/getListOfGrade",
+                                        beforeSend: function () {
+                                            $.messager.progress({
+                                                title: '提示',
+                                                msg: '正在加载',
+                                                text: ''
+                                            });
+                                        },
+                                        complete: function () {
+                                            $.messager.progress('close');
+                                        },
+                                        data: {
+                                            classId: $("#grade-list1").datagrid('getSelected').classId,
+                                            grade: 2,
+                                            code: rowData.code
+                                        },
+                                        dataType: "xml",
+                                        success: function (data) {
+                                            var result = getJson(data);
+                                            console.log(result)
+                                            if (result.code == 200) {
+                                                $("#grade-list3").datalist('loadData', result.data)
+                                                setCode(2, rowData.code, result.data.length == 0, $("#grade-list1").datagrid('getSelected').className)
+                                            }
+                                        },
+                                        error: function (err) {
+                                            alert("错误！")
+                                            console.log(err)
+                                        }
+                                    })
+                                }
+                            });
+
+                            $("#grade-list3").datalist({
+                                height: 300,
+                                valueField: "code",
+                                textField: 'name',
+                                onClickRow: function (rowIndex, rowData) {
+                                    $.ajax({
+                                        type: 'Post',
+                                        url: "web_service/accounting.asmx/getListOfGrade",
+                                        beforeSend: function () {
+                                            $.messager.progress({
+                                                title: '提示',
+                                                msg: '正在加载',
+                                                text: ''
+                                            });
+                                        },
+                                        complete: function () {
+                                            $.messager.progress('close');
+                                        },
+                                        data: {
+                                            classId: $("#grade-list1").datagrid('getSelected').classId,
+                                            grade: 3,
+                                            code: rowData.code
+                                        },
+                                        dataType: "xml",
+                                        success: function (data) {
+                                            var result = getJson(data);
+                                            console.log(result)
+                                            if (result.code == 200) {
+                                                var isNull = result.data.length == 0
+                                                if (isNull) {
+                                                    setCode(3, rowData.code, isNull, $("#grade-list1").datagrid('getSelected').className)
+                                                } else {
+                                                    var code = 0
+                                                    for (var i = 0; i < result.data.length; i++) {
+                                                        code = result.data[i].code > code ? result.data[i].code : code
+                                                    }
+                                                    setCode(3, code + 1, isNull, $("#grade-list1").datagrid('getSelected').className)
+                                                }
+                                            }
+                                        },
+                                        error: function (err) {
+                                            alert("错误！")
+                                            console.log(err)
+                                        }
+                                    })
+                                }
+                            });
+
                         } else {
                             $.messager.alert('Warning', '无权限');
                         }
-                    }
-                });
-
-                
-
-                $("#grade-list1").datalist({
-                    height: 300,
-                    data: clases,
-                    valueField: "classId",
-                    textField: 'className',
-                    onClickRow: function (rowIndex, rowData) {
-                        $.ajax({
-                            type: 'Post',
-                            url: "web_service/accounting.asmx/getListOfGrade",
-                            beforeSend: function () {
-                                $.messager.progress({
-                                    title: '提示',
-                                    msg: '正在加载',
-                                    text: ''
-                                });
-                            },
-                            complete: function () {
-                                $.messager.progress('close');
-                            },
-                            data: {
-                                classId: rowData.classId,
-                                grade: 1,
-                                code: 0
-                            },
-                            dataType: "xml",
-                            success: function (data) {
-                                var result = getJson(data);
-                                if (result.code == 200) {
-                                    $("#grade-list2").datalist('loadData', result.data)
-                                    setCode(1, 0, result.data.length == 0, rowData.className)
-                                }
-                                
-                            },
-                            error: function (err) {
-                                alert("错误！")
-                                console.log(err)
-                            }
-                        })
-                    }
-                });
-
-                $("#grade-list2").datalist({
-                    height: 300,
-                    valueField: "code",
-                    textField: 'name',
-                    onClickRow: function (rowIndex, rowData) {
-                        $.ajax({
-                            type: 'Post',
-                            url: "web_service/accounting.asmx/getListOfGrade",
-                            beforeSend: function () {
-                                $.messager.progress({
-                                    title: '提示',
-                                    msg: '正在加载',
-                                    text: ''
-                                });
-                            },
-                            complete: function () {
-                                $.messager.progress('close');
-                            },
-                            data: {
-                                classId: $("#grade-list1").datagrid('getSelected').classId,
-                                grade: 2,
-                                code: rowData.code
-                            },
-                            dataType: "xml",
-                            success: function (data) {
-                                var result = getJson(data);
-                                console.log(result)
-                                if (result.code == 200) {
-                                    $("#grade-list3").datalist('loadData', result.data)
-                                    setCode(2, rowData.code,result.data.length==0, $("#grade-list1").datagrid('getSelected').className)
-                                }
-                            },
-                            error: function (err) {
-                                alert("错误！")
-                                console.log(err)
-                            }
-                        })
-                    }
-                });
-
-                $("#grade-list3").datalist({
-                    height: 300,
-                    valueField: "code",
-                    textField: 'name',
-                    onClickRow: function (rowIndex, rowData) {
-                        $.ajax({
-                            type: 'Post',
-                            url: "web_service/accounting.asmx/getListOfGrade",
-                            beforeSend: function () {
-                                $.messager.progress({
-                                    title: '提示',
-                                    msg: '正在加载',
-                                    text: ''
-                                });
-                            },
-                            complete: function () {
-                                $.messager.progress('close');
-                            },
-                            data: {
-                                classId: $("#grade-list1").datagrid('getSelected').classId,
-                                grade: 3,
-                                code: rowData.code
-                            },
-                            dataType: "xml",
-                            success: function (data) {
-                                var result = getJson(data);
-                                console.log(result)
-                                if (result.code == 200) {
-                                    var isNull = result.data.length == 0
-                                    if (isNull) {
-                                        setCode(3, rowData.code, isNull, $("#grade-list1").datagrid('getSelected').className)
-                                    } else {
-                                        var code = 0
-                                        for (var i = 0; i < result.data.length; i++) {
-                                            code = result.data[i].code > code  ? result.data[i].code : code
-                                        }
-                                        setCode(3, code+1, isNull, $("#grade-list1").datagrid('getSelected').className)
-                                    }
-                                }
-                            },
-                            error: function (err) {
-                                alert("错误！")
-                                console.log(err)
-                            }
-                        })
                     }
                 });
             }

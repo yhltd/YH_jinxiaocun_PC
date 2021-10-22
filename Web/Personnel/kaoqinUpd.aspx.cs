@@ -107,7 +107,7 @@ namespace Web.Personnel
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            if (Request.Form["TextBox1"] != "" && Request.Form["TextBox2"] != "" && Request.Form["TextBox3"] != "" && Request.Form["TextBox1"] != " " && Request.Form["TextBox2"] != " " && Request.Form["TextBox3"] != " ")
+            if (Request.Form["TextBox1"] != "" && Request.Form["TextBox2"] != "" && Request.Form["TextBox3"] != "" && Request.Form["TextBox1"] != " " && Request.Form["TextBox2"] != " " && Request.Form["TextBox3"] != " " && Convert.ToInt32(Request.Form["TextBox2"]) > 0 && Convert.ToInt32(Request.Form["TextBox2"]) < 13)
             {
                 //string a = Request["strs"].ToString();
                 string[] bb = new string[40];

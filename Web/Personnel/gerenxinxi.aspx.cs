@@ -35,8 +35,16 @@ namespace Web.Personnel
         {
             if (TextBox1.Text != "")
             {
-                Session["xm1"] = TextBox1.Text;
-                GridView1.DataSourceID = "SqlDataSource2";
+                if (!Request.Form["TextBox1"].Equals(""))
+                {
+                    Session["xm1"] = Request.Form["TextBox1"];
+                    GridView1.DataSourceID = "SqlDataSource2";
+                }
+                else
+                {
+                    GridView1.DataSourceID = "SqlDataSource1";
+                    GridView1.DataBind();
+                }
             }
         }
         protected void Button2_Click(object sender, EventArgs e)

@@ -553,11 +553,11 @@ function selectBtn() {
                 page.stop_date = $("#stop_date").textbox('getText');
                 console.log(page.start_date);
                 console.log(page.stop_date);
-                if (page.start_date != "" && page.stop_date == "") {
+                if (page.start_date == "" || page.stop_date == "") {
                     $.messager.alert({
                         title: "错误",//标题
 
-                        msg: "必须同时输入开始日期和结束日期",//信息
+                        msg: "请输入开始日期和结束日期",//信息
 
                         icon: "error",//图标类型：error-错误；warning-警告; 或其他
 

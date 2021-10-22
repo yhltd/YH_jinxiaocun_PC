@@ -33,8 +33,16 @@ namespace Web.Personnel
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Session["bm1"] = Request.Form["DropDownList1"];
-            GridView1.DataSourceID = "SqlDataSource2";
+            if (!Request.Form["DropDownList1"].Equals(""))
+            {
+                Session["bm1"] = Request.Form["DropDownList1"];
+                GridView1.DataSourceID = "SqlDataSource2";
+            }
+            else
+            {
+                GridView1.DataSourceID = "SqlDataSource1";
+                GridView1.DataBind();
+            }
         }
 
         protected void Button2_Click(object sender, EventArgs e)

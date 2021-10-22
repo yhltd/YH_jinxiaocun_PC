@@ -70,7 +70,7 @@ namespace Web.finance.model
                 new SqlParameter("@month", month)
             };
 
-            string sql = "select * from (select isnull((select name from Accounting where code = LEFT (vs.code, 4)),'')+isnull((select '-'+name from Accounting where code = LEFT (vs.code, 6) and code != LEFT (vs.code, 4)),'')+isnull((select '-'+name from Accounting where code = LEFT (vs.code, 8) and code != LEFT (vs.code, 6)),'') as fullName,vs.id,vs.word,vs.[no],voucherDate,vs.abstract,vs.code,vs.department,vs.expenditure,vs.note,vs.man,ac.name,isnull(ac.load,0) as load,isnull(ac.borrowed,0) as borrowed,vs.money,vs.real,ROW_NUMBER() over(order by vs.id) rownum from VoucherSummary as vs left join Accounting as ac on vs.code = ac.code and ac.company = @company where vs.company = @company) t where t.rownum > @minPage and t.rownum < @maxPage and t.word like '%'+@word+'%'";
+            string sql = "select * from (select isnull((select name from Accounting where code = LEFT (vs.code, 4)),'')+isnull((select top 1 '-'+name from Accounting where code = LEFT (vs.code, 6) and code != LEFT (vs.code, 4)),'')+isnull((select top 1 '-'+name from Accounting where code = LEFT (vs.code, 8) and code != LEFT (vs.code, 6)),'') as fullName,vs.id,vs.word,vs.[no],voucherDate,vs.abstract,vs.code,vs.department,vs.expenditure,vs.note,vs.man,ac.name,isnull(ac.load,0) as load,isnull(ac.borrowed,0) as borrowed,vs.money,vs.real,ROW_NUMBER() over(order by vs.id) rownum from VoucherSummary as vs left join Accounting as ac on vs.code = ac.code and ac.company = @company where vs.company = @company) t where t.rownum > @minPage and t.rownum < @maxPage and t.word like '%'+@word+'%'";
 
             if (!year.Equals(string.Empty)) {
                 sql += " and year(t.voucherDate) = @year";

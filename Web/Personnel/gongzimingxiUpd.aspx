@@ -39,14 +39,14 @@
             <asp:Label ID="Label40" runat="server" Text="个人年金4%：" Width="130px" Height="30px"></asp:Label>
             <asp:Textbox runat="server" ID="Textbox40" cssclass="top_option"  TextMode="Number"></asp:Textbox>
             <br />
-            <asp:Label ID="Label5" runat="server" Text="入职时间：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox5" cssclass="top_option"  TextMode="date"></asp:Textbox>
             <asp:Label ID="Label23" runat="server" Text="公积金基数：" Width="130px" Height="30px"></asp:Label>
             <asp:Textbox runat="server" ID="Textbox23" cssclass="top_option"  TextMode="Number"></asp:Textbox>
             <asp:Label ID="Label41" runat="server" Text="滞纳金：" Width="130px" Height="30px"></asp:Label>
             <asp:Textbox runat="server" ID="Textbox32" cssclass="top_option"  TextMode="Number"></asp:Textbox>
             <asp:Label ID="Label6" runat="server" Text="基本工资：" Width="130px" Height="30px"></asp:Label>
             <asp:Textbox runat="server" ID="Textbox6" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:Label ID="Label5" runat="server" Text="入职时间：" Width="130px" Height="30px"></asp:Label>
+            <asp:Textbox runat="server" ID="Textbox5" cssclass="top_option"  TextMode="date"></asp:Textbox>
             <br />
             <asp:Label ID="Label24" runat="server" Text="年金基数：" Width="130px" Height="30px"></asp:Label>
             <asp:Textbox runat="server" ID="Textbox24" cssclass="top_option"  TextMode="Number"></asp:Textbox>
@@ -124,10 +124,10 @@
             <asp:Textbox runat="server" ID="Textbox17" cssclass="top_option"  TextMode="Number"></asp:Textbox>
             <asp:Label ID="Label35" runat="server" Text="个人养老：" Width="130px" Height="30px"></asp:Label>
             <asp:Textbox runat="server" ID="Textbox35" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label53" runat="server" Text="调薪时间：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox53" cssclass="top_option"  TextMode="date"></asp:Textbox>
             <asp:Label ID="Label18" runat="server" Text="迟到天数：" Width="130px" Height="30px"></asp:Label>
             <asp:Textbox runat="server" ID="Textbox18" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:Label ID="Label53" runat="server" Text="调薪时间：" Width="130px" Height="30px"></asp:Label>
+            <asp:Textbox runat="server" ID="Textbox53" cssclass="top_option"  TextMode="date"></asp:Textbox>
             <br />
             <asp:Label ID="Label36" runat="server" Text="个人失业：" Width="130px" Height="30px"></asp:Label>
             <asp:Textbox runat="server" ID="Textbox36" cssclass="top_option"  TextMode="Number"></asp:Textbox>

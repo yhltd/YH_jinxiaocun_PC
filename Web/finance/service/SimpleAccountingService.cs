@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Web.finance.entiy;
 using Web.finance.model;
 using Web.finance.util;
 
@@ -39,7 +40,7 @@ namespace Web.finance.service
         /// </summary>
         /// <param name="financePage">分页对象</param>
         /// <returns>处理过的分页对象</returns>
-        public FinancePage<SimpleAccounting> getSimpleAccountingList(FinancePage<SimpleAccounting> financePage)
+        public FinancePage<SimpleAccountingSummary> getSimpleAccountingList(FinancePage<SimpleAccountingSummary> financePage)
         {
             financePage = simpleAccountingModel.getList(financePage, account.company);
             financePage.total = simpleAccountingModel.getCount(account.company);

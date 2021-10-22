@@ -50,13 +50,13 @@ $(function () {
 })
 
 function getYearAndMonth() {
-    var date_ = new Date();
-    var yearNum = date_.getFullYear();
-    var monthNum = date_.getMonth() + 1;
-    $("#year").textbox('setText', yearNum);
-    $("#month").textbox('setText', monthNum);
-    page.selectParamsMap.year = yearNum;
-    page.selectParamsMap.month = monthNum;
+    //var date_ = new Date();
+    //var yearNum = date_.getFullYear();
+    //var monthNum = date_.getMonth() + 1;
+    //$("#year").textbox('setText', yearNum);
+    //$("#month").textbox('setText', monthNum);
+    page.selectParamsMap.year = "2021";
+    page.selectParamsMap.month = "10";
 }
 
 function selectBtn() {

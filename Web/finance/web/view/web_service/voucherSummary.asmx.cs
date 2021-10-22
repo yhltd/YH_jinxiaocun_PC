@@ -142,13 +142,21 @@ namespace Web.finance.web.view.web_service
         }
 
         [WebMethod]
-        public string examineVoucherSummary(string idsJson, string @do, string examineName) {
+        public string examineVoucherSummary(string idsJson, string @do) {
             try
             {
                 //创建service层实例
                 voucherSummaryService = new VoucherSummaryService();
                 //获取用户service层实例
                 AccountService accountService = new AccountService(true);
+
+                Account account = new Account();
+                //处理json
+                string token = FinanceToken.getFinanceCheckToken().getToken();
+                //获取对象
+                account = FinanceToken.getFinanceCheckToken().checkToken(token);
+                string examineName = account.name;
+
                 //检查操作密码
                 if (!accountService.checkDo(@do)) {
                     return FinanceResultData.getFinanceResultData().fail(402, null, "操作密码错误");

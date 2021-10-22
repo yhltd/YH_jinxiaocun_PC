@@ -101,7 +101,7 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString14 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)" SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE (([K]like '%'+ @K +'%') AND ([C] like '%'+ @C +'%') AND ([D] like '%'+ @D +'%'))" UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString14 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)" SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE (([K] = @K) AND ([C] = @C) AND ([D] = @D ))" UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = CASE WHEN CONVERT(INT,@D)&gt;0 AND CONVERT(INT,@D)&lt;13 THEN @D  ELSE '1' END, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -132,14 +132,61 @@
                 <asp:Parameter Name="H" Type="String" />
                 <asp:Parameter Name="I" Type="String" />
                 <asp:Parameter Name="J" Type="String" />
-                <asp:Parameter Name="K" Type="String" />
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString13 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)"  SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE ([K] like '%'+ @K +'%')"  UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString13 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)"  SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE ([K] like '%'+ @K +'%')"  UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = CASE WHEN CONVERT(INT,@D)&gt;0 AND CONVERT(INT,@D)&lt;13 THEN @D  ELSE '1' END, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
+            <DeleteParameters>
+                <asp:Parameter Name="id">
+                </asp:Parameter>
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="name">
+                </asp:Parameter>
+                <asp:Parameter Name="C">
+                </asp:Parameter>
+                <asp:Parameter Name="D">
+                </asp:Parameter>
+                <asp:Parameter Name="E">
+                </asp:Parameter>
+                <asp:Parameter Name="F">
+                </asp:Parameter>
+                <asp:Parameter Name="G">
+                </asp:Parameter>
+                <asp:Parameter Name="H">
+                </asp:Parameter>
+                <asp:Parameter Name="I">
+                </asp:Parameter>
+                <asp:Parameter Name="J">
+                </asp:Parameter>
+                <asp:Parameter Name="K">
+                </asp:Parameter>
+            </InsertParameters>
             <SelectParameters>
                 <asp:SessionParameter Name="K" SessionField="gongsi" Type="String"/>
             </SelectParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="name">
+                </asp:Parameter>
+                <asp:Parameter Name="C">
+                </asp:Parameter>
+                <asp:Parameter Name="D">
+                </asp:Parameter>
+                <asp:Parameter Name="E">
+                </asp:Parameter>
+                <asp:Parameter Name="F">
+                </asp:Parameter>
+                <asp:Parameter Name="G">
+                </asp:Parameter>
+                <asp:Parameter Name="H">
+                </asp:Parameter>
+                <asp:Parameter Name="I">
+                </asp:Parameter>
+                <asp:Parameter Name="J">
+                </asp:Parameter>
+                <asp:Parameter Name="id">
+                </asp:Parameter>
+            </UpdateParameters>
         </asp:SqlDataSource>
     </div>
     </form>

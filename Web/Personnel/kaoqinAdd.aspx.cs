@@ -89,7 +89,7 @@ namespace Web.Personnel
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            if (Request.Form["TextBox1"] != "" && Request.Form["TextBox2"] != "" && Request.Form["TextBox3"] != "")
+            if (Request.Form["TextBox1"] != "" && Request.Form["TextBox2"] != "" && Request.Form["TextBox3"] != "" && Convert.ToInt32(Request.Form["TextBox2"]) > 0 && Convert.ToInt32(Request.Form["TextBox2"]) < 13)
             {
                 string conString = ConfigurationManager.AppSettings["yao"];
                 conn = new SqlConnection(conString);  //数据库连接。

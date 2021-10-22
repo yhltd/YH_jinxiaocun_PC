@@ -28,7 +28,21 @@ namespace Web.Personnel
                 {
                     conn.Open();
                 }
-                string sqlStr = "select * from gongzi_gongzimingxi where B='" + Session["b"].ToString() + "' and C='" + Session["year"].ToString() + "' and D='" + Session["moth"].ToString() + "' and F='" + Session["name"].ToString() + "' ;";
+                string sqlStr = "select * from gongzi_gongzimingxi where B='" + Session["b"].ToString() + "'";
+                String sa = Session["year"].ToString();
+                if (!sa.Equals(""))
+                {
+                    sqlStr = sqlStr + " and C='" + Session["year"].ToString() + "'";
+                }
+                if (!Session["moth"].ToString().Equals(""))
+                {
+                    sqlStr = sqlStr + " and D='" + Session["moth"].ToString() + "'";
+                }
+                if (!Session["name"].ToString().Equals(""))
+                {
+                    sqlStr = sqlStr + " and F='" + Session["name"].ToString() + "'";
+                }
+                sqlStr = sqlStr + ";";
                 cmd = new SqlCommand(sqlStr, conn);
                 str = cmd.ExecuteReader();
                 //string a = Request["strs"].ToString();

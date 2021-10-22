@@ -23,7 +23,6 @@
 <body>
     <div id="main" class="item">
         <div class="main-item">
-
             <!--经营收入-->
             <div class="main-item-item">
                 <div id="data-table-financingExpenditure" class="easyui-datagrid"></div>

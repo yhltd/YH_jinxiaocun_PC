@@ -44,20 +44,50 @@ namespace Web.Personnel
         {
             if (Request.Form["DropDownList1"] == "姓名")
             {
-                Session["xm1"] = Request.Form["TextBox1"];
-                GridView1.DataSourceID = "SqlDataSource2";
-                GridView1.DataBind();
+                if (!Request.Form["TextBox1"].Equals(""))
+                {
+                    Session["xm1"] = Request.Form["TextBox1"];
+                    GridView1.DataSourceID = "SqlDataSource2";
+                    GridView1.DataBind();
+                }
+                else
+                {
+                    GridView1.DataSourceID = "SqlDataSource1";
+                    GridView1.DataBind();
+                }
+               
             }
             else if (Request.Form["DropDownList1"] == "部门")
             {
-                Session["bm1"] = Request.Form["TextBox1"];
-                GridView1.DataSourceID = "SqlDataSource3";
-                GridView1.DataBind();
+                if (!Request.Form["TextBox1"].Equals(""))
+                {
+                    Session["xm1"] = Request.Form["TextBox1"];
+                    GridView1.DataSourceID = "SqlDataSource2";
+                    GridView1.DataBind();
+                }
+                else
+                {
+                    GridView1.DataSourceID = "SqlDataSource1";
+                    GridView1.DataBind();
+                }
             }
             else if (Request.Form["DropDownList1"] == "岗位")
             {
-                Session["zw1"] = Request.Form["TextBox1"];
-                GridView1.DataSourceID = "SqlDataSource4";
+                if (!Request.Form["TextBox1"].Equals(""))
+                {
+                    Session["xm1"] = Request.Form["TextBox1"];
+                    GridView1.DataSourceID = "SqlDataSource2";
+                    GridView1.DataBind();
+                }
+                else
+                {
+                    GridView1.DataSourceID = "SqlDataSource1";
+                    GridView1.DataBind();
+                }
+            }
+            else if (Request.Form["DropDownList1"] == "")
+            {
+                GridView1.DataSourceID = "SqlDataSource1";
                 GridView1.DataBind();
             }
         }
@@ -103,6 +133,18 @@ namespace Web.Personnel
             JavaScriptSerializer js = new JavaScriptSerializer();
             string result = js.Serialize(a); //upUser(" + result + ");iframe_d_open
             //ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
+            if (a[1].Equals("&nbsp;"))
+            {
+                a[1] = "";
+            }
+            if (a[2].Equals("&nbsp;"))
+            {
+                a[2] = "";
+            }
+            if (a[4].Equals("&nbsp;"))
+            {
+                a[4] = "";
+            }
             Session["b"] = a[0];
             Session["year"] = a[1];
             Session["moth"] = a[2];

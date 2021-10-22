@@ -79,6 +79,10 @@
         });
         $(".north-right-float").hide();
     })
+    $("#sign-out-btn").click(function () {
+        //window.open('../../../Myadmin/login.aspx')
+        window.location.href = "../../../Myadmin/login.aspx";
+    })
 
     tolink({
         url: 'chart.aspx'

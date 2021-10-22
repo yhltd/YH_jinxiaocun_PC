@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
@@ -17,11 +17,11 @@
         <br />
         <br />
         <asp:Label ID="Label2" runat="server" Text="年份：" Width="80px" Height="30px"></asp:Label>
-        <asp:TextBox ID="TextBox2" runat="server" Height="30px" Width="150px" CssClass="top_select_input" ></asp:TextBox>
+        <asp:TextBox ID="TextBox2" runat="server" Height="30px" Width="150px" CssClass="top_select_input" TextMode="Number" OnKeyPress="if(((event.keyCode>=48)&&(event.keyCode <=57))) {event.returnValue=true;} else{event.returnValue=false;}" MaxLength="15"> </asp:TextBox>
         <br />
         <br />
         <asp:Label ID="Label3" runat="server" Text="月份：" Width="80px" Height="30px"></asp:Label>
-        <asp:TextBox ID="TextBox3" runat="server" Height="30px" Width="150px" CssClass="top_select_input" ></asp:TextBox>
+        <asp:TextBox ID="TextBox3" runat="server" Height="30px" Width="150px" CssClass="top_select_input" TextMode="Number" OnKeyPress="if(((event.keyCode>=48)&&(event.keyCode <=57))) {event.returnValue=true;} else{event.returnValue=false;}" MaxLength="15"> </asp:TextBox>
         <br />
         <br />
         <asp:Label ID="Label4" runat="server" Text="应到：" Width="80px" Height="30px"></asp:Label>

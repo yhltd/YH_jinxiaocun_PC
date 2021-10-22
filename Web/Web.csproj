@@ -1915,6 +1915,7 @@
     <Compile Include="finance\entiy\Flow.cs" />
     <Compile Include="finance\entiy\Liabilities.cs" />
     <Compile Include="finance\entiy\Profit.cs" />
+    <Compile Include="finance\entiy\SimpleAccountingSummary.cs" />
     <Compile Include="finance\entiy\VoucherSummaryItem.cs" />
     <Compile Include="finance\entiy\User_ManagementItem.cs" />
     <Compile Include="finance\entiy\quanxianItem.cs" />

@@ -144,10 +144,10 @@
 		        <label for="do">操作密码:</label>
 		        <input class="input easyui-validatebox" autocomplete="off" name="do"/>
             </div>
-            <div class="form-item">
+            <%--<div class="form-item">
 		        <label for="examineName">审核人姓名:</label>
-		        <input class="input easyui-validatebox" autocomplete="off" type="text" name="examineName"/>
-            </div>
+		        <input class="input easyui-validatebox" autocomplete="off" type="text" name="examineName" readonly="readonly"/>
+            </div>--%>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toExamineVoucherSummary()" class="btn" type="button">审核</button>
             </div>

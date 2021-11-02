@@ -220,6 +220,7 @@
                     <li><a href="#" id="k_h" class="leftNav_li" onclick="add_li('k_h','kehu.aspx')">客户资料</a></li>
                     <li><a href="#" id="g_y" class="leftNav_li" onclick="add_li('g_y','gongyingshang.aspx')">供应商资料</a></li>
                     <li><a href="#" id="l_l" class="leftNav_li" onclick="add_li('l_l','zheng_li_page.aspx')">整理</a></li> 
+                    <li><a href="#" id="s_m" class="leftNav_li" onclick="add_li('s_m','jxc_shuoming.aspx')">使用说明</a></li> 
                 </ul>
             </div>
             <div class="mainCon1">

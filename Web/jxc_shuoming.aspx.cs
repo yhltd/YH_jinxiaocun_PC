@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Web.Personnel
+namespace Web
 {
-    public partial class shuomingshu : System.Web.UI.Page
+    public partial class jxc_shuoming : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,9 +29,9 @@ namespace Web.Personnel
                 //设置流内容类型
                 Response.ContentType = "application/octet-stream";
                 //设置下载方式=>附件
-                Response.AddHeader("Content-Disposition", "attachment;filename=云合人事管理系统_使用说明.rar");
+                Response.AddHeader("Content-Disposition", "attachment;filename=云合未来进销存管理系统_使用说明.rar");
                 //获取文件的绝对路径
-                string filename = Server.MapPath("download/云合未来人事管理系统_使用说明.rar");
+                string filename = Server.MapPath("download/云合未来进销存管理系统_使用说明.rar");
                 //将文件直接写入HTTP响应输出流
                 Response.TransmitFile(filename);
             }

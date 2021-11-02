@@ -63,7 +63,7 @@
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerenxinxi.aspx','个人信息')">个人信息<img src="../Personnel/images/gerenxinxi.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerensuode.aspx','个人所得税')">个人所得税<img src="../Personnel/images/gerensuodeshui.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gongzitiao.aspx','工资条')">工资条<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
-                    <%--<li><a href="#" class="leftNav_li" onclick="a('../Personnel/shuomingshu.aspx','使用说明')">使用说明下载<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>--%>
+                    <li><a href="#" class="leftNav_li" onclick="a('../Personnel/shuomingshu.aspx','使用说明')">使用说明下载<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
                 </ul>
             </div>
         

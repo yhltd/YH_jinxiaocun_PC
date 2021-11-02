@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.finance.web.view {
+namespace Web {
     
     
-    public partial class simpleAccounting {
+    public partial class jxc_shuoming {
     }
 }

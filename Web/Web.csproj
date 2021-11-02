@@ -1151,6 +1151,7 @@
     <Content Include="ImportData.aspx" />
     <Content Include="jin_xiao_cun.aspx" />
     <Content Include="ji_chu_zi_liao_page.aspx" />
+    <Content Include="jxc_shuoming.aspx" />
     <Content Include="kehu.aspx" />
     <Content Include="kh_ming_xi_selcet.aspx" />
     <Content Include="ming_xi.aspx" />
@@ -2280,6 +2281,13 @@
     <Compile Include="jxc_service\jxc_user.cs" />
     <Compile Include="jxc_service\mingxi.cs" />
     <Compile Include="jxc_service\ServicePage.cs" />
+    <Compile Include="jxc_shuoming.aspx.cs">
+      <DependentUpon>jxc_shuoming.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jxc_shuoming.aspx.designer.cs">
+      <DependentUpon>jxc_shuoming.aspx</DependentUpon>
+    </Compile>
     <Compile Include="kehu.aspx.cs">
       <DependentUpon>kehu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

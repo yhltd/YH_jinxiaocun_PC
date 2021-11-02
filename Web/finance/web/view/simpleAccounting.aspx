@@ -22,11 +22,11 @@
 </head>
 <body>
     <div id="main" class="item">
-        <div class="toolbar">
+        <%--<div class="toolbar">
             <label>科目名称:</label>
             <input id="accounting" class="easyui-textbox" value=""/>
             <a href="#" class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
-        </div>
+        </div>--%>
         <div class="main-item">
             <div id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>

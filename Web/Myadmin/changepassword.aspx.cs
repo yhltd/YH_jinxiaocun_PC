@@ -10,7 +10,7 @@ using Web.Server;
 
 namespace Web.Myadmin
 {
-    public partial class changepassword : System.Web.UI.Page
+    public partial class changepwd : System.Web.UI.Page
     {
         private static yh_jinxiaocun_user user;
 

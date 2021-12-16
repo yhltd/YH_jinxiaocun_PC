@@ -63,6 +63,16 @@ namespace Web.Server
             }
         }
 
+        public List<yh_jinxiaocun_qichushu> ming_xi_chaxun(int yi_c, int er_c, string gs_name,string cpname)
+        {
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string sql = "select * from Yh_JinXiaoCun_qichushu where gs_name = '" + gs_name + "' and cpname like '%" + cpname + "%' limit " + yi_c + "," + er_c + "";
+                var result = sen.Database.SqlQuery<yh_jinxiaocun_qichushu>(sql);
+                return result.ToList();
+            }
+        }
+
         public List<yh_jinxiaocun_qichushu> qi_chu_select_row(string gs_name)
         {
             using (ServerEntities sen = new ServerEntities()) {

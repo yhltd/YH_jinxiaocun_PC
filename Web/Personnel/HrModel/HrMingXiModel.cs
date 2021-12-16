@@ -45,5 +45,61 @@ namespace Web.Personnel.HrModel
                 return result.ToList();
             }
         }
+
+        public List<gongzi_kaoqinjilu> kaoqin_list(string a)
+        {
+            using (yaoEntities y = new yaoEntities())
+            {
+                var @params = new SqlParameter[]{
+                    new SqlParameter("@a", a),
+                };
+
+                string sql = "SELECT * FROM [gongzi_kaoqinjilu] WHERE ([AO] = '" + @a + "')";
+                var result = y.Database.SqlQuery<gongzi_kaoqinjilu>(sql, @params);
+                return result.ToList();
+            }
+        }
+
+        public List<gongzi_gongzimingxi> gongzi_list(string a)
+        {
+            using (yaoEntities y = new yaoEntities())
+            {
+                var @params = new SqlParameter[]{
+                    new SqlParameter("@a", a),
+                };
+
+                string sql = "SELECT * FROM [gongzi_gongzimingxi] WHERE ([BD] = '" + @a + "')";
+                var result = y.Database.SqlQuery<gongzi_gongzimingxi>(sql, @params);
+                return result.ToList();
+            }
+        }
+
+        public List<gongzi_kaoqinmingxi> kaoqin_mingxi_list(string a)
+        {
+            using (yaoEntities y = new yaoEntities())
+            {
+                var @params = new SqlParameter[]{
+                    new SqlParameter("@a", a),
+                };
+
+                string sql = "SELECT * FROM [gongzi_kaoqinmingxi] WHERE ([K] = '" + @a + "')";
+                var result = y.Database.SqlQuery<gongzi_kaoqinmingxi>(sql, @params);
+                return result.ToList();
+            }
+        }
+
+        public List<gongzi_gongzimingxi> baopan_list(string a)
+        {
+            using (yaoEntities y = new yaoEntities())
+            {
+                var @params = new SqlParameter[]{
+                    new SqlParameter("@a", a),
+                };
+
+                string sql = "select * FROM gongzi_gongzimingxi WHERE ([BD]like '%" + @a + "%')";
+                var result = y.Database.SqlQuery<gongzi_gongzimingxi>(sql, @params);
+                return result.ToList();
+            }
+        }
     }
 }

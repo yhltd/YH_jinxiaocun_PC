@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gongzimingxi.aspx.cs" Inherits="Web.Personnel.gongzimingxi" %>
+﻿    <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gongzimingxi.aspx.cs" Inherits="Web.Personnel.gongzimingxi" %>
 
 <!DOCTYPE html>
 
@@ -41,25 +41,30 @@
             })
         }
     </script>
+    <h1 style="margin-top:0px;margin-bottom:10px;position:fixed">工资明细</h1>
+    <div style="height:50px"></div>
     <form id="form1" runat="server">
     <div class="iframe_d">
-
-
+    
     </div>
     <div  ><%--style="margin-left: 40px"--%>
-        <asp:Label ID="Label1" runat="server" Height="30px" Text="搜索类型：" Width="80px"></asp:Label>
-        <asp:DropDownList ID="DropDownList1" CssClass="top_option" runat="server" Height="30px" Width="150px">
+        <div style="position:fixed">
+        <asp:Label ID="Label1" runat="server" Height="30px" Text="搜索类型：" Width="80px" style="text-align:center"></asp:Label>
+        <asp:DropDownList ID="DropDownList1" CssClass="top_option" runat="server" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888">
             <asp:ListItem>姓名</asp:ListItem>
             <asp:ListItem>部门</asp:ListItem>
             <asp:ListItem>岗位</asp:ListItem>
         </asp:DropDownList>
-        <asp:Label ID="Label2" runat="server" Height="30px" Text="搜索条件：" Width="80px"></asp:Label>
-        <asp:TextBox ID="TextBox1" CssClass="top_select_input" runat="server" Height="30px" Width="150px"></asp:TextBox>
-        <asp:Button ID="Button1" CssClass="top_bt" runat="server" OnClick="Button1_Click" Text="搜索" Height="30px" Width="80px" />
-        <asp:Button ID="Button2" CssClass="top_bt" runat="server" OnClick="Button2_Click" Text="添加" Width="80px" Height="30px" />
-        <asp:Button ID="Button3" CssClass="top_bt" runat="server"  Text="所有" OnClientClick="aa" OnClick="Button3_Click" Height="30px" Width="80px"/>
-       <%-- <asp:Button ID="Button4" CssClass="top_bt" runat="server"  Text="刷新" OnClientClick="aa"  Height="30px" Width="80px" OnClick="Button4_Click"/> --%>
-        <asp:GridView ID="GridView1" runat="server" CssClass="grid_view" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" ScrollBars="Auto" Width="400px" HeaderStyle-BorderStyle="None" AllowPaging="True"  OnRowCreated="aaa" OnRowEditing="GridView1_RowUpdating" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:Label ID="Label2" runat="server" Height="30px" Text="搜索条件：" Width="80px" style="text-align:center"></asp:Label>
+        <asp:TextBox ID="TextBox1" CssClass="top_select_input" runat="server" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888"></asp:TextBox>
+        <asp:Button ID="Button1" CssClass="top_bt" runat="server" OnClick="Button1_Click" Text="搜索" Height="30px" Width="80px" style="margin-right:-10px"/>
+        <asp:Button ID="Button2" CssClass="top_bt" runat="server" OnClick="Button2_Click" Text="添加" Width="80px" Height="30px" style="margin-right:-10px"/>
+        <asp:Button ID="Button3" CssClass="top_bt" runat="server"  Text="所有" OnClientClick="aa" OnClick="Button3_Click" Height="30px" Width="80px" style="margin-right:-10px"/>
+        <asp:Button ID="Button4" CssClass="top_bt" runat="server" Height="30px" Text="生成Excel" Width="80px" OnClick="toExcel" style="margin-right:-10px" />
+        </div>
+        <div style="height:35px"></div>
+        <%-- <asp:Button ID="Button4" CssClass="top_bt" runat="server"  Text="刷新" OnClientClick="aa"  Height="30px" Width="80px" OnClick="Button4_Click"/> --%>
+        <asp:GridView ID="GridView1" runat="server" CssClass="grid_view" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" ScrollBars="Auto" Width="100%" HeaderStyle-BorderStyle="None" AllowPaging="True"  OnRowCreated="aaa" OnRowEditing="GridView1_RowUpdating" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
                 <asp:CommandField ButtonType="Button" ShowSelectButton="True" ItemStyle-CssClass="bt_upd1" SelectText="修改">
                 <HeaderStyle Wrap="False" />
@@ -74,219 +79,219 @@
                 <ItemStyle Wrap="False" />
                 </asp:CommandField>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id"  Visible="false"/>
-                <asp:BoundField DataField="B" HeaderText="姓名" SortExpression="B" >
+                <asp:BoundField DataField="B" HeaderText="姓名" SortExpression="B" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="C" HeaderText="部门" SortExpression="C" >
+                <asp:BoundField DataField="C" HeaderText="部门" SortExpression="C" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="D" HeaderText="岗位" SortExpression="D" >
+                <asp:BoundField DataField="D" HeaderText="岗位" SortExpression="D" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="E" HeaderText="身份证号" SortExpression="E" >
+                <asp:BoundField DataField="E" HeaderText="身份证号" SortExpression="E" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="F" HeaderText="入职时间" SortExpression="F" >
+                <asp:BoundField DataField="F" HeaderText="入职时间" SortExpression="F" HeaderStyle-Font-Bold="true" >
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" CssClass="date" />
                 </asp:BoundField>
-                <asp:BoundField DataField="G" HeaderText="基本工资" SortExpression="G" >
+                <asp:BoundField DataField="G" HeaderText="基本工资" SortExpression="G" HeaderStyle-Font-Bold="true" ControlStyle-Width="95%">
+                <HeaderStyle Wrap="False" Width="20px" />
+                <ItemStyle Wrap="False" Width="20px" />
+                </asp:BoundField>
+                <asp:BoundField DataField="H" HeaderText="绩效工资" SortExpression="H" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="H" HeaderText="绩效工资" SortExpression="H" >
+                <asp:BoundField DataField="I" HeaderText="岗位工资" SortExpression="I" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="I" HeaderText="岗位工资" SortExpression="I" >
+                <asp:BoundField DataField="J" HeaderText="当月合计工资" SortExpression="J" HeaderStyle-Font-Bold="true" >
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="J" HeaderText="当月合计工资" SortExpression="J" >
+                <asp:BoundField DataField="K" HeaderText="跨度工资" SortExpression="K" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="K" HeaderText="跨度工资" SortExpression="K" >
+                <asp:BoundField DataField="L" HeaderText="职称津贴" SortExpression="L" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="L" HeaderText="职称津贴" SortExpression="L" >
+                <asp:BoundField DataField="M" HeaderText="月出勤天数" SortExpression="M" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="M" HeaderText="月出勤天数" SortExpression="M" >
+                <asp:BoundField DataField="N" HeaderText="加班时间" SortExpression="N" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="N" HeaderText="加班时间" SortExpression="N" >
+                <asp:BoundField DataField="O" HeaderText="加班费" SortExpression="O" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="O" HeaderText="加班费" SortExpression="O" >
+                <asp:BoundField DataField="P" HeaderText="全勤应发" SortExpression="P" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="P" HeaderText="全勤应发" SortExpression="P" >
+                <asp:BoundField DataField="Q" HeaderText="缺勤天数" SortExpression="Q" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Q" HeaderText="缺勤天数" SortExpression="Q" >
+                <asp:BoundField DataField="R" HeaderText="缺勤扣款" SortExpression="R" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="R" HeaderText="缺勤扣款" SortExpression="R" >
+                <asp:BoundField DataField="S" HeaderText="迟到天数" SortExpression="S" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="S" HeaderText="迟到天数" SortExpression="S" >
+                <asp:BoundField DataField="T" HeaderText="迟到扣款" SortExpression="T" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="T" HeaderText="迟到扣款" SortExpression="T" >
+                <asp:BoundField DataField="U" HeaderText="应发工资" SortExpression="U" HeaderStyle-Font-Bold="true" >
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="U" HeaderText="应发工资" SortExpression="U" >
+                <asp:BoundField DataField="V" HeaderText="社保基数" SortExpression="V" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="V" HeaderText="社保基数" SortExpression="V" >
+                <asp:BoundField DataField="W" HeaderText="医疗技术" SortExpression="W" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="W" HeaderText="医疗技术" SortExpression="W" >
+                <asp:BoundField DataField="X" HeaderText="公积金基数" SortExpression="X" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="X" HeaderText="公积金基数" SortExpression="X" >
+                <asp:BoundField DataField="Y" HeaderText="年金基数" SortExpression="Y" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Y" HeaderText="年金基数" SortExpression="Y" >
+                <asp:BoundField DataField="Z" HeaderText="企业养老" SortExpression="Z" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Z" HeaderText="企业养老" SortExpression="Z" >
+                <asp:BoundField DataField="AA" HeaderText="企业失业" SortExpression="AA" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AA" HeaderText="企业失业" SortExpression="AA" >
+                <asp:BoundField DataField="AB" HeaderText="企业医疗" SortExpression="AB" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AB" HeaderText="企业医疗" SortExpression="AB" >
+                <asp:BoundField DataField="AC" HeaderText="企业工伤" SortExpression="AC" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AC" HeaderText="企业工伤" SortExpression="AC" >
+                <asp:BoundField DataField="AD" HeaderText="企业生育" SortExpression="AD" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AD" HeaderText="企业生育" SortExpression="AD" >
+                <asp:BoundField DataField="AE" HeaderText="企业公积金" SortExpression="AE" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AE" HeaderText="企业公积金" SortExpression="AE" >
+                <asp:BoundField DataField="AF" HeaderText="企业年金" SortExpression="AF" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AF" HeaderText="企业年金" SortExpression="AF" >
+                <asp:BoundField DataField="AG" HeaderText="滞纳金" SortExpression="AG" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AG" HeaderText="滞纳金" SortExpression="AG" >
+                <asp:BoundField DataField="AH" HeaderText="利息" SortExpression="AH" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AH" HeaderText="利息" SortExpression="AH" >
+                <asp:BoundField DataField="AI" HeaderText="企业小计" SortExpression="AI" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AI" HeaderText="企业小计" SortExpression="AI" >
+                <asp:BoundField DataField="AJ" HeaderText="个人养老" SortExpression="AJ" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AJ" HeaderText="个人养老" SortExpression="AJ" >
+                <asp:BoundField DataField="AK" HeaderText="个人失业" SortExpression="AK" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AK" HeaderText="个人失业" SortExpression="AK" >
+                <asp:BoundField DataField="AL" HeaderText="个人医疗" SortExpression="AL" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AL" HeaderText="个人医疗" SortExpression="AL" >
+                <asp:BoundField DataField="AM" HeaderText="个人生育" SortExpression="AM" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AM" HeaderText="个人生育" SortExpression="AM" >
+                <asp:BoundField DataField="AN" HeaderText="个人公积金" SortExpression="AN" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AN" HeaderText="个人公积金" SortExpression="AN" >
+                <asp:BoundField DataField="AO" HeaderText="个人年金4%" SortExpression="AO" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AO" HeaderText="个人年金4%" SortExpression="AO" >
+                <asp:BoundField DataField="AP" HeaderText="滞纳金" SortExpression="AP" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AP" HeaderText="滞纳金" SortExpression="AP" >
+                <asp:BoundField DataField="AQ" HeaderText="利息" SortExpression="AQ" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AQ" HeaderText="利息" SortExpression="AQ" >
+                <asp:BoundField DataField="AR" HeaderText="个人小计" SortExpression="AR" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AR" HeaderText="个人小计" SortExpression="AR" >
+                <asp:BoundField DataField="ASA" HeaderText="税前工资" SortExpression="ASA" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="ASA" HeaderText="税前工资" SortExpression="ASA" >
+                <asp:BoundField DataField="ATA" HeaderText="应税工资" SortExpression="ATA" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="ATA" HeaderText="应税工资" SortExpression="ATA" >
+                <asp:BoundField DataField="AU" HeaderText="税率" SortExpression="AU" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AU" HeaderText="税率" SortExpression="AU" >
+                <asp:BoundField DataField="AV" HeaderText="扣除数" SortExpression="AV" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AV" HeaderText="扣除数" SortExpression="AV" >
+                <asp:BoundField DataField="AW" HeaderText="代扣个人所得税" SortExpression="AW" HeaderStyle-Font-Bold="true" >
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AW" HeaderText="代扣个人所得税" SortExpression="AW" >
+                <asp:BoundField DataField="AX" HeaderText="年金1%" SortExpression="AX" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AX" HeaderText="年金1%" SortExpression="AX" >
+                <asp:BoundField DataField="AY" HeaderText="实发工资" SortExpression="AY" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AY" HeaderText="实发工资" SortExpression="AY" >
+                <asp:BoundField DataField="AZ" HeaderText="验算公式" SortExpression="AZ" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="AZ" HeaderText="验算公式" SortExpression="AZ" >
+                <asp:BoundField DataField="BA" HeaderText="银行账号" SortExpression="BA" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="BA" HeaderText="银行账号" SortExpression="BA" >
+                <asp:BoundField DataField="BB" HeaderText="调薪时间" SortExpression="BB" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>
-                <asp:BoundField DataField="BB" HeaderText="调薪时间" SortExpression="BB" >
-                <HeaderStyle Wrap="False" />
-                <ItemStyle Wrap="False" />
-                </asp:BoundField>
-                <asp:BoundField DataField="BC" HeaderText="录入时间" SortExpression="BC" >
+                <asp:BoundField DataField="BC" HeaderText="录入时间" SortExpression="BC" HeaderStyle-Font-Bold="true">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />
                 </asp:BoundField>

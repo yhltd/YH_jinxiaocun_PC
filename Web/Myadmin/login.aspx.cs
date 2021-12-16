@@ -32,6 +32,7 @@ namespace Web
                 DropDownList1.DataBind();
                 DropDownList1.Items.Insert(0, new ListItem("选择", "绑定数据"));
             }
+
         }
 
         SqlConnection conn = null;

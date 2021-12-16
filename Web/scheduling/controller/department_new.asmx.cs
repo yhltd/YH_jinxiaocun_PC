@@ -30,7 +30,7 @@ namespace Web.scheduling.controller
         //private user_info ui;
 
         [WebMethod]
-        public string departmentList(int nowPage, int pageCount)
+        public string departmentList(int nowPage, int pageCount,string department_name,string view_name)
         {
 
             try
@@ -47,7 +47,7 @@ namespace Web.scheduling.controller
                 }
 
                 ds = new DepartmentService();
-                return ResultUtil.success(ds.list(nowPage, pageCount), "查询成功");
+                return ResultUtil.success(ds.list(nowPage, pageCount, department_name, view_name), "查询成功");
             }
             catch (ErrorUtil err)
             {

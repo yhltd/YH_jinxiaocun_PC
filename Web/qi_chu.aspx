@@ -9,7 +9,6 @@
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
         <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
-        
         function bhhq(row) {
             $.ajax({
                 type: "post", 
@@ -125,6 +124,7 @@
             }
         })
 
+
     </script>
     <style type="text/css">
         #biao_ge {
@@ -191,6 +191,14 @@
             justify-content: start;
             align-items: center;
         }
+        .select_input {
+            width: 300px;
+            border: none;
+            height: 64%;
+            border: 1px solid #C2C2C2;
+            border-radius: 3px;
+            margin-top:20px;
+        }
     </style>
     <title></title>
 </head>
@@ -201,9 +209,12 @@
             <input type="hidden" id="row_i1" name="row_i" />
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <div class="d-header fun_div">
-                <asp:Button ID="Button2" class="qichu_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
-                <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="qichu_input_tr_tj" Text="删除" runat="server" />
+                <%--<input id='ru_cx' class='select_input' autocomplete='off'  placeholder='按商品名称/商品代码搜索' />--%>
+                <asp:TextBox ID='qc_cx' class='select_input' Autocomplete='off'  runat="server" placeholder="按商品名称搜索"/>
+                <asp:Button  ID="qc_query" OnClick="bt_chaxun" class="qichu_input_tr_tj" Text="查询" runat="server" />
                 <asp:Button OnClick="qc_tj" ID="dj_row" class="qichu_input_tr_tj" Text="提交" runat="server" />
+                <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="qichu_input_tr_tj" Text="批量删除" runat="server" />
+                <asp:Button ID="Button2" class="qichu_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
             </div>
             <div class="d-main table_div">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 1%;">
@@ -256,6 +267,7 @@
             <div class="d-footer" style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
                 <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
+                <asp:Label runat="server" ID="lblCurrentPage" style=" font-weight:bold"></asp:Label>
                 <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
             </div>

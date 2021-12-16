@@ -9,6 +9,8 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using Web.Personnel.HrModel;
+using System.IO;
 
 namespace Web.Personnel
 {
@@ -41,6 +43,13 @@ namespace Web.Personnel
             if (str[5].ToString() == "0")
             {
             Server.Transfer("../Personnel/wuquanxian.aspx");
+            }
+            string nian = DateTime.Now.Year.ToString();
+            ListItem item = DropDownList1.Items.FindByText(nian);
+            if (item != null) {
+                //防止出现多选的情况，将选中项 清除
+                DropDownList1.ClearSelection();
+                item.Selected = true;
             }
         } 
         protected void Button1_Click(object sender, EventArgs e)
@@ -108,6 +117,42 @@ namespace Web.Personnel
             
             
            
+        }
+
+        protected void toExcel(object sender, EventArgs e)
+        {
+            HrMingXiModel hm = new HrMingXiModel();
+            List<gongzi_kaoqinjilu> list = hm.kaoqin_list(Session["gongsi"].ToString());
+            if (list != null)
+            {
+                StringWriter sw = new StringWriter();
+
+                sw.WriteLine("年\t月\t姓名\t1\t2\t3\t4\t5\t6\t7\t8\t9\t10\t11\t12\t13\t14\t15\t16\t17\t18\t19\t20\t21\t22\t23\t24\t25\t26\t27\t28\t29\t30\t31\t全勤天数\t实际天数\t请假/小时\t加班/小时\t迟到天数");
+
+                foreach (gongzi_kaoqinjilu kaoqin in list)
+                {
+
+                    sw.WriteLine(kaoqin.year + "\t" + kaoqin.moth + "\t" + kaoqin.name + "\t" + kaoqin.E + "\t" + kaoqin.F + "\t" + kaoqin.G + "\t" + kaoqin.H + "\t" + kaoqin.I + "\t" + kaoqin.J + "\t" + kaoqin.K + "\t" + kaoqin.L + "\t" + kaoqin.M + "\t" + kaoqin.N + "\t" + kaoqin.O + "\t" + kaoqin.P + "\t" + kaoqin.Q + "\t" + kaoqin.R + "\t" + kaoqin.S + "\t" + kaoqin.T + "\t" + kaoqin.U + "\t" + kaoqin.V + "\t" + kaoqin.W + "\t" + kaoqin.X + "\t" + kaoqin.Y + "\t" + kaoqin.Z + "\t" + kaoqin.AA + "\t" + kaoqin.AB + "\t" + kaoqin.AC + "\t" + kaoqin.AD + "\t" + kaoqin.AE + "\t" + kaoqin.AF + "\t" + kaoqin.AG + "\t" + kaoqin.AH + "\t" + kaoqin.AI + "\t" + kaoqin.AJ + "\t" + kaoqin.AK + "\t" + kaoqin.AL + "\t" + kaoqin.AM + "\t" + kaoqin.AN);
+
+                }
+
+                sw.Close();
+
+                Response.AddHeader("Content-Disposition", "attachment; filename=考勤.xls");
+
+                Response.ContentType = "application/ms-excel";
+
+                Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+
+                Response.Write(sw);
+
+                Response.End();
+            }
+            else
+            {
+                Response.Write(" <script>alert('保存失败'); location='ming_xi.aspx';</script>");
+            }
+
         }
     }
 }

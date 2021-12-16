@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wuquanxian.aspx.cs" Inherits="Web.Personnel.wuquanxian" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wuquanxian.aspx.cs" Inherits="Web.Personnel.changepwd" %>
 
 <!DOCTYPE html>
 
@@ -7,7 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 </head>
-<body style="    margin: 0;height:100%">
+    <style>
+        body
+        {
+            background: url('images/beijing.jpeg')top center no-repeat; 
+            background-size:cover;
+        }
+    </style>
+<body style="margin: 0;height:100%;">
     <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
     <script>
         function MyFun() {
@@ -15,9 +22,9 @@
         }
     </script>
     <form id="form1" runat="server" style="height:100%">
-    <div style="text-align:center;height:100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
-        <div style="font-size:40px;margin: 0 auto;">欢迎使用！</div>
-        <div style="font-size:40px;margin: 0 auto;">云和人事管理</div>
+    <div style="text-align:center;height:100%;display: flex;flex-direction: column;justify-content: center;align-items: center">
+        <div style="font-size:40px;margin: 0 auto;color:white">欢迎使用！</div>
+        <div style="font-size:40px;margin: 0 auto;color:white">云和人事管理系统</div>
     </div>
     </form>
 </body>

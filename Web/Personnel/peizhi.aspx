@@ -14,6 +14,7 @@
         //}
     </script>
 <body  style="    margin: 0;">
+    <h1 style="margin-top:0px;margin-bottom:10px">配置表</h1>
     <form id="form1" runat="server">
     <div class="div1">
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" AllowPaging="True" OnRowCreated="aaa">
@@ -27,19 +28,19 @@
                 <ItemStyle Wrap="False" />
                 </asp:CommandField>
                 <asp:BoundField DataField="gongsi" HeaderText="gongsi" SortExpression="gongsi" Visible="false"/>
-                <asp:BoundField DataField="kaoqin" HeaderText="考勤项目" SortExpression="kaoqin" ControlStyle-Width="80%">
+                <asp:BoundField DataField="kaoqin" HeaderText="考勤项目" SortExpression="kaoqin" ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="23%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>
-                <asp:BoundField DataField="kaoqin_peizhi" HeaderText="考勤配置" SortExpression="kaoqin_peizhi" ControlStyle-Width="80%">
+                <asp:BoundField DataField="kaoqin_peizhi" HeaderText="考勤配置" SortExpression="kaoqin_peizhi" ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="23%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>
-                <asp:BoundField DataField="bumen" HeaderText="部门配置" SortExpression="bumen" ControlStyle-Width="80%">
+                <asp:BoundField DataField="bumen" HeaderText="部门配置" SortExpression="bumen" ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="23%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>
-                <asp:BoundField DataField="zhiwu" HeaderText="职务配置" SortExpression="zhiwu" ControlStyle-Width="80%">
+                <asp:BoundField DataField="zhiwu" HeaderText="职务配置" SortExpression="zhiwu" ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="23%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>
@@ -81,7 +82,7 @@
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="添加一行"  CssClass="top_bt" Height="30px" Width="80px" style="margin-left:46%;"/>
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="添加一行"  CssClass="top_bt" Height="30px" Width="80px" style="margin-left:4.3%;margin-top:1%"/>
         </div>
     </form>
     

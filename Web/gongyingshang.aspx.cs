@@ -54,13 +54,31 @@ namespace Web
             {
                 Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
             }
+        }
 
+        protected void gys_chaxun(object sender, EventArgs e)
+        {
+            try
+            {
+                string beizhu = Request.Form["gys_cx_a"];
+                Session["gys_select"] = gys_cx(user.gongsi,beizhu);
+            }
+            catch
+            {
+                Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+            }
         }
 
         public List<yh_jinxiaocun_jinhuofang> gys_select(string gs_name)
         {
             JinHuoFangModel jinhuofang = new JinHuoFangModel();
             return jinhuofang.getList(gs_name);
+        }
+
+        public List<yh_jinxiaocun_jinhuofang> gys_cx(string gs_name,string beizhu)
+        {
+            JinHuoFangModel jinhuofang = new JinHuoFangModel();
+            return jinhuofang.getList_chaxun(gs_name,beizhu);
         }
 
         protected void delete(object sender, EventArgs e)

@@ -50,6 +50,19 @@ namespace Web
                 Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
             }
         }
+        protected void jczl_chaxun(object sender, EventArgs e)
+        {
+            try
+            {
+                string name = Request.Form["jichu_cx"];
+                JinChuModel jinchu = new JinChuModel();
+                Session["jczj_select"] = jinchu.getList_chaxun(user.gongsi, name);
+            }
+            catch
+            {
+                Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+            }
+        }
 
         protected void del_qichu(object sender, EventArgs e)
         {

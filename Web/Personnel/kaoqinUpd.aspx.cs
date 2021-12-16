@@ -151,7 +151,7 @@ namespace Web.Personnel
         
         protected void Button2_Click(object sender, EventArgs e)
         {
-
+            Server.Transfer("../Personnel/kaoqin.aspx");
         }
     }
 }

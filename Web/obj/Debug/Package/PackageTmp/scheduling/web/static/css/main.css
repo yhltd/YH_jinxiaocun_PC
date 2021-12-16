@@ -1,0 +1,38 @@
+﻿html::-webkit-scrollbar
+{
+    width: 6px;
+    height: 1px;
+}
+
+html::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #409EFF;
+    transition: .3s;
+}
+html::-webkit-scrollbar-track
+{
+    background: #ffffff;
+    border-radius: 0;
+}
+
+body
+{
+    margin: 0;
+}
+
+div, button
+{
+    outline: 0 none;
+}
+
+.el-drawer__body
+{
+    padding: 0 20px;
+    overflow: auto;
+}
+
+.el-table-column--selection .cell
+{
+    padding: 0 10px;
+}

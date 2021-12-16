@@ -4,9 +4,31 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="yaoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="yaoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="yaoModelStoreContainer">
           <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.Store.gongzi_gongzimingxi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_kaoqinjilu" EntityType="yaoModel.Store.gongzi_kaoqinjilu" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_kaoqinmingxi" EntityType="yaoModel.Store.gongzi_kaoqinmingxi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_peizhi" EntityType="yaoModel.Store.gongzi_peizhi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_renyuan" EntityType="yaoModel.Store.gongzi_renyuan" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_renyuanManager" EntityType="yaoModel.Store.gongzi_renyuanManager" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_renyuanManager">
+            <DefiningQuery>SELECT 
+      [gongzi_renyuanManager].[R_id] AS [R_id], 
+      [gongzi_renyuanManager].[add] AS [add], 
+      [gongzi_renyuanManager].[del] AS [del], 
+      [gongzi_renyuanManager].[upd] AS [upd], 
+      [gongzi_renyuanManager].[sel] AS [sel], 
+      [gongzi_renyuanManager].[look] AS [look], 
+      [gongzi_renyuanManager].[view_id] AS [view_id]
+      FROM [dbo].[gongzi_renyuanManager] AS [gongzi_renyuanManager]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gongzi_shezhi" EntityType="yaoModel.Store.gongzi_shezhi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_viewNames" EntityType="yaoModel.Store.gongzi_viewNames" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_viewNames">
+            <DefiningQuery>SELECT 
+      [gongzi_viewNames].[id] AS [id], 
+      [gongzi_viewNames].[viewName] AS [viewName]
+      FROM [dbo].[gongzi_viewNames] AS [gongzi_viewNames]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
         <EntityType Name="gongzi_gongzimingxi">
           <Key>
@@ -69,13 +91,181 @@
           <Property Name="BC" Type="varchar" MaxLength="255" />
           <Property Name="BD" Type="varchar" MaxLength="255" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="gongzi_kaoqinjilu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="year" Type="varchar" MaxLength="255" />
+          <Property Name="moth" Type="varchar" MaxLength="255" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="E" Type="varchar" MaxLength="255" />
+          <Property Name="F" Type="varchar" MaxLength="255" />
+          <Property Name="G" Type="varchar" MaxLength="255" />
+          <Property Name="H" Type="varchar" MaxLength="255" />
+          <Property Name="I" Type="varchar" MaxLength="255" />
+          <Property Name="J" Type="varchar" MaxLength="255" />
+          <Property Name="K" Type="varchar" MaxLength="255" />
+          <Property Name="L" Type="varchar" MaxLength="255" />
+          <Property Name="M" Type="varchar" MaxLength="255" />
+          <Property Name="N" Type="varchar" MaxLength="255" />
+          <Property Name="O" Type="varchar" MaxLength="255" />
+          <Property Name="P" Type="varchar" MaxLength="255" />
+          <Property Name="Q" Type="varchar" MaxLength="255" />
+          <Property Name="R" Type="varchar" MaxLength="255" />
+          <Property Name="S" Type="varchar" MaxLength="255" />
+          <Property Name="T" Type="varchar" MaxLength="255" />
+          <Property Name="U" Type="varchar" MaxLength="255" />
+          <Property Name="V" Type="varchar" MaxLength="255" />
+          <Property Name="W" Type="varchar" MaxLength="255" />
+          <Property Name="X" Type="varchar" MaxLength="255" />
+          <Property Name="Y" Type="varchar" MaxLength="255" />
+          <Property Name="Z" Type="varchar" MaxLength="255" />
+          <Property Name="AA" Type="varchar" MaxLength="255" />
+          <Property Name="AB" Type="varchar" MaxLength="255" />
+          <Property Name="AC" Type="varchar" MaxLength="255" />
+          <Property Name="AD" Type="varchar" MaxLength="255" />
+          <Property Name="AE" Type="varchar" MaxLength="255" />
+          <Property Name="AF" Type="varchar" MaxLength="255" />
+          <Property Name="AG" Type="varchar" MaxLength="255" />
+          <Property Name="AH" Type="varchar" MaxLength="255" />
+          <Property Name="AI" Type="varchar" MaxLength="255" />
+          <Property Name="AJ" Type="varchar" MaxLength="255" />
+          <Property Name="AK" Type="varchar" MaxLength="255" />
+          <Property Name="AL" Type="varchar" MaxLength="255" />
+          <Property Name="AM" Type="varchar" MaxLength="255" />
+          <Property Name="AN" Type="varchar" MaxLength="255" />
+          <Property Name="AO" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="gongzi_kaoqinmingxi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="C" Type="varchar" MaxLength="255" />
+          <Property Name="D" Type="varchar" MaxLength="255" />
+          <Property Name="E" Type="varchar" MaxLength="255" />
+          <Property Name="F" Type="varchar" MaxLength="255" />
+          <Property Name="G" Type="varchar" MaxLength="255" />
+          <Property Name="H" Type="varchar" MaxLength="255" />
+          <Property Name="I" Type="varchar" MaxLength="255" />
+          <Property Name="J" Type="varchar" MaxLength="255" />
+          <Property Name="K" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="gongzi_peizhi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="gongsi" Type="nvarchar" MaxLength="255" />
+          <Property Name="kaoqin" Type="nvarchar" MaxLength="255" />
+          <Property Name="kaoqin_peizhi" Type="nvarchar" MaxLength="255" />
+          <Property Name="bumen" Type="nvarchar" MaxLength="255" />
+          <Property Name="zhiwu" Type="nvarchar" MaxLength="255" />
+          <Property Name="year" Type="nvarchar" MaxLength="255" />
+          <Property Name="month" Type="nvarchar" MaxLength="255" />
+          <Property Name="day" Type="nvarchar" MaxLength="255" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="gongzi_renyuan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="B" Type="varchar" MaxLength="255" />
+          <Property Name="C" Type="varchar" MaxLength="255" />
+          <Property Name="D" Type="varchar" MaxLength="255" />
+          <Property Name="E" Type="varchar" MaxLength="255" />
+          <Property Name="F" Type="varchar" MaxLength="255" />
+          <Property Name="G" Type="varchar" MaxLength="255" />
+          <Property Name="H" Type="varchar" MaxLength="255" />
+          <Property Name="I" Type="varchar" MaxLength="255" />
+          <Property Name="J" Type="varchar" MaxLength="255" />
+          <Property Name="K" Type="varchar" MaxLength="255" />
+          <Property Name="L" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_renyuanManager”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="gongzi_renyuanManager">
+          <Key>
+            <PropertyRef Name="R_id" />
+            <PropertyRef Name="add" />
+            <PropertyRef Name="del" />
+            <PropertyRef Name="upd" />
+            <PropertyRef Name="sel" />
+            <PropertyRef Name="look" />
+            <PropertyRef Name="view_id" />
+          </Key>
+          <Property Name="R_id" Type="int" Nullable="false" />
+          <Property Name="add" Type="int" Nullable="false" />
+          <Property Name="del" Type="int" Nullable="false" />
+          <Property Name="upd" Type="int" Nullable="false" />
+          <Property Name="sel" Type="int" Nullable="false" />
+          <Property Name="look" Type="int" Nullable="false" />
+          <Property Name="view_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gongzi_shezhi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="gongsi" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="shezhi" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="yi" Type="varchar" MaxLength="255" />
+          <Property Name="er" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_viewNames”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+        <EntityType Name="gongzi_viewNames">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="viewName" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="viewName" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6013: 表/视图“yao.dbo.gongzi_title”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      
+      <EntityType Name="gongzi_title">
+        <Property Name="bumenhuizong" Type="nvarchar" MaxLength="255" />
+        <Property Name="bumenxiangqing" Type="nvarchar" MaxLength="255" />
+        <Property Name="gongzimingxi" Type="nvarchar" MaxLength="255" />
+        <Property Name="shebaoxiangqing" Type="nvarchar" MaxLength="255" />
+        <Property Name="shebaohuizong" Type="nvarchar" MaxLength="255" />
+        <Property Name="baopan" Type="nvarchar" MaxLength="255" />
+        <Property Name="baoshui" Type="nvarchar" MaxLength="255" />
+        <Property Name="kaoqinbiao" Type="nvarchar" MaxLength="255" />
+        <Property Name="gerensuodeshui" Type="nvarchar" MaxLength="255" />
+        <Property Name="renyuanjibenxinxi" Type="nvarchar" MaxLength="255" />
+        <Property Name="gongzitiao" Type="nvarchar" MaxLength="255" />
+        <Property Name="renyuanxinxiguanli" Type="nvarchar" MaxLength="255" />
+        <Property Name="kaoqinjilu" Type="nvarchar" MaxLength="255" />
+        <Property Name="peizhi" Type="nvarchar" MaxLength="255" />
+      </EntityType>
+      生成过程中发现错误:
+      警告 6013: 表/视图“yao.guest.t_user”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      
+      <EntityType Name="t_user">
+        <Property Name="name" Type="varchar" MaxLength="255" />
+        <Property Name="age" Type="int" />
+        <Property Name="sex" Type="varchar" MaxLength="255" />
+      </EntityType>-->
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="yaoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="yaoEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.gongzi_gongzimingxi" />
+          <EntitySet Name="gongzi_kaoqinjilu" EntityType="yaoModel.gongzi_kaoqinjilu" />
+          <EntitySet Name="gongzi_kaoqinmingxi" EntityType="yaoModel.gongzi_kaoqinmingxi" />
+          <EntitySet Name="gongzi_peizhi" EntityType="yaoModel.gongzi_peizhi" />
+          <EntitySet Name="gongzi_renyuan" EntityType="yaoModel.gongzi_renyuan" />
+          <EntitySet Name="gongzi_renyuanManager" EntityType="yaoModel.gongzi_renyuanManager" />
+          <EntitySet Name="gongzi_shezhi" EntityType="yaoModel.gongzi_shezhi" />
+          <EntitySet Name="gongzi_viewNames" EntityType="yaoModel.gongzi_viewNames" />
         </EntityContainer>
         <EntityType Name="gongzi_gongzimingxi">
           <Key>
@@ -137,6 +327,135 @@
           <Property Name="BB" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="BC" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="BD" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="gongzi_kaoqinjilu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="year" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="moth" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AI" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AJ" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AK" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AL" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AM" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AN" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AO" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_kaoqinmingxi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_peizhi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="kaoqin" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="kaoqin_peizhi" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="zhiwu" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="year" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="month" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="day" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="gongzi_renyuan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_renyuanManager">
+          <Key>
+            <PropertyRef Name="R_id" />
+            <PropertyRef Name="add" />
+            <PropertyRef Name="del" />
+            <PropertyRef Name="upd" />
+            <PropertyRef Name="sel" />
+            <PropertyRef Name="look" />
+            <PropertyRef Name="view_id" />
+          </Key>
+          <Property Type="Int32" Name="R_id" Nullable="false" />
+          <Property Type="Int32" Name="add" Nullable="false" />
+          <Property Type="Int32" Name="del" Nullable="false" />
+          <Property Type="Int32" Name="upd" Nullable="false" />
+          <Property Type="Int32" Name="sel" Nullable="false" />
+          <Property Type="Int32" Name="look" Nullable="false" />
+          <Property Type="Int32" Name="view_id" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gongzi_shezhi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="gongsi" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="shezhi" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="yi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="er" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_viewNames">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="viewName" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="viewName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -203,6 +522,135 @@
                 <ScalarProperty Name="BB" ColumnName="BB" />
                 <ScalarProperty Name="BC" ColumnName="BC" />
                 <ScalarProperty Name="BD" ColumnName="BD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_kaoqinjilu">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_kaoqinjilu">
+              <MappingFragment StoreEntitySet="gongzi_kaoqinjilu">
+                <ScalarProperty Name="AO" ColumnName="AO" />
+                <ScalarProperty Name="AN" ColumnName="AN" />
+                <ScalarProperty Name="AM" ColumnName="AM" />
+                <ScalarProperty Name="AL" ColumnName="AL" />
+                <ScalarProperty Name="AK" ColumnName="AK" />
+                <ScalarProperty Name="AJ" ColumnName="AJ" />
+                <ScalarProperty Name="AI" ColumnName="AI" />
+                <ScalarProperty Name="AH" ColumnName="AH" />
+                <ScalarProperty Name="AG" ColumnName="AG" />
+                <ScalarProperty Name="AF" ColumnName="AF" />
+                <ScalarProperty Name="AE" ColumnName="AE" />
+                <ScalarProperty Name="AD" ColumnName="AD" />
+                <ScalarProperty Name="AC" ColumnName="AC" />
+                <ScalarProperty Name="AB" ColumnName="AB" />
+                <ScalarProperty Name="AA" ColumnName="AA" />
+                <ScalarProperty Name="Z" ColumnName="Z" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="W" ColumnName="W" />
+                <ScalarProperty Name="V" ColumnName="V" />
+                <ScalarProperty Name="U" ColumnName="U" />
+                <ScalarProperty Name="T" ColumnName="T" />
+                <ScalarProperty Name="S" ColumnName="S" />
+                <ScalarProperty Name="R" ColumnName="R" />
+                <ScalarProperty Name="Q" ColumnName="Q" />
+                <ScalarProperty Name="P" ColumnName="P" />
+                <ScalarProperty Name="O" ColumnName="O" />
+                <ScalarProperty Name="N" ColumnName="N" />
+                <ScalarProperty Name="M" ColumnName="M" />
+                <ScalarProperty Name="L" ColumnName="L" />
+                <ScalarProperty Name="K" ColumnName="K" />
+                <ScalarProperty Name="J" ColumnName="J" />
+                <ScalarProperty Name="I" ColumnName="I" />
+                <ScalarProperty Name="H" ColumnName="H" />
+                <ScalarProperty Name="G" ColumnName="G" />
+                <ScalarProperty Name="F" ColumnName="F" />
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="moth" ColumnName="moth" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_kaoqinmingxi">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_kaoqinmingxi">
+              <MappingFragment StoreEntitySet="gongzi_kaoqinmingxi">
+                <ScalarProperty Name="K" ColumnName="K" />
+                <ScalarProperty Name="J" ColumnName="J" />
+                <ScalarProperty Name="I" ColumnName="I" />
+                <ScalarProperty Name="H" ColumnName="H" />
+                <ScalarProperty Name="G" ColumnName="G" />
+                <ScalarProperty Name="F" ColumnName="F" />
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="D" ColumnName="D" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_peizhi">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_peizhi">
+              <MappingFragment StoreEntitySet="gongzi_peizhi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="month" ColumnName="month" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="zhiwu" ColumnName="zhiwu" />
+                <ScalarProperty Name="bumen" ColumnName="bumen" />
+                <ScalarProperty Name="kaoqin_peizhi" ColumnName="kaoqin_peizhi" />
+                <ScalarProperty Name="kaoqin" ColumnName="kaoqin" />
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_renyuan">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_renyuan">
+              <MappingFragment StoreEntitySet="gongzi_renyuan">
+                <ScalarProperty Name="L" ColumnName="L" />
+                <ScalarProperty Name="K" ColumnName="K" />
+                <ScalarProperty Name="J" ColumnName="J" />
+                <ScalarProperty Name="I" ColumnName="I" />
+                <ScalarProperty Name="H" ColumnName="H" />
+                <ScalarProperty Name="G" ColumnName="G" />
+                <ScalarProperty Name="F" ColumnName="F" />
+                <ScalarProperty Name="E" ColumnName="E" />
+                <ScalarProperty Name="D" ColumnName="D" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_renyuanManager">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_renyuanManager">
+              <MappingFragment StoreEntitySet="gongzi_renyuanManager">
+                <ScalarProperty Name="view_id" ColumnName="view_id" />
+                <ScalarProperty Name="look" ColumnName="look" />
+                <ScalarProperty Name="sel" ColumnName="sel" />
+                <ScalarProperty Name="upd" ColumnName="upd" />
+                <ScalarProperty Name="del" ColumnName="del" />
+                <ScalarProperty Name="add" ColumnName="add" />
+                <ScalarProperty Name="R_id" ColumnName="R_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_shezhi">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_shezhi">
+              <MappingFragment StoreEntitySet="gongzi_shezhi">
+                <ScalarProperty Name="er" ColumnName="er" />
+                <ScalarProperty Name="yi" ColumnName="yi" />
+                <ScalarProperty Name="shezhi" ColumnName="shezhi" />
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_viewNames">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_viewNames">
+              <MappingFragment StoreEntitySet="gongzi_viewNames">
+                <ScalarProperty Name="viewName" ColumnName="viewName" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

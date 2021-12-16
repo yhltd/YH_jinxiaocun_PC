@@ -29,14 +29,14 @@ namespace Web.scheduling.service
         /// <param name="nowPage">当前页</param>
         /// <param name="pageCount">每页显示行数</param>
         /// <returns></returns>
-        public PageUtil<department> list(int nowPage, int pageCount)
+        public PageUtil<department> list(int nowPage, int pageCount,string department_name,string view_name)
         {
             user = TokenUtil.getToken();
             PageUtil<department> page = new PageUtil<department>();
             page.nowPage = nowPage;
             page.pageCount = pageCount;
             page.total = dd.DepartmentCount();
-            page.pageList = dd.getList(page.getSkip(), page.getTake(),user.company);
+            page.pageList = dd.getList(page.getSkip(), page.getTake(),user.company,department_name,view_name);
             return page;
         }
 

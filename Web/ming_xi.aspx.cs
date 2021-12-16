@@ -45,6 +45,7 @@ namespace Web
                     {
                         Session["dq_ye_mx_dd"] = 0;
                     }
+                    lblCurrentPage.Text = page.nowPage.ToString();
                 }
                 catch
                 {
@@ -140,12 +141,14 @@ namespace Web
             if (page.nowPage == 1)
             {
                 Response.Write("<script>alert('已经是第一页');</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
             else
             {
                 page.nowPage = 1;
                 this.ming_xi_select(user.gongsi);
                 Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
         }
 
@@ -154,12 +157,14 @@ namespace Web
             if (page.nowPage == 1)
             {
                 Response.Write("<script>alert('已经是第一页');</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
             else
             {
                 page.nowPage--;
                 this.ming_xi_select(user.gongsi);
                 Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
         }
 
@@ -168,12 +173,14 @@ namespace Web
             if (page.countPage < (page.nowPage + 1))
             {
                 Response.Write("<script>alert('已经是最后一页');</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
             else
             {
                 page.nowPage++;
                 this.ming_xi_select(user.gongsi);
                 Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
 
         }
@@ -183,12 +190,14 @@ namespace Web
             if (page.nowPage == page.countPage)
             {
                 Response.Write("<script>alert('已经是最后一页');</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
             else
             {
                 page.nowPage = page.countPage;
                 this.ming_xi_select(user.gongsi);
                 Response.Write("<script language=javascript>window.location.href=document.URL;</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
         }
 

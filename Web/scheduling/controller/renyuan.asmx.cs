@@ -59,7 +59,7 @@ namespace Web.scheduling.controller
 
 
         [WebMethod]
-        public string getList(int nowPage, int pageCount)
+        public string getList(int nowPage, int pageCount,string staff_name,string staff_banci)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Web.scheduling.controller
                 }
 
                 rs = new RenyuanService();
-                return ResultUtil.success(rs.list(nowPage, pageCount), "查询成功");
+                return ResultUtil.success(rs.list(nowPage, pageCount,staff_name,staff_banci), "查询成功");
             }
             catch (ErrorUtil err)
             {

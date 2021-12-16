@@ -39,6 +39,7 @@ namespace Web
                 {
                     page.countPage = this.getCountPage();
                     shuaxin();
+                    lblCurrentPage.Text = page.nowPage.ToString();
                 }
                 catch
                 {
@@ -113,6 +114,7 @@ namespace Web
             if (page.nowPage == 1)
             {
                 Response.Write("<script>alert('已经是第一页');</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
             else
             {
@@ -122,6 +124,7 @@ namespace Web
                 StockModel stock = new StockModel();
                 List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
         }
         protected void shang_ye_Click(object sender, EventArgs e)
@@ -129,6 +132,7 @@ namespace Web
             if (page.nowPage == 1)
             {
                 Response.Write("<script>alert('已经是第一页');</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
             else
             {
@@ -138,6 +142,7 @@ namespace Web
                 StockModel stock = new StockModel();
                 List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
         }
         protected void xia_ye_Click(object sender, EventArgs e)
@@ -145,6 +150,7 @@ namespace Web
             if (page.countPage < (page.nowPage + 1))
             {
                 Response.Write("<script>alert('已经是最后一页');</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
             else
             {
@@ -154,6 +160,7 @@ namespace Web
                 StockModel stock = new StockModel();
                 List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
         }
         protected void mo_ye_Click(object sender, EventArgs e)
@@ -161,6 +168,7 @@ namespace Web
             if (page.nowPage == page.countPage)
             {
                 Response.Write("<script>alert('已经是最后一页');</script>");
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
             else
             {
@@ -170,6 +178,7 @@ namespace Web
                 StockModel stock = new StockModel();
                 List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
+                lblCurrentPage.Text = page.nowPage.ToString();
             }
         }
 

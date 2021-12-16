@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.Personnel.HrModel;
 
 namespace Web.Personnel
 {
@@ -63,6 +65,42 @@ namespace Web.Personnel
                     e.Row.Cells[0].Enabled = false;
                 }
             }
+        }
+
+        protected void toExcel(object sender, EventArgs e)
+        {
+            HrMingXiModel hm = new HrMingXiModel();
+            List<gongzi_gongzimingxi> list = hm.gongzi_list(Session["gongsi"].ToString());
+            if (list != null)
+            {
+                StringWriter sw = new StringWriter();
+
+                sw.WriteLine("员工姓名\t支付金额\t员工银行账号\t币种");
+
+                foreach (gongzi_gongzimingxi bp in list)
+                {
+
+                    sw.WriteLine(bp.B + "\t" + bp.AY + "\t" + bp.BA + "\t"+"人民币" );
+
+                }
+
+                sw.Close();
+
+                Response.AddHeader("Content-Disposition", "attachment; filename=报盘.xls");
+
+                Response.ContentType = "application/ms-excel";
+
+                Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+
+                Response.Write(sw);
+
+                Response.End();
+            }
+            else
+            {
+                Response.Write(" <script>alert('保存失败'); location='ming_xi.aspx';</script>");
+            }
+
         }
     }
 }

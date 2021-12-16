@@ -27,11 +27,11 @@
                 var rowLength = $("#biao_ge tr").length;
 
                 var insertStr = "<tr id='del_row" + row + "' >"
-                               + "<td style='font-size: 14px;padding-left: 0.5%;width: 22px;'>" + rowLength + "</td>"
-                               + "<td ><input type='text' class='input_tr' style='width: 244px;margin:0.2%;' name='beizhu" + row + "' ></input></td>"
-                               + "<td class='bg_bj_dm'><input type='text' style='width: 290px;margin:0.2%;' class='input_tr' name='lianxidizhi" + row + "' ></input></td>"
-                               + "<td class='bg_bj_lb'><input type='text' style='width: 244px;margin:0.2%;' class='input_tr' name='lianxifangshi" + row + "' ></input></td>"
-                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' class='rk_btu'value='删除'  onclick='del_row(" + row + ")'/></td>"
+                               + "<td style='font-size: 14px;padding-left: 0.5%;width: 50px;'>" + rowLength + "</td>"
+                               + "<td ><input type='text' class='input_tr' style='width: 150px;margin:0.2%;' name='beizhu" + row + "' ></input></td>"
+                               + "<td class='bg_bj_dm'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='lianxidizhi" + row + "' ></input></td>"
+                               + "<td class='bg_bj_lb'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='lianxifangshi" + row + "' ></input></td>"
+                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' class='rk_btu'value='删除' style='width: 50px;  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
                 $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
                 row++;
@@ -68,6 +68,7 @@
             border: none;
             height: 90%;
             width: 90%;
+            text-align:center;
         }
 
         td
@@ -123,6 +124,14 @@
             justify-content: start;
             align-items: center;
         }
+        .select_input {
+            width: 300px;
+            border: none;
+            height: 64%;
+            border: 1px solid #C2C2C2;
+            border-radius: 3px;
+            /*margin-top:20px;*/
+        }
     </style>
     <title></title>
 </head>
@@ -131,20 +140,22 @@
         <div>
             <input type="hidden" id="xx_hidden" value="tj_false" />
             <div class="top-div">
-                <asp:Button ID="Button2" class="input_tr_tj" OnClick="gys_select_load"  Text="刷新数据" runat="server" />
+                <asp:TextBox ID='gys_cx_a' class='select_input' Autocomplete='off'  runat="server" placeholder="按供应商名称查询"/>
+                <asp:Button  ID="gys_query" OnClick="gys_chaxun" class="input_tr_tj" Text="查询" runat="server" />
                 <asp:Button  ID="dj_row" class="input_tr_tj" onclick="gys_tj" Text="提交" runat="server" />
                 <asp:Button  ID="del_button" class="input_tr_tj" OnClick="delete" Text="删除" runat="server" />
+                <asp:Button ID="Button2" class="input_tr_tj" OnClick="gys_select_load"  Text="刷新数据" runat="server" />
             </div>
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <input type="hidden" id="row_i1" name="row_i" />
             <div class="table_div">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="width: 100%">
                     <tr id="dj_yh">
-                        <th class="auto-style1" style="width: 70px">序号</th>
-                        <th class="auto-style1" style="width: 70px">供应商</th>
-                        <th class="auto-style1" style="width: 228px">联系地址</th>
-                        <th class="auto-style1" style="width: 228px">联系方式</th>
-                        <th class="auto-style1" style="width: 70px">功能</th>
+                        <th class="auto-style1" style="width: 50px">序号</th>
+                        <th class="auto-style1" style="width: 150px">供应商</th>
+                        <th class="auto-style1" style="width: 150px">联系地址</th>
+                        <th class="auto-style1" style="width: 150px">联系方式</th>
+                        <th class="auto-style1" style="width: 50px">功能</th>
                     </tr>
                     <%
                         System.Collections.Generic.List<Web.Server.yh_jinxiaocun_jinhuofang> gys = Session["gys_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_jinhuofang>;
@@ -164,7 +175,6 @@
                             <input type="text" class="input_tr" id="lianxifangshi" name="lianxifangshi_cs<%=i %>" value="<%=gys[i].lianxifangshi %>" /></td>
                         <td class="bg_bj">
                             <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i %>" value="<%=gys[i]._id %>" /><input id="checkbox" name="Checkbox_bd<%=i %>" value=" <%=i %>" type="checkbox" /></td>
-
                     </tr>
 
                     <%

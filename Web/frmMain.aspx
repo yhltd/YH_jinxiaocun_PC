@@ -13,8 +13,8 @@
     <style type="text/css">
     </style>
     <title>云合未来进销存管理系统</title>
+    <link rel="shortcut icon" href="Images/yhltd.ico">
     <script type="text/javascript">
-        
         //自动加载
         $(function () {
             var windowHeight = window.innerHeight
@@ -96,7 +96,7 @@
         }
         .left_ul {
             height: 500px;
-            padding-top: 20px
+            padding-top: -20px
         }
         .window_iframe {
             height: 100%;
@@ -113,6 +113,8 @@
             justify-content: space-between;
             background-color: #ffffff;
             height: 60px;
+            background: url('Images/daohang4.jpeg')top center no-repeat; 
+            background-size:cover;
         }
         .time_top
         {
@@ -124,7 +126,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            width: 225px;
+            width: 170px;
             margin-right: 25px;
             height: 100%;
         }
@@ -197,13 +199,14 @@
 <body>
     <form id="form1" runat="server">
         <div class="top_div">
-            <a href="http://www.yhocn.cn" target="_blank" class="leftNav_li_header">
+            <a href="http://www.yhocn.cn" target="_blank" class="leftNav_li_header" style="color:white">
                 <img class="logo" src="Personnel/images/tm_logo.png"/>
                 云合未来进销存
             </a>
             <div class="function_top">
-                <div class="bt_top" id="goUserManager" >用户管理</div>
-                <div class="bt_top" runat="server" id="userName"></div>
+                
+                <div class="bt_top" id="goUserManager" style="color:white" >用户管理</div>
+                <div class="bt_top" runat="server" id="userName" style="color:white"></div>
             </div>
         </div>
         <div class="main-div">
@@ -220,7 +223,7 @@
                     <li><a href="#" id="k_h" class="leftNav_li" onclick="add_li('k_h','kehu.aspx')">客户资料</a></li>
                     <li><a href="#" id="g_y" class="leftNav_li" onclick="add_li('g_y','gongyingshang.aspx')">供应商资料</a></li>
                     <li><a href="#" id="l_l" class="leftNav_li" onclick="add_li('l_l','zheng_li_page.aspx')">整理</a></li> 
-                    <li><a href="#" id="s_m" class="leftNav_li" onclick="add_li('s_m','jxc_shuoming.aspx')">使用说明</a></li> 
+                    <li><a href="#" id="s_m" class="leftNav_li" onclick="add_li('s_m','jxc_shuoming.aspx')">下载使用说明</a></li> 
                 </ul>
             </div>
             <div class="mainCon1">
@@ -231,10 +234,10 @@
 
             <div id="userFun_div">
                 <div class="userFun_item">
-                    修改密码
+                    <img src="Images/维修.png" style="height:15px;width:15px;margin-bottom:-3px"/>修改密码
                 </div>
                 <div class="userFun_item">
-                    退出登录
+                    <img src="Images/退出登录.png" style="height:15px;width:15px;margin-bottom:-3px"/>退出登录
                 </div>
             </div>
         </div>

@@ -6,8 +6,61 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="inc/logincss.css" rel="stylesheet" type="text/css" />
     <link href="../../Myadmin/css/common.css" rel="stylesheet" type="text/css" />
+    <title>云合未来一体化系统</title>
+    <link rel="shortcut icon" href="../Images/yhltd.ico">
 
     <script language="JavaScript">
+        window.onload = function () {
+            var oUser = document.getElementById('username');
+            var oPswd = document.getElementById('password');
+            var oRemember = document.getElementById('remember');
+            var oForm = document.getElementById('MyForm');
+
+            //页面初始化时，如果帐号密码cookie存在则填充
+            if (getCookie('user') && getCookie('pwd')) {
+                oUser.value = getCookie('user');
+                oPswd.value = getCookie('pwd');
+                oRemember.checked = true;
+            }
+            //复选框勾选状态发生改变时，如果未勾选则清除cookie
+            oRemember.onchange = function () {
+                if (!this.checked) {
+                    delCookie('user');
+                    delCookie('pwd');
+                }
+            };
+            //表单提交事件触发时，如果复选框是勾选状态则保存cookie
+            oForm.onsubmit = function () {
+                if (remember.checked) {
+                    setCookie('user', oUser.value, 30); //保存帐号到cookie，有效期7天
+                    setCookie('pwd', oPswd.value, 30); //保存密码到cookie，有效期7天
+                }
+            };
+
+        }
+
+        //设置cookie
+        function setCookie(name, value, day) {
+            var date = new Date();
+            date.setDate(date.getDate() + day);
+            document.cookie = name + '=' + value + ';expires=' + date;
+        };
+        //获取cookie
+        function getCookie(name) {
+            var reg = RegExp(name + '=([^;]+)');
+            var arr = document.cookie.match(reg);
+            if (arr) {
+                return arr[1];
+            } else {
+                return '';
+            }
+        };
+        //删除cookie
+        function delCookie(name) {
+            setCookie(name, null, -1);
+        };
+
+
         function CheckLogin() {
             if (document.MyForm.username.value == "") {
                 alert("请输入用户名再提交！");
@@ -18,9 +71,7 @@
                 alert("请输入密码再提交！");
                 document.MyForm.password.focus()
                 return false
-
             }
-
         }
     </script>
     <style type="text/css">
@@ -47,11 +98,12 @@
 <body>
     <div class="mains">
         <div class="inners">
-            <p>
-                <span style="font-size: 12pt"  align="left" class="font_gray"><%=version%></span>
+            <img src="images/companyLogo.png" height="80" style="float:left;left:20px;position:absolute;" />
+            <p align="right">
+                <span style="font-size: 12pt" class="font_gray"><%=version%></span>
             </p>
             <div class="lefts">
-                <p align="left" class="pname">
+                <p align="right" class="pname">
                     <b><span style="font-size: 36pt">云和未来一体化系统</span></b>
                 </p>
             </div>
@@ -66,7 +118,7 @@
                     <input type="hidden" value="chklogin" name="reaction">
 
                     <div class="center">
-                        <div class="inner">
+                        <div class="inner" style="left:720px;position:absolute;">
                             <table cellpadding="0" cellspacing="0" id="innnertalbe">
                                 <tr>
                                     <td height="60">
@@ -114,6 +166,24 @@
                                 </tr>
 
                                 <tr>
+                                    <td align="center">
+                                        <input name="remember" type="checkbox"  id="remember" style="margin-top: 3px;height: auto;"  />
+                                    </td>
+                                    <td>
+                                        <p align="left">
+                                            <b><span style="font-size: 13pt">30天内记住密码</span></b>
+                                        </p>
+                                    </td>
+                                    <%--<td class="auto-style1">
+                                        <input name="remember" type="checkbox" class="select_w150" id="remember" size="16" maxlength="100" /></td>
+                                    <td height="60">
+                                        <p align="right">
+                                            <b><span style="font-size: 13pt">30天内记住密码</span></b>
+                                        </p>
+                                    </td>--%>
+                                </tr>
+
+                                <tr>
                                     <td height="49"></td>
                                     <td class="auto-style1">
                                         <asp:Button ID="image" runat="server" Text=" 登 录 " class="LoginSub" OnClick="HtmlBtn_Click" OnClientClick="CheckLogin()" />
@@ -137,7 +207,6 @@
                                         --%>
                                         <br>
                                         <span style="color: #FF0000;"></span>
-
                                     </td>
 
 
@@ -162,9 +231,12 @@
 
         </div>
         <div class="ui-login-footer">
-            <p>
-                <%--<span class="font_gray">云合未来计算机技术有限公司  © Copyright 2018-2020  技术支持：信息技术中心   联系电话：16619776280</span>--%>
-
+            <p style="vertical-align:bottom;line-height:20px">
+                <span class="font_gray">云合未来计算机技术有限公司  © Copyright 2018-2030  技术支持：信息技术中心   联系电话：16619776280</span>
+                <%--辽ICP备19018259号 云合未来计算机技术有限公司 技术支持 www.yhocn.cn--%>
+            </p>
+            <p style="vertical-align:bottom;line-height:20px">
+                <span class="font_gray">辽ICP备19018259号 云合未来计算机技术有限公司 技术支持 www.yhocn.cn</span>
             </p>
         </div>
     </div>

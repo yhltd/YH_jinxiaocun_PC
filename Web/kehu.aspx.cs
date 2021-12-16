@@ -57,10 +57,30 @@ namespace Web
 
         }
 
+        protected void kehu_chaxun(object sender, EventArgs e)
+        {
+            try
+            {
+                string beizhu = Request.Form["kh_cx"];
+                Session["kehu_select"] = chaxun(user.gongsi,beizhu);
+            }
+            catch
+            {
+                Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+            }
+
+        }
+
         public List<yh_jinxiaocun_chuhuofang> kehu_select(string gs_name)
         {
             ChuHuoFangModel chuhuofang = new ChuHuoFangModel();
             return chuhuofang.getList(gs_name);
+        }
+
+        public List<yh_jinxiaocun_chuhuofang> chaxun(string gs_name,string beizhu)
+        {
+            ChuHuoFangModel chuhuofang = new ChuHuoFangModel();
+            return chuhuofang.getList_chaxun(gs_name,beizhu);
         }
 
         protected void delete(object sender, EventArgs e)

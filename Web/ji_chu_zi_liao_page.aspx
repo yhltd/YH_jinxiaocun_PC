@@ -30,14 +30,14 @@
                 var rowLength = $("#biao_ge tr").length;
 
                 var insertStr = "<tr id='del_row" + row + "' >"
-                               + "<td style='font-size: 14px;padding-left: 0.5%;width: 22px;'>" + rowLength + "</td>"
-                               + "<td ><input type='text' class='input_tr' style='width: 165px;' name='sp_dm" + row + "' ></input></td>"
-                               + "<td class='bg_bj_dm'><input type='text' style='width: 165px;' class='input_tr' name='name" + row + "' ></input></td>"
-                               + "<td class='bg_bj_lb'><input type='text' style='width: 165px;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 165px;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 165px;' class='input_tr' name='shou_huo" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 165px;' class='input_tr' name='gong_huo" + row + "' ></input></td>"
-                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' class='rk_btu'value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
+                               + "<td style='font-size: 14px;padding-left: 0.5%;width: 70px;'>" + rowLength + "</td>"
+                               + "<td ><input type='text' class='input_tr' style='width: 130px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
+                               + "<td class='bg_bj_dm'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
+                               + "<td class='bg_bj_lb'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='shou_huo" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='gong_huo" + row + "' ></input></td>"
+                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' style='width: 70px;margin:0.2%;' class='rk_btu'value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
                 $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
                 row++;
@@ -113,11 +113,20 @@
             border: none;
             height: 90%;
             width: 90%;
+            text-align:center;
         }
 
         #checkbox
         {
             zoom: 1.5;
+        }
+        .select_input {
+            width: 300px;
+            border: none;
+            height: 64%;
+            border: 1px solid #C2C2C2;
+            border-radius: 3px;
+            /*margin-top:20px;*/
         }
     </style>
     <title></title>
@@ -127,9 +136,11 @@
         <div>
             <input type="hidden" id="xx_hidden" value="tj_false" />
             <div class="top-div">
-                <asp:Button ID="Button2" class="input_tr_tj" OnClick="jczl_select_load" Text="刷新数据" runat="server" />
+                <asp:TextBox ID='jichu_cx' class='select_input' Autocomplete='off'  runat="server" placeholder="按商品名称查询"/>
+                <asp:Button  ID="jichu_query" OnClick="jczl_chaxun" class="input_tr_tj" Text="查询" runat="server" />
                 <asp:Button OnClick="jczl_tj" ID="dj_row" class="input_tr_tj" Text="提交" runat="server" />
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_tj" Text="删除" runat="server" />
+                <asp:Button ID="Button2" class="input_tr_tj" OnClick="jczl_select_load" Text="刷新数据" runat="server" />
             </div>
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <input type="hidden" id="row_i1" name="row_i" />

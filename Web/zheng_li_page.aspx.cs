@@ -63,7 +63,26 @@ namespace Web
             {
                 Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
             }
-            
+        }
+
+        protected void chaxun(object sender, EventArgs e)
+        {
+            try
+            {
+                string name = Request.Form["zl_cx"];
+                Session["zl_and_jc_select"] = zl_chaxun(user.gongsi, name);
+            }
+            catch
+            {
+                Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
+            }
+
+        }
+
+        public List<yh_jinxiaocun_zhengli> zl_chaxun(string gs_name, string name)
+        {
+            ZhengLiModel zhengli = new ZhengLiModel();
+            return zhengli.getList_chaxun(gs_name,name);
         }
 
         public List<yh_jinxiaocun_zhengli> zl_select(string gs_name)

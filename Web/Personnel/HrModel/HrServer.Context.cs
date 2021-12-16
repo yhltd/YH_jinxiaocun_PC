@@ -26,5 +26,12 @@ namespace Web.Personnel.HrModel
         }
     
         public DbSet<gongzi_gongzimingxi> gongzi_gongzimingxi { get; set; }
+        public DbSet<gongzi_kaoqinjilu> gongzi_kaoqinjilu { get; set; }
+        public DbSet<gongzi_kaoqinmingxi> gongzi_kaoqinmingxi { get; set; }
+        public DbSet<gongzi_peizhi> gongzi_peizhi { get; set; }
+        public DbSet<gongzi_renyuan> gongzi_renyuan { get; set; }
+        public DbSet<gongzi_renyuanManager> gongzi_renyuanManager { get; set; }
+        public DbSet<gongzi_shezhi> gongzi_shezhi { get; set; }
+        public DbSet<gongzi_viewNames> gongzi_viewNames { get; set; }
     }
 }

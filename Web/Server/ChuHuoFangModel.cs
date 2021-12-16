@@ -17,6 +17,16 @@ namespace Web.Server
             }
         }
 
+        public List<yh_jinxiaocun_chuhuofang> getList_chaxun(string gongsi,string beizhu)
+        {
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string sql = "select * from yh_jinxiaocun_chuhuofang where gongsi = '" + gongsi + "' and beizhu like '%"+ beizhu +"%'";
+                var result = sen.Database.SqlQuery<yh_jinxiaocun_chuhuofang>(sql);
+                return result.ToList();
+            }
+        }
+
         public int delete(int id)
         {
             using (ServerEntities sen = new ServerEntities())

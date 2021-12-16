@@ -17,11 +17,18 @@ namespace Web.scheduling.dao
         /// </summary>
         /// <param name="company"></param>
         /// <returns></returns>
-        public List<paibanbiao_renyuan> getList(int skip, int take,String company)
+        public List<paibanbiao_renyuan> getList(int skip, int take,String company,string staff_name,string staff_banci)
         {
+            var @params = new SqlParameter[]{
+                new SqlParameter("@staff_name", staff_name),
+                new SqlParameter("@banci", staff_banci),
+                new SqlParameter("@company",company),
+            };
+            string sql = "select * from paibanbiao_renyuan where staff_name like '%'+ @staff_name +'%' and banci like '%'+ @banci +'%' and company=@company";
             using (se = new schedulingEntities())
             {
-                var result = se.paibanbiao_renyuan.Where(r => r.company == company).OrderBy(r => r.department_name).Skip(skip).Take(take);
+                var result = se.Database.SqlQuery<paibanbiao_renyuan>(sql, @params).OrderBy(p => p.department_name).Skip(skip).Take(take);
+                //var result = se.paibanbiao_renyuan.Where(r => r.company == company).OrderBy(r => r.department_name).Skip(skip).Take(take);
                 return result.ToList();
             }
         }

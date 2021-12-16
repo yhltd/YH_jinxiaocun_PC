@@ -22,13 +22,31 @@ namespace Web {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Button2 control.
+        /// qc_cx control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
+        protected global::System.Web.UI.WebControls.TextBox qc_cx;
+        
+        /// <summary>
+        /// qc_query control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button qc_query;
+        
+        /// <summary>
+        /// dj_row control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button dj_row;
         
         /// <summary>
         /// del_qc_btu control.
@@ -40,13 +58,13 @@ namespace Web {
         protected global::System.Web.UI.WebControls.Button del_qc_btu;
         
         /// <summary>
-        /// dj_row control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button dj_row;
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
         /// shou_ye control.
@@ -65,6 +83,15 @@ namespace Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button shang_ye;
+        
+        /// <summary>
+        /// lblCurrentPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCurrentPage;
         
         /// <summary>
         /// xia_ye control.

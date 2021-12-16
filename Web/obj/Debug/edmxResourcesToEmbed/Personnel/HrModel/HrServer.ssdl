@@ -2,6 +2,28 @@
 <Schema Namespace="yaoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="yaoModelStoreContainer">
     <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.Store.gongzi_gongzimingxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="gongzi_kaoqinjilu" EntityType="yaoModel.Store.gongzi_kaoqinjilu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="gongzi_kaoqinmingxi" EntityType="yaoModel.Store.gongzi_kaoqinmingxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="gongzi_peizhi" EntityType="yaoModel.Store.gongzi_peizhi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="gongzi_renyuan" EntityType="yaoModel.Store.gongzi_renyuan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="gongzi_renyuanManager" EntityType="yaoModel.Store.gongzi_renyuanManager" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_renyuanManager">
+      <DefiningQuery>SELECT 
+      [gongzi_renyuanManager].[R_id] AS [R_id], 
+      [gongzi_renyuanManager].[add] AS [add], 
+      [gongzi_renyuanManager].[del] AS [del], 
+      [gongzi_renyuanManager].[upd] AS [upd], 
+      [gongzi_renyuanManager].[sel] AS [sel], 
+      [gongzi_renyuanManager].[look] AS [look], 
+      [gongzi_renyuanManager].[view_id] AS [view_id]
+      FROM [dbo].[gongzi_renyuanManager] AS [gongzi_renyuanManager]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="gongzi_shezhi" EntityType="yaoModel.Store.gongzi_shezhi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="gongzi_viewNames" EntityType="yaoModel.Store.gongzi_viewNames" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_viewNames">
+      <DefiningQuery>SELECT 
+      [gongzi_viewNames].[id] AS [id], 
+      [gongzi_viewNames].[viewName] AS [viewName]
+      FROM [dbo].[gongzi_viewNames] AS [gongzi_viewNames]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
   <EntityType Name="gongzi_gongzimingxi">
     <Key>
@@ -64,4 +86,166 @@
     <Property Name="BC" Type="varchar" MaxLength="255" />
     <Property Name="BD" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="gongzi_kaoqinjilu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="year" Type="varchar" MaxLength="255" />
+    <Property Name="moth" Type="varchar" MaxLength="255" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+    <Property Name="AI" Type="varchar" MaxLength="255" />
+    <Property Name="AJ" Type="varchar" MaxLength="255" />
+    <Property Name="AK" Type="varchar" MaxLength="255" />
+    <Property Name="AL" Type="varchar" MaxLength="255" />
+    <Property Name="AM" Type="varchar" MaxLength="255" />
+    <Property Name="AN" Type="varchar" MaxLength="255" />
+    <Property Name="AO" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="gongzi_kaoqinmingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="gongzi_peizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="gongsi" Type="nvarchar" MaxLength="255" />
+    <Property Name="kaoqin" Type="nvarchar" MaxLength="255" />
+    <Property Name="kaoqin_peizhi" Type="nvarchar" MaxLength="255" />
+    <Property Name="bumen" Type="nvarchar" MaxLength="255" />
+    <Property Name="zhiwu" Type="nvarchar" MaxLength="255" />
+    <Property Name="year" Type="nvarchar" MaxLength="255" />
+    <Property Name="month" Type="nvarchar" MaxLength="255" />
+    <Property Name="day" Type="nvarchar" MaxLength="255" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="gongzi_renyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_renyuanManager”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="gongzi_renyuanManager">
+    <Key>
+      <PropertyRef Name="R_id" />
+      <PropertyRef Name="add" />
+      <PropertyRef Name="del" />
+      <PropertyRef Name="upd" />
+      <PropertyRef Name="sel" />
+      <PropertyRef Name="look" />
+      <PropertyRef Name="view_id" />
+    </Key>
+    <Property Name="R_id" Type="int" Nullable="false" />
+    <Property Name="add" Type="int" Nullable="false" />
+    <Property Name="del" Type="int" Nullable="false" />
+    <Property Name="upd" Type="int" Nullable="false" />
+    <Property Name="sel" Type="int" Nullable="false" />
+    <Property Name="look" Type="int" Nullable="false" />
+    <Property Name="view_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gongzi_shezhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="gongsi" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="shezhi" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="yi" Type="varchar" MaxLength="255" />
+    <Property Name="er" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_viewNames”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
+  <EntityType Name="gongzi_viewNames">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="viewName" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="viewName" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <!--生成过程中发现错误:
+      警告 6013: 表/视图“yao.dbo.gongzi_title”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      
+      <EntityType Name="gongzi_title">
+        <Property Name="bumenhuizong" Type="nvarchar" MaxLength="255" />
+        <Property Name="bumenxiangqing" Type="nvarchar" MaxLength="255" />
+        <Property Name="gongzimingxi" Type="nvarchar" MaxLength="255" />
+        <Property Name="shebaoxiangqing" Type="nvarchar" MaxLength="255" />
+        <Property Name="shebaohuizong" Type="nvarchar" MaxLength="255" />
+        <Property Name="baopan" Type="nvarchar" MaxLength="255" />
+        <Property Name="baoshui" Type="nvarchar" MaxLength="255" />
+        <Property Name="kaoqinbiao" Type="nvarchar" MaxLength="255" />
+        <Property Name="gerensuodeshui" Type="nvarchar" MaxLength="255" />
+        <Property Name="renyuanjibenxinxi" Type="nvarchar" MaxLength="255" />
+        <Property Name="gongzitiao" Type="nvarchar" MaxLength="255" />
+        <Property Name="renyuanxinxiguanli" Type="nvarchar" MaxLength="255" />
+        <Property Name="kaoqinjilu" Type="nvarchar" MaxLength="255" />
+        <Property Name="peizhi" Type="nvarchar" MaxLength="255" />
+      </EntityType>
+      生成过程中发现错误:
+      警告 6013: 表/视图“yao.guest.t_user”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      
+      <EntityType Name="t_user">
+        <Property Name="name" Type="varchar" MaxLength="255" />
+        <Property Name="age" Type="int" />
+        <Property Name="sex" Type="varchar" MaxLength="255" />
+      </EntityType>-->
 </Schema>

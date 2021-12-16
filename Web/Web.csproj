@@ -1145,9 +1145,17 @@
     <Content Include="Global.asax" />
     <Content Include="gongyingshang.aspx" />
     <Content Include="Images\account.css" />
+    <Content Include="Images\daohang.jpeg" />
+    <Content Include="Images\daohang2.jpeg" />
+    <Content Include="Images\daohang3.jpeg" />
+    <Content Include="Images\daohang4.jpeg" />
     <Content Include="Images\style.css" />
     <Content Include="Images\uploadify.css" />
+    <Content Include="Images\yhltd.ico" />
     <Content Include="Images\zhuangyu_03.jpg" />
+    <Content Include="Images\维修.png" />
+    <Content Include="Images\背景.jpeg" />
+    <Content Include="Images\退出登录.png" />
     <Content Include="ImportData.aspx" />
     <Content Include="jin_xiao_cun.aspx" />
     <Content Include="ji_chu_zi_liao_page.aspx" />
@@ -1255,9 +1263,11 @@
     <Content Include="Myadmin\HouTai\InsertUser.aspx" />
     <Content Include="Myadmin\HouTai\YongHuGuanli.aspx" />
     <Content Include="Myadmin\images\1221111.jpg" />
+    <Content Include="Myadmin\images\companyLogo.png" />
     <Content Include="Myadmin\images\gbg.jpg" />
     <Content Include="Myadmin\images\gs_logo.png" />
     <Content Include="Myadmin\images\indexbg.jpg" />
+    <Content Include="Myadmin\images\logo.png" />
     <Content Include="Myadmin\images\Resources\20130125023819888_easyicon_cn_48.ico" />
     <Content Include="Myadmin\images\Resources\201507150359113750.jpg" />
     <Content Include="Myadmin\images\Resources\20160118035180712.jpg" />
@@ -1616,6 +1626,7 @@
     <Content Include="Personnel\bumenhuizong.aspx" />
     <Content Include="Personnel\bumenxiangqing.aspx" />
     <Content Include="Personnel\bumenxiangqing1.aspx" />
+    <Content Include="Personnel\changepwd.aspx" />
     <Content Include="Personnel\css\common.css" />
     <Content Include="Personnel\css\gridview.css" />
     <Content Include="Personnel\css\iframe_d.css" />
@@ -1630,6 +1641,8 @@
     <Content Include="Personnel\gongzimingxiUpd.aspx" />
     <Content Include="Personnel\gongzitiao.aspx" />
     <Content Include="Personnel\head.aspx" />
+    <Content Include="Personnel\images\beijing.jpeg" />
+    <Content Include="Personnel\images\daohanglan.jpg" />
     <Content Include="Personnel\images\baopan.png" />
     <Content Include="Personnel\images\baoshui.png" />
     <Content Include="Personnel\images\bumenhuizong.png" />
@@ -1647,6 +1660,7 @@
     <Content Include="Personnel\images\删除.png" />
     <Content Include="Personnel\images\放大.png" />
     <Content Include="Personnel\images\添加.png" />
+    <Content Include="Personnel\images\用户.png" />
     <Content Include="Personnel\images\缩小.png" />
     <Content Include="Personnel\index.aspx" />
     <Content Include="Personnel\js\iframe_d.js" />
@@ -1707,9 +1721,16 @@
     <Content Include="scheduling\web\paiban.html" />
     <Content Include="scheduling\web\paibanbiao_renyuan.html" />
     <Content Include="scheduling\web\paiban_detail.html" />
+    <Content Include="scheduling\web\static\img\background2.jpg" />
+    <Content Include="scheduling\web\static\img\background.jpeg" />
+    <Content Include="scheduling\web\static\img\beijing2.jpeg" />
+    <Content Include="scheduling\web\static\img\beijing3.jpeg" />
+    <Content Include="scheduling\web\static\img\bk.jpeg" />
+    <Content Include="scheduling\web\static\img\bk1.jpg" />
     <Content Include="scheduling\web\static\img\image1.jpeg" />
     <Content Include="scheduling\web\static\img\image3.jpeg" />
     <Content Include="scheduling\web\static\img\image4.jpeg" />
+    <Content Include="scheduling\web\zhuye.html" />
     <Content Include="scheduling\web\summary.html" />
     <Content Include="scheduling\web\time.html" />
     <Content Include="scheduling\web\index.html" />
@@ -2386,6 +2407,13 @@
     <Compile Include="Personnel\bumenxiangqing1.aspx.designer.cs">
       <DependentUpon>bumenxiangqing1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personnel\changepwd.aspx.cs">
+      <DependentUpon>changepwd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\changepwd.aspx.designer.cs">
+      <DependentUpon>changepwd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Personnel\gerensuode.aspx.cs">
       <DependentUpon>gerensuode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2429,6 +2457,27 @@
       <DependentUpon>head.aspx</DependentUpon>
     </Compile>
     <Compile Include="Personnel\HrModel\gongzi_gongzimingxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_kaoqinjilu.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_kaoqinmingxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_peizhi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_renyuan.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_renyuanManager.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_shezhi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_viewNames.cs">
       <DependentUpon>HrServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Personnel\HrModel\HrMingXiModel.cs" />

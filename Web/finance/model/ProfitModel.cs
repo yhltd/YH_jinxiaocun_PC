@@ -39,13 +39,13 @@ namespace Web.finance.model
 
             var directionsParam = new SqlParameter("@direction", financePage.selectParamsMap["direction"]);
 
-            var monthParam = new SqlParameter("@month", financePage.selectParamsMap["month"]);
+            var start_date = new SqlParameter("@start_date", financePage.selectParamsMap["start_date"]);
 
-            var yearParam = new SqlParameter("@year", financePage.selectParamsMap["year"]);
+            var stop_date = new SqlParameter("@stop_date", financePage.selectParamsMap["stop_date"]);
 
-            string sql = "select name,sum_month,sum_year from (select name,y.sum_month,y.sum_year,row_number() over(order by name) as rownum from Accounting as a,(SELECT code,isnull((SELECT sum(money) FROM VoucherSummary WHERE MONTH(voucherDate) = @month AND code = y.code),0) AS sum_month,isnull((SELECT sum(money) FROM VoucherSummary WHERE YEAR(voucherDate) = @year AND code = y.code),0) AS sum_year FROM VoucherSummary AS y WHERE company = 'admin' and YEAR(voucherDate) = @year GROUP BY y.code) as y where a.code = y.code and a.company = @company and a.direction = @direction) as t where t.rownum > @minPage and t.rownum < @maxPage";
+            string sql = "select name,sum_month,sum_year from (select name,y.sum_month,y.sum_year,row_number() over(order by name) as rownum from Accounting as a,(SELECT code,isnull((SELECT sum(money) FROM VoucherSummary WHERE voucherDate >= CONVERT(date,@start_date) and voucherDate <= CONVERT(date,@stop_date) AND code = y.code),0) AS sum_month,isnull((SELECT sum(money) FROM VoucherSummary WHERE YEAR(voucherDate) = year(CONVERT(date,@start_date)) AND code = y.code),0) AS sum_year FROM VoucherSummary AS y WHERE company = @company and YEAR(voucherDate) = year(CONVERT(date,@start_date)) GROUP BY y.code) as y where a.code = y.code and a.company = @company and a.direction = @direction) as t  where t.rownum > @minPage and t.rownum < @maxPage";
 
-            var result = fin.Database.SqlQuery<Profit>(sql, companyParam, minPageParam, maxPageParam, directionsParam, monthParam, yearParam);
+            var result = fin.Database.SqlQuery<Profit>(sql, companyParam, minPageParam, maxPageParam, directionsParam, start_date, stop_date);
             try
             {
                 financePage.pageList = result.ToList();
@@ -68,13 +68,13 @@ namespace Web.finance.model
 
             var directionsParam = new SqlParameter("@direction", financePage.selectParamsMap["direction"]);
 
-            var monthParam = new SqlParameter("@month", financePage.selectParamsMap["month"]);
+            var start_date = new SqlParameter("@start_date", financePage.selectParamsMap["start_date"]);
 
-            var yearParam = new SqlParameter("@year", financePage.selectParamsMap["year"]);
+            var stop_date = new SqlParameter("@stop_date", financePage.selectParamsMap["stop_date"]);
 
-            string sql = "select name,y.sum_month,y.sum_year from Accounting as a,(SELECT code,isnull((SELECT sum(money) FROM VoucherSummary WHERE MONTH(voucherDate) = @month AND code = y.code),0) AS sum_month,isnull((SELECT sum(money) FROM VoucherSummary WHERE YEAR(voucherDate) = @year AND code = y.code),0) AS sum_year FROM VoucherSummary AS y WHERE company = 'admin' and YEAR(voucherDate) = @year GROUP BY y.code) as y where a.code = y.code and a.company = @company and a.direction = @direction";
+            string sql = "select name,y.sum_month,y.sum_year from Accounting as a,(SELECT code,isnull((SELECT sum(money) FROM VoucherSummary WHERE voucherDate >= CONVERT(date,@start_date) and voucherDate <= CONVERT(date,@stop_date) AND code = y.code),0) AS sum_month,isnull((SELECT sum(money) FROM VoucherSummary WHERE YEAR(voucherDate) = year(CONVERT(date,@start_date)) AND code = y.code),0) AS sum_year FROM VoucherSummary AS y WHERE company = @company and YEAR(voucherDate) = year(CONVERT(date,@start_date)) GROUP BY y.code) as y where a.code = y.code and a.company = @company and a.direction = @direction";
 
-            var result = fin.Database.SqlQuery<Liabilities>(sql, companyParam, directionsParam, monthParam, yearParam);
+            var result = fin.Database.SqlQuery<Liabilities>(sql, companyParam, directionsParam, start_date, stop_date);
             int count = 0;
             try
             {

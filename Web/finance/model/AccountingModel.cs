@@ -48,6 +48,39 @@ namespace Web.finance.model
             return financePage;
         }
 
+        public FinancePage<AccountingItem> getList2(FinancePage<AccountingItem> financePage, string company, int classId,string code)
+        {
+            //类别
+            var classParam = new SqlParameter("@class", classId);
+            //公司
+            var companyParam = new SqlParameter("@company", company);
+            //查询最小行号
+            var minPageParam = new SqlParameter("@minPageParam", financePage.getMin());
+            //查询最大行号
+            var maxPageParam = new SqlParameter("@maxPageParam", financePage.getMax());
+
+            var kemudaima = new SqlParameter("@code", code);
+
+            string sql = "select (case len(code) when 4 then 'I' when 6 then 'II' when 8 then 'III' else '' end) as grade,*,isnull((SELECT SUM(money) FROM VoucherSummary WHERE VoucherSummary.code = a.code),0) as money,isnull((select top 1 name from Accounting as ac where ac.code = LEFT(a.code,4)),'') + isnull((select top 1 '-'+name from Accounting as ac where ac.code = LEFT(a.code,6) and ac.code != LEFT(a.code,4)),'') + isnull((select top 1 '-'+name from Accounting as ac where ac.code = LEFT(a.code,8) and ac.code != LEFT(a.code,6)),'') as fullName from (select *,ROW_NUMBER() over(order by LEN(code),id) as rownum from (select * from (SELECT *,LEFT(code, 1) AS class from Accounting) as t where t.class = @class and t.company = @company) as c )as a where a.rownum > @minPageParam and a.rownum < @maxPageParam";
+
+            if (code != "")
+            {
+                sql = sql + " and code like '%" + code + "%'";
+            }
+
+            var result = fin.Database.SqlQuery<AccountingItem>(sql, classParam, companyParam, minPageParam, maxPageParam);
+            try
+            {
+                financePage.pageList = result.ToList();
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+            }
+            return financePage;
+        }
+
+
         public int getPageCount(string company,int classId) {
             //类别
             var classParam = new SqlParameter("@class", classId);

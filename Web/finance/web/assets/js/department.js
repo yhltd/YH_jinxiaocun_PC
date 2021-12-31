@@ -36,6 +36,22 @@ function getList() {
     });
 }
 
+function sel() {
+    dep = $("#dep").textbox('getValue')
+    ajaxUtil({
+        url: "web_service/department.asmx/getList2",
+        loading: true,
+        data: {
+            financePageJson: JSON.stringify(page),
+            dep:dep
+        }
+    }, function (result) {
+        if (result.code == 200) {
+            setTable(result.data)
+        }
+    });
+}
+
 //设置表格信息
 function setTable(data) {
     $('#data-table').datagrid({

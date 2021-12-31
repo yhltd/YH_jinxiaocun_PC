@@ -22,7 +22,9 @@
 </head>
 <body>
     <div id="main" class="item">
-        <div class="main-item">
+<%--        <div class="toolbar">
+        </div>--%>
+        <div class="main-item" style="height:580px">
             <!--经营收入-->
             <div class="main-item-item">
                 <div id="data-table-financingExpenditure" class="easyui-datagrid"></div>

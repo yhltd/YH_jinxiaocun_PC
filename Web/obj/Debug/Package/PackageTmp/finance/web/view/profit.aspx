@@ -22,10 +22,10 @@
     <div id="main" class="item">
         <div class="toolbar">
             <input id="directions" name="directions" value=""/>
-            <span>年：</span>
-            <input id="year"class="easyui-numberbox" data-options="min:2000,max:2100" value=""/>
-            <span>月：</span>
-            <input id="month" class="easyui-numberbox" data-options="min:1,max:12" value=""/>
+            <span>开始日期：</span>
+            <input id="start_date"class="easyui-datebox" value=""/>
+            <span>结束日期：</span>
+            <input id="stop_date" class="easyui-datebox" value=""/>
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>

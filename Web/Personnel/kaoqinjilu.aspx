@@ -3,15 +3,17 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
 <body style="    margin: 0;">
-    <h1 style="margin-top:0px;margin-bottom:10px">考勤记录</h1>
+    <h1 style="margin-top:0px;margin-bottom:10px;position:fixed">考勤记录</h1>
+    <div style="height:50px"></div>
     <form id="form1" runat="server">
     <div>
+        <div style="position:fixed">
         <asp:Label ID="Label1" runat="server" Height="30px" Text="年份：" Width="80px"  style="text-align:center" ></asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" style="text-align:center;border:0.5px solid #378888">
             <asp:ListItem>2020</asp:ListItem>
@@ -47,7 +49,8 @@
         <asp:Button ID="Button3" runat="server" Height="30px" Text="所有" Width="80px" OnClick="Button3_Click" CssClass="top_bt" style="margin-right:-10px"/>
         <asp:Button ID="Button4" CssClass="top_bt" runat="server" Height="30px" Text="生成Excel" Width="80px" OnClick="toExcel" style="margin-right:-10px" />
         <br />
-    
+        </div>
+        <div style="height:35px"></div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" AllowPaging="True"  OnRowCreated="aaa">
             <Columns>
                 <asp:CommandField ShowEditButton="True" ButtonType="Button" ItemStyle-CssClass="bt_upd1">

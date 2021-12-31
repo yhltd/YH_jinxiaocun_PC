@@ -27,7 +27,7 @@ namespace Web.finance.model
         /// <param name="financePage">分页对象</param>
         /// <param name="company">公司名</param>
         /// <returns>有pegeList的分页对象</returns>
-        public FinancePage<SimpleData> getSimpleDataList(FinancePage<SimpleData> financePage, string company)
+        public FinancePage<SimpleData> getSimpleDataList(FinancePage<SimpleData> financePage, string company,string start_date,string stop_date)
         {
 
             var companyParam = new SqlParameter("@company", company);
@@ -38,7 +38,17 @@ namespace Web.finance.model
 
             var projectParam = new SqlParameter("@project", financePage.selectParamsMap["project"]);
 
-            string sql = "select a.id,a.company,a.project,a.receivable,a.receipts,a.cope,a.payment,a.accounting from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and project like '%'+@project+'%') as a where a.rownum > @minPage and a.rownum < @maxPage";
+            string sql = "select a.id,a.company,a.insert_date,a.project,a.receivable,a.receipts,a.cope,a.payment,a.accounting from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and project like '%'+@project+'%') as a where a.rownum > @minPage and a.rownum < @maxPage";
+
+            if (start_date != "")
+            {
+                sql = sql + " and a.insert_date >= CONVERT(date,'" + start_date + "')";
+            }
+
+            if (stop_date != "")
+            {
+                sql = sql + " and a.insert_date <= CONVERT(date,'" + stop_date + "')";
+            }
 
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, minPageParam, maxPageParam, projectParam);
             try

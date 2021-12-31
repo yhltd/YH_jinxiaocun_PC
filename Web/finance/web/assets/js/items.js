@@ -92,6 +92,7 @@ function getListFinancingExpenditure() {
 function setTableFinancingExpenditure(data) {
     var editRow;
     $('#data-table-financingExpenditure').datagrid({
+        title: '经营收入',
         fitColumns: false,
         toolbar: [{
             text: '新增',
@@ -313,6 +314,7 @@ function getListFinancingIncome() {
 function setTableFinancingIncome(data) {
     var editRow;
     $('#data-table-financingIncome').datagrid({
+        title: '经营支出',
         fitColumns: false,
         toolbar: [{
             text: '新增',
@@ -533,6 +535,7 @@ function getListInvestmentExpenditure() {
 function setTableInvestmentExpenditure(data) {
     var editRow;
     $('#data-table-investmentExpenditure').datagrid({
+        title: '筹资支出',
         fitColumns: false,
         toolbar: [{
             text: '新增',
@@ -814,6 +817,7 @@ function getListInvestmentIncome() {
 function setTableInvestmentIncome(data) {
     var editRow;
     $('#data-table-investmentIncome').datagrid({
+        title: '筹资收入',
         fitColumns: false,
         toolbar: [{
             text: '新增',
@@ -1120,6 +1124,7 @@ function getListManagementExpenditure() {
 function setTableManagementExpenditure(data) {
     var editRow;
     $('#data-table-managementExpenditure').datagrid({
+        title: '投资收入',
         fitColumns: false,
         toolbar: [{
             text: '新增',
@@ -1426,6 +1431,7 @@ function getListManagementIncome() {
 function setTableManagementIncome(data) {
     var editRow;
     $('#data-table-managementIncome').datagrid({
+        title: '投资支出',
         fitColumns: false,
         toolbar: [{
             text: '新增',
@@ -1728,6 +1734,7 @@ function getListVoucherWord() {
 function setTableVoucherWrod(data) {
     var editRow;
     $('#data-table-voucherWord').datagrid({
+        title: '凭证字',
         fitColumns: false,
         toolbar: [{
             text: '新增',

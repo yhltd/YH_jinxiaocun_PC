@@ -40,7 +40,7 @@
                 }
             })
         })
-        function a(e,f) {
+        function a(e, f) {
             $("#Iframe2").attr("src", e);
             for (var i = 0; i < $(".leftNav_li").length; i++) {
                 if ($(".leftNav_li:eq(" + i + ")").text() == f) {
@@ -130,6 +130,8 @@
                 </a>
                 <div class="logo" style="color:white">云合人事管理系统</div>
             </div>
+            <img src="../Personnel/images/animat-lightbulb-color.gif" style="height:100px;width:100px;margin-right:-40%" />
+            <%--<img src="../Personnel/images/animat-pencil-color.gif" style="height:100px;width:100px;margin-right:-30%" />--%>
             <div style="width:18%" >
                 <span class="fl welcome_info" style="color:white;font-weight:bold;font-size:20px;float:right">你好！</span>
                 <img src="../Personnel/images/用户.png" style="height:28px;width:28px;margin-right:-20px" />

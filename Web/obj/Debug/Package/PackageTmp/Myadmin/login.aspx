@@ -98,7 +98,7 @@
 <body>
     <div class="mains">
         <div class="inners">
-            <img src="images/logo.png" height="80" style="float:left;left:20px;position:absolute;" />
+            <img src="images/companyLogo.png" height="80" style="float:left;left:20px;position:absolute;" />
             <p align="right">
                 <span style="font-size: 12pt" class="font_gray"><%=version%></span>
             </p>
@@ -232,11 +232,11 @@
         </div>
         <div class="ui-login-footer">
             <p style="vertical-align:bottom;line-height:20px">
-                <span class="font_gray">云合未来计算机技术有限公司  © Copyright 2018-2030  技术支持：信息技术中心   联系电话：16619776280</span>
+                <span class="font_gray">云合未来计算机技术有限公司  © Copyright 2018-2030   联系电话：16619776280</span>
                 <%--辽ICP备19018259号 云合未来计算机技术有限公司 技术支持 www.yhocn.cn--%>
             </p>
             <p style="vertical-align:bottom;line-height:20px">
-                <span class="font_gray">辽ICP备19018259号 云合未来计算机技术有限公司 技术支持 www.yhocn.cn</span>
+                <span class="font_gray">云合未来计算机技术有限公司 技术支持 www.yhocn.cn</span>
             </p>
         </div>
     </div>

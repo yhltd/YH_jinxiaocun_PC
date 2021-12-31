@@ -22,5 +22,6 @@ namespace Web.finance.model
         public Nullable<decimal> cope { get; set; }
         public Nullable<decimal> payment { get; set; }
         public string accounting { get; set; }
+        public Nullable<System.DateTime> insert_date { get; set; }
     }
 }

@@ -42,8 +42,8 @@ namespace Web.finance.service
         /// </summary>
         /// <param name="financePage">分页对象</param>
         /// <returns>处理过的分页对象</returns>
-        public FinancePage<SimpleData> getSimpleDataList(FinancePage<SimpleData> financePage) {
-            financePage = simpleDataModel.getSimpleDataList(financePage, account.company);
+        public FinancePage<SimpleData> getSimpleDataList(FinancePage<SimpleData> financePage,string start_date,string stop_date) {
+            financePage = simpleDataModel.getSimpleDataList(financePage, account.company,start_date,stop_date);
             financePage.total = simpleDataModel.getCount(account.company);
             return financePage;
         }

@@ -23,7 +23,7 @@ namespace Web.finance.web.view.web_service
         private SimpleDataService simpleDataService;
 
         [WebMethod]
-        public string getSimpleDataList(string financePageJson) {
+        public string getSimpleDataList(string financePageJson,string start_date,string stop_date) {
             //分页对象
             FinancePage<SimpleData> financePage = null;
             try
@@ -33,7 +33,7 @@ namespace Web.finance.web.view.web_service
                 //处理json
                 financePage = FinanceJson.getFinanceJson().toObject<FinancePage<SimpleData>>(financePageJson);
                 //获取处理过的分页对象
-                financePage = simpleDataService.getSimpleDataList(financePage);
+                financePage = simpleDataService.getSimpleDataList(financePage,start_date,stop_date);
 
                 return FinanceResultData.getFinanceResultData().success(200, financePage, "成功");
             }

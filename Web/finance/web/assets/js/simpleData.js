@@ -4,7 +4,7 @@
     total: 0,
     pageList: [],
     selectParamsMap: {
-        project: ''
+        project: '',
     }
 }
 
@@ -44,6 +44,8 @@ function selectBtn() {
 }
 
 function getList() {
+    var start_date = $("#start_date").datebox('getText');
+    var stop_date = $("#stop_date").datebox('getText');
     $.ajax({
         type: 'Post',
         url: "web_service/simpleData.asmx/getSimpleDataList",
@@ -58,7 +60,9 @@ function getList() {
             $.messager.progress('close');
         },
         data: {
-            financePageJson: JSON.stringify(page)
+            financePageJson: JSON.stringify(page),
+            start_date:start_date,
+            stop_date:stop_date
         },
         dataType: "xml",
         success: function (data) {
@@ -150,6 +154,16 @@ function setTable(data) {
         height: 470,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
+            {
+                field: 'insert_date', align: 'center', title: '日期', width: 300, formatter: function (value, row, index) {
+                    if (value != "") {
+                        var localstring = value.replace("/Date(", "").replace(")/", "");
+                        row.voucherDate = formatDate(parseInt(localstring), "yyyy-MM-dd HH:mm");
+                        return row.voucherDate
+                    }
+                    return value
+                }
+            },
             { field: 'project', align: 'center', title: '项目名称', width: 300 },
             { field: 'receivable', align: 'center', title: '应收', width: 100 },
 		    { field: 'receipts', align: 'center', title: '实收', width: 100 },
@@ -205,6 +219,16 @@ function update(rowItem) {
                 width: 318,
                 height: 38
             })
+
+            var insert_date = formatDate(rowItem.insert_date, 'MM/dd/yyyy HH:mm:ss')
+            $('#insert_date').datetimebox({
+                panelWidth: 318,
+                panelHeight: 280,
+                width: 318,
+                height: 38,
+                value: insert_date
+            });
+
             getAccounting('upd-accounting');
         }
     });
@@ -223,6 +247,7 @@ function toUpd() {
         item.receipts = params.receipts;
         item.cope = params.cope;
         item.payment = params.payment;
+        item.insert_date = params.insert_date
         $.ajax({
             type: 'Post',
             url: "web_service/simpleData.asmx/updSimpleData",
@@ -266,7 +291,18 @@ function add() {
                 textField: 'accounting',
                 width: 318,
                 height: 38
-            })
+            });
+
+            $('#add_insert_date').datetimebox({
+                okText: '确定',
+                closeText: '关闭',
+                currentText: '当前时间',
+                panelWidth: 318,
+                panelHeight: 280,
+                width: 318,
+                height: 38
+            });
+            
             getAccounting('add-accounting');
         },
         onClose: function () {
@@ -378,6 +414,8 @@ function getAccounting(id) {
 
 
 function toExcel() {
+    var start_date = $("#start_date").datebox('getText');
+    var stop_date = $("#stop_date").datebox('getText');
     ajaxUtil({
         url: "web_service/user_management.asmx/quanxianGet",
         loading: true,
@@ -399,7 +437,9 @@ function toExcel() {
                         $.messager.progress('close');
                     },
                     data: {
-                        financePageJson: JSON.stringify(page)
+                        financePageJson: JSON.stringify(page),
+                        start_date: start_date,
+                        stop_date:stop_date,
                     },
                     dataType: "xml",
                     success: function (data) {
@@ -411,8 +451,13 @@ function toExcel() {
                             for (var i = 0; i < array.length; i++) {
                                 var uncollected = array[i].receivable - array[i].receipts
                                 var paid = array[i].cope - array[i].payment
+                                var insert_date = array[i].insert_date
+                                var localstring = insert_date.replace("/Date(", "").replace(")/", "");
+                                var insert_date = voucherDate = formatDate(parseInt(localstring), "yyyy-MM-dd HH:mm");
+
                                 var body = {
                                     project: array[i].project,
+                                    insert_date:insert_date,
                                     receivable: array[i].receivable,
                                     receipts: array[i].receipts,
                                     uncollected: uncollected,
@@ -424,7 +469,7 @@ function toExcel() {
                                 header.push(body)
                             }
                             console.log(header)
-                            title = ['项目名称', '应收', '实收', '未收', '应付', '实付', '未付', '科目']
+                            title = ['项目名称','日期', '应收', '实收', '未收', '应付', '实付', '未付', '科目']
                             JSONToExcelConvertor(header, "极简台账", title)
                         }
                     },

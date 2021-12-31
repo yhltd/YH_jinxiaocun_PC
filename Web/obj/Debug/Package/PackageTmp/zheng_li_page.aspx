@@ -70,6 +70,7 @@
             border: none;
             height: 90%;
             width: 90%;
+            text-align:center;
         }
 
         td
@@ -143,7 +144,7 @@
             <input type="hidden" id="xx_hidden" value="tj_false" />
             
             <div class="top-div">
-                <asp:TextBox ID='zl_cx' class='select_input' Autocomplete='off'  runat="server"/>
+                <asp:TextBox ID='zl_cx' class='select_input' Autocomplete='off'  runat="server" placeholder="按商品名称查询"/>
                 <asp:Button  ID="zl_query" OnClick="chaxun" class="input_tr_tj" Text="查询" runat="server" />
                 <asp:Button OnClick="zl_tj" ID="dj_row" class="input_tr_tj" Text="提交" runat="server" />
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_tj" Text="删除" runat="server" />

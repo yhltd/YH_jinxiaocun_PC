@@ -88,6 +88,15 @@ namespace Web.finance.service
             return financePage;
         }
 
+        public FinancePage<DepartmentItem> getListService2(FinancePage<DepartmentItem> financePage,string dep)
+        {
+            //获取pageList
+            financePage = departmentModel.getList2(financePage, account.company,dep);
+            //获取总页数
+            financePage.total = departmentModel.getPageCount(account.company);
+            return financePage;
+        }
+
         /// <summary>
         /// 获取所有部门
         /// </summary>

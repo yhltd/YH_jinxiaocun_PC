@@ -210,7 +210,7 @@
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <div class="d-header fun_div">
                 <%--<input id='ru_cx' class='select_input' autocomplete='off'  placeholder='按商品名称/商品代码搜索' />--%>
-                <asp:TextBox ID='qc_cx' class='select_input' Autocomplete='off'  runat="server"/>
+                <asp:TextBox ID='qc_cx' class='select_input' Autocomplete='off'  runat="server" placeholder="按商品名称搜索"/>
                 <asp:Button  ID="qc_query" OnClick="bt_chaxun" class="qichu_input_tr_tj" Text="查询" runat="server" />
                 <asp:Button OnClick="qc_tj" ID="dj_row" class="qichu_input_tr_tj" Text="提交" runat="server" />
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="qichu_input_tr_tj" Text="批量删除" runat="server" />

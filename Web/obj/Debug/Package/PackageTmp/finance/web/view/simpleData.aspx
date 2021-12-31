@@ -24,6 +24,10 @@
         <div class="toolbar">
             <label>项目名称:</label>
             <input id="project" class="easyui-textbox" value=""/>
+            <label>开始日期:</label>
+            <input id="start_date" class="easyui-datebox" value=""/>
+            <label>结束日期:</label>
+            <input id="stop_date" class="easyui-datebox" value=""/>
             <a href="#" class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
@@ -35,6 +39,10 @@
 
     <div id="upd-simpleData-window" style="display: none">
         <form id="upd-simpleData-form">
+            <div class="form-item">
+                <label>日期:</label>
+		        <input id="insert_date" name="insert_date" data-options="width: 318,height: 38"/>
+            </div>
             <div class="form-item">
                 <label>科目名称:</label>
 		        <input id="upd-accounting" name="accounting"/>
@@ -68,6 +76,10 @@
 
     <div id="add-simpleData-window" style="display: none">
         <form id="add-simpleData-form">
+            <div class="form-item">
+                <label>日期:</label>
+		        <input id="add_insert_date" name="insert_date"/>
+            </div>
             <div class="form-item">
                 <label>科目名称:</label>
 		        <input id="add-accounting" name="accounting"/>

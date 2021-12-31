@@ -161,6 +161,7 @@
           <Property Name="cope" Type="money" />
           <Property Name="payment" Type="money" />
           <Property Name="accounting" Type="varchar" MaxLength="255" />
+          <Property Name="insert_date" Type="datetime" />
         </EntityType>
         <EntityType Name="VoucherSummary">
           <Key>
@@ -309,6 +310,7 @@
           <Property Name="cope" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="payment" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="accounting" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="DateTime" Name="insert_date" Precision="3" />
         </EntityType>
         <EntityType Name="VoucherSummary">
           <Key>
@@ -483,6 +485,7 @@
           <EntitySetMapping Name="SimpleData">
             <EntityTypeMapping TypeName="FinanceModel.SimpleData">
               <MappingFragment StoreEntitySet="SimpleData">
+                <ScalarProperty Name="insert_date" ColumnName="insert_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="company" ColumnName="company" />
                 <ScalarProperty Name="project" ColumnName="project" />

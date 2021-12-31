@@ -6,8 +6,8 @@
     excelist: [],
     selectParamsMap: {
         word: "",
-        year: "",
-        month: ""
+        start_date: "",
+        stop_date: ""
     }
 }
 
@@ -266,8 +266,8 @@ function selectBtn() {
             quanxian = result.data
             if (quanxian.pzhz_select == "是") {
                 page.selectParamsMap.word = $("#word").combobox('getText');
-                page.selectParamsMap.year = $("#year").textbox('getText');
-                page.selectParamsMap.month = $("#month").textbox('getText');
+                page.selectParamsMap.start_date = $("#start_date").datebox('getText');
+                page.selectParamsMap.stop_date = $("#stop_date").datebox('getText');
                 getList();
             } else {
                 $.messager.alert('Warning', '无权限');

@@ -68,6 +68,7 @@
             border: none;
             height: 90%;
             width: 90%;
+            text-align:center;
         }
 
         td
@@ -139,7 +140,7 @@
         <div>
             <input type="hidden" id="xx_hidden" value="tj_false" />
             <div class="top-div">
-                <asp:TextBox ID='gys_cx_a' class='select_input' Autocomplete='off'  runat="server"/>
+                <asp:TextBox ID='gys_cx_a' class='select_input' Autocomplete='off'  runat="server" placeholder="按供应商名称查询"/>
                 <asp:Button  ID="gys_query" OnClick="gys_chaxun" class="input_tr_tj" Text="查询" runat="server" />
                 <asp:Button  ID="dj_row" class="input_tr_tj" onclick="gys_tj" Text="提交" runat="server" />
                 <asp:Button  ID="del_button" class="input_tr_tj" OnClick="delete" Text="删除" runat="server" />
@@ -174,7 +175,6 @@
                             <input type="text" class="input_tr" id="lianxifangshi" name="lianxifangshi_cs<%=i %>" value="<%=gys[i].lianxifangshi %>" /></td>
                         <td class="bg_bj">
                             <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i %>" value="<%=gys[i]._id %>" /><input id="checkbox" name="Checkbox_bd<%=i %>" value=" <%=i %>" type="checkbox" /></td>
-
                     </tr>
 
                     <%

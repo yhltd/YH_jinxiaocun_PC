@@ -91,55 +91,72 @@
 
 var left_data = [{
     text: '基本信息',
+    iconCls: 'icon-jibenxinxi',
     children: [{
         text: '科目总账',
-        url: 'subject_ledger.aspx'
+        iconCls: 'icon-kemuzongzhang',
+        url: 'subject_ledger.aspx',
     }, {
         text: '开支项目',
+        iconCls: 'icon-kaizhixiangmu',
         url: 'items.aspx'
     }, {
         text: '部门设置',
+        iconCls: 'icon-bumenshezhi',
         url: 'department.aspx'
     }, {
         text: '账号管理',
+        iconCls: 'icon-zhanghaoguanli',
         url: 'user_management.aspx'
     }]
 }, {
     text: '凭证处理',
+    iconCls: 'icon-pingzhengchuli',
     state: 'open',
     children: [{
         text: '凭证汇总',
+        iconCls: 'icon-pingzhenghuizong',
         url: 'voucherSummary.aspx',
     }, {
         text: '智能看板',
+        iconCls: 'icon-zhinengkanban',
         url: 'chart.aspx',
         selected: true
     }]
 }, {
     text: '各类报表',
+    iconCls: 'icon-geleibaobiao',
     children: [{
         text: '现金流量',
+        iconCls: 'icon-xianjinliuliang',
         url: 'flow.aspx'
     }, {
         text: '资产负债',
+        iconCls: 'icon-zichanfuzhai',
         url: 'liabilities.aspx'
     }, {
         text: '利益损益',
+        iconCls: 'icon-liyisunyi',
         url: 'profit.aspx'
     }]
 }, {
     text: '极简财务',
+    iconCls: 'icon-jijiancaiwu',
     children: [{
         text: '极简台账',
+        iconCls: 'icon-jijiantaizhang',
         url: 'simpleData.aspx'
     }, {
         text: '极简总账',
+        iconCls: 'icon-jijianzongzhang',
         url: 'simpleAccounting.aspx'
     }, {
         text: '使用说明',
+        iconCls: 'icon-shiyongshuoming',
         url: 'instructions.aspx'
     }, {
         text: '数据空间',
+        iconCls: 'icon-shujukongjian',
         url: 'space.aspx'
     }]
 }];

@@ -363,6 +363,63 @@ function getSelected() {
     return $('#data-table').datagrid("getSelections");
 }
 
+function sel() {
+    var classes = document.getElementById('clases').value
+    var code = document.getElementById('code').value;
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.kmzz_select == "是") {
+                page.currentPage = 1
+                getList2(classes,code);
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+    
+}
+
+function getList2(classId,code) {
+    if (classId == undefined) {
+        classId = $("#clases").combobox('getValue')
+    }
+    $.ajax({
+        type: 'Post',
+        url: "web_service/accounting.asmx/getList2",
+        beforeSend: function () {
+            $.messager.progress({
+                title: '提示',
+                msg: '正在加载',
+                text: ''
+            });
+        },
+        complete: function () {
+            $.messager.progress('close');
+        },
+        data: {
+            financePageJson: JSON.stringify(page),
+            classId: classId,
+            code:code
+        },
+        dataType: "xml",
+        success: function (data) {
+            var result = getJson(data);
+            if (result.code == 200) {
+                console.log(result.data)
+                setTable(result.data)
+            }
+        },
+        error: function (err) {
+            alert("错误！")
+            console.log(err)
+        }
+    })
+}
+
 //平衡验证
 function balanceBtn() {
     $.ajax({

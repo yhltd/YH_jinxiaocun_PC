@@ -21,6 +21,11 @@
 </head>
 <body>
     <div id="main" class="item">
+        <div class="toolbar">
+            &nbsp;&nbsp;部门名称：
+            <input id="dep" class="easyui-textbox" style="margin-left:20px" value=""/>
+            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="sel()">查询</a>
+        </div>
         <div class="main-item">
             <div id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>

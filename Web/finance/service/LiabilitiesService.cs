@@ -45,20 +45,20 @@ namespace Web.finance.service
             //获取pageList
             financePage = liabilitiesModel.getLiabilitiesList(financePage, account.company);
             int classId = int.Parse(financePage.selectParamsMap["classId"]);
-            foreach (Liabilities l in financePage.pageList) {
-                decimal load = l.load;
-                decimal borrowed = l.borrowed;
-                decimal money = l.money;
-                if (classId == 1)
-                {
-                    l.load = load - borrowed;
-                    l.borrowed = load - borrowed + money;
-                }
-                else {
-                    l.load = borrowed - load;
-                    l.borrowed = borrowed - load + money;
-                }
-            }
+            //foreach (Liabilities l in financePage.pageList) {
+            //    decimal load = l.load;
+            //    decimal borrowed = l.borrowed;
+            //    decimal money = l.money;
+            //    if (classId == 1)
+            //    {
+            //        l.load = load - borrowed;
+            //        l.borrowed = load - borrowed + money;
+            //    }
+            //    else {
+            //        l.load = borrowed - load;
+            //        l.borrowed = borrowed - load + money;
+            //    }
+            //}
             //获取总行数
             financePage.total = liabilitiesModel.getCount(account.company, classId);
 

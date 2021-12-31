@@ -1,6 +1,6 @@
 ﻿var page = {
     start_date: "",
-    stop_date: ""
+    stop_date: "",
 }
 
 $(function () {
@@ -14,6 +14,9 @@ $(function () {
                 $(".chart-item").css({
                     "width": (width - 202) / 2 + 39 + "px",
                     "height": (height - 68) / 2 + "px"
+                })
+                $(".chart-item1").css({
+                    "width": (width - 202) / 2 + 39 + "px",
                 })
 
                 $(".chart-item > div").css({
@@ -77,7 +80,16 @@ function getAccounting() {
     }, function (result) {
         if (result.code == 200) {
             data = result.data;
-
+            var daijin_sum = 0
+            var jiejin_sum = 0;
+            for (var i = 0; i < data.sum_borrowed.length; i++) {
+                daijin_sum += data.sum_borrowed[i];
+            }
+            for (var i = 0; i < data.sum_load.length; i++) {
+                jiejin_sum += data.sum_load[i];
+            }
+            $("#jiejinheji").textbox('setText', jiejin_sum);
+            $("#daijinheji").textbox('setText', daijin_sum);
             var options = {
                 title: {
                     text: "年初余额"
@@ -247,6 +259,17 @@ function getAccountingBalance(data) {
     }, function (result) {
         if (result.code == 200) {
             data = result.data;
+
+            var jiefang_sum = 0;
+            var daifang_sum = 0;
+            for (var i = 0; i < data.sum_borrowed.length; i++) {
+                jiefang_sum += data.sum_borrowed[i];
+            }
+            for (var i = 0; i < data.sum_load.length; i++) {
+                daifang_sum += data.sum_load[i];
+            }
+            $("#jiefangheji").textbox('setText', jiefang_sum);
+            $("#daifangheji").textbox('setText', daifang_sum);
 
             var options = {
                 title: {

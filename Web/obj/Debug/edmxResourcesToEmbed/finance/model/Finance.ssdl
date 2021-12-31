@@ -156,6 +156,7 @@
     <Property Name="cope" Type="money" />
     <Property Name="payment" Type="money" />
     <Property Name="accounting" Type="varchar" MaxLength="255" />
+    <Property Name="insert_date" Type="datetime" />
   </EntityType>
   <EntityType Name="VoucherSummary">
     <Key>

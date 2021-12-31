@@ -24,10 +24,13 @@
     <div id="main" class="item">
         <div class="toolbar">
             <input id="clases" name="clases" value=""/>
+            &nbsp;&nbsp;科目代码：
+            <input id="code" class="easyui-numberbox" style="margin-left:20px" value=""/>
+            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="sel()">查询</a>
             <a href="#" class="easyui-linkbutton btn-right" onclick="balanceBtn()">平衡验证</a>
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
-        <div class="main-item">
+        <div class="main-item" style="height:540px">
             <div id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>
         </div>

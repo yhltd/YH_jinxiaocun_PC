@@ -103,6 +103,7 @@
     <EntitySetMapping Name="SimpleData">
       <EntityTypeMapping TypeName="FinanceModel.SimpleData">
         <MappingFragment StoreEntitySet="SimpleData">
+          <ScalarProperty Name="insert_date" ColumnName="insert_date" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="company" ColumnName="company" />
           <ScalarProperty Name="project" ColumnName="project" />

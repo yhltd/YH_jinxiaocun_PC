@@ -21,7 +21,7 @@
     
         <asp:Label ID="Label1" runat="server" Height="30px" Text="姓名：" Width="80px" style="text-align:center"></asp:Label>
     
-        <asp:TextBox ID="TextBox1" runat="server"  CssClass="top_select_input" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888"></asp:TextBox>
+        <asp:TextBox ID="TextBox1" runat="server"  CssClass="top_select_input" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888;margin-bottom:3px"></asp:TextBox>
         <asp:Button ID="Button1" runat="server" Text="搜索" OnClick="Button1_Click"   CssClass="top_bt" ClientIDMode="AutoID" Height="30px" Width="80px" style="margin-right:-10px" />
         <asp:Button ID="Button2" runat="server" Text="所有" OnClick="Button2_Click" CssClass="top_bt" style="margin-right:-10px" />
         <br />

@@ -151,6 +151,28 @@ namespace Web.finance.model
             return financePage;
         }
 
+        public FinancePage<DepartmentItem> getList2(FinancePage<DepartmentItem> financePage, string company,string dep)
+        {
+            //公司
+            var companyParam = new SqlParameter("@company", company);
+            //查询最小行号
+            var minPageParam = new SqlParameter("@minPageParam", financePage.getMin());
+            //查询最大行号
+            var maxPageParam = new SqlParameter("@maxPageParam", financePage.getMax());
+
+            string sql = "select a.id,a.rownum,a.department as department1,a.man,a.company from (select *,row_number() over(order by id) as rownum from Department where company = @company) as a where a.rownum > @minPageParam and a.rownum < @maxPageParam and department like '%" + dep + "%'";
+            var result = fin.Database.SqlQuery<DepartmentItem>(sql, companyParam, minPageParam, maxPageParam);
+            try
+            {
+                financePage.pageList = result.ToList();
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+            }
+            return financePage;
+        }
+
         /// <summary>
         /// 查询部门list
         /// </summary>

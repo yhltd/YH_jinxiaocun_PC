@@ -9,10 +9,11 @@
     <title></title>
 </head>
 <body style="    margin: 0;">
-    <h1 style="margin-top:0px;margin-bottom:10px">工资条</h1>
+    <h1 style="margin-top:0px;margin-bottom:10px;position:fixed">工资条</h1>
+    <div style="height:50px"></div>
     <form id="form1" runat="server">
     <div>
-    
+        <div style="position:fixed">
         <asp:Label ID="Label1" runat="server" Height="30px" Text="部门：" style="text-align:center"></asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="C" DataValueField="C" style="text-align:center;border:0.5px solid #378888">
             <asp:ListItem></asp:ListItem>
@@ -74,7 +75,8 @@
         <asp:Button ID="Button2" runat="server" Height="30px" Text="所有" OnClick="Button2_Click" CssClass="top_bt" style="margin-right:-10px" />
         <asp:Button ID="Button3" runat="server" Height="30px" Text="生成Excel" OnClick="toExcel" CssClass="top_bt" style="margin-right:-10px" />
         <br />
-    
+        </div>
+        <div style="height:35px"></div>
         <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="id">
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id"  Visible="false"/>
@@ -301,6 +303,7 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
+        
         <%--<asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString48 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] = @C) AND ([D] = @D))">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
@@ -337,7 +340,6 @@
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
-    
     </div>
     </form>
 </body>

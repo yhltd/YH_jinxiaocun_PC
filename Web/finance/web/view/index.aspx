@@ -32,14 +32,16 @@
 </head>
 <body>
     <div id="main" class="easyui-layout">
-        <div id="north" data-options="region:'north'" style="height: 68.9px">
-            <div class="north-left">
-                <a href="http://www.yhocn.cn">
+        <div id="north" data-options="region:'north'" style="height: 68.9px;background:url(../assets/img/caiwu_daohanglan.jpg);">
+            <div class="north-left" style="color:white">
+                <a href="http://www.yhocn.cn" >
                 <img src="../assets/img/tm_logo.png" style="height: 55px;"/>
                 </a>
                 云合未来财务系统
             </div>
-            <div id="north-right" class="north-left north-right">
+            <img src="../assets/img/animat-diamond-color.gif"/ style="height: 100%;margin-left:30%">
+            <div id="north-right" class="north-left north-right" style="color:white">
+                <img src="../assets/img/touxiang.png" style="width: 32px;height: 32px;margin-right: 10px;" />
                 我的&nbsp;&or;
             </div>
         </div>

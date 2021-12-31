@@ -16,4 +16,17 @@
 {
     height: 40px
 }
+.chart-item1
+{
+    border: 1px solid #f2f2f2;
+    margin: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-radius: 3px;
+    padding: 10px;
+    height:55px;
+    width:556.5px;
+    margin-top:30px
+    
+
+}
 

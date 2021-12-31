@@ -15,8 +15,8 @@ var page = {
     pageList: [],
     selectParamsMap: {
         direction: 0,
-        year: '',
-        month: ''
+        start_date: '',
+        stop_date: ''
     }
 }
 
@@ -47,13 +47,22 @@ $(function () {
 })
 
 function getYearAndMonth() {
+    //var date_ = new Date();
+    //var yearNum = date_.getFullYear();
+    //var monthNum = date_.getMonth() + 1;
+    //$("#year").textbox('setText', yearNum);
+    //$("#month").textbox('setText', monthNum);
+    //page.selectParamsMap.year = yearNum;
+    //page.selectParamsMap.month = monthNum;
+
     var date_ = new Date();
     var yearNum = date_.getFullYear();
-    var monthNum = date_.getMonth() + 1;
-    $("#year").textbox('setText', yearNum);
-    $("#month").textbox('setText', monthNum);
-    page.selectParamsMap.year = yearNum;
-    page.selectParamsMap.month = monthNum;
+    var start_date = yearNum + "-1-1"
+    var stop_date = yearNum + "-12-31"
+    $("#start_date").textbox('setText', start_date);
+    $("#stop_date").textbox('setText', stop_date);
+    page.selectParamsMap.start_date = start_date;
+    page.selectParamsMap.stop_date = stop_date;
 }
 
 function selectBtn() {
@@ -64,8 +73,8 @@ function selectBtn() {
         if (result.code == 200) {
             quanxian = result.data
             if (quanxian.lysy_select == "是") {
-                page.selectParamsMap.year = $("#year").textbox('getText');
-                page.selectParamsMap.month = $("#month").textbox('getText');
+                page.selectParamsMap.start_date = $("#start_date").datebox('getText');
+                page.selectParamsMap.stop_date = $("#stop_date").datebox('getText');
                 getList();
             } else {
                 $.messager.alert('Warning', '无权限');
@@ -76,37 +85,44 @@ function selectBtn() {
 }
 
 function getList() {
-    if (page.selectParamsMap.year == '' || page.selectParamsMap.month == '') {
+    if (page.selectParamsMap.start_date == '' || page.selectParamsMap.stop_date == '') {
         getYearAndMonth();
     }
-    $.ajax({
-        type: 'Post',
-        url: "web_service/accounting.asmx/getProfitList",
-        beforeSend: function () {
-            $.messager.progress({
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
-        data: {
-            financePageJson: JSON.stringify(page)
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                setTable(result.data)
+    var start_date = page.selectParamsMap.start_date.split("-")[0]
+    var stop_date = page.selectParamsMap.stop_date.split("-")[0]
+
+    if (start_date != stop_date) {
+        $.messager.alert('Warning', '不允许跨年查询');
+    } else {
+        $.ajax({
+            type: 'Post',
+            url: "web_service/accounting.asmx/getProfitList",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '正在加载',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            },
+            data: {
+                financePageJson: JSON.stringify(page)
+            },
+            dataType: "xml",
+            success: function (data) {
+                var result = getJson(data);
+                if (result.code == 200) {
+                    setTable(result.data)
+                }
+            },
+            error: function (err) {
+                alert("错误！")
+                console.log(err)
             }
-        },
-        error: function (err) {
-            alert("错误！")
-            console.log(err)
-        }
-    })
+        })
+    }
 }
 
 //设置表格信息

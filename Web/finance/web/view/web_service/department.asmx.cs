@@ -57,6 +57,34 @@ namespace Web.finance.web.view.web_service
         }
 
         [WebMethod]
+        public string getList2(string financePageJson,string dep)
+        {
+            //分页对象
+            FinancePage<DepartmentItem> financePage = null;
+            try
+            {
+                //创建service层实例
+                departmentService = new DepartmentService();
+                //处理json
+                financePage = FinanceJson.getFinanceJson().toObject<FinancePage<DepartmentItem>>(financePageJson);
+                //获取处理过的分页对象
+                financePage = departmentService.getListService2(financePage,dep);
+
+                return FinanceResultData.getFinanceResultData().success(200, financePage, "成功");
+            }
+            catch (InvalidOperationException ex)
+            {
+                //身份验证不通过
+                return FinanceResultData.getFinanceResultData().fail(401, null, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                //未知的错误
+                return FinanceResultData.getFinanceResultData().fail(500, null, "未知的错误");
+            }
+        }
+
+        [WebMethod]
         public string getDepartmentList()
         {
             try

@@ -18,8 +18,8 @@
         //自动加载
         $(function () {
             var windowHeight = window.innerHeight
-            $(".left_ul").css("height", windowHeight*0.85 + "px")
-                
+            $(".left_ul").css("height", windowHeight * 0.85 + "px")
+
             $("#r_k").removeClass("leftNav_li");
             $("#r_k").addClass("leftNav_li_active");
 
@@ -33,7 +33,7 @@
                     $("#" + id).addClass("leftNav_li");
                 }
                 if (true) {
-                    $("#Iframe1").attr("src","Myadmin/HouTai/YongHuGuanli.aspx");
+                    $("#Iframe1").attr("src", "Myadmin/HouTai/YongHuGuanli.aspx");
                 } else {
                     alert("您没有权限")
                 }
@@ -44,26 +44,26 @@
                     $("#userFun_div").show();
                     $("#userFun_div").animate({ top: "70px" }, 200, "swing");
                 },
-                function(){
+                function () {
                     $("#userFun_div").animate({ top: "-100px" }, 200, "swing", function () {
                         $("#userFun_div").hide();
                     })
                 }
             )
-                
+
 
             $(".userFun_item").click(function () {
                 $(".userFun_div").css("display", "none")
                 var item = $.trim($(this).text())
                 if (item == "修改密码") {
-                    $("#Iframe1").attr("src","Myadmin/changepassword.aspx");
+                    $("#Iframe1").attr("src", "Myadmin/changepassword.aspx");
                 } else if (item == "退出登录") {
                     window.location.href = "/Myadmin/Login.aspx"
                 }
             })
         })
 
-        function add_li(e,url) {
+        function add_li(e, url) {
             var items = $(".leftNav_li_active");
             for (var i = 0; i < items.length; i++) {
                 var id = items[i].id
@@ -206,7 +206,10 @@
             <div class="function_top">
                 
                 <div class="bt_top" id="goUserManager" style="color:white" >用户管理</div>
-                <div class="bt_top" runat="server" id="userName" style="color:white"></div>
+                <img src="Images/user.png" style="height:25px;width:25px;position: absolute;top: 2.5%;right: 7%;"/>
+                <div class="bt_top" runat="server" id="userName" style="color:white">
+                    
+                </div>
             </div>
         </div>
         <div class="main-div">

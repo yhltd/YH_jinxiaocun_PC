@@ -51,9 +51,9 @@ namespace Web.finance.model
         /// <returns>有pageList的分页对象</returns>
         public FinancePage<VoucherSummaryItem> getList(FinancePage<VoucherSummaryItem> financePage, string company)         {
             //年
-            string year = financePage.selectParamsMap["year"];
+            string start_date = financePage.selectParamsMap["start_date"];
             //月
-            string month = financePage.selectParamsMap["month"];
+            string stop_date = financePage.selectParamsMap["stop_date"];
 
             var @params = new SqlParameter[6]{
                 //公司
@@ -65,18 +65,20 @@ namespace Web.finance.model
                 //凭证字
                 new SqlParameter("@word", financePage.selectParamsMap["word"]),
                 //年
-                new SqlParameter("@year", year),
+                new SqlParameter("@start_date", start_date),
                 //月
-                new SqlParameter("@month", month)
+                new SqlParameter("@stop_date", stop_date)
             };
 
             string sql = "select * from (select isnull((select name from Accounting where code = LEFT (vs.code, 4)),'')+isnull((select top 1 '-'+name from Accounting where code = LEFT (vs.code, 6) and code != LEFT (vs.code, 4)),'')+isnull((select top 1 '-'+name from Accounting where code = LEFT (vs.code, 8) and code != LEFT (vs.code, 6)),'') as fullName,vs.id,vs.word,vs.[no],voucherDate,vs.abstract,vs.code,vs.department,vs.expenditure,vs.note,vs.man,ac.name,isnull(ac.load,0) as load,isnull(ac.borrowed,0) as borrowed,vs.money,vs.real,ROW_NUMBER() over(order by vs.id) rownum from VoucherSummary as vs left join Accounting as ac on vs.code = ac.code and ac.company = @company where vs.company = @company) t where t.rownum > @minPage and t.rownum < @maxPage and t.word like '%'+@word+'%'";
 
-            if (!year.Equals(string.Empty)) {
-                sql += " and year(t.voucherDate) = @year";
+            if (!start_date.Equals(string.Empty))
+            {
+                sql += " and t.voucherDate >= @start_date";
             }
-            if (!month.Equals(string.Empty)) {
-                sql += " and month(t.voucherDate) = @month";
+            if (!stop_date.Equals(string.Empty))
+            {
+                sql += " and t.voucherDate <= @stop_date";
             }
 
             var result = fin.Database.SqlQuery<VoucherSummaryItem>(sql, @params);

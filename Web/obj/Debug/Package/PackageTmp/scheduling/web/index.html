@@ -16,6 +16,9 @@
 
     <title>云合排产管理系统</title>
     <link rel="shortcut icon" href="../../Images/yhltd.ico">
+    <style>
+        
+    </style>
 </head>
 <body>
     <div id="app" style="display: none;" :style="{display: 'block'}">
@@ -97,7 +100,7 @@
                     </el-menu-item>
                     <el-menu-item  data-src="../web/download/云合排产管理系统_使用说明.rar" title="点击此处下载详细使用说明。">
                         <i class="el-icon-more"></i>
-                        <span slot="title">使用说明</span>
+                        <span slot="title">下载使用说明</span>
                     </el-menu-item>
                 </el-menu>
             </div>
@@ -106,8 +109,17 @@
                 <el-breadcrumb separator="/" class="breadcrumb" >
                     <el-breadcrumb-item style="color: #409EFF;" v-for="(item, index) in breadcrumbs">{{item}}</el-breadcrumb-item>
                 </el-breadcrumb>
-                <iframe class="iframe" :src="iframeSrc" style="background: url(static/img/background2.jpg) no-repeat;background-size:100% 100%;" ></iframe>
+                <!-- style="background: url(static/img/background2.jpg) no-repeat;background-size:100% 100%; " -->
+                <iframe class="iframe" :src="iframeSrc" >
+                    
+                </iframe>
+                <!--<div style="text-align:center;height:100%;display: flex;flex-direction: column;justify-content: center;align-items: center">
+                        <div style="font-size:40px;margin: 0 auto;">欢迎使用！</div>
+                        <div style="font-size:40px;margin: 0 auto;">云和人事管理系统</div>
+                    </div>-->
             </el-main>
+
+            
         </el-container>
 
         <el-dialog title="修改密码" :visible.sync="updateFormVisisble">
@@ -136,7 +148,7 @@
                 username:'',
                 department: '',
 
-                iframeSrc: '',
+                iframeSrc: 'zhuye.html',
                 updateFormVisisble: false,
                 updPwdForm: {},
                 updPwdRules: {

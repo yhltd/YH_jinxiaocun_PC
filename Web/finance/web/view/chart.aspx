@@ -37,6 +37,20 @@
         </div>
     </div>
     <div id="main-item">
+        <div class="chart-item1">
+            <label for="nianchu">年初余额：</label>
+            <label for="heji1" style="margin-left:10px">借金合计</label>
+            <span id="jiejinheji">0</span>
+            <label for="heji2" style="margin-left:5px">贷金合计</label>
+            <span id="daijinheji">0</span>
+        </div>
+        <div class="chart-item1">
+            <label for="kemu">科目余额：</label>
+            <label for="heji1" style="margin-left:10px">借方合计</label>
+            <span id="jiefangheji">0</span>
+            <label for="heji2" style="margin-left:5px">贷方合计</label>
+            <span id="daifangheji">0</span>
+        </div>
         <div class="chart-item">
             <div id="accounting"></div>
         </div>

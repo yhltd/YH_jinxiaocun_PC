@@ -89,6 +89,19 @@ namespace Web.finance.service
         }
 
         /// <summary>
+        /// 获取list
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="classId">科目类别id</param>
+        /// <returns>有pageList的分页对象</returns>
+        public FinancePage<AccountingItem> getList2(FinancePage<AccountingItem> financePage, int classId,string code)
+        {
+            FinancePage<AccountingItem> page = accountingModel.getList2(financePage, account.company, classId,code);
+            page.total = accountingModel.getPageCount(account.company, classId);
+            return page;
+        }
+
+        /// <summary>
         /// 获取某一类别某一等级某一特定科目代码下的子类
         /// </summary>
         /// <param name="classId">科目类别</param>

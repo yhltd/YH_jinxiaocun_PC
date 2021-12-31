@@ -60,6 +60,37 @@ namespace Web.finance.web.view.web_service
         }
 
         [WebMethod]
+        public string getList2(string financePageJson, int classId,string code)
+        {
+            if (financePageJson != "")
+            {
+                FinancePage<AccountingItem> financePage = new FinancePage<AccountingItem>();
+                financePage = FinanceJson.getFinanceJson().toObject<FinancePage<AccountingItem>>(financePageJson);
+                try
+                {
+                    asc = new AccountingService();
+                    financePage = asc.getList2(financePage, classId,code);
+                    return FinanceResultData.getFinanceResultData().success(200, financePage, "成功");
+                }
+                catch (InvalidOperationException ex)
+                {
+                    //身份验证不通过
+                    return FinanceResultData.getFinanceResultData().fail(401, null, ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    //未知的错误
+                    return FinanceResultData.getFinanceResultData().fail(500, null, "未知的错误");
+                }
+            }
+            else
+            {
+                return FinanceResultData.getFinanceResultData().fail(500, null, "失败");
+            }
+        }
+
+
+        [WebMethod]
         public string getListOfGrade(int classId, int grade,int code) {
             if (classId != 0 && grade != 0)
             {

@@ -37,13 +37,13 @@ namespace Web.finance.model
 
             var maxPageParam = new SqlParameter("@maxPage", financePage.getMax());
 
-            var monthParam = new SqlParameter("@month", financePage.selectParamsMap["month"]);
+            var start_date = new SqlParameter("@start_date", financePage.selectParamsMap["start_date"]);
 
-            var yearParam = new SqlParameter("@year", financePage.selectParamsMap["year"]);
+            var stop_date = new SqlParameter("@stop_date", financePage.selectParamsMap["stop_date"]);
 
-            string sql = "select all_.expenditure,all_.money_month,all_.money_year from (select row_number() over(order by expenditure) as rownum,expenditure,isnull((select sum(s.money) from VoucherSummary as s where company = @company and year(voucherDate) = @year and month(voucherDate) = @month and s.expenditure = v.expenditure),0) as money_month,isnull((select sum(s.money) from VoucherSummary as s where company = @company and year(voucherDate) = @year and s.expenditure = v.expenditure),0) as money_year from VoucherSummary as v where company = 'admin' GROUP BY expenditure) as all_ where all_.rownum > @minPage and all_.rownum < @maxPage";
-
-            var result = fin.Database.SqlQuery<Flow>(sql, companyParam, minPageParam, maxPageParam, monthParam, yearParam);
+            //string sql = "select all_.expenditure,all_.money_month,all_.money_year from (select row_number() over(order by expenditure) as rownum,expenditure,isnull((select sum(s.money) from VoucherSummary as s where company = @company and year(voucherDate) = @year and month(voucherDate) = @month and s.expenditure = v.expenditure),0) as money_month,isnull((select sum(s.money) from VoucherSummary as s where company = @company and year(voucherDate) = @year and s.expenditure = v.expenditure),0) as money_year from VoucherSummary as v where company = @company GROUP BY expenditure) as all_ where all_.rownum > @minPage and all_.rownum < @maxPage";
+            string sql = "select all_.expenditure,all_.money_month,all_.money_year from (select row_number() over(order by expenditure) as rownum,expenditure,isnull((select sum(s.money) from VoucherSummary as s where company = @company and voucherDate >= CONVERT(date,@start_date) and voucherDate <= CONVERT(date,@stop_date) and s.expenditure = v.expenditure),0) as money_month,isnull((select sum(s.money) from VoucherSummary as s where company = @company and year(voucherDate) = year(CONVERT(date,@start_date)) and s.expenditure = v.expenditure),0) as money_year from VoucherSummary as v where company = @company GROUP BY expenditure) as all_ where all_.rownum > @minPage and all_.rownum < @maxPage";
+            var result = fin.Database.SqlQuery<Flow>(sql, companyParam, minPageParam, maxPageParam, start_date, stop_date);
             try
             {
                 financePage.pageList = result.ToList();

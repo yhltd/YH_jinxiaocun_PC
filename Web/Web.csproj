@@ -3341,6 +3341,7 @@
     </Content>
     <Content Include="scheduling\web\static\element\fonts\element-icons.ttf" />
     <Content Include="scheduling\web\static\element\fonts\element-icons.woff" />
+    <Content Include="scheduling\web\download\云合排产管理系统_使用说明.rar" />
     <None Include="副本 Web.Debug.config">
       <DependentUpon>副本 Web.config</DependentUpon>
     </None>

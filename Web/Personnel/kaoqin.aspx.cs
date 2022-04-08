@@ -103,7 +103,9 @@ namespace Web.Personnel
             JavaScriptSerializer js = new JavaScriptSerializer();
             string result = js.Serialize(a); //upUser(" + result + ");iframe_d_open
             //ClientScript.RegisterStartupScript(this.GetType(), "", "<script>upUser(" + result + ");</script>");
-
+            if (a[39] == "0") {
+                return;
+            }
             Session["b"] = a[39];
             Session["year"] = a[0];
             Session["moth"] = a[1];

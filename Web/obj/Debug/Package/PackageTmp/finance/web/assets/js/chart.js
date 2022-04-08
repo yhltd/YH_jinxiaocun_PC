@@ -88,8 +88,8 @@ function getAccounting() {
             for (var i = 0; i < data.sum_load.length; i++) {
                 jiejin_sum += data.sum_load[i];
             }
-            $("#jiejinheji").textbox('setText', jiejin_sum);
-            $("#daijinheji").textbox('setText', daijin_sum);
+            document.getElementById("jiejinheji").innerText = jiejin_sum;
+            document.getElementById("daijinheji").innerText = daijin_sum;
             var options = {
                 title: {
                     text: "年初余额"
@@ -259,7 +259,7 @@ function getAccountingBalance(data) {
     }, function (result) {
         if (result.code == 200) {
             data = result.data;
-
+            var aa = document.getElementById("jiefangheji")
             var jiefang_sum = 0;
             var daifang_sum = 0;
             for (var i = 0; i < data.sum_borrowed.length; i++) {
@@ -268,8 +268,9 @@ function getAccountingBalance(data) {
             for (var i = 0; i < data.sum_load.length; i++) {
                 daifang_sum += data.sum_load[i];
             }
-            $("#jiefangheji").textbox('setText', jiefang_sum);
-            $("#daifangheji").textbox('setText', daifang_sum);
+
+            document.getElementById("jiefangheji").innerText = jiefang_sum;
+            document.getElementById("daifangheji").innerText = daifang_sum;
 
             var options = {
                 title: {

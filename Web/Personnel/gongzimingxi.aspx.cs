@@ -147,6 +147,9 @@ namespace Web.Personnel
             {
                 a[4] = "";
             }
+            if (a[54] == "0") {
+                return;
+            }
             Session["b"] = a[0];
             Session["year"] = a[1];
             Session["moth"] = a[2];

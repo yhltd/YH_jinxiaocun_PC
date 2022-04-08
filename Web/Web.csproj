@@ -3298,6 +3298,8 @@
       <DependentUpon>Finance.edmx</DependentUpon>
       <LastGenOutput>Finance.cs</LastGenOutput>
     </Content>
+    <Content Include="Personnel\download\云合未来人事管理系统_使用说明.rar" />
+    <Content Include="download\云合未来进销存管理系统_使用说明.rar" />
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
     <None Include="Properties\PublishProfiles\jxc_test.pubxml" />
     <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />

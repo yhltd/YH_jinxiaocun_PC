@@ -65,8 +65,12 @@ namespace Web.Personnel
         {
             if (e.CommandName == "Btn_Operation")
             {
-
+                
                 int RowRemark = Convert.ToInt32(e.CommandArgument);
+                if (GridView1.Rows[RowRemark].Cells[2].Text == "0")
+                {
+                    return;
+                }
                 string valueId = GridView1.Rows[RowRemark].Cells[2].Text;
                 string value1 = GridView1.Rows[RowRemark].Cells[3].Text;
                 string value2 = GridView1.Rows[RowRemark].Cells[4].Text;

@@ -54,7 +54,7 @@ namespace Web
                     }
                     lblCurrentPage.Text = page.nowPage.ToString();
                 }
-                catch 
+                catch
                 {
                     Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
                 }
@@ -208,7 +208,7 @@ namespace Web
             return buiness.ming_xi_fenye(page.getLimit1(), page.getLimit2(), user.gongsi);
         }
 
-        public List<yh_jinxiaocun_qichushu> chaxun(string gongsi,string cpname)
+        public List<yh_jinxiaocun_qichushu> chaxun(string gongsi, string cpname)
         {
             QiChuModel buiness = new QiChuModel();
             return buiness.ming_xi_chaxun(page.getLimit1(), page.getLimit2(), user.gongsi, cpname);
@@ -233,24 +233,48 @@ namespace Web
                     int row = Convert.ToInt32(Request.Form["row_i"].ToString());
                     for (int i = 1; i < row; i++)
                     {
-                        if (Context.Request["cpid" + i] != null)    
+                        if (Context.Request["cpid" + i] != null)
                         {
                             qi_chu_info qci = new qi_chu_info();
-                            qci.Cpid = Request.Form["cpid" + i].ToString();
-                            qci.Cpname = Request.Form["cpname" + i].ToString();
-                            qci.Cplb = Request.Form["cplb" + i].ToString();
-                            qci.Cpsj = Request.Form["cpsj" + i].ToString();
-                            qci.Cpsl = Request.Form["cpsl" + i].ToString();
-                            qci.zh_name = user.name;
-                            qci.gs_name = user.gongsi;
-                            qci.Shijian = DateTime.Now.ToString("yyyy-MM-dd");
-                            list_qc.Add(qci);
+
+                            if (Request.Form["cpname" + i].ToString() == "")
+                            {
+                                Response.Write(" <script>alert('提交失败，产品名不能为空！'); location='qi_chu.aspx';</script>");
+                            }
+                            else if (Request.Form["cplb" + i].ToString() == "")
+                            {
+                                Response.Write(" <script>alert('提交失败，产品类别不能为空！'); location='qi_chu.aspx';</script>");
+                            }
+                            else if (Request.Form["cpsj" + i].ToString() == "")
+                            {
+                                Response.Write(" <script>alert('提交失败，产品售价不能为空！'); location='qi_chu.aspx';</script>");
+
+                            }
+                            else if (Request.Form["cpsl" + i].ToString() == "")
+                            {
+                                Response.Write(" <script>alert('提交失败，产品数量不能为空！'); location='qi_chu.aspx';</script>");
+
+                            }
+                            else
+                            {
+                                qci.Cpid = Request.Form["cpid" + i].ToString();
+                                qci.Cpname = Request.Form["cpname" + i].ToString();
+                                qci.Cplb = Request.Form["cplb" + i].ToString();
+                                qci.Cpsj = Request.Form["cpsj" + i].ToString();
+                                qci.Cpsl = Request.Form["cpsl" + i].ToString();
+                                qci.zh_name = user.name;
+                                qci.gs_name = user.gongsi;
+                                qci.Shijian = DateTime.Now.ToString("yyyy-MM-dd");
+                                list_qc.Add(qci);
+                            }
+
                         }
                     }
-                    if (list_qc.Count > 0) {
+                    if (list_qc.Count > 0)
+                    {
                         buiness.add_qichu(list_qc);
                     }
-                    
+
                     for (int i = 0; i < row_count; i++)
                     {
                         buiness.update_qichu(Context.Request["id" + i].ToString(), Context.Request["cpid_cs" + i].ToString(), Context.Request["cpname_cs" + i].ToString(), Context.Request["cplb_cs" + i].ToString(), Context.Request["cpsj_cs" + i].ToString(), Context.Request["cpsl_cs" + i].ToString());
@@ -258,12 +282,12 @@ namespace Web
                     Response.Write(" <script>alert('提交成功'); location='qi_chu.aspx';</script>");
                 }
             }
-            catch 
+            catch
             {
                 Response.Write(" <script>alert('网络错误，请稍后再试！');</script>");
             }
         }
-        
+
         //后加的删除
         protected void del_qichu(object sender, EventArgs e)
         {
@@ -289,7 +313,7 @@ namespace Web
                     Response.Write("<script>alert('删除成功');</script>");
                 }
             }
-            catch 
+            catch
             {
                 Response.Write(" <script>alert('网络错误，请稍后再试！');</script>");
             }

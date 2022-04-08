@@ -16,6 +16,7 @@
 </head>
 <body background="Images/背景.jpeg">
     <form id="form1" runat="server" style="height:100%">
+    <p>当前系统版本：3.01.0</p>
     <div style="text-align:center;height:100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
         <div style="font-size:40px;margin: 0 auto;">欢迎使用！</div>
         <div style="font-size:40px;margin: 0 auto;">云合进销存管理系统</div>

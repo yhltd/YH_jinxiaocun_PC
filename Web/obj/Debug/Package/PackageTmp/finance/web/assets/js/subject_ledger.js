@@ -756,7 +756,7 @@ function toExcel() {
                 }
                 console.log(header)
                 title = ['序号', '科目代码', '科目名称', '科目等级', '科目全程', '方向', '借贷合计', '明细', '年初借金', '年初贷金']
-                JSONToExcelConvertor(header, "voucherSummary", title)
+                JSONToExcelConvertor(header, "subject_ledger", title)
                 
             }
         },

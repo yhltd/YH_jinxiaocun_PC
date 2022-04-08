@@ -414,6 +414,8 @@ function getAccounting(id) {
 
 
 function toExcel() {
+    var start_date = $("#start_date").datebox('getText');
+    var stop_date = $("#stop_date").datebox('getText');
     ajaxUtil({
         url: "web_service/user_management.asmx/quanxianGet",
         loading: true,
@@ -435,7 +437,9 @@ function toExcel() {
                         $.messager.progress('close');
                     },
                     data: {
-                        financePageJson: JSON.stringify(page)
+                        financePageJson: JSON.stringify(page),
+                        start_date: start_date,
+                        stop_date:stop_date,
                     },
                     dataType: "xml",
                     success: function (data) {
@@ -447,8 +451,13 @@ function toExcel() {
                             for (var i = 0; i < array.length; i++) {
                                 var uncollected = array[i].receivable - array[i].receipts
                                 var paid = array[i].cope - array[i].payment
+                                var insert_date = array[i].insert_date
+                                var localstring = insert_date.replace("/Date(", "").replace(")/", "");
+                                var insert_date = voucherDate = formatDate(parseInt(localstring), "yyyy-MM-dd HH:mm");
+
                                 var body = {
                                     project: array[i].project,
+                                    insert_date:insert_date,
                                     receivable: array[i].receivable,
                                     receipts: array[i].receipts,
                                     uncollected: uncollected,
@@ -460,7 +469,7 @@ function toExcel() {
                                 header.push(body)
                             }
                             console.log(header)
-                            title = ['项目名称', '应收', '实收', '未收', '应付', '实付', '未付', '科目']
+                            title = ['项目名称','日期', '应收', '实收', '未收', '应付', '实付', '未付', '科目']
                             JSONToExcelConvertor(header, "极简台账", title)
                         }
                     },

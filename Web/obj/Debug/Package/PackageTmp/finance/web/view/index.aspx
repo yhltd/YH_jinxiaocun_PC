@@ -39,7 +39,7 @@
                 </a>
                 云合未来财务系统
             </div>
-            <img src="../assets/img/animat-diamond-color.gif"/ style="width:128px;margin-left:30%">
+            <img src="../assets/img/animat-diamond-color.gif"/ style="height: 100%;margin-left:30%">
             <div id="north-right" class="north-left north-right" style="color:white">
                 <img src="../assets/img/touxiang.png" style="width: 32px;height: 32px;margin-right: 10px;" />
                 我的&nbsp;&or;

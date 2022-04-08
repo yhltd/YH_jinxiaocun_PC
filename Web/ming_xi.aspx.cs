@@ -21,7 +21,7 @@ namespace Web
     {
         private static ServicePage page = new ServicePage();
         private static yh_jinxiaocun_user user;
-        private Boolean xiayiye=false;
+        private Boolean xiayiye = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -245,6 +245,7 @@ namespace Web
                         if (Convert.ToInt32(name) == i)
                         {
                             result = mingxi.del_mingxi(list[i]._id) > 0;
+
                         }
                     }
                 }
@@ -259,5 +260,7 @@ namespace Web
                 Response.Write(" <script>alert('网络错误，请稍后再试！');</script>");
             }
         }
+
+
     }
 }

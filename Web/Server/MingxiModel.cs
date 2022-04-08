@@ -45,6 +45,7 @@ namespace Web.Server
 
         public List<yh_jinxiaocun_mingxi> ming_xi_select(string gs_name, int limit1, int limit2)
         {
+            limit2 = 20;
             using (ServerEntities sen = new ServerEntities()) {
                 string sql = "select * from yh_jinxiaocun_mingxi where zh_name = '" + gs_name + "' limit " + limit1 + "," + limit2;
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql);

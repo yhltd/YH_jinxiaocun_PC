@@ -40,16 +40,16 @@
         <div class="chart-item1">
             <label for="nianchu">年初余额：</label>
             <label for="heji1" style="margin-left:10px">借金合计</label>
-            <input id="jiejinheji" type="text" class="easyui-textbox" readonly="true" style="text-align:center;width:120px">
+            <span id="jiejinheji">0</span>
             <label for="heji2" style="margin-left:5px">贷金合计</label>
-            <input id="daijinheji" type="text" class="easyui-textbox" readonly="true" style="text-align:center;width:120px">
+            <span id="daijinheji">0</span>
         </div>
         <div class="chart-item1">
             <label for="kemu">科目余额：</label>
             <label for="heji1" style="margin-left:10px">借方合计</label>
-            <input id="jiefangheji" type="text" class="easyui-textbox" readonly="true" style="text-align:center;width:120px">
+            <span id="jiefangheji">0</span>
             <label for="heji2" style="margin-left:5px">贷方合计</label>
-            <input id="daifangheji" type="text" class="easyui-textbox" readonly="true" style="text-align:center;width:120px">
+            <span id="daifangheji">0</span>
         </div>
         <div class="chart-item">
             <div id="accounting"></div>

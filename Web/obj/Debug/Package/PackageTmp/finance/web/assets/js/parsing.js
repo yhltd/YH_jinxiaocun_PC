@@ -36,7 +36,7 @@ function clearCss(className) {
 function ajaxUtil(params, success, complete) {
     $.ajax({
         type: 'Post',
-        timeout: 5000,
+        //timeout: 5000,
         url: params.url,
         beforeSend: function(){
             if (params.loading) loadingOpen();
@@ -48,11 +48,11 @@ function ajaxUtil(params, success, complete) {
             success(result)
         },
         error: function (err) {
-            if (err.statusText == 'timeout') {
-                alert("网络超时，请稍后再试。");
-            } else {
+            //if (err.statusText == 'timeout') {
+            //    alert("网络超时，请稍后再试。");
+            //} else {
                 alert("错误！");
-            }
+            //}
         },
         complete: function (XMLHttpRequest, status) {
             if (params.loading) loadingClose();

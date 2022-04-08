@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
         <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
         function bhhq(row) {
             $.ajax({
-                type: "post", 
+                type: "post",
                 url: "qi_chu.aspx?act=PostUser&id=" + $("#sp_dm" + row).val(),
                 dataType: "json",
                 data: {},
@@ -49,6 +49,7 @@
         })
 
 
+
         function test(obj) {
             var v = $(obj).select.length();
             alert(v);
@@ -67,10 +68,10 @@
                 var rowLength = $("#biao_ge tr").length;
                 var insertStr = "<tr id='del_row" + row + "' >"
                                + "<td style='font-size: 14px;padding-left: 0.5%;width: 18px;'>" + (rowLength) + "</td>"
-                               + "<td ><input type='text' class='input_tr' style='width:147px;margin:1px'  id='sp_name"+row+"' name='cpname" + row + "' ></input></td>"
+                               + "<td ><input type='text' class='input_tr' style='width:147px;margin:1px'  id='sp_name" + row + "' name='cpname" + row + "' ></input></td>"
                                + "<td class='bg_bj_dm'>"
                                + "<select class='input_tr' id='sp_dm" + row + "' name='cpid" + row + "' onchange='bhhq(" + row + ")'>"
-                            + "<option>选择编号</option>" 
+                            + "<option>选择编号</option>"
                             +<%
         System.Collections.Generic.List<Web.ServerEntity.JinChuZiLiaoItem> jichu = Session["jichu"] as System.Collections.Generic.List<Web.ServerEntity.JinChuZiLiaoItem>;
                                 if (jichu!=null){
@@ -84,7 +85,7 @@
                                  %>
 
                         + "</select></td>"
-                               + "<td class='bg_bj_lb'><input type='text' style='width:147px;margin:1px' id='sp_cplb"+row+"' class='input_tr' name='cplb" + row + "' ></input></td>"
+                               + "<td class='bg_bj_lb'><input type='text' style='width:147px;margin:1px' id='sp_cplb" + row + "' class='input_tr' name='cplb" + row + "' ></input></td>"
                                + "<td class='bg_bj_sj'><input type='text' style='width:147px;margin:1px'  id='ck_dj" + (rowLength - 1) + "' class='input_tr' name='cpsj" + row + "' ></input></td>"
                                + "<td class='bg_bj_sl'><input type='text' style='width:147px;margin:1px'  id='ck_sl" + (rowLength - 1) + "' class='input_tr' name='cpsl" + row + "' ></input></td>"
                                + "<td onclick='js_xx2(" + (rowLength - 1) + ")' id='dj_js" + (rowLength - 1) + "' style='width:147px;margin:1px'></td>"
@@ -102,6 +103,7 @@
 
 
         function pd_tj_ff() {
+
             var c = confirm('要提交吗?');
             if (c) {
                 $("#xx_hidden").val("tj_true");
@@ -109,8 +111,8 @@
             } else {
                 $("#tj_pd_id").val("tj_false");
             }
-
         }
+
 
         function getJs(row) {
             $('#dj_js' + row).text($('#ck_dj' + row).val() * $('#ck_sl' + row).val())
@@ -166,7 +168,7 @@
             margin-left: 1px;
         }
         .new_cuku {
-            width: 28px;
+            width: 28px ;
         }
         .table_div
         {

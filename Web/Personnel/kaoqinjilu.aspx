@@ -104,7 +104,7 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString14 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)" SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE (([K] = @K) AND ([C] = @C) AND ([D] = @D ))" UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = CASE WHEN CONVERT(INT,@D)&gt;0 AND CONVERT(INT,@D)&lt;13 THEN @D  ELSE '1' END, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString14 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)" SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE (([K] = @K) AND ([C] = @C) AND ([D] = @D ))  UNION select '','','','','','','','','','','' order by id desc" UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = CASE WHEN CONVERT(INT,@D)&gt;0 AND CONVERT(INT,@D)&lt;13 THEN @D  ELSE '1' END, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -138,7 +138,7 @@
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString13 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)"  SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE ([K] like '%'+ @K +'%')"  UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = CASE WHEN CONVERT(INT,@D)&gt;0 AND CONVERT(INT,@D)&lt;13 THEN @D  ELSE '1' END, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString13 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinmingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinmingxi] ([name], [C], [D], [E], [F], [G], [H], [I], [J], [K]) VALUES (@name, @C, @D, @E, @F, @G, @H, @I, @J, @K)"  SelectCommand="SELECT * FROM [gongzi_kaoqinmingxi] WHERE ([K] like '%'+ @K +'%') UNION select '','','','','','','','','','','' order by id desc"  UpdateCommand="UPDATE [gongzi_kaoqinmingxi] SET [name] = @name, [C] = @C, [D] = CASE WHEN CONVERT(INT,@D)&gt;0 AND CONVERT(INT,@D)&lt;13 THEN @D  ELSE '1' END, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id">
                 </asp:Parameter>

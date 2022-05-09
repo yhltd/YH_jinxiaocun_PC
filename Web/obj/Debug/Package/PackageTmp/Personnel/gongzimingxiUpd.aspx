@@ -136,6 +136,7 @@
             <p style="margin-left: 500px; margin-top: 25px;">
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="修改" CssClass="top_bt" />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="Button3" runat="server" OnClick="Button1_Click" Text="返回" CssClass="top_bt" />
             </p>
         </div>
     </form>

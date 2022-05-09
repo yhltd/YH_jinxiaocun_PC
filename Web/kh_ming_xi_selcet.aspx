@@ -96,19 +96,19 @@
                     %>
                 </select>
                 <asp:Button OnClick="kh_mx_select_Click" ID="Button2" class="input_tr" Text="查询" runat="server" />
-                <asp:Button OnClick="kh_mx_select_load" ID="Button1" class="input_tr" Text="清空" runat="server" />
+                <asp:Button OnClick="kh_mx_select_load" ID="Button1" class="input_tr" Text="刷新" runat="server" />
             </div>
 
             <div class="d-main table_div">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="width: 100%">
                     <tr id="dj_yh">
-                        <th class="auto-style1" style="width: 150px;">日期</th>
-                        <th class="auto-style1" style="width: 138px;">供货商</th>
-                        <th class="auto-style1" style="width: 138px;">单号</th>
-                        <th class="auto-style1" style="width: 138px;">商品代码</th>
-                        <th class="auto-style1" style="width: 138px;">商品名称</th>
-                        <th class="auto-style1" style="width: 70px;">入库数量</th>
-                        <th class="auto-style1" style="width: 70px;">入库金额</th>
+                        <th class="auto-style1" style="width: 150px;">供货商/客户</th>
+                        <th class="auto-style1" style="width: 110px;">商品代码</th>
+                        <th class="auto-style1" style="width: 110px;">商品名称</th>
+                        <th class="auto-style1" style="width: 110px;">商品类别</th>
+                        <%--<th class="auto-style1" style="width: 138px;">商品名称</th>--%>
+                        <th class="auto-style1" style="width: 100px;">入库/出库数量</th>
+                        <th class="auto-style1" style="width: 100px;">入库/出库金额</th>
                     </tr>
 
                     <%
@@ -127,11 +127,11 @@
                        
                     %>
                     <tr id="Tr1">
-                        <td><%=mingxi[i].shijian %></td>
-                        <td><%=mingxi[i].shou_h%></td>
-                        <td><%=mingxi[i].orderid %></td>
-                        <td><%=mingxi[i].sp_dm %></td>
+                        <td><%=mingxi[i].shou_h %></td>
+                        <td><%=mingxi[i].sp_dm%></td>
                         <td><%=mingxi[i].cpname %></td>
+                        <td><%=mingxi[i].cplb %></td>
+                        <%--<td><%=mingxi[i].cpname %></td>--%>
                         <td><%=mingxi[i].ruku_num %></td>
                         <td><%=mingxi[i].ruku_price %></td>
                     </tr>

@@ -156,6 +156,52 @@
             var windowHeight = window.innerHeight;
             $(".table_div").css("height", windowHeight * 0.8)
         })
+        function del_mingxi(row) {
+            var rowIndex = $("#del_mingxi").context.rowIndex;
+            $("#del_mingxi" + row + "").remove();
+        }
+
+        function del_row(row) {
+            var rowIndex = $("#del_row_cs1").context.rowIndex;
+            $("#del_row" + row + "").remove();
+        }
+
+
+
+        $(function () {
+            $("#dj_row").click(function () {
+
+                $("#row_i1").val($("#biao_ge tr").length);
+
+            })
+
+        })
+
+        $(document).ready(function () {
+            var row = 1;
+            $("#dj_yh").click(function () {
+
+                var rowLength = $("#biao_ge tr").length;
+
+                var insertStr = "<tr id='del_row" + row + "' >"
+                               + "<td style='font-size: 14px;padding-left: 0.5%;width: 70px;'>" + rowLength + "</td>"
+                               + "<td ><input type='text' class='input_tr' style='width: 130px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
+                               + "<td class='bg_bj_dm'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
+                               + "<td class='bg_bj_lb'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='shou_huo" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='gong_huo" + row + "' ></input></td>"
+                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' style='width: 70px;margin:0.2%;' class='rk_btu'value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
+                               + "</tr>";
+                $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
+                row++;
+            });
+
+
+        });
+
+
+
     </script>
     <form id="form1" runat="server">
         <div>
@@ -168,7 +214,10 @@
                     <label class="lable_select">截止日期：</label>
                     <input type="datetime-local" class="time_select" name="time_jz" />
                     <asp:Button ID="Button3" class="mingxi_input_tr_tj" OnClick="rq_select" Text="查询" runat="server" />
-                    <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" Text="删除" runat="server" />
+                 
+
+                  <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" Text="删除" runat="server" />
+
                     <asp:Button ID="Button2" class="mingxi_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
                 </div>
                 <div class="funcion_top">

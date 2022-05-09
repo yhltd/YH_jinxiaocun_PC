@@ -26,12 +26,20 @@
 
                 var rowLength = $("#biao_ge tr").length;
 
+                //var insertStr = "<tr id='del_row" + row + "' >"
+                //               + "<td style='font-size: 14px;padding-left: 0.5%;width: 22px;'>" + rowLength + "</td>"
+                //               + "<td ><input type='text' class='input_tr' style='width: 244px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
+                //               + "<td class='bg_bj_dm'><input type='text' style='width: 290px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
+                //               + "<td class='bg_bj_lb'><input type='text' style='width: 244px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
+                //               + "<td class='bg_bj_sj'><input type='text' style='width: 244px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
+                //               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' class='rk_btu'value='删除'  onclick='del_row(" + row + ")'/></td>"
+                //               + "</tr>";
                 var insertStr = "<tr id='del_row" + row + "' >"
-                               + "<td style='font-size: 14px;padding-left: 0.5%;width: 22px;'>" + rowLength + "</td>"
-                               + "<td ><input type='text' class='input_tr' style='width: 244px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
-                               + "<td class='bg_bj_dm'><input type='text' style='width: 290px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
-                               + "<td class='bg_bj_lb'><input type='text' style='width: 244px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 244px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
+                               + "<td>" + rowLength + "</td>"
+                               + "<td ><input type='text' class='input_tr'  name='sp_dm" + row + "' ></input></td>"
+                               + "<td class='bg_bj_dm'><input type='text' class='input_tr' name='name" + row + "' ></input></td>"
+                               + "<td class='bg_bj_lb'><input type='text' class='input_tr' name='lei_bie" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text' class='input_tr' name='dan_wei" + row + "' ></input></td>"
                                + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' class='rk_btu'value='删除'  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
                 $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);

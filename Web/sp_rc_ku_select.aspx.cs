@@ -35,6 +35,8 @@ namespace Web
                 try
                 {
                     shuaxin();
+                    MingxiModel mingxi = new MingxiModel();
+                    Session["selectSp"] = mingxi.getCpMingXi_all(user.gongsi); ;
                 }
                 catch {
                     Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
@@ -50,8 +52,10 @@ namespace Web
         {
             try
             {
-                
                 shuaxin();
+                MingxiModel mingxi = new MingxiModel();
+                Session["selectSp"] = mingxi.getCpMingXi_all(user.gongsi); ;
+                
             }
             catch
             {

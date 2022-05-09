@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
@@ -31,7 +31,7 @@
                                + "<td ><input type='text' class='input_tr' style='width: 150px;margin:0.2%;' name='beizhu" + row + "' ></input></td>"
                                + "<td class='bg_bj_dm'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='lianxidizhi" + row + "' ></input></td>"
                                + "<td class='bg_bj_lb'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='lianxifangshi" + row + "' ></input></td>"
-                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' class='rk_btu'value='删除' style='width: 50px;  onclick='del_row(" + row + ")'/></td>"
+                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' style='width: 50px;margin:0.2%;' class='rk_btu'value='删除'  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
                 $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
                 row++;

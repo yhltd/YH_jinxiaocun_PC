@@ -351,3 +351,8 @@ function qxUpd() {
     });
 }
 
+//清空修改框
+function toReset() {
+    $("#updateForm").form('reset');
+}
+

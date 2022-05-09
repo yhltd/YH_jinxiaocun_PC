@@ -206,6 +206,8 @@ namespace Web
 
             try
             {
+                //string ks = Context.Request["time_qs"].ToString();
+                //string js = Context.Request["time_jz"].ToString();
                 Session["ming_xi_select_dd"] = ri_qi_select(Context.Request["time_qs"].ToString(), Context.Request["time_jz"].ToString(), user.gongsi);
             }
             catch
@@ -260,6 +262,38 @@ namespace Web
                 Response.Write(" <script>alert('网络错误，请稍后再试！');</script>");
             }
         }
+
+        protected void mx_save(object sender, EventArgs e)
+        {
+            //user = (yh_jinxiaocun_user)Session["user"];
+            MingxiModel mingxi= new MingxiModel();
+            //List<yh_jinxiaocun_mingxi> list = mingxi.ming_xi_select(user.gongsi, page.getLimit1(), page.getLimit2());
+            //int row_count = list.Count;
+
+            string aa = Context.Request["shuliang"].ToString();
+            List<yh_jinxiaocun_mingxi> list_gys = new List<yh_jinxiaocun_mingxi>();
+            for (int i = 0; i < (Convert.ToInt32(aa)); i++)
+            {
+                yh_jinxiaocun_mingxi mx = new yh_jinxiaocun_mingxi();
+                mx._id = Convert.ToInt32(Context.Request["_id" + i].ToString());
+                mx.orderid = Context.Request["orderid" + i].ToString();
+                mx.sp_dm = Context.Request["sp_dm" + i].ToString();
+                mx.cpname = Context.Request["cpname" + i].ToString();
+                mx.cplb = Context.Request["cplb" + i].ToString();
+                mx.cpsj = Context.Request["cpsj" + i].ToString();
+                mx.cpsl = Context.Request["cpsl" + i].ToString();
+                mx.mxtype = Context.Request["mxtype" + i].ToString();
+                mx.shou_h = Context.Request["shou_h" + i].ToString();
+
+                list_gys.Add(mx);
+            }
+
+            mingxi.update(list_gys);
+                
+            Response.Write(" <script>alert('提交成功');</script>");
+            this.Page_Load(sender, e);
+        }
+       
 
 
     }

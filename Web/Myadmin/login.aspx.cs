@@ -99,10 +99,17 @@ namespace Web
         }
         protected void HtmlBtn_Click(object sender, EventArgs e)
         {
-            string servename = DropDownList1.SelectedItem.Text;//这是获取选中的文本值
-            string gs_name = DropDownList2.SelectedItem.Text;
             string username = Request.Form["username"];
             string txtSAPPassword = Request.Form["password"];
+            string servename = DropDownList1.SelectedItem.Text;//这是获取选中的文本值
+            if (servename == "选择")
+            {
+                Response.Write("<script id='alert'>alert('请选择数据库!')</script>");
+                return;
+            }
+            string gs_name = DropDownList2.SelectedItem.Text;
+            
+            
             if (servename.ToString() == "云合人事管理系统")
             {
                 Session.Timeout = 10000;
@@ -214,7 +221,8 @@ namespace Web
 
         protected void Btchangepas_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Myadmin/changepassword.aspx");
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('请联系管理员！')", true);
+            //Response.Redirect("~/Myadmin/changepassword.aspx");
         }
 
         protected void Btmain_Click(object sender, EventArgs e)

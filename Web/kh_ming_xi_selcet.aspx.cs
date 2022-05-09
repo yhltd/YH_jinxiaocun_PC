@@ -33,6 +33,9 @@ namespace Web
                 try
                 {
                     this.shuaxin();
+                    MingxiModel mingxi = new MingxiModel();
+                    List<MingXiItem> list = mingxi.getChMingxi_all(user.gongsi);
+                    Session["rk_mx_select"] = list;
                 }
                 catch
                 {
@@ -65,6 +68,9 @@ namespace Web
             try
             {
                 this.shuaxin();
+                MingxiModel mingxi = new MingxiModel();
+                List<MingXiItem> list = mingxi.getChMingxi_all( user.gongsi);
+                Session["rk_mx_select"] = list;
             }
             catch
             {

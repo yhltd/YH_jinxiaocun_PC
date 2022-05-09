@@ -32,9 +32,10 @@
                 </asp:CommandField>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" Visible="false"/>
                 <asp:BoundField DataField="B" HeaderText="员工姓名" SortExpression="B"  ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
+                <ControlStyle Width="80%"></ControlStyle>
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="22%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
-                    </asp:BoundField>
+                </asp:BoundField>
                 <asp:BoundField DataField="C" HeaderText="C" SortExpression="C"  Visible="false"/>
                 <asp:BoundField DataField="D" HeaderText="D" SortExpression="D"  Visible="false"/>
                 <asp:BoundField DataField="E" HeaderText="E" SortExpression="E" Visible="false"/>
@@ -84,15 +85,21 @@
                 <asp:BoundField DataField="AW" HeaderText="AW" SortExpression="AW"  Visible="false"/>
                 <asp:BoundField DataField="AX" HeaderText="AX" SortExpression="AX"  Visible="false"/>
                 <asp:BoundField DataField="AY" HeaderText="支付金额" SortExpression="AY"   ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
+<ControlStyle Width="80%"></ControlStyle>
+
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="22%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>
                 <asp:BoundField DataField="AZ" HeaderText="AZ" SortExpression="AZ"  Visible="false"/>
                 <asp:BoundField DataField="BA" HeaderText="员工银行账号" SortExpression="BA"   ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
+<ControlStyle Width="80%"></ControlStyle>
+
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="22%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>
                 <asp:BoundField DataField="a" HeaderText="币种" SortExpression="a"  ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
+<ControlStyle Width="80%"></ControlStyle>
+
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="22%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>
@@ -100,11 +107,30 @@
                 <asp:BoundField DataField="BC" HeaderText="BC" SortExpression="BC"  Visible="false"/>
                 <asp:BoundField DataField="BD" HeaderText="BD" SortExpression="BD"  Visible="false"/>
             </Columns>
+             
+            <%--<EmptyDataTemplate>
+                <EmptyDataTemplate>
+                    &nbsp;&nbsp;&nbsp;提示：未查询到数据！
+                    <table width="100%" cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+                        <tbody>
+                            <tr class="header" style="border-style:None;font-weigt:normal;">
+                                <th scope="col" style="white-space:nowrap">&nbsp;</th>
+                                <th scope="col" style="white-space:nowrap">&nbsp;</th>
+                                <th align="center" scope="col" style="font-weight:bold;witdh:22%;white-space:nowrap;">员工姓名</th>
+                                <th align="center" scope="col" style="font-weight:bold;witdh:22%;white-space:nowrap;">支付金额</th>
+                                <th align="center" scope="col" style="font-weight:bold;witdh:22%;white-space:nowrap;">员工银行账号</th>
+                                <th align="center" scope="col" style="font-weight:bold;witdh:22%;white-space:nowrap;">币种</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </EmptyDataTemplate>
+            </EmptyDataTemplate>--%>
+            
             <HeaderStyle CssClass="header" Font-Bold="False" BorderStyle="None" />
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString37 %>" DeleteCommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" SelectCommand="SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE ([BD] like '%'+ @BD +'%')" UpdateCommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B, [AY] = @AY, [BA] = @BA WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString37 %>" DeleteCommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id and [id] !=0" InsertCommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" SelectCommand="SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE ([BD] like '%'+ @BD +'%') UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','' order by id desc" UpdateCommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B, [AY] = @AY, [BA] = @BA WHERE [id] = @id and[id] !=0">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -170,64 +196,12 @@
             </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="B" Type="String" />
-                <asp:Parameter Name="C" Type="String" />
-                <asp:Parameter Name="D" Type="String" />
-                <asp:Parameter Name="E" Type="String" />
-                <asp:Parameter Name="F" Type="String" />
-                <asp:Parameter Name="G" Type="Double" />
-                <asp:Parameter Name="H" Type="Double" />
-                <asp:Parameter Name="I" Type="Double" />
-                <asp:Parameter Name="J" Type="Double" />
-                <asp:Parameter Name="K" Type="Double" />
-                <asp:Parameter Name="L" Type="Double" />
-                <asp:Parameter Name="M" Type="Double" />
-                <asp:Parameter Name="N" Type="Double" />
-                <asp:Parameter Name="O" Type="Double" />
-                <asp:Parameter Name="P" Type="Double" />
-                <asp:Parameter Name="Q" Type="Double" />
-                <asp:Parameter Name="R" Type="Double" />
-                <asp:Parameter Name="S" Type="Double" />
-                <asp:Parameter Name="T" Type="Double" />
-                <asp:Parameter Name="U" Type="Double" />
-                <asp:Parameter Name="V" Type="Double" />
-                <asp:Parameter Name="W" Type="Double" />
-                <asp:Parameter Name="X" Type="Double" />
-                <asp:Parameter Name="Y" Type="Double" />
-                <asp:Parameter Name="Z" Type="Double" />
-                <asp:Parameter Name="AA" Type="Double" />
-                <asp:Parameter Name="AB" Type="Double" />
-                <asp:Parameter Name="AC" Type="Double" />
-                <asp:Parameter Name="AD" Type="Double" />
-                <asp:Parameter Name="AE" Type="Double" />
-                <asp:Parameter Name="AF" Type="Double" />
-                <asp:Parameter Name="AG" Type="Double" />
-                <asp:Parameter Name="AH" Type="Double" />
-                <asp:Parameter Name="AI" Type="Double" />
-                <asp:Parameter Name="AJ" Type="Double" />
-                <asp:Parameter Name="AK" Type="Double" />
-                <asp:Parameter Name="AL" Type="Double" />
-                <asp:Parameter Name="AM" Type="Double" />
-                <asp:Parameter Name="AN" Type="Double" />
-                <asp:Parameter Name="AO" Type="Double" />
-                <asp:Parameter Name="AP" Type="Double" />
-                <asp:Parameter Name="AQ" Type="Double" />
-                <asp:Parameter Name="AR" Type="Double" />
-                <asp:Parameter Name="ASA" Type="Double" />
-                <asp:Parameter Name="ATA" Type="Double" />
-                <asp:Parameter Name="AU" Type="Double" />
-                <asp:Parameter Name="AV" Type="Double" />
-                <asp:Parameter Name="AW" Type="Double" />
-                <asp:Parameter Name="AX" Type="Double" />
                 <asp:Parameter Name="AY" Type="Double" />
-                <asp:Parameter Name="AZ" Type="Double" />
                 <asp:Parameter Name="BA" Type="String" />
-                <asp:Parameter Name="BB" Type="String" />
-                <asp:Parameter Name="BC" Type="String" />
-                <asp:Parameter Name="BD" Type="String" />
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString36 %>" DeleteCommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" SelectCommand="SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE (([BD]like '%'+ @BD +'%') AND ([B] like '%'+ @B +'%'))" UpdateCommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B,[AY] = @AY, [BA] = @BA WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString36 %>" DeleteCommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" SelectCommand="SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE (([BD]like '%'+ @BD +'%') AND ([B] like '%'+ @B +'%')) UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''  order by id desc" UpdateCommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B,[AY] = @AY, [BA] = @BA WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -294,60 +268,8 @@
             </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="B" Type="String" />
-                <asp:Parameter Name="C" Type="String" />
-                <asp:Parameter Name="D" Type="String" />
-                <asp:Parameter Name="E" Type="String" />
-                <asp:Parameter Name="F" Type="String" />
-                <asp:Parameter Name="G" Type="Double" />
-                <asp:Parameter Name="H" Type="Double" />
-                <asp:Parameter Name="I" Type="Double" />
-                <asp:Parameter Name="J" Type="Double" />
-                <asp:Parameter Name="K" Type="Double" />
-                <asp:Parameter Name="L" Type="Double" />
-                <asp:Parameter Name="M" Type="Double" />
-                <asp:Parameter Name="N" Type="Double" />
-                <asp:Parameter Name="O" Type="Double" />
-                <asp:Parameter Name="P" Type="Double" />
-                <asp:Parameter Name="Q" Type="Double" />
-                <asp:Parameter Name="R" Type="Double" />
-                <asp:Parameter Name="S" Type="Double" />
-                <asp:Parameter Name="T" Type="Double" />
-                <asp:Parameter Name="U" Type="Double" />
-                <asp:Parameter Name="V" Type="Double" />
-                <asp:Parameter Name="W" Type="Double" />
-                <asp:Parameter Name="X" Type="Double" />
-                <asp:Parameter Name="Y" Type="Double" />
-                <asp:Parameter Name="Z" Type="Double" />
-                <asp:Parameter Name="AA" Type="Double" />
-                <asp:Parameter Name="AB" Type="Double" />
-                <asp:Parameter Name="AC" Type="Double" />
-                <asp:Parameter Name="AD" Type="Double" />
-                <asp:Parameter Name="AE" Type="Double" />
-                <asp:Parameter Name="AF" Type="Double" />
-                <asp:Parameter Name="AG" Type="Double" />
-                <asp:Parameter Name="AH" Type="Double" />
-                <asp:Parameter Name="AI" Type="Double" />
-                <asp:Parameter Name="AJ" Type="Double" />
-                <asp:Parameter Name="AK" Type="Double" />
-                <asp:Parameter Name="AL" Type="Double" />
-                <asp:Parameter Name="AM" Type="Double" />
-                <asp:Parameter Name="AN" Type="Double" />
-                <asp:Parameter Name="AO" Type="Double" />
-                <asp:Parameter Name="AP" Type="Double" />
-                <asp:Parameter Name="AQ" Type="Double" />
-                <asp:Parameter Name="AR" Type="Double" />
-                <asp:Parameter Name="ASA" Type="Double" />
-                <asp:Parameter Name="ATA" Type="Double" />
-                <asp:Parameter Name="AU" Type="Double" />
-                <asp:Parameter Name="AV" Type="Double" />
-                <asp:Parameter Name="AW" Type="Double" />
-                <asp:Parameter Name="AX" Type="Double" />
                 <asp:Parameter Name="AY" Type="Double" />
-                <asp:Parameter Name="AZ" Type="Double" />
                 <asp:Parameter Name="BA" Type="String" />
-                <asp:Parameter Name="BB" Type="String" />
-                <asp:Parameter Name="BC" Type="String" />
-                <asp:Parameter Name="BD" Type="String" />
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>

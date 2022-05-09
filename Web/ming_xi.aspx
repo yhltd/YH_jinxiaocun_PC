@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ming_xi.aspx.cs" Inherits="Web.ming_xi" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ming_xi.aspx.cs" Inherits="Web.ming_xi" %><%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <%@ Import Namespace="SDZdb" %>
 <!DOCTYPE html>
@@ -11,6 +11,13 @@
     <style type="text/css">
         #biao_ge {
             width: 100%;
+        }
+
+        .input_tr2 {
+            border: none;
+            height: 90%;
+            width: 90%;
+            text-align: center;
         }
 
         .hidden_load {
@@ -39,12 +46,12 @@
             transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         }
 
-        .input_tr:focus {
-            border-color: #66afe9;
-            outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-        }
+            .input_tr:focus {
+                border-color: #66afe9;
+                outline: 0;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            }
 
         .ss_div {
             margin-left: 69%;
@@ -94,6 +101,7 @@
                 -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
                 box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
             }
+
         .rq_css {
             width: 100%;
             height: 50px;
@@ -102,13 +110,16 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .lable_select {
             font-size: 15px;
         }
+
         .select_div {
             display: flex;
             align-items: center;
         }
+
         .funcion_top {
             /*margin-left:150px;*/
             display: flex;
@@ -116,19 +127,22 @@
             /*justify-content: space-around;
             width: 200px;*/
         }
+
         .time_select {
             width: 190px;
             height: 30px;
             border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
+
         .bg_bj {
             text-align: center;
             height: 40px;
             background-color: white;
             border: 0.5px solid #f2f2f2;
-            font-size:4px;
+            font-size: 4px;
         }
+
         .auto-style1 {
             height: 49px;
             text-align: center;
@@ -136,9 +150,10 @@
             color: white;
             font-size: 16px;
             font-weight: bold;
-            position:sticky;
-            top : 0;
+            position: sticky;
+            top: 0;
         }
+
         .page_bt {
             border: none;
             background-color: #009688;
@@ -147,11 +162,26 @@
             height: 25px;
             border-radius: 2px;
         }
+
+        .select_input {
+            border: none;
+            text-align: center;
+            width: 90%;
+            height: 90%;
+        }
     </style>
     <title></title>
 </head>
 <body>
     <script type="text/ecmascript">
+        $(function () {
+            var shuliang = $("#shuliang").val();
+            for (var i = 0 ; i < shuliang; i++) {
+                $("#mxtype" + i + "").val($("#2mxtype" + i + "").val());
+            }
+            var mxtype2 = $("#mxtype2").val();
+            $("#mxtype2").val(mxtype2);
+        });
         $(function () {
             var windowHeight = window.innerHeight;
             $(".table_div").css("height", windowHeight * 0.8)
@@ -177,32 +207,33 @@
 
         })
 
-        $(document).ready(function () {
-            var row = 1;
-            $("#dj_yh").click(function () {
+        //$(document).ready(function () {
+        //    var row = 1;
+        //    $("#dj_yh").click(function () {
 
-                var rowLength = $("#biao_ge tr").length;
+        //        var rowLength = $("#biao_ge tr").length;
 
-                var insertStr = "<tr id='del_row" + row + "' >"
-                               + "<td style='font-size: 14px;padding-left: 0.5%;width: 70px;'>" + rowLength + "</td>"
-                               + "<td ><input type='text' class='input_tr' style='width: 130px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
-                               + "<td class='bg_bj_dm'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
-                               + "<td class='bg_bj_lb'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='shou_huo" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='gong_huo" + row + "' ></input></td>"
-                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' style='width: 70px;margin:0.2%;' class='rk_btu'value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
-                               + "</tr>";
-                $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
-                row++;
-            });
+        //        var insertStr = "<tr id='del_row" + row + "' >"
+        //                       + "<td style='font-size: 14px;padding-left: 0.5%;width: 70px;'>" + rowLength + "</td>"
+        //                       + "<td ><input type='text' class='input_tr' style='width: 130px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
+        //                       + "<td class='bg_bj_dm'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
+        //                       + "<td class='bg_bj_lb'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
+        //                       + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
+        //                       + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='shou_huo" + row + "' ></input></td>"
+        //                       + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='gong_huo" + row + "' ></input></td>"
+        //                       + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' style='width: 70px;margin:0.2%;' class='rk_btu'value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
+        //                       + "</tr>";
+        //        $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
+        //        row++;
+        //    });
 
 
-        });
+        //});
 
 
 
     </script>
+    <%--<rsweb:ReportViewer ID="ReportViewer1" runat="server"></rsweb:ReportViewer>--%>
     <form id="form1" runat="server">
         <div>
             <div class="d-header rq_css">
@@ -210,15 +241,13 @@
                 
                 <div class="select_div">
                     <label class="lable_select">起始日期：</label>
-                    <input type="datetime-local" class="time_select" name="time_qs" />
+                    <input type="datetime-local" class="time_select" name="time_qs" id="time_qs" />
                     <label class="lable_select">截止日期：</label>
-                    <input type="datetime-local" class="time_select" name="time_jz" />
+                    <input type="datetime-local" class="time_select" name="time_jz" id="time_jz" />
                     <asp:Button ID="Button3" class="mingxi_input_tr_tj" OnClick="rq_select" Text="查询" runat="server" />
-                 
-
-                  <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" Text="删除" runat="server" />
-
+                    <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" Text="删除" runat="server" />
                     <asp:Button ID="Button2" class="mingxi_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
+                    <asp:Button ID="Button4" class="mingxi_input_tr_tj" OnClick="mx_save" Text="保存" runat="server" />
                 </div>
                 <div class="funcion_top">
                     <asp:Button ID="downexcel" class="mingxi_input_tr_tj" OnClick="toExcel" Text="保存至Excel" runat="server" />
@@ -250,19 +279,49 @@
                             for (int i = 0; i < ming_xi_select_dd.Count; i++)
                             {                          
                     %>
+
                     <tr id="Tr1" class="tr_<%=ming_xi_select_dd[i]._openid %>">
-                        <td class="bg_bj"><%=(i+1) %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].orderid %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].sp_dm %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].cpname %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].cplb %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].cpsj %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].cpsl %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].mxtype %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].shijian.GetValueOrDefault().ToString("g") %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].zh_name %></td>
-                        <td class="bg_bj"><%=ming_xi_select_dd[i].shou_h %></td>
+                        <td class="bg_bj">
+                            <%=(i+1) %>
+                            
+                            <input hidden="hidden" id="_id<%=i %>" name="_id<%=i %>" value="<%=ming_xi_select_dd[i]._id %>" />
+                        </td>
+                        <td class="bg_bj">
+                            <input type="text"class="input_tr2" id="orderid" name="orderid<%=i %>" value="<%=ming_xi_select_dd[i].orderid %>" />
+                        </td>
+                        <td class="bg_bj">
+                            <input type="text"class="input_tr2" id="sp_dm" name="sp_dm<%=i %>" value="<%=ming_xi_select_dd[i].sp_dm %>" />
+                        </td>
+                        <td class="bg_bj">
+                            <input type="text"class="input_tr2" id="cpname" name="cpname<%=i %>" value="<%=ming_xi_select_dd[i].cpname %>" />
+                        </td>
+                        <td class="bg_bj">
+                            <input type="text"class="input_tr2" id="cplb" name="cplb<%=i %>" value="<%=ming_xi_select_dd[i].cplb %>" />
+                        </td>
+                        <td class="bg_bj">
+                            <input type="number"class="input_tr2" id="cpsj" name="cpsj<%=i %>" value="<%=ming_xi_select_dd[i].cpsj %>" />
+                        </td>
+                        <td class="bg_bj">
+                            <input type="number"class="input_tr2" id="cpsl" name="cpsl<%=i %>" value="<%=ming_xi_select_dd[i].cpsl %>" />
+                        </td>
+                        <td class="bg_bj">
+                            <select class="select_input" id="mxtype<%=i %>" name="mxtype<%=i %>" >
+                                <option value="入库">入库</option>
+                                <option value="出库">出库</option>
+                            </select>
+                            <input hidden="hidden" id="2mxtype<%=i %>" value="<%=ming_xi_select_dd[i].mxtype %>" />
+                        </td>
+                        <td class="bg_bj">
+                            <%=ming_xi_select_dd[i].shijian.GetValueOrDefault().ToString("g") %>
+                        </td>
+                        <td class="bg_bj">
+                            <%=ming_xi_select_dd[i].zh_name %>
+                        </td>
+                        <td class="bg_bj">
+                            <input type="text"class="input_tr2" id="shou_h" name="shou_h<%=i %>" value="<%=ming_xi_select_dd[i].shou_h %>" />
+                        </td>
                         <td class="bg_bj" style="width: 43px;"><input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
+                        
                     </tr>
                     <%
                             }
@@ -277,6 +336,7 @@
                 <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
             </div>
+            <input hidden="hidden" id="shuliang"  name="shuliang" value="<%=ming_xi_select_dd.Count %>" />
         </div>
     </form>
 </body>

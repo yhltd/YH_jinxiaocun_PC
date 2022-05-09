@@ -102,11 +102,11 @@
             <p align="right">
                 <span style="font-size: 12pt" class="font_gray"><%=version%></span>
             </p>
-            <div class="lefts">
+            <%--<div class="lefts">
                 <p align="right" class="pname">
                     <b><span style="font-size: 36pt">云和未来一体化系统</span></b>
                 </p>
-            </div>
+            </div>--%>
 
             <div class="login">
                 <form name="MyForm" id="MyForm" runat="server">
@@ -118,7 +118,7 @@
                     <input type="hidden" value="chklogin" name="reaction">
 
                     <div class="center">
-                        <div class="inner" style="left:720px;position:absolute;">
+                        <div class="inner">
                             <table cellpadding="0" cellspacing="0" id="innnertalbe">
                                 <tr>
                                     <td height="60">

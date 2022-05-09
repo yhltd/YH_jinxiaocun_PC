@@ -29,16 +29,27 @@
 
                 var rowLength = $("#biao_ge tr").length;
 
+                //var insertStr = "<tr id='del_row" + row + "' >"
+                //               + "<td style='font-size: 14px;padding-left: 0.5%;width: 70px;'>" + rowLength + "</td>"
+                //               + "<td ><input type='text' class='input_tr' style='width: 120px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
+                //               + "<td class='bg_bj_dm'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
+                //               + "<td class='bg_bj_lb'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
+                //               + "<td class='bg_bj_sj'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
+                //               + "<td class='bg_bj_sj'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='shou_huo" + row + "' ></input></td>"
+                //               + "<td class='bg_bj_sj'><input type='text' style='width: 60px;margin:0.2%;' class='input_tr' name='gong_huo" + row + "' ></input></td>"
+                //               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' style='width: 50px;margin:0.2%;' class='rk_btu'value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
+                //               + "</tr>";
                 var insertStr = "<tr id='del_row" + row + "' >"
-                               + "<td style='font-size: 14px;padding-left: 0.5%;width: 70px;'>" + rowLength + "</td>"
-                               + "<td ><input type='text' class='input_tr' style='width: 130px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
-                               + "<td class='bg_bj_dm'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
-                               + "<td class='bg_bj_lb'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='shou_huo" + row + "' ></input></td>"
-                               + "<td class='bg_bj_sj'><input type='text' style='width: 160px;margin:0.2%;' class='input_tr' name='gong_huo" + row + "' ></input></td>"
-                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' style='width: 70px;margin:0.2%;' class='rk_btu'value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
+                               + "<td>" + rowLength + "</td>"
+                               + "<td ><input type='text' class='input_tr' name='sp_dm" + row + "' ></input></td>"
+                               + "<td class='bg_bj_dm'><input type='text'  class='input_tr' name='name" + row + "' ></input></td>"
+                               + "<td class='bg_bj_lb'><input type='text'  class='input_tr' name='lei_bie" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='dan_wei" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='shou_huo" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='gong_huo" + row + "' ></input></td>"
+                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button'  style='width:50px' value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
+
                 $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
                 row++;
             });
@@ -148,12 +159,12 @@
                 <tr id="dj_yh">
                     <th class="auto-style1" style="width: 70px">序号</th>
                     <th class="auto-style1" style="width: 130px">商品代码</th>
-                    <th class="auto-style1" style="width: 160px">商品名称</th>
-                    <th class="auto-style1" style="width: 160px">商品类别</th>
-                    <th class="auto-style1" style="width: 160px">商品单位</th>
-                    <th class="auto-style1" style="width: 160px">客户名称</th>
-                    <th class="auto-style1" style="width: 160px">供应名称</th>
-                    <th class="auto-style1" style="width: 70px">功能</th>
+                    <th class="auto-style1" style="width: 155px">商品名称</th>
+                    <th class="auto-style1" style="width: 155px">商品类别</th>
+                    <th class="auto-style1" style="width: 155px">商品单位</th>
+                    <th class="auto-style1" style="width: 155px">客户名称</th>
+                    <th class="auto-style1" style="width: 155px">供应名称</th>
+                    <th class="auto-style1" style="width: 90px">功能</th>
                 </tr>
                 <%
                     System.Collections.Generic.List<Web.Server.yh_jinxiaocun_jichuziliao> jczj_select = Session["jczj_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_jichuziliao>;
@@ -165,7 +176,7 @@
                 <tr id="del_row_cs<%=i%>">
                     <%--style="font-size: 90%; padding-left: 2%;"--%>
                     <td><%=(i+1) %></td>
-                    <td class="bg_bj">
+                    <td >
                         <input type="text" class="input_tr" id="sp_name" name="sp_dm_cs<%=i%>" value="<%=jczj_select[i].sp_dm%>" /></td>
                     <td class="bg_bj">
                         <input type="text" class="input_tr" id="Text1" name="name_cs<%=i%>" value="<%=jczj_select[i].name%>" /></td>

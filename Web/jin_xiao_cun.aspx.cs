@@ -45,6 +45,7 @@ namespace Web
                 {
                     Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
                 }
+              
             }
         }
 
@@ -106,7 +107,11 @@ namespace Web
             string code = Context.Request["code"];
             string time_start = Context.Request["time_start"] == "" ? "1999-01-01" : Context.Request["time_start"];
             string time_end = Context.Request["time_end"] == "" ? "2999-01-01" : Context.Request["time_end"];
+            time_start = txtCompletionTime.Text.ToString();
+            time_end = txttime_end.Text.ToString();
+
             Session["jxc_z_select"] = stock.jxc_select(user.gongsi, code, time_start, time_end);
+          
         }
 
         protected void shou_ye_Click(object sender, EventArgs e)
@@ -188,5 +193,11 @@ namespace Web
             int allCount = stock.get_jxc_PageCount(user.gongsi);
             return (int)Math.Ceiling(Convert.ToDouble((float)allCount / (float)page.pageCount));
         }
+
+        protected void txtCompletionTime_TextChanged(object sender, EventArgs e)
+        {
+  
+        }
+
     }
 }

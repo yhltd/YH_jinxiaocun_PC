@@ -8,13 +8,13 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
-     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
     </script>
     <title></title>
     <style type="text/css">
-        .top-fun
-        {
+        .top-fun {
             width: 100%;
             height: 50px;
             display: flex;
@@ -22,8 +22,8 @@
             justify-content: space-between;
             align-items: center;
         }
-        .input_tr
-        {
+
+        .input_tr {
             width: 91px;
             height: 30px;
             border: none;
@@ -33,13 +33,13 @@
             border-radius: 2px;
             margin-left: 10px;
         }
-        .table_div
-        {
+
+        .table_div {
             width: 100%;
             overflow: scroll;
         }
-        .bk_bt
-        {
+
+        .bk_bt {
             height: 49px;
             text-align: center;
             background-color: #2F4056;
@@ -49,35 +49,35 @@
             position: sticky;
             top: 0;
         }
-        .auto-style1
-        {
+
+        .auto-style1 {
             text-align: center;
             height: 40px;
             background-color: white;
             border: 0.5px solid #f2f2f2;
             font-size: 4px;
         }
-        .time_select
-        {
+
+        .time_select {
             width: 150px;
             height: 30px;
             border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
-        .input_select
-        {
+
+        .input_select {
             width: 150px;
             border: none;
             height: 30px;
             border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
-        .none
-        {
+
+        .none {
             background-color: none;
         }
-        .page_bt
-        {
+
+        .page_bt {
             border: none;
             background-color: #009688;
             color: white;
@@ -86,12 +86,12 @@
             border-radius: 2px;
             cursor: pointer;
         }
-        .bottom
-        {
-            top: 49px
+
+        .bottom {
+            top: 49px;
         }
-        .top-fun-item
-        {
+
+        .top-fun-item {
             display: flex;
             align-items: center;
         }
@@ -105,9 +105,15 @@
                     <label class="top-text">商品代码：</label>
                     <input type="text" class="input_select" name="code" />
                     <label class="top-text">起始日期：</label>
-                    <input type="date" class="time_select" name="time_start" />
+                    <%--<input type="date" class="time_select" name="time_start" />--%>
+                    <asp:TextBox ID="txtCompletionTime" runat="server"
+                        class="time_select" onClick="WdatePicker()" name="time_start" onfocus="WdatePicker({skin:'whyGreen',maxDate:'%y-%M-%d'})" OnTextChanged="txtCompletionTime_TextChanged" autocomplete="off" AutoCompleteType="Disabled"></asp:TextBox>
+            
                     <label class="top-text">截止日期：</label>
-                    <input type="date" class="time_select" name="time_end" />
+                  <%--  <input type="date" class="time_select" name="time_end" />--%>
+                     <asp:TextBox ID="txttime_end" runat="server"
+                        class="time_select" onClick="WdatePicker()" name="time_end" OnTextChanged="txtCompletionTime_TextChanged" autocomplete="off" AutoCompleteType="Disabled"></asp:TextBox>
+            
                     <asp:Button ID="Button1" class="input_tr" OnClick="jxc_select" Text="查询" runat="server" />
                     <asp:Button ID="Button2" class="input_tr" OnClick="jxc_load" Text="刷新数据" runat="server" />
                 </div>
@@ -115,7 +121,7 @@
                     <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" />
                 </div>
             </div>
-                
+
             <div class="table_div">
                 <table cellspacing="0" cellpadding="0" class="biao_ge" name="bg_row" style="width: 100%">
                     <tr id="Tr1">
@@ -177,10 +183,10 @@
                     %>
                 </table>
             </div>
-            <div style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
+            <div style="width: 300px; height: 70px; display: flex; justify-content: space-around; align-items: center;">
                 <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
-                <asp:Label runat="server" ID="lblCurrentPage" style=" font-weight:bold"></asp:Label>
+                <asp:Label runat="server" ID="lblCurrentPage" Style="font-weight: bold"></asp:Label>
                 <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
             </div>

@@ -96,6 +96,8 @@ namespace Web
                 return string.Empty;
             }
         }
+     
+
 
         public string insert_ruku(string list)
         {
@@ -147,6 +149,14 @@ namespace Web
 
         protected void mo_ye_Click(object sender, EventArgs e)
         {
+
+        }
+
+        protected void toExcel(object sender, EventArgs e)
+        {
+
+
+            Response.Redirect("~/RDLC/frm_ReportForm.aspx");
 
         }
     }

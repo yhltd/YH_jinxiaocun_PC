@@ -61,3 +61,12 @@ D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csproj.GenerateReso
 D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.exe
 D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.pdb
 D:\145\工作\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csprojResolveAssemblyReference.cache
+D:\git_version\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe.config
+D:\git_version\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.exe
+D:\git_version\YH_jinxiaocun_PC\frmcstest\bin\Debug\frmcstest.pdb
+D:\git_version\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csprojResolveAssemblyReference.cache
+D:\git_version\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Form1.resources
+D:\git_version\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.Properties.Resources.resources
+D:\git_version\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.csproj.GenerateResource.Cache
+D:\git_version\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.exe
+D:\git_version\YH_jinxiaocun_PC\frmcstest\obj\Debug\frmcstest.pdb

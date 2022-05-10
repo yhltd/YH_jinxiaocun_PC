@@ -53,6 +53,7 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\NPOI.Excel.2.1.1\lib\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dll\MySql.Data.dll</HintPath>
@@ -1724,6 +1725,7 @@
     <Content Include="Personnel\size.aspx" />
     <Content Include="Personnel\wuquanxian.aspx" />
     <Content Include="qi_chu.aspx" />
+    <Content Include="RDLC\frm_ReportForm.aspx" />
     <Content Include="ru_ku.aspx" />
     <Content Include="sample\index.html" />
     <Content Include="sample\jquery.js" />
@@ -2637,6 +2639,13 @@
     <Compile Include="qi_chu.aspx.designer.cs">
       <DependentUpon>qi_chu.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RDLC\frm_ReportForm.aspx.cs">
+      <DependentUpon>frm_ReportForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RDLC\frm_ReportForm.aspx.designer.cs">
+      <DependentUpon>frm_ReportForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ru_ku.aspx.cs">
       <DependentUpon>ru_ku.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3360,6 +3369,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="RDLC\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

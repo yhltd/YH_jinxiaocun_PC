@@ -378,7 +378,9 @@
             <div class="d-header new_ss_div">
                 <input id="ru_cx" class="select_input" autocomplete="off" oninput="bindInput_select(this.value)" placeholder="按商品名称/商品代码搜索" />
                 <input id="ru_bt" class="rk_bt" type="button" value="入库"/>
-                <input id="shuaxin" class="rk_bt" type="button" value="刷新"/> 
+                <input id="shuaxin" class="rk_bt" type="button" value="刷新"/>               
+                <asp:Button ID="btn_print" class="button" onmouseover="this.className='ui-btn ui-btn-search-hover'"
+                                onmouseout="this.className='button'" runat="server" Text="e打印" OnClick="toExcel" Width="10%" Height="30px" />
             </div> 
             <div class="d-main" id="table_div" style="width:100%;overflow:scroll;">
 

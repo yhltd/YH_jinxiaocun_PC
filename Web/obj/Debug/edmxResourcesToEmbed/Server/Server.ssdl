@@ -67,7 +67,7 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="zh_name" Type="varchar" MaxLength="255" />
     <Property Name="gs_name" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="mark1" Type="varchar" MaxLength="255" />
+    <Property Name="mark1" Type="longtext" />
     <Property Name="maxNum" Type="int" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_jinhuofang">
@@ -171,6 +171,7 @@
     <Property Name="name" Type="varchar" MaxLength="255" />
     <Property Name="password" Type="varchar" MaxLength="255" />
     <Property Name="mi_bao" Type="varchar" MaxLength="255" />
+    <Property Name="C_id" Type="varchar" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_yongliaosheding">
     <Key>
@@ -196,5 +197,6 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="zh_name" Type="varchar" MaxLength="255" />
     <Property Name="gs_name" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu" Type="varchar" MaxLength="255" />
   </EntityType>
 </Schema>

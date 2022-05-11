@@ -36,11 +36,13 @@
                 //               + "</tr>";
                 var insertStr = "<tr id='del_row" + row + "' >"
                                + "<td>" + rowLength + "</td>"
+                                   + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' class='rk_btu'value='删除'  onclick='del_row(" + row + ")'/></td>"
                                + "<td ><input type='text' class='input_tr'  name='sp_dm" + row + "' ></input></td>"
                                + "<td class='bg_bj_dm'><input type='text' class='input_tr' name='name" + row + "' ></input></td>"
                                + "<td class='bg_bj_lb'><input type='text' class='input_tr' name='lei_bie" + row + "' ></input></td>"
                                + "<td class='bg_bj_sj'><input type='text' class='input_tr' name='dan_wei" + row + "' ></input></td>"
-                               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' class='rk_btu'value='删除'  onclick='del_row(" + row + ")'/></td>"
+                             + "<td class='bg_bj_sj'><input type='text' class='input_tr' name='bei_zhu" + row + "' ></input></td>"
+
                                + "</tr>";
                 $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
                 row++;
@@ -164,11 +166,13 @@
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="width: 100%">
                     <tr id="dj_yh">
                         <th class="auto-style1" style="width: 70px">序号</th>
+                          <th class="auto-style1" style="width: 70px">选择</th>
                         <th class="auto-style1" style="width: 228px">商品代码</th>
                         <th class="auto-style1" style="width: 228px">商品名称</th>
                         <th class="auto-style1" style="width: 228px">商品类别</th>
                         <th class="auto-style1" style="width: 228px">商品单位</th>
-                        <th class="auto-style1" style="width: 70px">功能</th>
+                         <th class="auto-style1" style="width: 70px">备注</th>
+
                     </tr>
                     <%
                         System.Collections.Generic.List<Web.Server.yh_jinxiaocun_zhengli> zl_and_jc_info = Session["zl_and_jc_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_zhengli>;
@@ -181,6 +185,9 @@
                         <%--style="font-size: 90%; padding-left: 2%;"--%>
                         <td style="font-size: 14px; padding-left: 0.5%; width: 22px;"><%=(i+1) %></td>
                         <td class="bg_bj">
+                            <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i %>" value="<%=zl_and_jc_info[i].id %>" /><input id="checkbox" name="Checkbox_bd<%=i %>" value=" <%=i %>" type="checkbox" /></td>
+
+                        <td class="bg_bj">
                             <input type="text"class="input_tr" id="sp_name" name="sp_dm_cs<%=i %>" value="<%=zl_and_jc_info[i].sp_dm %>" /></td>
                         <td class="bg_bj">
                             <input type="text" class="input_tr" id="Text1" name="name_cs<%=i %>" value="<%=zl_and_jc_info[i].name %>" /></td>
@@ -188,9 +195,9 @@
                             <input type="text" class="input_tr" id="Text2" name="lei_bie_cs<%=i %>" value="<%=zl_and_jc_info[i].lei_bie %>" /></td>
                         <td class="bg_bj">
                             <input type="text" class="input_tr" id="ck_dj<%=i %>" name="dan_wei_cs<%=i %>" value="<%=zl_and_jc_info[i].dan_wei %>" /></td>
-                        <td class="bg_bj">
-                            <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i %>" value="<%=zl_and_jc_info[i].id %>" /><input id="checkbox" name="Checkbox_bd<%=i %>" value=" <%=i %>" type="checkbox" /></td>
-
+                         <td class="bg_bj">
+                            <input type="text" class="input_tr" id="beizhu" name="beizhu_cs<%=i %>" value="<%=zl_and_jc_info[i].beizhu %>" /></td>
+                        
                     </tr>
 
                     <%

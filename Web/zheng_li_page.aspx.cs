@@ -128,6 +128,8 @@ namespace Web
                     zaji.name = Context.Request["name" + i].ToString();
                     zaji.lei_bie = Context.Request["lei_bie" + i].ToString();
                     zaji.dan_wei = Context.Request["dan_wei" + i].ToString();
+                    zaji.beizhu = Context.Request["bei_zhu" + i].ToString();
+                    
                     zaji.zh_name = user.name;
                     zaji.gs_name = user.gongsi;
                     list_zl.Add(zaji);
@@ -140,7 +142,7 @@ namespace Web
 
                 for (int i = 0; i < row_count; i++)
                 {
-                    zhengli.update(Context.Request["sp_dm_cs" + i].ToString(), Context.Request["name_cs" + i].ToString(), Context.Request["lei_bie_cs" + i].ToString(), Context.Request["dan_wei_cs" + i].ToString(), Context.Request["id_cs" + i].ToString());
+                    zhengli.update(Context.Request["sp_dm_cs" + i].ToString(), Context.Request["name_cs" + i].ToString(), Context.Request["lei_bie_cs" + i].ToString(), Context.Request["dan_wei_cs" + i].ToString(), Context.Request["beizhu_cs" + i].ToString(), Context.Request["id_cs" + i].ToString());
                 }
                 Response.Write(" <script>alert('提交成功');</script>");
                 this.zl_select_load(sender, e);

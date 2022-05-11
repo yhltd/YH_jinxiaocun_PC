@@ -72,7 +72,7 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="zh_name" Type="varchar" MaxLength="255" />
           <Property Name="gs_name" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="mark1" Type="varchar" MaxLength="255" />
+          <Property Name="mark1" Type="longtext" />
           <Property Name="maxNum" Type="int" />
         </EntityType>
         <EntityType Name="yh_jinxiaocun_jinhuofang">
@@ -176,6 +176,7 @@
           <Property Name="name" Type="varchar" MaxLength="255" />
           <Property Name="password" Type="varchar" MaxLength="255" />
           <Property Name="mi_bao" Type="varchar" MaxLength="255" />
+          <Property Name="C_id" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="yh_jinxiaocun_yongliaosheding">
           <Key>
@@ -201,6 +202,7 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="zh_name" Type="varchar" MaxLength="255" />
           <Property Name="gs_name" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu" Type="varchar" MaxLength="255" />
         </EntityType>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -273,7 +275,7 @@
           <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="gs_name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="mark1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="mark1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Type="Int32" Name="maxNum" />
         </EntityType>
         <EntityType Name="yh_jinxiaocun_jinhuofang">
@@ -377,6 +379,7 @@
           <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="password" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="mi_bao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="C_id1" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="yh_jinxiaocun_yongliaosheding">
           <Key>
@@ -402,6 +405,7 @@
           <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="beizhu" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -564,6 +568,7 @@
           <EntitySetMapping Name="yh_jinxiaocun_user">
             <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_user">
               <MappingFragment StoreEntitySet="yh_jinxiaocun_user">
+                <ScalarProperty Name="C_id1" ColumnName="C_id" />
                 <ScalarProperty Name="C_id" ColumnName="_id" />
                 <ScalarProperty Name="AdminIS" ColumnName="AdminIS" />
                 <ScalarProperty Name="Btype" ColumnName="Btype" />
@@ -594,6 +599,7 @@
           <EntitySetMapping Name="yh_jinxiaocun_zhengli">
             <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_zhengli">
               <MappingFragment StoreEntitySet="yh_jinxiaocun_zhengli">
+                <ScalarProperty Name="beizhu" ColumnName="beizhu" />
                 <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="lei_bie" ColumnName="lei_bie" />

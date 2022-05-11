@@ -156,6 +156,7 @@
     <EntitySetMapping Name="yh_jinxiaocun_user">
       <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_user">
         <MappingFragment StoreEntitySet="yh_jinxiaocun_user">
+          <ScalarProperty Name="C_id1" ColumnName="C_id" />
           <ScalarProperty Name="C_id" ColumnName="_id" />
           <ScalarProperty Name="AdminIS" ColumnName="AdminIS" />
           <ScalarProperty Name="Btype" ColumnName="Btype" />
@@ -186,6 +187,7 @@
     <EntitySetMapping Name="yh_jinxiaocun_zhengli">
       <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_zhengli">
         <MappingFragment StoreEntitySet="yh_jinxiaocun_zhengli">
+          <ScalarProperty Name="beizhu" ColumnName="beizhu" />
           <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="lei_bie" ColumnName="lei_bie" />

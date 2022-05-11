@@ -21,5 +21,6 @@ namespace Web.Server
         public int id { get; set; }
         public string zh_name { get; set; }
         public string gs_name { get; set; }
+        public string beizhu { get; set; }
     }
 }

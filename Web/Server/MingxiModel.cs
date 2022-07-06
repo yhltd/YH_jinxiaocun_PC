@@ -37,7 +37,7 @@ namespace Web.Server
 
                 for (int i = 0; i < item.itemList.Count; i++)
                 {
-                    sql += "insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name) select lei_bie as cplb,`name` as cpname," + item.itemList[i].price + " as cpsj," + item.itemList[i].num + " as cpsl,'" + mxtype + "' as mxtype,'" + item.orderid + "' as orderid,'" + date_now + "' as shijian,sp_dm,'" + item.gonghuo + "' as shou_h,'" + company + "' as zh_name,'" + name + "' as gs_name from yh_jinxiaocun_jichuziliao where id = " + item.itemList[i].id + ";";
+                    sql += "insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name) select lei_bie as cplb,`name` as cpname," + item.itemList[i].price + " as cpsj," + item.itemList[i].num + " as cpsl,'" + mxtype + "' as mxtype,'" + item.orderid + "' as orderid,'" + date_now + "' as shijian,sp_dm,'" + item.gonghuo + "' as shou_h,'" + name + "' as zh_name,'" + company + "' as gs_name from yh_jinxiaocun_jichuziliao where id = " + item.itemList[i].id + ";";
                 }
                 return sen.Database.ExecuteSqlCommand(sql);
             }
@@ -47,7 +47,7 @@ namespace Web.Server
         {
             limit2 = 20;
             using (ServerEntities sen = new ServerEntities()) {
-                string sql = "select * from yh_jinxiaocun_mingxi where zh_name = '" + gs_name + "' order by shijian desc limit " + limit1 + "," + limit2 + " ";
+                string sql = "select * from yh_jinxiaocun_mingxi where gs_name = '" + gs_name + "' order by shijian desc limit " + limit1 + "," + limit2 + " ";
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql);
                 return result.ToList();
             }
@@ -57,7 +57,7 @@ namespace Web.Server
         {
             using (ServerEntities sen = new ServerEntities())
             {
-                string sql = "SELECT * FROM Yh_JinXiaoCun_mingxi where zh_name = '" + gs_name + "'";
+                string sql = "SELECT * FROM Yh_JinXiaoCun_mingxi where gs_name = '" + gs_name + "'";
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql);
                 return result.ToList().Count;
             }

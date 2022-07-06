@@ -183,7 +183,7 @@
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/baoshui.aspx','报税')">报税<img src="../Personnel/images/baoshui.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/bumenhuizong.aspx','部门汇总')">部门汇总<img src="../Personnel/images/bumenhuizong.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/shebao.aspx','社保')">社保<img src="../Personnel/images/shebao.png" style="float: right;height: 50%;" /></a></li>
-                    <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerenxinxi.aspx','个人信息')">个人信息<img src="../Personnel/images/gerenxinxi.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerenxinxi.aspx','员工档案')">员工档案<img src="../Personnel/images/gerenxinxi.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerensuode.aspx','个人所得税')">个人所得税<img src="../Personnel/images/gerensuodeshui.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gongzitiao.aspx','工资条')">工资条<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/shuomingshu.aspx','使用说明')">下载使用说明<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>

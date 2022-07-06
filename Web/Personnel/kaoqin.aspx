@@ -1,31 +1,31 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="kaoqin.aspx.cs" Inherits="Web.Personnel.kaoqin" %>
+﻿<%@ page language="C#" autoeventwireup="true" codebehind="kaoqin.aspx.cs" inherits="Web.Personnel.kaoqin" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="../../Scripts/layui/layui.all.js"></script>
     <script src="../../Scripts/layui/lay/modules/layer.js"></script>
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body  style="    margin: 0;">
+<body style="margin: 0;">
     <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript" src="js/iframe_d.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/iframe_d.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iframe_d.css" />
     <script type="text/javascript">
-        function a(){
-        alert("无权限！")
+        function a() {
+            alert("无权限！")
         }
         function upUser(e) {
             iframe_d_open({
                 title: "考勤修改",//头部
                 shadeClose: true, //点击遮罩层关闭
                 area: {            //弹窗大小
-                  x: '600',
-                 y: '500'
-               },
+                    x: '600',
+                    y: '500'
+                },
                 content: 'kaoqinUpd.aspx?strs=' + e,     //路径
                 maxmin: true,      //最大化最小化按钮
                 z_index: 100        //层级
@@ -40,9 +40,9 @@
         //    maxmin: true,
         //});
         //function upUser(e) {
-            //var id = $(this).data("id")
-            //var gongsi = $(this).data("gongsi")
-            //var strs = json.parse(e)
+        //var id = $(this).data("id")
+        //var gongsi = $(this).data("gongsi")
+        //var strs = json.parse(e)
         //    title = '修改用户';
         //    url = 'kaoqinUpd.aspx?strs=' + e;
         //    layui.use('layer', function () {
@@ -71,16 +71,15 @@
         //        }
         //    })
         //}
-        
+
     </script>
-    <h1 style="margin-top:0px;margin-bottom:10px;position:fixed">考勤</h1>
-    <div style="height:50px"></div>
+    <h1 style="margin-top: 0px; margin-bottom: 10px; position: fixed">考勤</h1>
+    <div style="height: 50px"></div>
     <form id="form1" runat="server">
-    <div>
-        
-    </div>
-        <div style="position:fixed">
-        <asp:Label ID="Label1" runat="server" Height="30px"  Width="80px" style="text-align:center" >年份：</asp:Label>
+        <div>
+        </div>
+        <div style="position: fixed">
+            <%--<asp:Label ID="Label1" runat="server" Height="30px"  Width="80px" style="text-align:center" >年份：</asp:Label>
         <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="150px"  CssClass="top_select_input" style="text-align:center;border:0.5px solid #378888">
             <asp:ListItem>2020</asp:ListItem>
             <asp:ListItem>2021</asp:ListItem>
@@ -109,15 +108,19 @@
             <asp:ListItem>10</asp:ListItem>
             <asp:ListItem>11</asp:ListItem>
             <asp:ListItem>12</asp:ListItem>
-        </asp:DropDownList>
-        <asp:Button ID="Button1" CssClass="top_bt" runat="server" OnClick="Button1_Click" Text="搜索" Height="30px" Width="80px" style="margin-right:-10px" />
-        <asp:Button ID="Button2" CssClass="top_bt" runat="server"  Text="添加" OnClientClick="aa" OnClick="Button2_Click" Height="30px" Width="80px" style="margin-right:-10px"/>
-        <asp:Button ID="Button3" CssClass="top_bt" runat="server"  Text="所有" OnClientClick="aa" OnClick="Button3_Click" Height="30px" Width="80px" style="margin-right:-10px"/>
-        <asp:Button ID="Button4" CssClass="top_bt" runat="server" Height="30px" Text="生成Excel" Width="80px" OnClick="toExcel" style="margin-right:-10px" />
+        </asp:DropDownList>--%>
+            <asp:label id="Label1" runat="server" height="30px" width="80px" style="text-align: center" >开始时间：</asp:label>
+            <input type="date" name="ks" class="top_select_input" style="width:150px"></input>
+            <asp:label id="Label2" runat="server" height="30px" width="80px" style="text-align: center" >结束时间：</asp:label>
+            <input type="date" name="js" class="top_select_input"></input>
+            <asp:button id="Button1" cssclass="top_bt" runat="server" onclick="Button1_Click" text="搜索" height="30px" width="80px" style="margin-right: -10px" />
+            <asp:button id="Button2" cssclass="top_bt" runat="server" text="添加" onclientclick="aa" onclick="Button2_Click" height="30px" width="80px" style="margin-right: -10px" />
+            <asp:button id="Button3" cssclass="top_bt" runat="server" text="所有" onclientclick="aa" onclick="Button3_Click" height="30px" width="80px" style="margin-right: -10px" />
+            <asp:button id="Button4" cssclass="top_bt" runat="server" height="30px" text="生成Excel" width="80px" onclick="toExcel" style="margin-right: -10px" />
         </div>
-        <div style="height:35px"></div>
+        <div style="height: 35px"></div>
         <%--<asp:Button ID="Button4" CssClass="top_bt" runat="server"  Text="刷新" OnClientClick="aa"  Height="30px" Width="80px" OnClick="Button4_Click"/>--%>
-        <asp:GridView ID="GridView1" AllowPaging="True" runat="server" AutoGenerateColumns="False" DataKeyNames="id" DataSourceId="SqlDataSource1" OnRowCreated="aaa" OnSelectedIndexChanged="GridView1_SelectedIndexChanged1" >
+        <asp:gridview id="GridView1" allowpaging="True" runat="server" autogeneratecolumns="False" datakeynames="id" datasourceid="SqlDataSource1" onrowcreated="aaa" onselectedindexchanged="GridView1_SelectedIndexChanged1">
             <Columns>
                 <asp:CommandField ButtonType="Button" ShowSelectButton="True" ItemStyle-CssClass="bt_upd1" SelectText="修改" >
                     <ControlStyle Font-Bold="True" Width="50px" />
@@ -370,8 +373,8 @@
             <HeaderStyle CssClass="header" Font-Bold="False" BorderStyle="None" />
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString6 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinjilu] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinjilu] ([year], [moth], [name], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO]) VALUES (@year, @moth, @name, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO)" SelectCommand="SELECT * FROM [gongzi_kaoqinjilu] WHERE (([AO] like '%'+ @AO +'%') AND ([year] = @year) AND ([moth] = @moth)) UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''  order by id desc" UpdateCommand="UPDATE [gongzi_kaoqinjilu] SET [year] = @year, [moth] = @moth, [name] = @name, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L, [M] = @M, [N] = @N, [O] = @O, [P] = @P, [Q] = @Q, [R] = @R, [S] = @S, [T] = @T, [U] = @U, [V] = @V, [W] = @W, [X] = @X, [Y] = @Y, [Z] = @Z, [AA] = @AA, [AB] = @AB, [AC] = @AC, [AD] = @AD, [AE] = @AE, [AF] = @AF, [AG] = @AG, [AH] = @AH, [AI] = @AI, [AJ] = @AJ, [AK] = @AK, [AL] = @AL, [AM] = @AM, [AN] = @AN WHERE [id] = @id">
+        </asp:gridview>
+        <asp:sqldatasource id="SqlDataSource2" runat="server" connectionstring="<%$ ConnectionStrings:yaoConnectionString6 %>" deletecommand="DELETE FROM [gongzi_kaoqinjilu] WHERE [id] = @id" insertcommand="INSERT INTO [gongzi_kaoqinjilu] ([year], [moth], [name], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO]) VALUES (@year, @moth, @name, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO)" selectcommand="if exists(SELECT * FROM [gongzi_kaoqinjilu] where ([AO] like '%'+ @AO +'%') AND (convert(int,[year]+moth) &gt;= @year) AND (convert(int,[year]+moth) &lt;= @moth) ) begin SELECT id,convert(int,[year]) as [year],convert(int,moth) as moth,name,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,AE,AF,AG,AH,AI,AJ,AK,AL,AM,AN,AO FROM [gongzi_kaoqinjilu] where ([AO] like '%'+ @AO +'%') AND (convert(int,[year]+moth) &gt;= @year) AND (convert(int,[year]+moth) &lt;= @moth) order by [year] desc,moth desc end else SELECT * FROM [gongzi_kaoqinjilu] where id=0 UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''" updatecommand="UPDATE [gongzi_kaoqinjilu] SET [year] = @year, [moth] = @moth, [name] = @name, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L, [M] = @M, [N] = @N, [O] = @O, [P] = @P, [Q] = @Q, [R] = @R, [S] = @S, [T] = @T, [U] = @U, [V] = @V, [W] = @W, [X] = @X, [Y] = @Y, [Z] = @Z, [AA] = @AA, [AB] = @AB, [AC] = @AC, [AD] = @AD, [AE] = @AE, [AF] = @AF, [AG] = @AG, [AH] = @AH, [AI] = @AI, [AJ] = @AJ, [AK] = @AK, [AL] = @AL, [AM] = @AM, [AN] = @AN WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -464,8 +467,8 @@
                 <asp:Parameter Name="AN" Type="String" />
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
-        </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString5 %>" DeleteCommand="DELETE FROM [gongzi_kaoqinjilu] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_kaoqinjilu] ([year], [moth], [name], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO]) VALUES (@year, @moth, @name, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO)" SelectCommand="SELECT * FROM [gongzi_kaoqinjilu] WHERE ([AO] like '%'+ @AO +'%') UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''  order by id desc" UpdateCommand="UPDATE [gongzi_kaoqinjilu] SET [year] = @year, [moth] = @moth, [name] = @name, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L, [M] = @M, [N] = @N, [O] = @O, [P] = @P, [Q] = @Q, [R] = @R, [S] = @S, [T] = @T, [U] = @U, [V] = @V, [W] = @W, [X] = @X, [Y] = @Y, [Z] = @Z, [AA] = @AA, [AB] = @AB, [AC] = @AC, [AD] = @AD, [AE] = @AE, [AF] = @AF, [AG] = @AG, [AH] = @AH, [AI] = @AI, [AJ] = @AJ, [AK] = @AK, [AL] = @AL, [AM] = @AM, [AN] = @AN WHERE [id] = @id">
+        </asp:sqldatasource>
+        <asp:sqldatasource id="SqlDataSource1" runat="server" connectionstring="<%$ ConnectionStrings:yaoConnectionString5 %>" deletecommand="DELETE FROM [gongzi_kaoqinjilu] WHERE [id] = @id" insertcommand="INSERT INTO [gongzi_kaoqinjilu] ([year], [moth], [name], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO]) VALUES (@year, @moth, @name, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO)" selectcommand="if exists(SELECT * FROM [gongzi_kaoqinjilu] where ([AO] like '%'+ @AO +'%') ) begin SELECT id,convert(int,[year]) as [year],convert(int,moth) as moth,name,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,AE,AF,AG,AH,AI,AJ,AK,AL,AM,AN,AO FROM [gongzi_kaoqinjilu] where ([AO] like '%'+ @AO +'%') order by [year] desc,moth desc end else SELECT * FROM [gongzi_kaoqinjilu] where id=0 UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''" updatecommand="UPDATE [gongzi_kaoqinjilu] SET [year] = @year, [moth] = @moth, [name] = @name, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L, [M] = @M, [N] = @N, [O] = @O, [P] = @P, [Q] = @Q, [R] = @R, [S] = @S, [T] = @T, [U] = @U, [V] = @V, [W] = @W, [X] = @X, [Y] = @Y, [Z] = @Z, [AA] = @AA, [AB] = @AB, [AC] = @AC, [AD] = @AD, [AE] = @AE, [AF] = @AF, [AG] = @AG, [AH] = @AH, [AI] = @AI, [AJ] = @AJ, [AK] = @AK, [AL] = @AL, [AM] = @AM, [AN] = @AN WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -556,11 +559,9 @@
                 <asp:Parameter Name="AN" Type="String" />
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
-        </asp:SqlDataSource>
-         <div class="iframe_d">
-
-
-    </div>
+        </asp:sqldatasource>
+        <div class="iframe_d">
+        </div>
     </form>
 </body>
 </html>

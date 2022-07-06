@@ -28,7 +28,7 @@
                 var myList = JSON.parse(list)
                 var newTr = "";
                 newTr += "<tr id='del_row" + row + "'>"
-                newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='0'></checkbox></td>"
+                newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' name='checkbox" + row + "' value='0'></checkbox></td>"
                 newTr += "<td class='item_td'>" + row + "</td>"
                 newTr += "<td class='item_td' id='sp_name" + row + "'></td>"
                 newTr += "<td class='item_td'>"
@@ -40,9 +40,9 @@
                 newTr += "</select></td>"
                 newTr += "<td class='item_td' id='sp_cplb" + row + "'></td>"
                 newTr += "<td class='item_td' id='sp_cpsj" + row + "'></td>"
-                newTr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' placeholder='总数量：'/></td>"
-                newTr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' type='number' autocomplete='off' class='table_input'/></td>"
-                newTr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/></td>"
+                newTr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' name='num" + row + "' type='number' autocomplete='off' class='table_input' placeholder='总数量：'/></td>"
+                newTr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' name='price" + row + "' type='number' autocomplete='off' class='table_input'/></td>"
+                newTr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/><input type='text' id='check" + row + "' hidden='hidden' name='check" + row + "' /></td>"
                 newTr += "</tr>"
                 $("#biao_ge").append(newTr);
                 row++;
@@ -61,6 +61,26 @@
                 $(".ruku_div").css("display", "none")
                 $(".mask").css("display", "none")
             })
+
+            ////打印
+            //$("#btn_print").click(function () {
+            //    if (ruku.itemList.length == 0) {
+            //        alert("请选择商品")
+            //    } else {
+            //        $.ajax({
+            //            type: "Post",
+            //            url: "frm_ReportForm.aspx",
+            //            data: {
+            //                act: "print",
+            //                infos: JSON.stringify(ruku)
+            //            },
+            //            dataType: "json",
+            //            success: function (result) {
+                            
+            //            }
+            //        });
+            //    }
+            //})
 
             $("#insert_ruku").click(function () {
                 if ($('.order_id_input').val() == "") {
@@ -120,6 +140,7 @@
                     var item = { id: e, num: $("#num" + index).val(), price: $("#price" + index).val() };
                     ruku.itemList.push(item)
                     console.log(ruku.itemList)
+                    $("#check" + index).val("true");
                 } else {
                     for (var i = 0; i < ruku.itemList.length; i++) {
                         if (ruku.itemList[i].id == $("#checkbox" + index).val()) {
@@ -127,6 +148,7 @@
                             break;
                         }
                     }
+                    $("#check" + index).val("");
                     console.log(ruku.itemList)
                 }
 
@@ -143,9 +165,9 @@
             var insertStr = "";
             for (var j = 0; j < result.length; j++) {
                 insertStr += "<tr id='del_row" + row + "'>"
-                insertStr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='" + result[j].id + "'></checkbox></td>"
+                insertStr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' name='checkbox" + row + "' value='" + result[j].id + "'></checkbox></td>"
                 insertStr += "<td class='item_td'>" + row + "</td>"
-                insertStr += "<td class='item_td' id='sp_name" + row + "'>" + result[j].name + "</td>"
+                insertStr += "<td class='item_td' id='sp_name" + row + "' name='sp_name" + row + "'>" + result[j].name + "</td>"
                 insertStr += "<td class='item_td'>"
                 insertStr += "<select class='input_tr' id='sp_dm" + row + "' onchange='bhhq(" + row + ")' name='sp_dm" + row + "'>"
                 insertStr += "<option>选择编号</option>"
@@ -157,14 +179,15 @@
                     insertStr += "<option class='option_list' value='" + i + "'>" + result[i].sp_dm + "</option>"
                 }
                 insertStr += "</select></td>"
-                insertStr += "<td class='item_td' id='sp_cplb" + row + "'>" + result[j].lei_bie + "</td>"
-                insertStr += "<td class='item_td' id='sp_cpsj" + row + "'>" + result[j].dan_wei + "</td>"
-                insertStr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].maxNum + "'/></td>"
-                insertStr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' type='number' autocomplete='off' oninput='bindInput_price(this.value," + result[j].id + ")' class='table_input' /></td>"
-                insertStr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/></td>"
+                insertStr += "<td class='item_td' id='sp_cplb" + row + "'  name='sp_cplb" + row + "'>" + result[j].lei_bie + "</td>"
+                insertStr += "<td class='item_td' id='sp_cpsj" + row + "' name='sp_cpsj" + row + "'>" + result[j].dan_wei + "</td>"
+                insertStr += "<td class='item_td' id='sp_cpsl" + row + "' name='sp_cpsl" + row + "' ><input id='num" + row + "' name='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].maxNum + "'/></td>"
+                insertStr += "<td class='item_td' id='sp_cpprice" + row + "' name='sp_cpprice" + row + "'><input id='price" + row + "' name='price" + row + "' type='number' autocomplete='off' oninput='bindInput_price(this.value," + result[j].id + ")' class='table_input' /></td>"
+                insertStr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/><input type='text' hidden='hidden' id='check" + row + "' name='check" + row + "' /></td>"
                 insertStr += "</tr>"
                 row++;
             }
+            $("#hangshu").val(row)
             $("#biao_ge").append(insertStr);
         }
 
@@ -372,6 +395,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <input type="hidden" id="hangshu" name="hangshu" />
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <input type="hidden" id="row_i1" name="row_i" />
             <input type="hidden" id="xx_hidden" value="tj_false" />

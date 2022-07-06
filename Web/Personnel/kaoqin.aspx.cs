@@ -44,18 +44,22 @@ namespace Web.Personnel
             {
             Server.Transfer("../Personnel/wuquanxian.aspx");
             }
-            string nian = DateTime.Now.Year.ToString();
-            ListItem item = DropDownList1.Items.FindByText(nian);
-            if (item != null) {
-                //防止出现多选的情况，将选中项 清除
-                DropDownList1.ClearSelection();
-                item.Selected = true;
-            }
+            //string nian = DateTime.Now.Year.ToString();
+            //ListItem item = DropDownList1.Items.FindByText(nian);
+            //if (item != null) {
+            //    //防止出现多选的情况，将选中项 清除
+            //    DropDownList1.ClearSelection();
+            //    item.Selected = true;
+            //}
         } 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Session["year"] = Request.Form["DropDownList1"];
-            Session["moth"] = Request.Form["DropDownList2"];
+            if (Request.Form["ks"] == "" || Request.Form["js"] == "") {
+                Response.Write("<script>alert('请选择开始时间和结束时间！');</script>");
+                return;
+            }
+            Session["year"] = Request.Form["ks"].Split('-')[0] + Request.Form["ks"].Split('-')[1];
+            Session["moth"] = Request.Form["js"].Split('-')[0] + Request.Form["js"].Split('-')[1];
             GridView1.DataSourceID = "SqlDataSource2";
         }
 
@@ -63,8 +67,8 @@ namespace Web.Personnel
         {
             try
             {
-                Session["year"] = Request.Form["DropDownList1"];
-                Session["moth"] = Request.Form["DropDownList2"];
+                Session["year"] = DateTime.Now.Year.ToString();
+                Session["moth"] = DateTime.Now.Month.ToString();
                 Server.Transfer("../Personnel/kaoqinAdd.aspx", true);
             }
             catch (Exception ex) {

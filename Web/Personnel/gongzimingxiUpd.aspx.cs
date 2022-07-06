@@ -23,12 +23,41 @@ namespace Web.Personnel
             if (!IsPostBack)
             {
                 string conString = ConfigurationManager.AppSettings["yao"];
+
                 conn = new SqlConnection(conString);  //数据库连接。
                 if (conn.State == ConnectionState.Closed)
                 {
                     conn.Open();
                 }
-                string sqlStr = "select * from gongzi_gongzimingxi where B='" + Session["b"].ToString() + "'";
+                string sqlStr = "select kaoqin from gongzi_peizhi  where kaoqin!='' and kaoqin is not null group by kaoqin ;";
+                cmd = new SqlCommand(sqlStr, conn);
+                str = cmd.ExecuteReader();
+                while (str.Read())
+                {
+                    DropDownList21.Items.Add(new ListItem((string)str["kaoqin"], (string)str["kaoqin"]));
+                }
+                conn.Close();
+
+                conn = new SqlConnection(conString);  //数据库连接。
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                sqlStr = "select kaoqin_peizhi from gongzi_peizhi  where kaoqin_peizhi!='' and kaoqin_peizhi is not null group by kaoqin_peizhi ;";
+                cmd = new SqlCommand(sqlStr, conn);
+                str = cmd.ExecuteReader();
+                while (str.Read())
+                {
+                    DropDownList23.Items.Add(new ListItem((string)str["kaoqin_peizhi"], (string)str["kaoqin_peizhi"]));
+                }
+                conn.Close();
+
+                conn = new SqlConnection(conString);  //数据库连接。
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                sqlStr = "select * from gongzi_gongzimingxi where B='" + Session["b"].ToString() + "'";
                 String sa = Session["year"].ToString();
                 if (!sa.Equals(""))
                 {
@@ -108,7 +137,7 @@ namespace Web.Personnel
                     aa[53] = (string)str["BC"];
                     aa[54] = (string)str["BD"];
                 }
-                for (int i = 1; i < 54; i++)
+                for (int i = 1; i < 55; i++)
                 {
 
                     if (i == 1 || i == 4 || i == 51 || i == 3 || i == 22 || i == 49 || i == 2 || i == 52)
@@ -120,6 +149,14 @@ namespace Web.Personnel
                     {
                         //((HtmlInputGenericControl)this.FindControl("TextBox" + i.ToString())).Value = aa[i - 1];
                         ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
+                    }
+                    else if (i == 21 || i == 23) 
+                    {
+                        ListItem item = ((DropDownList)this.FindControl("DropDownList" + i.ToString())).Items.FindByText(aa[i-1].ToString());
+                        if (item != null)
+                        {
+                            item.Selected = true;
+                        }
                     }
                     else
                     {
@@ -147,11 +184,16 @@ namespace Web.Personnel
             string sqlStr = "update gongzi_gongzimingxi set " ;
             for (int i = 1; i < 55; i++)
             {
-                if (i < 54)
+                if (i < 54 &&(i!=21 || i!=23))
                 {
                     sqlStr += sqlarry[i - 1] + "='" + Request.Form["TextBox" + i] + "',";
                 }
-                else {
+                else if (i == 21 || i == 23)
+                {
+                    sqlStr += sqlarry[i - 1] + "='" + Request.Form["DropDownList" + i] + "',";
+                }
+                else
+                {
                     sqlStr += sqlarry[i - 1] + "='" + Request.Form["TextBox" + i] + "'";
                 }
             }
@@ -166,5 +208,9 @@ namespace Web.Personnel
             Server.Transfer("../Personnel/gongzimingxi.aspx");
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("../Personnel/gongzimingxi.aspx");
+        }
     }
 }

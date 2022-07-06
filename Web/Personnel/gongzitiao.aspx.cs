@@ -145,5 +145,45 @@ namespace Web.Personnel
             }
 
         }
+
+        public void print(object sender, EventArgs e) 
+        {
+            List<gongzi_gongzimingxi>list=new List<gongzi_gongzimingxi>();
+            for (var i = 0; i < GridView1.Rows.Count; i++) 
+            {
+                gongzi_gongzimingxi item=new gongzi_gongzimingxi();
+                item.B = GridView1.Rows[i].Cells[1].Text.Trim();
+                item.C = GridView1.Rows[i].Cells[2].Text.Trim();
+                item.D = GridView1.Rows[i].Cells[3].Text.Trim();
+                item.G = GridView1.Rows[i].Cells[6].Text.Trim();
+                item.AJ = GridView1.Rows[i].Cells[35].Text.Trim();
+                item.AK = GridView1.Rows[i].Cells[36].Text.Trim();
+                item.AL = GridView1.Rows[i].Cells[37].Text.Trim();
+                item.AM = GridView1.Rows[i].Cells[38].Text.Trim();
+                item.AN = GridView1.Rows[i].Cells[39].Text.Trim();
+                item.ASA = GridView1.Rows[i].Cells[44].Text.Trim();
+                item.AW = GridView1.Rows[i].Cells[49].Text.Trim();
+                item.AY = GridView1.Rows[i].Cells[50].Text.Trim();
+
+                if (item.B == "&nbsp;") { item.B = ""; }
+                if (item.C == "&nbsp;") { item.C = ""; }
+                if (item.D == "&nbsp;") { item.D = ""; }
+                if (item.G == "&nbsp;") { item.G = ""; }
+                if (item.AJ == "&nbsp;") { item.AJ = ""; }
+                if (item.AK == "&nbsp;") { item.AK = ""; }
+                if (item.AL == "&nbsp;") { item.AL = ""; }
+                if (item.AM == "&nbsp;") { item.AM = ""; }
+                if (item.AN == "&nbsp;") { item.AN = ""; }
+                if (item.ASA == "&nbsp;") { item.ASA = ""; }
+                if (item.AW == "&nbsp;") { item.AW = ""; }
+                if (item.AY == "&nbsp;") { item.AY = ""; }
+
+                list.Add(item);
+            }
+            Session["printList"] = list;
+
+            Response.Redirect("~/RDLC/gongzitiao_print.aspx");
+            
+        }
     }
 }

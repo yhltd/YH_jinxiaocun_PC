@@ -27,8 +27,8 @@ namespace Web.Personnel
             {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
             }
-            TextBox1.Text = Session["year"].ToString();//DateTime.Now.Year.ToString();
-            TextBox2.Text = Session["moth"].ToString();//DateTime.Now.Month.ToString();
+            TextBox1.Text = DateTime.Now.Year.ToString(); ;//DateTime.Now.Year.ToString();
+            TextBox2.Text = DateTime.Now.Month.ToString(); ;//DateTime.Now.Month.ToString();
             DateTime dt2 = DateTime.Parse(Session["year"].ToString() + "/" + Session["moth"].ToString() + "/1").AddMonths(1).AddDays(-1);
             int x = dt2.Day;
             string conString = ConfigurationManager.AppSettings["yao"];
@@ -43,37 +43,57 @@ namespace Web.Personnel
             //TextBox1.Text = m.ToString();
             int ss = Convert.ToInt32(TextBox1.Text);
             int b = Convert.ToInt32(TextBox2.Text);
-            for (int i = 4; i < x + 4; i++)
-            {
-            //    dt3 = DateTime.Parse(Session["year"].ToString() + "/" + Session["moth"].ToString() + "/" + (i - 3));
-            //    f = 0;
-            //    while (str.Read())
-            //    {
-            //        for (int j = 0; j < str.FieldCount; j++)
-            //        {
-            //            string cc = str[2].ToString();
-            //            int dd = Convert.ToInt32(cc) + 3;
-            //            if (dt3.ToString("yyyy-MM-dd") == DateTime.Parse(str[0].ToString() + "-" + str[1].ToString() + "-" + str[2].ToString()).ToString("yyyy-MM-dd"))
-            //            {
-            //                f = f + 1;
-            //                ((TextBox)this.FindControl("TextBox" + dd.ToString())).Text = "休";
-            //            }
-            //        }
-            //    }
-                if (((ss + b + (i - 3) + 1 + (ss / 4)) % 7) == 4 || ((ss + b + (i - 3) + 1 + (ss / 4)) % 7) == 5 || f != 0)
-                {
-                    ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = "休";
-                    n = n + 1;
-                }
-                else
-                {
-                    ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = "卡";
-                    m = m + 1;
-                }
-                if (f > 0) {
-                    ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = "休";
-                }
+            
+            for (int i = 4; i <= 34; i++) {
+                ListItem item = ((DropDownList)this.FindControl("DropDownList" + i.ToString())).Items.FindByText("出勤");
+                item.Selected = true;
             }
+            
+
+            //if (item != null) {
+            //    //防止出现多选的情况，将选中项 清除
+            //    DropDownList4.ClearSelection();
+                
+            //}
+            //for (int i = 4; i <=34; i++)
+            //{
+            //    //string nian = DateTime.Now.Year.ToString();
+            //    //ListItem item = DropDownList1.Items.FindByText(nian);
+            //    //if (item != null) {
+            //    //    //防止出现多选的情况，将选中项 清除
+            //    //    DropDownList1.ClearSelection();
+            //    //    item.Selected = true;
+            //    //}
+            //    //    dt3 = DateTime.Parse(Session["year"].ToString() + "/" + Session["moth"].ToString() + "/" + (i - 3));
+            //    //    f = 0;
+            //    //    while (str.Read())
+            //    //    {
+            //    //        for (int j = 0; j < str.FieldCount; j++)
+            //    //        {
+            //    //            string cc = str[2].ToString();
+            //    //            int dd = Convert.ToInt32(cc) + 3;
+            //    //            if (dt3.ToString("yyyy-MM-dd") == DateTime.Parse(str[0].ToString() + "-" + str[1].ToString() + "-" + str[2].ToString()).ToString("yyyy-MM-dd"))
+            //    //            {
+            //    //                f = f + 1;
+            //    //                ((TextBox)this.FindControl("TextBox" + dd.ToString())).Text = "休";
+            //    //            }
+            //    //        }
+            //    //    }
+            //    //if (((ss + b + (i - 3) + 1 + (ss / 4)) % 7) == 4 || ((ss + b + (i - 3) + 1 + (ss / 4)) % 7) == 5 || f != 0)
+            //    //{
+            //    //    ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = "休";
+            //    //    n = n + 1;
+            //    //}
+            //    //else
+            //    //{
+            //    //    ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = "卡";
+            //    //    m = m + 1;
+            //    //}
+            //    //if (f > 0)
+            //    //{
+            //    //    ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = "休";
+            //    //}
+            //}
             TextBox35.Text = m.ToString();
             TextBox36.Text = m.ToString();
             TextBox37.Text = "0";
@@ -98,12 +118,16 @@ namespace Web.Personnel
                     conn.Open();
                 }
                 //str = conn.BeginTransaction();
-                string sqlStr = "insert into gongzi_kaoqinjilu (year,moth,name,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,AE,AF,AG,AH,AI,AJ,AK,AL,AM,AN,AO) VALUES ('" + Request.Form["TextBox1"] + "','" + Request.Form["TextBox2"] + "',";
-                for (int i = 3; i < 35; i++)
+                string moth = "";
+                if (Convert.ToInt32(Request.Form["TextBox2"]) < 10) {
+                    moth ="0" + Request.Form["TextBox2"];
+                }
+                string sqlStr = "insert into gongzi_kaoqinjilu (year,moth,name,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,AE,AF,AG,AH,AI,AJ,AK,AL,AM,AN,AO) VALUES ('" + Request.Form["TextBox1"] + "','" + moth + "','" + Request.Form["TextBox3"] + "',";
+                for (int i = 4; i < 35; i++)
                 {
-                    if (Request.Form["TextBox" + i] != "")
+                    if (Request.Form["DropDownList" + i] != "")
                     {
-                        sqlStr += "'" + Request.Form["TextBox" + i] + "',";
+                        sqlStr += "'" + Request.Form["DropDownList" + i] + "',";
                     }
                     else
                     {

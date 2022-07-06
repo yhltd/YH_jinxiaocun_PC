@@ -20,7 +20,7 @@ namespace Web.Personnel
         protected void Page_Load(object sender, EventArgs e)
         {
             yanzheng = 0;
-            Label11.Text = "";
+            Label50.Text = "";
             Label12.Text = "";
             Label13.Text = "";
             Label14.Text = "";
@@ -38,6 +38,7 @@ namespace Web.Personnel
             a = Request.QueryString[0].Split(',');
             if (a[0] == "修改")
             {
+                Session["renyuan_id"] = a[1];
                 TextBox1.Text = a[2];
                 TextBox2.Text = a[3];
                 TextBox3.Text = a[4];
@@ -48,14 +49,25 @@ namespace Web.Personnel
                 TextBox8.Text = a[9];
                 TextBox9.Text = a[10];
                 TextBox10.Text = a[11];
+
+                TextBox11.Text = a[12];
+                TextBox12.Text= a[13];
+                TextBox13.Text= a[14];
+                TextBox14.Text= a[15];
+                TextBox15.Text= a[16];
+                TextBox16.Text= a[17];
+                TextBox17.Text= a[18];
+
+
                 Button1.Text = "修改";
-                Button3.Enabled = true;
+                Button4.Enabled = true;
                 Session["zh1"] = a[10];
             }
             else if (a[0] == "添加")
             {
                 Button1.Text = "添加";
                 Button3.Enabled = false;
+                Button4.Enabled = false;
             }
         }
         protected void Button1_Click(object sender, EventArgs e)
@@ -63,7 +75,7 @@ namespace Web.Personnel
             yanzheng = 0;
             if (Request.Form["TextBox1"].ToString() == "")
             {
-                Label11.Text = "* 姓名不能为空！";
+                Label50.Text = "* 姓名不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox2"].ToString() == "")
@@ -231,8 +243,8 @@ namespace Web.Personnel
                         }
                         else
                         {
-                            string sqlStr = "insert into gongzi_renyuan (B,C,D,E,F,G,H,K,I,J,L) VALUES (";
-                            for (int i = 1; i < 11; i++)
+                            string sqlStr = "insert into gongzi_renyuan (B,C,D,E,F,G,H,K,I,J,M,N,O,P,Q,R,S,L) VALUES (";
+                            for (int i = 1; i < 18; i++)
                             {
                                 if (Request.Form["TextBox" + i] != "")
                                 {
@@ -271,7 +283,7 @@ namespace Web.Personnel
                         }
                         else
                         {
-                            string sqlStr = "update gongzi_renyuan set B='" + Request.Form["TextBox1"] + "',C='" + Request.Form["TextBox2"] + "',D='" + Request.Form["TextBox3"] + "',E='" + Request.Form["TextBox4"] + "',F='" + Request.Form["TextBox5"] + "',G='" + Request.Form["TextBox6"] + "',H='" + Request.Form["TextBox7"] + "',K='" + Request.Form["TextBox8"] + "',I='" + Request.Form["TextBox9"] + "',J='" + Request.Form["TextBox10"] + "',L='" + Session["gongsi"].ToString() + "_hr' where id='" + a[1] + "';";
+                            string sqlStr = "update gongzi_renyuan set B='" + Request.Form["TextBox1"] + "',C='" + Request.Form["TextBox2"] + "',D='" + Request.Form["TextBox3"] + "',E='" + Request.Form["TextBox4"] + "',F='" + Request.Form["TextBox5"] + "',G='" + Request.Form["TextBox6"] + "',H='" + Request.Form["TextBox7"] + "',K='" + Request.Form["TextBox8"] + "',I='" + Request.Form["TextBox9"] + "',J='" + Request.Form["TextBox10"] + "',L='" + Session["gongsi"].ToString() + "_hr',M='" + Request.Form["TextBox11"] + "',N='" + Request.Form["TextBox12"] + "',O='" + Request.Form["TextBox13"] + "',P='" + Request.Form["TextBox14"] + "',Q='" + Request.Form["TextBox15"] + "',R='" + Request.Form["TextBox16"] + "',S='" + Request.Form["TextBox17"] + "' where id='" + a[1] + "';";
                             cmd = new SqlCommand(sqlStr, conn);
                             cmd.ExecuteNonQuery();
                             conn.Close();
@@ -294,6 +306,12 @@ namespace Web.Personnel
             Session["id1"] = a[1];
             Session["aaaa"] = "0";
             Server.Transfer("../Personnel/quanxian.aspx");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+
+            Server.Transfer("../Personnel/yuangongdangan.aspx");
         }
     }
 }

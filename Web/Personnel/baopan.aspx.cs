@@ -34,20 +34,52 @@ namespace Web.Personnel
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
-            if (!Request.Form["TextBox1"].Equals(""))
+            if (Request.Form["TextBox1"].Equals(""))
+            {
+                Response.Write("<script>alert('请填写姓名！');</script>");
+                return;
+            }
+            else 
             {
                 Session["xm1"] = Request.Form["TextBox1"];
-                GridView1.DataSourceID = "SqlDataSource2";
             }
-            else
+
+
+            if (Request.Form["ks"].Equals(""))
             {
-                GridView1.DataSourceID = "SqlDataSource1";
-                GridView1.DataBind();
+                Session["ks"] = "1900/1/1";
             }
+            else 
+            {
+                Session["ks"] = Request.Form["ks"];
+            }
+
+            if (Request.Form["js"].Equals(""))
+            {
+                Session["js"] = "2200/1/1";
+            }
+            else 
+            {
+                Session["js"] = Request.Form["js"];
+            }
+
+            GridView1.DataSourceID = "SqlDataSource2";
+
+            //if (!Request.Form["TextBox1"].Equals(""))
+            //{
+            //    Session["xm1"] = Request.Form["TextBox1"];
+            //    GridView1.DataSourceID = "SqlDataSource2";
+            //}
+            //else
+            //{
+            //    GridView1.DataSourceID = "SqlDataSource1";
+            //    GridView1.DataBind();
+            //}
 
         }
         protected void Button3_Click(object sender, EventArgs e)
         {
+            TextBox1.Text = "";
             GridView1.DataSourceID = "SqlDataSource1";
             GridView1.DataBind();
         }

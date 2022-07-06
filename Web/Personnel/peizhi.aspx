@@ -28,11 +28,11 @@
                 <ItemStyle Wrap="False" />
                 </asp:CommandField>
                 <asp:BoundField DataField="gongsi" HeaderText="gongsi" SortExpression="gongsi" Visible="false"/>
-                <asp:BoundField DataField="kaoqin" HeaderText="考勤项目" SortExpression="kaoqin" ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
+                <asp:BoundField DataField="kaoqin" HeaderText="社保基数" SortExpression="kaoqin" ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="23%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>
-                <asp:BoundField DataField="kaoqin_peizhi" HeaderText="考勤配置" SortExpression="kaoqin_peizhi" ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
+                <asp:BoundField DataField="kaoqin_peizhi" HeaderText="公积金基数" SortExpression="kaoqin_peizhi" ControlStyle-Width="80%" HeaderStyle-Font-Bold="true">
                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="23%" />
                     <ItemStyle HorizontalAlign="Center" Wrap="False"/>
                     </asp:BoundField>

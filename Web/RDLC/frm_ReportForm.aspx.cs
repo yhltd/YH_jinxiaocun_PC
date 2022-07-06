@@ -26,23 +26,27 @@ namespace Web.RDLC
         {
             try
             {
-                ReportViewer1.LocalReport.ReportPath = @"RDLC/Report1.rdlc";
+                ReportViewer2.LocalReport.ReportPath = @"RDLC/Report1.rdlc";
                 //假数据
-                List<rc_ku_info> OnlineShow_datas1 = new List<rc_ku_info>();
-                rc_ku_info item = new rc_ku_info();
-                item.Orderid = "id001";
-                item.Sp_dm = "Sp_dm001";
-                OnlineShow_datas1.Add(item);
+                List<rukuPrint> OnlineShow_datas1 = new List<rukuPrint>();
+                if (Session["printList"] != null) {
+                    OnlineShow_datas1 = (List<rukuPrint>)Session["printList"];
 
-                //绑定数据
-                ReportDataSource rds = new ReportDataSource("DataSet2", OnlineShow_datas1);
-                //这个地方的DataSet2是你定义的dataset,dts是你定义的datatable
-                ReportViewer1.LocalReport.DataSources.Clear();
-                ReportViewer1.LocalReport.DataSources.Add(rds);
-                ReportViewer1.LocalReport.Refresh();
+                    //绑定数据
+                    ReportDataSource rds = new ReportDataSource("DataSet2", OnlineShow_datas1);
+                    //这个地方的DataSet2是你定义的dataset,dts是你定义的datatable
+                    ReportViewer2.LocalReport.DataSources.Clear();
+                    ReportViewer2.LocalReport.DataSources.Add(rds);
+                    ReportViewer2.LocalReport.Refresh();
 
 
-                JavaScriptSerializer js = new JavaScriptSerializer();
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                }
+                
+                
+                
+
+                
                 //return js.Serialize(null);
             }
             catch

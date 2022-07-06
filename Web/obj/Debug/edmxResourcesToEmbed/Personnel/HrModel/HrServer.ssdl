@@ -1,6 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="yaoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="yaoModelStoreContainer">
+    <EntitySet Name="bainiantiantianmumen" EntityType="yaoModel.Store.bainiantiantianmumen" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bainiantiantianmumenmubiao" EntityType="yaoModel.Store.bainiantiantianmumenmubiao" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bainiantiantianmumenrenyuan" EntityType="yaoModel.Store.bainiantiantianmumenrenyuan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="baitaoquanxian" EntityType="yaoModel.Store.baitaoquanxian" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="baitaoquanxian_copy1" EntityType="yaoModel.Store.baitaoquanxian_copy1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="baitaoquanxian_copy2" EntityType="yaoModel.Store.baitaoquanxian_copy2" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="baitaoquanxian_gongsi" EntityType="yaoModel.Store.baitaoquanxian_gongsi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="baitaoquanxian_renyun" EntityType="yaoModel.Store.baitaoquanxian_renyun" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="dearhylo9_cangku" EntityType="yaoModel.Store.dearhylo9_cangku" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="dearhylo9_jiandan" EntityType="yaoModel.Store.dearhylo9_jiandan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="dearhylo9_renyuan" EntityType="yaoModel.Store.dearhylo9_renyuan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="dearhylo9_tuihuo" EntityType="yaoModel.Store.dearhylo9_tuihuo" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.Store.gongzi_gongzimingxi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="gongzi_kaoqinjilu" EntityType="yaoModel.Store.gongzi_kaoqinjilu" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="gongzi_kaoqinmingxi" EntityType="yaoModel.Store.gongzi_kaoqinmingxi" store:Type="Tables" Schema="dbo" />
@@ -24,7 +36,666 @@
       [gongzi_viewNames].[viewName] AS [viewName]
       FROM [dbo].[gongzi_viewNames] AS [gongzi_viewNames]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="kaozhiguang147852" EntityType="yaoModel.Store.kaozhiguang147852" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="kaozhiguang147852_gongzi" EntityType="yaoModel.Store.kaozhiguang147852_gongzi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="kaozhiguang147852_jiben" EntityType="yaoModel.Store.kaozhiguang147852_jiben" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="kaozhiguang147852_jixie" EntityType="yaoModel.Store.kaozhiguang147852_jixie" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="kaozhiguang147852_sika" EntityType="yaoModel.Store.kaozhiguang147852_sika" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_chanpinguanli" EntityType="yaoModel.Store.liuchanglin_chanpinguanli" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_chanpinxinxi" EntityType="yaoModel.Store.liuchanglin_chanpinxinxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_chuku" EntityType="yaoModel.Store.liuchanglin_chuku" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_fuzhu" EntityType="yaoModel.Store.liuchanglin_fuzhu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_gongyingshang" EntityType="yaoModel.Store.liuchanglin_gongyingshang" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_kehu" EntityType="yaoModel.Store.liuchanglin_kehu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_kucun" EntityType="yaoModel.Store.liuchanglin_kucun" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_mingxi" EntityType="yaoModel.Store.liuchanglin_mingxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_mingxiguanli" EntityType="yaoModel.Store.liuchanglin_mingxiguanli" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="liuchanglin_renyuan" EntityType="yaoModel.Store.liuchanglin_renyuan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="lv_al" EntityType="yaoModel.Store.lv_al" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="lv_bcd" EntityType="yaoModel.Store.lv_bcd" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="lv_td" EntityType="yaoModel.Store.lv_td" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="lv_xhjr" EntityType="yaoModel.Store.lv_xhjr" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tb846607026_cunkuan" EntityType="yaoModel.Store.tb846607026_cunkuan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tb846607026_jibie" EntityType="yaoModel.Store.tb846607026_jibie" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tb846607026_jine" EntityType="yaoModel.Store.tb846607026_jine" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tb846607026_peizhi" EntityType="yaoModel.Store.tb846607026_peizhi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tb846607026_shouyi" EntityType="yaoModel.Store.tb846607026_shouyi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tb846607026_tixian" EntityType="yaoModel.Store.tb846607026_tixian" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_chukubiao" EntityType="yaoModel.Store.wodeliangnianfa_chukubiao" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_gongyingshangxinxi" EntityType="yaoModel.Store.wodeliangnianfa_gongyingshangxinxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_kehuxinxi" EntityType="yaoModel.Store.wodeliangnianfa_kehuxinxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_kucun" EntityType="yaoModel.Store.wodeliangnianfa_kucun" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_peizhibiao" EntityType="yaoModel.Store.wodeliangnianfa_peizhibiao" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_renyaunxinxi" EntityType="yaoModel.Store.wodeliangnianfa_renyaunxinxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_rukubiao" EntityType="yaoModel.Store.wodeliangnianfa_rukubiao" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_shangpinxinxi" EntityType="yaoModel.Store.wodeliangnianfa_shangpinxinxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_tuihuobiao" EntityType="yaoModel.Store.wodeliangnianfa_tuihuobiao" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_xiadan" EntityType="yaoModel.Store.wodeliangnianfa_xiadan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="wodeliangnianfa_zhanghu" EntityType="yaoModel.Store.wodeliangnianfa_zhanghu" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zeng_stock" EntityType="yaoModel.Store.zeng_stock" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zeng_user" EntityType="yaoModel.Store.zeng_user" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zeng_wares" EntityType="yaoModel.Store.zeng_wares" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zhangfengliang2025_daili" EntityType="yaoModel.Store.zhangfengliang2025_daili" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zhangfengliang2025_jishiben" EntityType="yaoModel.Store.zhangfengliang2025_jishiben" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zhangfengliang2025_kucun" EntityType="yaoModel.Store.zhangfengliang2025_kucun" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zhangfengliang2025_mingxi" EntityType="yaoModel.Store.zhangfengliang2025_mingxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zhangfengliang2025_renyuanguanli" EntityType="yaoModel.Store.zhangfengliang2025_renyuanguanli" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zhangfengliang2025_rukumingxi" EntityType="yaoModel.Store.zhangfengliang2025_rukumingxi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zhaobiaodailhuizong" EntityType="yaoModel.Store.zhaobiaodailhuizong" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="zheng_020826_config" EntityType="yaoModel.Store.zheng_020826_config" store:Type="Tables" store:Schema="dbo" store:Name="zheng_020826_config">
+      <DefiningQuery>SELECT 
+      [zheng_020826_config].[pwd] AS [pwd]
+      FROM [dbo].[zheng_020826_config] AS [zheng_020826_config]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="zheng_020826_gameInfo" EntityType="yaoModel.Store.zheng_020826_gameInfo" store:Type="Tables" store:Schema="dbo" store:Name="zheng_020826_gameInfo">
+      <DefiningQuery>SELECT 
+      [zheng_020826_gameInfo].[id] AS [id], 
+      [zheng_020826_gameInfo].[name] AS [name], 
+      [zheng_020826_gameInfo].[space] AS [space], 
+      [zheng_020826_gameInfo].[model_id] AS [model_id], 
+      [zheng_020826_gameInfo].[time] AS [time], 
+      [zheng_020826_gameInfo].[amount] AS [amount], 
+      [zheng_020826_gameInfo].[game_top] AS [game_top]
+      FROM [dbo].[zheng_020826_gameInfo] AS [zheng_020826_gameInfo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="zheng_020826_model" EntityType="yaoModel.Store.zheng_020826_model" store:Type="Tables" store:Schema="dbo" store:Name="zheng_020826_model">
+      <DefiningQuery>SELECT 
+      [zheng_020826_model].[id] AS [id], 
+      [zheng_020826_model].[name] AS [name], 
+      [zheng_020826_model].[model_top] AS [model_top]
+      FROM [dbo].[zheng_020826_model] AS [zheng_020826_model]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="zheng_020826_userInfo" EntityType="yaoModel.Store.zheng_020826_userInfo" store:Type="Tables" store:Schema="dbo" store:Name="zheng_020826_userInfo">
+      <DefiningQuery>SELECT 
+      [zheng_020826_userInfo].[id] AS [id], 
+      [zheng_020826_userInfo].[game_id] AS [game_id], 
+      [zheng_020826_userInfo].[time] AS [time], 
+      [zheng_020826_userInfo].[number] AS [number]
+      FROM [dbo].[zheng_020826_userInfo] AS [zheng_020826_userInfo]</DefiningQuery>
+    </EntitySet>
   </EntityContainer>
+  <EntityType Name="bainiantiantianmumen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="riqi" Type="date" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="bainiantiantianmumenmubiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="bainiantiantianmumenrenyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="A" Type="varchar" MaxLength="255" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+    <Property Name="AI" Type="varchar" MaxLength="255" />
+    <Property Name="AJ" Type="varchar" MaxLength="255" />
+    <Property Name="AK" Type="varchar" MaxLength="255" />
+    <Property Name="AL" Type="varchar" MaxLength="255" />
+    <Property Name="AM" Type="varchar" MaxLength="255" />
+    <Property Name="AN" Type="varchar" MaxLength="255" />
+    <Property Name="AO" Type="varchar" MaxLength="255" />
+    <Property Name="AP" Type="varchar" MaxLength="255" />
+    <Property Name="AQ" Type="varchar" MaxLength="255" />
+    <Property Name="AR" Type="varchar" MaxLength="255" />
+    <Property Name="ASS" Type="varchar" MaxLength="255" />
+    <Property Name="AT" Type="varchar" MaxLength="255" />
+    <Property Name="AU" Type="varchar" MaxLength="255" />
+    <Property Name="AV" Type="varchar" MaxLength="255" />
+    <Property Name="AW" Type="varchar" MaxLength="255" />
+    <Property Name="AX" Type="varchar" MaxLength="255" />
+    <Property Name="AY" Type="varchar" MaxLength="255" />
+    <Property Name="AZ" Type="varchar" MaxLength="255" />
+    <Property Name="BA" Type="varchar" MaxLength="255" />
+    <Property Name="BB" Type="varchar" MaxLength="255" />
+    <Property Name="BC" Type="varchar" MaxLength="255" />
+    <Property Name="BD" Type="varchar" MaxLength="255" />
+    <Property Name="BE" Type="varchar" MaxLength="255" />
+    <Property Name="BF" Type="varchar" MaxLength="255" />
+    <Property Name="BG" Type="varchar" MaxLength="255" />
+    <Property Name="BH" Type="varchar" MaxLength="255" />
+    <Property Name="BI" Type="varchar" MaxLength="255" />
+    <Property Name="BJ" Type="varchar" MaxLength="255" />
+    <Property Name="BK" Type="varchar" MaxLength="255" />
+    <Property Name="BL" Type="varchar" MaxLength="255" />
+    <Property Name="BM" Type="varchar" MaxLength="255" />
+    <Property Name="BN" Type="varchar" MaxLength="255" />
+    <Property Name="BO" Type="varchar" MaxLength="255" />
+    <Property Name="BP" Type="varchar" MaxLength="255" />
+    <Property Name="BQ" Type="varchar" MaxLength="255" />
+    <Property Name="BR" Type="varchar" MaxLength="255" />
+    <Property Name="BS" Type="varchar" MaxLength="255" />
+    <Property Name="BT" Type="varchar" MaxLength="255" />
+    <Property Name="BU" Type="varchar" MaxLength="255" />
+    <Property Name="BV" Type="varchar" MaxLength="255" />
+    <Property Name="BW" Type="varchar" MaxLength="255" />
+    <Property Name="BX" Type="varchar" MaxLength="255" />
+    <Property Name="BYY" Type="varchar" MaxLength="255" />
+    <Property Name="BZ" Type="varchar" MaxLength="255" />
+    <Property Name="CA" Type="varchar" MaxLength="255" />
+    <Property Name="CB" Type="varchar" MaxLength="255" />
+    <Property Name="CC" Type="varchar" MaxLength="255" />
+    <Property Name="CD" Type="varchar" MaxLength="255" />
+    <Property Name="CE" Type="varchar" MaxLength="255" />
+    <Property Name="CF" Type="varchar" MaxLength="255" />
+    <Property Name="CG" Type="varchar" MaxLength="255" />
+    <Property Name="CH" Type="varchar" MaxLength="255" />
+    <Property Name="CI" Type="varchar" MaxLength="255" />
+    <Property Name="CJ" Type="varchar" MaxLength="255" />
+    <Property Name="CK" Type="varchar" MaxLength="255" />
+    <Property Name="CL" Type="varchar" MaxLength="255" />
+    <Property Name="CM" Type="varchar" MaxLength="255" />
+    <Property Name="CN" Type="varchar" MaxLength="255" />
+    <Property Name="CO" Type="varchar" MaxLength="255" />
+    <Property Name="CP" Type="varchar" MaxLength="255" />
+    <Property Name="CQ" Type="varchar" MaxLength="255" />
+    <Property Name="CR" Type="varchar" MaxLength="255" />
+    <Property Name="CS" Type="varchar" MaxLength="255" />
+    <Property Name="CT" Type="varchar" MaxLength="255" />
+    <Property Name="CU" Type="varchar" MaxLength="255" />
+    <Property Name="CV" Type="varchar" MaxLength="255" />
+    <Property Name="人员" Type="varchar" MaxLength="255" />
+    <Property Name="公司" Type="varchar" MaxLength="255" />
+    <Property Name="日期" Type="date" />
+    <Property Name="a最后修改日期" Type="date" />
+    <Property Name="b最后修改日期" Type="date" />
+    <Property Name="c最后修改日期" Type="date" />
+    <Property Name="d最后修改日期" Type="date" />
+    <Property Name="e最后修改日期" Type="date" />
+    <Property Name="f最后修改日期" Type="date" />
+    <Property Name="g最后修改日期" Type="date" />
+    <Property Name="h最后修改日期" Type="date" />
+    <Property Name="j最后修改日期" Type="date" />
+    <Property Name="fff最后修改日期" Type="date" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian_copy1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="quanxian" Type="varchar" MaxLength="255" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+    <Property Name="AI" Type="varchar" MaxLength="255" />
+    <Property Name="AJ" Type="varchar" MaxLength="255" />
+    <Property Name="AK" Type="varchar" MaxLength="255" />
+    <Property Name="AL" Type="varchar" MaxLength="255" />
+    <Property Name="AM" Type="varchar" MaxLength="255" />
+    <Property Name="AN" Type="varchar" MaxLength="255" />
+    <Property Name="AO" Type="varchar" MaxLength="255" />
+    <Property Name="AP" Type="varchar" MaxLength="255" />
+    <Property Name="AQ" Type="varchar" MaxLength="255" />
+    <Property Name="AR" Type="varchar" MaxLength="255" />
+    <Property Name="ASS" Type="varchar" MaxLength="255" />
+    <Property Name="AT" Type="varchar" MaxLength="255" />
+    <Property Name="AU" Type="varchar" MaxLength="255" />
+    <Property Name="AV" Type="varchar" MaxLength="255" />
+    <Property Name="AW" Type="varchar" MaxLength="255" />
+    <Property Name="AX" Type="varchar" MaxLength="255" />
+    <Property Name="AY" Type="varchar" MaxLength="255" />
+    <Property Name="AZ" Type="varchar" MaxLength="255" />
+    <Property Name="BA" Type="varchar" MaxLength="255" />
+    <Property Name="BB" Type="varchar" MaxLength="255" />
+    <Property Name="BC" Type="varchar" MaxLength="255" />
+    <Property Name="BD" Type="varchar" MaxLength="255" />
+    <Property Name="BE" Type="varchar" MaxLength="255" />
+    <Property Name="BF" Type="varchar" MaxLength="255" />
+    <Property Name="BG" Type="varchar" MaxLength="255" />
+    <Property Name="BH" Type="varchar" MaxLength="255" />
+    <Property Name="BI" Type="varchar" MaxLength="255" />
+    <Property Name="BJ" Type="varchar" MaxLength="255" />
+    <Property Name="BK" Type="varchar" MaxLength="255" />
+    <Property Name="BL" Type="varchar" MaxLength="255" />
+    <Property Name="BM" Type="varchar" MaxLength="255" />
+    <Property Name="BN" Type="varchar" MaxLength="255" />
+    <Property Name="BO" Type="varchar" MaxLength="255" />
+    <Property Name="BP" Type="varchar" MaxLength="255" />
+    <Property Name="BQ" Type="varchar" MaxLength="255" />
+    <Property Name="BR" Type="varchar" MaxLength="255" />
+    <Property Name="BS" Type="varchar" MaxLength="255" />
+    <Property Name="BT" Type="varchar" MaxLength="255" />
+    <Property Name="BU" Type="varchar" MaxLength="255" />
+    <Property Name="BV" Type="varchar" MaxLength="255" />
+    <Property Name="BW" Type="varchar" MaxLength="255" />
+    <Property Name="BX" Type="varchar" MaxLength="255" />
+    <Property Name="BYY" Type="varchar" MaxLength="255" />
+    <Property Name="BZ" Type="varchar" MaxLength="255" />
+    <Property Name="CA" Type="varchar" MaxLength="255" />
+    <Property Name="CB" Type="varchar" MaxLength="255" />
+    <Property Name="CC" Type="varchar" MaxLength="255" />
+    <Property Name="CD" Type="varchar" MaxLength="255" />
+    <Property Name="CE" Type="varchar" MaxLength="255" />
+    <Property Name="CF" Type="varchar" MaxLength="255" />
+    <Property Name="CG" Type="varchar" MaxLength="255" />
+    <Property Name="CH" Type="varchar" MaxLength="255" />
+    <Property Name="CI" Type="varchar" MaxLength="255" />
+    <Property Name="CJ" Type="varchar" MaxLength="255" />
+    <Property Name="CK" Type="varchar" MaxLength="255" />
+    <Property Name="CL" Type="varchar" MaxLength="255" />
+    <Property Name="CM" Type="varchar" MaxLength="255" />
+    <Property Name="CN" Type="varchar" MaxLength="255" />
+    <Property Name="CO" Type="varchar" MaxLength="255" />
+    <Property Name="CP" Type="varchar" MaxLength="255" />
+    <Property Name="CQ" Type="varchar" MaxLength="255" />
+    <Property Name="CR" Type="varchar" MaxLength="255" />
+    <Property Name="CS" Type="varchar" MaxLength="255" />
+    <Property Name="CT" Type="varchar" MaxLength="255" />
+    <Property Name="CU" Type="varchar" MaxLength="255" />
+    <Property Name="CV" Type="varchar" MaxLength="255" />
+    <Property Name="CW" Type="varchar" MaxLength="255" />
+    <Property Name="CX" Type="varchar" MaxLength="255" />
+    <Property Name="renyuan_id" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian_copy2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="A" Type="varchar" MaxLength="255" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+    <Property Name="AI" Type="varchar" MaxLength="255" />
+    <Property Name="AJ" Type="varchar" MaxLength="255" />
+    <Property Name="AK" Type="varchar" MaxLength="255" />
+    <Property Name="AL" Type="varchar" MaxLength="255" />
+    <Property Name="AM" Type="varchar" MaxLength="255" />
+    <Property Name="AN" Type="varchar" MaxLength="255" />
+    <Property Name="AO" Type="varchar" MaxLength="255" />
+    <Property Name="AP" Type="varchar" MaxLength="255" />
+    <Property Name="AQ" Type="varchar" MaxLength="255" />
+    <Property Name="AR" Type="varchar" MaxLength="255" />
+    <Property Name="ASS" Type="varchar" MaxLength="255" />
+    <Property Name="AT" Type="varchar" MaxLength="255" />
+    <Property Name="AU" Type="varchar" MaxLength="255" />
+    <Property Name="AV" Type="varchar" MaxLength="255" />
+    <Property Name="AW" Type="varchar" MaxLength="255" />
+    <Property Name="AX" Type="varchar" MaxLength="255" />
+    <Property Name="AY" Type="varchar" MaxLength="255" />
+    <Property Name="AZ" Type="varchar" MaxLength="255" />
+    <Property Name="BA" Type="varchar" MaxLength="255" />
+    <Property Name="BB" Type="varchar" MaxLength="255" />
+    <Property Name="BC" Type="varchar" MaxLength="255" />
+    <Property Name="BD" Type="varchar" MaxLength="255" />
+    <Property Name="BE" Type="varchar" MaxLength="255" />
+    <Property Name="BF" Type="varchar" MaxLength="255" />
+    <Property Name="BG" Type="varchar" MaxLength="255" />
+    <Property Name="BH" Type="varchar" MaxLength="255" />
+    <Property Name="BI" Type="varchar" MaxLength="255" />
+    <Property Name="BJ" Type="varchar" MaxLength="255" />
+    <Property Name="BK" Type="varchar" MaxLength="255" />
+    <Property Name="BL" Type="varchar" MaxLength="255" />
+    <Property Name="BM" Type="varchar" MaxLength="255" />
+    <Property Name="BN" Type="varchar" MaxLength="255" />
+    <Property Name="BO" Type="varchar" MaxLength="255" />
+    <Property Name="BP" Type="varchar" MaxLength="255" />
+    <Property Name="BQ" Type="varchar" MaxLength="255" />
+    <Property Name="BR" Type="varchar" MaxLength="255" />
+    <Property Name="BS" Type="varchar" MaxLength="255" />
+    <Property Name="BT" Type="varchar" MaxLength="255" />
+    <Property Name="BU" Type="varchar" MaxLength="255" />
+    <Property Name="BV" Type="varchar" MaxLength="255" />
+    <Property Name="BW" Type="varchar" MaxLength="255" />
+    <Property Name="BX" Type="varchar" MaxLength="255" />
+    <Property Name="BYY" Type="varchar" MaxLength="255" />
+    <Property Name="BZ" Type="varchar" MaxLength="255" />
+    <Property Name="CA" Type="varchar" MaxLength="255" />
+    <Property Name="CB" Type="varchar" MaxLength="255" />
+    <Property Name="CC" Type="varchar" MaxLength="255" />
+    <Property Name="CD" Type="varchar" MaxLength="255" />
+    <Property Name="CE" Type="varchar" MaxLength="255" />
+    <Property Name="CF" Type="varchar" MaxLength="255" />
+    <Property Name="CG" Type="varchar" MaxLength="255" />
+    <Property Name="CH" Type="varchar" MaxLength="255" />
+    <Property Name="CI" Type="varchar" MaxLength="255" />
+    <Property Name="CJ" Type="varchar" MaxLength="255" />
+    <Property Name="CK" Type="varchar" MaxLength="255" />
+    <Property Name="CL" Type="varchar" MaxLength="255" />
+    <Property Name="CM" Type="varchar" MaxLength="255" />
+    <Property Name="CN" Type="varchar" MaxLength="255" />
+    <Property Name="CO" Type="varchar" MaxLength="255" />
+    <Property Name="CP" Type="varchar" MaxLength="255" />
+    <Property Name="CQ" Type="varchar" MaxLength="255" />
+    <Property Name="CR" Type="varchar" MaxLength="255" />
+    <Property Name="CS" Type="varchar" MaxLength="255" />
+    <Property Name="CT" Type="varchar" MaxLength="255" />
+    <Property Name="CU" Type="varchar" MaxLength="255" />
+    <Property Name="CV" Type="varchar" MaxLength="255" />
+    <Property Name="公司" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian_gongsi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+    <Property Name="AI" Type="varchar" MaxLength="255" />
+    <Property Name="AJ" Type="varchar" MaxLength="255" />
+    <Property Name="AK" Type="varchar" MaxLength="255" />
+    <Property Name="AL" Type="varchar" MaxLength="255" />
+    <Property Name="AM" Type="varchar" MaxLength="255" />
+    <Property Name="AN" Type="varchar" MaxLength="255" />
+    <Property Name="AO" Type="varchar" MaxLength="255" />
+    <Property Name="AP" Type="varchar" MaxLength="255" />
+    <Property Name="AQ" Type="varchar" MaxLength="255" />
+    <Property Name="AR" Type="varchar" MaxLength="255" />
+    <Property Name="ASS" Type="varchar" MaxLength="255" />
+    <Property Name="AT" Type="varchar" MaxLength="255" />
+    <Property Name="AU" Type="varchar" MaxLength="255" />
+    <Property Name="AV" Type="varchar" MaxLength="255" />
+    <Property Name="AW" Type="varchar" MaxLength="255" />
+    <Property Name="AX" Type="varchar" MaxLength="255" />
+    <Property Name="AY" Type="varchar" MaxLength="255" />
+    <Property Name="AZ" Type="varchar" MaxLength="255" />
+    <Property Name="BA" Type="varchar" MaxLength="255" />
+    <Property Name="BB" Type="varchar" MaxLength="255" />
+    <Property Name="BC" Type="varchar" MaxLength="255" />
+    <Property Name="BD" Type="varchar" MaxLength="255" />
+    <Property Name="BE" Type="varchar" MaxLength="255" />
+    <Property Name="BF" Type="varchar" MaxLength="255" />
+    <Property Name="BG" Type="varchar" MaxLength="255" />
+    <Property Name="BH" Type="varchar" MaxLength="255" />
+    <Property Name="BI" Type="varchar" MaxLength="255" />
+    <Property Name="BJ" Type="varchar" MaxLength="255" />
+    <Property Name="BK" Type="varchar" MaxLength="255" />
+    <Property Name="BL" Type="varchar" MaxLength="255" />
+    <Property Name="BM" Type="varchar" MaxLength="255" />
+    <Property Name="BN" Type="varchar" MaxLength="255" />
+    <Property Name="BO" Type="varchar" MaxLength="255" />
+    <Property Name="BP" Type="varchar" MaxLength="255" />
+    <Property Name="BQ" Type="varchar" MaxLength="255" />
+    <Property Name="BR" Type="varchar" MaxLength="255" />
+    <Property Name="BS" Type="varchar" MaxLength="255" />
+    <Property Name="BT" Type="varchar" MaxLength="255" />
+    <Property Name="BU" Type="varchar" MaxLength="255" />
+    <Property Name="BV" Type="varchar" MaxLength="255" />
+    <Property Name="BW" Type="varchar" MaxLength="255" />
+    <Property Name="BX" Type="varchar" MaxLength="255" />
+    <Property Name="BYY" Type="varchar" MaxLength="255" />
+    <Property Name="BZ" Type="varchar" MaxLength="255" />
+    <Property Name="CA" Type="varchar" MaxLength="255" />
+    <Property Name="CB" Type="varchar" MaxLength="255" />
+    <Property Name="CC" Type="varchar" MaxLength="255" />
+    <Property Name="CD" Type="varchar" MaxLength="255" />
+    <Property Name="CE" Type="varchar" MaxLength="255" />
+    <Property Name="CF" Type="varchar" MaxLength="255" />
+    <Property Name="CG" Type="varchar" MaxLength="255" />
+    <Property Name="CH" Type="varchar" MaxLength="255" />
+    <Property Name="CI" Type="varchar" MaxLength="255" />
+    <Property Name="CJ" Type="varchar" MaxLength="255" />
+    <Property Name="CK" Type="varchar" MaxLength="255" />
+    <Property Name="CL" Type="varchar" MaxLength="255" />
+    <Property Name="CM" Type="varchar" MaxLength="255" />
+    <Property Name="CN" Type="varchar" MaxLength="255" />
+    <Property Name="CO" Type="varchar" MaxLength="255" />
+    <Property Name="CP" Type="varchar" MaxLength="255" />
+    <Property Name="CQ" Type="varchar" MaxLength="255" />
+    <Property Name="CR" Type="varchar" MaxLength="255" />
+    <Property Name="CS" Type="varchar" MaxLength="255" />
+    <Property Name="CT" Type="varchar" MaxLength="255" />
+    <Property Name="CU" Type="varchar" MaxLength="255" />
+    <Property Name="CV" Type="varchar" MaxLength="255" />
+    <Property Name="CW" Type="varchar" MaxLength="255" />
+    <Property Name="CX" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian_renyun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="renyuan_id" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="dearhylo9_cangku">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="dearhylo9_jiandan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="dearhylo9_renyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="dearhylo9_tuihuo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="gongzi_gongzimingxi">
     <Key>
       <PropertyRef Name="id" />
@@ -178,9 +849,25 @@
     <Property Name="J" Type="varchar" MaxLength="255" />
     <Property Name="K" Type="varchar" MaxLength="255" />
     <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
   </EntityType>
-  <!--生成过程中发现错误:
-      警告 6002: 表/视图“yao.dbo.gongzi_renyuanManager”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'yao.dbo.gongzi_renyuanManager' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="gongzi_renyuanManager">
     <Key>
@@ -210,8 +897,8 @@
     <Property Name="yi" Type="varchar" MaxLength="255" />
     <Property Name="er" Type="varchar" MaxLength="255" />
   </EntityType>
-  <!--生成过程中发现错误:
-      警告 6002: 表/视图“yao.dbo.gongzi_viewNames”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'yao.dbo.gongzi_viewNames' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
   <EntityType Name="gongzi_viewNames">
     <Key>
@@ -221,8 +908,838 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="viewName" Type="varchar" Nullable="false" MaxLength="255" />
   </EntityType>
-  <!--生成过程中发现错误:
-      警告 6013: 表/视图“yao.dbo.gongzi_title”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+  <EntityType Name="kaozhiguang147852">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="xiangmu" Type="varchar" MaxLength="255" />
+    <Property Name="jieduan" Type="varchar" MaxLength="255" />
+    <Property Name="zhanghao" Type="varchar" MaxLength="255" />
+    <Property Name="mi" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852_gongzi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852_jiben">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852_jixie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852_sika">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_chanpinguanli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="decimal" Scale="2" />
+    <Property Name="J" Type="decimal" Scale="2" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_chanpinxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_chuku">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_fuzhu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_gongyingshang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_kehu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_kucun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_mingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="liuchanglin_mingxiguanli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="decimal" Scale="2" />
+    <Property Name="P" Type="decimal" Scale="2" />
+  </EntityType>
+  <EntityType Name="liuchanglin_renyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="lv_al">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="money" />
+    <Property Name="K" Type="money" />
+    <Property Name="L" Type="money" />
+    <Property Name="M" Type="money" />
+    <Property Name="N" Type="money" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="cid" Type="int" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="lv_bcd">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="money" />
+    <Property Name="K" Type="money" />
+    <Property Name="L" Type="money" />
+    <Property Name="M" Type="money" />
+    <Property Name="N" Type="money" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="cid" Type="int" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="lv_td">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="money" />
+    <Property Name="K" Type="money" />
+    <Property Name="L" Type="money" />
+    <Property Name="M" Type="money" />
+    <Property Name="N" Type="money" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="cid" Type="int" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="lv_xhjr">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="money" />
+    <Property Name="K" Type="money" />
+    <Property Name="L" Type="money" />
+    <Property Name="M" Type="money" />
+    <Property Name="N" Type="money" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="cid" Type="int" />
+    <Property Name="AH" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tb846607026_cunkuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tb846607026_jibie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tb846607026_jine">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tb846607026_peizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tb846607026_shouyi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tb846607026_tixian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_chukubiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_gongyingshangxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_kehuxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_kucun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_peizhibiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_renyaunxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_rukubiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_shangpinxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_tuihuobiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_xiadan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_zhanghu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="zeng_stock">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="productCode" Type="varchar" MaxLength="255" />
+    <Property Name="discount" Type="float" />
+    <Property Name="direction" Type="varchar" MaxLength="255" />
+    <Property Name="userName" Type="varchar" MaxLength="255" />
+    <Property Name="num" Type="int" />
+    <Property Name="time" Type="datetime" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="comment" Type="varchar" MaxLength="255" />
+    <Property Name="payType" Type="varchar" MaxLength="255" />
+    <Property Name="order_id" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="zeng_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="userName" Type="varchar" MaxLength="255" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="power" Type="varchar" MaxLength="255" />
+    <Property Name="shop" Type="varchar" MaxLength="255" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="qrCode_shop" Type="text" />
+    <Property Name="deviceId" Type="varchar" MaxLength="100" />
+    <Property Name="serviceId" Type="varchar" MaxLength="100" />
+    <Property Name="characteristicId" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="zeng_wares">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="code" Type="varchar" MaxLength="255" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="price" Type="money" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="num" Type="int" />
+    <Property Name="cloth" Type="varchar" MaxLength="255" />
+    <Property Name="norms" Type="varchar" MaxLength="255" />
+    <Property Name="type" Type="varchar" MaxLength="255" />
+    <Property Name="mark1" Type="varchar" MaxLength="255" />
+    <Property Name="mark2" Type="varchar" MaxLength="255" />
+    <Property Name="mark3" Type="varchar" MaxLength="255" />
+    <Property Name="mark4" Type="varchar" MaxLength="255" />
+    <Property Name="mark5" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_daili">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="int" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_jishiben">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_kucun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="产品编号" Type="int" />
+    <Property Name="产品名称" Type="varchar" MaxLength="255" />
+    <Property Name="规格" Type="varchar" MaxLength="255" />
+    <Property Name="数量" Type="decimal" Scale="1" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_mingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="date" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="decimal" Scale="1" />
+    <Property Name="I" Type="decimal" Scale="1" />
+    <Property Name="J" Type="decimal" Scale="1" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="1024" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+    <Property Name="examine_tag" Type="varchar" MaxLength="255" />
+    <Property Name="print_tag" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_renyuanguanli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_rukumingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="入库日期" Type="date" />
+    <Property Name="入库人" Type="varchar" MaxLength="255" />
+    <Property Name="产品编号" Type="varchar" MaxLength="255" />
+    <Property Name="产品名称" Type="varchar" MaxLength="255" />
+    <Property Name="规格" Type="varchar" MaxLength="255" />
+    <Property Name="数量" Type="int" />
+  </EntityType>
+  <EntityType Name="zhaobiaodailhuizong">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="varchar" MaxLength="255" />
+    <Property Name="C" Type="varchar" MaxLength="255" />
+    <Property Name="D" Type="varchar" MaxLength="255" />
+    <Property Name="E" Type="varchar" MaxLength="255" />
+    <Property Name="F" Type="varchar" MaxLength="255" />
+    <Property Name="G" Type="varchar" MaxLength="255" />
+    <Property Name="H" Type="varchar" MaxLength="255" />
+    <Property Name="I" Type="varchar" MaxLength="255" />
+    <Property Name="J" Type="varchar" MaxLength="255" />
+    <Property Name="K" Type="varchar" MaxLength="255" />
+    <Property Name="L" Type="varchar" MaxLength="255" />
+    <Property Name="M" Type="varchar" MaxLength="255" />
+    <Property Name="N" Type="varchar" MaxLength="255" />
+    <Property Name="O" Type="varchar" MaxLength="255" />
+    <Property Name="P" Type="varchar" MaxLength="255" />
+    <Property Name="Q" Type="varchar" MaxLength="255" />
+    <Property Name="R" Type="varchar" MaxLength="255" />
+    <Property Name="S" Type="varchar" MaxLength="255" />
+    <Property Name="T" Type="varchar" MaxLength="255" />
+    <Property Name="U" Type="varchar" MaxLength="255" />
+    <Property Name="V" Type="varchar" MaxLength="255" />
+    <Property Name="W" Type="varchar" MaxLength="255" />
+    <Property Name="X" Type="varchar" MaxLength="255" />
+    <Property Name="Y" Type="varchar" MaxLength="255" />
+    <Property Name="Z" Type="varchar" MaxLength="255" />
+    <Property Name="AA" Type="varchar" MaxLength="255" />
+    <Property Name="AB" Type="varchar" MaxLength="255" />
+    <Property Name="AC" Type="varchar" MaxLength="255" />
+    <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="AE" Type="varchar" MaxLength="255" />
+    <Property Name="AF" Type="varchar" MaxLength="255" />
+    <Property Name="AG" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'yao.dbo.zheng_020826_config' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="zheng_020826_config">
+    <Key>
+      <PropertyRef Name="pwd" />
+    </Key>
+    <Property Name="pwd" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'yao.dbo.zheng_020826_gameInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="zheng_020826_gameInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="space" />
+      <PropertyRef Name="model_id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="space" Type="int" Nullable="false" />
+    <Property Name="model_id" Type="int" Nullable="false" />
+    <Property Name="time" Type="date" />
+    <Property Name="amount" Type="int" />
+    <Property Name="game_top" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'yao.dbo.zheng_020826_model' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="zheng_020826_model">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" MaxLength="255" />
+    <Property Name="model_top" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'yao.dbo.zheng_020826_userInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="zheng_020826_userInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="game_id" />
+      <PropertyRef Name="time" />
+      <PropertyRef Name="number" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="game_id" Type="int" Nullable="false" />
+    <Property Name="time" Type="datetime" Nullable="false" />
+    <Property Name="number" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'yao.dbo.gongzi_title' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
       
       <EntityType Name="gongzi_title">
         <Property Name="bumenhuizong" Type="nvarchar" MaxLength="255" />
@@ -240,8 +1757,16 @@
         <Property Name="kaoqinjilu" Type="nvarchar" MaxLength="255" />
         <Property Name="peizhi" Type="nvarchar" MaxLength="255" />
       </EntityType>
-      生成过程中发现错误:
-      警告 6013: 表/视图“yao.guest.t_user”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+      Errors Found During Generation:
+      warning 6013: The table/view 'yao.dbo.test' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="test">
+        <Property Name="姓名" Type="varchar" MaxLength="255" />
+        <Property Name="年龄" Type="int" />
+        <Property Name="性别" Type="varchar" MaxLength="255" />
+      </EntityType>
+      Errors Found During Generation:
+      warning 6013: The table/view 'yao.guest.t_user' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
       
       <EntityType Name="t_user">
         <Property Name="name" Type="varchar" MaxLength="255" />

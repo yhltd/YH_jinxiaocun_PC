@@ -1,26 +1,32 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="baopan.aspx.cs" Inherits="Web.Personnel.baopan" %>
+﻿<%@ page language="C#" autoeventwireup="true" codebehind="baopan.aspx.cs" inherits="Web.Personnel.baopan" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body style="    margin: 0;">
-    <h1 style="margin-top:0px;margin-bottom:10px">报盘</h1>
+<body style="margin: 0;">
+    <h1 style="margin-top: 0px; margin-bottom: 10px">报盘</h1>
     <form id="form1" runat="server">
-    <div>
-    
-        <asp:Label ID="Label1" runat="server" Height="30px" Text="姓名：" Width="80px" style="text-align:center"></asp:Label>
-    
-        <asp:TextBox ID="TextBox1" runat="server" CssClass="top_select_input"  Height="30px" Width="150px" style="margin-right:-10px;border:0.5px solid #378888"></asp:TextBox>
-        <asp:Button ID="Button2" runat="server" Text="搜索" OnClick="Button2_Click" CssClass="top_bt" style="margin-right:-10px" Height="30px" Width="80px"/>
-        <asp:Button ID="Button3" runat="server" Height="30px" Text="所有" Width="80px" OnClick="Button3_Click" CssClass="top_bt" style="margin-right:-10px" />
-        <asp:Button ID="Button4" CssClass="top_bt" runat="server" Height="30px" Text="生成Excel" Width="80px" OnClick="toExcel" style="margin-right:-10px" />
-        <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowPaging="True" DataKeyNames="id" OnRowCreated="aaa">
+        <div>
+
+            <asp:label id="Label1" runat="server" height="30px" text="姓名：" width="80px" style="text-align: center"></asp:label>
+            <asp:textbox id="TextBox1" runat="server" cssclass="top_select_input" height="30px" width="150px" style="margin-right: -10px; border: 0.5px solid #378888"></asp:textbox>
+            &nbsp;&nbsp;&nbsp;
+        <asp:label id="Label2" runat="server" height="30px" text="开始时间：" width="80px" style="text-align: center"></asp:label>
+            <input type="date" name="ks" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />
+            &nbsp;&nbsp;&nbsp;
+        <asp:label id="Label3" runat="server" height="30px" text="结束时间：" width="80px" style="text-align: center"></asp:label>
+            <input type="date" name="js" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />
+            &nbsp;&nbsp;&nbsp;
+        <asp:button id="Button2" runat="server" text="搜索" onclick="Button2_Click" cssclass="top_bt" style="margin-right: -10px" height="30px" width="80px" />
+            <asp:button id="Button3" runat="server" height="30px" text="所有" width="80px" onclick="Button3_Click" cssclass="top_bt" style="margin-right: -10px" />
+            <asp:button id="Button4" cssclass="top_bt" runat="server" height="30px" text="生成Excel" width="80px" onclick="toExcel" style="margin-right: -10px" />
+            <br />
+            <asp:gridview id="GridView1" runat="server" autogeneratecolumns="False" datasourceid="SqlDataSource1" allowpaging="True" datakeynames="id" onrowcreated="aaa">
             <Columns>
                 <asp:CommandField ShowEditButton="True" ButtonType="Button" ItemStyle-CssClass="bt_upd1">
                 <HeaderStyle Wrap="False" />
@@ -129,8 +135,8 @@
             <HeaderStyle CssClass="header" Font-Bold="False" BorderStyle="None" />
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString37 %>" DeleteCommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id and [id] !=0" InsertCommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" SelectCommand="SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE ([BD] like '%'+ @BD +'%') UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','' order by id desc" UpdateCommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B, [AY] = @AY, [BA] = @BA WHERE [id] = @id and[id] !=0">
+        </asp:gridview>
+            <asp:sqldatasource id="SqlDataSource1" runat="server" connectionstring="<%$ ConnectionStrings:yaoConnectionString37 %>" deletecommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id and [id] !=0" insertcommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" selectcommand="if exists(SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE ([BD] like '%'+ @BD +'%')) begin SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE ([BD] like '%'+ @BD +'%')  end else SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE id=0 UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''" updatecommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B, [AY] = @AY, [BA] = @BA WHERE [id] = @id and[id] !=0">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -200,8 +206,8 @@
                 <asp:Parameter Name="BA" Type="String" />
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
-        </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString36 %>" DeleteCommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" SelectCommand="SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE (([BD]like '%'+ @BD +'%') AND ([B] like '%'+ @B +'%')) UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''  order by id desc" UpdateCommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B,[AY] = @AY, [BA] = @BA WHERE [id] = @id">
+        </asp:sqldatasource>
+            <asp:sqldatasource id="SqlDataSource2" runat="server" connectionstring="<%$ ConnectionStrings:yaoConnectionString36 %>" deletecommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id" insertcommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" selectcommand="if exists(SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE ([BD] like '%'+ @BD +'%') AND ([B] like '%'+ @B +'%') and convert(date,[BC])&gt;=@ks and convert(date,[BC])&lt;=@js ) begin SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE ([BD] like '%'+ @BD +'%') AND ([B] like '%'+ @B +'%') and convert(date,[BC])&gt;=@ks and convert(date,[BC])&lt;=@js end else SELECT *,a='人民币' FROM [gongzi_gongzimingxi] WHERE id=0 UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''" updatecommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B,[AY] = @AY, [BA] = @BA WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -263,8 +269,12 @@
                 <asp:Parameter Name="BD" Type="String" />
             </InsertParameters>
             <SelectParameters>
-                <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
+                <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" DefaultValue="" />
                 <asp:SessionParameter Name="B" SessionField="xm1" Type="String" />
+                <asp:SessionParameter Name="ks" SessionField="ks" Type="String"/>
+                <asp:SessionParameter Name="js" SessionField="js" Type="String"/>
+                <%--<asp:SessionParameter Name="js" SessionField="js">
+                </asp:SessionParameter>--%>
             </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="B" Type="String" />
@@ -272,9 +282,9 @@
                 <asp:Parameter Name="BA" Type="String" />
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
-        </asp:SqlDataSource>
-    
-    </div>
+        </asp:sqldatasource>
+
+        </div>
     </form>
 </body>
 </html>

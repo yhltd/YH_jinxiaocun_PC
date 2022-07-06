@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.Personnel.HrModel;
 
 namespace Web.Personnel
 {
@@ -12,6 +14,7 @@ namespace Web.Personnel
         string[] str = null;
         protected void Page_Load(object sender, EventArgs e)
         {
+            HrMingXiModel hm = new HrMingXiModel();
             if (Session["gongsi"].ToString() == null)
             {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
@@ -33,8 +36,31 @@ namespace Web.Personnel
             {
                 Server.Transfer("../Personnel/wuquanxian.aspx");
             }
-            Session["gongsi2"] = Session["gongsi"].ToString() + "_hr";
+            Session["gongsi2"] = Session["gongsi"].ToString();
             GridView1.DataSourceID = "SqlDataSource1";
+            string yue = DateTime.Now.Month.ToString();
+            string ri = DateTime.Now.Day.ToString();  
+            string name = "";
+
+            List<gongzi_renyuan> getList = hm.getListByRenYuan(Session["gongsi"].ToString(),yue,ri);
+            for (int i = 0; i < getList.Count; i++) 
+            {
+                if (!name.Equals(""))
+                {
+                    name = name + "、" + getList[i].B;
+                }
+                else 
+                {
+                    name = getList[i].B;
+                }
+                
+            }
+            if (!name.Equals("")) 
+            {
+                name = "<script>alert('今天是" + name + "的生日')</script>";
+                Response.Write(name);
+                //Response.Clear();
+            }
         }
         protected void aaa(object sender,  GridViewRowEventArgs e) {
             e.Row.Cells[2].Visible = false;
@@ -46,6 +72,23 @@ namespace Web.Personnel
             e.Row.Cells[11].Visible = false;
             e.Row.Cells[12].Visible = false;
             e.Row.Cells[13].Visible = false;
+            e.Row.Cells[14].Visible = false;
+            e.Row.Cells[15].Visible = false;
+            e.Row.Cells[16].Visible = false;
+            e.Row.Cells[17].Visible = false;
+            e.Row.Cells[18].Visible = false;
+            e.Row.Cells[19].Visible = false;
+            e.Row.Cells[20].Visible = false;
+            e.Row.Cells[21].Visible = false;
+            e.Row.Cells[22].Visible = false;
+            e.Row.Cells[23].Visible = false;
+            e.Row.Cells[24].Visible = false;
+            e.Row.Cells[25].Visible = false;
+            e.Row.Cells[26].Visible = false;
+            e.Row.Cells[27].Visible = false;
+            e.Row.Cells[28].Visible = false;
+            e.Row.Cells[29].Visible = false;
+
             if (e.Row.RowType != DataControlRowType.Header && e.Row.RowType != DataControlRowType.Pager)
             {
                 str = (string[])Session["arr2"];
@@ -82,7 +125,16 @@ namespace Web.Personnel
                 string value8 = GridView1.Rows[RowRemark].Cells[10].Text;
                 string value9 = GridView1.Rows[RowRemark].Cells[11].Text;
                 string value10 = GridView1.Rows[RowRemark].Cells[12].Text;
-                Server.Transfer("../Personnel/renyuanxinxiAdd.aspx?修改," + valueId + "," + value1 + "," + value2 + "," + value3 + "," + value4 + "," + value5 + "," + value6 + "," + value7 + "," + value10 + "," + value8 + "," + value9);
+
+                string value11 = GridView1.Rows[RowRemark].Cells[14].Text;
+                string value12 = GridView1.Rows[RowRemark].Cells[15].Text;
+                string value13 = GridView1.Rows[RowRemark].Cells[16].Text;
+                string value14 = GridView1.Rows[RowRemark].Cells[17].Text;
+                string value15 = GridView1.Rows[RowRemark].Cells[18].Text;
+                string value16 = GridView1.Rows[RowRemark].Cells[19].Text;
+                string value17 = GridView1.Rows[RowRemark].Cells[20].Text;
+
+                Server.Transfer("../Personnel/renyuanxinxiAdd.aspx?修改," + valueId + "," + value1 + "," + value2 + "," + value3 + "," + value4 + "," + value5 + "," + value6 + "," + value7 + "," + value10 + "," + value8 + "," + value9 + "," + value11 + "," + value12 + "," + value13 + "," + value14 + "," + value15 + "," + value16 + "," + value17);
             }
         }
 
@@ -93,20 +145,80 @@ namespace Web.Personnel
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Session["xm1"] = Request.Form["TextBox1"];
             if (Request.Form["TextBox1"].Equals(""))
             {
-                GridView1.DataSourceID = "SqlDataSource1";
+                Response.Write("<script>alert('请填写姓名！');</script>");
+                return;
             }
-            else
+            if (Request.Form["TextBox2"].Equals(""))
             {
-                GridView1.DataSourceID = "SqlDataSource2";
+                Response.Write("<script>alert('请填写手机号！');</script>");
+                return;
             }
+            Session["xm1"] = Request.Form["TextBox1"];
+            Session["xm2"] = Request.Form["TextBox2"];
+            GridView1.DataSourceID = "SqlDataSource2";
+            //if (Request.Form["TextBox1"].Equals("") && Request.Form["TextBox2"].Equals(""))
+            //{
+            //    GridView1.DataSourceID = "SqlDataSource1";
+            //}
+            //else
+            //{
+            //    GridView1.DataSourceID = "SqlDataSource2";
+            //}
         }
         protected void Button3_Click(object sender, EventArgs e)
         {
+            TextBox1.Text = "";
+            TextBox2.Text = "";
             GridView1.DataSourceID = "SqlDataSource1";
             GridView1.DataBind();
+        }
+
+        protected void toExcel(object sender, EventArgs e)
+        {
+            List<gongzi_renyuan> list = new List<gongzi_renyuan>();
+
+            for (var i = 0; i < GridView1.Rows.Count; i++)
+            {
+                gongzi_renyuan item = new gongzi_renyuan();
+                item.B = GridView1.Rows[i].Cells[3].Text.Trim();
+                item.C = GridView1.Rows[i].Cells[4].Text.Trim();
+                item.D = GridView1.Rows[i].Cells[5].Text.Trim();
+                
+
+                if (item.B == "&nbsp;") { item.B = ""; }
+                if (item.C == "&nbsp;") { item.C = ""; }
+                if (item.D == "&nbsp;") { item.D = ""; }
+
+                list.Add(item);
+            }
+
+            if (list != null)
+            {
+                StringWriter sw = new StringWriter();
+                
+                sw.WriteLine("姓名\t部门\t职务");
+
+                foreach (gongzi_renyuan ry in list)
+                {
+
+                    sw.WriteLine(ry.B + "\t" + ry.C + "\t" + ry.D );
+
+                }
+
+                sw.Close();
+
+                Response.AddHeader("Content-Disposition", "attachment; filename=人员信息管理.xls");
+
+                Response.ContentType = "application/ms-excel";
+
+                Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+
+                Response.Write(sw);
+
+                Response.End();
+            }
         }
     }
 }

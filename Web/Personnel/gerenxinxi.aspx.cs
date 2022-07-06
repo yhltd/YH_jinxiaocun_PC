@@ -30,6 +30,10 @@ namespace Web.Personnel
             }
             Session["gongsi2"] = Session["gongsi"].ToString() + "_hr";
             string a = Session["gongsi2"].ToString();
+            GridView1.Columns[0].Visible = false;
+            GridView1.Columns[11].Visible = false;
+            GridView1.Columns[8].Visible = false;
+            GridView1.Columns[9].Visible = false;
         }
         protected void Button1_Click(object sender, EventArgs e)
         {

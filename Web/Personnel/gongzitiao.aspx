@@ -74,6 +74,7 @@
         <asp:Button ID="Button1" runat="server" Height="30px" Text="搜索" OnClick="Button1_Click" CssClass="top_bt" style="margin-right:-10px" />
         <asp:Button ID="Button2" runat="server" Height="30px" Text="所有" OnClick="Button2_Click" CssClass="top_bt" style="margin-right:-10px" />
         <asp:Button ID="Button3" runat="server" Height="30px" Text="生成Excel" OnClick="toExcel" CssClass="top_bt" style="margin-right:-10px" />
+        <asp:Button ID="Button4" runat="server" Height="30px" Text="打印" OnClick="print" CssClass="top_bt" style="margin-right:-10px" />
         <br />
         </div>
         <div style="height:35px"></div>

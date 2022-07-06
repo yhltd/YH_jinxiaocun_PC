@@ -308,4 +308,42 @@ namespace SDZdb
         public string mi_bao { get; set; }
     }
 
+    public class rukuPrint 
+    {
+        public string sp_dm { get; set; }
+        public string Cpname { get; set; }
+        public string Cplb { get; set; }
+        public string Cpsj { get; set; }
+        public string Cpsl { get; set; }
+        public string Mxtype { get; set; }
+
+    }
+
+    public class kaoqinhuizong
+    {
+        public int id{ get; set; }
+        public string name{ get; set; }
+        public string C{ get; set; }
+        public string D{ get; set; }
+        public string E{ get; set; }
+        public string F{ get; set; }
+        public string G{ get; set; }
+        public string H{ get; set; }
+        public string I{ get; set; }
+        public string J { get; set; }
+        public string K { get; set; }
+        //public string department;
+    }
+
+    public class bumenExcel
+    {
+        public int ID { get; set; }
+        public string C { get; set; }
+        public double G { get; set; }
+        public double H { get; set; }
+        public double I { get; set; }
+        public double J { get; set; }
+        public double K { get; set; }
+        public double L { get; set; }
+    }
 }

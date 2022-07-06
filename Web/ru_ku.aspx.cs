@@ -155,6 +155,28 @@ namespace Web
         protected void toExcel(object sender, EventArgs e)
         {
 
+            List<rukuPrint> OnlineShow_datas1 = new List<rukuPrint>();
+            int id = 0;
+            for (int i = 1; i < (Convert.ToInt32(Context.Request["hangshu"].ToString())); i++)
+            {
+                //item.Name = Response.  ;//.ToString();
+                JinChuModel jinchu = new JinChuModel();
+                
+                if (Request.Form["check" + i] == "true")
+                {
+                    rukuPrint item = new rukuPrint();
+                    id = Convert.ToInt32(Request.Form["checkbox" + i]);
+                    List<yh_jinxiaocun_jichuziliao> list = jinchu.getListById(user.gongsi, id);
+                    item.Cpname = list[0].name;
+                    item.sp_dm = list[0].sp_dm;
+                    item.Cpsl = Context.Request["num"+i].ToString();
+                    item.Cpsj = Context.Request["price" + i].ToString();
+                    item.Cplb = list[0].lei_bie;
+                    item.Mxtype = list[0].dan_wei;
+                    OnlineShow_datas1.Add(item);
+                }
+            }
+            Session["printList"] = OnlineShow_datas1;
 
             Response.Redirect("~/RDLC/frm_ReportForm.aspx");
 

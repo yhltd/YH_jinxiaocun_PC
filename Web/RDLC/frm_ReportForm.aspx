@@ -24,7 +24,7 @@
             <%--<asp:ScriptManager ID="ScriptManager1" runat="server">--%>
             <asp:ScriptManager runat="server">
             </asp:ScriptManager>
-            <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt" Height="1000px" Width="1000px">
+            <rsweb:ReportViewer ID="ReportViewer2" runat="server" Font-Names="Verdana" Font-Size="8pt" Height="1000px" Width="1000px">
                 <LocalReport ReportPath="Report1.rdlc">
                 </LocalReport>
             </rsweb:ReportViewer>

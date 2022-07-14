@@ -20,7 +20,7 @@ namespace Web.Personnel
         protected void Page_Load(object sender, EventArgs e)
         {
             yanzheng = 0;
-            Label11.Text = "";
+            Label50.Text = "";
             Label12.Text = "";
             Label13.Text = "";
             Label14.Text = "";
@@ -38,6 +38,7 @@ namespace Web.Personnel
             a = Request.QueryString[0].Split(',');
             if (a[0] == "修改")
             {
+                Session["renyuan_id"] = a[1];
                 TextBox1.Text = a[2];
                 TextBox2.Text = a[3];
                 TextBox3.Text = a[4];
@@ -48,14 +49,27 @@ namespace Web.Personnel
                 TextBox8.Text = a[9];
                 TextBox9.Text = a[10];
                 TextBox10.Text = a[11];
+
+                TextBox11.Text = a[12];
+                TextBox12.Text= a[13];
+                TextBox13.Text= a[14];
+                TextBox14.Text= a[15];
+                TextBox15.Text= a[16];
+                TextBox16.Text= a[17];
+                TextBox17.Text= a[18];
+                TextBox18.Text = a[19];
+                TextBox19.Text = a[20];
+
+
                 Button1.Text = "修改";
-                Button3.Enabled = true;
+                Button4.Enabled = true;
                 Session["zh1"] = a[10];
             }
             else if (a[0] == "添加")
             {
                 Button1.Text = "添加";
                 Button3.Enabled = false;
+                Button4.Enabled = false;
             }
         }
         protected void Button1_Click(object sender, EventArgs e)
@@ -63,47 +77,62 @@ namespace Web.Personnel
             yanzheng = 0;
             if (Request.Form["TextBox1"].ToString() == "")
             {
-                Label11.Text = "* 姓名不能为空！";
+                Response.Write("<script>alert('姓名不能为空！'); </script>");
+                //Label50.Text = "* 姓名不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox2"].ToString() == "")
             {
-                Label12.Text = "* 部门不能为空！";
+                Response.Write("<script>alert('部门不能为空！'); </script>");
+                //Label12.Text = "* 部门不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox3"].ToString() == "")
             {
-                Label13.Text = "* 职务不能为空！";
+                Response.Write("<script>alert('职务不能为空！'); </script>");
+                //Label13.Text = "* 职务不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox4"].ToString() == "")
             {
-                Label14.Text = "* 身份证号不能为空！";
+                Response.Write("<script>alert('身份证号不能为空！'); </script>");
+                //Label14.Text = "* 身份证号不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox5"].ToString() == "")
             {
-                Label15.Text = "* 基本工资不能为空！";
+                Response.Write("<script>alert('基本工资不能为空！'); </script>");
+                //Label15.Text = "* 基本工资不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox6"].ToString() == "")
             {
-                Label16.Text = "* 银行卡号不能为空！";
+                Response.Write("<script>alert('银行卡号不能为空！'); </script>");
+                //Label16.Text = "* 银行卡号不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox7"].ToString() == "")
             {
-                Label17.Text = "* 入职时间不能为空！";
+                Response.Write("<script>alert('入职时间不能为空！'); </script>");
+                //Label17.Text = "* 入职时间不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox9"].ToString() == "")
             {
-                Label19.Text = "* 账号不能为空！";
+                Response.Write("<script>alert('账号不能为空！'); </script>");
+                //Label19.Text = "* 账号不能为空！";
                 yanzheng = 1;
             }
             else if (Request.Form["TextBox10"].ToString() == "")
             {
-                Label20.Text = "* 密码不能为空！";
+                Response.Write("<script>alert('密码不能为空！'); </script>");
+                //Label20.Text = "* 密码不能为空！";
+                yanzheng = 1;
+            }
+            else if (Request.Form["TextBox18"].ToString() == "")
+            {
+                Response.Write("<script>alert('绩效工资不能为空！'); </script>");
+                //Label20.Text = "* 密码不能为空！";
                 yanzheng = 1;
             }
             if (Request.Form["TextBox4"].ToString() != "")
@@ -112,37 +141,39 @@ namespace Web.Personnel
                 int x = 0;
                 if(a.Length!=18)
                 {
-                    Label14.Text = "* 格式错误";
+                    Response.Write("<script>alert('身份证号格式错误！'); </script>");
+                    //Label14.Text = "* 格式错误";
                 }
-                else{
-                foreach (char c in a)                   //遍历这个数组里的内容  
+                else
                 {
-                    x = x + 1;
-                    int d = 0;
-                    for (int i = 0; i <= 9; i++)
+                    foreach (char c in a)                   //遍历这个数组里的内容  
                     {
-                        if (x <= 17)
+                        x = x + 1;
+                        int d = 0;
+                        for (int i = 0; i <= 9; i++)
                         {
-                            if (c.ToString() == i.ToString())
+                            if (x <= 17)
                             {
-                                d = d + 1;
+                                if (c.ToString() == i.ToString())
+                                {
+                                    d = d + 1;
+                                }
+                            }
+                            else 
+                            {
+                                if (c.ToString() == i.ToString() || c.ToString().ToLower().ToString()=="x" )
+                                {
+                                    d = d + 1;
+                                }
                             }
                         }
-                        else 
+                        if (d < 1)
                         {
-                            if (c.ToString() == i.ToString() || c.ToString().ToLower().ToString()=="x" )
-                            {
-                                d = d + 1;
-                            }
+                            Label14.Text = "* 格式错误";
+                            yanzheng = 1;
+                            break;
                         }
                     }
-                    if (d < 1)
-                    {
-                        Label14.Text = "* 格式错误";
-                        yanzheng = 1;
-                        break;
-                    }
-                }
                 }
             }
             if (Request.Form["TextBox8"].ToString() != "") 
@@ -160,7 +191,8 @@ namespace Web.Personnel
                     }
                     if (d < 1) 
                     {
-                        Label18.Text = "* 格式错误";
+                        Response.Write("<script>alert('工龄格式错误！'); </script>");
+                        //Label18.Text = "* 格式错误";
                         yanzheng = 1;
                         break;
                     }
@@ -181,7 +213,29 @@ namespace Web.Personnel
                     }
                     if (d < 1)
                     {
-                        Label15.Text = "* 格式错误";
+                        Response.Write("<script>alert('基本工资格式错误！'); </script>");
+                        //Label15.Text = "* 格式错误";
+                        yanzheng = 1;
+                        break;
+                    }
+                }
+            }
+            if (Request.Form["TextBox18"].ToString() != "")
+            {
+                string a = Request.Form["TextBox18"].ToString();
+                foreach (char c in a)                   //遍历这个数组里的内容  
+                {
+                    int d = 0;
+                    for (int i = 0; i <= 9; i++)
+                    {
+                        if (c.ToString() == i.ToString() || c.ToString() == ".")
+                        {
+                            d = d + 1;
+                        }
+                    }
+                    if (d < 1)
+                    {
+                        Response.Write("<script>alert('绩效工资格式错误！'); </script>");
                         yanzheng = 1;
                         break;
                     }
@@ -202,7 +256,8 @@ namespace Web.Personnel
                     }
                     if (d < 1)
                     {
-                        Label16.Text = "* 格式错误";
+                        Response.Write("<script>alert('银行卡号格式错误！'); </script>");
+                        //Label16.Text = "* 格式错误";
                         yanzheng = 1;
                         break;
                     }
@@ -231,8 +286,8 @@ namespace Web.Personnel
                         }
                         else
                         {
-                            string sqlStr = "insert into gongzi_renyuan (B,C,D,E,F,G,H,K,I,J,L) VALUES (";
-                            for (int i = 1; i < 11; i++)
+                            string sqlStr = "insert into gongzi_renyuan (B,C,D,E,F,G,H,K,I,J,M,N,O,P,Q,R,S,AC,AD,L) VALUES (";
+                            for (int i = 1; i < 20; i++)
                             {
                                 if (Request.Form["TextBox" + i] != "")
                                 {
@@ -240,7 +295,7 @@ namespace Web.Personnel
                                 }
                                 else
                                 {
-                                    sqlStr += "'-',";
+                                    sqlStr += "'',";
                                 }
                             }
                             sqlStr += "'" + Session["gongsi"].ToString() + "_hr');select @@identity";
@@ -271,7 +326,7 @@ namespace Web.Personnel
                         }
                         else
                         {
-                            string sqlStr = "update gongzi_renyuan set B='" + Request.Form["TextBox1"] + "',C='" + Request.Form["TextBox2"] + "',D='" + Request.Form["TextBox3"] + "',E='" + Request.Form["TextBox4"] + "',F='" + Request.Form["TextBox5"] + "',G='" + Request.Form["TextBox6"] + "',H='" + Request.Form["TextBox7"] + "',K='" + Request.Form["TextBox8"] + "',I='" + Request.Form["TextBox9"] + "',J='" + Request.Form["TextBox10"] + "',L='" + Session["gongsi"].ToString() + "_hr' where id='" + a[1] + "';";
+                            string sqlStr = "update gongzi_renyuan set B='" + Request.Form["TextBox1"] + "',C='" + Request.Form["TextBox2"] + "',D='" + Request.Form["TextBox3"] + "',E='" + Request.Form["TextBox4"] + "',F='" + Request.Form["TextBox5"] + "',G='" + Request.Form["TextBox6"] + "',H='" + Request.Form["TextBox7"] + "',K='" + Request.Form["TextBox8"] + "',I='" + Request.Form["TextBox9"] + "',J='" + Request.Form["TextBox10"] + "',L='" + Session["gongsi"].ToString() + "_hr',M='" + Request.Form["TextBox11"] + "',N='" + Request.Form["TextBox12"] + "',O='" + Request.Form["TextBox13"] + "',P='" + Request.Form["TextBox14"] + "',Q='" + Request.Form["TextBox15"] + "',R='" + Request.Form["TextBox16"] + "',S='" + Request.Form["TextBox17"] + "',AC='" + Request.Form["TextBox18"] + "',AD='" + Request.Form["TextBox19"] + "' where id='" + a[1] + "';";
                             cmd = new SqlCommand(sqlStr, conn);
                             cmd.ExecuteNonQuery();
                             conn.Close();
@@ -294,6 +349,12 @@ namespace Web.Personnel
             Session["id1"] = a[1];
             Session["aaaa"] = "0";
             Server.Transfer("../Personnel/quanxian.aspx");
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+
+            Server.Transfer("../Personnel/yuangongdangan.aspx");
         }
     }
 }

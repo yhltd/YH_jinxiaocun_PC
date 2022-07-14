@@ -315,7 +315,7 @@
                             <%=ming_xi_select_dd[i].shijian.GetValueOrDefault().ToString("g") %>
                         </td>
                         <td class="bg_bj">
-                            <%=ming_xi_select_dd[i].zh_name %>
+                            <%=ming_xi_select_dd[i].gs_name %>
                         </td>
                         <td class="bg_bj">
                             <input type="text"class="input_tr2" id="shou_h" name="shou_h<%=i %>" value="<%=ming_xi_select_dd[i].shou_h %>" />

@@ -46,3 +46,11 @@ D:\git_version\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.pdb
 D:\git_version\YH_jinxiaocun_PC\China_System.Common\obj\Debug\Order.Common.csprojResolveAssemblyReference.cache
 D:\git_version\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.dll
 D:\git_version\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.pdb
+F:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\China_System.Common.dll
+F:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\China_System.Common.pdb
+F:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\MySql.Data.dll
+F:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.dll
+F:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\bin\Debug\SDZdb.pdb
+F:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\Order.Common.csprojResolveAssemblyReference.cache
+F:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.dll
+F:\yhltd129\工作\YH_jinxiaocun_PC\China_System.Common\obj\Debug\China_System.Common.pdb

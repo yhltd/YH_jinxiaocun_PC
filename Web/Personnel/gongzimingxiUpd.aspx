@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gongzimingxiUpd.aspx.cs" Inherits="Web.Personnel.gongzimingxiUpd" %>
 
-<!DOCTYPE html>
+<%--<!DOCTYPE html>--%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -9,136 +9,161 @@
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <title></title>
 </head>
-<body style="margin: 0;" runat="server" >
-    <form id="form1" runat="server">
+<body style="margin: 0;" runat="server" height="600px" width="1000px">
+    <form id="form1" runat="server" height="600px" width="600px" class="asd">
         <div id="Div1" runat="server" style="height: 600px; width: 1400px;overflow-x:scroll" >
-            <asp:Label ID="Label1" runat="server" Text="姓名：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox1" cssclass="top_option"></asp:Textbox>
-            <asp:Label ID="Label19" runat="server" Text="迟到扣款：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox19" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label37" runat="server" Text="个人医疗：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox37" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label2" runat="server" Text="部门：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox2" cssclass="top_option" ></asp:Textbox>
+            <asp:label id="Label1" runat="server" text="姓名" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox1" onclick="getInfo" cssclass="top_option"></asp:textbox>
+            <asp:label id="Label19" runat="server" text="迟到扣款" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox19" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label37" runat="server" text="个人医疗" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox37" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label2" runat="server" text="部门" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox2" cssclass="top_option"></asp:textbox>
             <br />
-            <asp:Label ID="Label20" runat="server" Text="应发工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox20" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label38" runat="server" Text="个人生育：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox38" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label3" runat="server" Text="岗位：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox3" cssclass="top_option" ></asp:Textbox>
-            <asp:Label ID="Label21" runat="server" Text="社保基数：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox21" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label20" runat="server" text="应发工资" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox20" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label38" runat="server" text="个人生育" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox38" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label3" runat="server" text="岗位" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox3" cssclass="top_option"></asp:textbox>
+            <asp:label id="Label21" runat="server" text="社保基数" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList21" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:Textbox runat="server" ID="Textbox21" cssclass="top_option"  TextMode="Number"></asp:Textbox>--%>
             <br />
-            <asp:Label ID="Label39" runat="server" Text="个人公积金：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox39" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label4" runat="server" Text="身份证号：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox4" cssclass="top_option" ></asp:Textbox>
-            <asp:Label ID="Label22" runat="server" Text="医疗技术：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox22" cssclass="top_option" ></asp:Textbox>
-            <asp:Label ID="Label40" runat="server" Text="个人年金4%：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox40" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label39" runat="server" text="个人公积金" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox39" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label4" runat="server" text="身份证号" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox4" cssclass="top_option"></asp:textbox>
+            <asp:label id="Label22" runat="server" text="医疗技术" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList22" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox22" cssclass="top_option"></asp:textbox>--%>
+            
+            <asp:label id="Label23" runat="server" text="公积金基数" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList23" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:Textbox runat="server" ID="Textbox23" cssclass="top_option"  TextMode="Number"></asp:Textbox>--%>
             <br />
-            <asp:Label ID="Label23" runat="server" Text="公积金基数：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox23" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label41" runat="server" Text="滞纳金：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox32" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label6" runat="server" Text="基本工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox6" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label5" runat="server" Text="入职时间：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox5" cssclass="top_option"  TextMode="date"></asp:Textbox>
+
+            <asp:label id="Label40" runat="server" text="个人年金4%" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox40" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label41" runat="server" text="个人滞纳金" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList41" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox32" cssclass="top_option" textmode="Number"></asp:textbox>--%>
+            <asp:label id="Label6" runat="server" text="基本工资" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox6" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label5" runat="server" text="入职时间" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox5" cssclass="top_option" textmode="date"></asp:textbox>
             <br />
-            <asp:Label ID="Label24" runat="server" Text="年金基数：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox24" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label42" runat="server" Text="利息：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox33" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label7" runat="server" Text="绩效工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox7" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label25" runat="server" Text="企业养老：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox25" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label24" runat="server" text="年金基数" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList24" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox24" cssclass="top_option" textmode="Number"></asp:textbox>--%>
+            <asp:label id="Label42" runat="server" text="个人利息" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList42" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox33" cssclass="top_option" textmode="Number"></asp:textbox>--%>
+            <asp:label id="Label7" runat="server" text="绩效工资" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox7" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label25" runat="server" text="企业养老" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox25" cssclass="top_option" textmode="Number"></asp:textbox>
             <br />
-            <asp:Label ID="Label43" runat="server" Text="个人小计：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox43" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label8" runat="server" Text="岗位工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox8" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label26" runat="server" Text="企业失业：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox26" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label44" runat="server" Text="税前工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox44" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label43" runat="server" text="个人小计" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox43" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label8" runat="server" text="岗位工资" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox8" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label26" runat="server" text="企业失业" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox26" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label44" runat="server" text="税前工资" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox44" cssclass="top_option" textmode="Number"></asp:textbox>
             <br />
-            <asp:Label ID="Label9" runat="server" Text="当月合计工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox9" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label27" runat="server" Text="企业医疗：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox27" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label45" runat="server" Text="应税工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox45" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label10" runat="server" Text="跨度工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox10" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label9" runat="server" text="当月合计工资" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox9" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label27" runat="server" text="企业医疗" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox27" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label45" runat="server" text="应税工资" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox45" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label10" runat="server" text="跨度工资" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList10" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox10" cssclass="top_option" textmode="Number"></asp:textbox>--%>
             <br />
-            <asp:Label ID="Label28" runat="server" Text="企业工伤：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox28" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label46" runat="server" Text="税率：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox46" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label11" runat="server" Text="职称津贴：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox11" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label29" runat="server" Text="企业生育：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox29" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label28" runat="server" text="企业工伤" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox28" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label46" runat="server" text="税率" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox46" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label11" runat="server" text="职称津贴" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList11" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox11" cssclass="top_option" textmode="Number"></asp:textbox>--%>
+            <asp:label id="Label29" runat="server" text="企业生育" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox29" cssclass="top_option" textmode="Number"></asp:textbox>
             <br />
-            <asp:Label ID="Label47" runat="server" Text="扣除数：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox47" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label12" runat="server" Text="月出勤天数：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox12" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label30" runat="server" Text="企业公积金：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox30" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label48" runat="server" Text="代扣个人所得税：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox48" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label47" runat="server" text="扣除数" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox47" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label12" runat="server" text="月出勤天数" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox12" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label30" runat="server" text="企业公积金" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox30" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label48" runat="server" text="代扣个人所得税" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox48" cssclass="top_option" textmode="Number"></asp:textbox>
             <br />
-            <asp:Label ID="Label13" runat="server" Text="加班时间：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox13" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label31" runat="server" Text="企业年金：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox31" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label49" runat="server" Text="年金1%：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox49" cssclass="top_option" ></asp:Textbox>
-            <asp:Label ID="Label14" runat="server" Text="加班费：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox14" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label13" runat="server" text="加班时间" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox13" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label31" runat="server" text="企业年金" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox31" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label49" runat="server" text="年金1%" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList49" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox49" cssclass="top_option"></asp:textbox>--%>
+            <asp:label id="Label14" runat="server" text="加班费" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox14" cssclass="top_option" textmode="Number"></asp:textbox>
             <br />
-            <asp:Label ID="Label32" runat="server" Text="滞纳金：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox41" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label50" runat="server" Text="实发工资：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox50" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label15" runat="server" Text="全勤应发：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox15" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label33" runat="server" Text="利息：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox42" cssclass="top_option"  TextMode="Number"></asp:Textbox>
+            <asp:label id="Label32" runat="server" text="企业滞纳金" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList32" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox41" cssclass="top_option" textmode="Number"></asp:textbox>--%>
+            <asp:label id="Label50" runat="server" text="实发工资" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox50" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label15" runat="server" text="全勤应发" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox15" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label33" runat="server" text="公司利息" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList33" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox42" cssclass="top_option" textmode="Number"></asp:textbox>--%>
             <br />
-            <asp:Label ID="Label51" runat="server" Text="验算公式：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox51" cssclass="top_option" ></asp:Textbox>
-            <asp:Label ID="Label16" runat="server" Text="缺勤天数：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox16" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label34" runat="server" Text="企业小计：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox34" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label52" runat="server" Text="银行账号：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox52" cssclass="top_option" ></asp:Textbox>
+            <asp:label id="Label51" runat="server" text="验算公式" width="115px" height="30px"></asp:label>
+            <asp:dropdownlist id="DropDownList51" runat="server" cssclass="top_option"></asp:dropdownlist>
+            <%--<asp:textbox runat="server" id="Textbox51" cssclass="top_option"></asp:textbox>--%>
+            <asp:label id="Label16" runat="server" text="缺勤天数" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox16" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label34" runat="server" text="企业小计" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox34" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label52" runat="server" text="银行账号" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox52" cssclass="top_option"></asp:textbox>
             <br />
-            <asp:Label ID="Label17" runat="server" Text="缺勤扣款：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox17" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label35" runat="server" Text="个人养老：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox35" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label18" runat="server" Text="迟到天数：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox18" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label53" runat="server" Text="调薪时间：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox53" cssclass="top_option"  TextMode="date"></asp:Textbox>
+            <asp:label id="Label17" runat="server" text="缺勤扣款" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox17" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label35" runat="server" text="个人养老" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox35" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label18" runat="server" text="迟到天数" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox18" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label53" runat="server" text="调薪时间" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox53" cssclass="top_option" textmode="date"></asp:textbox>
             <br />
-            <asp:Label ID="Label36" runat="server" Text="个人失业：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox36" cssclass="top_option"  TextMode="Number"></asp:Textbox>
-            <asp:Label ID="Label54" runat="server" Text="录入时间：" Width="130px" Height="30px"></asp:Label>
-            <asp:Textbox runat="server" ID="Textbox54" cssclass="top_option"  TextMode="date"></asp:Textbox>
-            <p style="margin-left: 500px; margin-top: 25px;">
+            <asp:label id="Label36" runat="server" text="个人失业" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox36" cssclass="top_option" textmode="Number"></asp:textbox>
+            <asp:label id="Label54" runat="server" text="录入时间" width="115px" height="30px"></asp:label>
+            <asp:textbox runat="server" id="Textbox54" cssclass="top_option" textmode="date"></asp:textbox>
+            <br />
+            <%--<p style="margin-left: 500px; margin-top: 25px;">
                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="修改" CssClass="top_bt" />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="Button3" runat="server" OnClick="Button1_Click" Text="返回" CssClass="top_bt" />
+                <asp:Button ID="Button3" runat="server" OnClick="Button2_Click" Text="返回" CssClass="top_bt" />
+            </p>--%>
+
+            <p style="margin-left: 340px">
+                <asp:button id="Button1" runat="server" onclick="Button1_Click" text="保存" cssclass="top_bt" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:button id="Button2" runat="server" onclick="Button2_Click" text="返回" cssclass="top_bt" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:button id="Button4" runat="server" onclick="Button4_Click" text="计算" cssclass="top_bt" />
+
+                <asp:button id="Button3" runat="server" onclick="getInfo" text="获得数据" cssclass="top_bt" style="display: none;" />
             </p>
         </div>
     </form>
 </body>
-</html>
+<%--</html>--%>

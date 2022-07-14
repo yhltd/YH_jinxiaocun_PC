@@ -68,6 +68,20 @@ namespace Web.Server
             }
         }
 
+        public List<yh_jinxiaocun_jichuziliao> getListById(string gongsi, int id)
+        {
+            //List<zl_and_jc_info> list = new List<zl_and_jc_info>();
+
+            using (ServerEntities sen = new ServerEntities())
+            {
+                //var gongsiParam = new MySqlParameter("@gongsi", gongsi);
+
+                string sql = "select * from yh_jinxiaocun_jichuziliao as j where gs_name ='" + gongsi + "' and id = '" + id + "'  ";
+                var result = sen.Database.SqlQuery<yh_jinxiaocun_jichuziliao>(sql);
+                return result.ToList();
+            }
+        }
+
         public int delete(int id) {
             using (ServerEntities sen = new ServerEntities())
             {

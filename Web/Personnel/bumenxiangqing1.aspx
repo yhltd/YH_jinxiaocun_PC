@@ -220,10 +220,14 @@
                 <HeaderStyle Wrap="False" HorizontalAlign="Center"/>
                 <ItemStyle Wrap="False" HorizontalAlign="Center"/>
                 </asp:BoundField>
+                <asp:BoundField DataField="BC" HeaderText="录入时间" SortExpression="AY" >
+                <HeaderStyle Wrap="False" HorizontalAlign="Center"/>
+                <ItemStyle Wrap="False" HorizontalAlign="Center"/>
+                </asp:BoundField>
                 <asp:BoundField DataField="AZ" HeaderText="AZ" SortExpression="AZ"   Visible = "false"/>
                 <asp:BoundField DataField="BA" HeaderText="BA" SortExpression="BA"   Visible = "false"/>
                 <asp:BoundField DataField="BB" HeaderText="BB" SortExpression="BB"   Visible = "false"/>
-                <asp:BoundField DataField="BC" HeaderText="BC" SortExpression="BC"   Visible = "false"/>
+                <%--<asp:BoundField DataField="BC" HeaderText="BC" SortExpression="BC"   Visible = "false"/>--%>
                 <asp:BoundField DataField="BD" HeaderText="BD" SortExpression="BD"   Visible = "false"/>
             </Columns>
             <HeaderStyle CssClass="header" Font-Bold="False" BorderStyle="None" />

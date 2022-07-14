@@ -1,11 +1,14 @@
-﻿using System;
+﻿using SDZdb;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.Personnel.HrModel;
 
 namespace Web.Personnel
 {
@@ -54,6 +57,23 @@ namespace Web.Personnel
             if (!Request.Form["DropDownList1"].Equals(""))
             {
                 Session["bm1"] = Request.Form["DropDownList1"];
+                if (Request.Form["ks"].Equals(""))
+                {
+                    Session["ks"] = "1900-1-1";
+                }
+                else 
+                {
+                    Session["ks"] = Request.Form["ks"];
+                }
+                if (Request.Form["js"].Equals(""))
+                {
+                    Session["js"] = "1900-1-1";
+                }
+                else
+                {
+                    Session["js"] = Request.Form["js"];
+                }
+
                 GridView1.DataSourceID = "SqlDataSource2";
             }
             else
@@ -71,6 +91,40 @@ namespace Web.Personnel
         {
             GridView1.DataSourceID = "SqlDataSource1";
             GridView1.DataBind();
+        }
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            HrMingXiModel hm = new HrMingXiModel();
+            List<bumenExcel> list = hm.bumenToExcel(Session["gongsi"].ToString());
+            
+            if (list != null) 
+            {
+                StringWriter sw = new StringWriter();
+
+                sw.WriteLine("部门\t人数\t基本工资\t绩效工资\t岗位工资\t标准工资\t跨度工资\t职称津贴");
+
+                foreach (bumenExcel gz in list) 
+                {
+                    sw.WriteLine(gz.C + "\t" + gz.ID + "\t" + gz.G + "\t" + gz.H + "\t" + gz.I + "\t" + gz.J + "\t" + gz.K + "\t" + gz.L);
+                }
+                sw.Close();
+
+                Response.AddHeader("Content-Disposition", "attachment; filename=部门汇总.xls");
+
+                Response.ContentType = "application/ms-excel";
+
+                Response.ContentEncoding = System.Text.Encoding.GetEncoding("GB2312");
+
+                Response.Write(sw);
+
+                Response.End();
+            }
+            else
+            {
+                Response.Write(" <script>alert('无数据');</script>");
+            }
+
+
         }
         
     }

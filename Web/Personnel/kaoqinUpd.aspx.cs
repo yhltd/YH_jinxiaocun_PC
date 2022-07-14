@@ -33,11 +33,27 @@ namespace Web.Personnel
                 {
                     conn.Open();
                 }
-                string sqlStr = "select * from gongzi_kaoqinjilu where year='" + TextBox1.Text + "' and moth='" + TextBox2.Text + "' and name='" + TextBox3.Text + "' ;";
+                string moth = "";
+                if (Convert.ToInt32(TextBox2.Text) < 10)
+                {
+                    moth = "0" + TextBox2.Text;
+                }
+                else 
+                {
+                    moth = TextBox2.Text;
+                }
+                string sqlStr = "select * from gongzi_kaoqinjilu where year='" + TextBox1.Text + "' and moth='" + moth + "' and name='" + TextBox3.Text + "' ;";
                 cmd = new SqlCommand(sqlStr, conn);
                 str = cmd.ExecuteReader();
                 string[] aa = new string[40];
-               
+
+                //for (int i = 2; i < 34; i++)
+                //{
+                //    string b = ((TextBox)this.FindControl("TextBox" + (i + 1).ToString())).ToString();
+                //    ((TextBox)this.FindControl("TextBox" + (i + 1).ToString())).Text = aa[i].ToString();
+                //}
+
+
                 //string a = (string)str;
                 //aa[i] = (string)str[i];
                 while (str.Read())
@@ -90,13 +106,18 @@ namespace Web.Personnel
                 
                     
                 
-                for (int i = 2; i < 34; i++)
+                for (int i = 4; i <= 34; i++)
                 {
-                    string b = ((TextBox)this.FindControl("TextBox" + (i + 1).ToString())).ToString();
-                    ((TextBox)this.FindControl("TextBox" + (i + 1).ToString())).Text = aa[i].ToString();
+                    //string b = ((DropDownList)this.FindControl("DropDownList" + (i + 1).ToString())).ToString();
+                    //((DropDownList)this.FindControl("DropDownList" + (i + 1).ToString())).Text = aa[i].ToString();
+                    ListItem item = ((DropDownList)this.FindControl("DropDownList" + i.ToString())).Items.FindByText(aa[i].ToString());
+                    if (item != null) {
+                        item.Selected = true;
+                    }
                 }
                 TextBox1.Text = aa[0].ToString();
                 TextBox2.Text = aa[1].ToString();
+                TextBox3.Text = aa[2].ToString();
                 TextBox35.Text = aa[34].ToString();
                 TextBox36.Text = aa[35].ToString();
                 TextBox37.Text = aa[36].ToString();
@@ -118,8 +139,17 @@ namespace Web.Personnel
                 {
                     conn.Open();
                 }
+                string moth = "";
+                if (Convert.ToInt32(Request.Form["TextBox2"].Trim()) < 10)
+                {
+                    moth = "0" + Convert.ToInt32(Request.Form["TextBox2"].Trim());
+                }
+                else 
+                {
+                    moth =  Request.Form["TextBox2"].Trim();
+                }
                 //str = conn.BeginTransaction();
-                string sqlStr = "update gongzi_kaoqinjilu set year='" + Request.Form["TextBox1"].Trim() + "',moth='" + Request.Form["TextBox2"].Trim() + "',name='" + Request.Form["TextBox3"].Trim() + "',E='" + Request.Form["TextBox4"].Trim() + "',F='" + Request.Form["TextBox5"].Trim() + "',G='" + Request.Form["TextBox6"].Trim() + "',H='" + Request.Form["TextBox7"].Trim() + "',I='" + Request.Form["TextBox8"].Trim() + "',J='" + Request.Form["TextBox9"].Trim() + "',K='" + Request.Form["TextBox10"].Trim() + "',L='" + Request.Form["TextBox11"].Trim() + "',M='" + Request.Form["TextBox12"].Trim() + "',N='" + Request.Form["TextBox13"].Trim() + "',O='" + Request.Form["TextBox14"].Trim() + "',P='" + Request.Form["TextBox15"].Trim() + "',Q='" + Request.Form["TextBox16"].Trim() + "',R='" + Request.Form["TextBox17"].Trim() + "',S='" + Request.Form["TextBox18"].Trim() + "',T='" + Request.Form["TextBox19"].Trim() + "',U='" + Request.Form["TextBox20"].Trim() + "',V='" + Request.Form["TextBox21"].Trim() + "',W='" + Request.Form["TextBox22"].Trim() + "',X='" + Request.Form["TextBox23"].Trim() + "',Y='" + Request.Form["TextBox24"].Trim() + "',Z='" + Request.Form["TextBox25"].Trim() + "',AA='" + Request.Form["TextBox26"].Trim() + "',AB='" + Request.Form["TextBox27"].Trim() + "',AC='" + Request.Form["TextBox28"].Trim() + "',AD='" + Request.Form["TextBox29"].Trim() + "',AE='" + Request.Form["TextBox30"].Trim() + "',AF='" + Request.Form["TextBox31"].Trim() + "',AG='" + Request.Form["TextBox32"].Trim() + "',AH='" + Request.Form["TextBox33"].Trim() + "',AI='" + Request.Form["TextBox34"].Trim() + "',AJ='" + Request.Form["TextBox35"].Trim() + "',AK='" + Request.Form["TextBox36"].Trim() + "',AL='" + Request.Form["TextBox37"].Trim() + "',AM='" + Request.Form["TextBox38"].Trim() + "',AN='" + Request.Form["TextBox39"].Trim() + "' where id='" + bb[39] + "'";
+                string sqlStr = "update gongzi_kaoqinjilu set year='" + Request.Form["TextBox1"].Trim() + "',moth='" + moth + "',name='" + Request.Form["TextBox3"].Trim() + "',E='" + Request.Form["DropDownList4"].Trim() + "',F='" + Request.Form["DropDownList5"].Trim() + "',G='" + Request.Form["DropDownList6"].Trim() + "',H='" + Request.Form["DropDownList7"].Trim() + "',I='" + Request.Form["DropDownList8"].Trim() + "',J='" + Request.Form["DropDownList9"].Trim() + "',K='" + Request.Form["DropDownList10"].Trim() + "',L='" + Request.Form["DropDownList11"].Trim() + "',M='" + Request.Form["DropDownList12"].Trim() + "',N='" + Request.Form["DropDownList13"].Trim() + "',O='" + Request.Form["DropDownList14"].Trim() + "',P='" + Request.Form["DropDownList15"].Trim() + "',Q='" + Request.Form["DropDownList16"].Trim() + "',R='" + Request.Form["DropDownList17"].Trim() + "',S='" + Request.Form["DropDownList18"].Trim() + "',T='" + Request.Form["DropDownList19"].Trim() + "',U='" + Request.Form["DropDownList20"].Trim() + "',V='" + Request.Form["DropDownList21"].Trim() + "',W='" + Request.Form["DropDownList22"].Trim() + "',X='" + Request.Form["DropDownList23"].Trim() + "',Y='" + Request.Form["DropDownList24"].Trim() + "',Z='" + Request.Form["DropDownList25"].Trim() + "',AA='" + Request.Form["DropDownList26"].Trim() + "',AB='" + Request.Form["DropDownList27"].Trim() + "',AC='" + Request.Form["DropDownList28"].Trim() + "',AD='" + Request.Form["DropDownList29"].Trim() + "',AE='" + Request.Form["DropDownList30"].Trim() + "',AF='" + Request.Form["DropDownList31"].Trim() + "',AG='" + Request.Form["DropDownList32"].Trim() + "',AH='" + Request.Form["DropDownList33"].Trim() + "',AI='" + Request.Form["DropDownList34"].Trim() + "',AJ='" + Request.Form["TextBox35"].Trim() + "',AK='" + Request.Form["TextBox36"].Trim() + "',AL='" + Request.Form["TextBox37"].Trim() + "',AM='" + Request.Form["TextBox38"].Trim() + "',AN='" + Request.Form["TextBox39"].Trim() + "' where id='" + bb[39] + "'";
                 cmd = new SqlCommand(sqlStr, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();

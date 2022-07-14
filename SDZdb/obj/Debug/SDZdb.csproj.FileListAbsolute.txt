@@ -45,3 +45,7 @@ D:\git_version\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
 D:\git_version\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
 D:\git_version\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
 D:\git_version\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb
+F:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.dll
+F:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
+F:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
+F:\yhltd129\工作\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb

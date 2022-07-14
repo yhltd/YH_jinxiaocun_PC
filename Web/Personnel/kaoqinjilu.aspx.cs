@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDZdb;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,13 +20,13 @@ namespace Web.Personnel
             {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
             }
-            DropDownList1.Items.FindByText(DateTime.Now.Year.ToString()).Selected = true;
+            //DropDownList1.Items.FindByText(DateTime.Now.Year.ToString()).Selected = true;
             str = (string[])Session["arr7"];
-            if (str[1].ToString() == "0")
-            {
-                Button2.Enabled = false;
-                Button2.BackColor = System.Drawing.ColorTranslator.FromHtml("gray");
-            }
+            //if (str[1].ToString() == "0")
+            //{
+            //    Button2.Enabled = false;
+            //    Button2.BackColor = System.Drawing.ColorTranslator.FromHtml("gray");
+            //}
             if (str[4].ToString() == "0")
             {
                 Button1.Enabled = false;
@@ -37,29 +38,110 @@ namespace Web.Personnel
             {
                 Server.Transfer("../Personnel/wuquanxian.aspx");
             }
+
+            HrMingXiModel hm = new HrMingXiModel();
+            List<gongzi_kaoqinjilu> list = hm.getKaoQin(Session["gongsi"].ToString());
+            List<kaoqinhuizong> kaoqin = new List<kaoqinhuizong>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                kaoqinhuizong kq = new kaoqinhuizong();
+                kq.id = list[i].id;
+                kq.name = list[i].name;
+                kq.C = list[i].year;
+                kq.D = list[i].moth;
+                kq.E = list[i].AJ;
+                kq.F = list[i].AK;
+                kq.G = list[i].AL;
+                kq.H = list[i].AM;
+                kq.I = list[i].AN;
+                kaoqin.Add(kq);
+            }
+            this.GridView1.DataSource = kaoqin;
+            this.GridView1.DataBind();
         }
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Session["year"] = Request.Form["DropDownList1"];
-            Session["moth"] = Request.Form["DropDownList2"];
-            GridView1.DataSourceID = "SqlDataSource2";
-            DropDownList1.ClearSelection();
-            DropDownList1.Items.FindByText(DateTime.Now.Year.ToString()).Selected = true;
+            string ks = Request.Form["ks"];
+            string js = Request.Form["js"];
+            if (ks == "")
+            {
+                ks = "190001";
+            }
+            else 
+            {
+                ks = ks.Split('-')[0] + ks.Split('-')[1];
+            }
+            if (js == "")
+            {
+                js = "220001";
+            }
+            else 
+            {
+                js = js.Split('-')[0] + js.Split('-')[1];
+            }
+            
+            HrMingXiModel hm = new HrMingXiModel();
+            List<gongzi_kaoqinjilu> list = hm.getKaoQinQuery(Session["gongsi"].ToString(),ks,js);
+            List<kaoqinhuizong> kaoqin = new List<kaoqinhuizong>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                kaoqinhuizong kq = new kaoqinhuizong();
+                kq.id = list[i].id;
+                kq.name = list[i].name;
+                kq.C = list[i].year;
+                kq.D = list[i].moth;
+                kq.E = list[i].AJ;
+                kq.F = list[i].AK;
+                kq.G = list[i].AL;
+                kq.H = list[i].AM;
+                kq.I = list[i].AN;
+                kaoqin.Add(kq);
+            }
+            this.GridView1.DataSource = kaoqin;
+            this.GridView1.DataBind();
+
+            //Session["year"] = Request.Form["DropDownList1"];
+            //Session["moth"] = Request.Form["DropDownList2"];
+            //GridView1.DataSourceID = "SqlDataSource2";
+            //DropDownList1.ClearSelection();
+            //DropDownList1.Items.FindByText(DateTime.Now.Year.ToString()).Selected = true;
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            Session["year"] = Request.Form["DropDownList1"];
-            Session["moth"] = Request.Form["DropDownList2"];
-            Server.Transfer("../Personnel/kaoqinjiluAdd.aspx");
-        }
+        //protected void Button2_Click(object sender, EventArgs e)
+        //{
+
+
+        //    //Session["year"] = Request.Form["DropDownList1"];
+        //    //Session["moth"] = Request.Form["DropDownList2"];
+        //    //Server.Transfer("../Personnel/kaoqinjiluAdd.aspx");
+        //}
 
         protected void Button3_Click(object sender, EventArgs e)
         {
-            GridView1.DataSourceID = "SqlDataSource1";
-            GridView1.DataBind();
-            DropDownList1.ClearSelection();
-            DropDownList1.Items.FindByText(DateTime.Now.Year.ToString()).Selected = true;
+            HrMingXiModel hm = new HrMingXiModel();
+            List<gongzi_kaoqinjilu> list = hm.getKaoQin(Session["gongsi"].ToString());
+            List<kaoqinhuizong> kaoqin = new List<kaoqinhuizong>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                kaoqinhuizong kq = new kaoqinhuizong();
+                kq.id = list[i].id;
+                kq.name = list[i].name;
+                kq.C = list[i].year;
+                kq.D = list[i].moth;
+                kq.E = list[i].AJ;
+                kq.F = list[i].AK;
+                kq.G = list[i].AL;
+                kq.H = list[i].AM;
+                kq.I = list[i].AN;
+                kaoqin.Add(kq);
+            }
+            this.GridView1.DataSource = kaoqin;
+            this.GridView1.DataBind();
+
+            //GridView1.DataSourceID = "SqlDataSource1";
+            //GridView1.DataBind();
+            //DropDownList1.ClearSelection();
+            //DropDownList1.Items.FindByText(DateTime.Now.Year.ToString()).Selected = true;
         }
         protected void aaa(object sender, GridViewRowEventArgs e)
         {
@@ -80,17 +162,34 @@ namespace Web.Personnel
         protected void toExcel(object sender, EventArgs e)
         {
             HrMingXiModel hm = new HrMingXiModel();
-            List<gongzi_kaoqinmingxi> list = hm.kaoqin_mingxi_list(Session["gongsi"].ToString());
-            if (list != null)
+            List<gongzi_kaoqinjilu> list = hm.getKaoQin(Session["gongsi"].ToString());
+            List<kaoqinhuizong> kaoqinjilu = new List<kaoqinhuizong>();
+            for (int i = 0; i < list.Count; i++)
+            {
+                kaoqinhuizong kq = new kaoqinhuizong();
+                kq.id = list[i].id;
+                kq.name = list[i].name;
+                kq.C = list[i].year;
+                kq.D = list[i].moth;
+                kq.E = list[i].AJ;
+                kq.F = list[i].AK;
+                kq.G = list[i].AL;
+                kq.H = list[i].AM;
+                kq.I = list[i].AN;
+                kaoqinjilu.Add(kq);
+            }
+
+
+            if (kaoqinjilu != null)
             {
                 StringWriter sw = new StringWriter();
 
-                sw.WriteLine("姓名\t年\t月\t应到\t实到\t请假\t加班\t迟到\t部门");
+                sw.WriteLine("姓名\t年\t月\t应到\t实到\t请假\t加班\t迟到");
 
-                foreach (gongzi_kaoqinmingxi kaoqin in list)
+                foreach (kaoqinhuizong kaoqin in kaoqinjilu)
                 {
 
-                    sw.WriteLine(kaoqin.name + "\t" + kaoqin.C + "\t" + kaoqin.D + "\t" + kaoqin.E + "\t" + kaoqin.F + "\t" + kaoqin.G + "\t" + kaoqin.H + "\t" + kaoqin.I + "\t" + kaoqin.J );
+                    sw.WriteLine(kaoqin.name + "\t" + kaoqin.C + "\t" + kaoqin.D + "\t" + kaoqin.E + "\t" + kaoqin.F + "\t" + kaoqin.G + "\t" + kaoqin.H + "\t" + kaoqin.I );
 
                 }
 
@@ -108,7 +207,7 @@ namespace Web.Personnel
             }
             else
             {
-                Response.Write(" <script>alert('保存失败'); location='ming_xi.aspx';</script>");
+                Response.Write(" <script>alert('无数据'); </script>");
             }
 
         }

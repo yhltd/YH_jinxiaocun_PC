@@ -1653,6 +1653,7 @@
     <Content Include="Personnel\bumenxiangqing.aspx" />
     <Content Include="Personnel\bumenxiangqing1.aspx" />
     <Content Include="Personnel\changepwd.aspx" />
+    <Content Include="Personnel\shenpi.aspx" />
     <Content Include="Personnel\css\common.css" />
     <Content Include="Personnel\css\gridview.css" />
     <Content Include="Personnel\css\iframe_d.css" />
@@ -1724,8 +1725,10 @@
     <Content Include="Personnel\shuomingshu.aspx" />
     <Content Include="Personnel\size.aspx" />
     <Content Include="Personnel\wuquanxian.aspx" />
+    <Content Include="Personnel\yuangongdangan.aspx" />
     <Content Include="qi_chu.aspx" />
     <Content Include="RDLC\frm_ReportForm.aspx" />
+    <Content Include="RDLC\gongzitiao_print.aspx" />
     <Content Include="ru_ku.aspx" />
     <Content Include="sample\index.html" />
     <Content Include="sample\jquery.js" />
@@ -2444,6 +2447,13 @@
     <Compile Include="Personnel\changepwd.aspx.designer.cs">
       <DependentUpon>changepwd.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personnel\shenpi.aspx.cs">
+      <DependentUpon>shenpi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\shenpi.aspx.designer.cs">
+      <DependentUpon>shenpi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Personnel\gerensuode.aspx.cs">
       <DependentUpon>gerensuode.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2486,6 +2496,42 @@
     <Compile Include="Personnel\head.aspx.designer.cs">
       <DependentUpon>head.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personnel\HrModel\bainiantiantianmumen.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\bainiantiantianmumenmubiao.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\bainiantiantianmumenrenyuan.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\baitaoquanxian.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\baitaoquanxian_copy1.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\baitaoquanxian_copy2.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\baitaoquanxian_gongsi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\baitaoquanxian_renyun.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\dearhylo9_cangku.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\dearhylo9_jiandan.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\dearhylo9_renyuan.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\dearhylo9_tuihuo.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Personnel\HrModel\gongzi_gongzimingxi.cs">
       <DependentUpon>HrServer.tt</DependentUpon>
     </Compile>
@@ -2502,6 +2548,9 @@
       <DependentUpon>HrServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Personnel\HrModel\gongzi_renyuanManager.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_shenpi.cs">
       <DependentUpon>HrServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Personnel\HrModel\gongzi_shezhi.cs">
@@ -2525,6 +2574,156 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HrServer.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\kaozhiguang147852.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\kaozhiguang147852_gongzi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\kaozhiguang147852_jiben.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\kaozhiguang147852_jixie.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\kaozhiguang147852_sika.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_chanpinguanli.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_chanpinxinxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_chuku.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_fuzhu.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_gongyingshang.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_kehu.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_kucun.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_mingxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_mingxiguanli.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\liuchanglin_renyuan.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\lv_al.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\lv_bcd.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\lv_td.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\lv_xhjr.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\tb846607026_cunkuan.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\tb846607026_jibie.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\tb846607026_jine.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\tb846607026_peizhi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\tb846607026_shouyi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\tb846607026_tixian.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_chukubiao.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_gongyingshangxinxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_kehuxinxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_kucun.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_peizhibiao.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_renyaunxinxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_rukubiao.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_shangpinxinxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_tuihuobiao.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_xiadan.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\wodeliangnianfa_zhanghu.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zeng_stock.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zeng_user.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zeng_wares.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zhangfengliang2025_daili.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zhangfengliang2025_jishiben.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zhangfengliang2025_kucun.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zhangfengliang2025_mingxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zhangfengliang2025_renyuanguanli.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zhangfengliang2025_rukumingxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zhaobiaodailhuizong.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zheng_020826_config.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zheng_020826_gameInfo.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zheng_020826_model.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\zheng_020826_userInfo.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Personnel\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -2631,6 +2830,13 @@
     <Compile Include="Personnel\wuquanxian.aspx.designer.cs">
       <DependentUpon>wuquanxian.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personnel\yuangongdangan.aspx.cs">
+      <DependentUpon>yuangongdangan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\yuangongdangan.aspx.designer.cs">
+      <DependentUpon>yuangongdangan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="qi_chu.aspx.cs">
       <DependentUpon>qi_chu.aspx</DependentUpon>
@@ -2645,6 +2851,13 @@
     </Compile>
     <Compile Include="RDLC\frm_ReportForm.aspx.designer.cs">
       <DependentUpon>frm_ReportForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RDLC\gongzitiao_print.aspx.cs">
+      <DependentUpon>gongzitiao_print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RDLC\gongzitiao_print.aspx.designer.cs">
+      <DependentUpon>gongzitiao_print.aspx</DependentUpon>
     </Compile>
     <Compile Include="ru_ku.aspx.cs">
       <DependentUpon>ru_ku.aspx</DependentUpon>
@@ -3311,6 +3524,7 @@
     </Content>
     <Content Include="Personnel\download\云合未来人事管理系统_使用说明.rar" />
     <Content Include="download\云合未来进销存管理系统_使用说明.rar" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
     <None Include="Properties\PublishProfiles\jxc_test.pubxml" />
     <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />
@@ -3371,6 +3585,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="RDLC\Report2.rdlc" />
     <EmbeddedResource Include="RDLC\Report1.rdlc" />
   </ItemGroup>
   <PropertyGroup>

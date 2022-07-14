@@ -26,7 +26,7 @@
             $('#dj_yh').click(function () {
                 var newTr = '';
                 newTr += "<tr id='del_row" + row + "'>"
-                newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='0' /></td>"
+                newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' name='checkbox" + row + "' value='0' /></td>"
                 newTr += "<td class='item_td'>" + row + "</td>"
                 newTr += "<td class='item_td' id='sp_name" + row + "'></td>"
                 newTr += "<td class='item_td'>"
@@ -38,9 +38,9 @@
                 newTr += '</select></td>'
                 newTr += "<td class='item_td' id='sp_cplb" + row + "'></td>"
                 newTr += "<td class='item_td' id='sp_cpsj" + row + "'></td>"
-                newTr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' placeholder='总数量：'/></td>"
-                newTr += "<td class='item_td' id='sp_cpprice' + row + ''><input id='price" + row + "' type='number' autocomplete='off' class='table_input'/></td>"
-                newTr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/></td>"
+                newTr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' name='num" + row + "' type='number' autocomplete='off' class='table_input' placeholder='总数量：'/></td>"
+                newTr += "<td class='item_td' id='sp_cpprice' + row + ''><input id='price" + row + "' name='price" + row + "' type='number' autocomplete='off' class='table_input'/></td>"
+                newTr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/><input type='text' id='check" + row + "' hidden='hidden' name='check" + row + "' /></td>"
                 newTr += '</tr>'
                 $('#biao_ge').append(newTr);
                 row++;
@@ -143,6 +143,7 @@
                     var item = { id: e, num: $('#num' + index).val(), price: $('#price' + index).val() };
                     ruku.itemList.push(item)
                     console.log(ruku.itemList)
+                    $("#check" + index).val("true");
                 } else {
                     for (var i = 0; i < ruku.itemList.length; i++) {
                         if (ruku.itemList[i].id == $('#checkbox' + index).val()) {
@@ -151,6 +152,7 @@
                         }
                     }
                     console.log(ruku.itemList)
+                    $("#check" + index).val("");
                 }
 
             } else {
@@ -166,7 +168,7 @@
             var insertStr = '';
             for (var j = 0; j < result.length; j++) {
                 insertStr += "<tr id='del_row" + row + "'>"
-                insertStr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' value='" + result[j].id + "'></checkbox></td>"
+                insertStr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' name='checkbox" + row + "' value='" + result[j].id + "'></checkbox></td>"
                 insertStr += "<td class='item_td'>" + row + "</td>"
                 insertStr += "<td class='item_td' id='sp_name" + row + "'>" + result[j].name + "</td>"
                 insertStr += "<td class='item_td'>"
@@ -182,12 +184,13 @@
                 insertStr += "</select></td>"
                 insertStr += "<td class='item_td' id='sp_cplb" + row + "'>" + result[j].lei_bie + "</td>"
                 insertStr += "<td class='item_td' id='sp_cpsj" + row + "'>" + result[j].dan_wei + "</td>"
-                insertStr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].maxNum + "'/></td>"
-                insertStr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' type='number' autocomplete='off' oninput='bindInput_price(this.value," + result[j].id + ")' class='table_input' /></td>"
-                insertStr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/></td>"
+                insertStr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' name='num" + row + "' type='number' autocomplete='off' class='table_input' oninput='bindInput_num(this.value," + result[j].id + ")' placeholder='总数量：" + result[j].maxNum + "'/></td>"
+                insertStr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' name='price" + row + "' type='number' autocomplete='off' oninput='bindInput_price(this.value," + result[j].id + ")' class='table_input' /></td>"
+                insertStr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/><input type='text' id='check" + row + "' hidden='hidden' name='check" + row + "' /></td>"
                 insertStr += "</tr>"
                 row++;
             }
+            $("#hangshu").val(row)
             $('#biao_ge').append(insertStr);
         }
 
@@ -401,6 +404,7 @@
 <body>
     <form id='form1' runat='server'>
         <div>
+            <input type="hidden" id="hangshu" name="hangshu" />
             <input type='hidden' id='tj_pd_id' name='tj_pd' />
             <input type='hidden' id='row_i1' name='row_i' />
             <input type='hidden' id='xx_hidden' value='tj_false' />
@@ -408,6 +412,8 @@
                 <input id='ru_cx' class='select_input' autocomplete='off' oninput='bindInput_select(this.value)' placeholder='按商品名称/商品代码搜索' />
                 <input id='ru_bt' class='rk_bt' type='button' value='出库'/> 
                 <input id='shuaxin' class='rk_bt' type='button' value='刷新'/> 
+                <asp:Button ID="btn_print" class="button" onmouseover="this.className='ui-btn ui-btn-search-hover'"
+                                onmouseout="this.className='button'" runat="server" Text="e打印" OnClick="toExcel" Width="10%" Height="30px" />
             </div> 
             <div class="d-main" id='table_div' style='width:100%;overflow:scroll;' >
                 <table id='biao_ge' name='bg_row' cellspacing='0' cellpadding='0'>

@@ -28,6 +28,10 @@ namespace Web.Personnel
             TextBox6.Text = "0";
             TextBox7.Text = "0";
             TextBox8.Text = "0";
+
+            
+
+
         }
 
         protected void Button2_Click(object sender, EventArgs e)
@@ -58,6 +62,10 @@ namespace Web.Personnel
                         else if (Convert.ToInt32(Request.Form["TextBox" + i]) < 1)
                         {
                             sqlStr += "'1',";
+                        }
+                        else if (Convert.ToInt32(Request.Form["TextBox" + i]) < 10)
+                        {
+                            sqlStr += "'" + "0" + Convert.ToInt32(Request.Form["TextBox" + i]) + "',";
                         }
                         else 
                         {

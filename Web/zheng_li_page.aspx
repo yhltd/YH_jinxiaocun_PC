@@ -171,8 +171,7 @@
                         <th class="auto-style1" style="width: 228px">商品名称</th>
                         <th class="auto-style1" style="width: 228px">商品类别</th>
                         <th class="auto-style1" style="width: 228px">商品单位</th>
-                         <th class="auto-style1" style="width: 70px">备注</th>
-
+                         <th class="auto-style1" style="width: 228px">备注</th>
                     </tr>
                     <%
                         System.Collections.Generic.List<Web.Server.yh_jinxiaocun_zhengli> zl_and_jc_info = Session["zl_and_jc_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_zhengli>;

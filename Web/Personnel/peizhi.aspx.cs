@@ -42,7 +42,7 @@ namespace Web.Personnel
                 conn.Open();
             }
             //str = conn.BeginTransaction();
-            string sqlStr = "insert into gongzi_peizhi (kaoqin,kaoqin_peizhi,bumen,zhiwu,year,month,day,gongsi) VALUES ('-','-','-','-','-','-','-','";
+            string sqlStr = "insert into gongzi_peizhi (kaoqin,kaoqin_peizhi,bumen,zhiwu,year,month,day,chidao_koukuan,geren_yiliao,qiye_yiliao,geren_shengyu,qiye_shengyu,geren_gongjijin,qiye_gongjijin,yiliao_jishu,geren_nianjin,qiye_nianjin,zhinajin,nianjin_jishu,lixi,geren_yanglao,qiye_yanglao,gangwei,gangwei_gongzi,geren_shiye,qiye_shiye,gongzi,shuilv,kuadu_gongzi,qiye_gongshang,jintie,nianjin1,jiabanfei,yansuangongshi,queqin_koukuan,gongsi) VALUES ('','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','";
             sqlStr += Session["gongsi"].ToString()+"');";
             cmd = new SqlCommand(sqlStr, conn);
             cmd.ExecuteNonQuery();

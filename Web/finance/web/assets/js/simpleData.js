@@ -22,7 +22,6 @@ $(function () {
             }
         }
     });
-    
 })
 
 function selectBtn() {
@@ -165,6 +164,7 @@ function setTable(data) {
                 }
             },
             { field: 'project', align: 'center', title: '项目名称', width: 300 },
+            { field: 'kehu', align: 'center', title: '客户/供应商', width: 300 },
             { field: 'receivable', align: 'center', title: '应收', width: 100 },
 		    { field: 'receipts', align: 'center', title: '实收', width: 100 },
             {
@@ -179,7 +179,8 @@ function setTable(data) {
 		            return row.cope - row.payment;
 		        }
 		    },
-            { field: 'accounting', align: 'center', title: '科目', width: 220 }
+            { field: 'accounting', align: 'center', title: '科目', width: 220 },
+            { field: 'zhaiyao', align: 'center', title: '摘要', width: 220 }
         ]]
     })
 
@@ -247,7 +248,9 @@ function toUpd() {
         item.receipts = params.receipts;
         item.cope = params.cope;
         item.payment = params.payment;
-        item.insert_date = params.insert_date
+        item.insert_date = params.insert_date;
+        item.kehu = params.kehu;
+        item.zhaiyao = params.zhaiyao;
         $.ajax({
             type: 'Post',
             url: "web_service/simpleData.asmx/updSimpleData",

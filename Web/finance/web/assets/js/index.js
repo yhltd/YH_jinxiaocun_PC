@@ -151,6 +151,10 @@ var left_data = [{
         iconCls: 'icon-jijianzongzhang',
         url: 'simpleAccounting.aspx'
     }, {
+        text: '报表',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'nianbao.aspx'
+    }, {
         text: '使用说明',
         iconCls: 'icon-shiyongshuoming',
         url: 'instructions.aspx'

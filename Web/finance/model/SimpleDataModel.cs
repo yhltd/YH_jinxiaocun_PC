@@ -38,7 +38,7 @@ namespace Web.finance.model
 
             var projectParam = new SqlParameter("@project", financePage.selectParamsMap["project"]);
 
-            string sql = "select a.id,a.company,a.insert_date,a.project,a.receivable,a.receipts,a.cope,a.payment,a.accounting from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and project like '%'+@project+'%') as a where a.rownum > @minPage and a.rownum < @maxPage";
+            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and project like '%'+@project+'%') as a where a.rownum > @minPage and a.rownum < @maxPage";
 
             if (start_date != "")
             {
@@ -81,5 +81,48 @@ namespace Web.finance.model
             }
             return count;
         }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<SimpleData> getNianBaoByNian_shouru(string company, string ks, string js)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            string sql = "select a.id,a.zhaiyao,a.kehu,a.receivable,'' as project,'' as company,0.0 as receipts,0.0 as cope,0.0 as payment,'' as accounting, insert_date from (select id,zhaiyao,kehu,(convert(Decimal,receivable)-convert(Decimal,receipts)) as receivable,insert_date from SimpleData where company= @company and (convert(Decimal,receivable)-convert(Decimal,receipts))<>0 and insert_date>= @ks and insert_date<= @js) as a";
+
+            var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, jsParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<SimpleData> getNianBaoByNian_zhichu(string company, string ks, string js)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            string sql = "select a.id,a.zhaiyao,a.kehu,a.cope,'' as project,'' as company,0.0 as receipts,0.0 as receivable,0.0 as payment,'' as accounting,insert_date from (select id,zhaiyao,kehu,(convert(Decimal,cope)-convert(Decimal,payment)) as cope,insert_date from SimpleData where company= @company and (convert(Decimal,cope)-convert(Decimal,payment))<>0 and insert_date>= @ks and insert_date<= @js) as a";
+
+            var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, jsParam);
+
+            return result.ToList();
+        }
+
     }
 }

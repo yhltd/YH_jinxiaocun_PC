@@ -103,6 +103,8 @@
     <EntitySetMapping Name="SimpleData">
       <EntityTypeMapping TypeName="FinanceModel.SimpleData">
         <MappingFragment StoreEntitySet="SimpleData">
+          <ScalarProperty Name="zhaiyao" ColumnName="zhaiyao" />
+          <ScalarProperty Name="kehu" ColumnName="kehu" />
           <ScalarProperty Name="insert_date" ColumnName="insert_date" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="company" ColumnName="company" />
@@ -179,6 +181,91 @@
           <ScalarProperty Name="kmzz_update" ColumnName="kmzz_update" />
           <ScalarProperty Name="kmzz_delete" ColumnName="kmzz_delete" />
           <ScalarProperty Name="kmzz_add" ColumnName="kmzz_add" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contract_manage">
+      <EntityTypeMapping TypeName="FinanceModel.contract_manage">
+        <MappingFragment StoreEntitySet="contract_manage">
+          <ScalarProperty Name="send_judge" ColumnName="send_judge" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="send_out" ColumnName="send_out" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+          <ScalarProperty Name="creator" ColumnName="creator" />
+          <ScalarProperty Name="second_party" ColumnName="second_party" />
+          <ScalarProperty Name="first_party" ColumnName="first_party" />
+          <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+          <ScalarProperty Name="contract_name" ColumnName="contract_name" />
+          <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contract_personnel">
+      <EntityTypeMapping TypeName="FinanceModel.contract_personnel">
+        <MappingFragment StoreEntitySet="contract_personnel">
+          <ScalarProperty Name="full_name" ColumnName="full_name" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="power" ColumnName="power" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contract_personnel_pitcure">
+      <EntityTypeMapping TypeName="FinanceModel.contract_personnel_pitcure">
+        <MappingFragment StoreEntitySet="contract_personnel_pitcure">
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="personnel_id" ColumnName="personnel_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contract_personnel_power">
+      <EntityTypeMapping TypeName="FinanceModel.contract_personnel_power">
+        <MappingFragment StoreEntitySet="contract_personnel_power">
+          <ScalarProperty Name="hetongguanli_dow" ColumnName="hetongguanli_dow" />
+          <ScalarProperty Name="yinzhangguanli_add" ColumnName="yinzhangguanli_add" />
+          <ScalarProperty Name="yinzhangguanli_upd" ColumnName="yinzhangguanli_upd" />
+          <ScalarProperty Name="yinzhangguanli_del" ColumnName="yinzhangguanli_del" />
+          <ScalarProperty Name="yinzhangguanli_sel" ColumnName="yinzhangguanli_sel" />
+          <ScalarProperty Name="zhanghuzhongxin_add" ColumnName="zhanghuzhongxin_add" />
+          <ScalarProperty Name="zhanghuzhongxin_upd" ColumnName="zhanghuzhongxin_upd" />
+          <ScalarProperty Name="zhanghuzhongxin_del" ColumnName="zhanghuzhongxin_del" />
+          <ScalarProperty Name="zhanghuzhongxin_sel" ColumnName="zhanghuzhongxin_sel" />
+          <ScalarProperty Name="hetongguanli_add" ColumnName="hetongguanli_add" />
+          <ScalarProperty Name="hetongguanli_upd" ColumnName="hetongguanli_upd" />
+          <ScalarProperty Name="hetongguanli_del" ColumnName="hetongguanli_del" />
+          <ScalarProperty Name="hetongguanli_sel" ColumnName="hetongguanli_sel" />
+          <ScalarProperty Name="gerenzhongxin_upd" ColumnName="gerenzhongxin_upd" />
+          <ScalarProperty Name="gerenzhongxin_sel" ColumnName="gerenzhongxin_sel" />
+          <ScalarProperty Name="personnel_id" ColumnName="personnel_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contract_picture">
+      <EntityTypeMapping TypeName="FinanceModel.contract_picture">
+        <MappingFragment StoreEntitySet="contract_picture">
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="invoice">
+      <EntityTypeMapping TypeName="FinanceModel.invoice">
+        <MappingFragment StoreEntitySet="invoice">
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="jine" ColumnName="jine" />
+          <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
+          <ScalarProperty Name="invoice_type" ColumnName="invoice_type" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="zhaiyao" ColumnName="zhaiyao" />
+          <ScalarProperty Name="riqi" ColumnName="riqi" />
+          <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

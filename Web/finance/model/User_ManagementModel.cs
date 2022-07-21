@@ -50,7 +50,29 @@ namespace Web.finance.model
             return financePage;
         }
 
+        public FinancePage<User_ManagementItem> queryList(FinancePage<User_ManagementItem> financePage, string company,string name)
+        {
+            //公司
+            var companyParam = new SqlParameter("@company", company);
+            //用户名
+            var nameParam = new SqlParameter("@name", name);
+            //查询最小行号
+            var minPageParam = new SqlParameter("@minPageParam", financePage.getMin());
+            //查询最大行号
+            var maxPageParam = new SqlParameter("@maxPageParam", financePage.getMax());
 
+            string sql = "select a.id,a.rownum,a.name,a.pwd,a.do,a.bianhao from (select *,row_number() over(order by id) as rownum from Account where company = @company and name like '%'+@name+'%') as a where a.rownum > @minPageParam and a.rownum < @maxPageParam  ";
+            var result = fin.Database.SqlQuery<User_ManagementItem>(sql, companyParam, nameParam, minPageParam, maxPageParam);
+            try
+            {
+                financePage.pageList = result.ToList();
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+            }
+            return financePage;
+        }
 
 
 

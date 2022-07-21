@@ -8,11 +8,17 @@
         <EntityContainer Name="FinanceModelStoreContainer">
           <EntitySet Name="Account" EntityType="FinanceModel.Store.Account" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Accounting" EntityType="FinanceModel.Store.Accounting" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="contract_manage" EntityType="FinanceModel.Store.contract_manage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="contract_personnel" EntityType="FinanceModel.Store.contract_personnel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="contract_personnel_pitcure" EntityType="FinanceModel.Store.contract_personnel_pitcure" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="contract_personnel_power" EntityType="FinanceModel.Store.contract_personnel_power" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="contract_picture" EntityType="FinanceModel.Store.contract_picture" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Department" EntityType="FinanceModel.Store.Department" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FinancingExpenditure" EntityType="FinanceModel.Store.FinancingExpenditure" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FinancingIncome" EntityType="FinanceModel.Store.FinancingIncome" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="InvestmentExpenditure" EntityType="FinanceModel.Store.InvestmentExpenditure" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="InvestmentIncome" EntityType="FinanceModel.Store.InvestmentIncome" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="invoice" EntityType="FinanceModel.Store.invoice" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ManagementExpenditure" EntityType="FinanceModel.Store.ManagementExpenditure" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ManagementIncome" EntityType="FinanceModel.Store.ManagementIncome" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="quanxian" EntityType="FinanceModel.Store.quanxian" store:Type="Tables" Schema="dbo" />
@@ -44,6 +50,71 @@
           <Property Name="borrowed" Type="money" />
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="company" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="contract_manage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="contract_code" Type="varchar" MaxLength="255" />
+          <Property Name="contract_name" Type="varchar" MaxLength="255" />
+          <Property Name="contract_type" Type="varchar" MaxLength="255" />
+          <Property Name="first_party" Type="varchar" MaxLength="255" />
+          <Property Name="second_party" Type="varchar" MaxLength="255" />
+          <Property Name="creator" Type="varchar" MaxLength="255" />
+          <Property Name="creation_date" Type="varchar" MaxLength="255" />
+          <Property Name="send_out" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="send_judge" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="contract_personnel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="varchar" MaxLength="255" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="power" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="full_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="contract_personnel_pitcure">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="personnel_id" Type="varchar" MaxLength="255" />
+          <Property Name="picture" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="contract_personnel_power">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="personnel_id" Type="varchar" MaxLength="255" />
+          <Property Name="gerenzhongxin_sel" Type="varchar" MaxLength="255" />
+          <Property Name="gerenzhongxin_upd" Type="varchar" MaxLength="255" />
+          <Property Name="hetongguanli_sel" Type="varchar" MaxLength="255" />
+          <Property Name="hetongguanli_del" Type="varchar" MaxLength="255" />
+          <Property Name="hetongguanli_upd" Type="varchar" MaxLength="255" />
+          <Property Name="hetongguanli_add" Type="varchar" MaxLength="255" />
+          <Property Name="zhanghuzhongxin_sel" Type="varchar" MaxLength="255" />
+          <Property Name="zhanghuzhongxin_del" Type="varchar" MaxLength="255" />
+          <Property Name="zhanghuzhongxin_upd" Type="varchar" MaxLength="255" />
+          <Property Name="zhanghuzhongxin_add" Type="varchar" MaxLength="255" />
+          <Property Name="yinzhangguanli_sel" Type="varchar" MaxLength="255" />
+          <Property Name="yinzhangguanli_del" Type="varchar" MaxLength="255" />
+          <Property Name="yinzhangguanli_upd" Type="varchar" MaxLength="255" />
+          <Property Name="yinzhangguanli_add" Type="varchar" MaxLength="255" />
+          <Property Name="hetongguanli_dow" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="contract_picture">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="contract_id" Type="varchar" MaxLength="255" />
+          <Property Name="picture" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -85,6 +156,20 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="investmentIncome" Type="varchar" MaxLength="255" />
           <Property Name="company" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="varchar" MaxLength="255" />
+          <Property Name="riqi" Type="varchar" MaxLength="255" />
+          <Property Name="zhaiyao" Type="varchar" MaxLength="255" />
+          <Property Name="unit" Type="varchar" MaxLength="255" />
+          <Property Name="invoice_type" Type="varchar" MaxLength="255" />
+          <Property Name="invoice_no" Type="varchar" MaxLength="255" />
+          <Property Name="jine" Type="varchar" MaxLength="255" />
+          <Property Name="remarks" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="ManagementExpenditure">
           <Key>
@@ -162,6 +247,8 @@
           <Property Name="payment" Type="money" />
           <Property Name="accounting" Type="varchar" MaxLength="255" />
           <Property Name="insert_date" Type="datetime" />
+          <Property Name="kehu" Type="varchar" MaxLength="255" />
+          <Property Name="zhaiyao" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="VoucherSummary">
           <Key>
@@ -208,6 +295,12 @@
           <EntitySet Name="VoucherSummary" EntityType="FinanceModel.VoucherSummary" />
           <EntitySet Name="VoucherWord" EntityType="FinanceModel.VoucherWord" />
           <EntitySet Name="quanxian" EntityType="FinanceModel.quanxian" />
+          <EntitySet Name="contract_manage" EntityType="FinanceModel.contract_manage" />
+          <EntitySet Name="contract_personnel" EntityType="FinanceModel.contract_personnel" />
+          <EntitySet Name="contract_personnel_pitcure" EntityType="FinanceModel.contract_personnel_pitcure" />
+          <EntitySet Name="contract_personnel_power" EntityType="FinanceModel.contract_personnel_power" />
+          <EntitySet Name="contract_picture" EntityType="FinanceModel.contract_picture" />
+          <EntitySet Name="invoice" EntityType="FinanceModel.invoice" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -311,6 +404,8 @@
           <Property Name="payment" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="accounting" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
           <Property Type="DateTime" Name="insert_date" Precision="3" />
+          <Property Type="String" Name="kehu" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhaiyao" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VoucherSummary">
           <Key>
@@ -376,6 +471,85 @@
           <Property Type="String" Name="zhgl_update" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="zhgl_select" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="bianhao" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="contract_manage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="contract_code" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contract_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contract_type" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="first_party" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="second_party" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="creator" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="creation_date" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="send_out" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="send_judge" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="contract_personnel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="user_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="power" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="full_name" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="contract_personnel_pitcure">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="personnel_id" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="picture" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="contract_personnel_power">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="personnel_id" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gerenzhongxin_sel" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gerenzhongxin_upd" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hetongguanli_sel" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hetongguanli_del" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hetongguanli_upd" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hetongguanli_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhanghuzhongxin_sel" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhanghuzhongxin_del" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhanghuzhongxin_upd" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhanghuzhongxin_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="yinzhangguanli_sel" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="yinzhangguanli_del" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="yinzhangguanli_upd" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="yinzhangguanli_add" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="hetongguanli_dow" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="contract_picture">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="contract_id" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="picture" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="invoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhaiyao" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="unit" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoice_type" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="invoice_no" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jine" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="remarks" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -485,6 +659,8 @@
           <EntitySetMapping Name="SimpleData">
             <EntityTypeMapping TypeName="FinanceModel.SimpleData">
               <MappingFragment StoreEntitySet="SimpleData">
+                <ScalarProperty Name="zhaiyao" ColumnName="zhaiyao" />
+                <ScalarProperty Name="kehu" ColumnName="kehu" />
                 <ScalarProperty Name="insert_date" ColumnName="insert_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="company" ColumnName="company" />
@@ -561,6 +737,91 @@
                 <ScalarProperty Name="kmzz_update" ColumnName="kmzz_update" />
                 <ScalarProperty Name="kmzz_delete" ColumnName="kmzz_delete" />
                 <ScalarProperty Name="kmzz_add" ColumnName="kmzz_add" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contract_manage">
+            <EntityTypeMapping TypeName="FinanceModel.contract_manage">
+              <MappingFragment StoreEntitySet="contract_manage">
+                <ScalarProperty Name="send_judge" ColumnName="send_judge" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="send_out" ColumnName="send_out" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="creator" ColumnName="creator" />
+                <ScalarProperty Name="second_party" ColumnName="second_party" />
+                <ScalarProperty Name="first_party" ColumnName="first_party" />
+                <ScalarProperty Name="contract_type" ColumnName="contract_type" />
+                <ScalarProperty Name="contract_name" ColumnName="contract_name" />
+                <ScalarProperty Name="contract_code" ColumnName="contract_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contract_personnel">
+            <EntityTypeMapping TypeName="FinanceModel.contract_personnel">
+              <MappingFragment StoreEntitySet="contract_personnel">
+                <ScalarProperty Name="full_name" ColumnName="full_name" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="power" ColumnName="power" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contract_personnel_pitcure">
+            <EntityTypeMapping TypeName="FinanceModel.contract_personnel_pitcure">
+              <MappingFragment StoreEntitySet="contract_personnel_pitcure">
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="personnel_id" ColumnName="personnel_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contract_personnel_power">
+            <EntityTypeMapping TypeName="FinanceModel.contract_personnel_power">
+              <MappingFragment StoreEntitySet="contract_personnel_power">
+                <ScalarProperty Name="hetongguanli_dow" ColumnName="hetongguanli_dow" />
+                <ScalarProperty Name="yinzhangguanli_add" ColumnName="yinzhangguanli_add" />
+                <ScalarProperty Name="yinzhangguanli_upd" ColumnName="yinzhangguanli_upd" />
+                <ScalarProperty Name="yinzhangguanli_del" ColumnName="yinzhangguanli_del" />
+                <ScalarProperty Name="yinzhangguanli_sel" ColumnName="yinzhangguanli_sel" />
+                <ScalarProperty Name="zhanghuzhongxin_add" ColumnName="zhanghuzhongxin_add" />
+                <ScalarProperty Name="zhanghuzhongxin_upd" ColumnName="zhanghuzhongxin_upd" />
+                <ScalarProperty Name="zhanghuzhongxin_del" ColumnName="zhanghuzhongxin_del" />
+                <ScalarProperty Name="zhanghuzhongxin_sel" ColumnName="zhanghuzhongxin_sel" />
+                <ScalarProperty Name="hetongguanli_add" ColumnName="hetongguanli_add" />
+                <ScalarProperty Name="hetongguanli_upd" ColumnName="hetongguanli_upd" />
+                <ScalarProperty Name="hetongguanli_del" ColumnName="hetongguanli_del" />
+                <ScalarProperty Name="hetongguanli_sel" ColumnName="hetongguanli_sel" />
+                <ScalarProperty Name="gerenzhongxin_upd" ColumnName="gerenzhongxin_upd" />
+                <ScalarProperty Name="gerenzhongxin_sel" ColumnName="gerenzhongxin_sel" />
+                <ScalarProperty Name="personnel_id" ColumnName="personnel_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contract_picture">
+            <EntityTypeMapping TypeName="FinanceModel.contract_picture">
+              <MappingFragment StoreEntitySet="contract_picture">
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="contract_id" ColumnName="contract_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice">
+            <EntityTypeMapping TypeName="FinanceModel.invoice">
+              <MappingFragment StoreEntitySet="invoice">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="jine" ColumnName="jine" />
+                <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
+                <ScalarProperty Name="invoice_type" ColumnName="invoice_type" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="zhaiyao" ColumnName="zhaiyao" />
+                <ScalarProperty Name="riqi" ColumnName="riqi" />
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

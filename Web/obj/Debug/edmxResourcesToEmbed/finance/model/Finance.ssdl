@@ -3,11 +3,17 @@
   <EntityContainer Name="FinanceModelStoreContainer">
     <EntitySet Name="Account" EntityType="FinanceModel.Store.Account" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounting" EntityType="FinanceModel.Store.Accounting" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="contract_manage" EntityType="FinanceModel.Store.contract_manage" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="contract_personnel" EntityType="FinanceModel.Store.contract_personnel" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="contract_personnel_pitcure" EntityType="FinanceModel.Store.contract_personnel_pitcure" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="contract_personnel_power" EntityType="FinanceModel.Store.contract_personnel_power" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="contract_picture" EntityType="FinanceModel.Store.contract_picture" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Department" EntityType="FinanceModel.Store.Department" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FinancingExpenditure" EntityType="FinanceModel.Store.FinancingExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FinancingIncome" EntityType="FinanceModel.Store.FinancingIncome" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InvestmentExpenditure" EntityType="FinanceModel.Store.InvestmentExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InvestmentIncome" EntityType="FinanceModel.Store.InvestmentIncome" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="invoice" EntityType="FinanceModel.Store.invoice" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManagementExpenditure" EntityType="FinanceModel.Store.ManagementExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManagementIncome" EntityType="FinanceModel.Store.ManagementIncome" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="quanxian" EntityType="FinanceModel.Store.quanxian" store:Type="Tables" Schema="dbo" />
@@ -39,6 +45,71 @@
     <Property Name="borrowed" Type="money" />
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="contract_manage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="contract_code" Type="varchar" MaxLength="255" />
+    <Property Name="contract_name" Type="varchar" MaxLength="255" />
+    <Property Name="contract_type" Type="varchar" MaxLength="255" />
+    <Property Name="first_party" Type="varchar" MaxLength="255" />
+    <Property Name="second_party" Type="varchar" MaxLength="255" />
+    <Property Name="creator" Type="varchar" MaxLength="255" />
+    <Property Name="creation_date" Type="varchar" MaxLength="255" />
+    <Property Name="send_out" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+    <Property Name="send_judge" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="contract_personnel">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="varchar" MaxLength="255" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+    <Property Name="power" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+    <Property Name="full_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="contract_personnel_pitcure">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="personnel_id" Type="varchar" MaxLength="255" />
+    <Property Name="picture" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="contract_personnel_power">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="personnel_id" Type="varchar" MaxLength="255" />
+    <Property Name="gerenzhongxin_sel" Type="varchar" MaxLength="255" />
+    <Property Name="gerenzhongxin_upd" Type="varchar" MaxLength="255" />
+    <Property Name="hetongguanli_sel" Type="varchar" MaxLength="255" />
+    <Property Name="hetongguanli_del" Type="varchar" MaxLength="255" />
+    <Property Name="hetongguanli_upd" Type="varchar" MaxLength="255" />
+    <Property Name="hetongguanli_add" Type="varchar" MaxLength="255" />
+    <Property Name="zhanghuzhongxin_sel" Type="varchar" MaxLength="255" />
+    <Property Name="zhanghuzhongxin_del" Type="varchar" MaxLength="255" />
+    <Property Name="zhanghuzhongxin_upd" Type="varchar" MaxLength="255" />
+    <Property Name="zhanghuzhongxin_add" Type="varchar" MaxLength="255" />
+    <Property Name="yinzhangguanli_sel" Type="varchar" MaxLength="255" />
+    <Property Name="yinzhangguanli_del" Type="varchar" MaxLength="255" />
+    <Property Name="yinzhangguanli_upd" Type="varchar" MaxLength="255" />
+    <Property Name="yinzhangguanli_add" Type="varchar" MaxLength="255" />
+    <Property Name="hetongguanli_dow" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="contract_picture">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="contract_id" Type="varchar" MaxLength="255" />
+    <Property Name="picture" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Department">
     <Key>
@@ -80,6 +151,20 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="investmentIncome" Type="varchar" MaxLength="255" />
     <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="invoice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="varchar" MaxLength="255" />
+    <Property Name="riqi" Type="varchar" MaxLength="255" />
+    <Property Name="zhaiyao" Type="varchar" MaxLength="255" />
+    <Property Name="unit" Type="varchar" MaxLength="255" />
+    <Property Name="invoice_type" Type="varchar" MaxLength="255" />
+    <Property Name="invoice_no" Type="varchar" MaxLength="255" />
+    <Property Name="jine" Type="varchar" MaxLength="255" />
+    <Property Name="remarks" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="ManagementExpenditure">
     <Key>
@@ -157,6 +242,8 @@
     <Property Name="payment" Type="money" />
     <Property Name="accounting" Type="varchar" MaxLength="255" />
     <Property Name="insert_date" Type="datetime" />
+    <Property Name="kehu" Type="varchar" MaxLength="255" />
+    <Property Name="zhaiyao" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="VoucherSummary">
     <Key>

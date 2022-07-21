@@ -361,4 +361,15 @@ namespace SDZdb
         public string J { get; set; }
         public string K { get; set; }
     }
+
+    public class nianbaoList 
+    {
+        public string xvhao { get; set; }
+        public string zhaiyao1 { get; set; }
+        public string kehu1 { get; set; }
+        public Nullable<decimal> receivable { get; set; }
+        public string zhaiyao2 { get; set; }
+        public string kehu2 { get; set; }
+        public Nullable<decimal> cope { get; set; }
+    }
 }

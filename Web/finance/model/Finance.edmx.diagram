@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0defc704d7134150ad285299d26c057a" Name="关系图1" ZoomLevel="64">
+      <Diagram DiagramId="0defc704d7134150ad285299d26c057a" Name="关系图1" ZoomLevel="73">
         <EntityTypeShape EntityType="FinanceModel.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.Accounting" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.Department" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
@@ -19,6 +19,12 @@
         <EntityTypeShape EntityType="FinanceModel.VoucherSummary" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.VoucherWord" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FinanceModel.quanxian" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="FinanceModel.contract_manage" Width="1.5" PointX="8.0810147729148216" PointY="24.547075372444034" />
+        <EntityTypeShape EntityType="FinanceModel.contract_personnel" Width="1.5" PointX="2.7974374698463071" PointY="27.250453931861767" />
+        <EntityTypeShape EntityType="FinanceModel.contract_personnel_pitcure" Width="1.5" PointX="8.77674747667124" PointY="22.303329895391748" />
+        <EntityTypeShape EntityType="FinanceModel.contract_personnel_power" Width="1.5" PointX="3.5096752473663893" PointY="3.4790618435847862" />
+        <EntityTypeShape EntityType="FinanceModel.contract_picture" Width="1.5" PointX="10.863411744527245" PointY="9.9298541592107412" />
+        <EntityTypeShape EntityType="FinanceModel.invoice" Width="1.5" PointX="8.7978607922782466" PointY="16.22788336138608" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -253,7 +253,7 @@ namespace Web.Personnel {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label23;
+        //protected global::System.Web.UI.WebControls.Label Label23;
         
         /// <summary>
         /// DropDownList23 control.
@@ -262,7 +262,7 @@ namespace Web.Personnel {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList23;
+        //protected global::System.Web.UI.WebControls.DropDownList DropDownList23;
         
         /// <summary>
         /// Label40 control.

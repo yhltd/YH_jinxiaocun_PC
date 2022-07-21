@@ -52,6 +52,10 @@
 		        <input class="easyui-textbox" name="project" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
+		        <label>客户/供应商:</label>
+		        <input class="easyui-textbox" name="kehu" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
 		        <label>应收:</label>
 		        <input class="easyui-numberbox" name="receivable" data-options="width: 318,height: 38"/>
             </div>
@@ -66,6 +70,10 @@
             <div class="form-item">
 		        <label>实付:</label>
 		        <input class="easyui-numberbox" name="payment" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
+		        <label>摘要:</label>
+		        <input class="easyui-textbox" name="zhaiyao" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toUpd()" class="btn" type="button">确认修改</button>
@@ -89,6 +97,10 @@
 		        <input class="easyui-textbox" name="project" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
+		        <label>客户/供应商:</label>
+		        <input class="easyui-textbox" name="kehu" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
 		        <label>应收:</label>
 		        <input class="easyui-numberbox" name="receivable" data-options="width: 318,height: 38"/>
             </div>
@@ -103,6 +115,10 @@
             <div class="form-item">
 		        <label>实付:</label>
 		        <input class="easyui-numberbox" name="payment" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
+		        <label>摘要:</label>
+		        <input class="easyui-textbox" name="zhaiyao" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toAdd()" class="btn" type="button">确认新增</button>

@@ -356,3 +356,20 @@ function toReset() {
     $("#updateForm").form('reset');
 }
 
+//查询
+function sel() {
+    var username = $("#username").val();
+    ajaxUtil({
+        url: "web_service/user_management.asmx/queryList",
+        loading: true,
+        data: {
+            financePageJson: JSON.stringify(page),
+            username: username,
+        }
+    }, function (result) {
+        if (result.code == 200) {
+            setTable(result.data)
+        }
+    });
+}
+

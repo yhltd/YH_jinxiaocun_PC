@@ -45,6 +45,15 @@ namespace Web.finance.service
             return financePage;
         }
 
+        public FinancePage<User_ManagementItem> queryListService(FinancePage<User_ManagementItem> financePage,string username)
+        {
+            //获取pageList
+            financePage = user_managementmodel.queryList(financePage, account.company,username);
+            //获取总页数
+            financePage.total = user_managementmodel.getPageCount(account.company);
+            return financePage;
+        }
+
         public quanxian selectQuanXianService(Account user)
         {
             string bianhao = user.bianhao;

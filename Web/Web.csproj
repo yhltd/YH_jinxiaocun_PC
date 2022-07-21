@@ -1116,6 +1116,7 @@
     <Content Include="finance\web\assets\js\index.js" />
     <Content Include="finance\web\assets\js\items.js" />
     <Content Include="finance\web\assets\js\flow.js" />
+    <Content Include="finance\web\assets\js\nianbao.js" />
     <Content Include="finance\web\assets\js\user_management.js" />
     <Content Include="finance\web\assets\js\Jquery.js" />
     <Content Include="finance\web\assets\js\liabilities.js" />
@@ -1137,6 +1138,7 @@
     <Content Include="finance\web\view\flow.aspx" />
     <Content Include="finance\web\view\liabilities.aspx" />
     <Content Include="finance\web\view\new_user.aspx" />
+    <Content Include="finance\web\view\nianbao.aspx" />
     <Content Include="finance\web\view\profit.aspx" />
     <Content Include="finance\web\view\simpleAccounting.aspx" />
     <Content Include="finance\web\view\simpleData.aspx" />
@@ -1151,6 +1153,7 @@
     <Content Include="finance\web\view\web_service\financing.asmx" />
     <Content Include="finance\web\view\web_service\investment.asmx" />
     <Content Include="finance\web\view\web_service\management.asmx" />
+    <Content Include="finance\web\view\web_service\nianbao.asmx" />
     <Content Include="finance\web\view\web_service\simpleAccounting.asmx" />
     <Content Include="finance\web\view\web_service\simpleData.asmx" />
     <Content Include="finance\web\view\web_service\space.asmx" />
@@ -1983,6 +1986,21 @@
     <Compile Include="finance\model\AccountingModel.cs" />
     <Compile Include="finance\model\AccountModel.cs" />
     <Compile Include="finance\model\CommonModel.cs" />
+    <Compile Include="finance\model\contract_manage.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\contract_personnel.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\contract_personnel_pitcure.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\contract_personnel_power.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\contract_picture.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
     <Compile Include="finance\model\control_soft_time.cs">
       <DependentUpon>SoftTime.tt</DependentUpon>
     </Compile>
@@ -2074,6 +2092,7 @@
     <Compile Include="finance\service\FlowService.cs" />
     <Compile Include="finance\service\LiabilitiesService.cs" />
     <Compile Include="finance\service\ManagementService.cs" />
+    <Compile Include="finance\service\NianBaoService.cs" />
     <Compile Include="finance\service\ProfitService.cs" />
     <Compile Include="finance\service\SimpleAccountingService.cs" />
     <Compile Include="finance\service\SimpleDataService.cs" />
@@ -2157,6 +2176,13 @@
     <Compile Include="finance\web\view\new_user.aspx.designer.cs">
       <DependentUpon>new_user.aspx</DependentUpon>
     </Compile>
+    <Compile Include="finance\web\view\nianbao.aspx.cs">
+      <DependentUpon>nianbao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\nianbao.aspx.designer.cs">
+      <DependentUpon>nianbao.aspx</DependentUpon>
+    </Compile>
     <Compile Include="finance\web\view\profit.aspx.cs">
       <DependentUpon>profit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2232,6 +2258,10 @@
     </Compile>
     <Compile Include="finance\web\view\web_service\management.asmx.cs">
       <DependentUpon>management.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\nianbao.asmx.cs">
+      <DependentUpon>nianbao.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="finance\web\view\web_service\simpleAccounting.asmx.cs">

@@ -143,6 +143,10 @@ var left_data = [{
     text: '极简财务',
     iconCls: 'icon-jijiancaiwu',
     children: [{
+        text: '极简配置',
+        iconCls: 'icon-jijiantaizhang',
+        url: 'simplePeizhi.aspx'
+    }, {
         text: '极简台账',
         iconCls: 'icon-jijiantaizhang',
         url: 'simpleData.aspx'
@@ -151,9 +155,33 @@ var left_data = [{
         iconCls: 'icon-jijianzongzhang',
         url: 'simpleAccounting.aspx'
     }, {
+        text: '发票',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'invoice.aspx'
+    }, {
         text: '报表',
         iconCls: 'icon-jijianzongzhang',
         url: 'nianbao.aspx'
+    }, {
+        text: '应收明细账',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'kehuSubLedger.aspx'
+    }, {
+        text: '应付明细账',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'gysSubLedger.aspx'
+    }, {
+        text: '利润',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'lirun.aspx'
+    }, {
+        text: '应收报表',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'YingShou.aspx'
+    }, {
+        text: '应付报表',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'YingFu.aspx'
     }, {
         text: '使用说明',
         iconCls: 'icon-shiyongshuoming',

@@ -28,7 +28,8 @@
             <input id="ks" class="easyui-datebox" value=""/>
             <label>结束日期:</label>
             <input id="js" class="easyui-datebox" value=""/>
-            <a href="#" class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
+            <a href="#" class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="getList()">查询</a>
+            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">
             <div id="data-table" class="easyui-datagrid"></div>
@@ -36,47 +37,46 @@
         </div>
     </div>
 
-    <div id="upd-simpleData-window" style="display: none">
-        <form id="upd-simpleData-form">
+    <div id="upd-invoice-window" style="display: none">
+        <form id="upd-invoice-form">
+            <div class="form-item">
+                <label>类型:</label>
+                <select id="upd-type" name="type" class="easyui-combobox" data-options="width: 318,height: 38">
+                    <option value="进项发票">进项发票</option>
+                    <option value="销项发票">销项发票</option>
+                </select>
+            </div>
             <div class="form-item">
                 <label>日期:</label>
-		        <input id="insert_date" name="insert_date" data-options="width: 318,height: 38"/>
+		        <input class="easyui-datebox" name="riqi" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
-                <label>科目名称:</label>
-		        <input id="upd-accounting" name="accounting"/>
-            </div>
-            <div class="form-item">
-		        <label>项目名称:</label>
-		        <input class="easyui-textbox" name="project" data-options="width: 318,height: 38"/>
-            </div>
-            <div class="form-item">
-		        <label>客户/供应商:</label>
-		        <input class="easyui-textbox" name="kehu" data-options="width: 318,height: 38"/>
-            </div>
-            <div class="form-item">
-		        <label>应收:</label>
-		        <input class="easyui-numberbox" name="receivable" data-options="width: 318,height: 38"/>
-            </div>
-            <div class="form-item">
-		        <label>实收:</label>
-		        <input class="easyui-numberbox" name="receipts" data-options="width: 318,height: 38"/>
-            </div>
-            <div class="form-item">
-		        <label>应付:</label>
-		        <input class="easyui-numberbox" name="cope" data-options="width: 318,height: 38"/>
-            </div>
-            <div class="form-item">
-		        <label>实付:</label>
-		        <input class="easyui-numberbox" name="payment" data-options="width: 318,height: 38"/>
-            </div>
-            <div class="form-item">
-		        <label>摘要:</label>
+                <label>摘要:</label>
 		        <input class="easyui-textbox" name="zhaiyao" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
+		        <label>往来单位:</label>
+		        <input class="easyui-textbox" id="upd_unit" name="unit" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
+		        <label>发票种类:</label>
+		        <input class="easyui-textbox" id="upd_invoice_type" name="invoice_type" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
+		        <label>发票号码:</label>
+		        <input class="easyui-textbox" name="invoice_no" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
+		        <label>金额:</label>
+		        <input class="easyui-numberbox" name="jine" data-options="width: 318,height: 38"/>
+            </div>
+            <div class="form-item">
+		        <label>备注:</label>
+		        <input class="easyui-textbox" name="remarks" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toUpd()" class="btn" type="button">确认修改</button>
-                <button onclick="javascript:toReset('upd-simpleData-form')" class="btn btn-right" type="button">清空</button>
+                <button onclick="javascript:toReset('upd-invoice-form')" class="btn btn-right" type="button">清空</button>
             </div>
         </form>
     </div>
@@ -85,50 +85,42 @@
         <form id="add-invoice-form">
             <div class="form-item">
                 <label>类型:</label>
-                <select id="add-type" name="type">
+                <select id="add-type" name="type" class="easyui-combobox" data-options="width: 318,height: 38">
                     <option value="进项发票">进项发票</option>
                     <option value="销项发票">销项发票</option>
                 </select>
             </div>
             <div class="form-item">
                 <label>日期:</label>
-		        <input id="add-riqi" name="riqi"/>
+		        <input id="add-riqi" name="riqi" class="easyui-datebox" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
                 <label>摘要:</label>
-		        <input id="add-zhaiyao" name="zhaiyao"/>
+		        <input id="add-zhaiyao" name="zhaiyao" class="easyui-textbox" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
 		        <label>往来单位:</label>
-		        <input class="easyui-textbox" name="unit" data-options="width: 318,height: 38"/>
+		        <input class="easyui-textbox" id="add_unit" name="unit" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
 		        <label>发票种类:</label>
-		        <input class="easyui-textbox" name="kehu" data-options="width: 318,height: 38"/>
+		        <input class="easyui-textbox" id="add_invoice_type" name="invoice_type" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
-		        <label>应收:</label>
-		        <input class="easyui-numberbox" name="receivable" data-options="width: 318,height: 38"/>
+		        <label>发票号码:</label>
+		        <input class="easyui-textbox" name="invoice_no" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
-		        <label>实收:</label>
-		        <input class="easyui-numberbox" name="receipts" data-options="width: 318,height: 38"/>
+		        <label>金额:</label>
+		        <input class="easyui-numberbox" name="jine" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
-		        <label>应付:</label>
-		        <input class="easyui-numberbox" name="cope" data-options="width: 318,height: 38"/>
-            </div>
-            <div class="form-item">
-		        <label>实付:</label>
-		        <input class="easyui-numberbox" name="payment" data-options="width: 318,height: 38"/>
-            </div>
-            <div class="form-item">
-		        <label>摘要:</label>
-		        <input class="easyui-textbox" name="zhaiyao" data-options="width: 318,height: 38"/>
+		        <label>备注:</label>
+		        <input class="easyui-textbox" name="remarks" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toAdd()" class="btn" type="button">确认新增</button>
-                <button onclick="javascript:toReset('add-simpleData-form')" class="btn btn-right" type="button">清空</button>
+                <button onclick="javascript:toReset('add-invoice-form')" class="btn btn-right" type="button">清空</button>
             </div>
         </form>
     </div>

@@ -98,5 +98,15 @@ namespace Web.finance.service
             }
             return true;
         }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <returns>集合</returns>
+        public List<SimpleData> getZongZhang(string kehu, string project)
+        {
+            return simpleAccountingModel.getZongZhang(account.company, kehu, project);
+        }
+
     }
 }

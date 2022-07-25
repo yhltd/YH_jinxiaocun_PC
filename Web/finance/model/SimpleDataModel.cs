@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDZdb;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -123,6 +124,175 @@ namespace Web.finance.model
 
             return result.ToList();
         }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<SimpleData> getKehuSubLedger(string company, string ks, string js,string kehu)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            var khParam = new SqlParameter("@kehu", kehu);
+
+            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and kehu = @kehu and (receivable-receipts)<>0 and insert_date>=@ks and insert_date<=@js) as a";
+
+            var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, jsParam, khParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<SimpleData> getKehuSubLedgerByFirst(string company, string ks, string js, string kehu)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var khParam = new SqlParameter("@kehu", kehu);
+
+            string sql = "select 0 as id,'' as company,null as insert_date,'' as project,b.kehu,b.receivable,b.receipts,0.0 as cope,0.0 as payment,'' as accounting,'' as zhaiyao from (select kehu,sum(receivable) as receivable,sum(receipts) as receipts from SimpleData where company = @company and kehu = @kehu and insert_date<@ks group by kehu) as b";
+
+            var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, khParam);
+
+            return result.ToList();
+        }
+
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<SimpleData> getGYSSubLedger(string company, string ks, string js, string kehu)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            var khParam = new SqlParameter("@kehu", kehu);
+
+            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and kehu = @kehu and (receivable-receipts)<>0 and insert_date>=@ks and insert_date<=@js) as a";
+
+            var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, jsParam, khParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<SimpleData> getGYSSubLedgerByFirst(string company, string ks, string js, string kehu)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var khParam = new SqlParameter("@kehu", kehu);
+
+            string sql = "select 0 as id,'' as company,null as insert_date,'' as project,b.kehu,0.0 as receivable,0.0 as receipts,b.cope,b.payment,'' as accounting,'' as zhaiyao from (select kehu,sum(cope) as cope,sum(payment) as payment from SimpleData where company = @company and kehu = @kehu and insert_date<@ks group by kehu) as b";
+
+            var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, khParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<lirunList> getAllLirun(string company)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            string sql = "select '项目：'+project as project,'科目：'+accounting as accounting,0.0 as benqi,0.0 as bennian,0.0 as shangqi from SimpleData where company=@company group by project,accounting order by project,accounting";
+
+            var result = fin.Database.SqlQuery<lirunList>(sql, companyParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<lirunList> getBenqiLirun(string company, string ks, string js)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            string sql = "select '项目：'+project as project,'科目：'+accounting as accounting,(sum(receipts)-sum(payment)) as benqi,0.0 as bennian,0.0 as shangqi from SimpleData where company=@company and insert_date>=@ks and insert_date<=@js group by project,accounting";
+
+            var result = fin.Database.SqlQuery<lirunList>(sql, companyParam, ksParam, jsParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<lirunList> getBennianLirun(string company, string ks, string js)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            string sql = "select '项目：'+project as project,'科目：'+accounting as accounting,0.0 as benqi,(sum(receipts)-sum(payment)) as bennian,0.0 as shangqi from SimpleData where company=@company and insert_date>=@ks and insert_date<=@js group by project,accounting";
+
+            var result = fin.Database.SqlQuery<lirunList>(sql, companyParam, ksParam, jsParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<lirunList> getShangqiLirun(string company, string ks)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            string sql = "select '项目：'+project as project,'科目：'+accounting as accounting,0.0 as benqi,0.0 as bennian,(sum(receipts)-sum(payment)) as shangqi from SimpleData where company=@company and insert_date<@ks  group by project,accounting";
+
+            var result = fin.Database.SqlQuery<lirunList>(sql, companyParam, ksParam);
+
+            return result.ToList();
+        }
+
+        
 
     }
 }

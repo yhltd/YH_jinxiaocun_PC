@@ -20,7 +20,10 @@
     <EntitySet Name="contract_personnel_pitcure" EntityType="FinanceModel.contract_personnel_pitcure" />
     <EntitySet Name="contract_personnel_power" EntityType="FinanceModel.contract_personnel_power" />
     <EntitySet Name="contract_picture" EntityType="FinanceModel.contract_picture" />
-    <EntitySet Name="invoice" EntityType="FinanceModel.invoice" />
+    <EntitySet Name="Invoice" EntityType="FinanceModel.Invoice" />
+    <EntitySet Name="AccountingPeizhi" EntityType="FinanceModel.AccountingPeizhi" />
+    <EntitySet Name="InvoicePeizhi" EntityType="FinanceModel.InvoicePeizhi" />
+    <EntitySet Name="KehuPeizhi" EntityType="FinanceModel.KehuPeizhi" />
   </EntityContainer>
   <EntityType Name="Account">
     <Key>
@@ -110,6 +113,9 @@
     <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="accounting" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="project" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kehu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="invoice_type" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="SimpleData">
     <Key>
@@ -257,7 +263,7 @@
     <Property Type="String" Name="contract_id" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="picture" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="invoice">
+  <EntityType Name="Invoice">
     <Key>
       <PropertyRef Name="id" />
     </Key>
@@ -270,5 +276,30 @@
     <Property Type="String" Name="invoice_no" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="jine" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="remarks" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="AccountingPeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="accounting" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="InvoicePeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="invoice_type" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="KehuPeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="kehu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

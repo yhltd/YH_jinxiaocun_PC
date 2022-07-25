@@ -24,7 +24,10 @@
         <EntityTypeShape EntityType="FinanceModel.contract_personnel_pitcure" Width="1.5" PointX="8.77674747667124" PointY="22.303329895391748" />
         <EntityTypeShape EntityType="FinanceModel.contract_personnel_power" Width="1.5" PointX="3.5096752473663893" PointY="3.4790618435847862" />
         <EntityTypeShape EntityType="FinanceModel.contract_picture" Width="1.5" PointX="10.863411744527245" PointY="9.9298541592107412" />
-        <EntityTypeShape EntityType="FinanceModel.invoice" Width="1.5" PointX="8.7978607922782466" PointY="16.22788336138608" />
+        <EntityTypeShape EntityType="FinanceModel.Invoice" Width="1.5" PointX="11.571775898137958" PointY="15.505865372487282" />
+        <EntityTypeShape EntityType="FinanceModel.AccountingPeizhi" Width="1.5" PointX="2.0596475163752435" PointY="27.407745627410591" />
+        <EntityTypeShape EntityType="FinanceModel.InvoicePeizhi" Width="1.5" PointX="7.5793509052970212" PointY="19.226781019580915" />
+        <EntityTypeShape EntityType="FinanceModel.KehuPeizhi" Width="1.5" PointX="5.6086667355190336" PointY="25.010456528985156" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

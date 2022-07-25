@@ -94,6 +94,9 @@
     <EntitySetMapping Name="SimpleAccounting">
       <EntityTypeMapping TypeName="FinanceModel.SimpleAccounting">
         <MappingFragment StoreEntitySet="SimpleAccounting">
+          <ScalarProperty Name="invoice_type" ColumnName="invoice_type" />
+          <ScalarProperty Name="kehu" ColumnName="kehu" />
+          <ScalarProperty Name="project" ColumnName="project" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="company" ColumnName="company" />
           <ScalarProperty Name="accounting" ColumnName="accounting" />
@@ -255,9 +258,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="invoice">
-      <EntityTypeMapping TypeName="FinanceModel.invoice">
-        <MappingFragment StoreEntitySet="invoice">
+    <EntitySetMapping Name="Invoice">
+      <EntityTypeMapping TypeName="FinanceModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="company" ColumnName="company" />
           <ScalarProperty Name="remarks" ColumnName="remarks" />
           <ScalarProperty Name="jine" ColumnName="jine" />
           <ScalarProperty Name="invoice_no" ColumnName="invoice_no" />
@@ -266,6 +270,33 @@
           <ScalarProperty Name="zhaiyao" ColumnName="zhaiyao" />
           <ScalarProperty Name="riqi" ColumnName="riqi" />
           <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountingPeizhi">
+      <EntityTypeMapping TypeName="FinanceModel.AccountingPeizhi">
+        <MappingFragment StoreEntitySet="AccountingPeizhi">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="accounting" ColumnName="accounting" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoicePeizhi">
+      <EntityTypeMapping TypeName="FinanceModel.InvoicePeizhi">
+        <MappingFragment StoreEntitySet="InvoicePeizhi">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="invoice_type" ColumnName="invoice_type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KehuPeizhi">
+      <EntityTypeMapping TypeName="FinanceModel.KehuPeizhi">
+        <MappingFragment StoreEntitySet="KehuPeizhi">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="kehu" ColumnName="kehu" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

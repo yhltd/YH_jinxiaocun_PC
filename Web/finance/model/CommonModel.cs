@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDZdb;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -318,5 +319,160 @@ namespace Web.finance.model
             }
             return result;
         }
+
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="company">公司</param>
+        /// <returns></returns>
+        public List<AccountingPeizhi> getAccountingPeizhi(string company)
+        {
+            var result = from u in fin.AccountingPeizhi where u.company == company select u;
+
+            List<AccountingPeizhi> list = null;
+            try
+            {
+                list = result.ToList();
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="company">公司</param>
+        /// <returns></returns>
+        public List<KehuPeizhi> getKehuPeizhi(string company)
+        {
+            var result = from u in fin.KehuPeizhi where u.company == company select u;
+
+            List<KehuPeizhi> list = null;
+            try
+            {
+                list = result.ToList();
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="company">公司</param>
+        /// <returns></returns>
+        public List<InvoicePeizhi> getInvoicePeizhi(string company)
+        {
+            var result = from u in fin.InvoicePeizhi where u.company == company select u;
+
+            List<InvoicePeizhi> list = null;
+            try
+            {
+                list = result.ToList();
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="company">公司</param>
+        /// <returns></returns>
+        public List<shoufubaobiao> getYingShou(string company,string kehu,string ks,string js)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var kehuParam = new SqlParameter("@kehu", kehu);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            string sql = "select kehu,project,zhaiyao,receivable as jine1 from SimpleData where company=@company and kehu=@kehu and insert_date>=@ks and insert_date<=@js";
+
+            var result = fin.Database.SqlQuery<shoufubaobiao>(sql, companyParam, kehuParam, ksParam, jsParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="company">公司</param>
+        /// <returns></returns>
+        public List<shoufubaobiao> getXiaoXiang(string company, string kehu,string ks,string js)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var kehuParam = new SqlParameter("@kehu", kehu);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            string sql = "select unit,invoice_type,invoice_no,jine as jine2 from invoice where company=@company and unit=@kehu and type='销项发票' and convert(date,riqi)>=@ks and convert(date,riqi)<=@js ";
+
+            var result = fin.Database.SqlQuery<shoufubaobiao>(sql, companyParam, kehuParam, ksParam, jsParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="company">公司</param>
+        /// <returns></returns>
+        public List<shoufubaobiao> getYingFu(string company, string kehu, string ks, string js)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var kehuParam = new SqlParameter("@kehu", kehu);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            string sql = "select kehu,project,zhaiyao,cope as jine1 from SimpleData where company=@company and kehu=@kehu and insert_date>=@ks and insert_date<=@js";
+
+            var result = fin.Database.SqlQuery<shoufubaobiao>(sql, companyParam, kehuParam, ksParam, jsParam);
+
+            return result.ToList();
+        }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="company">公司</param>
+        /// <returns></returns>
+        public List<shoufubaobiao> getJinXiang(string company, string kehu, string ks, string js)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var kehuParam = new SqlParameter("@kehu", kehu);
+
+            var ksParam = new SqlParameter("@ks", ks);
+
+            var jsParam = new SqlParameter("@js", js);
+
+            string sql = "select unit,invoice_type,invoice_no,jine as jine2 from invoice where company=@company and unit=@kehu and type='进项发票' and convert(date,riqi)>=@ks and convert(date,riqi)<=@js ";
+
+            var result = fin.Database.SqlQuery<shoufubaobiao>(sql, companyParam, kehuParam, ksParam, jsParam);
+
+            return result.ToList();
+        }
+
+
+
     }
 }

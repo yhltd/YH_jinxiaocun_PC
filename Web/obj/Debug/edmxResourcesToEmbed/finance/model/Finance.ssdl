@@ -3,6 +3,7 @@
   <EntityContainer Name="FinanceModelStoreContainer">
     <EntitySet Name="Account" EntityType="FinanceModel.Store.Account" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Accounting" EntityType="FinanceModel.Store.Accounting" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountingPeizhi" EntityType="FinanceModel.Store.AccountingPeizhi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="contract_manage" EntityType="FinanceModel.Store.contract_manage" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="contract_personnel" EntityType="FinanceModel.Store.contract_personnel" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="contract_personnel_pitcure" EntityType="FinanceModel.Store.contract_personnel_pitcure" store:Type="Tables" Schema="dbo" />
@@ -13,7 +14,9 @@
     <EntitySet Name="FinancingIncome" EntityType="FinanceModel.Store.FinancingIncome" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InvestmentExpenditure" EntityType="FinanceModel.Store.InvestmentExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InvestmentIncome" EntityType="FinanceModel.Store.InvestmentIncome" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="invoice" EntityType="FinanceModel.Store.invoice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Invoice" EntityType="FinanceModel.Store.Invoice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InvoicePeizhi" EntityType="FinanceModel.Store.InvoicePeizhi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KehuPeizhi" EntityType="FinanceModel.Store.KehuPeizhi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManagementExpenditure" EntityType="FinanceModel.Store.ManagementExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManagementIncome" EntityType="FinanceModel.Store.ManagementIncome" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="quanxian" EntityType="FinanceModel.Store.quanxian" store:Type="Tables" Schema="dbo" />
@@ -44,6 +47,14 @@
     <Property Name="load" Type="money" />
     <Property Name="borrowed" Type="money" />
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="AccountingPeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="accounting" Type="varchar" MaxLength="255" />
     <Property Name="company" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="contract_manage">
@@ -152,7 +163,7 @@
     <Property Name="investmentIncome" Type="varchar" MaxLength="255" />
     <Property Name="company" Type="varchar" MaxLength="255" />
   </EntityType>
-  <EntityType Name="invoice">
+  <EntityType Name="Invoice">
     <Key>
       <PropertyRef Name="id" />
     </Key>
@@ -165,6 +176,23 @@
     <Property Name="invoice_no" Type="varchar" MaxLength="255" />
     <Property Name="jine" Type="varchar" MaxLength="255" />
     <Property Name="remarks" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="InvoicePeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="invoice_type" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="KehuPeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="kehu" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="ManagementExpenditure">
     <Key>
@@ -228,6 +256,9 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="company" Type="varchar" MaxLength="255" />
     <Property Name="accounting" Type="varchar" MaxLength="255" />
+    <Property Name="project" Type="varchar" MaxLength="255" />
+    <Property Name="kehu" Type="varchar" MaxLength="255" />
+    <Property Name="invoice_type" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="SimpleData">
     <Key>

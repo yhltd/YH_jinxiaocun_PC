@@ -22,29 +22,18 @@
 </head>
 <body>
     <div id="main" class="item">
-        <%--<div class="toolbar">
-            <label>科目名称:</label>
-            <input id="accounting" class="easyui-textbox" value=""/>
-            <a href="#" class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
-        </div>--%>
+        <div class="toolbar">
+            <label>供应商/客户:</label>
+            <input class="easyui-textbox" id="kehu" />
+            <label>项目:</label>
+            <input class="easyui-textbox" id="project" />
+
+            <a href="#" class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="getList()">查询</a>
+            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
+        </div>
         <div class="main-item">
             <div id="data-table" class="easyui-datagrid"></div>
-            <div id="data-page" class="easyui-pagination"></div>
         </div>
-    </div>
-
-    <div id="add-accounting-window" style="display: none">
-        <form id="add-accounting-form" style="align-items: start;padding: 15px;">
-            <input class="easyui-textbox" style="width: 300px;height: 35px;" name="accounting" type="text"/>
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="toAdd()">保存</a>
-        </form>
-    </div>
-
-    <div id="upd-accounting-window" style="display: none">
-        <form id="upd-accounting-form" style="align-items: start;padding: 15px;">
-            <input class="easyui-textbox" style="width: 300px;height: 35px;" name="accounting" type="text"/>
-            <a class="easyui-linkbutton" data-options="iconCls:'icon-save'" onclick="toUpd()">保存</a>
-        </form>
     </div>
 </body>
 </html>

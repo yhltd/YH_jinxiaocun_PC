@@ -53,7 +53,7 @@
             </div>
             <div class="form-item">
 		        <label>客户/供应商:</label>
-		        <input class="easyui-textbox" name="kehu" data-options="width: 318,height: 38"/>
+		        <input class="easyui-textbox" id="upd_kehu" name="kehu" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
 		        <label>应收:</label>
@@ -98,7 +98,7 @@
             </div>
             <div class="form-item">
 		        <label>客户/供应商:</label>
-		        <input class="easyui-textbox" name="kehu" data-options="width: 318,height: 38"/>
+		        <input class="easyui-textbox" id="add_kehu" name="kehu" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
 		        <label>应收:</label>

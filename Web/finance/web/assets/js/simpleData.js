@@ -8,6 +8,24 @@
     }
 }
 
+function getKehuPeizhi(id) {
+    $.ajax({
+        type: 'Post',
+        url: "web_service/invoice.asmx/getKehuPeizhi",
+        dataType: "xml",
+        success: function (data) {
+            var result = getJson(data);
+            if (result.code == 200) {
+                $('#' + id).combobox('loadData', result.data);
+            }
+        },
+        error: function (err) {
+            alert("错误！")
+            console.log(err)
+        }
+    })
+}
+
 $(function () {
     ajaxUtil({
         url: "web_service/user_management.asmx/quanxianGet",
@@ -163,8 +181,8 @@ function setTable(data) {
                     return value
                 }
             },
-            { field: 'project', align: 'center', title: '项目名称', width: 300 },
             { field: 'kehu', align: 'center', title: '客户/供应商', width: 300 },
+            { field: 'project', align: 'center', title: '项目名称', width: 300 },
             { field: 'receivable', align: 'center', title: '应收', width: 100 },
 		    { field: 'receipts', align: 'center', title: '实收', width: 100 },
             {
@@ -203,7 +221,7 @@ function update(rowItem) {
     $('#upd-simpleData-window').window({
         title: "修改",
         width: 600,
-        height: 400,
+        height: 500,
         top: 20,
         collapsible: false,
         minimizable: false,
@@ -221,6 +239,13 @@ function update(rowItem) {
                 height: 38
             })
 
+            $("#upd_kehu").combobox({
+                valueField: 'kehu',
+                textField: 'kehu',
+                width: 318,
+                height: 38
+            })
+
             var insert_date = formatDate(rowItem.insert_date, 'MM/dd/yyyy HH:mm:ss')
             $('#insert_date').datetimebox({
                 panelWidth: 318,
@@ -231,6 +256,7 @@ function update(rowItem) {
             });
 
             getAccounting('upd-accounting');
+            getKehuPeizhi('upd_kehu');
         }
     });
 
@@ -279,7 +305,7 @@ function add() {
         title: "新增",
         width: 600,
         height: 500,
-        top: 50,
+        top: 20,
         collapsible: false,
         minimizable: false,
         maximizable: false,
@@ -296,6 +322,13 @@ function add() {
                 height: 38
             });
 
+            $("#add_kehu").combobox({
+                valueField: 'kehu',
+                textField: 'kehu',
+                width: 318,
+                height: 38
+            });
+
             $('#add_insert_date').datetimebox({
                 okText: '确定',
                 closeText: '关闭',
@@ -307,6 +340,7 @@ function add() {
             });
             
             getAccounting('add-accounting');
+            getKehuPeizhi('add_kehu');
         },
         onClose: function () {
             toReset('add-simpleData-form');
@@ -400,7 +434,7 @@ function toReset(id) {
 function getAccounting(id) {
     $.ajax({
         type: 'Post',
-        url: "web_service/simpleAccounting.asmx/getList",
+        url: "web_service/invoice.asmx/getAccountingPeizhi",
         dataType: "xml",
         success: function (data) {
             var result = getJson(data);
@@ -460,7 +494,8 @@ function toExcel() {
 
                                 var body = {
                                     project: array[i].project,
-                                    insert_date:insert_date,
+                                    insert_date: insert_date,
+                                    kehu:array[i].kehu,
                                     receivable: array[i].receivable,
                                     receipts: array[i].receipts,
                                     uncollected: uncollected,
@@ -468,11 +503,12 @@ function toExcel() {
                                     payment: array[i].payment,
                                     paid: paid,
                                     accounting: array[i].accounting,
+                                    zhaiyao: array[i].zhaiyao,
                                 }
                                 header.push(body)
                             }
                             console.log(header)
-                            title = ['项目名称','日期', '应收', '实收', '未收', '应付', '实付', '未付', '科目']
+                            title = ['项目名称','日期','客户', '应收', '实收', '未收', '应付', '实付', '未付', '科目','摘要']
                             JSONToExcelConvertor(header, "极简台账", title)
                         }
                     },
@@ -579,4 +615,23 @@ function JSONToExcelConvertor(JSONData, FileName, title, filter) {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+}
+
+
+function getKehuPeizhi(id) {
+    $.ajax({
+        type: 'Post',
+        url: "web_service/invoice.asmx/getKehuPeizhi",
+        dataType: "xml",
+        success: function (data) {
+            var result = getJson(data);
+            if (result.code == 200) {
+                $('#' + id).combobox('loadData', result.data);
+            }
+        },
+        error: function (err) {
+            alert("错误！")
+            console.log(err)
+        }
+    })
 }

@@ -1113,10 +1113,15 @@
     <Content Include="finance\web\assets\js\EChart\echarts.js" />
     <Content Include="finance\web\assets\js\EChart\shine.js" />
     <Content Include="finance\web\assets\js\error.js" />
+    <Content Include="finance\web\assets\js\gysSubLedger.js" />
     <Content Include="finance\web\assets\js\index.js" />
+    <Content Include="finance\web\assets\js\invoice.js" />
     <Content Include="finance\web\assets\js\items.js" />
     <Content Include="finance\web\assets\js\flow.js" />
+    <Content Include="finance\web\assets\js\kehuSubLedger.js" />
+    <Content Include="finance\web\assets\js\lirun.js" />
     <Content Include="finance\web\assets\js\nianbao.js" />
+    <Content Include="finance\web\assets\js\simplePeizhi.js" />
     <Content Include="finance\web\assets\js\user_management.js" />
     <Content Include="finance\web\assets\js\Jquery.js" />
     <Content Include="finance\web\assets\js\liabilities.js" />
@@ -1128,20 +1133,27 @@
     <Content Include="finance\web\assets\js\subject_ledger.js" />
     <Content Include="finance\web\assets\js\update_user.js" />
     <Content Include="finance\web\assets\js\voucherSummary.js" />
+    <Content Include="finance\web\assets\js\YingFu.js" />
+    <Content Include="finance\web\assets\js\YingShou.js" />
     <Content Include="finance\web\view\chart.aspx" />
     <Content Include="finance\web\view\department.aspx" />
     <Content Include="finance\web\view\error.aspx" />
+    <Content Include="finance\web\view\gysSubLedger.aspx" />
     <Content Include="finance\web\view\index.aspx" />
     <Content Include="finance\web\view\instructions.aspx" />
     <Content Include="finance\web\view\invalid.aspx" />
+    <Content Include="finance\web\view\invoice.aspx" />
     <Content Include="finance\web\view\items.aspx" />
     <Content Include="finance\web\view\flow.aspx" />
+    <Content Include="finance\web\view\kehuSubLedger.aspx" />
     <Content Include="finance\web\view\liabilities.aspx" />
+    <Content Include="finance\web\view\lirun.aspx" />
     <Content Include="finance\web\view\new_user.aspx" />
     <Content Include="finance\web\view\nianbao.aspx" />
     <Content Include="finance\web\view\profit.aspx" />
     <Content Include="finance\web\view\simpleAccounting.aspx" />
     <Content Include="finance\web\view\simpleData.aspx" />
+    <Content Include="finance\web\view\simplePeizhi.aspx" />
     <Content Include="finance\web\view\subject_ledger.aspx" />
     <Content Include="finance\web\view\update_do.aspx" />
     <Content Include="finance\web\view\update_pwd.aspx" />
@@ -1152,17 +1164,24 @@
     <Content Include="finance\web\view\web_service\index.asmx" />
     <Content Include="finance\web\view\web_service\financing.asmx" />
     <Content Include="finance\web\view\web_service\investment.asmx" />
+    <Content Include="finance\web\view\web_service\invoice.asmx" />
+    <Content Include="finance\web\view\web_service\lirun.asmx" />
     <Content Include="finance\web\view\web_service\management.asmx" />
     <Content Include="finance\web\view\web_service\nianbao.asmx" />
+    <Content Include="finance\web\view\web_service\shouFuBaoBiao.asmx" />
     <Content Include="finance\web\view\web_service\simpleAccounting.asmx" />
     <Content Include="finance\web\view\web_service\simpleData.asmx" />
+    <Content Include="finance\web\view\web_service\simplePeizhi.asmx" />
     <Content Include="finance\web\view\web_service\space.asmx" />
+    <Content Include="finance\web\view\web_service\subLedger.asmx" />
     <Content Include="finance\web\view\web_service\updateUser.asmx" />
     <Content Include="finance\web\view\web_service\user_management.asmx" />
     <Content Include="finance\web\view\web_service\voucherSummary.asmx" />
     <Content Include="finance\web\view\voucherSummary.aspx" />
     <Content Include="finance\web\view\web_service\voucherWord.asmx" />
     <Content Include="finance\web\view\web_service\WebService1.asmx" />
+    <Content Include="finance\web\view\YingFu.aspx" />
+    <Content Include="finance\web\view\YingShou.aspx" />
     <Content Include="frmMain.aspx" />
     <Content Include="frmNav.aspx" />
     <Content Include="frmReadIDCare.aspx" />
@@ -1984,6 +2003,9 @@
       <DependentUpon>Finance.tt</DependentUpon>
     </Compile>
     <Compile Include="finance\model\AccountingModel.cs" />
+    <Compile Include="finance\model\AccountingPeizhi.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
     <Compile Include="finance\model\AccountModel.cs" />
     <Compile Include="finance\model\CommonModel.cs" />
     <Compile Include="finance\model\contract_manage.cs">
@@ -2038,6 +2060,16 @@
     </Compile>
     <Compile Include="finance\model\InvestmentModel.cs" />
     <Compile Include="finance\model\FlowModel.cs" />
+    <Compile Include="finance\model\Invoice.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\InvoiceModel.cs" />
+    <Compile Include="finance\model\InvoicePeizhi.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\KehuPeizhi.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
     <Compile Include="finance\model\LiabilitiesModel.cs" />
     <Compile Include="finance\model\ManagementExpenditure.cs">
       <DependentUpon>Finance.tt</DependentUpon>
@@ -2090,12 +2122,17 @@
     <Compile Include="finance\service\FinancingService.cs" />
     <Compile Include="finance\service\InvestmentService.cs" />
     <Compile Include="finance\service\FlowService.cs" />
+    <Compile Include="finance\service\InvoiceService.cs" />
     <Compile Include="finance\service\LiabilitiesService.cs" />
+    <Compile Include="finance\service\LirunService.cs" />
     <Compile Include="finance\service\ManagementService.cs" />
     <Compile Include="finance\service\NianBaoService.cs" />
     <Compile Include="finance\service\ProfitService.cs" />
+    <Compile Include="finance\service\ShouFuBaoBiaoService.cs" />
     <Compile Include="finance\service\SimpleAccountingService.cs" />
     <Compile Include="finance\service\SimpleDataService.cs" />
+    <Compile Include="finance\service\SimplePeizhiService.cs" />
+    <Compile Include="finance\service\SubLedgerService.cs" />
     <Compile Include="finance\service\User_ManagementService.cs" />
     <Compile Include="finance\service\VoucherSummaryService.cs" />
     <Compile Include="finance\service\VoucherWordService.cs" />
@@ -2127,6 +2164,13 @@
     <Compile Include="finance\web\view\error.aspx.designer.cs">
       <DependentUpon>error.aspx</DependentUpon>
     </Compile>
+    <Compile Include="finance\web\view\gysSubLedger.aspx.cs">
+      <DependentUpon>gysSubLedger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\gysSubLedger.aspx.designer.cs">
+      <DependentUpon>gysSubLedger.aspx</DependentUpon>
+    </Compile>
     <Compile Include="finance\web\view\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2148,6 +2192,13 @@
     <Compile Include="finance\web\view\invalid.aspx.designer.cs">
       <DependentUpon>invalid.aspx</DependentUpon>
     </Compile>
+    <Compile Include="finance\web\view\invoice.aspx.cs">
+      <DependentUpon>invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\invoice.aspx.designer.cs">
+      <DependentUpon>invoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="finance\web\view\items.aspx.cs">
       <DependentUpon>items.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2162,12 +2213,26 @@
     <Compile Include="finance\web\view\flow.aspx.designer.cs">
       <DependentUpon>flow.aspx</DependentUpon>
     </Compile>
+    <Compile Include="finance\web\view\kehuSubLedger.aspx.cs">
+      <DependentUpon>kehuSubLedger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\kehuSubLedger.aspx.designer.cs">
+      <DependentUpon>kehuSubLedger.aspx</DependentUpon>
+    </Compile>
     <Compile Include="finance\web\view\liabilities.aspx.cs">
       <DependentUpon>liabilities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="finance\web\view\liabilities.aspx.designer.cs">
       <DependentUpon>liabilities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\lirun.aspx.cs">
+      <DependentUpon>lirun.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\lirun.aspx.designer.cs">
+      <DependentUpon>lirun.aspx</DependentUpon>
     </Compile>
     <Compile Include="finance\web\view\new_user.aspx.cs">
       <DependentUpon>new_user.aspx</DependentUpon>
@@ -2203,6 +2268,13 @@
     </Compile>
     <Compile Include="finance\web\view\simpleData.aspx.designer.cs">
       <DependentUpon>simpleData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\simplePeizhi.aspx.cs">
+      <DependentUpon>simplePeizhi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\simplePeizhi.aspx.designer.cs">
+      <DependentUpon>simplePeizhi.aspx</DependentUpon>
     </Compile>
     <Compile Include="finance\web\view\subject_ledger.aspx.cs">
       <DependentUpon>subject_ledger.aspx</DependentUpon>
@@ -2256,12 +2328,24 @@
       <DependentUpon>investment.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="finance\web\view\web_service\invoice.asmx.cs">
+      <DependentUpon>invoice.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\lirun.asmx.cs">
+      <DependentUpon>lirun.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="finance\web\view\web_service\management.asmx.cs">
       <DependentUpon>management.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="finance\web\view\web_service\nianbao.asmx.cs">
       <DependentUpon>nianbao.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\shouFuBaoBiao.asmx.cs">
+      <DependentUpon>shouFuBaoBiao.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="finance\web\view\web_service\simpleAccounting.asmx.cs">
@@ -2272,8 +2356,16 @@
       <DependentUpon>simpleData.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="finance\web\view\web_service\simplePeizhi.asmx.cs">
+      <DependentUpon>simplePeizhi.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="finance\web\view\web_service\space.asmx.cs">
       <DependentUpon>space.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\subLedger.asmx.cs">
+      <DependentUpon>subLedger.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="finance\web\view\web_service\updateUser.asmx.cs">
@@ -2302,6 +2394,20 @@
     <Compile Include="finance\web\view\web_service\WebService1.asmx.cs">
       <DependentUpon>WebService1.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\YingFu.aspx.cs">
+      <DependentUpon>YingFu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\YingFu.aspx.designer.cs">
+      <DependentUpon>YingFu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\YingShou.aspx.cs">
+      <DependentUpon>YingShou.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\YingShou.aspx.designer.cs">
+      <DependentUpon>YingShou.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmMain.aspx.cs">
       <DependentUpon>frmMain.aspx</DependentUpon>

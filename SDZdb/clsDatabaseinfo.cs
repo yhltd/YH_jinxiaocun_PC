@@ -372,4 +372,38 @@ namespace SDZdb
         public string kehu2 { get; set; }
         public Nullable<decimal> cope { get; set; }
     }
+
+    public class subLedgetList
+    {
+        //public Nullable<System.DateTime> insert_date { get; set; }
+        public string insert_date { get; set; }
+        public string kehu { get; set; }
+        public string accounting { get; set; }
+        public string project { get; set; }
+        public Nullable<decimal> ying { get; set; }
+        public Nullable<decimal> shi { get; set; }
+        public Nullable<decimal> wei { get; set; }
+    }
+
+    public class lirunList
+    {
+        public string project { get; set; }
+        public string accounting { get; set; }
+        public Nullable<decimal> benqi { get; set; }
+        public Nullable<decimal> bennian { get; set; }
+        public Nullable<decimal> shangqi { get; set; }
+    }
+
+    public class shoufubaobiao
+    {
+        public string kehu { get; set; }
+        public string project { get; set; }
+        public string zhaiyao { get; set; }
+        public Nullable<decimal> jine1 { get; set; }
+        public string unit { get; set; }
+        public string invoice_type { get; set; }
+        public string invoice_no { get; set; }
+        public string jine2 { get; set; }
+    }
+
 }

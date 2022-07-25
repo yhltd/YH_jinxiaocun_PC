@@ -17,5 +17,8 @@ namespace Web.finance.model
         public int id { get; set; }
         public string company { get; set; }
         public string accounting { get; set; }
+        public string project { get; set; }
+        public string kehu { get; set; }
+        public string invoice_type { get; set; }
     }
 }

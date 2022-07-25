@@ -91,5 +91,29 @@ namespace Web.finance.model
             }
             return count;
         }
+
+        /// <summary>
+        /// 获取集合
+        /// </summary>
+        /// <param name="financePage">分页对象</param>
+        /// <param name="company">公司名</param>
+        /// <returns>有pegeList的分页对象</returns>
+        public List<SimpleData> getZongZhang(string company, string kehu, string project)
+        {
+            var companyParam = new SqlParameter("@company", company);
+
+            var kehuParam = new SqlParameter("@kehu", kehu);
+
+            var projectParam = new SqlParameter("@project", project);
+
+            string sql = "select '' as company,kehu,project,sum(receivable) as receivable,sum(receipts) as receipts,sum(cope) as cope,sum(payment) as payment,1 as id,'' as accounting,null as insert_date,'' as zhaiyao from SimpleData where company=@company and kehu like '%'+@kehu+'%' and project like '%'+@project+'%' group by kehu,project";
+
+            var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, kehuParam, projectParam);
+
+            return result.ToList();
+        }
+
+
+
     }
 }

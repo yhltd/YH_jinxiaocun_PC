@@ -39,5 +39,9 @@ namespace Web.finance.model
         public DbSet<VoucherSummary> VoucherSummary { get; set; }
         public DbSet<VoucherWord> VoucherWord { get; set; }
         public DbSet<quanxian> quanxian { get; set; }
+        public DbSet<Invoice> Invoice { get; set; }
+        public DbSet<AccountingPeizhi> AccountingPeizhi { get; set; }
+        public DbSet<KehuPeizhi> KehuPeizhi { get; set; }
+        public DbSet<InvoicePeizhi> InvoicePeizhi { get; set; }
     }
 }

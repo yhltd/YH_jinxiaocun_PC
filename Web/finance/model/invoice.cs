@@ -12,7 +12,7 @@ namespace Web.finance.model
     using System;
     using System.Collections.Generic;
     
-    public partial class invoice
+    public partial class Invoice
     {
         public int id { get; set; }
         public string type { get; set; }
@@ -23,5 +23,6 @@ namespace Web.finance.model
         public string invoice_no { get; set; }
         public string jine { get; set; }
         public string remarks { get; set; }
+        public string company { get; set; }
     }
 }

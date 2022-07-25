@@ -197,5 +197,37 @@ namespace Web.finance.web.view.web_service
                 return FinanceResultData.getFinanceResultData().fail(500, null, "未知的错误");
             }
         }
+
+        /// <summary>
+        /// 分页获取科目
+        /// </summary>
+        /// <param name="financePageJson"></param>
+        /// <returns></returns>
+        [WebMethod]
+        public string getZongZhang(string kehu,string project)
+        {
+            using (fin = new FinanceEntities())
+            {
+                try
+                {
+                    //创建service层实例
+                    simpleAccountingService = new SimpleAccountingService();
+                    List<SimpleData> list = simpleAccountingService.getZongZhang(kehu,project);
+
+                    return FinanceResultData.getFinanceResultData().success(200, list, "成功");
+                }
+                catch (InvalidOperationException ex)
+                {
+                    //身份验证不通过
+                    return FinanceResultData.getFinanceResultData().fail(401, null, ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    //未知的错误
+                    return FinanceResultData.getFinanceResultData().fail(500, null, "未知的错误");
+                }
+            }
+
+        }
     }
 }

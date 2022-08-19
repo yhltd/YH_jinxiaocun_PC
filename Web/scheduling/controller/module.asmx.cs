@@ -248,5 +248,33 @@ namespace Web.scheduling.controller
                 return ResultUtil.error("查询失败");
             }
         }
+        [WebMethod]
+        public string getList()
+        {
+            try
+            {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "模块单位");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
+                ms = new ModuleService();
+                return ResultUtil.success(ms.listByNum(false), "查询成功");
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch
+            {
+                return ResultUtil.error("查询失败");
+            }
+        }
     }
 }

@@ -198,14 +198,49 @@ namespace Web
                 }
             }
             else if (servename.ToString().Equals("云合排产管理系统")) {
+                int state = 0;
                 try
                 {
                     if (!UserInfoService.login(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim()))
                     {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('用户名密码错误！')", true);
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('用户名密码错误或用户被禁用！')", true);
                     }
                     else
                     {
+                        conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                        if (conn.State == ConnectionState.Closed)
+                        {
+                            conn.Open();
+                        }
+                        string now = DateTime.Now.ToShortDateString().ToString();
+                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";
+                        cmd = new SqlCommand(sqlStr, conn);
+                        str = cmd.ExecuteReader();
+                        int a = 0;
+                        List<string> itemi = new List<string>();
+                        while (str.Read())
+                        {
+                            if (str["endtime"].Equals(1)) 
+                            {
+                                Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
+                                return;
+                            }
+                            if (str["mark2"].Equals(1))
+                            {
+                                Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
+                                return;
+                            }
+                        }
+
+                        int ky_rongliang = FinanceSpace.getFinanceSpace().getMark4_all(gs_name,"排产");
+                        int sy_rongliang = FinanceSpace.getFinanceSpace().getUseMark4_all(gs_name, "排产");
+
+                        if (sy_rongliang >= ky_rongliang)
+                        {
+                            Response.Write("<script>alert('您在我公司租用的数据库容量已超上限，该系统暂时无法使用。请联系我公司，官方微信号：1623005800。')</script>");
+                            return;
+                        }
+
                         Response.Redirect("../scheduling/web/index.html");
                     }
                 }

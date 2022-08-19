@@ -70,6 +70,23 @@ namespace Web.scheduling.dao
         }
 
         /// <summary>
+        /// 根据模块id查询模块信息
+        /// </summary>
+        /// <param name="workId"></param>
+        /// <returns></returns>
+        public List<module_info> listById(int id)
+        {
+            var @params = new SqlParameter("@id", id);
+            string sql = "select * from module_info where id = @id";
+
+            using (se = new schedulingEntities())
+            {
+                var result = se.Database.SqlQuery<module_info>(sql, @params);
+                return result.ToList();
+            }
+        }
+
+        /// <summary>
         /// 条件查询
         /// </summary>
         /// <param name="company">公司</param>

@@ -51,8 +51,9 @@ namespace Web.scheduling.service
         {
             Boolean flag = false;
             PaibanbiaoInfoDao pi = new PaibanbiaoInfoDao();
-            if (pi.delete<paibanbiao_info>(id) && pi.delete2(e))
+            if (pi.delete<paibanbiao_info>(id))
             {
+                pi.delete2(e);
                 flag = true;
             }
             return flag;

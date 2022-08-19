@@ -227,10 +227,24 @@
     <EntitySetMapping Name="user_info">
       <EntityTypeMapping TypeName="schedulingModel.user_info">
         <MappingFragment StoreEntitySet="user_info">
+          <ScalarProperty Name="state" ColumnName="state" />
           <ScalarProperty Name="department_name" ColumnName="department_name" />
           <ScalarProperty Name="company" ColumnName="company" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="user_code" ColumnName="user_code" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="work_detail1">
+      <EntityTypeMapping TypeName="schedulingModel.work_detail1">
+        <MappingFragment StoreEntitySet="work_detail1">
+          <ScalarProperty Name="is_insert" ColumnName="is_insert" />
+          <ScalarProperty Name="row_num" ColumnName="row_num" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />
+          <ScalarProperty Name="work_num" ColumnName="work_num" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

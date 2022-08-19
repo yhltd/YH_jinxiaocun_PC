@@ -29,7 +29,7 @@ namespace Web.scheduling.service
         /// <param name="nowPage">当前页</param>
         /// <param name="pageCount">每页显示行数</param>
         /// <returns></returns>
-        public PageUtil<order_check> getList(int nowPage, int pageCount,string order_number,string moudle)
+        public PageUtil<order_check> getList(int nowPage, int pageCount,string order_number,string moudle,string ks,string js)
         {
             user=TokenUtil.getToken();
             string company=user.company;
@@ -37,7 +37,7 @@ namespace Web.scheduling.service
             page.nowPage = nowPage;
             page.pageCount = pageCount;
             page.total = ocd.Count();
-            page.pageList = ocd.getList(page.getSkip(), page.getTake(), order_number, moudle, company);
+            page.pageList = ocd.getList(page.getSkip(), page.getTake(), order_number, moudle, company,ks,js);
             return page;
         }
 

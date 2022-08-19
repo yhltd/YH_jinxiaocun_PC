@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Services;
 using Web.scheduling.model;
@@ -208,7 +209,6 @@ namespace Web.scheduling.controller
                 }
                 else
                 {
-
                     return ResultUtil.error("没有权限！");
                 }
 
@@ -1282,6 +1282,294 @@ namespace Web.scheduling.controller
             }
             return return_value;
         }
+
+        [WebMethod]
+        public string Paiban1(paibanbiao_info paibanbiaoInfo, List<paibanbiao_renyuan> renyuan, DateTime ks1, DateTime js1, int banci,string xiuxi) 
+        {
+            List<paibanbiao_detail> paiban_detail = new List<paibanbiao_detail>();
+            try
+            {
+                pbds = new PaiBanDetailService();
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "排班");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+                //设置编号
+                string paibanbiao_id= DateTime.Now.ToString("yyyyMMddss");
+
+                //给人员分班次
+                int zu = 1;
+                for (int i = 0; i < renyuan.Count; i++)
+                {
+                    renyuan[i].b = "班次" + zu;
+                    if (zu == banci)
+                    {
+                        zu = 1;
+                    }
+                    else
+                    {
+                        zu = zu + 1;
+                    }
+                }
+
+                DateTime ks;
+                DateTime js;
+                ks = Convert.ToDateTime(ks1);
+                js = Convert.ToDateTime(js1);
+                xiuxi = xiuxi.Replace("，", ",");
+                //排班天数
+                TimeSpan tianshu = js - ks;
+                for (int i = 0; i < tianshu.Days; i++)
+                {
+                    if (Array.IndexOf(Regex.Split(xiuxi, ","), Convert.ToString(CaculateWeekDay(ks))) == -1) 
+                    {
+                        for (int j = 0; j < renyuan.Count; j++)
+                        {
+                            paibanbiao_detail pd = new paibanbiao_detail();
+                            pd.staff_name = renyuan[j].staff_name;
+                            pd.phone_number = renyuan[j].phone_number;
+                            pd.banci = renyuan[j].banci;
+                            pd.department_name = renyuan[j].department_name;
+                            pd.id_number = renyuan[j].id_number;
+                            pd.company = renyuan[j].company;
+                            pd.b = renyuan[j].b;
+                            pd.c = ks.ToString("yyyy-MM-dd");
+                            pd.e = paibanbiao_id;
+
+                            paiban_detail.Add(pd);
+                        }
+                    }
+                    ks = ks.AddDays(1);
+                }
+                paibanbiaoInfo.paibanbiao_detail_id = Convert.ToInt32(paibanbiao_id);
+                return ResultUtil.success(pbds.save(paibanbiaoInfo, paiban_detail, paibanbiao_id), "保存成功");
+
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return ResultUtil.error("保存失败");
+            }
+        }
+
+        [WebMethod]
+        public string Paiban2(paibanbiao_info paibanbiaoInfo, List<paibanbiao_renyuan> renyuan, DateTime ks2, DateTime js2, int banci, string lunhuan_type,int lunhuan_num,int jiange)
+        {
+            List<paibanbiao_detail> paiban_detail = new List<paibanbiao_detail>();
+            try
+            {
+                pbds = new PaiBanDetailService();
+                us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("add", "排班");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+                //设置编号
+                string paibanbiao_id = DateTime.Now.ToString("yyyyMMddss");
+
+                
+                if (lunhuan_type == "天") 
+                {
+                    //给人员分队和班次
+                    int dui = 1;
+                    int zu = 1;
+                    for (int i = 0; i < renyuan.Count; i++)
+                    {
+                        renyuan[i].f = "队伍" + dui;
+                        renyuan[i].b = "班次" + zu;
+                        if (dui == lunhuan_num)
+                        {
+                            dui = 1;
+                            if (zu == banci)
+                            {
+                                zu = 1;
+                            }
+                            else
+                            {
+                                zu = zu + 1;
+                            }
+                        }
+                        else
+                        {
+                            dui = dui + 1;
+                        }
+                    }
+
+                    DateTime ks;
+                    DateTime js;
+                    ks = Convert.ToDateTime(ks2);
+                    js = Convert.ToDateTime(js2);
+
+                    //排班天数
+                    TimeSpan tianshu = js - ks;
+                    //轮换队伍变量
+                    int lh = 1;
+                    //轮换天数变量
+                    int lu_ts = 0;
+                    for (int i = 0; i < tianshu.Days; i++)
+                    {
+                        for (int j = 0; j < renyuan.Count; j++)
+                        {
+                            if (renyuan[j].f.Equals("队伍" + lh))
+                            {
+                                paibanbiao_detail pd = new paibanbiao_detail();
+                                pd.staff_name = renyuan[j].staff_name;
+                                pd.phone_number = renyuan[j].phone_number;
+                                pd.banci = renyuan[j].banci;
+                                pd.department_name = renyuan[j].department_name;
+                                pd.id_number = renyuan[j].id_number;
+                                pd.company = renyuan[j].company;
+                                pd.b = renyuan[j].b;
+                                pd.c = ks.ToString("yyyy-MM-dd");
+                                pd.e = paibanbiao_id;
+                                pd.f = renyuan[j].f;
+                                paiban_detail.Add(pd);
+                            }
+                        }
+                        lu_ts = lu_ts + 1;
+                        if (lu_ts == jiange)
+                        {
+                            lu_ts = 0;
+                            lh = lh + 1;
+                            if (lh > lunhuan_num)
+                            {
+                                lh = 1;
+                            }
+                        }
+                        ks = ks.AddDays(1);
+                    }
+                    paibanbiaoInfo.paibanbiao_detail_id = Convert.ToInt32(paibanbiao_id);
+                    return ResultUtil.success(pbds.save(paibanbiaoInfo, paiban_detail, paibanbiao_id), "保存成功");
+                }
+                else if (lunhuan_type == "周")
+                {
+                    //给人员分队和班次
+                    int dui = 1;
+                    int zu = 1;
+
+                    for (int i = 0; i < renyuan.Count; i++)
+                    {
+                        renyuan[i].f = "队伍" + dui;
+                        renyuan[i].b = "班次" + zu;
+                        if (dui == lunhuan_num)
+                        {
+                            dui = 1;
+                            if (zu == banci)
+                            {
+                                zu = 1;
+                            }
+                            else
+                            {
+                                zu = zu + 1;
+                            }
+                        }
+                        else
+                        {
+                            dui = dui + 1;
+                        }
+                        
+                    }
+
+                    DateTime ks;
+                    DateTime js;
+                    ks = Convert.ToDateTime(ks2);
+                    js = Convert.ToDateTime(js2);
+
+                    //排班天数
+                    TimeSpan tianshu = js - ks;
+                    //轮换队伍变量
+                    int lh = 1;
+                    //轮换周数变量
+                    int zhou = 0;
+
+                    for (int i = 0; i < tianshu.Days; i++)
+                    {
+                        for (int j = 0; j < renyuan.Count; j++)
+                        {
+                            if (renyuan[j].f.Equals("队伍" + lh))
+                            {
+                                paibanbiao_detail pd = new paibanbiao_detail();
+                                pd.staff_name = renyuan[j].staff_name;
+                                pd.phone_number = renyuan[j].phone_number;
+                                pd.banci = renyuan[j].banci;
+                                pd.department_name = renyuan[j].department_name;
+                                pd.id_number = renyuan[j].id_number;
+                                pd.company = renyuan[j].company;
+                                pd.b = renyuan[j].b;
+                                pd.c = ks.ToString("yyyy-MM-dd");
+                                pd.e = paibanbiao_id;
+                                pd.f = renyuan[j].f;
+                                paiban_detail.Add(pd);
+                            }
+                        }
+                        if (CaculateWeekDay(ks) ==7) 
+                        {
+                            zhou = zhou + 1;
+                            if (zhou == jiange)
+                            {
+                                zhou = 0;
+                                lh = lh + 1;
+                                if (lh > lunhuan_num)
+                                {
+                                    lh = 1;
+                                }
+                            }
+                        }
+                        ks = ks.AddDays(1);
+                    }
+                    paibanbiaoInfo.paibanbiao_detail_id = Convert.ToInt32(paibanbiao_id);
+                    return ResultUtil.success(pbds.save(paibanbiaoInfo, paiban_detail, paibanbiao_id), "保存成功");
+                }
+                else 
+                {
+                    return ResultUtil.error("请选择排班类型");
+                }
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch (Exception ex)
+            {
+
+                return ResultUtil.error("保存失败");
+            }
+        }
+
+
+
+        //根据日期计算周几，返回int
+        public static int CaculateWeekDay(DateTime rq)
+        {
+            int y = rq.Year;
+            int m = rq.Month;
+            int d = rq.Day;
+            if (m == 1 || m == 2)
+            {
+                m += 12;
+                y--;
+            }
+            int week = (d + 2 * m + 3 * (m + 1) / 5 + y + y / 4 - y / 100 + y / 400 + 1) % 7;
+            if (week == 0) 
+            {
+                week = 7;
+            }
+            return week;
+        }
+
 
     }
 }

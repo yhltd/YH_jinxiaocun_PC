@@ -6,14 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+    <link rel="stylesheet" type="text/css" href="../assets/css/chart.css"/>
     <link href="static/element/index.css" rel="stylesheet" />
     <link rel="stylesheet" href="static/css/main.css">
 
     <script type="text/javascript" src="static/vue/vue.js"></script>
     <script type="text/javascript" src="static/element/index.js"></script>
     <script type="text/javascript" src="static/axios/axios.js"></script>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.1.0/echarts.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-echarts/4.0.2/vue-echarts.min.js"></script>
     <script src="static/js/main.js"></script>
 
+    <style>
+        .labelStyle .el-form-item__label {
+            color:white;
+        }
+    </style>
     <title>云合排产管理系统</title>
 </head>
 <body>
@@ -28,11 +37,12 @@
                         <el-input placeholder="订单号" v-model="orderId" clearable></el-input>
                     </el-col>
                     <el-col :span="8">
-                        <el-button-group>
+                        <el-button-group style="width:800px">
                             <el-button icon="el-icon-search" type="primary" @click="getList">查询</el-button>
                             <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getInitList"></el-button>
                             <el-button icon="el-icon-circle-plus-outline" type="primary" @click="addVisible = true"></el-button>
                             <el-button  icon="el-icon-printer" type="primary" @click="toExcel">导出</el-button>
+                            <el-button icon="el-icon-s-marketing"  type="primary"  @click="chartVisible=true;">图表</el-button>
                         </el-button-group>
                     </el-col>
                 </el-row>
@@ -148,6 +158,36 @@
                 style="margin-top: 20px"
             >保存</el-button>
         </el-drawer>
+
+        <el-drawer
+            title="图表"
+            :visible.sync="chartVisible"
+            direction="ltr"
+            :modal="false"
+            size="95%"
+            ref="chartDrawer"
+        >
+            <el-form 
+                ref="chartForm"
+                style="background: url('static/img/image4.jpeg') no-repeat center!important;background-size:100% 100%"
+            >
+                <!--style="background: url('static/img/image4.jpeg') no-repeat center!important;background-size:100% 100%"-->
+                <!--style="background: url('static/img/image3.jpeg') no-repeat center!important;background-size:100% 100%"-->
+                <el-form-item label="年" prop="year">
+                    <el-input v-model="year" type="number" style="width: 230px;"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button-group>
+                        <el-button 
+                            icon="el-icon-search" 
+                            type="success" 
+                            style="margin-top:40px"
+                            @click="getChart">生成</el-button>
+                    </el-button-grou>
+                </el-form-item>
+                <chart :options="orgOptions" :auto-resize="true" ></chart>
+            </el-form>
+        </el-drawer>
     </div>
 
     <script>
@@ -171,6 +211,9 @@
 
         new Vue({
             el: '#order',
+            components: {
+                'chart': VueECharts
+            },
             data: {
                 now: 1,
                 size: 20,
@@ -180,6 +223,7 @@
 
                 productName: '',
                 orderId: '',
+                year:'',
 
                 rules: {
                     order_id: [
@@ -201,7 +245,77 @@
                 order: {},
                 addVisible: false,
                 saveLoading: false,
-                updateLoading: false
+                updateLoading: false,
+                chartVisible:false,
+                orgOptions: {
+                    title: {
+                        text: "排产折线图",
+                        textStyle: {
+                            color: '#FFFFFF', //颜色
+                            fontStyle: 'normal', //风格
+                            fontWeight: 'normal', //粗细
+                            fontFamily: 'Microsoft yahei', //字体
+                            fontSize: 20, //大小
+                            align: 'center' //水平对齐
+                        },
+                        //textAlign: 'center'
+                    },
+                    tooltip: {
+                        trigger: "axis",
+                        axisPointer: {
+                            type: "shadow"
+                        }
+                    },
+                    xAxis: {
+                        nameTextStyle: {
+                            fontSize: 15,
+                            color: '#FFFFFF', //颜色
+                        },
+                        name: '月份',
+                        type: 'category',
+                        data: [],
+                        axisLine: {
+                            lineStyle: {
+                                color: '#FFFFFF',
+                                width: 4,//这里是为了突出显示加上的
+                            }
+                        },
+                    },
+                    yAxis: {
+                        nameTextStyle: {
+                            fontSize: 15,
+                            color: '#FFFFFF', //颜色
+                        },
+                        name: '数量',
+                        type: 'value',
+                        axisLine: {
+                            lineStyle: {
+                                color: '#FFFFFF',
+                                width: 4,//这里是为了突出显示加上的
+                            }
+                        },
+                    },
+                    series: [{
+                        //symbol: 'circle',//折线点设置为实心点
+
+                        symbolSize: 4,   //折线点的大小
+                        type: 'line',//折线图
+                        data: [],
+                        itemStyle: {
+                            normal: {
+                                color: "#5078DB",//折线点的颜色
+                                lineStyle: {
+                                    color: "#F4422C"//折线的颜色
+                                }
+                            }
+                        },
+                    }],
+                    //grid:{
+                    //    x:22,
+                    //    height:300,
+                    //    width:500,
+                    //},
+                },
             },
             methods: {
                 toExcel: function () {
@@ -392,7 +506,88 @@
                         return;
                     }
                     this.$refs.bomTable.toggleRowSelection(this.bomList[index], result);
-                }
+                },
+
+                getChart: function () {
+                    if (this.year == "") {
+                        this.$message({
+                            message: '请填写年份！',
+                            type: 'warning'
+                        });
+                        return;
+                    }
+                    this.orgOptions.xAxis.data = [];
+                    this.orgOptions.series[0].data = [];
+                    var ks = this.year + "-01-01";
+                    var js = this.year + "-12-31";
+                    console.log(this.list);
+
+                    var yue1 = 0; var yue2 = 0; var yue3 = 0; var yue4 = 0; var yue5 = 0; var yue6 = 0; var yue7 = 0; var yue8 = 0; var yue9 = 0; var yue10 = 0; var yue11 = 0; var yue12 = 0;
+                    for (var i = 0; i < this.list.length; i++) {
+                        if (this.list[i].set_date >= this.year + "-01-01" && this.list[i].set_date <= this.year + "-01-31") {
+                            yue1 = yue1 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-02-01" && this.list[i].set_date <= this.year + "-02-28") {
+                            yue2 = yue2 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-03-01" && this.list[i].set_date <= this.year + "-03-31") {
+                            yue3 = yue3 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-04-01" && this.list[i].set_date <= this.year + "-04-30") {
+                            yue4 = yue4 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-05-01" && this.list[i].set_date <= this.year + "-05-31") {
+                            yue5 = yue5 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-06-01" && this.list[i].set_date <= this.year + "-06-30") {
+                            yue6 = yue6 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-07-01" && this.list[i].set_date <= this.year + "-07-31") {
+                            yue7 = yue7 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-08-01" && this.list[i].set_date <= this.year + "-08-31") {
+                            yue8 = yue8 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-09-01" && this.list[i].set_date <= this.year + "-09-30") {
+                            yue9 = yue9 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-10-01" && this.list[i].set_date <= this.year + "-10-31") {
+                            yue10 = yue10 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-11-01" && this.list[i].set_date <= this.year + "-11-30") {
+                            yue11 = yue11 + parseFloat(this.list[i].set_num);
+                        }
+                        if (this.list[i].set_date >= this.year + "-12-01" && this.list[i].set_date <= this.year + "-12-31") {
+                            yue12 = yue12 + parseFloat(this.list[i].set_num);
+                        }
+                    }
+                    this.orgOptions.xAxis.data.push("1月")
+                    this.orgOptions.series[0].data.push(yue1)
+                    this.orgOptions.xAxis.data.push("2月")
+                    this.orgOptions.series[0].data.push(yue2)
+                    this.orgOptions.xAxis.data.push("3月")
+                    this.orgOptions.series[0].data.push(yue3)
+                    this.orgOptions.xAxis.data.push("4月")
+                    this.orgOptions.series[0].data.push(yue4)
+                    this.orgOptions.xAxis.data.push("5月")
+                    this.orgOptions.series[0].data.push(yue5)
+                    this.orgOptions.xAxis.data.push("6月")
+                    this.orgOptions.series[0].data.push(yue6)
+                    this.orgOptions.xAxis.data.push("7月")
+                    this.orgOptions.series[0].data.push(yue7)
+                    this.orgOptions.xAxis.data.push("8月")
+                    this.orgOptions.series[0].data.push(yue8)
+                    this.orgOptions.xAxis.data.push("9月")
+                    this.orgOptions.series[0].data.push(yue9)
+                    this.orgOptions.xAxis.data.push("10月")
+                    this.orgOptions.series[0].data.push(yue10)
+                    this.orgOptions.xAxis.data.push("11月")
+                    this.orgOptions.series[0].data.push(yue11)
+                    this.orgOptions.xAxis.data.push("12月")
+                    this.orgOptions.series[0].data.push(yue12)
+                    console.log(this.orgOptions.xAxis.data)
+                    console.log(this.orgOptions.series[0].data)
+                },
             },
             mounted: function () {
                 this.getList();

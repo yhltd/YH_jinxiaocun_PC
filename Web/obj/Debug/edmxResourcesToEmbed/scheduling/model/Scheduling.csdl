@@ -18,6 +18,7 @@
     <EntitySet Name="user_info1" EntityType="schedulingModel.user_info1" />
     <EntitySet Name="work_detail2" EntityType="schedulingModel.work_detail2" />
     <EntitySet Name="user_info" EntityType="schedulingModel.user_info" />
+    <EntitySet Name="work_detail1" EntityType="schedulingModel.work_detail1" />
   </EntityContainer>
   <EntityType Name="module_info">
     <Key>
@@ -235,5 +236,18 @@
     <Property Type="String" Name="password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="state" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="work_detail1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="order_id" />
+    <Property Type="Int32" Name="work_num" />
+    <Property Type="DateTime" Name="work_start_date" Precision="7" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="row_num" />
+    <Property Type="Int32" Name="is_insert" />
   </EntityType>
 </Schema>

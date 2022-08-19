@@ -26,6 +26,14 @@
                     <el-col :span="6">
                         <el-input v-model="moudle" placeholder="查询模块" clearable></el-input>
                     </el-col>
+                    <el-col :span="6">
+                        <el-date-picker v-model="ks" type="date" placeholder="选择开始日期"></el-date-picker>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-date-picker v-model="js" type="date" placeholder="选择结束日期"></el-date-picker>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="8">
                         <el-button-group>
                             <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getList">查询</el-button>
@@ -34,6 +42,7 @@
                         </el-button-group>
                     </el-col>
                 </el-row>
+
                 <el-table
                     :data="list"
                     v-loading="loading"    
@@ -157,7 +166,9 @@
                  order_number:'',
                  moudle: '',
                  order: {},
-                 riqi:'',
+                 riqi: '',
+                 ks:'',
+                 js:'',
 
                  loading: false,
                  updateLoading: false,
@@ -183,11 +194,21 @@
                  getList: function () {
                      var _this = this;
                      _this.loading = true;
+                     var ks = _this.ks;
+                     var js = _this.js;
+                     if (ks == "" || ks==null) {
+                         ks = "1900/1/1";
+                     }
+                     if (js == "" || js == null) {
+                         js = "2200/1/1";
+                     }
                      axios.post(myUrl('orderCheck/getList'), {
                          order_number: _this.order_number,
                          moudle: _this.moudle,
                          nowPage: _this.now,
                          pageCount: _this.size,
+                         ks: ks,
+                         js:js,
                      }).then(function (res) {
                          if (res.code == 200) {
                              _this.total = res.data.total

@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="schedulingModel.user_info1" Width="1.5" PointX="9.5499056026106253" PointY="23.688586752716724" />
         <EntityTypeShape EntityType="schedulingModel.work_detail2" Width="1.5" PointX="7.7557580544407285" PointY="25.77181395598306" />
         <EntityTypeShape EntityType="schedulingModel.user_info" Width="1.5" PointX="0.75" PointY="2.75" />
+        <EntityTypeShape EntityType="schedulingModel.work_detail1" Width="1.5" PointX="6.8407087022628215" PointY="17.689420753014005" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

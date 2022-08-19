@@ -38,5 +38,25 @@ namespace Web.finance.model
             }
             return cst;
         }
+
+        /// <summary>
+        /// 获取时间配置表中的某个公司对象
+        /// </summary>
+        /// <param name="company">公司名</param>
+        /// <returns>control_soft_time</returns>
+        public control_soft_time getUserSpaceInfo_all(string company,string xitong)
+        {
+            var result = from u in bde.control_soft_time where u.name == company && u.soft_name == xitong select u;
+            control_soft_time cst = null;
+            try
+            {
+                cst = result.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+            }
+            return cst;
+        }
     }
 }

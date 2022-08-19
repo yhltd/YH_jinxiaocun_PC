@@ -1,10 +1,13 @@
-﻿using System;
+﻿using SDZdb;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.SessionState;
 using Web.scheduling.dao;
 using Web.scheduling.model;
 using Web.scheduling.utils;
+using Web.Util;
 
 namespace Web.scheduling
 {
@@ -39,10 +42,32 @@ namespace Web.scheduling
 
             List<user_info> list = udo.list(userCode, pwd, company);
             List<user_info> list1111 = NewFind_dp(userCode, pwd, company);
+
+            List<paichan_user> newList = new List<paichan_user>();
+            paichan_user ui = new paichan_user();
+            for (int i = 0; i < list.Count; i++)
+            {
+                ui.id = list[i].id;
+                ui.user_code = list[i].user_code;
+                ui.password = list[i].password;
+                ui.department_name = list[i].department_name;
+                ui.company = list[i].company;
+                newList.Add(ui);
+            }
             if (list.Count > 0)
             {
-                TokenUtil.setToken(list[0]);
-                return true;
+                if (list[0].state.Equals("禁用")) 
+                {
+                    return false;
+                }
+                else
+                {
+                    TokenUtil.setToken(newList[0]);
+
+                    //string a=FinanceRSA.RSAEncryption(FinanceJson.getFinanceJson().toJson(ui));
+
+                    return true;
+                }
             }
             return false;
         }

@@ -67,6 +67,7 @@
                     <el-table-column prop="user_code" label="账号" sortable></el-table-column>
                     <el-table-column prop="password" label="密码" sortable></el-table-column>
                     <el-table-column prop="department_name" label="部门" sortable></el-table-column>
+                    <el-table-column prop="state" label="状态" sortable></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
                             <el-popconfirm title="确定删除吗？" @confirm="deleteOrder(scope.row.id)" hide-icon>

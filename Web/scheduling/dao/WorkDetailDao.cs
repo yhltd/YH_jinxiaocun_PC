@@ -17,12 +17,13 @@ namespace Web.scheduling.dao
         {
             var @params = new SqlParameter[]{
                 new SqlParameter("@company", company),
-                new SqlParameter("@orderId", orderId),
+                //new SqlParameter("@orderId", orderId),
                 new SqlParameter("@minRowNumber", skip * take),
                 new SqlParameter("@maxRowNumber", (skip + 1) * take + 1)
             };
 
-            string sql = "select * from (select row_number() over(order by wd.id) as rownum,wd.*,oi.order_id as orderId from work_detail as wd left join order_info as oi on wd.order_id = oi.id) as wd where wd.company = @company and wd.orderId like '%' + @orderId + '%' and rownum > @minRowNumber and rownum < @maxRowNumber order by wd.row_num,wd.is_insert asc";
+            //string sql = "select * from (select row_number() over(order by wd.id) as rownum,wd.*,oi.order_id as orderId from work_detail as wd left join order_info as oi on wd.order_id = oi.id) as wd where wd.company = @company and wd.orderId like '%' + @orderId + '%' and rownum > @minRowNumber and rownum < @maxRowNumber order by wd.row_num,wd.is_insert asc";
+            string sql = "select * from (select row_number() over(order by wd.id) as rownum,wd.*,oi.order_id as orderId from work_detail as wd left join order_info as oi on wd.order_id = oi.id) as wd where wd.company = @company and rownum > @minRowNumber and rownum < @maxRowNumber order by wd.row_num,wd.is_insert asc";
 
             using (se = new schedulingEntities())
             {
@@ -50,13 +51,18 @@ namespace Web.scheduling.dao
             }
         }
 
-        public Boolean deleteWork(int rowNum)
+        public Boolean deleteWork(string rowNum, string company)
         {
             using (se = new schedulingEntities())
             {
-                var param = new SqlParameter("@rowNum", rowNum);
-                var sql = "delete from work_detail where row_num=@rowNum";
-                return se.Database.ExecuteSqlCommand(sql, param) > 0;
+                var @params = new SqlParameter[]{
+                    new SqlParameter("@rowNum", rowNum),
+                    new SqlParameter("@company", company),
+                };
+
+                //var sql = "delete from work_detail where row_num=@rowNum";
+                var sql = "delete from work_detail where order_id =(select top 1 id from order_info where order_id=@rowNum) and company=@company";
+                return se.Database.ExecuteSqlCommand(sql, @params) > 0;
             }
         }
 

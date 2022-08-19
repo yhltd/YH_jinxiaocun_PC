@@ -17,6 +17,7 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/echarts/4.1.0/echarts.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/vue-echarts/4.0.2/vue-echarts.min.js"></script>
     <script src="static/js/main.js"></script>
+
     <style>
         .labelStyle .el-form-item__label {
             color:white;
@@ -40,7 +41,7 @@
                         <el-input placeholder="订单号" v-model="orderId" clearable></el-input>
                     </el-col>
                     <el-col :span="11">
-                        <el-button-group style="width:700px">
+                        <el-button-group style="width:750px">
                             <el-button 
                                 icon="el-icon-search" 
                                 type="primary" 
@@ -50,9 +51,17 @@
                                 type="primary" 
                                 @click="initWorkList"></el-button>
                             <el-button 
+                                icon="el-icon-refresh" 
+                                type="primary" 
+                                @click="initWorkList2"></el-button>
+                            <el-button 
                                 icon="el-icon-circle-plus-outline" 
                                 type="primary" 
                                 @click="openAddDrawer"></el-button>
+                            <el-button 
+                                icon="el-icon-circle-plus-outline" 
+                                type="primary" 
+                                @click="openPlDrawer"></el-button>
                             <el-button 
                                 icon="el-icon-tickets" 
                                 type="primary" 
@@ -66,12 +75,17 @@
                                 type="primary" 
                                 @click="chartVisible=true;getSelect()"
                                 >图表</el-button>
+                            <el-button
+                                icon="el-icon-s-opportunity"
+                                type="primary" 
+                                @click="gongshi()"
+                                >生产数量公式</el-button>
                         </el-button-group>
                     </el-col>
                 </el-row>
                 <el-row :gutter="10" style="margin-top: 0px;">
                     <el-col :span="5">
-                        <el-input placeholder="删除" v-model="row_num" type="number" clearable></el-input> 
+                        <el-input placeholder="订单号删除" v-model="row_num" type="text" clearable></el-input> 
                     </el-col :span="5">
                     <el-col :span="5">
                         <el-button-group>
@@ -190,7 +204,10 @@
                     <el-input v-model.number="work.work_num" style="width: 230px;"></el-input>
                 </el-form-item>
                 <el-form-item label="开始生产日期" prop="work_start_date">
-                    <el-date-picker v-model="work.work_start_date" type="datetime" placeholder="请选择日期" style="width: 230px;"></el-date-picker>
+                    <el-date-picker v-model="work.work_start_date" type="date" placeholder="请选择日期" style="width: 230px;"></el-date-picker>
+                </el-form-item>
+                <el-form-item label="预计结束时间" prop="endtime">
+                    <el-date-picker v-model="endtime" type="date" placeholder="请选择日期" style="width: 230px;"></el-date-picker>
                 </el-form-item>
             </el-form>
             <el-button 
@@ -199,7 +216,81 @@
                 @click="addWork('addForm')"
                 style="margin-top: 20px;"
             >保存</el-button>
+            <el-button 
+                type="primary"
+                icon="el-icon-upload"
+                @click="channeng('addForm')"
+                style="margin-top: 20px;"
+            >查看产能1</el-button>
+            <el-button 
+                type="primary"
+                icon="el-icon-upload"
+                @click="channeng('addForm')"
+                style="margin-top: 20px;"
+            >查看产能2</el-button>
         </el-drawer>
+
+        <el-drawer
+            title="批量排产"
+            :visible.sync="plVisible"
+            direction="ltr"
+            :modal="false"
+            size="80%"
+            ref="addDrawer"
+             v-loading="saveLoading"
+        >
+            <el-form
+                :model="work"
+                ref="plForm"
+                label-width="120px"
+                label-position="left"
+                status-icon
+            >
+                <el-form-item label="开始日期" prop="work_start_date"  >
+                    <el-date-picker 
+                    v-model="work.work_start_date" 
+                    type="date" 
+                    placeholder="开始日期" 
+                    value-format="yyyy-MM-dd" 
+                    style="width: 230px ;float:left"
+                    >
+                    </el-date-picker>
+                </el-form-item>
+                <el-form-item label="使用模块" prop="moduleList">
+                    <el-select 
+                        v-model="work.moduleList" 
+                        filterable 
+                        multiple 
+                        placeholder="请选择使用模块" 
+                        :loading="moduleLoading"
+                        collapse-tags
+                        style="width: 230px;"
+                    >
+                        <el-option 
+                            v-for="module in moduleList" 
+                            :key="module.id" 
+                            :label="module.name" 
+                            :value="module.id"
+                        >
+                            <span style="float: left">{{module.name}}</span>
+                            <span class="option-tag">效率：{{module.num}}</span>
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <el-table ref="check" :data="orderList" style="width: 100%;margin-top: 10px;" >
+                <el-table-column prop="order_id" label="订单号" sortable></el-table-column>
+                <el-table-column prop="set_num" label="数量" sortable></el-table-column>
+                <el-table-column label="操作" type="selection"></el-table-column>
+            </el-table>
+            <el-button 
+                type="primary" 
+                icon="el-icon-upload"
+                style="margin-top:20px"
+                @click="plAdd('plForm')"
+            >排产</el-button>
+        </el-drawer>
+
         <el-drawer
             title="图表"
             :visible.sync="chartVisible"
@@ -213,6 +304,7 @@
                 ref="chartForm"
                 style="background: url('static/img/image4.jpeg') no-repeat center!important;background-size:100% 100%"
             >
+                <!--style="background: url('static/img/image4.jpeg') no-repeat center!important;background-size:100% 100%"-->
                 <!--style="background: url('static/img/image3.jpeg') no-repeat center!important;background-size:100% 100%"-->
                 
                 <el-form-item label="选择开始日期：" class="labelStyle" >
@@ -278,44 +370,10 @@
                             @click="getChart">生成</el-button>
                     </el-button-grou>
                 </el-form-item>
-                    
-                <!--<div class="chart-item">
-                    <div id="accountingBalance"></div>
-                </div>
-                <div class="chart-item">
-                    <div id="liabilities"></div>
-                </div>-->
-
-                <!--<el-form-item label="天数：" class="labelStyle"  style="margin-left:600px;width:200px">
-                    <el-input v-model="list.days" class="inputStyle" ></el-input>
-                </el-form-item>
-                <el-form-item label="数量：" class="labelStyle" style="margin-left:600px;width:200px">   
-                    <el-input v-model="list.num" class="inputStyle" ></el-input>
-                </el-form-item>-->
                 <chart :options="orgOptions" :auto-resize="true" ></chart>
-                    
                 <chart :options="barOptions" :auto-resize="true"></chart>
-                 <!--disabled="true"-->
-                
-
-            
-
-            
             </el-form>
-            
-            <!--<p style="margin-left:50px;margin-bottom:250px">
-                <b><span style="font-size: 25pt;color:#FFFFFF">排产生产计划</span></b>
-            </p>-->
         </el-drawer>
-        <!--<el-dialog title="删除排产明细" :visible.sync="deleteDialogVisible" :modal="false" @open="deleteDialogOpen">
-            <el-checkbox 
-                v-for="row in rowList"
-                v-model="row.checked" 
-                :label="row.orderId" 
-                border>
-                <div>{{row.orderId}} 编号：{{row.rowNum}}</div>
-            </el-checkbox>
-        </el-dialog>-->
 
         <el-drawer title="今日生产计划" :visible.sync="tVisible" direction="ttb" size="80%" :modal="false">
             <el-date-picker 
@@ -361,7 +419,6 @@
                 <!--<el-table-column property="surplusNum" label="剩余数量"></el-table-column>-->
             </el-table>
         </el-drawer>
-
     </div>
 
 
@@ -391,6 +448,7 @@
                 tableHead: [],
 
                 addVisible: false,
+                plVisible: false,
                 chartVisible: false,
                 orderLoading: false,
                 orderList: [],
@@ -423,6 +481,8 @@
 
                 deleteDialogVisible: false,
                 deleteList: [],
+
+                endtime:'',
 
                 tVisible: false,
                 tjVisible: false,
@@ -558,11 +618,6 @@
                             }
                         },
                     }],
-                    //grid:{
-                    //    x:22,
-                    //    height:300,
-                    //    width:500,
-                    //},
                 },
 
             },
@@ -573,7 +628,37 @@
                     axios.post(myUrl('work/page'), {
                         nowPage: _this.now,
                         pageCount: _this.size,
-                        orderId: _this.orderId
+                        orderId: _this.orderId,
+                        type:"排产1",
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.total = res.data.total;
+                            _this.list = res.data.pageList == null ? [] : res.data.pageList ;
+                            _this.header();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+
+                workList2: function () {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('work/page'), {
+                        nowPage: _this.now,
+                        pageCount: _this.size,
+                        orderId: _this.orderId,
+                        type:"排产2",
                     }).then(function (res) {
                         if (res.code == 200) {
                             _this.total = res.data.total;
@@ -655,7 +740,6 @@
                             this.list[i][dateTime] = item_.work_num.toFixed(1)
                         }
                     }
-
                     this.tableHead = defaultHeader.concat(flowHeader);
                 },
 
@@ -663,11 +747,22 @@
                     this.orderId = '';
                     this.workList();
                 },
+                initWorkList2: function () {
+                    this.orderId = '';
+                    this.workList2();
+                },
 
                 openAddDrawer: function () {
                     this.addVisible = true;
                     this.getOrderList();
                     this.getModuleList();
+                },
+
+                openPlDrawer: function () {
+                    this.plVisible = true;
+                    this.getOrderList();
+                    this.getModuleList();
+
                 },
 
                 getOrderList: function () {
@@ -750,6 +845,152 @@
                                     _this.workList();
                                     _this.$refs.addDrawer.closeDrawer();
                                     _this.work = {};
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
+                                _this.saveLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.saveLoading = false;
+                            })
+                        }
+                    })
+                },
+
+                plAdd: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if(valid){
+                            _this.saveLoading = true;
+                            var pl=[];
+                            for (var i = 0; i < _this.$refs.check.selection.length; i++) {
+                                pl.push({
+                                    order_id: _this.$refs.check.selection[i].id,
+                                    work_num: _this.$refs.check.selection[i].set_num,
+                                    work_start_date: _this.work.work_start_date,
+                                    is_insert: 0,
+                                })
+                            }
+                            
+                            axios.post(myUrl('work/plSave'), {
+                                plList: pl,
+                                //plList: _this.$refs.check.selection,
+                                workModuleIdList: _this.work.moduleList
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.initWorkList();
+                                    _this.$refs.addDrawer.closeDrawer();
+                                    _this.work = {};
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
+                                _this.saveLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.saveLoading = false;
+                            })
+                        }
+                    })
+                },
+
+                channeng: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if(valid){
+                            if(_this.work.work_num > _this.work.setNum){
+                                _this.$message({
+                                    message: '生产数量不能大于可生产数量',
+                                    type: 'warning'
+                                });
+                                return;
+                            }
+                            if(_this.endtime =="" || _this.endtime==null){
+                                _this.$message({
+                                    message: '请选择预计结束时间。',
+                                    type: 'warning'
+                                });
+                                return;
+                            }
+                            var module=[];
+                            axios.post(myUrl('work/channeng'), {
+                                workModuleIdList: _this.work.moduleList,
+                                ks: _this.work.work_start_date,
+                                js:_this.endtime,
+                                scsl:_this.work.work_num,
+                                is_insert: _this.work.is_insert,
+                                type: "产能1",
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
+                                _this.saveLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.saveLoading = false;
+                            })
+                        }
+                    })
+                },
+
+                channeng: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if(valid){
+                            if(_this.work.work_num > _this.work.setNum){
+                                _this.$message({
+                                    message: '生产数量不能大于可生产数量',
+                                    type: 'warning'
+                                });
+                                return;
+                            }
+                            if(_this.endtime =="" || _this.endtime==null){
+                                _this.$message({
+                                    message: '请选择预计结束时间。',
+                                    type: 'warning'
+                                });
+                                return;
+                            }
+                            var module=[];
+                            axios.post(myUrl('work/channeng'), {
+                                workModuleIdList: _this.work.moduleList,
+                                ks: _this.work.work_start_date,
+                                js:_this.endtime,
+                                scsl:_this.work.work_num,
+                                is_insert: _this.work.is_insert,
+                                type: "产能2",
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
                                 }
                                 if (res.code == 500) {
                                     _this.$notify({
@@ -907,45 +1148,17 @@
                     this.tjList = [];
                     for(var j=0;j<tList.length;j++){
                         var workNumto=0;
-                        //var shengyushuliangto=0;
-                        //var moduleInfo_name;
                         for(var i = 0;i<this.list.length;i++){   
                             for(var key in this.list[j]){
                                 if(key>=sd && key<=ed && tList[j]==this.list[i].orderId){
-                                    workNumto=workNumto+parseFloat(this.list[j][key])
+                                    workNumto=workNumto+parseFloat(this.list[i][key])
                                 }
                             }
-                            //var workNum = this.list[i][this.startDate];
-                            //var surplusNum=0;
-                            //if(workNum > 0){
-                            //    if(tList[j]==this.list[i].orderId)
-                            //    {    
-                            //        workNumto=workNumto+parseFloat(workNum),
-                            //        shengyushuliangto=shengyushuliangto+this.list[i].work_num,
-                            //        moduleInfo_name=this.list[i].moduleInfo.name,
-                            //        console.log(workNumto)
-                            //    }
-                            //}
                         }
                         this.tjList.push({
                             orderId: tList[j],
-                            //moduleName: moduleInfo_name,
                             workNum: workNumto,
-                            //surplusNum: shengyushuliangto-workNumto
                         })
-
-
-                        //var orderId=this.list[i].orderId
-                        //var workNum = this.list[i][this.startDate];
-                        //var surplusNum=0;
-                        //if(workNum > 0){
-                        //    this.tjList.push({
-                        //        orderId: this.list[i].orderId,
-                        //        moduleName: this.list[i].moduleInfo.name,
-                        //        workNum: workNum,
-                        //        surplusNum: this.list[i].work_num-workNum
-                        //    })
-                        //}
                     }
                 },
                 deleteWork: function () {
@@ -974,6 +1187,11 @@
                         
                     })
                 },
+
+                gongshi:function(){
+                    alert("日生产数=当日可工作小时数*生产模块效率");
+
+                },
                 
             },
             mounted: function () {
@@ -992,7 +1210,6 @@
             }
 
             return ret;
-        
         }
     </script>
 

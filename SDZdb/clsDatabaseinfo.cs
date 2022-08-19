@@ -406,4 +406,21 @@ namespace SDZdb
         public string jine2 { get; set; }
     }
 
+    public class paichan_user
+    {
+        public int id { get; set; }
+        public string user_code { get; set; }
+        public string password { get; set; }
+        public string company { get; set; }
+        public string department_name { get; set; }
+    }
+
+    public class paichan_modoule_time
+    {
+        public int modoule_id { get; set; }
+        public DateTime riqi { get; set; }
+        public double time { get; set; }
+        public double num { get; set; }
+    }
+
 }

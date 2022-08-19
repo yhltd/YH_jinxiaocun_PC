@@ -165,7 +165,7 @@
                 label-position="left"
             >
                 <el-form-item label="模块类别" prop="type_id">
-                    <el-select v-model="module.type_id" placeholder="请选择模块类别">
+                    <el-select v-model="module.type_id" placeholder="请选择模块类别" style="width: 300px">
                         <el-option 
                             v-for="moduleType in moduleTypeList" 
                             :key="moduleType.id" 
@@ -178,10 +178,10 @@
                     <el-input v-model="module.name" placeholder="请输入名称" style="width: 300px"></el-input>
                 </el-form-item>
                 <el-form-item label="效率" prop="num">
-                    <el-input v-model.number="module.num" style="width: 250px"></el-input>
+                    <el-input v-model.number="module.num" style="width: 300px"></el-input>
                 </el-form-item>
                 <el-form-item label="父模块" prop="parent_id">
-                    <el-select v-model="module.parent_id" filterable clearable>
+                    <el-select v-model="module.parent_id" filterable clearable placeholder="请选择已有模块作为父模块" style="width: 300px">
                         <el-option 
                             v-for="module in modulePage.pageList" 
                             :key="module.id" 

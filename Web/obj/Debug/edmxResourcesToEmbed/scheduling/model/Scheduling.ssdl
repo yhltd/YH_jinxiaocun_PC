@@ -16,6 +16,7 @@
     <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="user_info1" EntityType="schedulingModel.Store.user_info1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="work_detail" EntityType="schedulingModel.Store.work_detail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="work_detail1" EntityType="schedulingModel.Store.work_detail1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="work_detail2" EntityType="schedulingModel.Store.work_detail2" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="work_module" EntityType="schedulingModel.Store.work_module" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
@@ -193,6 +194,7 @@
     <Property Name="password" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="department_name" Type="varchar" MaxLength="255" />
+    <Property Name="state" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="user_info1">
     <Key>
@@ -213,6 +215,18 @@
     <Property Name="work_num" Type="int" Nullable="false" />
     <Property Name="work_start_date" Type="datetime2" Nullable="false" />
     <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="row_num" Type="int" />
+    <Property Name="is_insert" Type="int" />
+  </EntityType>
+  <EntityType Name="work_detail1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="int" />
+    <Property Name="work_num" Type="int" />
+    <Property Name="work_start_date" Type="datetime2" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
     <Property Name="row_num" Type="int" />
     <Property Name="is_insert" Type="int" />
   </EntityType>

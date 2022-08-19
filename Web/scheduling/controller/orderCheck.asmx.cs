@@ -23,7 +23,7 @@ namespace Web.scheduling.controller
         private UserInfoService us;
 
         [WebMethod]
-        public string getList(int nowPage, int pageCount,string order_number,string moudle)
+        public string getList(int nowPage, int pageCount,string order_number,string moudle,string ks,string js)
         {
 
             try
@@ -39,7 +39,7 @@ namespace Web.scheduling.controller
                 }
 
                 ocs = new OrderCheckService();
-                return ResultUtil.success(ocs.getList(nowPage, pageCount, order_number, moudle), "查询成功");
+                return ResultUtil.success(ocs.getList(nowPage, pageCount, order_number, moudle,ks,js), "查询成功");
             }
             catch (ErrorUtil err)
             {

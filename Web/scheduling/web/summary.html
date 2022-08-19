@@ -24,11 +24,11 @@
                     <el-col :span="5">
                         <el-select 
                             v-model="typeId" 
-                            @change="getList" 
                             clearable 
                             placeholder="查询类别"
                             :loading="moduleTypeLoading"
                         >
+                            <!-- @change="getList"  -->
                             <el-option 
                                 v-for="moduleType in moduleTypeList" 
                                 :key="moduleType.id" 
@@ -40,9 +40,18 @@
                     <el-col :span="6">
                         <el-input v-model="orderId" placeholder="查询订单号" clearable></el-input>
                     </el-col>
+                    <el-col :span="6">
+                        <el-date-picker v-model="ks" type="date" placeholder="选择开始日期"></el-date-picker>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-date-picker v-model="js" type="date" placeholder="选择结束日期"></el-date-picker>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="8">
-                        <el-button-group>
-                            <el-button icon="el-icon-search" type="primary" @click="getList">查询</el-button>
+                        <el-button-group style="width:700px">
+                            <el-button icon="el-icon-search" type="primary" @click="chaxun()">查询1</el-button>
+                            <el-button icon="el-icon-search" type="primary" @click="chaxun2()">查询2</el-button>
                             <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList">刷新</el-button>
                             <el-button  icon="el-icon-printer" type="primary" @click="toExcel">导出</el-button>
                         </el-button-group>
@@ -81,10 +90,14 @@
                 size: 20,
                 total: 0,
                 list: [],
+                plist:[],
+                mlist:[],
                 loading: false,
 
                 typeId: '',
                 orderId: '',
+                ks: '',
+                js:'',
 
                 moduleTypeList: [],
                 moduleTypeLoading: false
@@ -100,6 +113,16 @@
                     }
                     console.log(this.list)
                     exportExcel(this.list, columns, '汇总');
+                },
+                //chaxun: function () {
+                //    this.workList();
+                //    this.getModule();
+                //},
+                chaxun: function () {
+                    this.workList();
+                },
+                chaxun2: function () {
+                    this.workList2();
                 },
                 getList: function () {
                     var _this = this;
@@ -128,7 +151,221 @@
                         _this.loading = false
                     })
                 },
+                workList: function () {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('work/page'), {
+                        nowPage: _this.now,
+                        pageCount: _this.size,
+                        orderId: _this.orderId,
+                        type: "排产1",
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            var pcList = res.data.pageList;
+                            var ks = _this.ks;
+                            var js = _this.js;
+                            if (ks == "") {
+                                ks = "1900-01-01 00:00:00"
+                            } else {
+                                ks = ks.Format("yyyy-MM-dd hh:mm:ss")
+                            }
+                            if (js == "") {
+                                js = "2200-01-01 00:00:00"
+                            } else {
+                                js = js.Format("yyyy-MM-dd hh:mm:ss")
+                            }
+                            var tList = removeDuplicatedItem(pcList);
+                            console.log(tList);
+                            
+                            var tjList = [];
+                            for (var j = 0; j < tList.length; j++) {
+                                var workNum = 0;
+                                for (var i = 0; i < pcList.length; i++) {
+                                    for (var k = 0; k < pcList[i].workDayList.length;k++) {
+                                        if (pcList[i].workDayList[k].dateTime >= ks && pcList[i].workDayList[k].dateTime <= js && tList[j].id == pcList[i].moduleInfo.id && pcList[i].orderId.indexOf(_this.orderId)!=-1) {
+                                            workNum = workNum + parseFloat(pcList[i].workDayList[k].work_num.toFixed(1));
+                                        }
+                                    }
+                                }
+                                tjList.push({
+                                    id: tList[j].id,
+                                    name: tList[j].name,
+                                    num: tList[j].num,
+                                    workNum: workNum,
+                                    parentName: '',
+                                    type: '',
+                                })
+                            }
+                            
+                            
+                            console.log(tjList);
+                            _this.plist = [];
+                            _this.plist = tjList;
 
+                            _this.list = [];
+                            for (var i = 0; i < _this.mlist.length; i++) {
+                                for (var j = 0; j < _this.plist.length; j++) {
+                                    if (_this.typeId == "") {
+                                        if (_this.mlist[i].id == _this.plist[j].id) {
+                                            _this.list.push({
+                                                type: _this.mlist[i].typeName,
+                                                name: _this.plist[j].name,
+                                                num: _this.plist[j].num,
+                                                parentName: _this.mlist[i].parentName,
+                                                workNum: _this.plist[j].workNum,
+                                            })
+                                        }
+                                    } else {
+                                        if (_this.mlist[i].id == _this.plist[j].id && _this.typeId == _this.mlist[i].type_id) {
+                                            _this.list.push({
+                                                type: _this.mlist[i].typeName,
+                                                name: _this.plist[j].name,
+                                                num: _this.plist[j].num,
+                                                parentName: _this.mlist[i].parentName,
+                                                workNum: _this.plist[j].workNum,
+                                            })
+                                        }
+                                    }
+                                    
+                                }
+                            }
+                            
+
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+
+                workList2: function () {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('work/page'), {
+                        nowPage: _this.now,
+                        pageCount: _this.size,
+                        orderId: _this.orderId,
+                        type: "排产2",
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            var pcList = res.data.pageList;
+                            var ks = _this.ks;
+                            var js = _this.js;
+                            if (ks == "") {
+                                ks = "1900-01-01 00:00:00"
+                            } else {
+                                ks = ks.Format("yyyy-MM-dd hh:mm:ss")
+                            }
+                            if (js == "") {
+                                js = "2200-01-01 00:00:00"
+                            } else {
+                                js = js.Format("yyyy-MM-dd hh:mm:ss")
+                            }
+                            var tList = removeDuplicatedItem(pcList);
+                            console.log(tList);
+
+                            var tjList = [];
+                            for (var j = 0; j < tList.length; j++) {
+                                var workNum = 0;
+                                for (var i = 0; i < pcList.length; i++) {
+                                    for (var k = 0; k < pcList[i].workDayList.length; k++) {
+                                        if (pcList[i].workDayList[k].dateTime >= ks && pcList[i].workDayList[k].dateTime <= js && tList[j].id == pcList[i].moduleInfo.id && pcList[i].orderId.indexOf(_this.orderId) != -1) {
+                                            workNum = workNum + parseFloat(pcList[i].workDayList[k].work_num.toFixed(1));
+                                        }
+                                    }
+                                }
+                                tjList.push({
+                                    id: tList[j].id,
+                                    name: tList[j].name,
+                                    num: tList[j].num,
+                                    workNum: workNum,
+                                    parentName: '',
+                                    type: '',
+                                })
+                            }
+
+
+                            console.log(tjList);
+                            _this.plist = [];
+                            _this.plist = tjList;
+
+                            _this.list = [];
+                            for (var i = 0; i < _this.mlist.length; i++) {
+                                for (var j = 0; j < _this.plist.length; j++) {
+                                    if (_this.typeId == "") {
+                                        if (_this.mlist[i].id == _this.plist[j].id) {
+                                            _this.list.push({
+                                                type: _this.mlist[i].typeName,
+                                                name: _this.plist[j].name,
+                                                num: _this.plist[j].num,
+                                                parentName: _this.mlist[i].parentName,
+                                                workNum: _this.plist[j].workNum,
+                                            })
+                                        }
+                                    } else {
+                                        if (_this.mlist[i].id == _this.plist[j].id && _this.typeId == _this.mlist[i].type_id) {
+                                            _this.list.push({
+                                                type: _this.mlist[i].typeName,
+                                                name: _this.plist[j].name,
+                                                num: _this.plist[j].num,
+                                                parentName: _this.mlist[i].parentName,
+                                                workNum: _this.plist[j].workNum,
+                                            })
+                                        }
+                                    }
+
+                                }
+                            }
+
+
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+
+                getModule: function () {
+                    var _this = this;
+                    //var tlist = _this.list;
+                    axios.post(myUrl('module/list_num'), {
+                        async: false,
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.mlist = res.data;
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.moduleTypeLoading = false
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.moduleTypeLoading = false
+                    })
+                },
                 getModuleTypeList: function () {
                     var _this = this;
                     _this.moduleTypeLoading = true;
@@ -151,12 +388,51 @@
                     })
                 }
             },
+
             
             mounted: function () {
                 this.getList();
+                this.getModule();
                 this.getModuleTypeList();
-            }
+            },
+
         })
+        function removeDuplicatedItem(ar) {
+            var ret = [];
+            var ret2 = [];
+            console.log("122212")
+            for (var i = 0, j = ar.length; i < j; i++) {
+                console.log(ar[i].moduleInfo.id)
+                if (ret.indexOf(ar[i].moduleInfo.id) == -1) {
+                    ret.push(ar[i].moduleInfo.id);
+                    ret2.push({
+                        id:ar[i].moduleInfo.id,
+                        name: ar[i].moduleInfo.name,
+                        num: ar[i].moduleInfo.num,
+                        parent_id: ar[i].moduleInfo.parent_id,
+                        type_id: ar[i].moduleInfo.type_id,
+                    });
+                }
+            }
+            return ret2;
+        }
+        
+        Date.prototype.Format = function (fmt) {
+            var o = {
+                "M+": this.getMonth() + 1, //月份 
+                "d+": this.getDate(), //日 
+                "h+": this.getHours(), //小时 
+                "m+": this.getMinutes(), //分 
+                "s+": this.getSeconds() //秒 
+            };
+            if (/(y+)/.test(fmt)) { //根据y的长度来截取年
+                fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+            }
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+            return fmt;
+        }
 
     </script>
 </body>

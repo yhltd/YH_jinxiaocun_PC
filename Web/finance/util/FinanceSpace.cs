@@ -98,5 +98,40 @@ namespace Web.finance.util
 
             return state;
         }
+
+        /// <summary>
+        /// 获取用户在soft_time表设置的限定容量
+        /// </summary>
+        /// <returns>KB为单位的总可用容量</returns>
+        public int getMark4_all(string company,string xitong)
+        {
+            SpaceModel spaceModel = new SpaceModel();
+            control_soft_time user = spaceModel.getUserSpaceInfo_all(company, xitong);
+            if (user != null)
+            {
+                if (user.mark4 != null)
+                {
+                    return int.Parse(user.mark4.Trim()) * 1024;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 获取已用行数
+        /// </summary>
+        /// <returns>以KB为单位的已用行数</returns>
+        public int getUseMark4_all(string company, string xitong)
+        {
+            VoucherSummaryModel voucherSummaryModel = new VoucherSummaryModel();
+            return voucherSummaryModel.getCount(company) * 10;
+        }
     }
 }

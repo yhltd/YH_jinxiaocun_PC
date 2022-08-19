@@ -35,6 +35,14 @@
                         </el-button-group>
                     </el-col>
                 </el-row>
+                <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="20">
+                        <el-button-group>
+                            <el-button icon="el-icon-circle-plus-outline" type="primary" @click="paiban1Open">不轮换排班</el-button>
+                            <el-button icon="el-icon-circle-plus-outline" type="primary" @click="paiban2Open">轮换排班</el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
                 <el-table
                     :data="infoList"
                     v-loading="loading"
@@ -45,7 +53,7 @@
                             <el-form
                                 :model="props.row"
                                 ref="updateForm"
-                                label-width="80px"
+                                label-width="120px"
                             >
                                 <el-form-item label="创建日期" prop="riqi">
                                     <el-input v-model="props.row.riqi" style="width: 220px"></el-input>
@@ -68,7 +76,6 @@
                             >保存</el-button>
                         </template>
                     </el-table-column>
-                    <label> 123 </label>
                     <el-table-column prop="riqi" label="创建日期" sortable></el-table-column>
                     <el-table-column prop="plan_name" label="计划名称" sortable></el-table-column>
                     <el-table-column prop="renshu" label="人数" sortable></el-table-column>
@@ -107,7 +114,7 @@
             <el-form
                 :model="work"
                 ref="addForm"
-               label-width="80px"
+               label-width="120px"
                 label-position="left"
                 status-icon
             >
@@ -133,7 +140,6 @@
                         </el-date-picker>
                         </el-form-item>
 
-
                         </el-form-item>
                    
                     <!--</div>-->
@@ -156,7 +162,6 @@
                             :value="order.department_name"
                         >
 
-                            <!--<span style="float: left">{{order.department_name}}</span>-->
                         </el-option>
                     </el-select>               
                 </el-form-item>
@@ -170,7 +175,6 @@
                     </el-select>
                 </el-form-item>
 
-                          <!--</div>-->
                 <el-form-item label="周末分组" prop="meizu_part">
                     <el-input placeholder="周末分组" style="width: 150px" type="number" v-model="meizu_part"></el-input>
                 </el-form-item>
@@ -180,8 +184,6 @@
                 <el-form-item label="计划名称" prop="plan_name">
                     <el-input placeholder="计划名称" style="width: 150px" type="text" v-model="planName"></el-input>
                 </el-form-item>
-
-                
 
                 <el-table
                     ref="check"
@@ -209,11 +211,205 @@
             >开始排班</el-button>
         </el-drawer>
 
+
+        <el-drawer
+            title="不轮换排班"
+            :visible.sync="paiban1Visible"
+            direction="ltr"
+            :modal="false"
+            size="80%"
+            ref="addDrawer"
+             v-loading="addLoading"
+        >
+            <el-form
+                :model="work"
+                ref="paiban1Form"
+               label-width="120px"
+                label-position="left"
+                status-icon
+            >
+                      <el-form-item label="开始日期" prop="startDate"  >
+                              <el-date-picker 
+                            v-model="ks1" 
+                            type="date" 
+                            placeholder="开始日期" 
+                            value-format="yyyy-MM-dd" 
+                            style="width: 200px ;float:left"
+                            >
+                        </el-date-picker>
+                        
+                        <el-form-item label="结束日期" prop="startDate"  >
+                        <el-date-picker 
+                            v-model="js1" 
+                            type="date" 
+                            placeholder="结束日期" 
+                            value-format="yyyy-MM-dd" 
+                             style="width: 200px ;float:left"
+                            >
+                        </el-date-picker>
+                        </el-form-item>
+
+                        </el-form-item>
+                <el-form-item label="部门" prop="department_name">
+                    <el-select 
+                        v-model="work.department_name" 
+                        filterable 
+                        placeholder="请选择部门" 
+                        :loading="orderLoading"
+                        @change="departmentChange"
+                        style="width: 200px"
+                    >
+                        <el-option 
+                            v-for="order in orderList" 
+                            :key="order.department_name" 
+                            :label="order.department_name" 
+                            :value="order.department_name"
+                        >
+                        </el-option>
+                    </el-select>               
+                </el-form-item>
+                <el-form-item label="班次" prop="banci">
+                    <el-input placeholder="班次" style="width: 200px" type="number" v-model="banci" ></el-input>
+                </el-form-item>
+                <el-form-item label="周休息日" prop="xiuxi">
+                    <el-input placeholder="多休息日用逗号分隔" style="width: 200px" type="text" v-model="xiuxi"></el-input>
+                </el-form-item>
+                <el-form-item label="计划名称" prop="plan_name">
+                    <el-input placeholder="计划名称" style="width: 200px" type="text" v-model="planName"></el-input>
+                </el-form-item>
+
+                <el-table
+                    ref="check"
+                    :data="list"
+                    v-loading="loading"    
+                    style="width: 100%;margin-top: 10px;"
+                >
+                    
+                    <el-table-column prop="staff_name" label="姓名" sortable></el-table-column>
+                    <el-table-column prop="phone_number" label="电话" sortable></el-table-column>
+                    <el-table-column prop="id_number" label="身份证号" sortable></el-table-column>
+                    <el-table-column prop="department_name" label="部门名称" sortable></el-table-column>
+                    <el-table-column prop="banci" label="班次" sortable></el-table-column>
+                    <el-table-column label="操作" type="selection"></el-table-column>
+                </el-table>
+            </el-form>
+            <el-button 
+                type="primary" 
+                icon="el-icon-upload"
+                style="margin-left:100px"
+                @click="paiban1('paiban1Form')"
+            >开始排班</el-button>
+        </el-drawer>
+
+        <el-drawer
+            title="轮换排班"
+            :visible.sync="paiban2Visible"
+            direction="ltr"
+            :modal="false"
+            size="80%"
+            ref="addDrawer"
+             v-loading="addLoading"
+        >
+            <el-form
+                :model="work"
+                ref="paiban2Form"
+               label-width="120px"
+                label-position="left"
+                status-icon
+            >
+                      <el-form-item label="开始日期" prop="startDate"  >
+                              <el-date-picker 
+                            v-model="ks2" 
+                            type="date" 
+                            placeholder="开始日期" 
+                            value-format="yyyy-MM-dd" 
+                            style="width: 200px ;float:left"
+                            >
+                        </el-date-picker>
+                        <el-form-item label="结束日期" prop="startDate"  >
+                        <el-date-picker 
+                            v-model="js2" 
+                            type="date" 
+                            placeholder="结束日期" 
+                            value-format="yyyy-MM-dd" 
+                             style="width: 200px ;float:left"
+                            >
+                        </el-date-picker>
+                        </el-form-item>
+
+                        </el-form-item>
+                <el-form-item label="部门" prop="department_name">
+                    <el-select 
+                        v-model="work.department_name" 
+                        filterable 
+                        placeholder="请选择部门" 
+                        :loading="orderLoading"
+                        @change="departmentChange"
+                        style="width: 200px"
+                    >
+                        <el-option 
+                            v-for="order in orderList" 
+                            :key="order.department_name" 
+                            :label="order.department_name" 
+                            :value="order.department_name"
+                        >
+                        </el-option>
+                    </el-select>               
+                </el-form-item>
+                <el-form-item label="轮换方式" prop="lunhuan_type">
+                    <el-select v-model="lunhuan" placeholder="请选择" style="width: 200px">
+                        <el-option
+                          v-for="item in lunhuan_type"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value"
+                        >
+                        </el-option>
+                      </el-select>
+                </el-form-item>
+                <el-form-item label="间隔天/周数" prop="jiange">
+                    <el-input placeholder="间隔天/周数" style="width: 200px" type="number" v-model="jiange"></el-input>
+                </el-form-item>
+                <el-form-item label="班次" prop="banci">
+                    <el-input placeholder="班次" style="width: 200px" type="number" v-model="banci" ></el-input>
+                </el-form-item>
+                <el-form-item label="轮换数量" prop="lunhuan_num">
+                    <el-input placeholder="轮换数量" style="width: 200px" type="number" v-model="lunhuan_num" ></el-input>
+                </el-form-item>
+                <el-form-item label="计划名称" prop="plan_name">
+                    <el-input placeholder="计划名称" style="width: 200px" type="text" v-model="planName"></el-input>
+                </el-form-item>
+
+                <el-table ref="check" :data="list" v-loading="loading" style="width: 100%;margin-top: 10px;">
+                    <el-table-column prop="staff_name" label="姓名" sortable></el-table-column>
+                    <el-table-column prop="phone_number" label="电话" sortable></el-table-column>
+                    <el-table-column prop="id_number" label="身份证号" sortable></el-table-column>
+                    <el-table-column prop="department_name" label="部门名称" sortable></el-table-column>
+                    <el-table-column prop="banci" label="班次" sortable></el-table-column>
+                    <el-table-column label="操作" type="selection"></el-table-column>
+                </el-table>
+            </el-form>
+
+            <el-button 
+                type="primary" 
+                icon="el-icon-upload"
+                style="margin-left:100px"
+                @click="paiban2('paiban2Form')"
+            >开始排班</el-button>
+        </el-drawer>
+
     </div>
     <script>
         new Vue({
             el: '#paiban',
             data: {
+                lunhuan_type: [{
+                    value: '天',
+                    label: '天'
+                }, {
+                    value: '周',
+                    label: '周'
+                }],
                 now: 1,
                 size: 20,
                 total: 0,
@@ -227,6 +423,8 @@
                 orderList: [],
                 orderLoading: false,
                 addVisible: false,
+                paiban1Visible:false,
+                paiban2Visible:false,
                 loading: false,
                 addLoading:false,
                 updateLoading:false,
@@ -236,8 +434,16 @@
                 lunhuanjiangetianshu:'',
                 startDate: '',
                 endDate: '',
+                ks1:'',
+                js1:'',
+                ks2:'',
+                js2:'',
+                xiuxi:'',
+                jiange:'',
                 department_name:'',
                 plan_name:'',
+                lunhuan_num:'',
+                lunhuan:'',
                 banciOptions: [
                     { value: 1, text: 1 },
                     { value: 2, text: 2 },
@@ -271,6 +477,14 @@
                         });
                         _this.loading = false;
                     })
+                },
+                paiban1Open:function(){
+                    this.paiban1Visible = true;
+                    this.getOrderList();
+                },
+                paiban2Open:function(){
+                    this.paiban2Visible = true;
+                    this.getOrderList();
                 },
                 openAddDrawer: function () {
                     this.addVisible = true;
@@ -380,7 +594,7 @@
                             //    title: res.msg,
                             //    type: 'success'
                             // });
-                            alert("保存成功！");
+                            alert("排班成功，请前往排班明细查看结果！");
                             _this.addLoading=false;
                             _this.getInfoList();
                             
@@ -400,6 +614,131 @@
                     })
                 },
                 
+                paiban1: function(){
+                    var _this = this;
+                    _this.addLoading=true;
+                    var renyuan =[];
+                    var infolList=[];
+                    var xiuxi=this.xiuxi.replace("，",",");
+                    for(var i=0;i<xiuxi.split(",").length;i++)
+                    {
+                        if (isNaN(xiuxi.split(",")[i]))
+                        {
+                            alert("休息日请填写数字,比如周一请填写“1”！");
+                            _this.addLoading=false;
+                            return;
+                        }
+                    }
+                    for (var i = 0; i < this.$refs.check.selection.length; i++) {
+                        renyuan.push({
+                            id: this.$refs.check.selection[i].id,
+                            staff_name: this.$refs.check.selection[i].staff_name,
+                            phone_number: this.$refs.check.selection[i].phone_number,
+                            department_name: this.$refs.check.selection[i].department_name,
+                            id_number: this.$refs.check.selection[i].id_number,
+                        })
+                    }
+                    if(this.banci>renyuan.length)
+                    {
+                        alert("班次不可大于人员数量！")
+                        _this.addLoading=false;
+                        return;
+                    }
+                    if(this.ks1=="" || this.js1=="")
+                    {
+                        alert("请填写起始时间和结束时间！")
+                        _this.addLoading=false;
+                        return;
+                    }
+                    infolList.push({
+                        plan_name:this.planName,
+                        renshu:this.$refs.check.selection.length,
+                        department_name:this.work.department_name,
+                    })
+                    
+                    axios.post(myUrl('renyuan/Paiban1'), {
+                        renyuan:this.$refs.check.selection,
+                        paibanbiaoInfo:infolList[0],
+                        ks1:this.ks1,
+                        js1:this.js1,
+                        banci:this.banci,
+                        xiuxi:this.xiuxi,
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            alert("排班成功，请前往排班明细查看结果！");
+                            _this.addLoading=false;
+                            _this.getInfoList();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                            this.addLoading=false;
+                        }
+                    }).catch(function (err) {
+                        this.addLoading=false;
+                    })
+                },
+
+                paiban2: function(){
+                    var _this = this;
+                    _this.addLoading=true;
+                    var renyuan =[];
+                    var infolList=[];
+                    for (var i = 0; i < this.$refs.check.selection.length; i++) {
+                        renyuan.push({
+                            id: this.$refs.check.selection[i].id,
+                            staff_name: this.$refs.check.selection[i].staff_name,
+                            phone_number: this.$refs.check.selection[i].phone_number,
+                            department_name: this.$refs.check.selection[i].department_name,
+                            id_number: this.$refs.check.selection[i].id_number,
+                        })
+                    }
+                    if(this.ks2=="" || this.js2=="")
+                    {
+                        alert("请填写起始时间和结束时间！")
+                        _this.addLoading=false;
+                        return;
+                    }
+                    if(parseInt(this.lunhuan_num) !=0 && this.$refs.check.selection.length<parseInt(this.lunhuan_num)*parseInt(this.banci))
+                    {
+                        alert("人数不足无法排班！")
+                        _this.addLoading=false;
+                        return;
+                    }
+                    infolList.push({
+                        plan_name:this.planName,
+                        renshu:this.$refs.check.selection.length,
+                        department_name:this.work.department_name,
+                    })
+                    axios.post(myUrl('renyuan/Paiban2'), {
+                        renyuan:this.$refs.check.selection,
+                        paibanbiaoInfo:infolList[0],
+                        ks2:this.ks2,
+                        js2:this.js2,
+                        banci:this.banci,
+                        lunhuan_type:this.lunhuan,
+                        lunhuan_num:this.lunhuan_num,
+                        jiange:this.jiange,
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            alert("排班成功，请前往排班明细查看结果！");
+                            _this.addLoading=false;
+                            _this.getInfoList();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                            this.addLoading=false;
+                        }
+                    }).catch(function (err) {
+                        this.addLoading=false;
+                    })
+                },
+
                 getInfoList: function () {
                     var _this = this;
                     _this.loading = true;

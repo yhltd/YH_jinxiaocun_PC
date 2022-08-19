@@ -44,6 +44,7 @@
                 <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="updatePwd"><span v-text="username"></span></el-dropdown-item>
                 <el-dropdown-item ><span v-text="department"></span></el-dropdown-item>
+                <el-dropdown-item command="rongliang">查看容量</el-dropdown-item>
                 <el-dropdown-item command="exit">退出登录</el-dropdown-item>
 
                 </el-dropdown-menu>
@@ -222,6 +223,9 @@
                         case 'updatePwd':
                             this.updateFormVisisble = true;
                             break;
+                        case 'rongliang':
+                            this.rongliang();
+                            break;
                         case 'exit':
                             window.location.href = '/'
                             break;
@@ -258,6 +262,22 @@
                             title: err.msg
                         });
                         _this.updatePwdLoading = false;
+                    })
+                },
+
+                rongliang: function () {
+                    var _this = this;
+                    axios.post(myUrl('user/rongliang'), {
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.$notify({
+                                title: "提示",
+                                message: res.msg,
+                                type: 'success'
+                            });
+                        }
+                    }).catch(function (err) {
+
                     })
                 }
             },

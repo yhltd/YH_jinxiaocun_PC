@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using Web.finance.util;
 using Web.scheduling.model;
 using Web.scheduling.utils;
 
@@ -203,6 +204,28 @@ namespace Web.scheduling.controller
             {
                 return ResultUtil.error("修改失败");
             }
+        }
+
+        [WebMethod]
+        public string rongliang() 
+        {
+            userinfo = TokenUtil.getToken();
+            int ky_rongliang = FinanceSpace.getFinanceSpace().getMark4_all(userinfo.company, "排产");
+            int sy_rongliang = FinanceSpace.getFinanceSpace().getUseMark4_all(userinfo.company, "排产");
+
+            if (sy_rongliang <= ky_rongliang*0.9)
+            {
+                return ResultUtil.success("已使用容量不超过90%，请放心使用。");
+            }
+            else if (sy_rongliang <= ky_rongliang)
+            {
+                return ResultUtil.success("您在我公司租用的数据库容量即将超出上限，请注意。");
+            }
+            else 
+            {
+                return ResultUtil.success("错误");
+            }
+            
         }
 
     }

@@ -1324,7 +1324,7 @@ namespace Web.scheduling.controller
                 xiuxi = xiuxi.Replace("，", ",");
                 //排班天数
                 TimeSpan tianshu = js - ks;
-                for (int i = 0; i < tianshu.Days; i++)
+                for (int i = 0; i <= tianshu.Days; i++)
                 {
                     if (Array.IndexOf(Regex.Split(xiuxi, ","), Convert.ToString(CaculateWeekDay(ks))) == -1) 
                     {
@@ -1419,7 +1419,7 @@ namespace Web.scheduling.controller
                     int lh = 1;
                     //轮换天数变量
                     int lu_ts = 0;
-                    for (int i = 0; i < tianshu.Days; i++)
+                    for (int i = 0; i <= tianshu.Days; i++)
                     {
                         for (int j = 0; j < renyuan.Count; j++)
                         {

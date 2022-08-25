@@ -1776,6 +1776,7 @@
     <Content Include="scheduling\web\paiban.html" />
     <Content Include="scheduling\web\paibanbiao_renyuan.html" />
     <Content Include="scheduling\web\paiban_detail.html" />
+    <Content Include="scheduling\web\static\img\apic9216.jpg" />
     <Content Include="scheduling\web\static\img\background2.jpg" />
     <Content Include="scheduling\web\static\img\background.jpeg" />
     <Content Include="scheduling\web\static\img\beijing2.jpeg" />
@@ -1786,6 +1787,12 @@
     <Content Include="scheduling\web\static\img\image1.jpeg" />
     <Content Include="scheduling\web\static\img\image3.jpeg" />
     <Content Include="scheduling\web\static\img\image4.jpeg" />
+    <Content Include="scheduling\web\static\img\psd34292%281%29.jpg" />
+    <Content Include="scheduling\web\static\img\psd34462%281%29.jpg" />
+    <Content Include="scheduling\web\static\img\psd34462_1%281%29.jpg" />
+    <Content Include="scheduling\web\static\img\psd34631%281%29.jpg" />
+    <Content Include="scheduling\web\static\img\psd34699.jpg" />
+    <Content Include="scheduling\web\static\img\psd34984.jpg" />
     <Content Include="scheduling\web\static\img\tubiao.jpg" />
     <Content Include="scheduling\web\static\video\20220822_113414.mp4" />
     <Content Include="scheduling\web\static\video\bom.mp4" />

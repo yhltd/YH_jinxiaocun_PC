@@ -246,10 +246,11 @@ namespace Web.scheduling.service
                 {
                     //查找包含当前循环模块的订单实例
                     int zuihou = 0;
-                    bool pd = false;
+                    //bool pd = false;
                     DateTime ks = nowDate;
                     for (int i = num, j = 0; i < (moduleList.Count + num); i++)
                     {
+                        bool pd = false;
                         double time = 0;
                         for (int k = 0; k < pmtList.Count; k++) 
                         {

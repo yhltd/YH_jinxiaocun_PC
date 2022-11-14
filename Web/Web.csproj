@@ -132,6 +132,7 @@
     <Content Include="finance\web\assets\css\subject_ledger.css" />
     <Content Include="finance\web\assets\css\update_user.css" />
     <Content Include="finance\web\assets\css\voucherSummary.css" />
+    <Content Include="finance\web\assets\img\background_pic.jpeg" />
     <Content Include="finance\web\assets\img\animat-diamond-color.gif" />
     <Content Include="finance\web\assets\img\animat-responsive-color.gif" />
     <Content Include="finance\web\assets\img\caiwu_daohanglan.jpg" />
@@ -1397,6 +1398,7 @@
     <Content Include="Myadmin\images\top_bg.jpg" />
     <Content Include="Myadmin\images\ui-bg_error.gif" />
     <Content Include="Myadmin\js\index.js" />
+    <Content Include="Myadmin\js\jquerysession.js" />
     <Content Include="Myadmin\logout.aspx" />
     <Content Include="Myadmin\changepassword.aspx" />
     <Content Include="Myadmin\js\jquery-1.7.1.min.js" />

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="static/css/main.css">
     <link href="static/element/index.css" rel="stylesheet" />
 
+    <script src="../../Myadmin/js/jquery-1.8.3.min.js"></script>
+    <script src="../../Myadmin/js/jquerysession.js"></script>
     <script type="text/javascript" src="static/vue/vue.js"></script>
     <script type="text/javascript" src="static/element/index.js"></script>
     <script type="text/javascript" src="static/axios/axios.js"></script>
@@ -32,6 +34,11 @@
     </style>
     <title>云合排产管理系统</title>
     <script>
+
+        $(function () {
+            $.session.set('type', '排产1');
+        })
+
         function watchVideo() {
             $(".videoCanvas").show();
             $(".video-mask").show();
@@ -103,6 +110,7 @@
         <video id="video" controls autoplay="autoplay" src="static/video/排产.mp4" width="700" height="400"></video>
     </div>
 
+    <input type="text" hidden="hidden" id="type" value="排产1" />
     <div id="work" style="display: none;" :style="{display: 'block'}">
         <el-container>
             <el-main v-loading="loading">
@@ -141,6 +149,7 @@
                             <el-button
                                 icon="el-icon-s-opportunity"
                                 type="primary" 
+                                title="日生产数=当日可工作小时数*生产模块效率"
                                 @click="gongshi()"
                                 >生产公式</el-button>
                             <el-button
@@ -807,7 +816,12 @@
                             label: '开始生产日期',
                             property: 'work_start_date',
                             width: 200
-                        }
+                        },{
+                            label: '排产类型',
+                            property: 'type',
+                            width: 100,
+                            fixed: 'left'
+                        },
                     ];
 
                     var flowHeader = [];
@@ -842,10 +856,12 @@
 
                 initWorkList: function () {
                     this.orderId = '';
+                    $.session.set('type', '排产1');
                     this.workList();
                 },
                 initWorkList2: function () {
                     this.orderId = '';
+                    $.session.set('type', '排产2');
                     this.workList2();
                 },
 
@@ -923,6 +939,9 @@
                                 });
                                 return;
                             }
+                            if(_this.is_insert==null){
+                                _this.is_insert=0;
+                            }
                             _this.saveLoading = true;
                             axios.post(myUrl('work/save'), {
                                 workDetail: {
@@ -930,7 +949,8 @@
                                     work_num: _this.work.work_num,
                                     work_start_date: _this.work.work_start_date,
                                     row_num: _this.work.row_num,
-                                    is_insert: _this.work.is_insert
+                                    is_insert: _this.work.is_insert,
+                                    type:$.session.get('type'),
                                 },
                                 workModuleIdList: _this.work.moduleList
                             }).then(function (res) {
@@ -972,6 +992,7 @@
                                     work_num: _this.$refs.check.selection[i].set_num,
                                     work_start_date: _this.work.work_start_date,
                                     is_insert: 0,
+                                    type:$.session.get('type')
                                 })
                             }
                             
@@ -1285,10 +1306,10 @@
                     })
                 },
 
-                gongshi:function(){
-                    alert("日生产数=当日可工作小时数*生产模块效率");
+                //gongshi:function(){
+                //    alert("日生产数=当日可工作小时数*生产模块效率");
 
-                },
+                //},
                 
             },
             mounted: function () {

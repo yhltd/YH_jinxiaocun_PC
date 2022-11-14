@@ -58,9 +58,12 @@ namespace Web.Personnel
                 Response.Write("<script>alert('请选择开始时间和结束时间！');</script>");
                 return;
             }
+            String ks = Request.Form["ks"];
+            String js = Request.Form["js"];
             Session["year"] = Request.Form["ks"].Split('-')[0] + Request.Form["ks"].Split('-')[1];
             Session["moth"] = Request.Form["js"].Split('-')[0] + Request.Form["js"].Split('-')[1];
             GridView1.DataSourceID = "SqlDataSource2";
+            Response.Write("<script>document.getElementById('ks').value='" + ks + "';document.getElementById('js').value='" + js + "';</script>");
         }
 
         protected void Button2_Click(object sender, EventArgs e)

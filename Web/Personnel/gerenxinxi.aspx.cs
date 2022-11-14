@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.Personnel.HrModel;
 
 namespace Web.Personnel
 {
@@ -54,6 +55,12 @@ namespace Web.Personnel
         protected void Button2_Click(object sender, EventArgs e)
         {
             GridView1.DataSourceID = "SqlDataSource1";
+            GridView1.DataBind();
+        }
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            Session["xm1"] = DateTime.Now.ToString("yyyy-MM-dd");
+            GridView1.DataSourceID = "SqlDataSource3";
             GridView1.DataBind();
         }
     }

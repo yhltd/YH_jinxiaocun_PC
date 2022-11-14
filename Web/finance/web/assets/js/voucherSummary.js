@@ -205,7 +205,7 @@ function setTable(data) {
             }
         }],
         data: data.pageList,
-        height: 470,
+        //height: 470,
         frozenColumns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
             { field: 'rownum', align: 'center', title: '序号', width: 50 },

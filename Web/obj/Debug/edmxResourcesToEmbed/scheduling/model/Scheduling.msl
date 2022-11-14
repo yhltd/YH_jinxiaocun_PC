@@ -89,6 +89,7 @@
     <EntitySetMapping Name="work_detail">
       <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.work_detail)">
         <MappingFragment StoreEntitySet="work_detail">
+          <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="work_num" ColumnName="work_num" />

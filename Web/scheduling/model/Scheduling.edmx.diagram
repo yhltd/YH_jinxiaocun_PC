@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="schedulingModel.bom_info" Width="1.5" PointX="6.625" PointY="0.5" />
         <EntityTypeShape EntityType="schedulingModel.order_bom" Width="1.5" PointX="6.625" PointY="3.375" />
         <EntityTypeShape EntityType="schedulingModel.order_info" Width="1.5" PointX="4.75" PointY="2.25" />
-        <EntityTypeShape EntityType="schedulingModel.work_detail" Width="1.5" PointX="10.5" PointY="0.5" />
+        <EntityTypeShape EntityType="schedulingModel.work_detail" Width="1.875" PointX="10.5" PointY="0.5" />
         <EntityTypeShape EntityType="schedulingModel.work_module" Width="1.5" PointX="8.625" PointY="3.375" />
         <EntityTypeShape EntityType="schedulingModel.department" Width="1.5" PointX="8.625" PointY="0.5" />
         <EntityTypeShape EntityType="schedulingModel.paibanbiao_renyuan" Width="1.5" PointX="10.5" PointY="3" />

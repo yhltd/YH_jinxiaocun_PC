@@ -31,12 +31,12 @@
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item" style="height:540px">
-            <div id="data-table" class="easyui-datagrid"></div>
+            <div style="height:95%" id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>
         </div>
     </div>
 
-    <div id="update" style="display: none">
+    <div id="update" style="display: none;background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover">
         <form id="updateForm" method="post">
             <div class="form-item">
 		        <label for="code">科目代码:</label>
@@ -56,12 +56,12 @@
             </div>
             <div class="form-item form-item-btn">
                 <button onclick="javascript:toUpd()" class="btn" type="button">确认修改</button>
-                <button onclick="javascript:toReset()" class="btn btn-right" type="button">清空</button>
+                <button onclick="javascript:toReset()" class="btn" style="margin-right:-2%" type="button">清空</button>
             </div>
         </form>
     </div>
 
-    <div id="new" style="display: none;" >
+    <div id="new" style="display: none;background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover" >
         <div id="new-accordion" class="easyui-accordion" style="height: 510px;width: 800px;">
             <div title="选择科目代码" class="accordion-item" data-option="selected:true">
                 <div class="accordion-item-main">

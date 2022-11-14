@@ -9,6 +9,22 @@
     <title></title>
 </head>
 <body style="margin: 0;">
+    <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
+    <script src="../Myadmin/js/jquerysession.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#ks').val($.session.get('ks'));
+            $('#js').val($.session.get('js'));
+            $.session.set('ks', '')
+            $.session.set('js', '')
+
+            $('#Button2').click(function () {
+                $.session.set('ks', $('#ks').val());
+                $.session.set('js', $('#js').val());
+            })
+        })
+
+    </script>
     <h1 style="margin-top: 0px; margin-bottom: 10px">报盘</h1>
     <form id="form1" runat="server">
         <div>
@@ -17,10 +33,10 @@
             <%--<asp:textbox id="TextBox1" runat="server" cssclass="top_select_input" height="30px" width="150px" style="margin-right: -10px; border: 0.5px solid #378888"></asp:textbox>--%>
             <%--&nbsp;&nbsp;&nbsp;--%>
             <asp:label id="Label2" runat="server" height="30px" text="开始时间" width="80px" style="text-align: center"></asp:label>
-            <input type="date" name="ks" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />
+            <input type="date" name="ks" id="ks" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />
             &nbsp;&nbsp;&nbsp;
             <asp:label id="Label3" runat="server" height="30px" text="结束时间" width="80px" style="text-align: center"></asp:label>
-            <input type="date" name="js" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />
+            <input type="date" name="js" id="js" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />
             &nbsp;&nbsp;&nbsp;
             <asp:button id="Button2" runat="server" text="搜索" onclick="Button2_Click" cssclass="top_bt" style="margin-right: -10px" height="30px" width="80px" />
             <asp:button id="Button3" runat="server" height="30px" text="所有" width="80px" onclick="Button3_Click" cssclass="top_bt" style="margin-right: -10px" />

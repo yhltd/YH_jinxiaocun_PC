@@ -104,7 +104,7 @@ function setTableAccounting(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
@@ -283,7 +283,7 @@ function setTableKehu(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
@@ -463,7 +463,7 @@ function setTableInvoice(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },

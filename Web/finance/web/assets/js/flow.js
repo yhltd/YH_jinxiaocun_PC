@@ -96,7 +96,7 @@ function setTable(data,money_month,money_year) {
         title: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日期总合计：" + money_month + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本年总合计:" + money_year,
         fitColumns: false,
         data: data.pageList,
-        height: 470,
+        //height: 470,
         columns: [[
             { field: 'expenditure', align: 'center', title: '项目名称', width: 300 },
 		    { field: 'money_month', align: 'center', title: '日期合计', width: 230 },

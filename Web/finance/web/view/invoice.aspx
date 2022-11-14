@@ -32,12 +32,12 @@
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">
-            <div id="data-table" class="easyui-datagrid"></div>
+            <div style="height:95%" id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>
         </div>
     </div>
 
-    <div id="upd-invoice-window" style="display: none">
+    <div id="upd-invoice-window" style="display: none;background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover">
         <form id="upd-invoice-form">
             <div class="form-item">
                 <label>类型:</label>
@@ -81,7 +81,7 @@
         </form>
     </div>
 
-    <div id="add-invoice-window" style="display: none">
+    <div id="add-invoice-window" style="display: none;background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover">
         <form id="add-invoice-form">
             <div class="form-item">
                 <label>类型:</label>

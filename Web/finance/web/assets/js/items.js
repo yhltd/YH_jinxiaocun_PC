@@ -192,7 +192,7 @@ function setTableFinancingExpenditure(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
@@ -413,7 +413,7 @@ function setTableFinancingIncome(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
@@ -634,7 +634,7 @@ function setTableInvestmentExpenditure(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
@@ -916,7 +916,7 @@ function setTableInvestmentIncome(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
@@ -1222,7 +1222,7 @@ function setTableManagementExpenditure(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
@@ -1529,7 +1529,7 @@ function setTableManagementIncome(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
@@ -1832,7 +1832,7 @@ function setTableVoucherWrod(data) {
             }
         }],
         data: data.pageList,
-        height: 480,
+        //height: 480,
         width: 330,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },

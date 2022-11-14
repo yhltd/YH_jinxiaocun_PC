@@ -73,7 +73,7 @@ function setTable(data, weishou, weifu) {
     $('#data-table').datagrid({
         fitColumns: false,
         data: data,
-        height: 470,
+        //height: 470,
         columns: [[
             { field: 'accounting', align: 'center', title: '项目/科目', width: 400 },
             { field: 'benqi', align: 'center', title: '本期金额', width: 200 },

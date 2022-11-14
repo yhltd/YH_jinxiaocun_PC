@@ -29,7 +29,7 @@
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">
-            <div id="data-table" class="easyui-datagrid"></div>
+            <div style="height:95%" id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>
         </div>
     </div>

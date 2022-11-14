@@ -139,7 +139,7 @@ function setTable(data) {
     $('#data-table').datagrid({
         fitColumns: false,
         data: data.pageList,
-        height: 470,
+        //height: 470,
         columns: [[
             { field: 'name', align: 'center', title: '科目名称', width: 300 },
 		    { field: 'load', align: 'center', title: '年初余额', width: 230 },

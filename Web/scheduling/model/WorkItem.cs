@@ -20,10 +20,12 @@ namespace Web.scheduling.model
             this.moduleInfo = workItem.moduleInfo;
             this.workDayList = workItem.workDayList;
             this.orderId = workItem.orderId;
+            this.type = workItem.type;
         }
 
         public module_info moduleInfo { get; set; }
         public List<WorkDay> workDayList { get; set; }
         public string orderId { get; set; }
+        public string type { get; set; }
     }
 }

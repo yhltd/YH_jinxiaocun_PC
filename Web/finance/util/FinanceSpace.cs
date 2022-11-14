@@ -47,11 +47,13 @@ namespace Web.finance.util
                 {
                     return int.Parse(user.mark4.Trim()) * 1024;
                 }
-                else {
+                else 
+                {
                     return 0;
                 }
             }
-            else {
+            else 
+            {
                 return 0;
             }
         }

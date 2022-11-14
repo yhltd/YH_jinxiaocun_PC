@@ -97,7 +97,7 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString19 %>" DeleteCommand="DELETE FROM [gongzi_renyuan] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_renyuan] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L)" SelectCommand="if exists(SELECT * FROM [gongzi_renyuan] where ([L] like '%'+ @L +'%') AND ([B] like '%'+ @B +'%')  AND ([O] like '%'+ @O +'%') ) begin SELECT * FROM [gongzi_renyuan] where ([L] like '%'+ @L +'%') AND ([B] like '%'+ @B +'%') AND ([O] like '%'+ @O +'%') end else SELECT * FROM [gongzi_renyuan] where id=0 UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''" UpdateCommand="UPDATE [gongzi_renyuan] SET [B] = @B, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L WHERE [id] = @id">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString19 %>" DeleteCommand="DELETE FROM [gongzi_renyuan] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_renyuan] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L)" SelectCommand="if exists(SELECT * FROM [gongzi_renyuan] where ([L] like '%'+@L+'%') AND ([B] like '%'+@B+'%')  AND ([O] like '%'+@O+'%') ) begin SELECT * FROM [gongzi_renyuan] where ([L] like '%'+ @L +'%') AND ([B] like '%'+@B+'%') AND ([O] like '%'+@O+'%') end else SELECT * FROM [gongzi_renyuan] where id=0 UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''" UpdateCommand="UPDATE [gongzi_renyuan] SET [B] = @B, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L WHERE [id] = @id">
             <DeleteParameters>
                 <asp:Parameter Name="id" Type="Int32" />
             </DeleteParameters>
@@ -155,6 +155,82 @@
             </InsertParameters>
             <SelectParameters>
                 <asp:SessionParameter Name="L" SessionField="gongsi2" Type="String" />
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="B" Type="String" />
+                <asp:Parameter Name="C" Type="String" />
+                <asp:Parameter Name="D" Type="String" />
+                <asp:Parameter Name="E" Type="String" />
+                <asp:Parameter Name="F" Type="String" />
+                <asp:Parameter Name="G" Type="String" />
+                <asp:Parameter Name="H" Type="String" />
+                <asp:Parameter Name="I" Type="String" />
+                <asp:Parameter Name="J" Type="String" />
+                <asp:Parameter Name="K" Type="String" />
+                <asp:Parameter Name="L" Type="String" />
+                <asp:Parameter Name="id" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString19 %>" DeleteCommand="DELETE FROM [gongzi_renyuan] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_renyuan] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L)" SelectCommand="if exists(SELECT * FROM [gongzi_renyuan] where ([L] like '%'+@L+'%') AND ([B] like '%'+@B+'%')  ) begin SELECT * FROM [gongzi_renyuan] where ([L] like '%'+ @L +'%') AND ([B] like '%'+@B+'%') end else SELECT * FROM [gongzi_renyuan] where id=0 UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''" UpdateCommand="UPDATE [gongzi_renyuan] SET [B] = @B, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L WHERE [id] = @id">
+            <DeleteParameters>
+                <asp:Parameter Name="id" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="B" Type="String" />
+                <asp:Parameter Name="C" Type="String" />
+                <asp:Parameter Name="D" Type="String" />
+                <asp:Parameter Name="E" Type="String" />
+                <asp:Parameter Name="F" Type="String" />
+                <asp:Parameter Name="G" Type="String" />
+                <asp:Parameter Name="H" Type="String" />
+                <asp:Parameter Name="I" Type="String" />
+                <asp:Parameter Name="J" Type="String" />
+                <asp:Parameter Name="K" Type="String" />
+                <asp:Parameter Name="L" Type="String" />
+            </InsertParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="L" SessionField="gongsi2" Type="String" />
+                <asp:SessionParameter Name="B" SessionField="xm1" Type="String" />
+                <%--<asp:Parameter Name="O">
+                </asp:Parameter>--%>
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="B" Type="String" />
+                <asp:Parameter Name="C" Type="String" />
+                <asp:Parameter Name="D" Type="String" />
+                <asp:Parameter Name="E" Type="String" />
+                <asp:Parameter Name="F" Type="String" />
+                <asp:Parameter Name="G" Type="String" />
+                <asp:Parameter Name="H" Type="String" />
+                <asp:Parameter Name="I" Type="String" />
+                <asp:Parameter Name="J" Type="String" />
+                <asp:Parameter Name="K" Type="String" />
+                <asp:Parameter Name="L" Type="String" />
+                <asp:Parameter Name="id" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString19 %>" DeleteCommand="DELETE FROM [gongzi_renyuan] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_renyuan] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L)" SelectCommand="if exists(SELECT * FROM [gongzi_renyuan] where ([L] like '%'+@L+'%') AND ([O] like '%'+@O+'%') ) begin SELECT * FROM [gongzi_renyuan] where ([L] like '%'+ @L +'%') AND ([O] like '%'+@O+'%') end else SELECT * FROM [gongzi_renyuan] where id=0 UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''" UpdateCommand="UPDATE [gongzi_renyuan] SET [B] = @B, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L WHERE [id] = @id">
+            <DeleteParameters>
+                <asp:Parameter Name="id" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="B" Type="String" />
+                <asp:Parameter Name="C" Type="String" />
+                <asp:Parameter Name="D" Type="String" />
+                <asp:Parameter Name="E" Type="String" />
+                <asp:Parameter Name="F" Type="String" />
+                <asp:Parameter Name="G" Type="String" />
+                <asp:Parameter Name="H" Type="String" />
+                <asp:Parameter Name="I" Type="String" />
+                <asp:Parameter Name="J" Type="String" />
+                <asp:Parameter Name="K" Type="String" />
+                <asp:Parameter Name="L" Type="String" />
+            </InsertParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="L" SessionField="gongsi2" Type="String" />
+                <asp:SessionParameter Name="O" SessionField="xm2" Type="String" />
+                <%--<asp:Parameter Name="O">
+                </asp:Parameter>--%>
             </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="B" Type="String" />

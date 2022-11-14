@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Web.Personnel.HrModel;
 
 namespace Web.Personnel
 {
@@ -30,17 +31,32 @@ namespace Web.Personnel
             Label18.Text = "";
             Label19.Text = "";
             Label20.Text = "";
+            DropDownList2.Items.Clear();
 
             if (Session["gongsi"].ToString() == null)
             {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
             }
             a = Request.QueryString[0].Split(',');
+
+            HrMingXiModel hm = new HrMingXiModel();
+            List<gongzi_peizhi> list = hm.getPeizhi(Session["gongsi"].ToString());
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                DropDownList2.Items.Add(new ListItem(list[i].bumen, list[i].bumen));
+            }
+
             if (a[0] == "修改")
             {
                 Session["renyuan_id"] = a[1];
                 TextBox1.Text = a[2];
-                TextBox2.Text = a[3];
+                //TextBox2.Text = a[3];
+                ListItem item = ((DropDownList)this.FindControl("DropDownList2")).Items.FindByText(a[3].ToString());
+                if (item != null)
+                {
+                    item.Selected = true;
+                }
                 TextBox3.Text = a[4];
                 TextBox4.Text = a[5];
                 TextBox5.Text = a[6];
@@ -81,7 +97,7 @@ namespace Web.Personnel
                 //Label50.Text = "* 姓名不能为空！";
                 yanzheng = 1;
             }
-            else if (Request.Form["TextBox2"].ToString() == "")
+            else if (Request.Form["DropDownList2"].ToString() == "")
             {
                 Response.Write("<script>alert('部门不能为空！'); </script>");
                 //Label12.Text = "* 部门不能为空！";
@@ -267,7 +283,7 @@ namespace Web.Personnel
             {
                 int count;
                 string sql;
-                if (Request.Form["TextBox1"].ToString() != "" && Request.Form["TextBox2"].ToString() != "" && Request.Form["TextBox3"].ToString() != "" && Request.Form["TextBox9"].ToString() != "" && Request.Form["TextBox10"].ToString() != "")
+                if (Request.Form["TextBox1"].ToString() != "" && Request.Form["DropDownList2"].ToString() != "" && Request.Form["TextBox3"].ToString() != "" && Request.Form["TextBox9"].ToString() != "" && Request.Form["TextBox10"].ToString() != "")
                 {
                     string conString = ConfigurationManager.AppSettings["yao"];
                     conn = new SqlConnection(conString);  //数据库连接。
@@ -289,9 +305,13 @@ namespace Web.Personnel
                             string sqlStr = "insert into gongzi_renyuan (B,C,D,E,F,G,H,K,I,J,M,N,O,P,Q,R,S,AC,AD,L) VALUES (";
                             for (int i = 1; i < 20; i++)
                             {
-                                if (Request.Form["TextBox" + i] != "")
+                                if (Request.Form["TextBox" + i] != "" && i!=2)
                                 {
                                     sqlStr += "'" + Request.Form["TextBox" + i] + "',";
+                                }
+                                else if (i == 2)
+                                {
+                                    sqlStr += "'" + Request.Form["DropDownList2"] + "',";
                                 }
                                 else
                                 {
@@ -326,7 +346,7 @@ namespace Web.Personnel
                         }
                         else
                         {
-                            string sqlStr = "update gongzi_renyuan set B='" + Request.Form["TextBox1"] + "',C='" + Request.Form["TextBox2"] + "',D='" + Request.Form["TextBox3"] + "',E='" + Request.Form["TextBox4"] + "',F='" + Request.Form["TextBox5"] + "',G='" + Request.Form["TextBox6"] + "',H='" + Request.Form["TextBox7"] + "',K='" + Request.Form["TextBox8"] + "',I='" + Request.Form["TextBox9"] + "',J='" + Request.Form["TextBox10"] + "',L='" + Session["gongsi"].ToString() + "_hr',M='" + Request.Form["TextBox11"] + "',N='" + Request.Form["TextBox12"] + "',O='" + Request.Form["TextBox13"] + "',P='" + Request.Form["TextBox14"] + "',Q='" + Request.Form["TextBox15"] + "',R='" + Request.Form["TextBox16"] + "',S='" + Request.Form["TextBox17"] + "',AC='" + Request.Form["TextBox18"] + "',AD='" + Request.Form["TextBox19"] + "' where id='" + a[1] + "';";
+                            string sqlStr = "update gongzi_renyuan set B='" + Request.Form["TextBox1"] + "',C='" + Request.Form["DropDownList2"] + "',D='" + Request.Form["TextBox3"] + "',E='" + Request.Form["TextBox4"] + "',F='" + Request.Form["TextBox5"] + "',G='" + Request.Form["TextBox6"] + "',H='" + Request.Form["TextBox7"] + "',K='" + Request.Form["TextBox8"] + "',I='" + Request.Form["TextBox9"] + "',J='" + Request.Form["TextBox10"] + "',L='" + Session["gongsi"].ToString() + "_hr',M='" + Request.Form["TextBox11"] + "',N='" + Request.Form["TextBox12"] + "',O='" + Request.Form["TextBox13"] + "',P='" + Request.Form["TextBox14"] + "',Q='" + Request.Form["TextBox15"] + "',R='" + Request.Form["TextBox16"] + "',S='" + Request.Form["TextBox17"] + "',AC='" + Request.Form["TextBox18"] + "',AD='" + Request.Form["TextBox19"] + "' where id='" + a[1] + "';";
                             cmd = new SqlCommand(sqlStr, conn);
                             cmd.ExecuteNonQuery();
                             conn.Close();

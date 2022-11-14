@@ -94,7 +94,7 @@ function setTable(data) {
             }
         }],
         data: data.pageList,
-        height: 470,
+        //height: 470,
         columns: [[
             { field: 'id', checkbox: true, type: 'combobox', align: 'center', title: 'ID', width: 50 },
             { field: 'type', align: 'center', title: '类型', width: 120 },

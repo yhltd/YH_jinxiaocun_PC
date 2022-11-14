@@ -66,6 +66,19 @@ namespace Web.scheduling.dao
             }
         }
 
+        //public Int32 getCount(string company) 
+        //{
+        //    using (se = new schedulingEntities())
+        //    {
+        //        var @params = new SqlParameter[]{
+        //            new SqlParameter("@company", company),
+        //        };
+
+        //        var sql = "select * work_detail where company=@company";
+        //        return se.Database.ExecuteSqlCommand(sql, @params);
+        //    }
+        //}
+
         public Boolean deleteWork1<T>(int id) where T : class
         {
             

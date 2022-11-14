@@ -50,7 +50,8 @@
                 </el-dropdown-menu>
             </el-dropdown>
         </el-menu>
-        
+
+
         <el-container ref="container">
             <div ref="aside" :class="asideClass">
                 <el-menu :collapse="collapse" @select="handleSelect" background-color="#fff" active-text-color="#409EFF">
@@ -137,6 +138,16 @@
                 <el-button type="primary" @click="updatePwd">确 定</el-button>
             </div>
         </el-dialog>
+
+        <el-dialog title="查看容量" :visible.sync="jinduVisible">
+            <el-progress 
+             :text-inside="true" 
+             :stroke-width="18" 
+             :percentage="dlProgress" 
+             status="success" 
+             style="margin-top:10px">
+            </el-progress>
+        </el-dialog>
     </div>
 
     <script>
@@ -156,7 +167,9 @@
                     oldPwd: [{ required: true, message: '旧密码不能为空', trigger: 'blur' }],
                     newPwd: [{ required: true, message: '新密码不能为空', trigger: 'blur' }],
                 },
-                updatePwdLoading: false
+                updatePwdLoading: false,
+                dlProgress: 0,
+                jinduVisible:false,
             },
             methods: {
                 getUsername: function () {
@@ -224,6 +237,7 @@
                             this.updateFormVisisble = true;
                             break;
                         case 'rongliang':
+                            this.jinduVisible = true;
                             this.rongliang();
                             break;
                         case 'exit':
@@ -270,6 +284,8 @@
                     axios.post(myUrl('user/rongliang'), {
                     }).then(function (res) {
                         if (res.code == 200) {
+                            //res.data
+                            _this.dlProgress = Math.round(res.data);
                             _this.$notify({
                                 title: "提示",
                                 message: res.msg,

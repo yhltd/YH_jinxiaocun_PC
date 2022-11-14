@@ -12,9 +12,22 @@
 </head>
 <body style="margin: 0;">
     <script type="text/javascript" src="../Myadmin/js/jquery-1.8.3.min.js"></script>
+    <script src="../Myadmin/js/jquerysession.js"></script>
     <script type="text/javascript" src="js/iframe_d.js"></script>
     <link rel="stylesheet" type="text/css" href="css/iframe_d.css" />
     <script type="text/javascript">
+        $(function () {
+            $('#ks').val($.session.get('ks'));
+            $('#js').val($.session.get('js'));
+            $.session.set('ks', '')
+            $.session.set('js', '')
+
+            $('#Button1').click(function () {
+                $.session.set('ks', $('#ks').val());
+                $.session.set('js', $('#js').val());
+            })
+        })
+        
         function a() {
             alert("无权限！")
         }
@@ -110,9 +123,9 @@
             <asp:ListItem>12</asp:ListItem>
         </asp:DropDownList>--%>
             <asp:label id="Label1" runat="server" height="30px" width="80px" style="text-align: center" >开始时间：</asp:label>
-            <input type="date" name="ks" class="top_select_input" style="width:150px"></input>
+            <input type="date" name="ks" id="ks" class="top_select_input" style="width:150px"></input>
             <asp:label id="Label2" runat="server" height="30px" width="80px" style="text-align: center" >结束时间：</asp:label>
-            <input type="date" name="js" class="top_select_input" style="width:150px"></input>
+            <input type="date" name="js" id="js" class="top_select_input" style="width:150px"></input>
             <asp:button id="Button1" cssclass="top_bt" runat="server" onclick="Button1_Click" text="搜索" height="30px" width="80px" style="margin-right: -10px" />
             <asp:button id="Button2" cssclass="top_bt" runat="server" text="添加" onclientclick="aa" onclick="Button2_Click" height="30px" width="80px" style="margin-right: -10px" />
             <asp:button id="Button3" cssclass="top_bt" runat="server" text="所有" onclientclick="aa" onclick="Button3_Click" height="30px" width="80px" style="margin-right: -10px" />

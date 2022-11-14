@@ -217,6 +217,7 @@
     <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="row_num" Type="int" />
     <Property Name="is_insert" Type="int" />
+    <Property Name="type" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="work_detail1">
     <Key>

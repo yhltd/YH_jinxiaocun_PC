@@ -65,7 +65,7 @@ function setTable(data) {
     $('#data-table').datagrid({
         fitColumns: false,
         data: data,
-        height: 470,
+        //height: 470,
         columns: [[
             { field: 'insert_date', align: 'center', title: '日期', width: 200 },
             { field: 'kehu', align: 'center', title: '供应商', width: 200 },

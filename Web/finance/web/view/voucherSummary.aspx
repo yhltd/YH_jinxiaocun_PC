@@ -35,12 +35,12 @@
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">
-            <div id="data-table" class="easyui-datagrid"></div>
+            <div style="height:95%" id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>
         </div>
     </div>
 
-    <div id="upd-voucherSummary-window" style="display: none">
+    <div id="upd-voucherSummary-window" style="display: none;background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover">
         <form id="upd-voucherSummary-form">
             <div class="form-item">
 		        <label for="word">凭证字:</label>
@@ -89,7 +89,7 @@
         </form>
     </div>
 
-    <div id="add-voucherSummary-window" style="display: none">
+    <div id="add-voucherSummary-window" style="display: none;background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover">
         <form id="add-voucherSummary-form">
             <div class="form-item">
 		        <label for="word">凭证字:</label>

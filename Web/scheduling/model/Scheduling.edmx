@@ -222,6 +222,7 @@
           <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="row_num" Type="int" />
           <Property Name="is_insert" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="work_detail1">
           <Key>
@@ -368,6 +369,7 @@
           <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="row_num" />
           <Property Type="Int32" Name="is_insert" />
+          <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="work_module">
           <Key>
@@ -603,7 +605,8 @@
     <EntitySetMapping Name="work_detail">
       <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.work_detail)">
         <MappingFragment StoreEntitySet="work_detail">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="work_num" ColumnName="work_num" />
           <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />

@@ -86,7 +86,7 @@ function getList() {
 function setTable(data) {
     $('#data-table').datagrid({
         data: data,
-        height: 470,
+        //height: 470,
         columns: [[
             { field: 'kehu', align: 'center', title: '客户/供应商', width: 250 },
             { field: 'project', align: 'center', title: '项目', width: 250 },

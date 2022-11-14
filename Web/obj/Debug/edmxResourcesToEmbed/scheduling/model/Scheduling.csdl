@@ -109,6 +109,7 @@
     <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="row_num" />
     <Property Type="Int32" Name="is_insert" />
+    <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="work_module">
     <Key>

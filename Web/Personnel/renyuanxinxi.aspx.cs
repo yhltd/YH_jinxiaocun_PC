@@ -165,19 +165,34 @@ namespace Web.Personnel
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            if (Request.Form["TextBox1"].Equals(""))
-            {
-                Response.Write("<script>alert('请填写姓名！');</script>");
-                return;
-            }
-            if (Request.Form["TextBox2"].Equals(""))
-            {
-                Response.Write("<script>alert('请填写手机号！');</script>");
-                return;
-            }
             Session["xm1"] = Request.Form["TextBox1"];
             Session["xm2"] = Request.Form["TextBox2"];
-            GridView1.DataSourceID = "SqlDataSource2";
+            if (Request.Form["TextBox1"].Equals("") && Request.Form["TextBox2"].Equals(""))
+            {
+                GridView1.DataSourceID = "SqlDataSource1";
+            }
+            else if (!Request.Form["TextBox1"].Equals("") && !Request.Form["TextBox2"].Equals(""))
+            {
+                GridView1.DataSourceID = "SqlDataSource2";
+            }
+            else if (!Request.Form["TextBox1"].Equals("") && Request.Form["TextBox2"].Equals(""))
+            {
+                GridView1.DataSourceID = "SqlDataSource3";
+            }
+            else if (Request.Form["TextBox1"].Equals("") && !Request.Form["TextBox2"].Equals(""))
+            {
+                GridView1.DataSourceID = "SqlDataSource4";
+            }
+
+
+            //if (Request.Form["TextBox2"].Equals(""))
+            //{
+            //    Response.Write("<script>alert('请填写手机号！');</script>");
+            //    return;
+            //}
+            //Session["xm1"] = Request.Form["TextBox1"];
+            //Session["xm2"] = Request.Form["TextBox2"];
+            //GridView1.DataSourceID = "SqlDataSource2";
             //if (Request.Form["TextBox1"].Equals("") && Request.Form["TextBox2"].Equals(""))
             //{
             //    GridView1.DataSourceID = "SqlDataSource1";

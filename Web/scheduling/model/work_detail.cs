@@ -21,5 +21,6 @@ namespace Web.scheduling.model
         public string company { get; set; }
         public Nullable<int> row_num { get; set; }
         public Nullable<int> is_insert { get; set; }
+        public string type { get; set; }
     }
 }

@@ -239,5 +239,20 @@ namespace Web.Personnel.HrModel
                 return result.ToList();
             }
         }
+
+        public List<gongzi_renyuan> getBirthday(string gongsi, string birthday)
+        {
+            using (yaoEntities y = new yaoEntities())
+            {
+                var @params = new SqlParameter[]{
+                    new SqlParameter("@gongsi", gongsi),
+                    new SqlParameter("@birthday", birthday),
+                };
+
+                string sql = "SELECT * from gongzi_renyuan where L like '%" + @gongsi + "%' and convert(date,Q)='" + @birthday + "' ";
+                var result = y.Database.SqlQuery<gongzi_renyuan>(sql, @params);
+                return result.ToList();
+            }
+        }
     }
 }

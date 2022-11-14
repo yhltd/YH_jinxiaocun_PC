@@ -140,7 +140,7 @@ function setTable(data,weishou,weifu) {
         title: "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;未收合计：" + weishou + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;未付合计:" + weifu,
         fitColumns: false,
         data: data,
-        height: 470,
+        //height: 470,
         columns: [[
             { field: 'zhaiyao1', align: 'center', title: '摘要', width: 200 },
             { field: 'kehu1', align: 'center', title: '客户/供应商', width: 200 },

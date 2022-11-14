@@ -236,6 +236,18 @@ namespace Web.Personnel
                 gongzimingxi.Add(bp);
             }
 
+            if (gongzimingxi.Count == 0) {
+                banpanhz bp = new banpanhz();
+                bp.B = "";
+                bp.C = "";
+                bp.E = "";
+                bp.D = "";
+                bp.F = "";
+                bp.G = "";
+                gongzimingxi.Add(bp);
+            }
+
+
             Textbox11.Text=Convert.ToString(hz_shifagongzi);
             Textbox12.Text=Convert.ToString(hz_geren);
             Textbox13.Text=Convert.ToString(hz_qiye);

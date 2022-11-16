@@ -240,16 +240,16 @@ namespace Web.Personnel.HrModel
             }
         }
 
-        public List<gongzi_renyuan> getBirthday(string gongsi, string birthday)
+        public List<gongzi_renyuan> getBirthday(string gongsi, int month)
         {
             using (yaoEntities y = new yaoEntities())
             {
                 var @params = new SqlParameter[]{
                     new SqlParameter("@gongsi", gongsi),
-                    new SqlParameter("@birthday", birthday),
+                    new SqlParameter("@month", month),
                 };
 
-                string sql = "SELECT * from gongzi_renyuan where L like '%" + @gongsi + "%' and convert(date,Q)='" + @birthday + "' ";
+                string sql = "SELECT id,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,convert(varchar,day(convert(date,Q))) as Q from gongzi_renyuan where L like '%" + @gongsi + "%' and month(convert(date,Q))='" + @month + "' ";
                 var result = y.Database.SqlQuery<gongzi_renyuan>(sql, @params);
                 return result.ToList();
             }

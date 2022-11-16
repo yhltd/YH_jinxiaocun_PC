@@ -1673,6 +1673,7 @@
     <Content Include="NoAccess.html" />
     <Content Include="Personnel\baopan.aspx" />
     <Content Include="Personnel\baoshui.aspx" />
+    <Content Include="Personnel\birthday.aspx" />
     <Content Include="Personnel\bumenhuizong.aspx" />
     <Content Include="Personnel\bumenxiangqing.aspx" />
     <Content Include="Personnel\bumenxiangqing1.aspx" />
@@ -2577,6 +2578,13 @@
     </Compile>
     <Compile Include="Personnel\baoshui.aspx.designer.cs">
       <DependentUpon>baoshui.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\birthday.aspx.cs">
+      <DependentUpon>birthday.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\birthday.aspx.designer.cs">
+      <DependentUpon>birthday.aspx</DependentUpon>
     </Compile>
     <Compile Include="Personnel\bumenhuizong.aspx.cs">
       <DependentUpon>bumenhuizong.aspx</DependentUpon>

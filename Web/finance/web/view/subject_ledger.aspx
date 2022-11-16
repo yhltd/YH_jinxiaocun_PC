@@ -30,7 +30,8 @@
             <a href="#" class="easyui-linkbutton btn-right" onclick="balanceBtn()">平衡验证</a>
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
-        <div class="main-item" style="height:540px">
+        <%--style="height:540px"--%>
+        <div class="main-item" >
             <div style="height:95%" id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>
         </div>
@@ -62,8 +63,8 @@
     </div>
 
     <div id="new" style="display: none;background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover" >
-        <div id="new-accordion" class="easyui-accordion" style="height: 510px;width: 800px;">
-            <div title="选择科目代码" class="accordion-item" data-option="selected:true">
+        <div id="new-accordion" class="easyui-accordion" style="height: 510px;width: 800px">
+            <div title="选择科目代码" class="accordion-item" data-option="selected:true" style="background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover">
                 <div class="accordion-item-main">
                     <div id="grade-list1"></div>
                     <div id="grade-list2"></div>
@@ -75,7 +76,7 @@
                     <a href="#" class="easyui-linkbutton btn-right" onclick="choiceCode()">确认选择</a>
                 </div>
             </div>
-            <div title="科目基本信息" class="accordion-item">
+            <div title="科目基本信息" class="accordion-item" style="background:url('../assets/img/background_pic.jpeg') no-repeat center 0px;background-position: center 0px;background-size: cover">
                 <form id="newForm" method="post">
                     <div class="form-item">
 		                <label for="code">科目代码:</label>

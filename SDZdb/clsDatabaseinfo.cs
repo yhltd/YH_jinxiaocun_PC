@@ -362,6 +362,18 @@ namespace SDZdb
         public string K { get; set; }
     }
 
+    public class rili
+    {
+        public int id { get; set; }
+        public string zhouyi { get; set; }
+        public string zhouer { get; set; }
+        public string zhousan { get; set; }
+        public string zhousi { get; set; }
+        public string zhouwu { get; set; }
+        public string zhouliu { get; set; }
+        public string zhouri { get; set; }
+    }
+
     public class nianbaoList 
     {
         public string xvhao { get; set; }

@@ -41,14 +41,13 @@
             })
         }
     </script>
-    <h1 style="margin-top:0px;margin-bottom:10px;position:fixed">工资明细</h1>
-    <div style="height:50px"></div>
+    <h1 style="margin-top:0px;margin-bottom:10px;">工资明细</h1>
     <form id="form1" runat="server">
+        <div>
     <div class="iframe_d">
     
     </div>
     <div  ><%--style="margin-left: 40px"--%>
-        <div style="position:fixed">
         <asp:Label ID="Label1" runat="server" Height="30px" Text="搜索类型：" Width="80px" style="text-align:center"></asp:Label>
         <asp:DropDownList ID="DropDownList1" CssClass="top_option" runat="server" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888">
             <asp:ListItem>姓名</asp:ListItem>
@@ -61,8 +60,8 @@
         <asp:Button ID="Button2" CssClass="top_bt" runat="server" OnClick="Button2_Click" Text="添加" Width="80px" Height="30px" style="margin-right:-10px"/>
         <asp:Button ID="Button3" CssClass="top_bt" runat="server"  Text="所有" OnClientClick="aa" OnClick="Button3_Click" Height="30px" Width="80px" style="margin-right:-10px"/>
         <asp:Button ID="Button4" CssClass="top_bt" runat="server" Height="30px" Text="生成Excel" Width="80px" OnClick="toExcel" style="margin-right:-10px" />
-        </div>
-        <div style="height:35px"></div>
+      
+        
         <%-- <asp:Button ID="Button4" CssClass="top_bt" runat="server"  Text="刷新" OnClientClick="aa"  Height="30px" Width="80px" OnClick="Button4_Click"/> --%>
         <asp:GridView ID="GridView1" runat="server" CssClass="grid_view" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" ScrollBars="Auto" Width="100%" HeaderStyle-BorderStyle="None" AllowPaging="True"  OnRowCreated="aaa" OnRowEditing="GridView1_RowUpdating" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
@@ -794,6 +793,7 @@
             </UpdateParameters>
         </asp:SqlDataSource>
     </div>
+            </div>
     </form>
     
 </body>

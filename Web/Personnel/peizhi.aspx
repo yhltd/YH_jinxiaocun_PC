@@ -14,11 +14,9 @@
         //}
     </script>
 <body  style="    margin: 0;">
-    <div style="position:fixed">
-        <h1 style="margin-top:0px;margin-bottom:10px">配置表</h1>
-    </div>
-    <div style="height:50px"></div>
+    <h1 style="margin-top:0px;margin-bottom:10px">配置表</h1>
     <form id="form1" runat="server">
+        <div>
     <div class="iframe_d">
     
     </div>
@@ -230,6 +228,7 @@
         </asp:SqlDataSource>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="添加一行"  CssClass="top_bt" Height="30px" Width="80px" style="margin-left:4.3%;margin-top:1%"/>
         </div>
+            </div>
     </form>
     
 </body>

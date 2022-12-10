@@ -9,11 +9,10 @@
     <title></title>
 </head>
 <body  style="    margin: 0;">
-    <h1 style="margin-top:0px;margin-bottom:10px;position:fixed">部门汇总</h1>
-    <div style="height:50px"></div>
+    <h1 style="margin-top:0px;margin-bottom:10px;">部门汇总</h1>
     <form id="form1" runat="server">
     <div>
-        <div style="position:fixed">
+        
             <asp:Label ID="Label1" runat="server" Height="30px" Text="部门：" Width="80px" style="text-align:center"></asp:Label>
             <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource3" DataTextField="C" DataValueField="C" CssClass="top_select_input" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888">
             </asp:DropDownList>
@@ -23,8 +22,6 @@
             <asp:Button ID="Button2" runat="server" Text="部门详情" OnClick="Button2_Click"  CssClass="top_bt" style="margin-right:-10px;height:30px;width:80px" />
             <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="所有"  CssClass="top_bt" style="margin-right:-10px;height:30px;width:80px" />
             <asp:Button ID="Button4" runat="server" Text="生成Excel" OnClick="Button4_Click"  CssClass="top_bt" style="margin-right:-10px;height:30px;width:80px" />
-        </div>
-        <div style="height:15px"></div>
         <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString26 %>" SelectCommand="SELECT [C], [BD] FROM [gongzi_gongzimingxi] WHERE ([BD] = @gongsi)  GROUP BY [C], [BD]">
             <SelectParameters>
                 <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />

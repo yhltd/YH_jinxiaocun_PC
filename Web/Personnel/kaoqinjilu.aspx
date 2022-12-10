@@ -9,11 +9,10 @@
     <title></title>
 </head>
 <body style="margin: 0;">
-    <h1 style="margin-top: 0px; margin-bottom: 10px; position: fixed">考勤记录</h1>
-    <div style="height: 50px"></div>
+    <h1 style="margin-top: 0px; margin-bottom: 10px; ">考勤记录</h1>
     <form id="form1" runat="server">
         <div>
-            <div style="position: fixed">
+            <div >
                 <asp:Label ID="Label1" runat="server" Height="30px" Text="年份：" Width="80px" Style="text-align: center"></asp:Label>
                 <input type="date" name="ks" />
                 <input type="date" name="js" />
@@ -52,8 +51,7 @@
                 <asp:Button ID="Button4" CssClass="top_bt" runat="server" Height="30px" Text="生成Excel" Width="80px" OnClick="toExcel" Style="margin-right: -10px" />
                 <br />
             </div>
-            <div style="height: 35px"></div>
-            <%--<td>
+             <%--<td>
                 <asp:TextBox ID="comboBox1" runat="server" class="select_w150"></asp:TextBox>
             </td>--%>
 

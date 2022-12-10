@@ -28,36 +28,42 @@ function getList() {
     if (js == "") {
         js = "2200/1/1"
     }
-    $.ajax({
-        type: 'Post',
-        url: "web_service/shouFuBaoBiao.asmx/getYF",
-        beforeSend: function () {
-            $.messager.progress({
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
-        data: {
-            kehu: kehu,
-            ks: ks,
-            js: js,
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                setTable(result.data)
+    if (kehu != "") {
+        $.ajax({
+            type: 'Post',
+            url: "web_service/shouFuBaoBiao.asmx/getYF",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '正在加载',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            },
+            data: {
+                kehu: kehu,
+                ks: ks,
+                js: js,
+            },
+            dataType: "xml",
+            success: function (data) {
+                var result = getJson(data);
+                if (result.code == 200) {
+                    setTable(result.data)
+                }
+            },
+            error: function (err) {
+                alert("错误！")
+                console.log(err)
             }
-        },
-        error: function (err) {
-            alert("错误！")
-            console.log(err)
-        }
-    })
+        })
+
+    } else {
+        alert("往来单位未填写！")
+    }
+    
 }
 
 //设置表格信息

@@ -28,37 +28,45 @@ function getList() {
     if (js == "") {
         js = "2200-1-1"
     }
-    $.ajax({
-        type: 'Post',
-        url: "web_service/subLedger.asmx/getGYSList",
-        beforeSend: function () {
-            $.messager.progress({
-                title: '提示',
-                msg: '正在加载',
-                text: ''
-            });
-        },
-        complete: function () {
-            $.messager.progress('close');
-        },
-        data: {
-            financePageJson: JSON.stringify(page),
-            ks: ks,
-            js: js,
-            kehu: kehu,
-        },
-        dataType: "xml",
-        success: function (data) {
-            var result = getJson(data);
-            if (result.code == 200) {
-                setTable(result.data)
+    if (js == "") {
+        js = "2200-1-1"
+    }
+    if (kehu != "") {
+        $.ajax({
+            type: 'Post',
+            url: "web_service/subLedger.asmx/getGYSList",
+            beforeSend: function () {
+                $.messager.progress({
+                    title: '提示',
+                    msg: '正在加载',
+                    text: ''
+                });
+            },
+            complete: function () {
+                $.messager.progress('close');
+            },
+            data: {
+                financePageJson: JSON.stringify(page),
+                ks: ks,
+                js: js,
+                kehu: kehu,
+            },
+            dataType: "xml",
+            success: function (data) {
+                var result = getJson(data);
+                if (result.code == 200) {
+                    setTable(result.data)
+                }
+            },
+            error: function (err) {
+                alert("错误！")
+                console.log(err)
             }
-        },
-        error: function (err) {
-            alert("错误！")
-            console.log(err)
-        }
-    })
+        })
+    } else {
+        alert("往来单位未填写！")
+    }
+    
 }
 
 function setTable(data) {

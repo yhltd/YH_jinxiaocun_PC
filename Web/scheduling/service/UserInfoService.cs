@@ -101,6 +101,7 @@ namespace Web.scheduling
         public static List<string> companyList()
         {
             List<string> companys = new List<string>();
+            List<string> company = new List<string>();
             try
             {
                 List<user_info> list = udo.list();
@@ -109,9 +110,12 @@ namespace Web.scheduling
                 {
                     companys.Add(group.Key);
                 }
+                for (int i = companys.Count; i > 0; i--) {
+                    company.Add(companys[i-1]);
+                }
             }
             catch { }
-            return companys;
+            return company;
         }
 
         /// <summary>

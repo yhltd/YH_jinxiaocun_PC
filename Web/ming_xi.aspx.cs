@@ -63,7 +63,7 @@ namespace Web
         protected void toExcel(object sender, EventArgs e)
         {
 
-            List<yh_jinxiaocun_mingxi> list = ri_qi_select(string.Empty, string.Empty, user.gongsi);
+            List<yh_jinxiaocun_mingxi> list = ri_qi_select(string.Empty, string.Empty, string.Empty, user.gongsi);
             if (list != null)
             {
                 StringWriter sw = new StringWriter();
@@ -208,7 +208,7 @@ namespace Web
             {
                 //string ks = Context.Request["time_qs"].ToString();
                 //string js = Context.Request["time_jz"].ToString();
-                Session["ming_xi_select_dd"] = ri_qi_select(Context.Request["time_qs"].ToString(), Context.Request["time_jz"].ToString(), user.gongsi);
+                Session["ming_xi_select_dd"] = ri_qi_select(Context.Request["time_qs"].ToString(), Context.Request["time_jz"].ToString(), Context.Request["order_number"].ToString(), user.gongsi);
             }
             catch
             {
@@ -217,7 +217,7 @@ namespace Web
 
         }
 
-        public List<yh_jinxiaocun_mingxi> ri_qi_select(string time_qs, string time_jz, string gs_name)
+        public List<yh_jinxiaocun_mingxi> ri_qi_select(string time_qs, string time_jz,string order_number, string gs_name)
         {
             if (time_qs.Equals(string.Empty))
             {
@@ -229,7 +229,7 @@ namespace Web
             }
 
             MingxiModel mingxi = new MingxiModel();
-            return mingxi.ri_qi_select(time_qs, time_jz, gs_name);
+            return mingxi.ri_qi_select(time_qs, time_jz, order_number, gs_name);
         }
 
         protected void del_mingxi(object sender, EventArgs e)

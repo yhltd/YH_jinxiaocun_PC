@@ -21,6 +21,10 @@
 
             })
 
+            function fileUp(id) {
+                $('#file').trigger('click');
+            }
+
         })
 
         $(document).ready(function () {
@@ -47,6 +51,8 @@
                                + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='dan_wei" + row + "' ></input></td>"
                                + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='shou_huo" + row + "' ></input></td>"
                                + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='gong_huo" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'></td>"
+                               + "<td class='bg_bj_sj'></td>"
                                + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button'  style='width:50px' value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
 
@@ -164,6 +170,8 @@
                     <th class="auto-style1" style="width: 155px">商品单位</th>
                     <th class="auto-style1" style="width: 155px">客户名称</th>
                     <th class="auto-style1" style="width: 155px">供应名称</th>
+                    <th class="auto-style1" style="width: 155px">图片</th>
+                    <th class="auto-style1" style="width: 145px">上传图片</th>
                     <th class="auto-style1" style="width: 90px">功能</th>
                 </tr>
                 <%
@@ -171,7 +179,10 @@
                     if (jczj_select != null)
                     {
                         for (int i = 0; i < jczj_select.Count; i++)
-                        {                          
+                        {
+                            if(jczj_select[i].mark1!=null && jczj_select[i].mark1!="" ){
+                                jczj_select[i].mark1="data:image/jpg;base64,"+jczj_select[i].mark1;
+                            }                          
                 %>
                 <tr id="del_row_cs<%=i%>">
                     <%--style="font-size: 90%; padding-left: 2%;"--%>
@@ -189,8 +200,12 @@
                     <td class="bg_bj">
                         <input type="text" class="input_tr" id="Text4" name="gong_huo_cs<%=i%>" value="<%=jczj_select[i].gong_huo%>" /></td>
                     <td class="bg_bj">
+                        <img style="width: 60px;"  src="<%=jczj_select[i].mark1%>"/></td>
+                    <td class="bg_bj">
+                        <asp:FileUpload name="tupian<%=i%>" runat="server" accept="image/*" style="color: transparent;width:70px" /> 
+                        <%--<input type="file"  name="tupian<%=i%>" style="color: transparent;width:70px"  id="Text6" accept="image/*" /></td>--%>
+                    <td class="bg_bj">
                         <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i%>" value="<%=jczj_select[i].id%>" /><input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
-
                 </tr>
 
                 <%

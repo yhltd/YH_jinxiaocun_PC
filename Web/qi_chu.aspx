@@ -39,7 +39,20 @@
 
         }
 
+        function heji() {
+            var pMsg = 0;
+            var tableObj = document.getElementById("biao_ge");
+            for (i = 1; i < tableObj.rows.length; i++) {
+                if (tableObj.rows[i].cells[6].innerText != "") {
+                    pMsg += parseFloat(tableObj.rows[i].cells[6].innerText);
+                }
+            }
+            $('#heji').html("合计："+pMsg);
+        }
+
         $(function () {
+            heji();
+
             $("#dj_row").click(function () {
 
                 $("#row_i1").val($("#biao_ge tr").length);
@@ -272,6 +285,7 @@
                 <asp:Label runat="server" ID="lblCurrentPage" style=" font-weight:bold"></asp:Label>
                 <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
+                <span id="heji"></span>
             </div>
         </div>
     </form>

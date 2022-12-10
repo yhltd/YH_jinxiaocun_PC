@@ -67,12 +67,21 @@
             overflow: scroll;
         }
     </style>
+    <script type="text/javascript">
+
+        
+        $(function () {
+            var tableObj = document.getElementById("biao_ge");
+            $('#hangshu').val(tableObj.rows.length - 1)
+            alert($('#hangshu').val)
+        })
+    </script>
     <title></title>
 </head>
 <body>
+    <input id="hangshu" />
     <form id="form1" runat="server">
         <div>
-            
             <div class="d-header top-div">
                 <select class="select_xl" name="kui_lei">
                     <option>请选择</option>

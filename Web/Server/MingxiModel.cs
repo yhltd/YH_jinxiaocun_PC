@@ -63,10 +63,10 @@ namespace Web.Server
             }
         }
 
-        public List<yh_jinxiaocun_mingxi> ri_qi_select(string time_qs, string time_jz, string gs_name)
+        public List<yh_jinxiaocun_mingxi> ri_qi_select(string time_qs, string time_jz,string order_number, string gs_name)
         {
             using (ServerEntities sen = new ServerEntities()) {
-                string sql = "SELECT * FROM Yh_JinXiaoCun_mingxi WHERE shijian between '" + time_qs + "' and '" + time_jz + "' and gs_name = '" + gs_name + "' order by shijian desc";
+                string sql = "SELECT * FROM Yh_JinXiaoCun_mingxi WHERE shijian between '" + time_qs + "' and '" + time_jz + "' and gs_name = '" + gs_name + "' and orderid like '%" + order_number + "%'   order by shijian desc";
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql);
                 return result.ToList();
             }

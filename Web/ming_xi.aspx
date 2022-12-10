@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ming_xi.aspx.cs" Inherits="Web.ming_xi" %><%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <%@ Import Namespace="SDZdb" %>
-<!DOCTYPE html>
+<%--<!DOCTYPE html>--%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
@@ -196,9 +196,10 @@
             $("#del_row" + row + "").remove();
         }
 
-
+        
 
         $(function () {
+
             $("#dj_row").click(function () {
 
                 $("#row_i1").val($("#biao_ge tr").length);
@@ -240,17 +241,19 @@
                 
                 
                 <div class="select_div">
-                    <label class="lable_select">起始日期：</label>
+                    <label class="lable_select"></label>
                     <input type="datetime-local" class="time_select" name="time_qs" id="time_qs" />
-                    <label class="lable_select">截止日期：</label>
+                    <label class="lable_select"></label>
                     <input type="datetime-local" class="time_select" name="time_jz" id="time_jz" />
+                    <label class="lable_select"></label>
+                    <input type="text" class="time_select" placeholder="订单号" name="order_number" id="order_number" />
                     <asp:Button ID="Button3" class="mingxi_input_tr_tj" OnClick="rq_select" Text="查询" runat="server" />
                     <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" Text="删除" runat="server" />
                     <asp:Button ID="Button2" class="mingxi_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
                     <asp:Button ID="Button4" class="mingxi_input_tr_tj" OnClick="mx_save" Text="保存" runat="server" />
                 </div>
                 <div class="funcion_top">
-                    <asp:Button ID="downexcel" class="mingxi_input_tr_tj" OnClick="toExcel" Text="保存至Excel" runat="server" />
+                    <asp:Button ID="downexcel" class="mingxi_input_tr_tj" OnClick="toExcel" Text="导出" runat="server" />
                 </div>
             </div>
 

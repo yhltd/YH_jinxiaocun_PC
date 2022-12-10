@@ -52,8 +52,8 @@
         </el-menu>
 
 
-        <el-container ref="container">
-            <div ref="aside" :class="asideClass">
+        <el-container ref="container" >
+            <div ref="aside" :class="asideClass" style="overflow-y:scroll">
                 <el-menu :collapse="collapse" @select="handleSelect" background-color="#fff" active-text-color="#409EFF">
                     <el-submenu index="配置">
                         <template slot="title">

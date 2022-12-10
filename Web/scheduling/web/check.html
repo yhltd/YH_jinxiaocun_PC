@@ -106,8 +106,8 @@
                 <el-row :gutter="10" style="margin-bottom: 20px" >
                     <el-col :span="8">
                         <el-button-group style="width:600px">
-                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getList">查询</el-button>
-                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList">刷新</el-button>
+                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getList('查询')">查询</el-button>
+                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList('刷新')">刷新</el-button>
                             <el-button icon="el-icon-circle-plus-outline" type="primary" @click="addVisible = true">添加</el-button>
                             <el-button icon="el-icon-video-camera" type="primary" onclick="watchVideo()"></el-button>
                         </el-button-group>
@@ -262,8 +262,14 @@
                  },
              },
              methods: {
-                 getList: function () {
+                 getList: function (type) {
                      var _this = this;
+                     if (type == "刷新") {
+                         _this.order_number = "";
+                         _this.ks = "";
+                         _this.js = "";
+                         _this.moudle = "";
+                     }
                      _this.loading = true;
                      var ks = _this.ks;
                      var js = _this.js;
@@ -316,7 +322,7 @@
                                          type: 'success'
                                      });
                                      _this.deptVisible = false,
-                                     _this.getList();
+                                     _this.getList('刷新');
                                  }
                                  if (res.code == 500) {
                                      _this.$notify({
@@ -373,7 +379,7 @@
                                  title: res.msg,
                                  type: 'success'
                              });
-                             _this.getList();
+                             _this.getList('刷新');
                          }
                          if (res.code == 500) {
                              _this.$notify({
@@ -402,7 +408,7 @@
                                          title: res.msg,
                                          type: 'success'
                                      });
-                                     _this.getList();
+                                     _this.getList('刷新');
                                      // _this.$refs.addDrawer.closeDrawer();
                                  }
                                  if (res.code == 500) {
@@ -426,7 +432,7 @@
              },
 
              mounted: function () {
-                 this.getList();
+                 this.getList('刷新');
              }
          })
     </script>

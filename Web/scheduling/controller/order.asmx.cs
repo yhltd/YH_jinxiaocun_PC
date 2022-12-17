@@ -21,6 +21,7 @@ namespace Web.scheduling.controller
     public class order : System.Web.Services.WebService
     {
         private OrderInfoService ois;
+        private OrderBomService obs;
 
         [WebMethod]
         public string checkOrder(string orderId)
@@ -115,6 +116,37 @@ namespace Web.scheduling.controller
                 return ResultUtil.error("查询失败");
             }
         }
+
+
+        [WebMethod]
+        public string getUseBOMlist(int id)
+        {
+            try
+            {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "订单");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+
+                    return ResultUtil.error("没有权限！");
+                }
+
+                obs = new OrderBomService();
+                return ResultUtil.success(obs.getList(id), "查询成功");
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch
+            {
+                return ResultUtil.error("查询失败");
+            }
+        }
+
 
         [WebMethod]
         public string save(order_info orderInfo, List<BomInfoItem> bomList)

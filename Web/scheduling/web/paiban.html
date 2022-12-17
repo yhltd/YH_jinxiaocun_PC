@@ -99,8 +99,8 @@
                     </el-col>
                     <el-col :span="8">
                         <el-button-group>
-                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getInfoList">查询</el-button>
-                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getInfoList">刷新</el-button>
+                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getInfoList('查询')">查询</el-button>
+                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getInfoList('刷新')">刷新</el-button>
                             <el-button icon="el-icon-circle-plus-outline" type="primary" @click="openAddForm">添加</el-button>
                         </el-button-group>
                     </el-col>
@@ -166,7 +166,7 @@
                     :total="total"
                     :page-size="size"
                     :hide-on-single-page="total <= size" 
-                    @current-change="getInfoList"
+                    @current-change="getInfoList('刷新')"
                     style="margin-top: 10px"
                 ></el-pagination>
 
@@ -532,7 +532,7 @@
                         
                     }).then(function (res) {
                         if (res.code == 200) {
-                            _this.getInfoList()
+                            _this.getInfoList('刷新')
                             _this.departmentList = res.data
                         }
                         if (res.code == 500) {
@@ -667,7 +667,7 @@
                             // });
                             alert("排班成功，请前往排班明细查看结果！");
                             _this.addLoading=false;
-                            _this.getInfoList();
+                            _this.getInfoList('刷新');
                             
                         }
                         if (res.code == 500) {
@@ -738,7 +738,7 @@
                         if (res.code == 200) {
                             alert("排班成功，请前往排班明细查看结果！");
                             _this.addLoading=false;
-                            _this.getInfoList();
+                            _this.getInfoList('刷新');
                         }
                         if (res.code == 500) {
                             _this.$notify({
@@ -796,7 +796,7 @@
                         if (res.code == 200) {
                             alert("排班成功，请前往排班明细查看结果！");
                             _this.addLoading=false;
-                            _this.getInfoList();
+                            _this.getInfoList('刷新');
                         }
                         if (res.code == 500) {
                             _this.$notify({
@@ -810,8 +810,12 @@
                     })
                 },
 
-                getInfoList: function () {
+                getInfoList: function (type) {
                     var _this = this;
+                    if(type=="刷新"){
+                        _this.department_name="";
+                        _this.plan_name="";
+                    }
                     _this.loading = true;
                     axios.post(myUrl('paibanbiaoInfo/infoList'), {
                         nowPage: _this.now,
@@ -849,7 +853,7 @@
                                 title: res.msg,
                                 type: 'success'
                             });
-                            _this.getInfoList();
+                            _this.getInfoList('刷新');
 
                         }
                         if (res.code == 500) {
@@ -879,7 +883,7 @@
                                         title: res.msg,
                                         type: 'success'
                                     });
-                                    _this.getInfoList();
+                                    _this.getInfoList('刷新');
                                 }
                                 if (res.code == 500) {
                                     _this.$notify({
@@ -904,7 +908,7 @@
             },
 
             mounted: function () {
-                this.getInfoList();
+                this.getInfoList('刷新');
             }
         })
     </script>

@@ -99,8 +99,8 @@
                     </el-col>
                     <el-col :span="8">
                         <el-button-group style="width:600px">
-                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getList">查询</el-button>
-                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList">刷新</el-button>
+                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getList('查询')">查询</el-button>
+                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList('刷新')">刷新</el-button>
                             <el-button  icon="el-icon-printer" type="primary" @click="toExcel">导出</el-button>
                             <el-button icon="el-icon-video-camera" type="primary" onclick="watchVideo()"></el-button>
                         </el-button-group>
@@ -168,7 +168,7 @@
                     :total="total"
                     :page-size="size"
                     :hide-on-single-page="total <= size" 
-                    @current-change="getList"
+                    @current-change="getList('刷新')"
                     style="margin-top: 10px"
                 ></el-pagination>
 
@@ -206,8 +206,12 @@
                     }
                     exportExcel(this.detailList, columns, '排班明细');
                 },
-                getList: function () {
+                getList: function (type) {
                     var _this = this;
+                    if (type == "刷新") {
+                        _this.staff_name = "";
+                        _this.banci = "";
+                    }
                     _this.loading = true;
                     axios.post(myUrl('paibanDetail/getList'), {
                         nowPage: _this.now,
@@ -244,7 +248,7 @@
                                 title: res.msg,
                                 type: 'success'
                             });
-                            _this.getList();
+                            _this.getList('刷新');
                         }
                         if (res.code == 500) {
                             _this.$notify({
@@ -272,7 +276,7 @@
                                         title: res.msg,
                                         type: 'success'
                                     });
-                                    _this.getList();
+                                    _this.getList('刷新');
                                 }
                                 if (res.code == 500) {
                                     _this.$notify({
@@ -296,7 +300,7 @@
             },
 
             mounted: function () {
-                this.getList();
+                this.getList('刷新');
             }
         })
     </script>

@@ -148,6 +148,12 @@
                                 :loading="updateLoading"
                                 @click="updateOrder('updateForm')"
                             >保存</el-button>
+                            <el-button 
+                                type="primary" 
+                                icon="el-icon-upload"
+                                :loading="updateLoading"
+                                @click="getOrderBom('updateForm')"
+                            >修改物料</el-button>
                         </template>
                     </el-table-column>
                     <el-table-column prop="order_id" label="订单号" sortable></el-table-column>
@@ -542,6 +548,35 @@
                                     title: err.msg
                                 });
                                 _this.updateLoading = false;
+                            })
+                        }
+                    })
+                },
+
+                getOrderBom: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.updateLoading = true;
+                            console.log(_this.$refs[formName].model)
+                            axios.post(myUrl('order/getUseBOMlist'), {
+                                id: _this.$refs[formName].model.id
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    console.log(res.data.pageList)
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
+                                _this.loading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.loading = false;
                             })
                         }
                     })

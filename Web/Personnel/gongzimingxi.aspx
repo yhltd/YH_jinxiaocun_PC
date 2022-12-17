@@ -52,7 +52,7 @@
         <asp:DropDownList ID="DropDownList1" CssClass="top_option" runat="server" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888">
             <asp:ListItem>姓名</asp:ListItem>
             <asp:ListItem>部门</asp:ListItem>
-            <asp:ListItem>岗位</asp:ListItem>
+            <asp:ListItem>岗位</asp:ListItem> 
         </asp:DropDownList>
         <asp:Label ID="Label2" runat="server" Height="30px" Text="搜索条件：" Width="80px" style="text-align:center"></asp:Label>
         <asp:TextBox ID="TextBox1" CssClass="top_select_input" runat="server" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888"></asp:TextBox>

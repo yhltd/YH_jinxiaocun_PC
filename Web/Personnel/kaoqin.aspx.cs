@@ -83,6 +83,103 @@ namespace Web.Personnel
             GridView1.DataSourceID = "SqlDataSource1";
             GridView1.DataBind();
         }
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            var riqi = DateTime.Now.ToString("yyyy-MM-dd");
+            string[] mm = riqi.Split('-');
+            var rq = mm[0] + "-" + mm[1] + "-" + 01;
+            int y = Convert.ToInt32(mm[0]);
+            int m = Convert.ToInt32(mm[1]);
+            int d = 01;
+            if (m == 1 || m == 2)
+            {
+                m += 12;
+                y--;
+            }
+            int week = (d + 2 * m + 3 * (m + 1) / 5 + y + y / 4 - y / 100 + y / 400 + 1) % 7;
+            if (week == 0)
+            {
+                week = 7;
+            }
+            string sql;
+            string conString = ConfigurationManager.AppSettings["yao"];
+            conn = new SqlConnection(conString);  //数据库连接。
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+            if (week == 1)
+            {
+                sql = "update gongzi_kaoqinjilu set E ='',F='',G='',H='',I='',J='休',K='休',L='',M='',N='',O='',P='',Q='休',R='休',S='',T='',U='',V='',W='',X='',Y='休',Z='休',AA='',AB='',AC='',AD='',AE='',AF='休',AG='休',AH='',AI='' where  year ='" + y + "' and moth ='" + m + "';";
+                cmd = new SqlCommand(sql, conn);
+            }
+            if (week == 2)
+            {
+                sql = "update gongzi_kaoqinjilu set E ='',F='',G='',H='',I='休',J='休',K='',L='',M='',N='',O='',P='休',Q='休',R='',S='',T='',U='',V='',W='',X='休',Y='休',Z='',AA='',AB='',AC='',AD='',AE='休',AF='休',AG='',AH='',AI='' where  year ='" + y + "' and moth ='" + m + "';";
+                cmd = new SqlCommand(sql, conn);
+            }
+            if (week == 3)
+            {
+                sql = "update gongzi_kaoqinjilu set E ='',F='',G='',H='休',I='休',J='',K='',L='',M='',N='',O='休',P='休',Q='',R='',S='',T='',U='',V='休',W='休',X='',Y='',Z='',AA='',AB='',AC='休',AD='休',AE='',AF='',AG='',AH='',AI='' where  year ='" + y + "' and moth ='" + m + "';";
+                cmd = new SqlCommand(sql, conn);
+            }
+            if (week == 4)
+            {
+                sql = "update gongzi_kaoqinjilu set E ='',F='',G='休',H='休',I='',J='',K='',L='',M='',N='休',O='休',P='',Q='',R='',S='',T='',U='休',V='休',W='',X='',Y='',Z='',AA='',AB='休',AC='休',AD='',AE='',AF='',AG='',AH='',AI='休' where year ='" + y + "' and moth ='" + m + "';";
+                cmd = new SqlCommand(sql, conn);
+            }
+            if (week == 5)
+            {
+                sql = "update gongzi_kaoqinjilu set E ='',F='休',G='休',H='',I='',J='',K='',L='',M='休',N='休',O='',P='',Q='',R='',S='',T='休',U='休',V='',W='',X='',Y='',Z='',AA='休',AB='休',AC='',AD='',AE='',AF='',AG='',AH='休',AI='休' where year ='" + y + "' and moth ='" + m + "';";
+                cmd = new SqlCommand(sql, conn);
+            }
+            if (week == 6)
+            {
+                sql = "update gongzi_kaoqinjilu set E ='休',F='',G='',H='',I='',J='',K='',L='休',M='休',N='',O='',P='',Q='',R='',S='休',T='休',U='',V='',W='',X='',Y='',Z='休',AA='休',AB='',AC='',AD='',AE='',AF='',AG='休',AH='休',AI='' where  year ='" + y + "' and moth ='" + m + "';";
+                cmd = new SqlCommand(sql, conn);
+            }
+            if (week == 7)
+            {
+                sql = "update gongzi_kaoqinjilu set E ='休',F='',G='',H='',I='',J='',K='休',L='休',M='',N='',O='',P='',Q='',R='休',S='休',T='',U='',V='',W='',X='',Y='休',Z='休',AA='',AB='',AC='',AD='',AE='',AF='休',AG='休',AH='',AI='' where  year ='" + y + "' and moth ='" + m + "';";
+                cmd = new SqlCommand(sql, conn);
+            }
+
+            
+            cmd.ExecuteScalar();
+            conn.Close();
+            Server.Transfer("../Personnel/kaoqin.aspx");
+        }
+        protected void Button6_Click(object sender, EventArgs e)
+        {
+            var riqi = DateTime.Now.ToString("yyyy-MM-dd");
+            string[] mm = riqi.Split('-');
+            var rq = mm[0] + "-" + mm[1] + "-" + 01;
+            int y = Convert.ToInt32(mm[0]);
+            int m = Convert.ToInt32(mm[1]);
+            int d = 01;
+            if (m == 1 || m == 2)
+            {
+                m += 12;
+                y--;
+            }
+            int week = (d + 2 * m + 3 * (m + 1) / 5 + y + y / 4 - y / 100 + y / 400 + 1) % 7;
+            if (week == 0)
+            {
+                week = 7;
+            }
+            string sql;
+            string conString = ConfigurationManager.AppSettings["yao"];
+            conn = new SqlConnection(conString);  //数据库连接。
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+            sql = "update gongzi_kaoqinjilu set E ='',F='',G='',H='',I='',J='',K='',L='',M='',N='',O='',P='',Q='',R='',S='',T='',U='',V='',W='',X='',Y='',Z='',AA='',AB='',AC='',AD='',AE='',AF='',AG='',AH='',AI='' where year ='" + y + "' and moth ='" + m + "';";
+            cmd = new SqlCommand(sql, conn);
+            cmd.ExecuteScalar();
+            conn.Close();
+            Server.Transfer("../Personnel/kaoqin.aspx");
+        }
         protected void aaa(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType != DataControlRowType.Header && e.Row.RowType != DataControlRowType.Pager)

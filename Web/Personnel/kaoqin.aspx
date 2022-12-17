@@ -129,6 +129,8 @@
             <asp:button id="Button2" cssclass="top_bt" runat="server" text="添加" onclientclick="aa" onclick="Button2_Click" height="30px" width="80px" style="margin-right: -10px" />
             <asp:button id="Button3" cssclass="top_bt" runat="server" text="所有" onclientclick="aa" onclick="Button3_Click" height="30px" width="80px" style="margin-right: -10px" />
             <asp:button id="Button4" cssclass="top_bt" runat="server" height="30px" text="生成Excel" width="80px" onclick="toExcel" style="margin-right: -10px" />
+            <asp:button id="Button5" cssclass="top_bt" runat="server" text="当月休假" onclientclick="aa" onclick="Button5_Click" height="30px" width="80px" style="margin-right: -10px" />
+            <asp:button id="Button6" cssclass="top_bt" runat="server" text="当月初始化" onclientclick="aa" onclick="Button6_Click" height="30px" width="80px" style="margin-right: -10px" />
         
         <%--<asp:Button ID="Button4" CssClass="top_bt" runat="server"  Text="刷新" OnClientClick="aa"  Height="30px" Width="80px" OnClick="Button4_Click"/>--%>
         <asp:gridview id="GridView1" allowpaging="True" runat="server" autogeneratecolumns="False" datakeynames="id" datasourceid="SqlDataSource1" onrowcreated="aaa" onselectedindexchanged="GridView1_SelectedIndexChanged1">

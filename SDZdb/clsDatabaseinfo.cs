@@ -43,6 +43,16 @@ namespace SDZdb
         public string shou_h { get; set; }
         public string zh_name { get; set; }
         public string gs_name { get; set; }
+
+        //为了report3.rdlc
+        //
+        public int ruku_num { get; set; }
+        public decimal ruku_price { get; set; }
+        public int chuku_num { get; set; }
+        public decimal chuku_price { get; set; }
+
+
+
     }
 
     public class qi_chu_info
@@ -435,4 +445,31 @@ namespace SDZdb
         public double num { get; set; }
     }
 
+    public class yh_jinxiaocun_mingxi_allprint
+    {
+         public int _id { get; set; }
+        public string _openid { get; set; }
+        public string cpid { get; set; }
+        public string cpjj { get; set; }
+        public string cplb { get; set; }
+        public string cpname { get; set; }
+        public string cpsj { get; set; }
+        public string cpsl { get; set; }
+        public string finduser { get; set; }
+        public string gongsi { get; set; }
+        public string mxtype { get; set; }
+        public string orderid { get; set; }
+        public Nullable<System.DateTime> shijian { get; set; }
+        public string sp_dm { get; set; }
+        public string shou_h { get; set; }
+        public string zh_name { get; set; }
+        public string gs_name { get; set; }
+
+        //
+        public int ruku_num { get; set; }
+        public decimal ruku_price { get; set; }
+        public int chuku_num { get; set; }
+        public decimal chuku_price { get; set; }
+
+    }
 }

@@ -54,3 +54,4 @@ E:\yho165\工作\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.dll
 E:\yho165\工作\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
 E:\yho165\工作\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
 E:\yho165\工作\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb
+E:\yho165\工作\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache

@@ -12,6 +12,7 @@ namespace Web
     {
         private int row_count;
         private static yh_jinxiaocun_user user;
+        int now_lisetcount;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,8 +35,8 @@ namespace Web
                     {
                         Session["gongyingshang"] = 0;
                     }
-
-                    this.gys_select_load(sender, e);
+                    if (!Page.IsPostBack)
+                        this.gys_select_load(sender, e);
                 }
                 catch
                 {
@@ -49,6 +50,9 @@ namespace Web
             try
             {
                 Session["gys_select"] = gys_select(user.gongsi);
+                List<yh_jinxiaocun_jinhuofang> list = Session["gys_select"] as List<yh_jinxiaocun_jinhuofang>;
+                now_lisetcount = list.Count();
+                Session["now_lisetcount_1"] = now_lisetcount;
             }
             catch
             {
@@ -61,7 +65,11 @@ namespace Web
             try
             {
                 string beizhu = Request.Form["gys_cx_a"];
-                Session["gys_select"] = gys_cx(user.gongsi,beizhu);
+                Session["gys_select"] = gys_cx(user.gongsi, beizhu);
+                // 保存 查询条数到Session  方便之后保存提交 调用此数据
+                List<yh_jinxiaocun_jinhuofang> list = Session["gys_select"] as List<yh_jinxiaocun_jinhuofang>;
+                now_lisetcount = list.Count();
+                Session["now_lisetcount_1"] = now_lisetcount;
             }
             catch
             {
@@ -75,10 +83,10 @@ namespace Web
             return jinhuofang.getList(gs_name);
         }
 
-        public List<yh_jinxiaocun_jinhuofang> gys_cx(string gs_name,string beizhu)
+        public List<yh_jinxiaocun_jinhuofang> gys_cx(string gs_name, string beizhu)
         {
             JinHuoFangModel jinhuofang = new JinHuoFangModel();
-            return jinhuofang.getList_chaxun(gs_name,beizhu);
+            return jinhuofang.getList_chaxun(gs_name, beizhu);
         }
 
         protected void delete(object sender, EventArgs e)
@@ -106,9 +114,11 @@ namespace Web
             if (Context.Request["tj_pd"].ToString() == "tj_true")
             {
                 JinHuoFangModel gys = new JinHuoFangModel();
-                List<yh_jinxiaocun_jinhuofang> list = gys_select(user.gongsi);
-                row_count = list.Count;
-                string aa = Context.Request["row_i"].ToString();
+                //List<yh_jinxiaocun_jinhuofang> list = gys_select(user.gongsi);
+                //row_count = list.Count;
+                //string aa = Context.Request["row_i"].ToString();
+                row_count = Convert.ToInt32(Session["now_lisetcount_1"].ToString());
+
                 List<yh_jinxiaocun_jinhuofang> list_gys = new List<yh_jinxiaocun_jinhuofang>();
                 for (int i = 1; i < (Convert.ToInt32(Context.Request["row_i"].ToString()) - row_count); i++)
                 {

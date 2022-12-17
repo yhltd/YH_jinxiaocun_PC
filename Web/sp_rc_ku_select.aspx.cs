@@ -19,32 +19,35 @@ namespace Web
     public partial class sp_rc_ku_select : System.Web.UI.Page
     {
         private static yh_jinxiaocun_user user;
+        int now_lisetcount;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             user = (yh_jinxiaocun_user)Session["user"];
 
-          
-
-
             if (user == null)
             {
                 Response.Write("<script>alert('请登录！');window.parent.location.href='../Myadmin/Login.aspx';</script>");
             }
-            else {
+            else
+            {
                 try
                 {
-                    shuaxin();
+                    if (!Page.IsPostBack)
+                        shuaxin();
                     MingxiModel mingxi = new MingxiModel();
-                    Session["selectSp"] = mingxi.getCpMingXi_all(user.gongsi); ;
+                    if (!Page.IsPostBack)
+                        Session["selectSp"] = mingxi.getCpMingXi_all(user.gongsi); ;
                 }
-                catch {
+                catch
+                {
                     Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
                 }
             }
         }
 
-        protected void Page_Unload(object serfer, EventArgs e) {
+        protected void Page_Unload(object serfer, EventArgs e)
+        {
             Session["cpname"] = "";
         }
 
@@ -52,10 +55,11 @@ namespace Web
         {
             try
             {
-                shuaxin();
+                if (!Page.IsPostBack)
+                    shuaxin();
                 MingxiModel mingxi = new MingxiModel();
-                Session["selectSp"] = mingxi.getCpMingXi_all(user.gongsi); ;
-                
+                Session["selectSp"] = mingxi.getCpMingXi_all(user.gongsi); 
+
             }
             catch
             {
@@ -63,7 +67,8 @@ namespace Web
             }
         }
 
-        private void shuaxin() {
+        private void shuaxin()
+        {
             Session["cpname"] = "";
             List<string> list = rc_ku_xl_select(user.gongsi);
             Session["rc_ku_xl_select"] = list;
@@ -86,7 +91,8 @@ namespace Web
                     Session["selectSp"] = null;
                 }
             }
-            catch {
+            catch
+            {
                 Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
             }
         }
@@ -97,10 +103,50 @@ namespace Web
             List<yh_jinxiaocun_mingxi> list = mingxi.getCpNames(gs_name);
             List<string> cpNames = new List<string>();
 
-            foreach (yh_jinxiaocun_mingxi m in list) {
+            //List<yh_jinxiaocun_jinhuofang> list = Session["gys_select"] as List<yh_jinxiaocun_jinhuofang>;
+            now_lisetcount = list.Count();
+            Session["now_lisetcount_1"] = list;
+
+            foreach (yh_jinxiaocun_mingxi m in list)
+            {
                 cpNames.Add(m.cpname);
             }
             return cpNames;
+        }
+        protected void toExcel(object sender, EventArgs e)
+        {
+
+            List<ming_xi_info> OnlineShow_datas1 = new List<ming_xi_info>();
+            int id = 0;
+            {
+                
+                List<MingXiItem> list = Session["selectSp"] as List<MingXiItem>;
+                //List<MingXiItem> list = Session["now_lisetcount_1"] as List<MingXiItem>;
+                foreach (MingXiItem m in list)
+                {
+
+                    ming_xi_info itemhew = new ming_xi_info();
+
+                    itemhew.sp_dm = m.sp_dm;
+                    itemhew.Cpname = m.cpname;
+                    itemhew.Cplb = m.cplb;
+                    itemhew.ruku_num = m.ruku_num;
+                    itemhew.ruku_price = m.ruku_price;
+                    itemhew.chuku_num = m.chuku_num;
+                    itemhew.chuku_price = m.chuku_price;
+
+                    OnlineShow_datas1.Add(itemhew);
+
+                }
+
+            }
+            if (OnlineShow_datas1.Count > 0)
+            {
+                Session["printList"] = OnlineShow_datas1;
+
+                Response.Redirect("~/RDLC/sp_rc_ku_select_dayin.aspx");
+            }
+
         }
     }
 }

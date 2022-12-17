@@ -215,17 +215,17 @@
         <div class="main-div">
             <div class="leftNav" style="background-color: #20222A;">
                 <ul class="left_ul">
-                    <li><a href="#" id="r_k" class="leftNav_li" onclick="add_li('r_k','ru_ku.aspx')">入库单</a></li>
-                    <li><a href="#" id="c_k" class="leftNav_li" onclick="add_li('c_k','chu_ku.aspx')">出库单</a></li>
-                    <li><a href="#" id="q_c" class="leftNav_li" onclick="add_li('q_c','qi_chu.aspx')">期初数</a></li>
-                    <li><a href="#" id="m_x" class="leftNav_li" onclick="add_li('m_x','ming_xi.aspx')">明细</a></li>
-                    <li><a href="#" id="j_x" class="leftNav_li" onclick="add_li('j_x','jin_xiao_cun.aspx')">进销存</a></li>
+                    <li><a href="#" id="r_k" class="leftNav_li" onclick="add_li('r_k','ru_ku.aspx')" title="入库单双击入库可以添加一行">入库单</a></li>
+                    <li><a href="#" id="c_k" class="leftNav_li" onclick="add_li('c_k','chu_ku.aspx')" title="出库单双击出库可以添加一行">出库单</a></li>
+                    <li><a href="#" id="q_c" class="leftNav_li" onclick="add_li('q_c','qi_chu.aspx')" title="期初数双击序号可以添加一行">期初数</a></li>
+                    <li><a href="#" id="m_x" class="leftNav_li" onclick="add_li('m_x','ming_xi.aspx')" title="明细双击序号可以添加一行">明细</a></li>
+                    <li><a href="#" id="j_x" class="leftNav_li" onclick="add_li('j_x','jin_xiao_cun.aspx')" title="明细双击序号可以添加一行">进销存</a></li>
                     <li><a href="#" id="j_c" class="leftNav_li" onclick="add_li('j_c','sp_rc_ku_select.aspx')">商品进出查询</a></li>
                     <li><a href="#" id="c_h" class="leftNav_li" onclick="add_li('c_h','kh_ming_xi_selcet.aspx')">客户/供应商查询</a></li>
-                    <li><a href="#" id="z_l" class="leftNav_li" onclick="add_li('z_l','ji_chu_zi_liao_page.aspx')">基础资料</a></li>
-                    <li><a href="#" id="k_h" class="leftNav_li" onclick="add_li('k_h','kehu.aspx')">客户资料</a></li>
-                    <li><a href="#" id="g_y" class="leftNav_li" onclick="add_li('g_y','gongyingshang.aspx')">供应商资料</a></li>
-                    <li><a href="#" id="l_l" class="leftNav_li" onclick="add_li('l_l','zheng_li_page.aspx')">笔记</a></li> 
+                    <li><a href="#" id="z_l" class="leftNav_li" onclick="add_li('z_l','ji_chu_zi_liao_page.aspx')" title="基础资料双击序号可以添加一行">基础资料</a></li>
+                    <li><a href="#" id="k_h" class="leftNav_li" onclick="add_li('k_h','kehu.aspx')" title="客户资料双击序号可以添加一行">客户资料</a></li>
+                    <li><a href="#" id="g_y" class="leftNav_li" onclick="add_li('g_y','gongyingshang.aspx')" title="供应商资料双击序号可以添加一行">供应商资料</a></li>
+                    <li><a href="#" id="l_l" class="leftNav_li" onclick="add_li('l_l','zheng_li_page.aspx')" title="笔记双击序号可以添加一行">笔记</a></li> 
                     <li><a href="#" id="s_m" class="leftNav_li" onclick="add_li('s_m','jxc_shuoming.aspx')">下载使用说明</a></li> 
                 </ul>
             </div>

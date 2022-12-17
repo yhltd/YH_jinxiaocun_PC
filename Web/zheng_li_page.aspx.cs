@@ -20,6 +20,7 @@ namespace Web
 
         private int row_count;
         private static yh_jinxiaocun_user user;
+        int now_lisetcount;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -43,8 +44,8 @@ namespace Web
                     {
                         Session["dq_ye_zl"] = 0;
                     }
-
-                    this.zl_select_load(sender, e);
+                    if (!Page.IsPostBack)
+                        this.zl_select_load(sender, e);
                 }
                 catch
                 {
@@ -58,6 +59,9 @@ namespace Web
             try
             {
                 Session["zl_and_jc_select"] = zl_select(user.gongsi);
+                List<yh_jinxiaocun_zhengli> list = Session["zl_and_jc_select"] as List<yh_jinxiaocun_zhengli>;
+                now_lisetcount = list.Count();
+                Session["now_lisetcount_1"] = now_lisetcount;
             }
             catch
             {
@@ -71,6 +75,10 @@ namespace Web
             {
                 string name = Request.Form["zl_cx"];
                 Session["zl_and_jc_select"] = zl_chaxun(user.gongsi, name);
+                // 保存 查询条数到Session  方便之后保存提交 调用此数据
+                List<yh_jinxiaocun_zhengli> list = Session["zl_and_jc_select"] as List<yh_jinxiaocun_zhengli>;
+                now_lisetcount = list.Count();
+                Session["now_lisetcount_1"] = now_lisetcount;
             }
             catch
             {
@@ -117,9 +125,9 @@ namespace Web
             if (Context.Request["tj_pd"].ToString() == "tj_true")
             {
                 ZhengLiModel zhengli = new ZhengLiModel();
-                List<yh_jinxiaocun_zhengli> list = zl_select(user.gongsi);
-                row_count = list.Count;
-
+                //List<yh_jinxiaocun_zhengli> list = zl_select(user.gongsi);
+                //row_count = list.Count;
+                row_count = Convert.ToInt32(Session["now_lisetcount_1"].ToString());
                 List<yh_jinxiaocun_zhengli> list_zl = new List<yh_jinxiaocun_zhengli>();
                 for (int i = 1; i < (Convert.ToInt32(Context.Request["row_i"].ToString()) - row_count); i++)
                 {

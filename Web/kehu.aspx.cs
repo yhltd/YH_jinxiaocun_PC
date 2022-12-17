@@ -12,6 +12,7 @@ namespace Web
     {
         private int row_count;
         private static yh_jinxiaocun_user user;
+        int now_lisetcount;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,6 +50,9 @@ namespace Web
             try
             {
                 Session["kehu_select"] = kehu_select(user.gongsi);
+                List<yh_jinxiaocun_chuhuofang> list = Session["kehu_select"] as List<yh_jinxiaocun_chuhuofang>;
+                now_lisetcount = list.Count();
+                Session["now_lisetcount_1"] = now_lisetcount;
             }
             catch
             {
@@ -62,7 +66,13 @@ namespace Web
             try
             {
                 string beizhu = Request.Form["kh_cx"];
-                Session["kehu_select"] = chaxun(user.gongsi,beizhu);
+                Session["kehu_select"] = chaxun(user.gongsi, beizhu);
+                // 保存 查询条数到Session  方便之后保存提交 调用此数据
+                List<yh_jinxiaocun_chuhuofang> list = Session["kehu_select"] as List<yh_jinxiaocun_chuhuofang>;
+                now_lisetcount = list.Count();
+                Session["now_lisetcount_1"] = now_lisetcount;
+
+
             }
             catch
             {
@@ -77,10 +87,10 @@ namespace Web
             return chuhuofang.getList(gs_name);
         }
 
-        public List<yh_jinxiaocun_chuhuofang> chaxun(string gs_name,string beizhu)
+        public List<yh_jinxiaocun_chuhuofang> chaxun(string gs_name, string beizhu)
         {
             ChuHuoFangModel chuhuofang = new ChuHuoFangModel();
-            return chuhuofang.getList_chaxun(gs_name,beizhu);
+            return chuhuofang.getList_chaxun(gs_name, beizhu);
         }
 
         protected void delete(object sender, EventArgs e)
@@ -108,8 +118,11 @@ namespace Web
             if (Context.Request["tj_pd"].ToString() == "tj_true")
             {
                 ChuHuoFangModel kehu = new ChuHuoFangModel();
-                List<yh_jinxiaocun_chuhuofang> list = kehu_select(user.gongsi);
-                row_count = list.Count;
+                //List<yh_jinxiaocun_chuhuofang> list = kehu_select(user.gongsi);
+                // row_count = list.Count;
+
+                row_count = Convert.ToInt32(Session["now_lisetcount_1"].ToString());
+
                 string aa = Context.Request["row_i"].ToString();
                 List<yh_jinxiaocun_chuhuofang> list_kehu = new List<yh_jinxiaocun_chuhuofang>();
                 for (int i = 1; i < (Convert.ToInt32(Context.Request["row_i"].ToString()) - row_count); i++)

@@ -73,13 +73,14 @@
         $(function () {
             var tableObj = document.getElementById("biao_ge");
             $('#hangshu').val(tableObj.rows.length - 1)
-            alert($('#hangshu').val)
+            // alert($('#hangshu').val)
         })
     </script>
     <title></title>
 </head>
 <body>
-    <input id="hangshu" />
+     <%--<input id="hangshu" />--%>
+     
     <form id="form1" runat="server">
         <div>
             <div class="d-header top-div">
@@ -109,6 +110,8 @@
                 </select>
                 <asp:Button OnClick="rc_ku_select_Click" ID="Button1" CssClass="input_tr" Text="查询" runat="server" />
                 <asp:Button OnClick="rc_ku_select_load" ID="Button2" CssClass="input_tr" Text="刷新" runat="server" />
+                <asp:Button ID="btn_print" class="button" onmouseover="this.className='ui-btn ui-btn-search-hover'"
+                                onmouseout="this.className='button'" runat="server" Text="e打印" OnClick="toExcel" Width="10%" Height="30px" />
             </div>
 
             <div class="d-main table_div">

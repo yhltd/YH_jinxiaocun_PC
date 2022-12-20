@@ -267,6 +267,36 @@
                 <chart :options="orgOptions" :auto-resize="true" style="margin-left:2%"></chart>
             </el-form>
         </el-drawer>
+
+        <el-drawer
+            title="修改物料"
+            :visible.sync="bomUpdVisible"
+            direction="ltr"
+            :modal="false"
+            size="95%"
+            ref="updDrawer"
+            v-loading="saveLoading"
+        >
+            <el-table ref="bomUpdTable" :data="bomUpdList" v-loading="bomLoading">
+                <el-table-column type="selection" width="55"></el-table-column>
+                <el-table-column prop="code" label="物料编码" sortable></el-table-column>
+                <el-table-column prop="name" label="物料名称" sortable></el-table-column>
+                <el-table-column prop="comment" label="描述" sortable></el-table-column>
+                <el-table-column prop="old_num" label="原数量" sortable></el-table-column>
+                <el-table-column prop="useNum" label="使用数量" sortable> 
+                    <template slot-scope="scope">
+                        <el-input @input="setUseNum2(scope.$index, scope.row.useNum)" size="small" v-model.number="scope.row.useNum"></el-input>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-button 
+                type="primary" 
+                icon="el-icon-upload"
+                @click="updOrderBom('updateForm')"
+                style="margin-top: 20px"
+            >保存</el-button>
+        </el-drawer>
+
     </div>
 
     <script>
@@ -320,12 +350,14 @@
                     ]
                 },
                 bomList: [],
+                bomUpdList: [],
                 bomLoading: false,
                 order: {},
                 addVisible: false,
                 saveLoading: false,
                 updateLoading: false,
                 chartVisible:false,
+                bomUpdVisible:false,
                 orgOptions: {
                     title: {
                         text: "排产折线图",
@@ -558,12 +590,27 @@
                     _this.$refs[formName].validate(function (valid) {
                         if (valid) {
                             _this.updateLoading = true;
+                            _this.updOrderId = _this.$refs[formName].model.id
                             console.log(_this.$refs[formName].model)
                             axios.post(myUrl('order/getUseBOMlist'), {
                                 id: _this.$refs[formName].model.id
                             }).then(function (res) {
                                 if (res.code == 200) {
-                                    console.log(res.data.pageList)
+                                    console.log(res.data)
+                                    console.log(_this.bomList)
+                                    var old_list = res.data
+                                    var bomUpdList = _this.bomList
+                                    for (var i = 0; i < bomUpdList.length; i++) {
+                                        for (var j = 0; j < old_list.length; j++) {
+                                            if (bomUpdList[i].id == old_list[j].bom_id) {
+                                                bomUpdList[i].old_num = old_list[j].use_num
+                                            }
+                                        }
+                                    }
+                                    console.log(bomUpdList)
+                                    _this.bomUpdList = bomUpdList
+                                    _this.updateLoading = false;
+                                    _this.bomUpdVisible = true;
                                 }
                                 if (res.code == 500) {
                                     _this.$notify({
@@ -581,6 +628,59 @@
                         }
                     })
                 },
+
+                updOrderBom: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.saveLoading = true;
+                            var bomList = [];
+                            for (var i = 0; i < _this.bomUpdList.length; i++) {
+                                if (_this.bomUpdList[i].useNum != '' && _this.bomUpdList[i].useNum > 0 && _this.bomUpdList[i].useNum != undefined) {
+                                    bomList.push({
+                                        id: _this.bomUpdList[i].id,
+                                        useNum: _this.bomUpdList[i].useNum
+                                    })
+                                }
+                            }
+
+                            if (bomList.length == 0) {
+                                _this.saveLoading = false;
+                                _this.$message({
+                                    message: '请输入当前订单所用物料',
+                                    type: 'warning'
+                                });
+                                return false;
+                            }
+
+                            axios.post(myUrl('order/updBom'), {
+                                updOrderId: _this.updOrderId,
+                                bomList: bomList
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.getList();
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
+                                _this.saveLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.saveLoading = false;
+                            })
+                        }
+                    })
+                },
+
 
                 deleteOrder: function (id) {
                     var _this = this;
@@ -614,6 +714,15 @@
                         return;
                     }
                     this.$refs.bomTable.toggleRowSelection(this.bomList[index], result);
+                },
+
+                setUseNum2: function (index, val) {
+                    var result = val != '';
+                    if (typeof val == 'string' && result) {
+                        this.bomUpdList[index].useNum = '';
+                        return;
+                    }
+                    this.$refs.bomUpdTable.toggleRowSelection(this.bomUpdList[index], result);
                 },
 
                 getChart: function () {

@@ -23,7 +23,7 @@ namespace Web.scheduling.dao
             var @params = new SqlParameter[]{
                 new SqlParameter("@id", id),
             };
-            string sql = "select * from order_bom where id= @id";
+            string sql = "select * from order_bom where order_id= @id";
             using (se = new schedulingEntities())
             {
                 var result = se.Database.SqlQuery<order_bom>(sql, @params);
@@ -31,5 +31,20 @@ namespace Web.scheduling.dao
                 return result.ToList();
             }
         }
+
+
+        public Boolean deleteBatchByOrderId(int id)
+        {
+            using (se = new schedulingEntities())
+            {
+                var result = se.order_bom.Where(o => o.order_id == id);
+                foreach (var orderBom in result)
+                {
+                    se.Entry<order_bom>(se.Set<order_bom>().Find(orderBom.id)).State = EntityState.Deleted;
+                }
+                return se.SaveChanges() > 0;
+            }
+        }
+
     }
 }

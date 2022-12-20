@@ -86,6 +86,30 @@ namespace Web.scheduling.service
         }
 
         /// <summary>
+        /// 重新保存物料信息
+        /// </summary>
+        /// <param name="orderInfo">订单信息</param>
+        /// <param name="bomList">所用物料信息</param>
+        /// <returns></returns>
+        public Boolean saveBom(int updOrderId, List<BomInfoItem> bomList)
+        {
+            if (updOrderId != null)
+            {
+                order_bom orderBom;
+                foreach (BomInfoItem bomInfo in bomList)
+                {
+                    orderBom = new order_bom();
+                    orderBom.order_id = updOrderId;
+                    orderBom.bom_id = bomInfo.id;
+                    orderBom.use_num = bomInfo.useNum;
+                    cd.save<order_bom>(orderBom);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 修改订单信息
         /// </summary>
         /// <param name="orderInfo"></param>
@@ -110,5 +134,18 @@ namespace Web.scheduling.service
             }
             return false;
         }
+
+
+        /// <summary>
+        /// 删除订单Bom
+        /// </summary>
+        /// <param name="id">订单id</param>
+        /// <returns></returns>
+        public Boolean deleteBom(int id)
+        {
+            OrderBomDao orderBomDao = new OrderBomDao();
+            return orderBomDao.deleteBatchByOrderId(id);
+        }
+
     }
 }

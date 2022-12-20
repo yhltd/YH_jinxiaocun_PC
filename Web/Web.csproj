@@ -3192,6 +3192,7 @@
     <Compile Include="scheduling\service\HolidayService.cs" />
     <Compile Include="scheduling\service\ModuleService.cs" />
     <Compile Include="scheduling\service\ModuleTypeService.cs" />
+    <Compile Include="scheduling\service\OrderBomService.cs" />
     <Compile Include="scheduling\service\OrderCheckService.cs" />
     <Compile Include="scheduling\service\PaibanbiaoInfoService.cs" />
     <Compile Include="scheduling\service\PaiBanDetailService.cs" />

@@ -452,3 +452,5 @@ E:\yho165\工作\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.cache
 E:\yho165\工作\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.compiled
 E:\yho165\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
 E:\yho165\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
+D:\yho135\工作\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.cache
+D:\yho135\工作\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.compiled

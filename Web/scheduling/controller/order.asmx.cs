@@ -149,6 +149,57 @@ namespace Web.scheduling.controller
 
 
         [WebMethod]
+        public string updBom(int updOrderId, List<BomInfoItem> bomList)
+        {
+            using (TransactionScope tran = new TransactionScope())
+            {
+                try
+                {
+                    UserInfoService us = new UserInfoService();
+                    string quanxian_save1 = us.new_quanxian("upd", "订单");
+                    if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                    {
+                    }
+                    else
+                    {
+                        return ResultUtil.error("没有权限！");
+                    }
+
+                    ois = new OrderInfoService();
+                    if (bomList.Count == 0 || bomList == null)
+                    {
+                        return ResultUtil.error("保存失败");
+                    }
+                    if (ois.deleteBom(updOrderId))
+                    {
+                        if (ois.saveBom(updOrderId, bomList))
+                        {
+                            tran.Complete();
+                            return ResultUtil.success("保存成功");
+                        }
+                        else
+                        {
+                            return ResultUtil.error("保存失败");
+                        }
+                    }
+                    else
+                    {
+                        return ResultUtil.error("保存失败");
+                    }
+                }
+                catch (ErrorUtil err)
+                {
+                    return ResultUtil.fail(401, err.Message);
+                }
+                catch
+                {
+                    return ResultUtil.error("保存失败");
+                }
+            }
+        }
+
+
+        [WebMethod]
         public string save(order_info orderInfo, List<BomInfoItem> bomList)
         {
             using (TransactionScope tran = new TransactionScope()) 

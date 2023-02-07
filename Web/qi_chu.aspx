@@ -242,13 +242,19 @@
                         <td class="auto-style1" style="width: 130px;">商品数量</td>
                         <td class="auto-style1" style="width: 130px">金额</td>
                         <td class="auto-style1" style="width: 100px;">功能</td>
+                        <td class="auto-style1" style="width: 155px;">图片</td>
+                        <th class="auto-style1" style="width: 145px">上传图片</th>
                     </tr>
                     <%
                         System.Collections.Generic.List<Web.Server.yh_jinxiaocun_qichushu> qi_chu_select = Session["qi_chu_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_qichushu>;
                         if (qi_chu_select != null)
                         {
                             for (int i = 0; i < qi_chu_select.Count; i++)
-                            {                          
+                            {
+                                if (qi_chu_select[i].mark1 != null && qi_chu_select[i].mark1 != "")
+                                {
+                                    qi_chu_select[i].mark1 = "data:image/jpg;base64," + qi_chu_select[i].mark1;
+                                }                         
                     %>
                     <tr id="del_row_cs<%=i%>">
                         <%--style="font-size: 90%; padding-left: 2%;"--%>
@@ -270,6 +276,11 @@
                         </td>
                         <td class="bg_bj" style="width: 43px;">
                             <input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" />
+                        </td>
+                        <td class="bg_bj">
+                            <img style="width: 60px;"  src="<%=qi_chu_select[i].mark1%>"/></td>
+                        <td class="bg_bj">
+                            <asp:FileUpload ID="FileUpload1" name="tupian<%=i%>" runat="server" accept="image/*" style="color: transparent;width:70px" /> 
                         </td>
                     </tr>
                     <%

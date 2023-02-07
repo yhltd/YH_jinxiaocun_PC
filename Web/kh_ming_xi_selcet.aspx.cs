@@ -94,5 +94,41 @@ namespace Web
                 Response.Write("<script>alert('网络错误，请稍后再试！');window.parent.location.href='../Myadmin/Login.aspx';</script>");
             }
         }
+
+        protected void toExcel(object sender, EventArgs e)
+        {
+
+            List<ming_xi_info> OnlineShow_datas1 = new List<ming_xi_info>();
+            int id = 0;
+            {
+
+                List<MingXiItem> list = Session["selectSp"] as List<MingXiItem>;
+                //List<MingXiItem> list = Session["now_lisetcount_1"] as List<MingXiItem>;
+                foreach (MingXiItem m in list)
+                {
+
+                    ming_xi_info itemhew = new ming_xi_info();
+
+                    itemhew.sp_dm = m.sp_dm;
+                    itemhew.Cpname = m.cpname;
+                    itemhew.Cplb = m.cplb;
+                    itemhew.ruku_num = m.ruku_num;
+                    itemhew.ruku_price = m.ruku_price;
+                    itemhew.chuku_num = m.chuku_num;
+                    itemhew.chuku_price = m.chuku_price;
+
+                    OnlineShow_datas1.Add(itemhew);
+
+                }
+
+            }
+            if (OnlineShow_datas1.Count > 0)
+            {
+                Session["printList"] = OnlineShow_datas1;
+
+                Response.Redirect("~/RDLC/kh_ming_xi_selcet.aspx");
+            }
+
+        }
     }
 }

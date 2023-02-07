@@ -204,6 +204,7 @@
                     <td class="bg_bj">
                         <asp:FileUpload name="tupian<%=i%>" runat="server" accept="image/*" style="color: transparent;width:70px" /> 
                         <%--<input type="file"  name="tupian<%=i%>" style="color: transparent;width:70px"  id="Text6" accept="image/*" /></td>--%>
+                    </td>
                     <td class="bg_bj">
                         <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i%>" value="<%=jczj_select[i].id%>" /><input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
                 </tr>

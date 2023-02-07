@@ -113,7 +113,7 @@
     <input type="text" hidden="hidden" id="type" value="排产1" />
     <div id="work" style="display: none;" :style="{display: 'block'}">
         <el-container>
-            <el-main v-loading="loading">
+            <el-main v-loading="loading" >
                 <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="11">
                         <el-button-group style="width:950px">
@@ -200,7 +200,7 @@
                         </el-button-group>
                     </el-col :span="5">
                 </el-row>-->
-                <el-table :data="list" :row-style="rowIsInsert" style="font-size:15px">
+                <el-table :data="list" :row-style="rowIsInsert" style="font-size:15px;">
                     <el-table-column 
                         v-for="(item,index) in tableHead" 
                         :key="index" 

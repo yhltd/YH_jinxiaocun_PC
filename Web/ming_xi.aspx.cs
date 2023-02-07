@@ -31,6 +31,8 @@ namespace Web
                 Response.Redirect("~/wqx.aspx");
             }
 
+
+
             if (user != null)
             {
                 try
@@ -58,6 +60,10 @@ namespace Web
             }
 
             //page.nowPage = 1;
+
+           
+
+
             ming_xi_select(user.gongsi);
         }
         protected void toExcel(object sender, EventArgs e)
@@ -219,13 +225,16 @@ namespace Web
 
         public List<yh_jinxiaocun_mingxi> ri_qi_select(string time_qs, string time_jz,string order_number, string gs_name)
         {
+            
             if (time_qs.Equals(string.Empty))
             {
                 time_qs = "1999-01-01";
+               
             }
             if (time_jz.Equals(string.Empty))
             {
                 time_jz = "2999-12-31";
+                
             }
 
             MingxiModel mingxi = new MingxiModel();

@@ -231,6 +231,22 @@
 
         //});
 
+        $(document).ready(function () {
+            var time = new Date();
+            var day = ("0" + time.getDate()).slice(-2);
+            var month = ("0" + (time.getMonth() + 1)).slice(-2);
+            var today = time.getFullYear() + "-" + (month) + "-" + "01";
+            $('#time_qs').val(today);
+
+
+            time.setMonth(time.getMonth() + 1);
+            time.setDate('1');
+            // 获取本月最后一天
+            time.setDate(time.getDate() - 1);
+            var today1 = time.getFullYear() + "-" + (month) + "-" + time.getDate();;
+            $('#time_jz').val(today1);
+        })
+
 
 
     </script>
@@ -242,9 +258,9 @@
                 
                 <div class="select_div">
                     <label class="lable_select"></label>
-                    <input type="datetime-local" class="time_select" name="time_qs" id="time_qs" />
+                    <input type="date" class="time_select" name="time_qs" id="time_qs" />
                     <label class="lable_select"></label>
-                    <input type="datetime-local" class="time_select" name="time_jz" id="time_jz" />
+                    <input type="date" class="time_select" name="time_jz" id="time_jz" />
                     <label class="lable_select"></label>
                     <input type="text" class="time_select" placeholder="订单号" name="order_number" id="order_number" />
                     <asp:Button ID="Button3" class="mingxi_input_tr_tj" OnClick="rq_select" Text="查询" runat="server" />
@@ -343,4 +359,5 @@
         </div>
     </form>
 </body>
+    
 </html>

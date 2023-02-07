@@ -84,6 +84,10 @@
     <form id="form1" runat="server">
         <div>
             <div class="d-header top-div">
+                <label class="top-text">商品代码：</label>
+                    <asp:TextBox ID='sp_dm' class='select_input' Autocomplete='off'  runat="server" placeholder="商品代码"/>
+                <label class="top-text">商品类别：</label>
+                    <asp:TextBox ID='cplb' class='select_input' Autocomplete='off'  runat="server" placeholder="商品类别"/>
                 <select class="select_xl" name="kui_lei">
                     <option>请选择</option>
                     <%           

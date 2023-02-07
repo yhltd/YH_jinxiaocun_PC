@@ -22,6 +22,11 @@
         .labelStyle .el-form-item__label {
             color:white;
         }
+        .el-table {
+            position: absolute;
+            min-width: 1300px;
+            overflow: auto;
+        }
     </style>
     <title>云合排产管理系统</title>
     <script>
@@ -98,7 +103,7 @@
 
     <div id="order" style="display: none;" :style="{display: 'block'}">
         <el-container>
-            <el-main>
+            <el-main style="position: relative;overflow: auto;height:453px">
                 <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="5">
                         <el-input placeholder="产品名称" v-model="productName" clearable></el-input>
@@ -117,7 +122,7 @@
                         </el-button-group>
                     </el-col>
                 </el-row>
-                <el-table :data="list" v-loading="loading" style="width: 100%;font-size:15px">
+                <el-table :data="list"  style="width: 100%;font-size:15px">
                     <el-table-column type="expand">
                         <template slot-scope="props">
                             <el-form

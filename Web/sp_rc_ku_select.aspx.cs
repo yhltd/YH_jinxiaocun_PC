@@ -77,6 +77,10 @@ namespace Web
 
         protected void rc_ku_select_Click(object sender, EventArgs e)
         {
+            string sp_dm = Context.Request["sp_dm"].ToString();
+            Session["sp_dm"] = sp_dm;
+            string cplb = Context.Request["cplb"].ToString();
+            Session["cplb"] = cplb;
             string spname = Context.Request["kui_lei"].ToString();
             Session["cpname"] = spname;
             try
@@ -84,7 +88,7 @@ namespace Web
                 if (!spname.Equals("请选择"))
                 {
                     MingxiModel mingxi = new MingxiModel();
-                    Session["selectSp"] = mingxi.getCpMingXi(spname, user.gongsi); ;
+                    Session["selectSp"] = mingxi.getCpMingXi(sp_dm,cplb,spname, user.gongsi); ;
                 }
                 else
                 {

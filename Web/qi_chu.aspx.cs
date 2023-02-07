@@ -262,6 +262,7 @@ namespace Web
                                 qci.Cplb = Request.Form["cplb" + i].ToString();
                                 qci.Cpsj = Request.Form["cpsj" + i].ToString();
                                 qci.Cpsl = Request.Form["cpsl" + i].ToString();
+                                //qci.mark1 = Request.Form["tupian" + i].ToString();
                                 qci.zh_name = user.name;
                                 qci.gs_name = user.gongsi;
                                 qci.Shijian = DateTime.Now.ToString("yyyy-MM-dd");

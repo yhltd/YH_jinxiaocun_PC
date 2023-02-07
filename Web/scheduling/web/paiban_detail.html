@@ -75,6 +75,11 @@
           cursor: pointer;
           /*display: none;*/
         }
+        .el-table {
+            position: absolute;
+            min-width: 1300px;
+            overflow: auto;
+        }
     </style>
 </head>
 <body>
@@ -89,7 +94,7 @@
 
     <div id="paiban_detail" style="display: none;" :style="{display: 'block'}">
         <el-container>
-            <el-main>
+            <el-main style="position: relative;overflow: auto;height:453px">
                 <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="6">
                         <el-input v-model="staff_name" placeholder="查询姓名" clearable></el-input>

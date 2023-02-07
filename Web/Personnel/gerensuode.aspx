@@ -36,7 +36,7 @@
             <RowStyle CssClass="item" BorderStyle="None" Wrap="False" />
             <SelectedRowStyle CssClass="header" />
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString29 %>" SelectCommand="select AU,sum((cast(ATA as money)*cast(AU as money))) AS COUNT1,COUNT(id) as num, sum((cast(AW AS money)*cast(AU AS money))) AS COUNT2 FROM gongzi_gongzimingxi WHERE AU is not null and ([BD]like '%'+ @BD +'%') GROUP BY AU ">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString29 %>" SelectCommand="select AU,sum((cast(ATA as money)*cast(AU as money))) AS COUNT1,COUNT(id) as num, sum((cast(AW AS money)*cast(AU AS money))) AS COUNT2 FROM gongzi_gongzimingxi WHERE AU is not null and ([BD]like '%'+ @BD +'%') GROUP BY AU UNION ALL select '合计',sum((cast(ATA as money)*cast(AU as money))) ,count(id),sum((cast(AW AS money)*cast(AU AS money))) from gongzi_gongzimingxi ">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
             </SelectParameters>

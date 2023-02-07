@@ -75,6 +75,11 @@
           cursor: pointer;
           /*display: none;*/
         }
+        .el-table {
+            position: absolute;
+            min-width: 1300px;
+            overflow: auto;
+        }
     </style>
 </head>
 <body>
@@ -89,7 +94,7 @@
 
   <div id="department" style="display: none;" :style="{display: 'block'}">
         <el-container>
-            <el-main>
+            <el-main style="position: relative;overflow: auto;height:453px">
                 <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="6">
                         <el-input v-model="department_name" placeholder="部门名称" clearable></el-input>
@@ -218,7 +223,7 @@
                 :model="department"
                 :rules="departmentRules"
                 ref="addDepartment"
-               label-width="80px"
+                label-width="80px"
                 label-position="left"
                 status-icon
             >

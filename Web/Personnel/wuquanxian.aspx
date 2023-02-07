@@ -10,7 +10,7 @@
     <style>
         body
         {
-            background: url('images/beijing.jpeg')top center no-repeat; 
+            background: url('images/640x420.jpg')top center no-repeat; 
             background-size:cover;
         }
     </style>
@@ -22,10 +22,10 @@
         }
     </script>
     <form id="form1" runat="server" style="height:100%">
-    <p style="color:white;position:absolute">当前系统版本：3.01.0</p>
+    <p style="color:black;position:absolute">当前系统版本：3.01.0</p>
     <div style="text-align:center;height:100%;display: flex;flex-direction: column;justify-content: center;align-items: center">
-        <div style="font-size:40px;margin: 0 auto;color:white">欢迎使用！</div>
-        <div style="font-size:40px;margin: 0 auto;color:white">云和人事管理系统</div>
+        <div style="font-size:40px;margin: 0 auto;color:black">欢迎使用！</div>
+        <div style="font-size:40px;margin: 0 auto;color:black">云和人事管理系统</div>
     </div>
     </form>
 </body>

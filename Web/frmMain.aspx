@@ -215,11 +215,11 @@
         <div class="main-div">
             <div class="leftNav" style="background-color: #20222A;">
                 <ul class="left_ul">
-                    <li><a href="#" id="r_k" class="leftNav_li" onclick="add_li('r_k','ru_ku.aspx')" title="入库单双击入库可以添加一行">入库单</a></li>
-                    <li><a href="#" id="c_k" class="leftNav_li" onclick="add_li('c_k','chu_ku.aspx')" title="出库单双击出库可以添加一行">出库单</a></li>
+                    <li><a href="#" id="r_k" class="leftNav_li" onclick="add_li('r_k','ru_ku.aspx')" title="入库单双击入库可以添加一行,此表是根据明细表合计来查询的">入库单</a></li>
+                    <li><a href="#" id="c_k" class="leftNav_li" onclick="add_li('c_k','chu_ku.aspx')" title="出库单双击出库可以添加一行,此表是根据明细表合计来查询的">出库单</a></li>
                     <li><a href="#" id="q_c" class="leftNav_li" onclick="add_li('q_c','qi_chu.aspx')" title="期初数双击序号可以添加一行">期初数</a></li>
                     <li><a href="#" id="m_x" class="leftNav_li" onclick="add_li('m_x','ming_xi.aspx')" title="明细双击序号可以添加一行">明细</a></li>
-                    <li><a href="#" id="j_x" class="leftNav_li" onclick="add_li('j_x','jin_xiao_cun.aspx')" title="明细双击序号可以添加一行">进销存</a></li>
+                    <li><a href="#" id="j_x" class="leftNav_li" onclick="add_li('j_x','jin_xiao_cun.aspx')" title="明细双击序号可以添加一行,此表是根据明细表来判断期初，入库，出库，结存结果相加来查询">进销存</a></li>
                     <li><a href="#" id="j_c" class="leftNav_li" onclick="add_li('j_c','sp_rc_ku_select.aspx')">商品进出查询</a></li>
                     <li><a href="#" id="c_h" class="leftNav_li" onclick="add_li('c_h','kh_ming_xi_selcet.aspx')">客户/供应商查询</a></li>
                     <li><a href="#" id="z_l" class="leftNav_li" onclick="add_li('z_l','ji_chu_zi_liao_page.aspx')" title="基础资料双击序号可以添加一行">基础资料</a></li>

@@ -9,22 +9,80 @@
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
+        
+        var upd_id = "";
+
         function del_row(row) {
             var rowIndex = $("#del_row_cs1").context.rowIndex;
             $("#del_row" + row + "").remove();
         }
 
+        function fileUp(id) {
+            upd_id = id
+            $('#file').trigger('click');
+        }
+
+        
+
         $(function () {
             $("#dj_row").click(function () {
-
                 $("#row_i1").val($("#biao_ge tr").length);
-
             })
 
-            function fileUp(id) {
-                $('#file').trigger('click');
-            }
+            $('#file').change(function () {
+                var file = document.getElementById("file").files;
+                var oFReader = new FileReader();
+                var this_file = file[0];
+                var fileName = file[0].name;
+                var obj = [];
+                oFReader.readAsDataURL(this_file);
+                oFReader.onloadend = function (oFRevent) {
+                    this_file = oFRevent.target.result;
+                    this_file = this_file.split(",")[1]
+                    console.log(this_file)
+                    console.log(upd_id)
 
+
+                    var fileInput = document.getElementById('file');
+                    fileInput.value = ""
+                    fileInput.outerHTML = fileInput.outerHTML;
+
+                    $.ajax({
+                        type: "post", //要用post方式                 
+                        url: "/ji_chu_zi_liao_page.aspx/picture_upd",//方法所在页面和方法名
+                        contentType: "application/json; charset=utf-8",
+                        async: false,
+                        dataType: "json",
+                        data: JSON.stringify({
+                            id:upd_id,
+                            base64:this_file
+                        }),
+                        success: function (data) {
+                            alert(data.d);//返回的数据用data.d获取内容
+                            window.location.reload();
+                        },
+                        error: function (err) {
+                            alert(err);
+                        }
+                    });
+
+                    //$ajax({
+                    //    type: 'post',
+                    //    url: '/ji_chu_zi_liao_page.aspx/picture_upd',
+                    //    data: JSON.stringify({
+                    //        id:upd_id,
+                    //        base64:this_file
+                    //    }),
+                    //    dataType: 'json',
+                    //    contentType: 'application/json;charset=utf-8',
+                    //    async: false,
+                    //    success: function (data) {
+                    //        alert(data.d);//返回的数据用data.d获取内容
+                    //        window.location.reload();
+                    //    },
+                    //})
+                };
+            });
         })
 
         $(document).ready(function () {
@@ -158,6 +216,7 @@
                 <asp:Button OnClick="jczl_tj" ID="dj_row" class="input_tr_tj" Text="提交" runat="server" />
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_tj" Text="删除" runat="server" />
                 <asp:Button ID="Button2" class="input_tr_tj" OnClick="jczl_select_load" Text="刷新数据" runat="server" />
+                <input type="file" id="file" hidden="hidden">
             </div>
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <input type="hidden" id="row_i1" name="row_i" />
@@ -202,9 +261,8 @@
                     <td class="bg_bj">
                         <img style="width: 60px;"  src="<%=jczj_select[i].mark1%>"/></td>
                     <td class="bg_bj">
-                        <asp:FileUpload name="tupian<%=i%>" runat="server" accept="image/*" style="color: transparent;width:70px" /> 
-                        <%--<input type="file"  name="tupian<%=i%>" style="color: transparent;width:70px"  id="Text6" accept="image/*" /></td>--%>
-                    </td>
+<%--                        <asp:FileUpload  name="tupian<%=i%>" runat="server" accept="image/*" style="color: transparent;width:70px" />--%>
+                        <input type="button" name="tupian<%=i%>" value="上传图片" onclick="fileUp(<%=jczj_select[i].id%>);" style="color: transparent;width:70px"  id="Text6" accept="image/*" /></td>
                     <td class="bg_bj">
                         <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i%>" value="<%=jczj_select[i].id%>" /><input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
                 </tr>

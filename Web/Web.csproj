@@ -1678,11 +1678,6 @@
     <Content Include="Personnel\bumenxiangqing.aspx" />
     <Content Include="Personnel\bumenxiangqing1.aspx" />
     <Content Include="Personnel\changepwd.aspx" />
-    <Content Include="Personnel\images\640x420.jpg" />
-    <Content Include="Personnel\images\caiwu_daohanglan.jpg" />
-    <Content Include="Personnel\images\renlitup.jpg" />
-    <Content Include="Personnel\images\tupian1.jpeg" />
-    <Content Include="Personnel\images\背景.jpeg" />
     <Content Include="Personnel\shenpi.aspx" />
     <Content Include="Personnel\css\common.css" />
     <Content Include="Personnel\css\gridview.css" />
@@ -1757,9 +1752,10 @@
     <Content Include="Personnel\wuquanxian.aspx" />
     <Content Include="Personnel\yuangongdangan.aspx" />
     <Content Include="qi_chu.aspx" />
-    <Content Include="RDLC\kh_ming_xi_selcet.aspx" />
+    <Content Include="RDLC\sp_rc_ku_select_dayin.aspx" />
     <Content Include="RDLC\frm_ReportForm.aspx" />
     <Content Include="RDLC\gongzitiao_print.aspx" />
+    <Content Include="RDLC\kh_ming_xi_selcet_dayin.aspx" />
     <Content Include="ru_ku.aspx" />
     <Content Include="sample\index.html" />
     <Content Include="sample\jquery.js" />
@@ -1785,7 +1781,6 @@
     <Content Include="scheduling\web\paiban.html" />
     <Content Include="scheduling\web\paibanbiao_renyuan.html" />
     <Content Include="scheduling\web\paiban_detail.html" />
-    <Content Include="scheduling\web\static\img\animat-diamond-color.gif" />
     <Content Include="scheduling\web\static\img\apic9216.jpg" />
     <Content Include="scheduling\web\static\img\background2.jpg" />
     <Content Include="scheduling\web\static\img\background.jpeg" />
@@ -1793,7 +1788,6 @@
     <Content Include="scheduling\web\static\img\beijing3.jpeg" />
     <Content Include="scheduling\web\static\img\bk.jpeg" />
     <Content Include="scheduling\web\static\img\bk1.jpg" />
-    <Content Include="scheduling\web\static\img\caiwu_daohanglan.jpg" />
     <Content Include="scheduling\web\static\img\close.png" />
     <Content Include="scheduling\web\static\img\image1.jpeg" />
     <Content Include="scheduling\web\static\img\image3.jpeg" />
@@ -3020,12 +3014,12 @@
     <Compile Include="qi_chu.aspx.designer.cs">
       <DependentUpon>qi_chu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RDLC\kh_ming_xi_selcet.aspx.cs">
-      <DependentUpon>kh_ming_xi_selcet.aspx</DependentUpon>
+    <Compile Include="RDLC\sp_rc_ku_select_dayin.aspx.cs">
+      <DependentUpon>sp_rc_ku_select_dayin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RDLC\kh_ming_xi_selcet.aspx.designer.cs">
-      <DependentUpon>kh_ming_xi_selcet.aspx</DependentUpon>
+    <Compile Include="RDLC\sp_rc_ku_select_dayin.aspx.designer.cs">
+      <DependentUpon>sp_rc_ku_select_dayin.aspx</DependentUpon>
     </Compile>
     <Compile Include="RDLC\frm_ReportForm.aspx.cs">
       <DependentUpon>frm_ReportForm.aspx</DependentUpon>
@@ -3040,6 +3034,13 @@
     </Compile>
     <Compile Include="RDLC\gongzitiao_print.aspx.designer.cs">
       <DependentUpon>gongzitiao_print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RDLC\kh_ming_xi_selcet_dayin.aspx.cs">
+      <DependentUpon>kh_ming_xi_selcet_dayin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RDLC\kh_ming_xi_selcet_dayin.aspx.designer.cs">
+      <DependentUpon>kh_ming_xi_selcet_dayin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ru_ku.aspx.cs">
       <DependentUpon>ru_ku.aspx</DependentUpon>
@@ -3774,6 +3775,7 @@
     <EmbeddedResource Include="RDLC\Report3.rdlc" />
     <EmbeddedResource Include="RDLC\Report2.rdlc" />
     <EmbeddedResource Include="RDLC\Report1.rdlc" />
+    <EmbeddedResource Include="RDLC\Report4.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

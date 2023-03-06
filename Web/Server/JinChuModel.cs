@@ -110,5 +110,15 @@ namespace Web.Server
                 return sen.Database.ExecuteSqlCommand(sql);
             }
         }
+
+        public int picture_upd(string id, string base64)
+        {
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string sql = "UPDATE Yh_JinXiaoCun_jichuziliao SET mark1 = '" + base64 + "' WHERE id = '" + id + "'";
+                return sen.Database.ExecuteSqlCommand(sql);
+            }
+        }
+
     }
 }

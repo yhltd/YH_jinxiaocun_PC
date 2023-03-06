@@ -81,6 +81,7 @@
                 var rowLength = $("#biao_ge tr").length;
                 var insertStr = "<tr id='del_row" + row + "' >"
                                + "<td style='font-size: 14px;padding-left: 0.5%;width: 18px;'>" + (rowLength) + "</td>"
+                               + "<td class='bg_bj_sj'></td>"
                                + "<td ><input type='text' class='input_tr' style='width:147px;margin:1px'  id='sp_name" + row + "' name='cpname" + row + "' ></input></td>"
                                + "<td class='bg_bj_dm'>"
                                + "<select class='input_tr' id='sp_dm" + row + "' name='cpid" + row + "' onchange='bhhq(" + row + ")'>"
@@ -235,6 +236,7 @@
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 1%;">
                     <tr id="dj_yh">
                         <td class="auto-style1" style="width: 100px;">序号</td>
+                        <th class="auto-style1" style="width: 155px">图片</th>
                         <td class="auto-style1" style="width: 130px;">商品名称</td>
                         <td class="auto-style1" style="width: 130px;">商品代码</td>
                         <td class="auto-style1" style="width: 130px;">商品类别</td>
@@ -242,8 +244,6 @@
                         <td class="auto-style1" style="width: 130px;">商品数量</td>
                         <td class="auto-style1" style="width: 130px">金额</td>
                         <td class="auto-style1" style="width: 100px;">功能</td>
-                        <td class="auto-style1" style="width: 155px;">图片</td>
-                        <th class="auto-style1" style="width: 145px">上传图片</th>
                     </tr>
                     <%
                         System.Collections.Generic.List<Web.Server.yh_jinxiaocun_qichushu> qi_chu_select = Session["qi_chu_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_qichushu>;
@@ -254,13 +254,15 @@
                                 if (qi_chu_select[i].mark1 != null && qi_chu_select[i].mark1 != "")
                                 {
                                     qi_chu_select[i].mark1 = "data:image/jpg;base64," + qi_chu_select[i].mark1;
-                                }                         
+                                } 
                     %>
                     <tr id="del_row_cs<%=i%>">
                         <%--style="font-size: 90%; padding-left: 2%;"--%>
                         <td style="font-size: 14px; padding-left: 0.5%; width: 18px;"><%=(i+1) %>
                             <input class="input_tr" type="hidden" id="id<%=i%>" name="id<%=i%>" value="<%=qi_chu_select[i]._id%>" />
                         </td>
+                        <td class="bg_bj">
+                        <img style="width: 60px;"  src="<%=qi_chu_select[i].mark1%>"/></td>
                         <td class="bg_bj">
                             <input type="text" class="input_tr" id="sp_name" name="cpname_cs<%=i%>" value="<%=qi_chu_select[i].cpname%>" /></td>
                         <td class="bg_bj">
@@ -276,11 +278,6 @@
                         </td>
                         <td class="bg_bj" style="width: 43px;">
                             <input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" />
-                        </td>
-                        <td class="bg_bj">
-                            <img style="width: 60px;"  src="<%=qi_chu_select[i].mark1%>"/></td>
-                        <td class="bg_bj">
-                            <asp:FileUpload ID="FileUpload1" name="tupian<%=i%>" runat="server" accept="image/*" style="color: transparent;width:70px" /> 
                         </td>
                     </tr>
                     <%

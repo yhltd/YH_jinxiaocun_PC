@@ -133,8 +133,37 @@ namespace Web
                         int id = Convert.ToInt32(cmd.ExecuteScalar());
                         if (id != 0)
                         {
-                            string[] a = gs_name.Split('_');
-                            Session["gongsi"] = a[0];
+
+                            conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                            if (conn.State == ConnectionState.Closed)
+                            {
+                                conn.Open();
+                            }
+                            string now = DateTime.Now.ToShortDateString().ToString();
+                            string this_sql = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
+                            cmd = new SqlCommand(this_sql, conn);
+                            str = cmd.ExecuteReader();
+                            int a = 0;
+                            List<string> itemi = new List<string>();
+                            while (str.Read())
+                            {
+                                if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
+                                {
+                                    if (str["endtime"].Equals(1))
+                                    {
+                                        Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
+                                        return;
+                                    }
+                                    if (str["mark2"].Equals(1))
+                                    {
+                                        Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
+                                        return;
+                                    }
+                                }
+                            }
+
+                            string[] b = gs_name.Split('_');
+                            Session["gongsi"] = b[0];
                             Session["id1"] = id;
                             Server.Transfer("../Personnel/index.aspx");
 
@@ -171,6 +200,35 @@ namespace Web
               
                     else
                     {
+
+                        conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                        if (conn.State == ConnectionState.Closed)
+                        {
+                            conn.Open();
+                        }
+                        string now = DateTime.Now.ToShortDateString().ToString();
+                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
+                        cmd = new SqlCommand(sqlStr, conn);
+                        str = cmd.ExecuteReader();
+                        int a = 0;
+                        List<string> itemi = new List<string>();
+                        while (str.Read())
+                        {
+                            if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
+                            {
+                                if (str["endtime"].Equals(1))
+                                {
+                                    Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
+                                    return;
+                                }
+                                if (str["mark2"].Equals(1))
+                                {
+                                    Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
+                                    return;
+                                }
+                            }
+                        }
+
                         Session.Timeout = 10000;
                         Session["user"] = user;
                         Response.Redirect("~/frmMain.aspx");
@@ -193,6 +251,34 @@ namespace Web
                 }
                 else
                 {
+                    conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                    if (conn.State == ConnectionState.Closed)
+                    {
+                        conn.Open();
+                    }
+                    string now = DateTime.Now.ToShortDateString().ToString();
+                    string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='财务'";
+                    cmd = new SqlCommand(sqlStr, conn);
+                    str = cmd.ExecuteReader();
+                    int a = 0;
+                    List<string> itemi = new List<string>();
+                    while (str.Read())
+                    {
+                        if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
+                        {
+                            if (str["endtime"].Equals(1))
+                            {
+                                Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
+                                return;
+                            }
+                            if (str["mark2"].Equals(1))
+                            {
+                                Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
+                                return;
+                            }
+                        }
+                    }
+
                     FinanceToken.getFinanceCheckToken().setToken(token);
                     Response.Redirect("../finance/web/view/index.aspx");
                 }
@@ -213,22 +299,25 @@ namespace Web
                             conn.Open();
                         }
                         string now = DateTime.Now.ToShortDateString().ToString();
-                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";
+                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";
                         cmd = new SqlCommand(sqlStr, conn);
                         str = cmd.ExecuteReader();
                         int a = 0;
                         List<string> itemi = new List<string>();
                         while (str.Read())
                         {
-                            if (str["endtime"].Equals(1)) 
+                            if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
                             {
-                                Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
-                                return;
-                            }
-                            if (str["mark2"].Equals(1))
-                            {
-                                Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
-                                return;
+                                if (str["endtime"].Equals(1))
+                                {
+                                    Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
+                                    return;
+                                }
+                                if (str["mark2"].Equals(1))
+                                {
+                                    Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
+                                    return;
+                                }
                             }
                         }
 

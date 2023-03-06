@@ -104,6 +104,14 @@ namespace Web
 
         }
 
+        [System.Web.Services.WebMethod]
+        public static string picture_upd(string id, string base64)
+        {
+            JinChuModel jinchu = new JinChuModel();
+            jinchu.picture_upd(id, base64);
+            return "完成";
+        }
+
         protected void jczl_tj(object sender, EventArgs e)
         {
           

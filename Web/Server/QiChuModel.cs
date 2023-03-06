@@ -15,7 +15,7 @@ namespace Web.Server
             using (ServerEntities sen = new ServerEntities())
             {
                 var gsParam = new MySqlParameter("@gs", gs_name);
-                string sql = "select * from yh_jinxiaocun_qichushu where gs_name = @gs";
+                string sql = "select _id,_openid,cpid,cpjg,cpjj,cplb,cpname,cpsj,cpsl,mxtype,shijian,zh_name,gs_name,pic.mark1 from Yh_JinXiaoCun_qichushu left join (select sp_dm,mark1 from yh_jinxiaocun_jichuziliao) as pic on Yh_JinXiaoCun_qichushu.cpid = pic.sp_dm where gs_name = @gs";
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_qichushu>(sql, gsParam);
                 return result.ToList();
             }
@@ -57,7 +57,7 @@ namespace Web.Server
         public List<yh_jinxiaocun_qichushu> ming_xi_fenye(int yi_c, int er_c, string gs_name)
         {
             using (ServerEntities sen = new ServerEntities()) {
-                string sql = "select * from Yh_JinXiaoCun_qichushu where gs_name = '" + gs_name + "' limit " + yi_c + "," + er_c + "";
+                string sql = "select _id,_openid,cpid,cpjg,cpjj,cplb,cpname,cpsj,cpsl,mxtype,shijian,zh_name,gs_name,pic.mark1 from Yh_JinXiaoCun_qichushu left join (select sp_dm,mark1 from yh_jinxiaocun_jichuziliao) as pic on Yh_JinXiaoCun_qichushu.cpid = pic.sp_dm where gs_name = '" + gs_name + "' limit " + yi_c + "," + er_c + "";
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_qichushu>(sql);
                 return result.ToList();
             }
@@ -67,7 +67,7 @@ namespace Web.Server
         {
             using (ServerEntities sen = new ServerEntities())
             {
-                string sql = "select * from Yh_JinXiaoCun_qichushu where gs_name = '" + gs_name + "' and cpname like '%" + cpname + "%' limit " + yi_c + "," + er_c + "";
+                string sql = "select _id,_openid,cpid,cpjg,cpjj,cplb,cpname,cpsj,cpsl,mxtype,shijian,zh_name,gs_name,pic.mark1 from Yh_JinXiaoCun_qichushu left join (select sp_dm,mark1 from yh_jinxiaocun_jichuziliao) as pic on Yh_JinXiaoCun_qichushu.cpid = pic.sp_dm where gs_name = '" + gs_name + "' and cpname like '%" + cpname + "%' limit " + yi_c + "," + er_c + "";
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_qichushu>(sql);
                 return result.ToList();
             }

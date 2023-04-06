@@ -43,6 +43,7 @@ namespace Web.Personnel
                 GridView1.DataSourceID = "SqlDataSource1";
                 GridView1.DataBind();
             }
+
         }
         protected void Button2_Click(object sender, EventArgs e)
         {
@@ -78,7 +79,7 @@ namespace Web.Personnel
                 foreach (gongzi_gongzimingxi baoshui in list)
                 {
 
-                    sw.WriteLine(baoshui.B + "\t" + "身份证" + "\t" + baoshui.E + "\t" + baoshui.U + "\t" + baoshui.AI + "\t" + baoshui.AK + "\t" + baoshui.AN + "\t" + baoshui.AO);
+                    sw.WriteLine(baoshui.B + "\t" + "身份证" + "\t'" + baoshui.E + "\t" + baoshui.U + "\t" + baoshui.AI + "\t" + baoshui.AK + "\t" + baoshui.AN + "\t" + baoshui.AO);
 
                 }
 

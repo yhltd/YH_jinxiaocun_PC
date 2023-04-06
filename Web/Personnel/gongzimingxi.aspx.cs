@@ -170,7 +170,7 @@ namespace Web.Personnel
                 foreach (gongzi_gongzimingxi gz in list)
                 {
 
-                    sw.WriteLine(gz.B + "\t" + gz.C + "\t" + gz.D + "\t" + gz.E + "\t" + gz.F + "\t" + gz.G + "\t" + gz.H + "\t" + gz.I + "\t" + gz.J + "\t" + gz.K + "\t" + gz.L + "\t" + gz.M + "\t" + gz.N + "\t" + gz.O + "\t" + gz.P + "\t" + gz.Q + "\t" + gz.R + "\t" + gz.S + "\t" + gz.T + "\t" + gz.U + "\t" + gz.V + "\t" + gz.W + "\t" + gz.X + "\t" + gz.Y + "\t" + gz.Z + "\t" + gz.AA + "\t" + gz.AB + "\t" + gz.AC + "\t" + gz.AD + "\t" + gz.AE + "\t" + gz.AF + "\t" + gz.AG + "\t" + gz.AH + "\t" + gz.AI + "\t" + gz.AJ + "\t" + gz.AK + "\t" + gz.AL + "\t" + gz.AM + "\t" + gz.AN + "\t" + gz.AO + "\t" + gz.AP + "\t" + gz.AQ + "\t" + gz.AR + "\t" + gz.ASA + "\t" + gz.ATA + "\t" + gz.AU + "\t" + gz.AV + "\t" + gz.AW + "\t" + gz.AX + "\t" + gz.AY + "\t" + gz.AZ + "\t" + gz.BA + "\t" + gz.BB + "\t" + gz.BC);
+                    sw.WriteLine(gz.B + "\t" + gz.C + "\t" + gz.D + "\t'" + gz.E + "\t'" + gz.F + "\t" + gz.G + "\t" + gz.H + "\t" + gz.I + "\t" + gz.J + "\t" + gz.K + "\t" + gz.L + "\t" + gz.M + "\t" + gz.N + "\t" + gz.O + "\t" + gz.P + "\t" + gz.Q + "\t" + gz.R + "\t" + gz.S + "\t" + gz.T + "\t" + gz.U + "\t" + gz.V + "\t" + gz.W + "\t" + gz.X + "\t" + gz.Y + "\t" + gz.Z + "\t" + gz.AA + "\t" + gz.AB + "\t" + gz.AC + "\t" + gz.AD + "\t" + gz.AE + "\t" + gz.AF + "\t" + gz.AG + "\t" + gz.AH + "\t" + gz.AI + "\t" + gz.AJ + "\t" + gz.AK + "\t" + gz.AL + "\t" + gz.AM + "\t" + gz.AN + "\t" + gz.AO + "\t" + gz.AP + "\t" + gz.AQ + "\t" + gz.AR + "\t" + gz.ASA + "\t" + gz.ATA + "\t" + gz.AU + "\t" + gz.AV + "\t" + gz.AW + "\t" + gz.AX + "\t" + gz.AY + "\t" + gz.AZ + "\t'" + gz.BA + "\t" + gz.BB + "\t" + gz.BC);
 
                 }
 

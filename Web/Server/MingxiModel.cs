@@ -116,6 +116,26 @@ namespace Web.Server
             }
         }
 
+        public List<MingXiItem> getCpMingXi2(string sp_dm, string cplb, string gongsi)
+        {
+            using (ServerEntities sen = new ServerEntities())
+            {
+                var @params = new MySqlParameter[]{
+                    new MySqlParameter("@gongxi", gongsi),
+
+                };
+
+
+                //string sql = "select mx.sp_dm,mx.cpname,mx.cplb,ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = '' group by sp_dm,cpname,cplb) as mx left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm having mx.cpname like '%'+ @cpname + '%' and mx.sp_dm like '%' + @sp_dm + '%' and mx.cplb like '%' + @cplb + '%'";
+                string sql = "select mx.sp_dm,mx.cpname,mx.cplb,ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm having mx.cpname = @cpname and mx.sp_dm like '%" + sp_dm + "%' and mx.cplb like '%" + cplb + "%'";
+
+                //string sql = "select mx.sp_dm,mx.cpname,mx.cplb,ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm having mx.cpname = @cpname";
+                //string sql = "select mx.shijian,mx.orderid,mx.sp_dm,mx.cpname,ifnull(ruku.cpsl,0) as ruku_num,ifnull(ruku.cp_price,0) as ruku_price,ifnull(chuku.cpsl,0) as chuku_num,ifnull(chuku.cp_price,0) as chuku_price from yh_jinxiaocun_mingxi as mx left join (select orderid,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by orderid) as ruku on mx.orderid = ruku.orderid left join (select orderid,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by orderid) as chuku on mx.orderid = chuku.orderid where mx.gs_name = @gongxi GROUP BY mx.orderid having mx.cpname = @cpname";
+                var result = sen.Database.SqlQuery<MingXiItem>(sql, @params);
+                return result.ToList();
+            }
+        }
+
         public List<MingXiItem> getCpMingXi_all(string gongsi)
         {
             using (ServerEntities sen = new ServerEntities())

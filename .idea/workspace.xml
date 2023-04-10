@@ -1,6 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4622c952-96de-47b6-a800-430ce10af6fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/bin/Debug/China_System.Common.dll" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/bin/Debug/China_System.Common.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/bin/Debug/China_System.Common.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/bin/Debug/China_System.Common.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/bin/Debug/SDZdb.dll" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/bin/Debug/SDZdb.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/bin/Debug/SDZdb.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/bin/Debug/SDZdb.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/obj/Debug/China_System.Common.dll" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/obj/Debug/China_System.Common.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/obj/Debug/China_System.Common.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/obj/Debug/China_System.Common.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/obj/Debug/Order.Common.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/obj/Debug/Order.Common.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/China_System.Common/obj/Debug/Order.Common.csprojResolveAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/China_System.Common/obj/Debug/Order.Common.csprojResolveAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DL_pos.v11.suo" beforeDir="false" afterPath="$PROJECT_DIR$/DL_pos.v11.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QRCodeLib/ThoughtWorks.QRCode.dll" beforeDir="false" afterPath="$PROJECT_DIR$/QRCodeLib/ThoughtWorks.QRCode.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QRCodeLib/ThoughtWorks.QRCode.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/QRCodeLib/ThoughtWorks.QRCode.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QRCodeLib/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/QRCodeLib/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QRCodeLib/obj/Debug/QRCodeLib.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/QRCodeLib/obj/Debug/QRCodeLib.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QRCodeLib/obj/Debug/QRCodeLib.csproj.GenerateResource.Cache" beforeDir="false" afterPath="$PROJECT_DIR$/QRCodeLib/obj/Debug/QRCodeLib.csproj.GenerateResource.Cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QRCodeLib/obj/Debug/ThoughtWorks.QRCode.dll" beforeDir="false" afterPath="$PROJECT_DIR$/QRCodeLib/obj/Debug/ThoughtWorks.QRCode.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/QRCodeLib/obj/Debug/ThoughtWorks.QRCode.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/QRCodeLib/obj/Debug/ThoughtWorks.QRCode.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDZdb/bin/Debug/SDZdb.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SDZdb/bin/Debug/SDZdb.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDZdb/bin/Debug/SDZdb.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SDZdb/bin/Debug/SDZdb.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDZdb/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SDZdb/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDZdb/obj/Debug/SDZdb.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SDZdb/obj/Debug/SDZdb.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDZdb/obj/Debug/SDZdb.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SDZdb/obj/Debug/SDZdb.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SDZdb/obj/Debug/SDZdb.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SDZdb/obj/Debug/SDZdb.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/Server/MingxiModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/Server/MingxiModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/China_System.Common.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/China_System.Common.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/China_System.Common.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/China_System.Common.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/SDZdb.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/SDZdb.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/SDZdb.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/SDZdb.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/ThoughtWorks.QRCode.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/ThoughtWorks.QRCode.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/ThoughtWorks.QRCode.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/ThoughtWorks.QRCode.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/Web.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/clsBuiness.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/clsBuiness.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/bin/clsBuiness.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/bin/clsBuiness.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/Web.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/Web.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/Web.csprojResolveAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/Web.csprojResolveAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/obj/Debug/Web.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Web/obj/Debug/Web.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/sp_rc_ku_select.aspx.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Web/sp_rc_ku_select.aspx.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/bin/Debug/China_System.Common.dll" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/bin/Debug/China_System.Common.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/bin/Debug/China_System.Common.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/bin/Debug/China_System.Common.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/bin/Debug/SDZdb.dll" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/bin/Debug/SDZdb.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/bin/Debug/SDZdb.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/bin/Debug/SDZdb.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/bin/Debug/clsBuiness.dll" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/bin/Debug/clsBuiness.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/bin/Debug/clsBuiness.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/bin/Debug/clsBuiness.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/obj/Debug/clsBuiness.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/obj/Debug/clsBuiness.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/obj/Debug/clsBuiness.csprojResolveAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/obj/Debug/clsBuiness.csprojResolveAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/obj/Debug/clsBuiness.dll" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/obj/Debug/clsBuiness.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clsBuiness/obj/Debug/clsBuiness.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/clsBuiness/obj/Debug/clsBuiness.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frmcstest/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/frmcstest/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2NxBunGRlME3188AyVZn5g3HseE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../yhltd_xindaisystem_H5/code/myapp" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4622c952-96de-47b6-a800-430ce10af6fd" name="Default Changelist" comment="" />
+      <created>1680596077486</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680596077486</updated>
+      <workItem from="1680596078801" duration="335000" />
+      <workItem from="1680748686467" duration="53000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1680748718746">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1680748718746" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1680748737808">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1680748737808" />
   </component>
 </project>

@@ -88,27 +88,13 @@ namespace Web
                 if (!spname.Equals("请选择"))
                 {
                     MingxiModel mingxi = new MingxiModel();
-                    Session["selectSp"] = mingxi.getCpMingXi(sp_dm,cplb,spname, user.gongsi); ;
+                    Session["selectSp"] = mingxi.getCpMingXi(sp_dm,cplb,spname, user.gongsi);
+
                 }
                 else
-                {
-                    Session["selectSp"] = null;
-                }
-            }
-            catch
-            {
-                Response.Write("<script>alert('网络错误，请稍后再试！');</script>");
-            }
-            try
-            {
-                if (!spname.Equals("请选择"))
                 {
                     MingxiModel mingxi = new MingxiModel();
-                    Session["selectSp"] = mingxi.getCpMingXi2(sp_dm, cplb, user.gongsi); ;
-                }
-                else
-                {
-                    Session["selectSp"] = null;
+                    Session["selectSp"] = mingxi.getCpMingXi2(sp_dm, cplb, user.gongsi);
                 }
             }
             catch

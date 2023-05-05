@@ -91,7 +91,9 @@
             top: 0px;
             left: 0px;
         }
-
+        option {
+            text-align:center;
+        }
         </style>
 </head>
 
@@ -120,6 +122,19 @@
                     <div class="center">
                         <div class="inner">
                             <table cellpadding="0" cellspacing="0" id="innnertalbe">
+
+                                <tr>
+                                    <td height="60">
+                                        <p align="right" style="width: 81px">
+                                            <b><span style="font-size: 13pt">系统：</span></b>
+                                        </p>
+                                    </td>
+                                    <td class="auto-style1">
+                                        <asp:DropDownList ID="DropDownList3" runat="server" Style="color: wheat; background-color: black" class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="xitong_select"></asp:DropDownList>
+
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td height="60">
                                         <p align="right" style="width: 81px">
@@ -127,9 +142,7 @@
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <asp:DropDownList ID="DropDownList1" runat="server" Style="color: wheat; background-color: black" class="select_w150" DataSourceID="SqlDataSource1" DataTextField="systemName" DataValueField="systemName" AutoPostBack="true" OnSelectedIndexChanged="bian"></asp:DropDownList>
-
-                                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:bds28428944_dbConnectionString %>" SelectCommand="SELECT [systemName] FROM [all_systems]"></asp:SqlDataSource>
+                                        <asp:DropDownList ID="DropDownList1" runat="server" Style="color: wheat; background-color: black" class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="bian"></asp:DropDownList>
 
                                     </td>
                                 </tr>

@@ -31,6 +31,10 @@ namespace Web
             {
                 DropDownList1.DataBind();
                 DropDownList1.Items.Insert(0, new ListItem("选择", "绑定数据"));
+                DropDownList3.DataBind();
+                DropDownList3.Items.Insert(0, new ListItem("选择"));
+                DropDownList3.Items.Insert(1, new ListItem("云合未来"));
+                DropDownList3.Items.Insert(2, new ListItem("其他"));
             }
 
         }
@@ -38,6 +42,47 @@ namespace Web
         SqlConnection conn = null;
         SqlDataReader str = null;
         SqlCommand cmd = null;
+
+        protected void xitong_select(object sender, EventArgs e)
+        {
+            conn = new SqlConnection("Data Source=bds28428944.my3w.com;Initial Catalog=bds28428944_db;User ID=bds28428944;Password=07910Lyh");  //数据库连接。
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+            string sqlStr = "";
+            if (DropDownList3.SelectedItem.Text == "云合未来")
+            {
+                sqlStr = "select systemName from all_systems where type = '1';";
+            }
+            if (DropDownList3.SelectedItem.Text == "其他")
+            {
+                sqlStr = "select systemName from all_systems where type != '1';";
+            }
+            if (sqlStr != "")
+            {
+                cmd = new SqlCommand(sqlStr, conn);
+                str = cmd.ExecuteReader();
+                DropDownList1.Items.Clear();
+                int a = 0;
+                List<string> itemi = new List<string>();
+                while (str.Read())
+                {
+                    a = a + 1;
+                    itemi.Add(str[0].ToString());
+                }
+                DropDownList1.DataSource = itemi;
+                DropDownList1.DataBind();
+                DropDownList1.Items.Insert(0, new ListItem("选择", "绑定数据"));
+            }
+            else
+            {
+                DropDownList1.Items.Clear();
+                DropDownList1.Items.Insert(0, new ListItem("选择", "绑定数据"));
+            }
+            
+        }
+
         protected void bian(object sender, EventArgs e)
         {
             if (DropDownList1.SelectedItem.Text == "云合人事管理系统")

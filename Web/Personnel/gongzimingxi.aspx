@@ -63,7 +63,7 @@
       
         
         <%-- <asp:Button ID="Button4" CssClass="top_bt" runat="server"  Text="刷新" OnClientClick="aa"  Height="30px" Width="80px" OnClick="Button4_Click"/> --%>
-        <asp:GridView ID="GridView1" runat="server" CssClass="grid_view" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" ScrollBars="Auto" Width="100%" HeaderStyle-BorderStyle="None" AllowPaging="True"  OnRowCreated="aaa" OnRowEditing="GridView1_RowUpdating" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" runat="server" CssClass="grid_view" AutoGenerateColumns="False" DataKeyNames="id" DataSourceID="SqlDataSource1" ScrollBars="Auto" Width="100%" HeaderStyle-BorderStyle="None" AllowPaging="True" OnRowCreated="aaa" OnRowEditing="GridView1_RowUpdating" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
                 <asp:CommandField ButtonType="Button" ShowSelectButton="True" ItemStyle-CssClass="bt_upd1" SelectText="修改">
                 <HeaderStyle Wrap="False" />

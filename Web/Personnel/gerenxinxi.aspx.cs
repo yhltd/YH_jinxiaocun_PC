@@ -50,6 +50,12 @@ namespace Web.Personnel
                     GridView1.DataSourceID = "SqlDataSource1";
                     GridView1.DataBind();
                 }
+                //TextBox1.Text = "";
+            }
+            else
+            {
+                GridView1.DataSourceID = "SqlDataSource1";
+                GridView1.DataBind();
             }
         }
         protected void Button2_Click(object sender, EventArgs e)

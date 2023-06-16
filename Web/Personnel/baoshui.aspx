@@ -21,8 +21,9 @@
             <asp:button id="Button4" cssclass="top_bt" runat="server" height="30px" text="生成Excel" width="80px" onclick="toExcel" style="margin-right: -10px" />
             <br />
 
-            <asp:gridview id="GridView1" runat="server" autogeneratecolumns="False" datasourceid="SqlDataSource1" allowpaging="True" datakeynames="id" onrowcreated="aaa">
-            <Columns>
+            <asp:gridview id="GridView1" runat="server" autogeneratecolumns="False" datasourceid="SqlDataSource1" onrowcreated="aaa" allowpaging="True" datakeynames="id">
+            
+                <Columns>
                 <asp:CommandField ShowEditButton="True" ButtonType="Button" ItemStyle-CssClass="bt_upd1">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />

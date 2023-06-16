@@ -146,11 +146,11 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:CommandField>--%>
-                <asp:CommandField  ButtonType="Button" ShowDeleteButton="True" ItemStyle-CssClass="bt_upd2">
-                    <ControlStyle Font-Bold="True" Width="50px" />
-                    <HeaderStyle HorizontalAlign="Center" />
-                    <ItemStyle HorizontalAlign="Center" />
-                </asp:CommandField>
+                <asp:commandfield  buttontype="button" showdeletebutton="true" itemstyle-cssclass="bt_upd2">
+                    <controlstyle font-bold="true" width="50px" />
+                    <headerstyle horizontalalign="center" />
+                    <itemstyle horizontalalign="center" />
+                </asp:commandfield>
                 <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" Visible="false" />
                 <asp:BoundField DataField="year" HeaderText="年" SortExpression="year" ControlStyle-Width="70%" HeaderStyle-Font-Bold="true">
                     <ControlStyle Width="70%"></ControlStyle>

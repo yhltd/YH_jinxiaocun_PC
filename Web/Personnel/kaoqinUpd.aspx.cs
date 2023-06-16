@@ -102,27 +102,38 @@ namespace Web.Personnel
                     aa[38] = (string)str["AN"];
                     aa[39] = (string)str["AO"];
                 }
-                
-                
-                    
-                
-                for (int i = 4; i <= 34; i++)
+
+
+
+
+                for (int i = 1; i <= 39; i++)
                 {
-                    //string b = ((DropDownList)this.FindControl("DropDownList" + (i + 1).ToString())).ToString();
-                    //((DropDownList)this.FindControl("DropDownList" + (i + 1).ToString())).Text = aa[i].ToString();
-                    ListItem item = ((DropDownList)this.FindControl("DropDownList" + i.ToString())).Items.FindByText(aa[i].ToString());
-                    if (item != null) {
-                        item.Selected = true;
+                    if (i == 1 || i == 2 || i == 3 || i == 35 || i == 36 || i == 37 || i == 38 || i == 39)
+                    {
+                        //string b = ((DropDownList)this.FindControl("DropDownList" + (i + 1).ToString())).ToString();
+                        //((DropDownList)this.FindControl("DropDownList" + (i + 1).ToString())).Text = aa[i].ToString();
+                        ListItem item = ((DropDownList)this.FindControl("DropDownList" + i.ToString())).Items.FindByText(aa[i - 1].ToString());
+                        if (item != null)
+                        {
+                            item.Selected = true;
+                        }
+                    }
+                    else
+                    {
+                        ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
                     }
                 }
-                TextBox1.Text = aa[0].ToString();
-                TextBox2.Text = aa[1].ToString();
-                TextBox3.Text = aa[2].ToString();
-                TextBox35.Text = aa[34].ToString();
-                TextBox36.Text = aa[35].ToString();
-                TextBox37.Text = aa[36].ToString();
-                TextBox38.Text = aa[37].ToString();
-                TextBox39.Text = aa[38].ToString();
+
+
+
+                //TextBox1.Text = aa[0].ToString();
+                //TextBox2.Text = aa[1].ToString();
+                //TextBox3.Text = aa[2].ToString();
+                //TextBox35.Text = aa[34].ToString();
+                //TextBox36.Text = aa[35].ToString();
+                //TextBox37.Text = aa[36].ToString();
+                //TextBox38.Text = aa[37].ToString();
+                //TextBox39.Text = aa[38].ToString();
             }
         }
 

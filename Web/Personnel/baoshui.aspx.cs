@@ -37,6 +37,7 @@ namespace Web.Personnel
             {
                 Session["xm1"] = Request.Form["TextBox1"];
                 GridView1.DataSourceID = "SqlDataSource2";
+               
             }
             else
             {
@@ -50,6 +51,8 @@ namespace Web.Personnel
             GridView1.DataSourceID = "SqlDataSource1";
             GridView1.DataBind();
         }
+
+
         protected void aaa(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType != DataControlRowType.Header && e.Row.RowType != DataControlRowType.Pager)

@@ -101,6 +101,12 @@
           cursor: pointer;
           /*display: none;*/
         }
+        .work {
+           /*position: fixed*/ 
+            
+                display: none;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -114,9 +120,9 @@
     </div>
 
     <input type="text" hidden="hidden" id="type" value="排产1" />
-    <div id="work" style="display: none;" :style="{display: 'block'}">
+    <div id="work" class="work" >
         <el-container>
-            <el-main v-loading="loading" >
+            <el-main style="position: relative;overflow: auto;height:453px" >
                 <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="11">
                         <el-button-group style="width:950px">
@@ -1309,10 +1315,10 @@
                     })
                 },
 
-                //gongshi:function(){
-                //    alert("日生产数=当日可工作小时数*生产模块效率");
+                gongshi:function(){
+                    alert("日生产数=当日可工作小时数*生产模块效率");
 
-                //},
+                },
                 
             },
             mounted: function () {

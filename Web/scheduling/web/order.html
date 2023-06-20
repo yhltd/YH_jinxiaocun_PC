@@ -23,7 +23,7 @@
             color:white;
         }
         .el-table {
-            position: absolute;
+            /*position: absolute;*/
             min-width: 1300px;
             overflow: auto;
         }
@@ -222,23 +222,26 @@
                     <el-input v-model.number="order.set_num"></el-input>
                 </el-form-item>
             </el-form>
-            <el-table ref="bomTable" :data="bomList" v-loading="bomLoading">
-                <el-table-column type="selection" width="55"></el-table-column>
-                <el-table-column prop="code" label="物料编码" sortable></el-table-column>
-                <el-table-column prop="name" label="物料名称" sortable></el-table-column>
-                <el-table-column prop="comment" label="描述" sortable></el-table-column>
-                <el-table-column prop="useNum" label="使用数量" sortable> 
+            <el-table ref="bomTable" :data="bomList" v-loading="bomLoading" >
+                <el-table-column type="selection" width="50px"></el-table-column>
+                <el-table-column prop="code" label="物料编码" sortable width="150px"></el-table-column>
+                <el-table-column prop="name" label="物料名称" sortable width="150px"></el-table-column>
+                <el-table-column prop="comment" label="描述" sortable width="150px"></el-table-column>
+                <el-table-column prop="useNum" label="使用数量" sortable width="150px"> 
                     <template slot-scope="scope">
                         <el-input @input="setUseNum(scope.$index, scope.row.useNum)" size="small" v-model.number="scope.row.useNum"></el-input>
                     </template>
                 </el-table-column>
             </el-table>
+
             <el-button 
                 type="primary" 
                 icon="el-icon-upload"
                 @click="addOrder('addForm')"
                 style="margin-top: 20px"
             >保存</el-button>
+
+            
         </el-drawer>
 
         <el-drawer

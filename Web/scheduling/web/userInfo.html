@@ -126,8 +126,15 @@
                                     <el-input v-model="props.row.department_name" style="width: 220px"></el-input>
                                 </el-form-item>
                                 <el-form-item label="状态" prop="state">
-                                    <el-input v-model="props.row.state" style="width: 220px"></el-input>
+                                    <el-select v-model="order.state" style="width: 220px">
+                                        <el-option v-for="state in options"
+                                            :label="state.text"
+                                            :key="state.value"
+                                            :value="state.value"
+                                        ></el-option>
+                                    </el-select>
                                 </el-form-item>
+                             
                             </el-form>
 
                             <el-button 
@@ -191,7 +198,13 @@
                     <el-input v-model="order.department_name" style="width: 220px"></el-input>
                 </el-form-item>
                 <el-form-item label="状态" prop="state">
-                    <el-input v-model="order.state" style="width: 220px"></el-input>
+                    <el-select v-model="order.state" style="width: 220px">
+                       <el-option v-for="state in options"
+                            :label="state.text"
+                            :key="state.value"
+                            :value="state.value"
+                        ></el-option>
+                    </el-select>
                 </el-form-item>
                 </el-form>
                 <el-button 
@@ -219,6 +232,11 @@
                  updateLoading: false,
                  saveLoading: false,
                  addVisible: false,
+
+                 options: [
+                    { value: "正常", text: "正常" },
+                    { value: "禁用", text: "禁用" },
+                 ],
 
                  orderRules: {
                      order_number: [

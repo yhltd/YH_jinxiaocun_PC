@@ -112,15 +112,17 @@ namespace Web.Personnel
                     {
                         //string b = ((DropDownList)this.FindControl("DropDownList" + (i + 1).ToString())).ToString();
                         //((DropDownList)this.FindControl("DropDownList" + (i + 1).ToString())).Text = aa[i].ToString();
+            
+                        ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
+
+                    }
+                    else
+                    {
                         ListItem item = ((DropDownList)this.FindControl("DropDownList" + i.ToString())).Items.FindByText(aa[i - 1].ToString());
                         if (item != null)
                         {
                             item.Selected = true;
                         }
-                    }
-                    else
-                    {
-                        ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
                     }
                 }
 

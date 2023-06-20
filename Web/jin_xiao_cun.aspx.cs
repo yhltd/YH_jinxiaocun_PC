@@ -64,7 +64,7 @@ namespace Web
         private void shuaxin() {
             StockModel stock = new StockModel();
             page.nowPage = 1;
-            Session["jxc_z_select"] = stock.jxc_z_select(user.gongsi, page.getLimit1(), page.getLimit2());
+            Session["jxc_z_select"] = stock.jxc_z_select(user.gongsi,"", page.getLimit1(), page.getLimit2());
         }
 
         protected void toExcel(object sender, EventArgs e)
@@ -107,6 +107,8 @@ namespace Web
             string code = Context.Request["code"];
             string time_start = Context.Request["time_start"] == "" ? "1999-01-01" : Context.Request["time_start"];
             string time_end = Context.Request["time_end"] == "" ? "2999-01-01" : Context.Request["time_end"];
+
+
             time_start = txtCompletionTime.Text.ToString();
             time_end = txttime_end.Text.ToString();
 
@@ -126,8 +128,9 @@ namespace Web
                 page.nowPage = 1;
                 string username = Session["username"].ToString();
                 string gongsi = Session["gs_name"].ToString();
+                string code = Context.Request["code"];
                 StockModel stock = new StockModel();
-                List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
+                List<jxc_z_info> list = stock.jxc_z_select(gongsi, code, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
                 lblCurrentPage.Text = page.nowPage.ToString();
             }
@@ -144,8 +147,9 @@ namespace Web
                 page.nowPage--;
                 string username = Session["username"].ToString();
                 string gongsi = Session["gs_name"].ToString();
+                string code = Context.Request["code"];
                 StockModel stock = new StockModel();
-                List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
+                List<jxc_z_info> list = stock.jxc_z_select(gongsi, code, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
                 lblCurrentPage.Text = page.nowPage.ToString();
             }
@@ -162,8 +166,9 @@ namespace Web
                 page.nowPage++;
                 string username = Session["username"].ToString();
                 string gongsi = Session["gs_name"].ToString();
+                string code = Context.Request["code"];
                 StockModel stock = new StockModel();
-                List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
+                List<jxc_z_info> list = stock.jxc_z_select(gongsi, code, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
                 lblCurrentPage.Text = page.nowPage.ToString();
             }
@@ -180,8 +185,9 @@ namespace Web
                 page.nowPage = page.countPage;
                 string username = Session["username"].ToString();
                 string gongsi = Session["gs_name"].ToString();
+                string code = Context.Request["code"];
                 StockModel stock = new StockModel();
-                List<jxc_z_info> list = stock.jxc_z_select(gongsi, page.getLimit1(), page.getLimit2());
+                List<jxc_z_info> list = stock.jxc_z_select(gongsi, code, page.getLimit1(), page.getLimit2());
                 Session["jxc_z_select"] = list;
                 lblCurrentPage.Text = page.nowPage.ToString();
             }

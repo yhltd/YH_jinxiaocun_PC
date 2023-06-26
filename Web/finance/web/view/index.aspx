@@ -31,6 +31,7 @@
     <script type="text/javascript" src="../assets/js/update_user.js"></script>
 </head>
 <body>
+    </script>
     <div id="main" class="easyui-layout">
         <div id="north" data-options="region:'north'" style="height: 68.9px;background:url(../assets/img/caiwu_daohanglan.jpg);">
             <div class="north-left" style="color:white">
@@ -40,6 +41,10 @@
                 云合未来财务系统
             </div>
             <img src="../assets/img/animat-diamond-color.gif"/ style="height: 100%;margin-left:30%">
+            <div id="Div1" class="north-left" style="color:white">
+                <a style="color:white;margin-right:20px" href="./downloadApp.aspx" class="leftNav_li">下载APP</a>
+                <a style="color:white" href="./downloadExcel.aspx" class="leftNav_li">下载Excel</a>
+            </div>
             <div id="north-right" class="north-left north-right" style="color:white">
                 <img src="../assets/img/touxiang.png" style="width: 32px;height: 32px;margin-right: 10px;" />
                 我的&nbsp;&or;

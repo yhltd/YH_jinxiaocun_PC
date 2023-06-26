@@ -130,7 +130,12 @@
                 </a>
                 <div class="logo" style="color:white">云合人事管理系统</div>
             </div>
-            <img src="../Personnel/images/animat-lightbulb-color.gif" style="height:100px;width:100px;margin-right:-40%" />
+            
+            <div style="margin-left:10%">
+                <a style="color:white;margin-right:20px" href="../Personnel/downloadApp.aspx" class="fl welcome_info">下载APP</a>
+                <a style="color:white" href="../Personnel/downloadExcel.aspx" class="fl welcome_info">下载Excel</a>
+            </div>
+            <img src="../Personnel/images/animat-lightbulb-color.gif" style="height:100px;width:100px;" />
             <%--<img src="../Personnel/images/animat-pencil-color.gif" style="height:100px;width:100px;margin-right:-30%" />--%>
             <div style="width:18%" >
                 <span class="fl welcome_info" style="color:white;font-weight:bold;font-size:20px;float:right">你好！</span>
@@ -189,8 +194,6 @@
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerensuode.aspx','个人所得税')" title="计税工资=(应税工资*税率)的和,记录该条数据有几条,个人所得税=(代扣个人所得税*税率)的和">个人所得税<img src="../Personnel/images/gerensuodeshui.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gongzitiao.aspx','工资条')">工资条<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/shuomingshu.aspx','使用说明')">下载使用说明<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
-                    <li><a href="#" class="leftNav_li" onclick="a('../Personnel/downloadApp.aspx','下载APP')">下载APP<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
-                    <li><a href="#" class="leftNav_li" onclick="a('../Personnel/downloadExcel.aspx','下载Excel')">下载Excel<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
                 </ul>
             </div>
         

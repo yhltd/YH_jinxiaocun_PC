@@ -203,8 +203,13 @@
                 <img class="logo" src="Personnel/images/tm_logo.png"/>
                 云合未来进销存
             </a>
+
+            <div class="function_top" style="margin-left:50%">
+                <a style="color:white;margin-right:20px" href="./jxc_app.aspx" class="bt_top" style="color:white">下载APP</a>
+                <a style="color:white" href="./jxc_excel.aspx" class="bt_top" style="color:white">下载Excel</a>
+            </div>
+
             <div class="function_top">
-                
                 <div class="bt_top" id="goUserManager" style="color:white" >用户管理</div>
                 <img src="Images/user.png" style="height:25px;width:25px;position: absolute;top: 2.5%;right: 7%;"/>
                 <div class="bt_top" runat="server" id="userName" style="color:white">

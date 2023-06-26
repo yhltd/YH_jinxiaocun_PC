@@ -119,6 +119,10 @@
     <Content Include="bin\Web.pdb" />
     <Content Include="chu_ku.aspx" />
     <Content Include="ck_san.aspx" />
+    <Content Include="finance\web\view\downloadExcel.aspx" />
+    <Content Include="finance\web\view\downloadApp.aspx" />
+    <Content Include="jxc_excel.aspx" />
+    <Content Include="jxc_app.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="ErrorPage\ErrorPage.aspx" />
     <Content Include="ErrorPage\sErrorPage.aspx" />
@@ -1678,6 +1682,8 @@
     <Content Include="Personnel\bumenxiangqing.aspx" />
     <Content Include="Personnel\bumenxiangqing1.aspx" />
     <Content Include="Personnel\changepwd.aspx" />
+    <Content Include="Personnel\downloadExcel.aspx" />
+    <Content Include="Personnel\downloadApp.aspx" />
     <Content Include="Personnel\shenpi.aspx" />
     <Content Include="Personnel\css\common.css" />
     <Content Include="Personnel\css\gridview.css" />
@@ -1990,6 +1996,34 @@
     </Compile>
     <Compile Include="ck_san.aspx.designer.cs">
       <DependentUpon>ck_san.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\downloadExcel.aspx.cs">
+      <DependentUpon>downloadExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\downloadExcel.aspx.designer.cs">
+      <DependentUpon>downloadExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\downloadApp.aspx.cs">
+      <DependentUpon>downloadApp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\downloadApp.aspx.designer.cs">
+      <DependentUpon>downloadApp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jxc_excel.aspx.cs">
+      <DependentUpon>jxc_excel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jxc_excel.aspx.designer.cs">
+      <DependentUpon>jxc_excel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jxc_app.aspx.cs">
+      <DependentUpon>jxc_app.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jxc_app.aspx.designer.cs">
+      <DependentUpon>jxc_app.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -2615,6 +2649,20 @@
     </Compile>
     <Compile Include="Personnel\changepwd.aspx.designer.cs">
       <DependentUpon>changepwd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\downloadExcel.aspx.cs">
+      <DependentUpon>downloadExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\downloadExcel.aspx.designer.cs">
+      <DependentUpon>downloadExcel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\downloadApp.aspx.cs">
+      <DependentUpon>downloadApp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\downloadApp.aspx.designer.cs">
+      <DependentUpon>downloadApp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Personnel\shenpi.aspx.cs">
       <DependentUpon>shenpi.aspx</DependentUpon>

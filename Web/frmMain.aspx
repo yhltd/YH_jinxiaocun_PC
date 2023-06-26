@@ -227,6 +227,8 @@
                     <li><a href="#" id="g_y" class="leftNav_li" onclick="add_li('g_y','gongyingshang.aspx')" title="供应商资料双击序号可以添加一行">供应商资料</a></li>
                     <li><a href="#" id="l_l" class="leftNav_li" onclick="add_li('l_l','zheng_li_page.aspx')" title="笔记双击序号可以添加一行">笔记</a></li> 
                     <li><a href="#" id="s_m" class="leftNav_li" onclick="add_li('s_m','jxc_shuoming.aspx')">下载使用说明</a></li> 
+                    <li><a href="#" id="A1" class="leftNav_li" onclick="add_li('A1','jxc_app.aspx')">下载APP</a></li> 
+                    <li><a href="#" id="A2" class="leftNav_li" onclick="add_li('A2','jxc_excel.aspx')">下载Excel</a></li> 
                 </ul>
             </div>
             <div class="mainCon1">

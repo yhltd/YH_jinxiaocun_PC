@@ -189,6 +189,8 @@
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gerensuode.aspx','个人所得税')" title="计税工资=(应税工资*税率)的和,记录该条数据有几条,个人所得税=(代扣个人所得税*税率)的和">个人所得税<img src="../Personnel/images/gerensuodeshui.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/gongzitiao.aspx','工资条')">工资条<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav_li" onclick="a('../Personnel/shuomingshu.aspx','使用说明')">下载使用说明<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav_li" onclick="a('../Personnel/downloadApp.aspx','下载APP')">下载APP<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav_li" onclick="a('../Personnel/downloadExcel.aspx','下载Excel')">下载Excel<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
                 </ul>
             </div>
         

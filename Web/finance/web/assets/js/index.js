@@ -187,6 +187,14 @@ var left_data = [{
         iconCls: 'icon-shiyongshuoming',
         url: 'instructions.aspx'
     }, {
+        text: '下载APP',
+        iconCls: 'icon-shiyongshuoming',
+        url: 'downloadApp.aspx'
+    }, {
+        text: '下载Excel',
+        iconCls: 'icon-shiyongshuoming',
+        url: 'downloadExcel.aspx'
+    }, {
         text: '数据空间',
         iconCls: 'icon-shujukongjian',
         url: 'space.aspx'

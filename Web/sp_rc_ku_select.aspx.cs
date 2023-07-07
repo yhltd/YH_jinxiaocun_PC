@@ -150,7 +150,7 @@ namespace Web
             {
                 Session["printList"] = OnlineShow_datas1;
 
-                Response.Redirect("~/RDLC/sp_rc_ku_select_dayin.aspx");
+                Response.Redirect("./RDLC/sp_rc_ku_select_dayin.aspx");
             }
 
         }

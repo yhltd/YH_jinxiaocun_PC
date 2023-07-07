@@ -120,7 +120,7 @@ namespace Web.Personnel
                 //str = conn.BeginTransaction();
                 string moth = "";
                 if (Convert.ToInt32(Request.Form["TextBox2"]) < 10) {
-                    moth = Request.Form["TextBox2"];
+                    moth = "0" + Request.Form["TextBox2"];
                 }
                 string sqlStr = "insert into gongzi_kaoqinjilu (year,moth,name,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,AE,AF,AG,AH,AI,AJ,AK,AL,AM,AN,AO) VALUES ('" + Request.Form["TextBox1"] + "','" + moth + "','" + Request.Form["TextBox3"] + "',";
                 for (int i = 4; i < 35; i++)

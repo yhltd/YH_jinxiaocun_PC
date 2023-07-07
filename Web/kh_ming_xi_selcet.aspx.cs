@@ -86,8 +86,17 @@ namespace Web
                 string gong_huo = Context.Request["gonghuo"];
                 Session["shouhuo"] = gong_huo;
                 MingxiModel mingxi = new MingxiModel();
-                List<MingXiItem> list = mingxi.getChMingxi(gong_huo, user.gongsi);
-                Session["rk_mx_select"] = list;
+                if (gong_huo.Equals("请选择"))
+                {
+                    List<MingXiItem> list = mingxi.getChMingxi_all(user.gongsi);
+                    Session["rk_mx_select"] = list;
+                }
+                else
+                {
+                    List<MingXiItem> list = mingxi.getChMingxi(gong_huo, user.gongsi);
+                    Session["rk_mx_select"] = list;
+                }
+                
             }
             catch
             {
@@ -125,7 +134,7 @@ namespace Web
             {
                 Session["printList"] = OnlineShow_datas1;
 
-                Response.Redirect("~/RDLC/kh_ming_xi_selcet_dayin.aspx");
+                Response.Redirect("./RDLC/kh_ming_xi_selcet_dayin.aspx");
             }
 
         }

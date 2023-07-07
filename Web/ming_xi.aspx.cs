@@ -69,7 +69,7 @@ namespace Web
         protected void toExcel(object sender, EventArgs e)
         {
 
-            List<yh_jinxiaocun_mingxi> list = ri_qi_select(string.Empty, string.Empty, string.Empty, user.gongsi);
+            List<yh_jinxiaocun_mingxi> list = ri_qi_select(Context.Request["time_qs"].ToString(), Context.Request["time_jz"].ToString(), Context.Request["order_number"].ToString(), user.gongsi);
             if (list != null)
             {
                 StringWriter sw = new StringWriter();

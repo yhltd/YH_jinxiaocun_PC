@@ -35,7 +35,7 @@
                     <HeaderStyle Wrap="False" />
                         <ItemStyle HorizontalAlign="Center" Wrap="False" ></ItemStyle>
                 </asp:ButtonField>
-                <asp:CommandField ShowDeleteButton="True" ButtonType="Button" ItemStyle-CssClass="bt_upd2">
+                <asp:CommandField ShowDeleteButton="True" ButtonType="Button" ItemStyle-CssClass="bt_upd2" DeleteText="删除">
                     <ControlStyle Width="50px"/>
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />

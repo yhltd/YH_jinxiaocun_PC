@@ -146,7 +146,7 @@
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:CommandField>--%>
-                <asp:commandfield  buttontype="button" showdeletebutton="true" itemstyle-cssclass="bt_upd2">
+                <asp:commandfield  buttontype="button" showdeletebutton="true" itemstyle-cssclass="bt_upd2" SelectText="删除" DeleteText="删除">
                     <controlstyle font-bold="true" width="50px" />
                     <headerstyle horizontalalign="center" />
                     <itemstyle horizontalalign="center" />

@@ -197,7 +197,7 @@ namespace Web.Personnel
             }
             else
             {
-
+                Response.Write("<script>alert('姓名不能为空！'); </script>");
             }
         }
         protected void Button2_Click(object sender, EventArgs e)

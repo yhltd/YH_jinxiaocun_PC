@@ -98,12 +98,12 @@
     <span class="video-shut" id="video-shut" onclick="close_video()">
         <img src="static/img/close.png" style="width: 28px; height: 28px;" >
     </span>
-        <video id="video" controls src="static/video/订单.mp4" width="700" height="400"></video>
+        <video id="video" controls src="./static/video/订单.mp4" width="700" height="400"></video>
     </div>
 
     <div id="order" style="display: none;" :style="{display: 'block'}">
         <el-container>
-            <el-main style="position: relative;overflow: auto;height:453px">
+            <el-main style="position: relative;overflow: auto">
                 <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="5">
                         <el-input placeholder="产品名称" v-model="productName" clearable></el-input>

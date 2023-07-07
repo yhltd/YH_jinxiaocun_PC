@@ -50,9 +50,20 @@
             top: 0;
         }
 
+        .bk_bt2 {
+            height: 25px;
+            text-align: center;
+            background-color: #2F4056;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+        }
+
         .auto-style1 {
             text-align: center;
-            height: 40px;
+            height: 35px;
             background-color: white;
             border: 0.5px solid #f2f2f2;
             font-size: 4px;
@@ -88,7 +99,7 @@
         }
 
         .bottom {
-            top: 49px;
+            top: 25px;
         }
 
         .top-fun-item {
@@ -125,25 +136,25 @@
             <div class="table_div">
                 <table cellspacing="0" cellpadding="0" class="biao_ge" name="bg_row" style="width: 100%">
                     <tr id="Tr1">
-                        <th colspan="1" rowspan="2" class="bk_bt">序号</th>
-                        <th colspan="1" rowspan="2" class="bk_bt" style="width: 130px">商品代码</th>
-                        <th colspan="1" rowspan="2" class="bk_bt" style="width: 150px">商品名称</th>
-                        <td colspan="1" rowspan="2" class="bk_bt">商品类别</td>
-                        <td colspan="2" rowspan="1" class="bk_bt" style="width: 140px">期初</td>
-                        <td colspan="2" rowspan="1" class="bk_bt" style="width: 140px">入库</td>
-                        <td colspan="2" rowspan="1" class="bk_bt" style="width: 140px">出库</td>
-                        <td colspan="2" rowspan="1" class="bk_bt" style="width: 140px">结存</td>
-                        <th colspan="1" rowspan="2" class="bk_bt">边缘存量</th>
+                        <th colspan="1" rowspan="2" class="bk_bt2">序号</th>
+                        <th colspan="1" rowspan="2" class="bk_bt2" style="width: 130px">商品代码</th>
+                        <th colspan="1" rowspan="2" class="bk_bt2" style="width: 150px">商品名称</th>
+                        <td colspan="1" rowspan="2" class="bk_bt2">商品类别</td>
+                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 140px">期初</td>
+                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 140px">入库</td>
+                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 140px">出库</td>
+                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 140px">结存</td>
+                        <th colspan="1" rowspan="2" class="bk_bt2">边缘存量</th>
                     </tr>
                     <tr id="dj_yh">
-                        <th class="bk_bt bottom" style="width: 70px">数量</th>
-                        <th class="bk_bt bottom" style="width: 70px">金额</th>
-                        <th class="bk_bt bottom" style="width: 70px">数量</th>
-                        <th class="bk_bt bottom" style="width: 70px">金额</th>
-                        <th class="bk_bt bottom" style="width: 70px">数量</th>
-                        <th class="bk_bt bottom" style="width: 70px">金额</th>
-                        <th class="bk_bt bottom" style="width: 70px">结存</th>
-                        <th class="bk_bt bottom" style="width: 70px">金额</th>
+                        <th class="bk_bt2 bottom" style="width: 70px">数量</th>
+                        <th class="bk_bt2 bottom" style="width: 70px">金额</th>
+                        <th class="bk_bt2 bottom" style="width: 70px">数量</th>
+                        <th class="bk_bt2 bottom" style="width: 70px">金额</th>
+                        <th class="bk_bt2 bottom" style="width: 70px">数量</th>
+                        <th class="bk_bt2 bottom" style="width: 70px">金额</th>
+                        <th class="bk_bt2 bottom" style="width: 70px">结存</th>
+                        <th class="bk_bt2 bottom" style="width: 70px">金额</th>
                     </tr>
                     <%
                

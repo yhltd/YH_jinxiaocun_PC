@@ -180,7 +180,7 @@ namespace Web
             }
             Session["printList"] = OnlineShow_datas1;
 
-            Response.Redirect("~/RDLC/frm_ReportForm.aspx");
+            Response.Redirect("./RDLC/frm_ReportForm.aspx");
 
         }
     }

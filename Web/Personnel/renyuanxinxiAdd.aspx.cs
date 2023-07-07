@@ -159,6 +159,7 @@ namespace Web.Personnel
                 {
                     Response.Write("<script>alert('身份证号格式错误！'); </script>");
                     yanzheng = 1;
+
                     //Label14.Text = "* 格式错误";
                 }
                 else

@@ -94,7 +94,7 @@
 
     <div id="paibanbiao_renyuan" style="display: none;" :style="{display: 'block'}">
         <el-container>
-            <el-main style="position: relative;overflow: auto">
+            <el-main >
                 <el-row :gutter="10" style="margin-bottom: 20px">
                     <el-col :span="6">
                         <el-input v-model="staff_name" placeholder="姓名" clearable></el-input>
@@ -113,7 +113,7 @@
                 </el-row>
                 <el-table
                     :data="list"
-                    :max-height="tableHeight"
+                    :height="tableHeight"
                     v-loading="loading"    
                     style="width: 100%;margin-top: 10px;font-size:15px"
                 >
@@ -252,6 +252,7 @@
         new Vue({
             el: '#paibanbiao_renyuan',
             data: {
+                tableHeight: window.innerHeight -120,
                 now: 1,
                 size: 20,
                 total: 0,
@@ -264,7 +265,6 @@
                 department: [],
                 staff_name: '',
                 staff_banci:'',
-                tableHeight:'',
                 paibanbiao_renyuan: {},
                 rules: {
                     staff_name: [
@@ -452,7 +452,6 @@
             mounted: function () {
                 this.getList();
                 this.getDepartment();
-                this.tableHeight = window.innerHeight - 1090;
             }
         })
     </script>

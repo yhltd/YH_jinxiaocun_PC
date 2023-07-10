@@ -75,6 +75,12 @@
           cursor: pointer;
           /*display: none;*/
         }
+
+        .el-table {
+            /*position: absolute;*/
+            min-width: 1300px;
+            overflow: auto;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +111,7 @@
                 </el-row>
                 <el-table
                     :data="list"
+                    :height="tableHeight"
                     v-loading="loading"    
                     style="width: 100%;margin-top: 10px;font-size:15px"
                 >
@@ -220,6 +227,7 @@
          new Vue({
              el: '#userInfo',
              data: {
+                 tableHeight: window.innerHeight - 120,
                  now: 1,
                  size: 20,
                  total: 0,

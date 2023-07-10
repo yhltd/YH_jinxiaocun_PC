@@ -116,6 +116,7 @@
                 </el-row>
                 <el-table
                     :data="infoList"
+                    :height="tableHeight"
                     v-loading="loading"
                     style="width: 100%;margin-top: 10px;font-size:15px"
                 >
@@ -481,6 +482,7 @@
                     value: '周',
                     label: '周'
                 }],
+                tableHeight:window.innerHeight-160,
                 now: 1,
                 size: 20,
                 total: 0,

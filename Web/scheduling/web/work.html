@@ -209,7 +209,7 @@
                         </el-button-group>
                     </el-col :span="5">
                 </el-row>-->
-                <el-table :data="list" :row-style="rowIsInsert" style="font-size:15px;">
+                <el-table :data="list" :height="tableHeight" :row-style="rowIsInsert" style="font-size:15px;">
                     <el-table-column 
                         v-for="(item,index) in tableHead" 
                         :key="index" 
@@ -559,7 +559,7 @@
                 rowList: [],
                 orderId: '',
                 loading: false,
-
+                tableHeight:window.innerHeight-160,
                 tableHead: [],
 
                 addVisible: false,

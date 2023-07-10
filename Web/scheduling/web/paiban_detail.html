@@ -113,6 +113,7 @@
                 </el-row>
                 <el-table
                     :data="detailList"
+                    :height="tableHeight"
                     v-loading="loading"    
                     style="width: 100%;margin-top: 10px;font-size:15px"
                 >
@@ -185,6 +186,7 @@
         new Vue({
             el: '#paiban_detail',
             data: {
+                tableHeight: window.innerHeight - 120,
                 now: 1,
                 size: 20,
                 total: 0,

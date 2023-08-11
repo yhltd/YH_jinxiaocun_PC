@@ -1403,6 +1403,8 @@
     <Content Include="Myadmin\images\ui-bg_error.gif" />
     <Content Include="Myadmin\js\index.js" />
     <Content Include="Myadmin\js\jquerysession.js" />
+    <Content Include="Myadmin\js\qrcode.js" />
+    <Content Include="Myadmin\js\qrcode.min.js" />
     <Content Include="Myadmin\logout.aspx" />
     <Content Include="Myadmin\changepassword.aspx" />
     <Content Include="Myadmin\js\jquery-1.7.1.min.js" />

@@ -28,6 +28,22 @@ namespace Web.Server
             }
         }
 
+        public List<yh_jinxiaocun_mingxi> checkOrder_mingxi(string order_id, string gongsi)
+        {
+            using (ServerEntities sen = new ServerEntities())
+            {
+                var @params = new MySqlParameter[]
+                {
+                    new MySqlParameter("@order", order_id),
+                    new MySqlParameter("@gongsi", gongsi)
+                };
+
+                string sql = "select * from yh_jinxiaocun_mingxi where orderid = @order and gs_name = @gongsi";
+                var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql, @params);
+                return result.ToList();
+            }
+        }
+
         public int add(items item, string company, string name, string mxtype)
         {
             using (ServerEntities sen = new ServerEntities())

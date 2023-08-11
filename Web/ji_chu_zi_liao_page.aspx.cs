@@ -131,7 +131,7 @@ namespace Web
                     zaji.dan_wei = Context.Request["dan_wei" + i].ToString();
                     zaji.shou_huo = Context.Request["shou_huo" + i].ToString();
                     zaji.gong_huo = Context.Request["Gong_huo" + i].ToString();
-                    zaji.mark1 = Context.Request["tupian" + i].ToString();
+                    zaji.mark1 = "";
                     zaji.zh_name = user.name;
                     zaji.gs_name = user.gongsi;
                     list_jczl.Add(zaji);

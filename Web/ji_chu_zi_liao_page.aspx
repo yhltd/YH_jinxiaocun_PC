@@ -7,6 +7,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
+    <script src="Myadmin/js/qrcode.min.js"></script>
     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
         
@@ -85,10 +86,84 @@
             });
         })
 
-        $(document).ready(function () {
-            var row = 1;
-            $("#dj_yh").click(function () {
+        //$(document).on("click", "#qr_print", function () {
+        //    var oldstr = window.document.body.innerHTML;
+        //    var newstr = '<table>'
+            
+        //    var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
+        //    console.log(elText)
+        //    for(var i=1; i<elText.length; i++){
+        //        this_text1 = elText.eq(i).children().eq(1)[0].innerHTML
+        //        this_text2 = elText.eq(i).children().eq(9)[0].innerHTML
+        //        this_text2 = this_text2.replace("100","380")
+        //        this_text = '<tr><td>' + this_text1 + '</td><td>' + this_text2 + '</td></tr>'
+        //        newstr = newstr + this_text
+        //        console.log(this_text)
+        //    }
+        //    newstr = newstr + "</table>"
+        //    document.body.innerHTML = newstr;
+        //    window.print();
+        //    document.body.innerHTML = oldstr;
+        //    window.location.reload();
+        //})
 
+
+        $(document).on("click", "#qr_print", function () {
+            var oldstr = window.document.body.innerHTML;
+            var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
+            console.log(elText)
+            var this_list = []
+            for(var i=1; i<elText.length; i++){
+                this_text1 = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue
+                this_text2 = elText.eq(i).children().eq(2).children().eq(1).prevObject[0].defaultValue
+                this_base64 = elText.eq(i).children().eq(9).children().eq(0).children().eq(1)[0].currentSrc
+                console.log(this_text1)
+                console.log(this_text2)
+                console.log(this_base64)
+                this_list.push({
+                    this_text1: this_text1,
+                    this_text2: this_text2, 
+                    this_base64: this_base64,
+                })
+            }
+            console.log(this_list)
+
+            var newstr = '<canvas class="canvas" id="outCanvas" width="600" height="' + ((10 * 1) + this_list.length * 500) + '"></canvas>' + '<image id="Image" style="width:380px,height:380px" show="false"></image>'
+            document.body.innerHTML = newstr;
+
+            var image = document.querySelector('#Image')
+            var canvas = document.querySelector('#outCanvas')
+            var ctx = canvas.getContext('2d');
+
+            ctx.font = "35px Arial";
+
+            for(var i=0; i<this_list.length; i++){
+                image.src = this_list[i].this_base64
+                ctx.drawImage(image, 100,10 + i*500,380,380);
+                ctx.fillText("商品代码：" + this_list[i].this_text1, 50, 440+i*500);
+                ctx.fillText("商品名称：" + this_list[i].this_text2, 50, 490+i*500);
+            }
+            image.remove();
+            window.print();
+            document.body.innerHTML = oldstr;
+            window.location.reload();
+        })
+
+        $(document).ready(function () {
+            
+            var row = 1;
+            var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
+            for(var i=1; i<elText.length; i++){
+                this_text = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue
+                var this_id = 'qrcode' + (i-1)
+                var qrcode = new QRCode(document.getElementById('' + this_id), {
+                    width : 100,
+                    height : 100
+                });
+                qrcode.makeCode(this_text);
+            }
+            $("#dj_yh").click(function () {
+                
                 var rowLength = $("#biao_ge tr").length;
 
                 //var insertStr = "<tr id='del_row" + row + "' >"
@@ -109,6 +184,7 @@
                                + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='dan_wei" + row + "' ></input></td>"
                                + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='shou_huo" + row + "' ></input></td>"
                                + "<td class='bg_bj_sj'><input type='text'  class='input_tr' name='gong_huo" + row + "' ></input></td>"
+                               + "<td class='bg_bj_sj'></td>"
                                + "<td class='bg_bj_sj'></td>"
                                + "<td class='bg_bj_sj'></td>"
                                + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button'  style='width:50px' value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
@@ -216,6 +292,7 @@
                 <asp:Button OnClick="jczl_tj" ID="dj_row" class="input_tr_tj" Text="提交" runat="server" />
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_tj" Text="删除" runat="server" />
                 <asp:Button ID="Button2" class="input_tr_tj" OnClick="jczl_select_load" Text="刷新数据" runat="server" />
+                <input type="button" id="qr_print" class="input_tr_tj" value="打印二维码">
                 <input type="file" id="file" hidden="hidden">
             </div>
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
@@ -231,6 +308,7 @@
                     <th class="auto-style1" style="width: 155px">供应名称</th>
                     <th class="auto-style1" style="width: 155px">图片</th>
                     <th class="auto-style1" style="width: 145px">上传图片</th>
+                    <th class="auto-style1" style="width: 105px">二维码</th>
                     <th class="auto-style1" style="width: 90px">功能</th>
                 </tr>
                 <%
@@ -262,7 +340,9 @@
                         <img style="width: 60px;"  src="<%=jczj_select[i].mark1%>"/></td>
                     <td class="bg_bj">
 <%--                        <asp:FileUpload  name="tupian<%=i%>" runat="server" accept="image/*" style="color: transparent;width:70px" />--%>
-                        <input type="button" name="tupian<%=i%>" value="上传图片" onclick="fileUp(<%=jczj_select[i].id%>);" style="color: transparent;width:70px"  id="Text6" accept="image/*" /></td>
+                        <input type="button" name="tupian<%=i%>" value="上传图片" onclick="fileUp(<%=jczj_select[i].id%>);" class="input_tr_tj"  id="Text6" accept="image/*" /></td>
+                    <td class="bg_bj">
+                        <div id="qrcode<%=i%>" style="width:60px;" name="<%=jczj_select[i].sp_dm%>"></div></td>
                     <td class="bg_bj">
                         <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i%>" value="<%=jczj_select[i].id%>" /><input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
                 </tr>

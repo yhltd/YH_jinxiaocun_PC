@@ -11,6 +11,42 @@
     <script src="/Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
+
+        function Enter(e) {
+            if (e.keyCode == 13) {
+                alert("触发")
+                select_btn = document.getElementById("Button1")
+                var test = document.getElementById("order_code_text").value;
+                console.log(test)
+                $.ajax({
+                    type: 'Post',
+                    url: 'chu_ku.aspx',
+                    data: {
+                        act: 'checkOrder_mingxi',
+                        order_id: test,
+                    },
+                    dataType: 'json',
+                    success: function (result) {
+                        var mingxi_list = result;
+                        console.log(mingxi_list)
+                        var sql = ""
+                        for (var i = 0; i < mingxi_list.length; i++) {
+                            if (mingxi_list[i].sp_dm != null && mingxi_list[i].sp_dm != "") {
+                                if (sql == "") {
+                                    sql = "where sp_dm ='" + mingxi_list[i].sp_dm + "'"
+                                } else {
+                                    sql = sql + "or sp_dm ='" + mingxi_list[i].sp_dm + "'"
+                                }
+                            }
+                        }
+                        document.getElementById("shangpindaima").value = sql
+                        select_btn.onclick();
+                    }
+                });
+                
+            }
+        }
+
     </script>
     <title></title>
     <style type="text/css">
@@ -114,7 +150,7 @@
             <div class="top-fun">
                 <div class="top-fun-item">
                     <label class="top-text">商品代码：</label>
-                    <input type="text" class="input_select" name="code" />
+                    <input id="shangpindaima" type="text" class="input_select" name="code" />
                     <label class="top-text">起始日期：</label>
                     <%--<input type="date" class="time_select" name="time_start" />--%>
                     <asp:TextBox ID="txtCompletionTime" runat="server"
@@ -125,11 +161,12 @@
                      <asp:TextBox ID="txttime_end" runat="server"
                         class="time_select" onClick="WdatePicker()" name="time_end" OnTextChanged="txtCompletionTime_TextChanged" autocomplete="off" AutoCompleteType="Disabled"></asp:TextBox>
             
-                    <asp:Button ID="Button1" class="input_tr" OnClick="jxc_select" Text="查询" runat="server" />
-                    <asp:Button ID="Button2" class="input_tr" OnClick="jxc_load" Text="刷新数据" runat="server" />
+                    <asp:Button ID="Button1" class="input_tr" OnClick="jxc_select" Text="查询" runat="server" UseSubmitBehavior="false"/>
+                    <asp:Button ID="Button2" class="input_tr" OnClick="jxc_load" Text="刷新数据" runat="server" UseSubmitBehavior="false"/>
+                    <input id='order_code_text' class='input_select' autocomplete='off' placeholder='扫码订单二维码' style="margin-left:10px;" onkeypress="Enter(event)"/>
                 </div>
                 <div class="top-fun-item">
-                    <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" />
+                    <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" UseSubmitBehavior="false"/>
                 </div>
             </div>
 
@@ -195,11 +232,11 @@
                 </table>
             </div>
             <div style="width: 300px; height: 70px; display: flex; justify-content: space-around; align-items: center;">
-                <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
-                <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
+                <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" UseSubmitBehavior="false"/>
+                <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" UseSubmitBehavior="false"/>
                 <asp:Label runat="server" ID="lblCurrentPage" Style="font-weight: bold"></asp:Label>
-                <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" />
-                <asp:Button CssClass="page_bt" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
+                <asp:Button CssClass="page_bt" ID="xia_ye" OnClick="xia_ye_Click" Text="下一页" runat="server" UseSubmitBehavior="false"/>
+                <asp:Button CssClass="page_bt" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" UseSubmitBehavior="false"/>
             </div>
         </div>
     </form>

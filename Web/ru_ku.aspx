@@ -12,6 +12,7 @@
     <script>
 
         var row = 1;
+        var del_hang = {};
         var list = [];
         var ruku = {
             gonghuo: "",
@@ -158,6 +159,7 @@
         }
 
         function del_row(row) {
+            del_hang[row] = ""
             $("#del_row" + row + "").remove();
         }
 
@@ -269,6 +271,78 @@
         function getGongguo(e) {
             ruku.gonghuo = e
         }
+
+        function Enter(e) {
+            if (e.keyCode == 13) {
+                var test = document.getElementById("qr_code_text").value;
+                console.log(test)
+                $("#last_code").text("本次扫描结果：" + test)
+                var myList = JSON.parse(list)
+                console.log(myList)
+                console.log(row)
+                if (test == "") {
+                    return;
+                }
+                
+                var panduan = false
+                for (var i = 1; i < row; i++) {
+                    var daima_id = "sp_dm" + i
+                    if (!del_hang.hasOwnProperty(i)) {
+                        var this_daima_text = document.getElementById('' + daima_id).value;
+                        this_daima_text = myList[this_daima_text].sp_dm
+                        console.log(this_daima_text)
+                        if (this_daima_text == test) {
+                            panduan = true
+                            var num_id = "num" + i
+                            var this_num = document.getElementById('' + num_id).value;
+                            if (this_num == "") {
+                                this_num = 0
+                            }
+                            this_num = this_num * 1 + 1
+                            document.getElementById('' + num_id).value = this_num
+                            document.getElementById("qr_code_text").value = ""
+                            break;
+                        }
+                    }
+                }
+                if (panduan == false) {
+                    var newTr = ""
+                    var xiabiao = "空"
+                    for (var j = 0; j < myList.length; j++) {
+                        if (myList[j].sp_dm == test) {
+                            xiabiao = j;
+                            break;
+                        }
+                    }
+                    if (xiabiao != '空') {
+
+                        newTr += "<tr id='del_row" + row + "'>"
+                        newTr += "<td class='item_td'><input type='checkbox' class='checkBox_list' onclick='choice_ruku(this.value," + row + ")' id='checkbox" + row + "' name='checkbox" + row + "' value='0'></checkbox></td>"
+                        newTr += "<td class='item_td'>" + row + "</td>"
+                        newTr += "<td class='item_td' id='sp_name" + row + "'>" + myList[xiabiao].name + "</td>"
+                        newTr += "<td class='item_td'>"
+                        newTr += "<select class='input_tr' id='sp_dm" + row + "' name='sp_dm" + row + "' onchange='bhhq(" + row + ")'>"
+                        newTr += "<option value='" + xiabiao + "'>" + myList[xiabiao].sp_dm + "</option>"
+                        for (var i = 0; i < myList.length; i++) {
+                            newTr += "<option class='option_list' value='" + i + "'>" + myList[i].sp_dm + "</option>"
+                        }
+                        newTr += "</select></td>"
+                        newTr += "<td class='item_td' id='sp_cplb" + row + "'>" + myList[xiabiao].lei_bie + "</td>"
+                        newTr += "<td class='item_td' id='sp_cpsj" + row + "'>" + myList[xiabiao].dan_wei + "</td>"
+                        newTr += "<td class='item_td' id='sp_cpsl" + row + "'><input id='num" + row + "' name='num" + row + "' type='number' autocomplete='off' class='table_input' placeholder='总数量：' value='" + 1 + "'/></td>"
+                        newTr += "<td class='item_td' id='sp_cpprice" + row + "'><input id='price" + row + "' name='price" + row + "' type='number' autocomplete='off' class='table_input'/></td>"
+                        newTr += "<td class='item_td'><input type='button' class='rk_btu' value='删除' onclick='del_row(" + row + ")'/><input type='text' id='check" + row + "' hidden='hidden' name='check" + row + "' /></td>"
+                        newTr += "</tr>"
+                        $("#biao_ge").append(newTr);
+                        row++;
+                        document.getElementById("qr_code_text").value = ""
+                    } else{
+                        alert("基础配置中无此商品代码")
+                        document.getElementById("qr_code_text").value = ""
+                    }
+                }
+            }
+        };
 
     </script>
     <style type="text/css">
@@ -403,8 +477,9 @@
                 <input id="ru_cx" class="select_input" autocomplete="off" oninput="bindInput_select(this.value)" placeholder="按商品名称/商品代码搜索" />
                 <input id="ru_bt" class="rk_bt" type="button" value="入库"/>
                 <input id="shuaxin" class="rk_bt" type="button" value="刷新"/>               
-                <asp:Button ID="btn_print" class="button" onmouseover="this.className='ui-btn ui-btn-search-hover'"
-                                onmouseout="this.className='button'" runat="server" Text="e打印" OnClick="toExcel" Width="10%" Height="30px" />
+                <asp:Button ID="btn_print" class="rk_bt" runat="server" Text="打印" OnClick="toExcel" UseSubmitBehavior="false"/>
+                <input id='qr_code_text' class='select_input' autocomplete='off' placeholder='扫描商品二维码' style="margin-left:10px;width:150px" onkeypress="Enter(event)"/>
+                <div id="last_code" style="margin-left:10px;"></div>
             </div> 
             <div class="d-main" id="table_div" style="width:100%;overflow:scroll;">
 

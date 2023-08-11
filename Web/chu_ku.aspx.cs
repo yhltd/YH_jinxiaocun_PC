@@ -56,6 +56,9 @@ namespace Web
                     case "insert":
                         result = insert_chuku(Request["infos"].ToString());
                         break;
+                    case "checkOrder_mingxi":
+                        result = checkOrder_mingxi(Request["order_id"]);
+                        break;
                 }
                 if (!result.Equals(string.Empty))
                 {
@@ -77,6 +80,22 @@ namespace Web
                 MingxiModel mingXiModel = new MingxiModel();
                 string result = mingXiModel.checkOrder_id(order_id, user.gongsi);
                 return result;
+            }
+            catch
+            {
+                return "500";
+            }
+        }
+
+
+        public static string checkOrder_mingxi(string order_id)
+        {
+            try
+            {
+                MingxiModel mingXiModel = new MingxiModel();
+                List<yh_jinxiaocun_mingxi> result = mingXiModel.checkOrder_mingxi(order_id, user.gongsi);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                return js.Serialize(result);
             }
             catch
             {

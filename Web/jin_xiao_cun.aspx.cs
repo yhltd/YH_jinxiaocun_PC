@@ -111,9 +111,15 @@ namespace Web
 
             time_start = txtCompletionTime.Text.ToString();
             time_end = txttime_end.Text.ToString();
-
-            Session["jxc_z_select"] = stock.jxc_select(user.gongsi, code, time_start, time_end);
-          
+            if (code.IndexOf("where ") != -1)
+            {
+                Session["jxc_z_select"] = stock.jxc_select_qrcode(user.gongsi, code);
+            }
+            else
+            {
+                Session["jxc_z_select"] = stock.jxc_select(user.gongsi, code, time_start, time_end);
+            }
+            
         }
 
         protected void shou_ye_Click(object sender, EventArgs e)

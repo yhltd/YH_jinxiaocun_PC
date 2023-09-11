@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -11,6 +14,9 @@ namespace Web.Personnel
 {
     public partial class renyuanxinxi : System.Web.UI.Page
     {
+        SqlConnection conn = null;
+        SqlDataReader sqlstr = null;
+        SqlCommand cmd = null;
         string[] str = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -160,6 +166,26 @@ namespace Web.Personnel
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            string conString = ConfigurationManager.AppSettings["yao"];
+            conn = new SqlConnection(conString);  //数据库连接。
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+            string sql = "select count(id) from gongzi_renyuan where L ='" + Session["gs_name"].ToString() + "';";
+            cmd = new SqlCommand(sql, conn);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            if (!Session["userNum"].ToString().Equals("")) 
+            {
+                int thisNum = Convert.ToInt32(Session["userNum"].ToString());
+                if (thisNum <= count)
+                {
+                    Response.Write("<script>alert('已有账号数量过多，请删除无用账号后再试！');</script>");
+                    return;
+                }
+            }
+            
+
             Server.Transfer("../Personnel/renyuanxinxiAdd.aspx?添加,");
         }
 

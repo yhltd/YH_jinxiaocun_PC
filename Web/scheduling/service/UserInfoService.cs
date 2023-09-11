@@ -187,12 +187,36 @@ namespace Web.scheduling
         }
 
         /// <summary>
+        /// 查询user_info
+        /// </summary>
+        /// <param name="nowPage">当前页</param>
+        /// <param name="pageCount">每页显示行数</param>
+        /// <returns></returns>
+        public List<user_info> getUserNum()
+        {
+            user = TokenUtil.getToken();
+            string company = user.company;
+            List<user_info> pageList = udo.getUserNum(company);
+            return pageList;
+        }
+
+        /// <summary>
+        /// 新增账号
+        /// </summary>
+        /// <returns></returns>
+        public string getCompany()
+        {
+            return user.company;
+        }
+
+        /// <summary>
         /// 新增账号
         /// </summary>
         /// <returns></returns>
         public Boolean save(user_info user_info)
         {
             user = TokenUtil.getToken();
+
             user_info.company = user.company;
             return udo.add<user_info>(user_info) != null;
         }

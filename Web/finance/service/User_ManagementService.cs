@@ -45,6 +45,18 @@ namespace Web.finance.service
             return financePage;
         }
 
+        public List<User_ManagementItem> getUserNumService(List<User_ManagementItem> financePage)
+        {
+            //获取pageList
+            financePage = user_managementmodel.getUserNum(financePage, account.company);
+            return financePage;
+        }
+
+        public string getCompanyService()
+        {
+            return account.company;
+        }
+
         public FinancePage<User_ManagementItem> queryListService(FinancePage<User_ManagementItem> financePage,string username)
         {
             //获取pageList

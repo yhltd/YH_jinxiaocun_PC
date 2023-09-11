@@ -67,6 +67,18 @@ namespace Web.Myadmin.HouTai
                 {
                     type = Request["type"].ToString();
                 }
+                if (!Session["userNum"].ToString().Equals(""))
+                {
+                    int thisNum = Convert.ToInt32(Session["userNum"].ToString());
+                    UserModel s = new UserModel();
+                    List<yh_jinxiaocun_user> list = s.getUserNum(user.gongsi);
+                    int count = Convert.ToInt32(list[0]._id);
+                    if (count >= thisNum)
+                    {
+                        Response.Write("<script>alert('已有账号数量过多，请删除无用账号后再试！');</script>");
+                        return;
+                    }
+                }
                 if (!type.Equals(string.Empty) && type.Equals("insert"))
                 {
                     if (Request.Form["Pwd"].ToString().Equals(Request.Form["Qrpwd"].ToString()))

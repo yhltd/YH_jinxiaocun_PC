@@ -55,6 +55,19 @@ namespace Web.scheduling.dao
             }
         }
 
+        public List<user_info> getUserNum(string company)
+        {
+            var @params = new SqlParameter[] { 
+                new SqlParameter("@company", company),
+            };
+            string sql = "select count(id) as id,'' as user_code,'' as password,'' as company,'' as department_name,'' as state from user_info where company='" + company + "'";
+            using (se = new schedulingEntities())
+            {
+                var result = se.Database.SqlQuery<user_info>(sql, @params);
+                return result.ToList();
+            }
+        }
+
         public int Count()
         {
             using (se = new schedulingEntities())

@@ -179,15 +179,16 @@ namespace Web
                         if (id != 0)
                         {
 
-                            conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                            conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;MultipleActiveResultSets=true;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
                             if (conn.State == ConnectionState.Closed)
                             {
                                 conn.Open();
                             }
                             string now = DateTime.Now.ToShortDateString().ToString();
-                            string this_sql = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
+                            string this_sql = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='人事'";
                             cmd = new SqlCommand(this_sql, conn);
                             str = cmd.ExecuteReader();
+                            string thisNum = "";
                             int a = 0;
                             List<string> itemi = new List<string>();
                             while (str.Read())
@@ -205,11 +206,19 @@ namespace Web
                                         return;
                                     }
                                 }
+                                thisNum = str["mark3"].ToString().Trim();
+                                if (!thisNum.Equals(""))
+                                {
+                                    thisNum = thisNum.Split(':')[1];
+                                    thisNum = thisNum.Replace("(","");
+                                    thisNum = thisNum.Replace(")", "");
+                                }
+                                
                             }
-
                             string[] b = gs_name.Split('_');
                             Session["gongsi"] = b[0];
                             Session["id1"] = id;
+                            Session["userNum"] = thisNum;
                             Server.Transfer("../Personnel/index.aspx");
 
                         }
@@ -252,9 +261,10 @@ namespace Web
                             conn.Open();
                         }
                         string now = DateTime.Now.ToShortDateString().ToString();
-                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
+                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
                         cmd = new SqlCommand(sqlStr, conn);
                         str = cmd.ExecuteReader();
+                        string thisNum = "";
                         int a = 0;
                         List<string> itemi = new List<string>();
                         while (str.Read())
@@ -272,8 +282,16 @@ namespace Web
                                     return;
                                 }
                             }
-                        }
+                            thisNum = str["mark3"].ToString().Trim();
+                            if (!thisNum.Equals(""))
+                            {
+                                thisNum = thisNum.Split(':')[1];
+                                thisNum = thisNum.Replace("(", "");
+                                thisNum = thisNum.Replace(")", "");
+                            }
 
+                        }
+                        Session["userNum"] = thisNum;
                         Session.Timeout = 10000;
                         Session["user"] = user;
                         Response.Redirect("~/frmMain.aspx");
@@ -302,9 +320,10 @@ namespace Web
                         conn.Open();
                     }
                     string now = DateTime.Now.ToShortDateString().ToString();
-                    string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='财务'";
+                    string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='财务'";
                     cmd = new SqlCommand(sqlStr, conn);
                     str = cmd.ExecuteReader();
+                    string thisNum = "";
                     int a = 0;
                     List<string> itemi = new List<string>();
                     while (str.Read())
@@ -322,8 +341,16 @@ namespace Web
                                 return;
                             }
                         }
-                    }
+                        thisNum = str["mark3"].ToString().Trim();
+                        if (!thisNum.Equals(""))
+                        {
+                            thisNum = thisNum.Split(':')[1];
+                            thisNum = thisNum.Replace("(", "");
+                            thisNum = thisNum.Replace(")", "");
+                        }
 
+                    }
+                    Session["userNum"] = thisNum;
                     FinanceToken.getFinanceCheckToken().setToken(token);
                     Response.Redirect("../finance/web/view/index.aspx");
                 }
@@ -344,9 +371,10 @@ namespace Web
                             conn.Open();
                         }
                         string now = DateTime.Now.ToShortDateString().ToString();
-                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";
+                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";
                         cmd = new SqlCommand(sqlStr, conn);
                         str = cmd.ExecuteReader();
+                        string thisNum = "";
                         int a = 0;
                         List<string> itemi = new List<string>();
                         while (str.Read())
@@ -364,6 +392,14 @@ namespace Web
                                     return;
                                 }
                             }
+                            thisNum = str["mark3"].ToString().Trim();
+                            if (!thisNum.Equals(""))
+                            {
+                                thisNum = thisNum.Split(':')[1];
+                                thisNum = thisNum.Replace("(", "");
+                                thisNum = thisNum.Replace(")", "");
+                            }
+
                         }
 
                         int ky_rongliang = FinanceSpace.getFinanceSpace().getMark4_all(gs_name,"排产");
@@ -374,7 +410,7 @@ namespace Web
                             Response.Write("<script>alert('您在我公司租用的数据库容量已超上限，该系统暂时无法使用。请联系我公司，官方微信号：1623005800。')</script>");
                             return;
                         }
-
+                        Session["userNum"] = thisNum;
                         Response.Redirect("../scheduling/web/index.html");
                     }
                 }

@@ -291,6 +291,7 @@ function toNew() {
             }
         }, function (result) {
             if (result.code == 200) {
+                console.log(result)
                 alert(result.msg);
                 $('#new').window('close');
                 getList();

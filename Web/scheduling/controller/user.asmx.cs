@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 using System.Web;
 using System.Web.Services;
 using Web.finance.util;
@@ -117,6 +120,46 @@ namespace Web.scheduling.controller
                 }
 
                 uis = new UserInfoService();
+                List<user_info> numList = uis.getUserNum();
+                int num = uis.getUserNum()[0].id;
+
+                SqlConnection conn = null;
+                SqlDataReader str = null;
+                SqlCommand cmd = null;
+
+                conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;MultipleActiveResultSets=true;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                if (conn.State == ConnectionState.Closed)
+                {
+                    conn.Open();
+                }
+                string now = DateTime.Now.ToShortDateString().ToString();
+                string company = uis.getCompany();
+                string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + company + "' and soft_name='排产'";
+                cmd = new SqlCommand(sqlStr, conn);
+                str = cmd.ExecuteReader();
+                string thisNum = "";
+                int a = 0;
+                List<string> itemi = new List<string>();
+                while (str.Read())
+                {
+                    thisNum = str["mark3"].ToString().Trim();
+                    if (!thisNum.Equals(""))
+                    {
+                        thisNum = thisNum.Split(':')[1];
+                        thisNum = thisNum.Replace("(", "");
+                        thisNum = thisNum.Replace(")", "");
+                    }
+                }
+
+                if (!thisNum.Equals(""))
+                {
+                    int userNum = Convert.ToInt32(thisNum);
+                    if (num >= userNum)
+                    {
+                        return ResultUtil.error("已有账号数量过多，请删除无用账号后再试！");
+                    }
+                }
+
                 if (uis.save(user_info))
                 {
 

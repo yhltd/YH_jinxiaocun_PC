@@ -50,6 +50,24 @@ namespace Web.finance.model
             return financePage;
         }
 
+        public List<User_ManagementItem> getUserNum(List<User_ManagementItem> financePage,string company)
+        {
+            //公司
+            var companyParam = new SqlParameter("@company", company);
+
+            string sql = "select count(id) as id from Account where company = '" + company + "'";
+            var result = fin.Database.SqlQuery<User_ManagementItem>(sql);
+            try
+            {
+                financePage = result.ToList();
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+            }
+            return financePage;
+        }
+
         public FinancePage<User_ManagementItem> queryList(FinancePage<User_ManagementItem> financePage, string company,string name)
         {
             //公司

@@ -54,6 +54,16 @@ namespace Web.Server
             }
         }
 
+        public List<yh_jinxiaocun_user> getUserNum(string gongsi)
+        {
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string sql = "select count(_id) as _id from yh_jinxiaocun_user where gongsi = '" + gongsi + "'";
+                var result = sen.Database.SqlQuery<yh_jinxiaocun_user>(sql);
+                return result.ToList();
+            }
+        }
+
         public int delete(string id)
         {
             using (ServerEntities sen = new ServerEntities())

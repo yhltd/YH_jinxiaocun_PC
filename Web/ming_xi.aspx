@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
     <script src="Myadmin/js/qrcode.min.js"></script>
+    <script src="Myadmin/js/JsBarcode.all.min.js"></script>
     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         #biao_ge {
@@ -295,6 +296,50 @@
         })
 
 
+        $(document).on("click", "#barcode_print", function () {
+            var oldstr = window.document.body.innerHTML;
+            var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
+            console.log(elText)
+            var this_list = []
+            for (var i = 1; i < elText.length; i++) {
+                this_text1 = elText.eq(i).children().eq(3).children().eq(1).prevObject[0].defaultValue
+                this_text2 = elText.eq(i).children().eq(10)[0].innerText
+                var canvas = document.createElement("canvas");
+                JsBarcode(canvas, this_text1, { format: "CODE128" });
+                this_base64 = canvas.toDataURL("image/png");
+                console.log(this_text1)
+                console.log(this_text2)
+                console.log(this_base64)
+                this_list.push({
+                    this_text1: this_text1,
+                    this_text2: this_text2,
+                    this_base64: this_base64,
+                })
+            }
+            console.log(this_list)
+
+            var newstr = '<canvas class="canvas" id="outCanvas" width="600" height="' + ((10 * 1) + this_list.length * 500) + '"></canvas>' + '<image id="Image" style="width:380px,height:380px" show="false"></image>'
+            document.body.innerHTML = newstr;
+
+            var image = document.querySelector('#Image')
+            var canvas = document.querySelector('#outCanvas')
+            var ctx = canvas.getContext('2d');
+
+            ctx.font = "35px Arial";
+
+            for (var i = 0; i < this_list.length; i++) {
+                image.src = this_list[i].this_base64
+                ctx.drawImage(image, 100, 10 + i * 500, 380, 380);
+                ctx.fillText("订单号：" + this_list[i].this_text1, 50, 440 + i * 500);
+                ctx.fillText("时间：" + this_list[i].this_text2, 50, 490 + i * 500);
+            }
+            image.remove();
+            window.print();
+            document.body.innerHTML = oldstr;
+            window.location.reload();
+        })
+
+
         $(document).ready(function () {
             var time = new Date();
             var day = ("0" + time.getDate()).slice(-2);
@@ -315,14 +360,30 @@
             var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
             console.log(elText)
             for (var i = 1; i < elText.length; i++) {
-                this_text = elText.eq(i).children().eq(2).children().eq(1).prevObject[0].defaultValue
+                this_text = elText.eq(i).children().eq(3).children().eq(1).prevObject[0].defaultValue
                 console.log(this_text)
                 var this_id = 'qrcode' + (i - 1)
                 var qrcode = new QRCode(document.getElementById('' + this_id), {
                     width: 100,
                     height: 100
                 });
+                var barcode_id = "barcode" + (i - 1)
+                JsBarcode("#barcode" + (i - 1), this_text, {
+                    format: "CODE128",
+                    displayValue: true,
+                    height: 50,
+                    fontSize: 12,
+                    width: 1,
+                    lineColor: "#000000"
+                });
                 qrcode.makeCode(this_text);
+                var canvas = document.createElement("canvas");
+                JsBarcode(canvas, this_text, { format: "CODE128" });
+                this_base64 = canvas.toDataURL("image/png");
+                console.log(this_base64)
+                var canvas_barcode = document.getElementById("barcode" + (i - 1))
+                var this_html = '<img src="' + this_base64 + '" style="display: block;">'
+                canvas_barcode.innerHTML = this_html
             }
         })
 
@@ -342,11 +403,12 @@
                     <input type="date" class="time_select" name="time_jz" id="time_jz" />
                     <label class="lable_select"></label>
                     <input type="text" class="time_select" placeholder="订单号" name="order_number" id="order_number" />
-                    <asp:Button ID="Button3" class="mingxi_input_tr_tj" OnClick="rq_select" Text="查询" runat="server" />
-                    <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" Text="删除" runat="server" />
+                    <asp:Button ID="Button3" class="mingxi_input_tr_tj" style="width:61px" OnClick="rq_select" Text="查询" runat="server" />
+                    <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" style="width:61px" Text="删除" runat="server" />
                     <asp:Button ID="Button2" class="mingxi_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
-                    <asp:Button ID="Button4" class="mingxi_input_tr_tj" OnClick="mx_save" Text="保存" runat="server" />
+                    <asp:Button ID="Button4" class="mingxi_input_tr_tj" style="width:61px" OnClick="mx_save" Text="保存" runat="server" />
                     <input type="button" id="qr_print" class="mingxi_input_tr_tj" value="打印二维码">
+                    <input type="button" id="barcode_print" class="mingxi_input_tr_tj" value="打印条形码">
                 </div>
                 <div class="funcion_top">
                     <asp:Button ID="downexcel" class="mingxi_input_tr_tj" OnClick="toExcel" Text="导出" runat="server" />
@@ -358,6 +420,7 @@
                     <tr id="dj_yh">                     
                         <td class="auto-style1" style="width: 50px">序号</td>
                         <th class="auto-style1" style="width: 105px">二维码</th>
+                        <th class="auto-style1" style="width: 150px">条形码</th>
                         <td class="auto-style1" style="width: 120px">订单号</td>
                         <td class="auto-style1" style="width: 100px">商品代码</td>
                         <td class="auto-style1" style="width: 100px">商品名称</td>
@@ -387,7 +450,9 @@
                             <input hidden="hidden" id="_id<%=i %>" name="_id<%=i %>" value="<%=ming_xi_select_dd[i]._id %>" />
                         </td>
                         <td class="bg_bj">
-                        <div id="qrcode<%=i%>" style="width:60px;" name="<%=ming_xi_select_dd[i].orderid%>"></div></td>
+                            <div id="qrcode<%=i%>" style="width:60px;" name="<%=ming_xi_select_dd[i].orderid%>"></div></td>
+                        <td class="bg_bj">
+                            <canvas id="barcode<%=i%>" style="width:120px;" name="<%=ming_xi_select_dd[i].orderid%>"></canvas></td>
                         <td class="bg_bj">
                             <input type="text"class="input_tr2" id="orderid" name="orderid<%=i %>" value="<%=ming_xi_select_dd[i].orderid %>" />
                         </td>

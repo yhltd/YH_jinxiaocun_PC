@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Web.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="Web.login" enableEventValidation="false"%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
@@ -8,7 +8,7 @@
     <link href="../../Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <title>云合未来一体化系统</title>
     <link rel="shortcut icon" href="../Images/yhltd.ico">
-
+    <script src="./js/Jquery.js"></script>
     <script language="JavaScript">
         window.onload = function () {
             var oUser = document.getElementById('username');
@@ -22,6 +22,29 @@
                 oPswd.value = getCookie('pwd');
                 oRemember.checked = true;
             }
+
+            if (getCookie('login')!='') {
+                var arr = getCookie('login').split("`")
+                delCookie('login')
+                document.getElementById('DropDownList3').selectedIndex = 1
+                var addOption = document.createElement("option");
+                addOption.text = arr[3];
+                addOption.value = arr[3];
+                document.getElementById('DropDownList1').add(addOption);
+                document.getElementById('DropDownList1').selectedIndex = 1;
+                $("#_DropDownList1").val(arr[3])
+
+                var addOption = document.createElement("option");
+                addOption.text = arr[2];
+                addOption.value = arr[2];
+                document.getElementById('DropDownList2').add(addOption);
+                document.getElementById('DropDownList2').selectedIndex = 0
+                oUser.value = arr[0]
+                oPswd.value = arr[1]
+                $("#_DropDownList2").val(arr[2])
+
+            }
+
             //复选框勾选状态发生改变时，如果未勾选则清除cookie
             oRemember.onchange = function () {
                 if (!this.checked) {
@@ -38,6 +61,58 @@
             };
 
         }
+
+
+        $(document).ready(function(){
+
+            var xiala1 = document.getElementById('DropDownList3');
+            var xiala2 = document.getElementById('DropDownList1');
+            var xiala3 = document.getElementById('DropDownList2');
+            var oUser = document.getElementById('username');
+            var oPswd = document.getElementById('password');
+            var user = getUrlParams("user")
+            console.log(user)
+            if (user != false) {
+                $.ajax({
+                    type: "post", //要用post方式     
+                    url: "/Myadmin/HouTai/YongHuGuanli.aspx/DecryptAes",
+                    contentType: "application/json; charset=utf-8",
+                    async: false,
+                    dataType: "json",
+                    data: JSON.stringify({
+                        source: user,
+                    }),
+                    success: function (data) {
+                        console.log(data)
+                        setCookie('login', data.d, 30)
+                        console.log($("#DropDownList2").text())
+                        var url = window.top.location.href.split("?")[0]
+                        window.location.href = url
+                        //var arr = data.d.split("`")
+                        //document.getElementById('DropDownList3').selectedIndex = 1
+                        //var addOption = document.createElement("option");
+                        //addOption.text = arr[3];
+                        //addOption.value = 0;
+                        //document.getElementById('DropDownList1').add(addOption);
+                        //document.getElementById('DropDownList1').selectedIndex = 1;
+
+                        //var addOption = document.createElement("option");
+                        //addOption.text = arr[2];
+                        //addOption.value = 0;
+                        //document.getElementById('DropDownList2').add(addOption);
+                        //document.getElementById('DropDownList2').selectedIndex = 0
+                        //oUser.value = arr[0]
+                        //oPswd.value = arr[1]
+
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
+        })
+
 
         //设置cookie
         function setCookie(name, value, day) {
@@ -73,6 +148,22 @@
                 return false
             }
         }
+
+        function getUrlParams(key) {
+            var url = window.location.search.substr(1);
+            if (url == '') {
+                return false;
+            }
+            var paramsArr = url.split('&');
+            for (var i = 0; i < paramsArr.length; i++) {
+                var combina = paramsArr[i].split("=");
+                if (combina[0] == key) {
+                    return combina[1];
+                }
+            }
+            return false;
+        };
+
     </script>
     <style type="text/css">
         .auto-style1 {
@@ -111,7 +202,12 @@
             </div>--%>
 
             <div class="login">
-                <form name="MyForm" id="MyForm" runat="server">
+                <form name="MyForm" id="MyForm" runat="server" method="post" action="login.aspx">
+                    <div style="display:none">
+                        <input type="hidden" id="_DropDownList1" name ="_DropDownList1" value="" />
+                        <input type="hidden" id="_DropDownList2" name ="_DropDownList2" value="" />
+
+                    </div>
                     <%--<form action="admin_login.asp" method="post" name="MyForm" id="Form1" runat="server" >--%>
                     <div class="dbweizhi">
                         <table id="Table1">
@@ -199,7 +295,7 @@
                                 <tr>
                                     <td height="49"></td>
                                     <td class="auto-style1">
-                                        <asp:Button ID="image" runat="server" Text=" 登 录 " class="LoginSub" OnClick="HtmlBtn_Click" OnClientClick="CheckLogin()" />
+                                        <asp:Button type="button" ID="image" runat="server" Text=" 登 录 " class="LoginSub" OnClick="HtmlBtn_Click" OnClientClick="CheckLogin()" />
 
                                         <asp:Button ID="btcreate" runat="server" Text=" 找回密码 " class="LoginSub" OnClick="Btchangepas_Click" Visible="true" />
                                         <br>

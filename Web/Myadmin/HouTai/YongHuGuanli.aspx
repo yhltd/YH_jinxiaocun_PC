@@ -15,6 +15,7 @@
     <!-- Custom CSS -->
     <link href="dist/css/style.min.css" rel="stylesheet">
     <link href="../css/common.css" rel="stylesheet">
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -73,7 +74,9 @@
     <script src="../../Scripts/layui/layui.all.js"></script>
 
     <script src="../../Scripts/layui/lay/modules/layer.js"></script>
-    <script src="../../Scripts/jquery-1.4.1.min.js"></script>
+<%--    <script src="../../Scripts/jquery-1.4.1.min.js"></script>--%>
+    <script src="../js/Jquery.js"></script>
+    <script src="../js/qrcode.min.js"></script>
     <script type="text/javascript" >
 
         $(function () {
@@ -122,6 +125,48 @@
             var gongsi = $(this).data("gongsi")
             queren(id, gongsi);
         })
+
+        function qr_make(name,password, gongsi) {
+            console.log(name)
+            console.log(password)
+            console.log(gongsi)
+            var url = window.top.location.href
+            console.log(url)
+            var str = name + "`" + password + "`" + gongsi + "`" + "云合未来进销存系统"
+            $.ajax({
+                type: "post", //要用post方式     
+                url: "/Myadmin/HouTai/YongHuGuanli.aspx/EncryptAes",
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                dataType: "json",
+                data: JSON.stringify({
+                    source: str,
+                }),
+                success: function (data) {
+                    console.log(data)
+                    console.log(window.top.location.href)
+                    var this_url = window.top.location.href.replace("/frmMain.aspx", "/Myadmin/login.aspx")
+                    console.log(this_url)
+                    this_url = this_url + "?user=" + data.d
+                    console.log(this_url)
+                    var qrcode_container = document.getElementById('qrcode');
+                    // 生成二维码
+                    var qrcode = new QRCode(qrcode_container, {
+                        text: this_url, // 二维码中的内容
+                        width: 200, // 二维码的宽度
+                        height: 200, // 二维码的高度
+                        colorDark: "#000000", // 二维码的颜色
+                        colorLight: "#ffffff", // 二维码的背景色
+                    });
+                    var base64_qrcode = qrcode_container.firstChild.toDataURL("image/png");
+                    console.log(base64_qrcode)
+                    downloadFileByBase64(name + ".png", base64_qrcode.split(",")[1])
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
+        }
 
         //function upUser(id, gongsi)
         function upUser(id,gongsi)
@@ -180,6 +225,87 @@
                 }
             })
         }
+
+        function dataURLtoBlob(dataurl, name) {//name:文件名
+            var mime = name.substring(name.lastIndexOf('.') + 1)//后缀名
+            var bstr = atob(dataurl), n = bstr.length, u8arr = new Uint8Array(n);
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {type: mime});
+        }
+
+        function downloadFile(url, name) {
+            var a = document.createElement("a")//创建a标签触发点击下载
+            a.setAttribute("href", url)//附上
+            a.setAttribute("download", name);
+            a.setAttribute("target", "_blank");
+            var clickEvent = document.createEvent("MouseEvents");
+            clickEvent.initEvent("click", true, true);
+            a.dispatchEvent(clickEvent);
+        }
+
+            //主函数
+            function downloadFileByBase64(name, base64) {
+                var myBlob = dataURLtoBlob(base64, name);
+                var myUrl = URL.createObjectURL(myBlob);
+                downloadFile(myUrl, name)
+            }
+
+            //获取后缀
+            function getType(file) {
+                var filename = file;
+                var index1 = filename.lastIndexOf(".");
+                var index2 = filename.length;
+                var type = filename.substring(index1 + 1, index2);
+                return type;
+            }
+
+            //根据文件后缀 获取base64前缀不同
+            function getBase64Type(type) {
+                switch (type) {
+                    case 'data:text/plain;base64':
+                        return 'txt';
+                    case 'data:application/msword;base64':
+                        return 'doc';
+                    case 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64':
+                        return 'docx';
+                    case 'data:application/vnd.ms-excel;base64':
+                        return 'xls';
+                    case 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64':
+                        return 'xlsx';
+                    case 'data:application/pdf;base64':
+                        return 'pdf';
+                    case 'data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64':
+                        return 'pptx';
+                    case 'data:application/vnd.ms-powerpoint;base64':
+                        return 'ppt';
+                    case 'data:image/png;base64':
+                        return 'png';
+                    case 'data:image/jpeg;base64':
+                        return 'jpg';
+                    case 'data:image/gif;base64':
+                        return 'gif';
+                    case 'data:image/svg+xml;base64':
+                        return 'svg';
+                    case 'data:image/x-icon;base64':
+                        return 'ico';
+                    case 'data:image/bmp;base64':
+                        return 'bmp';
+                }
+            }
+
+            function base64ToBlob(code) {
+                code = code.replace(/[\n\r]/g, '');
+                var raw = window.atob(code);
+                var rawLength = raw.length;
+                var uInt8Array = new Uint8Array(rawLength);
+                for (var i = 0; i < rawLength; ++i) {
+                    uInt8Array[i] = raw.charCodeAt(i)
+                }
+            return new Blob([uInt8Array], {type: 'application/pdf'})
+        }
+
     </script>
     <div class="preloader">
         <div class="lds-ripple">
@@ -188,7 +314,7 @@
         </div>
     </div>
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-        
+        <div id="qrcode" style="display: none"></div>
         <form id="formtable" runat="server" >
             <div class="new_ss_div">
                 <input id="ru_cx" class="select_input" autocomplete="off" oninput="bindInput_select(this.value)" placeholder="按用户名称搜索" />
@@ -203,12 +329,13 @@
                             <thead>
                                 <tr>
                                     <th class="auto-style1" style="width:100px">id</th>
-                                    <th class="auto-style1" style="width:200px">名称</th>
+                                    <th class="auto-style1" style="width:200px">账号</th>
                                     <th class="auto-style1" style="width:200px">密码</th>
                                     <th class="auto-style1" style="width:200px">公司</th>
                                     <th class="auto-style1" style="width:200px">权限</th>
                                     <th class="auto-style1" style="width:80px">删除</th>
                                     <th class="auto-style1" style="width:80px">修改</th>
+                                    <th class="auto-style1" style="width:100px">二维码</th>
                                 </tr>
                             </thead>   
                                   
@@ -227,6 +354,10 @@
                             </td>
                             <td class='item_td'>
                                 <input type="button" value="修改" <%--data-id ="<%#Eval("_id") %>" data-gongsi ="<%#Eval("gongsi")%>" --%> onclick="upUser('<%#Eval("_id") %>','<%#Eval("gongsi") %>')"  class="table_bt" id="BTN_UP" />
+
+                            </td>
+                            <td class='item_td'>
+                                <input type="button" value="二维码" <%--data-id ="<%#Eval("_id") %>" data-gongsi ="<%#Eval("gongsi")%>" --%> onclick="qr_make('<%#Eval("name") %>','<%#Eval("password") %>','<%#Eval("gongsi") %>')"  class="table_bt" id="BTN_UP" />
 
                             </td>
                         </tr>

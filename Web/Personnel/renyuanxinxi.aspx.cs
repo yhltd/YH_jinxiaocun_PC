@@ -112,6 +112,41 @@ namespace Web.Personnel
                 }
             }
         }
+
+
+        /// <summary>
+        /// 3.3 表格绑定事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void gvData_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    #region 设置鼠标滑过的颜色
+                    //当鼠标放上去的时候,设置新的颜色
+                    e.Row.Attributes.Add("onmouseover", "style.color='red'; ");
+                    //当鼠标离开的时候,恢复颜色
+                    e.Row.Attributes.Add("onmouseout", "style.color='#000000';");
+
+                    #endregion //设置鼠标滑过的颜色
+                    e.Row.Attributes["style"] = "Cursor:hand";
+                    int row_index = e.Row.RowIndex + 1;
+                    string username = ((DataRowView)e.Row.DataItem).Row.ItemArray[8].ToString();
+                    string password = ((DataRowView)e.Row.DataItem).Row.ItemArray[9].ToString();
+                    string company = ((DataRowView)e.Row.DataItem).Row.ItemArray[11].ToString();
+                    e.Row.Attributes.Add("onclick", "qr_make('" + username + "','" + password + "','" + company + "','云合人事管理系统')");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         protected void GridView_OnRowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Btn_Operation")

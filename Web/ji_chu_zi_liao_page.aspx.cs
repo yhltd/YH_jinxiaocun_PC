@@ -13,6 +13,8 @@ using Order.Common;
 using clsBuiness;
 using System.Reflection;
 using Web.Server;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Web
 {

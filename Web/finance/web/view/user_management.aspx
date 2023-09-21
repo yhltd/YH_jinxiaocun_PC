@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/themes/icon.css"/>
     <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/demo/demo.css"/>
     <script type="text/javascript" src="../assets/js/Jquery.js"></script>
+    <script type="text/javascript" src="../assets/js/qrcode.min.js"></script>
     <script type="text/javascript" src="../assets/js/EasyUI/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../assets/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
 
@@ -20,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="../assets/css/update_user.css"/>
 </head>
 <body>
+    <div id="qrcode" style="display: none"></div>
     <div id="main" class="item">
         <div class="toolbar">
             &nbsp;&nbsp;账号：

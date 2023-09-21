@@ -8,6 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src="Myadmin/js/jquery-1.8.3.min.js"></script>
     <script src="Myadmin/js/qrcode.min.js"></script>
+    <script src="Myadmin/js/JsBarcode.all.min.js"></script>
     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
         
@@ -149,6 +150,51 @@
             window.location.reload();
         })
 
+
+
+        $(document).on("click", "#barcode_print", function () {
+            var oldstr = window.document.body.innerHTML;
+            var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
+            console.log(elText)
+            var this_list = []
+            for(var i=1; i<elText.length; i++){
+                this_text1 = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue
+                this_text2 = elText.eq(i).children().eq(2).children().eq(1).prevObject[0].defaultValue
+                var canvas = document.createElement("canvas");
+                JsBarcode(canvas, this_text1, {format: "CODE128"});
+                this_base64 = canvas.toDataURL("image/png");
+                console.log(this_text1)
+                console.log(this_text2)
+                console.log(this_base64)
+                this_list.push({
+                    this_text1: this_text1,
+                    this_text2: this_text2, 
+                    this_base64: this_base64,
+                })
+            }
+            console.log(this_list)
+
+            var newstr = '<canvas class="canvas" id="outCanvas" width="600" height="' + ((10 * 1) + this_list.length * 500) + '"></canvas>' + '<image id="Image" style="width:380px,height:380px" show="false"></image>'
+            document.body.innerHTML = newstr;
+
+            var image = document.querySelector('#Image')
+            var canvas = document.querySelector('#outCanvas')
+            var ctx = canvas.getContext('2d');
+
+            ctx.font = "35px Arial";
+
+            for(var i=0; i<this_list.length; i++){
+                image.src = this_list[i].this_base64
+                ctx.drawImage(image, 100,10 + i*500,380,380);
+                ctx.fillText("商品代码：" + this_list[i].this_text1, 50, 440+i*500);
+                ctx.fillText("商品名称：" + this_list[i].this_text2, 50, 490+i*500);
+            }
+            image.remove();
+            window.print();
+            document.body.innerHTML = oldstr;
+            window.location.reload();
+        })
+
         $(document).ready(function () {
             
             var row = 1;
@@ -161,6 +207,22 @@
                     height : 100
                 });
                 qrcode.makeCode(this_text);
+                var barcode_id = "barcode" + (i-1)
+                JsBarcode("#barcode" + (i-1), this_text, {
+                    format: "CODE128",
+                    displayValue: true,
+                    height:50,
+                    fontSize: 12,
+                    width:1,
+                    lineColor: "#000000"
+                });
+                var canvas = document.createElement("canvas");
+                JsBarcode(canvas, this_text, {format: "CODE128"});
+                this_base64 = canvas.toDataURL("image/png");
+                console.log(this_base64)
+                var canvas_barcode = document.getElementById("barcode" + (i-1))
+                var this_html = '<img src="' + this_base64 + '" style="display: block;">'
+                canvas_barcode.innerHTML = this_html
             }
             $("#dj_yh").click(function () {
                 
@@ -187,6 +249,7 @@
                                + "<td class='bg_bj_sj'></td>"
                                + "<td class='bg_bj_sj'></td>"
                                + "<td class='bg_bj_sj'></td>"
+                               + "<td class='bg_bj_sj'></td>"
                                + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button'  style='width:50px' value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
 
@@ -208,6 +271,7 @@
 
             }
         }
+
 
         $(document).on("click", "#dj_row", function () {
             //  alert("asd");
@@ -293,6 +357,7 @@
                 <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="input_tr_tj" Text="删除" runat="server" />
                 <asp:Button ID="Button2" class="input_tr_tj" OnClick="jczl_select_load" Text="刷新数据" runat="server" />
                 <input type="button" id="qr_print" class="input_tr_tj" value="打印二维码">
+                <input type="button" id="barcode_print" class="input_tr_tj" value="打印条形码">
                 <input type="file" id="file" hidden="hidden">
             </div>
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
@@ -309,6 +374,7 @@
                     <th class="auto-style1" style="width: 155px">图片</th>
                     <th class="auto-style1" style="width: 145px">上传图片</th>
                     <th class="auto-style1" style="width: 105px">二维码</th>
+                    <th class="auto-style1" style="width: 200px">条形码</th>
                     <th class="auto-style1" style="width: 90px">功能</th>
                 </tr>
                 <%
@@ -343,6 +409,8 @@
                         <input type="button" name="tupian<%=i%>" value="上传图片" onclick="fileUp(<%=jczj_select[i].id%>);" class="input_tr_tj"  id="Text6" accept="image/*" /></td>
                     <td class="bg_bj">
                         <div id="qrcode<%=i%>" style="width:60px;" name="<%=jczj_select[i].sp_dm%>"></div></td>
+                    <td class="bg_bj">
+                        <canvas id="barcode<%=i%>"  name="<%=jczj_select[i].sp_dm%>"></canvas></td>
                     <td class="bg_bj">
                         <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i%>" value="<%=jczj_select[i].id%>" /><input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" /></td>
                 </tr>

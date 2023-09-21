@@ -27,6 +27,7 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             version = "建议使用谷歌浏览器效果最好- 当前系统版本: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            //var i = Web.login.
             if (!Page.IsPostBack)
             {
                 DropDownList1.DataBind();
@@ -142,18 +143,304 @@ namespace Web
                 DropDownList2.DataBind();
             }
         }
+
+
+        //public static void HtmlBtn_Click(string xitong, string company, string username, string password)
+        //{
+        //    string txtSAPPassword = password;
+        //    string servename = xitong;//这是获取选中的文本值
+
+        //    string gs_name = company;
+
+
+        //    if (servename.ToString() == "云合人事管理系统")
+        //    {
+        //        System.Web.SessionState.HttpSessionState Session = new System.Web.SessionState.HttpSessionState();
+        //        HttpServerUtility Server = new HttpServerUtility();
+
+
+        //        Session.Timeout = 10000;
+        //        Session["username"] = username;
+        //        Session["gs_name"] = gs_name;
+
+        //        if (gs_name != null || username != null || txtSAPPassword != null)
+        //        {
+        //            if (gs_name != null && username != null && txtSAPPassword != null)
+        //            {
+        //                string connStr = ConfigurationManager.AppSettings["yao"];
+        //                var conn = new SqlConnection(connStr);
+        //                //conn = new SqlConnection(connStr);
+        //                if (conn.State == ConnectionState.Closed)
+        //                {
+        //                    conn.Open();
+        //                }
+        //                //str = conn.BeginTransaction();
+        //                string sqlStr = "select id from gongzi_renyuan where L='" + gs_name + "' and I='" + username + "' and J='" + txtSAPPassword + "';";
+        //                var cmd = new SqlCommand(sqlStr, conn);
+        //                int id = Convert.ToInt32(cmd.ExecuteScalar());
+        //                if (id != 0)
+        //                {
+
+        //                    conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;MultipleActiveResultSets=true;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+        //                    if (conn.State == ConnectionState.Closed)
+        //                    {
+        //                        conn.Open();
+        //                    }
+        //                    string now = DateTime.Now.ToShortDateString().ToString();
+        //                    string this_sql = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='人事'";
+        //                    cmd = new SqlCommand(this_sql, conn);
+        //                    var str = cmd.ExecuteReader();
+        //                    string thisNum = "";
+        //                    int a = 0;
+        //                    List<string> itemi = new List<string>();
+        //                    while (str.Read())
+        //                    {
+        //                        thisNum = str["mark3"].ToString().Trim();
+        //                        if (!thisNum.Equals(""))
+        //                        {
+        //                            thisNum = thisNum.Split(':')[1];
+        //                            thisNum = thisNum.Replace("(", "");
+        //                            thisNum = thisNum.Replace(")", "");
+        //                        }
+
+        //                    }
+        //                    string[] b = gs_name.Split('_');
+        //                    Session["gongsi"] = b[0];
+        //                    Session["id1"] = id;
+        //                    Session["userNum"] = thisNum;
+        //                    Server.Transfer("../Personnel/index.aspx");
+
+        //                }
+        //                else
+        //                {
+        //                    Response.Write("<script id='alert'>alert('输入密码有误，请重试')</script>");
+        //                }
+        //                conn.Close();
+        //            }
+        //        }
+        //    }
+        //    else if (servename.ToString() == "云合未来进销存系统")
+        //    {
+        //        UserModel userModel = new UserModel();
+        //        string msg = "";
+        //        yh_jinxiaocun_user user;
+        //        try
+        //        {
+        //            user = userModel.login(gs_name.Trim(), username.Trim(), txtSAPPassword.Trim());
+        //        }
+        //        catch
+        //        {
+        //            Response.Write("<script>alert('网络超时，请稍后再试。')</script>");
+        //            return;
+        //        }
+
+        //        if (user != null)
+        //        {
+        //            if (user.Btype.Equals("锁定"))
+        //            {
+        //                msg = "用户已被锁定！";
+        //            }
+
+        //            else
+        //            {
+
+        //                conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+        //                if (conn.State == ConnectionState.Closed)
+        //                {
+        //                    conn.Open();
+        //                }
+        //                string now = DateTime.Now.ToShortDateString().ToString();
+        //                string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
+        //                cmd = new SqlCommand(sqlStr, conn);
+        //                str = cmd.ExecuteReader();
+        //                string thisNum = "";
+        //                int a = 0;
+        //                List<string> itemi = new List<string>();
+        //                while (str.Read())
+        //                {
+        //                    if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
+        //                    {
+        //                        if (str["endtime"].Equals(1))
+        //                        {
+        //                            Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
+        //                            return;
+        //                        }
+        //                        if (str["mark2"].Equals(1))
+        //                        {
+        //                            Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
+        //                            return;
+        //                        }
+        //                    }
+        //                    thisNum = str["mark3"].ToString().Trim();
+        //                    if (!thisNum.Equals(""))
+        //                    {
+        //                        thisNum = thisNum.Split(':')[1];
+        //                        thisNum = thisNum.Replace("(", "");
+        //                        thisNum = thisNum.Replace(")", "");
+        //                    }
+
+        //                }
+        //                Session["userNum"] = thisNum;
+        //                Session.Timeout = 10000;
+        //                Session["user"] = user;
+        //                Response.Redirect("~/frmMain.aspx");
+        //                return;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            msg = "用户名密码错误！";
+        //        }
+        //        Response.Write("<script id='alert'>alert('" + msg + "')</script>");
+        //    }
+        //    else if (servename.ToString() == "云合未来财务系统")
+        //    {
+        //        AccountService accountService = new AccountService(false);
+        //        string token = accountService.login(gs_name.Trim(), username.Trim(), txtSAPPassword.Trim());
+        //        if (token.Equals(""))
+        //        {
+        //            ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('用户名密码错误！')", true);
+        //        }
+        //        else
+        //        {
+        //            conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+        //            if (conn.State == ConnectionState.Closed)
+        //            {
+        //                conn.Open();
+        //            }
+        //            string now = DateTime.Now.ToShortDateString().ToString();
+        //            string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='财务'";
+        //            cmd = new SqlCommand(sqlStr, conn);
+        //            str = cmd.ExecuteReader();
+        //            string thisNum = "";
+        //            int a = 0;
+        //            List<string> itemi = new List<string>();
+        //            while (str.Read())
+        //            {
+        //                if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
+        //                {
+        //                    if (str["endtime"].Equals(1))
+        //                    {
+        //                        Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
+        //                        return;
+        //                    }
+        //                    if (str["mark2"].Equals(1))
+        //                    {
+        //                        Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
+        //                        return;
+        //                    }
+        //                }
+        //                thisNum = str["mark3"].ToString().Trim();
+        //                if (!thisNum.Equals(""))
+        //                {
+        //                    thisNum = thisNum.Split(':')[1];
+        //                    thisNum = thisNum.Replace("(", "");
+        //                    thisNum = thisNum.Replace(")", "");
+        //                }
+
+        //            }
+        //            Session["userNum"] = thisNum;
+        //            FinanceToken.getFinanceCheckToken().setToken(token);
+        //            Response.Redirect("../finance/web/view/index.aspx");
+        //        }
+        //    }
+        //    else if (servename.ToString().Equals("云合排产管理系统"))
+        //    {
+        //        int state = 0;
+        //        try
+        //        {
+        //            if (!UserInfoService.login(username.Trim(), txtSAPPassword.Trim(), gs_name.Trim()))
+        //            {
+        //                ScriptManager.RegisterStartupScript(this, this.GetType(), "提示", "alert('用户名密码错误或用户被禁用！')", true);
+        //            }
+        //            else
+        //            {
+        //                conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+        //                if (conn.State == ConnectionState.Closed)
+        //                {
+        //                    conn.Open();
+        //                }
+        //                string now = DateTime.Now.ToShortDateString().ToString();
+        //                string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";
+        //                cmd = new SqlCommand(sqlStr, conn);
+        //                str = cmd.ExecuteReader();
+        //                string thisNum = "";
+        //                int a = 0;
+        //                List<string> itemi = new List<string>();
+        //                while (str.Read())
+        //                {
+        //                    if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
+        //                    {
+        //                        if (str["endtime"].Equals(1))
+        //                        {
+        //                            Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
+        //                            return;
+        //                        }
+        //                        if (str["mark2"].Equals(1))
+        //                        {
+        //                            Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
+        //                            return;
+        //                        }
+        //                    }
+        //                    thisNum = str["mark3"].ToString().Trim();
+        //                    if (!thisNum.Equals(""))
+        //                    {
+        //                        thisNum = thisNum.Split(':')[1];
+        //                        thisNum = thisNum.Replace("(", "");
+        //                        thisNum = thisNum.Replace(")", "");
+        //                    }
+
+        //                }
+
+        //                int ky_rongliang = FinanceSpace.getFinanceSpace().getMark4_all(gs_name, "排产");
+        //                int sy_rongliang = FinanceSpace.getFinanceSpace().getUseMark4_all(gs_name, "排产");
+
+        //                if (sy_rongliang >= ky_rongliang)
+        //                {
+        //                    Response.Write("<script>alert('您在我公司租用的数据库容量已超上限，该系统暂时无法使用。请联系我公司，官方微信号：1623005800。')</script>");
+        //                    return;
+        //                }
+        //                Session["userNum"] = thisNum;
+        //                Response.Redirect("../scheduling/web/index.html");
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Response.Write(ex.Message);
+        //        }
+        //    }
+        //}
+
         protected void HtmlBtn_Click(object sender, EventArgs e)
         {
             string username = Request.Form["username"];
             string txtSAPPassword = Request.Form["password"];
-            string servename = DropDownList1.SelectedItem.Text;//这是获取选中的文本值
+            string servename = "";
+            string gs_name = "";
+
+            string _DropDownList1 = Request.Form["_DropDownList1"].ToString();
+            string _DropDownList2 = Request.Form["_DropDownList2"].ToString();
+            if (_DropDownList1 == null || _DropDownList1 == "")
+            {
+                servename = DropDownList1.SelectedItem.Text;//这是获取选中的文本值
+            }
+            else {
+                servename = _DropDownList1;
+            }
+            if (_DropDownList2 == null || _DropDownList2 == "")
+            {
+                gs_name = DropDownList2.SelectedItem.Text;
+            }
+            else
+            {
+                gs_name = _DropDownList2;
+            }
+
             if (servename == "选择")
             {
                 Response.Write("<script id='alert'>alert('请选择数据库!')</script>");
                 return;
             }
-            string gs_name = DropDownList2.SelectedItem.Text;
-            
             
             if (servename.ToString() == "云合人事管理系统")
             {

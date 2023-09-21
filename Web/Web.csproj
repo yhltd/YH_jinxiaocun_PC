@@ -119,6 +119,8 @@
     <Content Include="bin\Web.pdb" />
     <Content Include="chu_ku.aspx" />
     <Content Include="ck_san.aspx" />
+    <Content Include="finance\web\assets\js\qrcode.js" />
+    <Content Include="finance\web\assets\js\qrcode.min.js" />
     <Content Include="finance\web\view\downloadExcel.aspx" />
     <Content Include="finance\web\view\downloadApp.aspx" />
     <Content Include="jxc_excel.aspx" />
@@ -1402,7 +1404,9 @@
     <Content Include="Myadmin\images\top_bg.jpg" />
     <Content Include="Myadmin\images\ui-bg_error.gif" />
     <Content Include="Myadmin\js\index.js" />
+    <Content Include="Myadmin\js\Jquery.js" />
     <Content Include="Myadmin\js\jquerysession.js" />
+    <Content Include="Myadmin\js\JsBarcode.all.min.js" />
     <Content Include="Myadmin\js\qrcode.js" />
     <Content Include="Myadmin\js\qrcode.min.js" />
     <Content Include="Myadmin\logout.aspx" />

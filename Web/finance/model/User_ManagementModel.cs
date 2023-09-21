@@ -37,7 +37,7 @@ namespace Web.finance.model
             //查询最大行号
             var maxPageParam = new SqlParameter("@maxPageParam", financePage.getMax());
 
-            string sql = "select a.id,a.rownum,a.name,a.pwd,a.do,a.bianhao from (select *,row_number() over(order by id) as rownum from Account where company = @company) as a where a.rownum > @minPageParam and a.rownum < @maxPageParam";
+            string sql = "select a.id,a.rownum,a.name,a.pwd,a.do,a.bianhao,a.company from (select *,row_number() over(order by id) as rownum from Account where company = @company) as a where a.rownum > @minPageParam and a.rownum < @maxPageParam";
             var result = fin.Database.SqlQuery<User_ManagementItem>(sql, companyParam, minPageParam, maxPageParam);
             try
             {
@@ -79,7 +79,7 @@ namespace Web.finance.model
             //查询最大行号
             var maxPageParam = new SqlParameter("@maxPageParam", financePage.getMax());
 
-            string sql = "select a.id,a.rownum,a.name,a.pwd,a.do,a.bianhao from (select *,row_number() over(order by id) as rownum from Account where company = @company and name like '%'+@name+'%') as a where a.rownum > @minPageParam and a.rownum < @maxPageParam  ";
+            string sql = "select a.id,a.rownum,a.name,a.pwd,a.do,a.bianhao,a.company from (select *,row_number() over(order by id) as rownum from Account where company = @company and name like '%'+@name+'%') as a where a.rownum > @minPageParam and a.rownum < @maxPageParam  ";
             var result = fin.Database.SqlQuery<User_ManagementItem>(sql, companyParam, nameParam, minPageParam, maxPageParam);
             try
             {

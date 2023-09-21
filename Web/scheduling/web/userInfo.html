@@ -12,7 +12,10 @@
     <script type="text/javascript" src="static/vue/vue.js"></script>
     <script type="text/javascript" src="static/element/index.js"></script>
     <script type="text/javascript" src="static/axios/axios.js"></script>
+    <script type="text/javascript" src="../../Myadmin/js/Jquery.js"></script>
+    <script type="text/javascript" src="../../Myadmin/js/qrcode.min.js"></script>
     <script src="static/js/main.js"></script>
+
     <title>云合排产管理系统</title>
 
     <script>
@@ -92,7 +95,7 @@
     </span>
         <video id="video" controls src="./static/video/账号管理.mp4" width="700" height="400"></video>
     </div>
-
+    <div id="qrcode" style="display: none"></div>
     <div id="userInfo" style="display: none;" :style="{display: 'block'}">
         <el-container>
             <el-main>
@@ -162,6 +165,11 @@
                             <el-popconfirm title="确定删除吗？" @confirm="deleteOrder(scope.row.id)" hide-icon>
                                 <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
                             </el-popconfirm>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="二维码">
+                        <template slot-scope="scope">
+                            <el-button icon="el-icon-printer" type="danger" size="small" slot="reference" @click="qr_make(scope.row.user_code,scope.row.password,scope.row.company,'云合排产管理系统')">下载</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -353,6 +361,130 @@
                  //        }
                  //    })
                  //},
+
+                 qr_make: function (username,password,company,system) {
+                     var _this = this;
+                     console.log(username)
+                     console.log(password)
+                     console.log(company)
+                     console.log(system)
+                     var url = window.top.location.href
+                     console.log(url)
+                     var str = name + "`" + password + "`" + company + "`" + "云合排产管理系统"
+                     $.ajax({
+                         type: "post", //要用post方式     
+                         url: "/Myadmin/HouTai/YongHuGuanli.aspx/EncryptAes",
+                         contentType: "application/json; charset=utf-8",
+                         async: false,
+                         dataType: "json",
+                         data: JSON.stringify({
+                             source: str,
+                         }),
+                         success: function (data) {
+                             console.log(data)
+                             console.log(window.top.location.href)
+                             var this_url = window.top.location.href.replace("/scheduling/web/index.html", "/Myadmin/login.aspx")
+                             console.log(this_url)
+                             this_url = this_url + "?user=" + data.d
+                             console.log(this_url)
+                             var qrcode_container = document.getElementById('qrcode');
+                             // 生成二维码
+                             var qrcode = new QRCode(qrcode_container, {
+                                 text: this_url, // 二维码中的内容
+                                 width: 200, // 二维码的宽度
+                                 height: 200, // 二维码的高度
+                                 colorDark: "#000000", // 二维码的颜色
+                                 colorLight: "#ffffff", // 二维码的背景色
+                             });
+                             var base64_qrcode = qrcode_container.firstChild.toDataURL("image/png");
+                             console.log(base64_qrcode)
+                             downloadFileByBase64(username + ".png", base64_qrcode.split(",")[1])
+                         },
+                         error: function (err) {
+                             console.log(err)
+                         }
+                     });
+                 },
+
+                    dataURLtoBlob:function(dataurl, name) {//name:文件名
+                    var mime = name.substring(name.lastIndexOf('.') + 1)//后缀名
+                    var bstr = atob(dataurl), n = bstr.length, u8arr = new Uint8Array(n);
+                    while (n--) {
+                        u8arr[n] = bstr.charCodeAt(n);
+                    }
+                    return new Blob([u8arr], { type: mime });
+                    },
+
+                    downloadFile:function(url, name) {
+                        var a = document.createElement("a")//创建a标签触发点击下载
+                        a.setAttribute("href", url)//附上
+                        a.setAttribute("download", name);
+                        a.setAttribute("target", "_blank");
+                        var clickEvent = document.createEvent("MouseEvents");
+                        clickEvent.initEvent("click", true, true);
+                        a.dispatchEvent(clickEvent);
+                    },
+
+                    //主函数
+                    downloadFileByBase64:function(name, base64) {
+                        var myBlob = dataURLtoBlob(base64, name);
+                        var myUrl = URL.createObjectURL(myBlob);
+                        downloadFile(myUrl, name)
+                    },
+
+                    //获取后缀
+                    getType:function(file) {
+                        var filename = file;
+                        var index1 = filename.lastIndexOf(".");
+                        var index2 = filename.length;
+                        var type = filename.substring(index1 + 1, index2);
+                        return type;
+                    },
+
+                    //根据文件后缀 获取base64前缀不同
+                    getBase64Type:function (type) {
+                        switch (type) {
+                            case 'data:text/plain;base64':
+                                return 'txt';
+                            case 'data:application/msword;base64':
+                                return 'doc';
+                            case 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64':
+                                return 'docx';
+                            case 'data:application/vnd.ms-excel;base64':
+                                return 'xls';
+                            case 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64':
+                                return 'xlsx';
+                            case 'data:application/pdf;base64':
+                                return 'pdf';
+                            case 'data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64':
+                                return 'pptx';
+                            case 'data:application/vnd.ms-powerpoint;base64':
+                                return 'ppt';
+                            case 'data:image/png;base64':
+                                return 'png';
+                            case 'data:image/jpeg;base64':
+                                return 'jpg';
+                            case 'data:image/gif;base64':
+                                return 'gif';
+                            case 'data:image/svg+xml;base64':
+                                return 'svg';
+                            case 'data:image/x-icon;base64':
+                                return 'ico';
+                            case 'data:image/bmp;base64':
+                                return 'bmp';
+                        }
+                    },
+
+                    base64ToBlob:function(code) {
+                        code = code.replace(/[\n\r]/g, '');
+                        var raw = window.atob(code);
+                        var rawLength = raw.length;
+                        var uInt8Array = new Uint8Array(rawLength);
+                        for (var i = 0; i < rawLength; ++i) {
+                            uInt8Array[i] = raw.charCodeAt(i)
+                        }
+                        return new Blob([uInt8Array], { type: 'application/pdf' })
+                    },
 
                  deleteOrder: function (id) {
                      var _this = this;

@@ -29,9 +29,9 @@ namespace Web.Personnel
                 //设置流内容类型
                 Response.ContentType = "application/octet-stream";
                 //设置下载方式=>附件
-                Response.AddHeader("Content-Disposition", "attachment;filename=人事(20230406).xlsm");
+                Response.AddHeader("Content-Disposition", "attachment;filename=人事(20230921).xlsm");
                 //获取文件的绝对路径
-                string filename = Server.MapPath("download/人事(20230406).xlsm");
+                string filename = Server.MapPath("download/人事(20230921).xlsm");
                 //将文件直接写入HTTP响应输出流
                 Response.TransmitFile(filename);
             }

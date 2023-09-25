@@ -137,7 +137,7 @@ namespace Web.Personnel
                     string username = ((DataRowView)e.Row.DataItem).Row.ItemArray[8].ToString();
                     string password = ((DataRowView)e.Row.DataItem).Row.ItemArray[9].ToString();
                     string company = ((DataRowView)e.Row.DataItem).Row.ItemArray[11].ToString();
-                    e.Row.Attributes.Add("onclick", "qr_make('" + username + "','" + password + "','" + company + "','云合人事管理系统')");
+                    e.Row.Attributes.Add("ondblclick", "qr_make('" + username + "','" + password + "','" + company + "','云合人事管理系统')");
 
                 }
             }

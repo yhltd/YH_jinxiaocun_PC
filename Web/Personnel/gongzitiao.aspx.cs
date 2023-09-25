@@ -182,7 +182,7 @@ namespace Web.Personnel
             }
             Session["printList"] = list;
 
-            Response.Redirect("~/RDLC/gongzitiao_print.aspx");
+            Response.Redirect("../RDLC/gongzitiao_print.aspx");
             
         }
     }

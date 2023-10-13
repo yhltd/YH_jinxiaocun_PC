@@ -74,10 +74,10 @@
       <publishTime>04/12/2023 19:10:46</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>07/07/2023 09:58:13</publishTime>
+      <publishTime>10/13/2023 22:26:41</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>07/07/2023 09:58:13</publishTime>
+      <publishTime>10/13/2023 22:26:41</publishTime>
     </File>
     <File Include="bin/zh-Hans/EntityFramework.resources.dll">
       <publishTime>06/29/2021 18:55:59</publishTime>
@@ -98,7 +98,7 @@
       <publishTime>06/29/2021 18:55:39</publishTime>
     </File>
     <File Include="chu_ku.aspx">
-      <publishTime>07/20/2022 17:41:01</publishTime>
+      <publishTime>10/11/2023 20:33:01</publishTime>
     </File>
     <File Include="ck_san.aspx">
       <publishTime>06/29/2021 18:55:39</publishTime>
@@ -3221,13 +3221,19 @@
       <publishTime>06/29/2021 18:55:42</publishTime>
     </File>
     <File Include="finance/web/assets/js/nianbao.js">
-      <publishTime>11/14/2022 13:06:31</publishTime>
+      <publishTime>10/10/2023 17:24:45</publishTime>
     </File>
     <File Include="finance/web/assets/js/parsing.js">
       <publishTime>12/29/2021 11:45:07</publishTime>
     </File>
     <File Include="finance/web/assets/js/profit.js">
       <publishTime>11/14/2022 13:06:31</publishTime>
+    </File>
+    <File Include="finance/web/assets/js/qrcode.js">
+      <publishTime>09/18/2023 20:04:44</publishTime>
+    </File>
+    <File Include="finance/web/assets/js/qrcode.min.js">
+      <publishTime>09/18/2023 20:04:44</publishTime>
     </File>
     <File Include="finance/web/assets/js/simpleAccounting.js">
       <publishTime>11/14/2022 13:06:31</publishTime>
@@ -3245,7 +3251,7 @@
       <publishTime>06/29/2021 18:55:42</publishTime>
     </File>
     <File Include="finance/web/assets/js/user_management.js">
-      <publishTime>03/06/2023 14:34:03</publishTime>
+      <publishTime>10/10/2023 17:34:04</publishTime>
     </File>
     <File Include="finance/web/assets/js/voucherSummary.js">
       <publishTime>03/06/2023 14:34:03</publishTime>
@@ -3332,7 +3338,7 @@
       <publishTime>06/29/2021 18:55:42</publishTime>
     </File>
     <File Include="finance/web/view/user_management.aspx">
-      <publishTime>11/14/2022 13:06:31</publishTime>
+      <publishTime>10/10/2023 17:29:34</publishTime>
     </File>
     <File Include="finance/web/view/voucherSummary.aspx">
       <publishTime>11/14/2022 13:06:31</publishTime>
@@ -3407,7 +3413,7 @@
       <publishTime>11/14/2022 13:06:31</publishTime>
     </File>
     <File Include="frmMain.aspx">
-      <publishTime>06/26/2023 20:39:22</publishTime>
+      <publishTime>10/10/2023 09:49:37</publishTime>
     </File>
     <File Include="frmNav.aspx">
       <publishTime>06/29/2021 18:55:42</publishTime>
@@ -3461,7 +3467,7 @@
       <publishTime>12/16/2021 16:29:17</publishTime>
     </File>
     <File Include="Images/背景.jpeg">
-      <publishTime>12/16/2021 16:29:17</publishTime>
+      <publishTime>10/08/2023 20:17:16</publishTime>
     </File>
     <File Include="Images/退出登录.png">
       <publishTime>12/16/2021 16:29:17</publishTime>
@@ -3470,10 +3476,10 @@
       <publishTime>06/29/2021 18:55:37</publishTime>
     </File>
     <File Include="jin_xiao_cun.aspx">
-      <publishTime>06/28/2023 17:52:02</publishTime>
+      <publishTime>10/09/2023 16:25:23</publishTime>
     </File>
     <File Include="ji_chu_zi_liao_page.aspx">
-      <publishTime>03/03/2023 16:55:20</publishTime>
+      <publishTime>10/09/2023 17:06:45</publishTime>
     </File>
     <File Include="jxc_app.aspx">
       <publishTime>06/25/2023 22:54:21</publishTime>
@@ -3485,19 +3491,19 @@
       <publishTime>12/16/2021 16:29:18</publishTime>
     </File>
     <File Include="kehu.aspx">
-      <publishTime>12/16/2021 16:29:18</publishTime>
+      <publishTime>10/08/2023 21:32:40</publishTime>
     </File>
     <File Include="kh_ming_xi_selcet.aspx">
       <publishTime>03/03/2023 17:31:04</publishTime>
     </File>
     <File Include="ming_xi.aspx">
-      <publishTime>03/06/2023 14:23:39</publishTime>
+      <publishTime>10/11/2023 20:39:47</publishTime>
     </File>
     <File Include="Myadmin/changepassword.aspx">
       <publishTime>12/16/2021 16:29:17</publishTime>
     </File>
     <File Include="Myadmin/css/common.css">
-      <publishTime>12/16/2021 16:29:17</publishTime>
+      <publishTime>09/20/2023 14:32:11</publishTime>
     </File>
     <File Include="Myadmin/HouTai/admin.aspx">
       <publishTime>06/29/2021 18:55:37</publishTime>
@@ -4490,7 +4496,7 @@
       <publishTime>06/29/2021 18:55:37</publishTime>
     </File>
     <File Include="Myadmin/HouTai/YongHuGuanli.aspx">
-      <publishTime>09/22/2021 16:56:31</publishTime>
+      <publishTime>09/18/2023 15:51:50</publishTime>
     </File>
     <File Include="Myadmin/images/1221111.jpg">
       <publishTime>06/29/2021 18:55:38</publishTime>
@@ -4921,14 +4927,26 @@
     <File Include="Myadmin/js/jquery-1.8.3.min.js">
       <publishTime>06/29/2021 18:55:38</publishTime>
     </File>
+    <File Include="Myadmin/js/Jquery.js">
+      <publishTime>09/18/2023 15:39:34</publishTime>
+    </File>
     <File Include="Myadmin/js/jquerysession.js">
       <publishTime>11/14/2022 13:06:31</publishTime>
+    </File>
+    <File Include="Myadmin/js/JsBarcode.all.min.js">
+      <publishTime>09/20/2023 09:38:28</publishTime>
     </File>
     <File Include="Myadmin/js/json2.js">
       <publishTime>06/29/2021 18:55:38</publishTime>
     </File>
     <File Include="Myadmin/js/nav.js">
       <publishTime>06/29/2021 18:55:38</publishTime>
+    </File>
+    <File Include="Myadmin/js/qrcode.js">
+      <publishTime>08/04/2023 14:49:21</publishTime>
+    </File>
+    <File Include="Myadmin/js/qrcode.min.js">
+      <publishTime>08/04/2023 14:49:21</publishTime>
     </File>
     <File Include="Myadmin/KEditor/asp/demo.asp">
       <publishTime>06/29/2021 18:55:37</publishTime>
@@ -5546,7 +5564,7 @@
       <publishTime>06/29/2021 18:55:37</publishTime>
     </File>
     <File Include="Myadmin/login.aspx">
-      <publishTime>05/05/2023 16:48:01</publishTime>
+      <publishTime>09/19/2023 00:25:03</publishTime>
     </File>
     <File Include="Myadmin/logout.aspx">
       <publishTime>06/29/2021 18:55:38</publishTime>
@@ -5579,10 +5597,10 @@
       <publishTime>11/14/2022 13:06:31</publishTime>
     </File>
     <File Include="Personnel/baoshui.aspx">
-      <publishTime>06/20/2023 16:24:35</publishTime>
+      <publishTime>10/12/2023 08:33:59</publishTime>
     </File>
     <File Include="Personnel/birthday.aspx">
-      <publishTime>11/16/2022 15:08:34</publishTime>
+      <publishTime>10/11/2023 09:38:40</publishTime>
     </File>
     <File Include="Personnel/bumenhuizong.aspx">
       <publishTime>12/12/2022 15:55:43</publishTime>
@@ -5633,13 +5651,13 @@
       <publishTime>03/06/2023 14:23:39</publishTime>
     </File>
     <File Include="Personnel/gerenxinxi.aspx">
-      <publishTime>11/14/2022 13:06:31</publishTime>
+      <publishTime>09/25/2023 08:40:34</publishTime>
     </File>
     <File Include="Personnel/gongzimingxi.aspx">
-      <publishTime>06/29/2023 18:09:20</publishTime>
+      <publishTime>10/11/2023 18:11:51</publishTime>
     </File>
     <File Include="Personnel/gongzimingxiUpd.aspx">
-      <publishTime>07/20/2022 17:41:00</publishTime>
+      <publishTime>10/11/2023 18:27:38</publishTime>
     </File>
     <File Include="Personnel/gongzitiao.aspx">
       <publishTime>12/12/2022 15:55:43</publishTime>
@@ -5651,7 +5669,7 @@
       <publishTime>06/29/2021 18:55:38</publishTime>
     </File>
     <File Include="Personnel/HrModel/HrServer.edmx.diagram">
-      <publishTime>07/20/2022 17:41:00</publishTime>
+      <publishTime>10/12/2023 20:54:06</publishTime>
     </File>
     <File Include="Personnel/HrModel/HrServer.tt">
       <publishTime>06/29/2021 18:55:38</publishTime>
@@ -5792,7 +5810,7 @@
       <publishTime>07/20/2022 17:41:00</publishTime>
     </File>
     <File Include="Personnel/kaoqinjilu.aspx">
-      <publishTime>12/12/2022 15:55:43</publishTime>
+      <publishTime>10/11/2023 09:09:16</publishTime>
     </File>
     <File Include="Personnel/kaoqinjiluAdd.aspx">
       <publishTime>12/16/2021 16:29:17</publishTime>
@@ -5801,16 +5819,16 @@
       <publishTime>07/20/2022 17:41:00</publishTime>
     </File>
     <File Include="Personnel/mingxiAdd.aspx">
-      <publishTime>07/20/2022 17:41:00</publishTime>
+      <publishTime>10/11/2023 18:16:18</publishTime>
     </File>
     <File Include="Personnel/peizhi.aspx">
-      <publishTime>12/12/2022 15:55:43</publishTime>
+      <publishTime>10/11/2023 09:10:21</publishTime>
     </File>
     <File Include="Personnel/quanxian.aspx">
       <publishTime>12/16/2021 16:29:17</publishTime>
     </File>
     <File Include="Personnel/renyuanxinxi.aspx">
-      <publishTime>06/29/2023 18:06:33</publishTime>
+      <publishTime>09/18/2023 19:38:10</publishTime>
     </File>
     <File Include="Personnel/renyuanxinxiAdd.aspx">
       <publishTime>11/14/2022 13:06:31</publishTime>
@@ -5828,10 +5846,13 @@
       <publishTime>06/29/2021 18:55:39</publishTime>
     </File>
     <File Include="Personnel/wuquanxian.aspx">
-      <publishTime>03/06/2023 14:23:39</publishTime>
+      <publishTime>10/10/2023 18:08:50</publishTime>
     </File>
     <File Include="Personnel/yuangongdangan.aspx">
       <publishTime>11/14/2022 13:06:31</publishTime>
+    </File>
+    <File Include="Properties/Settings.settings">
+      <publishTime>10/13/2023 22:23:05</publishTime>
     </File>
     <File Include="qi_chu.aspx">
       <publishTime>03/03/2023 17:14:01</publishTime>
@@ -5849,7 +5870,7 @@
       <publishTime>12/19/2022 08:54:42</publishTime>
     </File>
     <File Include="ru_ku.aspx">
-      <publishTime>07/20/2022 17:41:03</publishTime>
+      <publishTime>10/10/2023 08:48:30</publishTime>
     </File>
     <File Include="sample/index.html">
       <publishTime>06/29/2021 18:55:55</publishTime>
@@ -5915,16 +5936,16 @@
       <publishTime>06/29/2023 18:26:51</publishTime>
     </File>
     <File Include="scheduling/web/check.html">
-      <publishTime>06/29/2023 18:26:57</publishTime>
+      <publishTime>07/10/2023 19:31:45</publishTime>
     </File>
     <File Include="scheduling/web/department_new.html">
-      <publishTime>07/06/2023 17:53:05</publishTime>
+      <publishTime>07/10/2023 19:17:44</publishTime>
     </File>
     <File Include="scheduling/web/download/云合排产管理系统_使用说明.rar">
       <publishTime>06/25/2023 22:58:48</publishTime>
     </File>
     <File Include="scheduling/web/index.html">
-      <publishTime>06/26/2023 20:54:50</publishTime>
+      <publishTime>09/21/2023 10:54:01</publishTime>
     </File>
     <File Include="scheduling/web/module.html">
       <publishTime>07/05/2023 17:17:08</publishTime>
@@ -5933,13 +5954,13 @@
       <publishTime>07/10/2023 18:26:24</publishTime>
     </File>
     <File Include="scheduling/web/paiban.html">
-      <publishTime>06/29/2023 18:27:30</publishTime>
+      <publishTime>07/10/2023 19:16:08</publishTime>
     </File>
     <File Include="scheduling/web/paibanbiao_renyuan.html">
-      <publishTime>07/06/2023 18:27:07</publishTime>
+      <publishTime>07/10/2023 19:28:16</publishTime>
     </File>
     <File Include="scheduling/web/paiban_detail.html">
-      <publishTime>07/06/2023 17:44:53</publishTime>
+      <publishTime>10/13/2023 15:07:15</publishTime>
     </File>
     <File Include="scheduling/web/static/axios/axios.js">
       <publishTime>06/29/2021 18:55:55</publishTime>
@@ -6056,19 +6077,19 @@
       <publishTime>06/29/2021 18:55:55</publishTime>
     </File>
     <File Include="scheduling/web/summary.html">
-      <publishTime>06/29/2023 18:27:51</publishTime>
+      <publishTime>07/10/2023 19:32:44</publishTime>
     </File>
     <File Include="scheduling/web/time.html">
       <publishTime>06/29/2023 18:27:57</publishTime>
     </File>
     <File Include="scheduling/web/userInfo.html">
-      <publishTime>06/29/2023 18:28:05</publishTime>
+      <publishTime>09/18/2023 19:35:41</publishTime>
     </File>
     <File Include="scheduling/web/work.html">
-      <publishTime>07/05/2023 17:26:32</publishTime>
+      <publishTime>10/13/2023 14:27:21</publishTime>
     </File>
     <File Include="scheduling/web/zhuye.html">
-      <publishTime>09/05/2022 12:55:40</publishTime>
+      <publishTime>10/10/2023 18:09:09</publishTime>
     </File>
     <File Include="Scripts/Common.js">
       <publishTime>06/29/2021 18:55:39</publishTime>
@@ -6494,7 +6515,7 @@
       <publishTime>06/29/2021 18:55:39</publishTime>
     </File>
     <File Include="sp_rc_ku_select.aspx">
-      <publishTime>03/06/2023 14:23:40</publishTime>
+      <publishTime>10/08/2023 21:19:40</publishTime>
     </File>
     <File Include="statelist.asp">
       <publishTime>06/29/2021 18:55:55</publishTime>
@@ -6509,7 +6530,7 @@
       <publishTime>06/29/2021 18:55:39</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/10/2023 18:31:27</publishTime>
+      <publishTime>10/13/2023 22:27:28</publishTime>
     </File>
     <File Include="WebForm1.aspx">
       <publishTime>06/29/2021 18:55:39</publishTime>
@@ -6521,7 +6542,7 @@
       <publishTime>04/13/2022 16:25:55</publishTime>
     </File>
     <File Include="wqx1.aspx">
-      <publishTime>04/13/2022 16:25:55</publishTime>
+      <publishTime>10/08/2023 20:15:11</publishTime>
     </File>
     <File Include="yejiguanli.aspx">
       <publishTime>06/29/2021 18:55:55</publishTime>
@@ -6530,7 +6551,7 @@
       <publishTime>06/29/2021 18:55:55</publishTime>
     </File>
     <File Include="zheng_li_page.aspx">
-      <publishTime>07/20/2022 17:41:03</publishTime>
+      <publishTime>10/08/2023 21:34:33</publishTime>
     </File>
     <File Include="副本 Web.config">
       <publishTime>06/29/2021 18:55:55</publishTime>

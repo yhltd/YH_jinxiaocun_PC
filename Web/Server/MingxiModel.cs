@@ -188,7 +188,7 @@ namespace Web.Server
                     new MySqlParameter("@shouhuo", shouhuo),
                     new MySqlParameter("@gongxi", gongsi)
                 };
-                string sql = "select shou_h,sp_dm,cpname,cplb,ifnull(sum(cpsl),0) as ruku_num,ifnull(sum(cpsj),0) as ruku_price from yh_jinxiaocun_mingxi where gs_name=@gongxi group by shou_h,sp_dm,cpname,cplb having shou_h != '' and shou_h = @shouhuo";
+                string sql = "select shou_h,sp_dm,cpname,cplb,ifnull(sum(cpsl),0) as ruku_num,ifnull(sum(cpsl*cpsj),0) as ruku_price from yh_jinxiaocun_mingxi where gs_name=@gongxi group by shou_h,sp_dm,cpname,cplb having shou_h != '' and shou_h = @shouhuo";
                 //string sql = "select mx.shijian,mx.shou_h,mx.orderid,mx.sp_dm,mx.cpname,ifnull(ruku.cpsl,0) as ruku_num,ifnull(ruku.cp_price,0) as ruku_price from yh_jinxiaocun_mingxi as mx left join (select orderid,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by orderid) as ruku on mx.orderid = ruku.orderid where mx.gs_name = @gongxi GROUP BY mx.orderid having mx.shou_h != '' and mx.shou_h = @shouhuo";
                 var result = sen.Database.SqlQuery<MingXiItem>(sql, @params);
                 return result.ToList();
@@ -202,7 +202,7 @@ namespace Web.Server
                 var @params = new MySqlParameter[]{
                     new MySqlParameter("@gongxi", gongsi)
                 };
-                string sql = "select shou_h,sp_dm,cpname,cplb,ifnull(sum(cpsl),0) as ruku_num,ifnull(sum(cpsj),0) as ruku_price from yh_jinxiaocun_mingxi where gs_name=@gongxi group by shou_h,sp_dm,cpname,cplb having shou_h != '' order by shou_h";
+                string sql = "select shou_h,sp_dm,cpname,cplb,ifnull(sum(cpsl),0) as ruku_num,ifnull(sum(cpsl*cpsj),0) as ruku_price from yh_jinxiaocun_mingxi where gs_name=@gongxi group by shou_h,sp_dm,cpname,cplb having shou_h != '' order by shou_h";
                 //string sql = "select mx.shijian,mx.shou_h,mx.orderid,mx.sp_dm,mx.cpname,ifnull(ruku.cpsl,0) as ruku_num,ifnull(ruku.cp_price,0) as ruku_price from yh_jinxiaocun_mingxi as mx left join (select orderid,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by orderid) as ruku on mx.orderid = ruku.orderid where mx.gs_name = @gongxi GROUP BY mx.orderid having mx.shou_h != '' and mx.shou_h = @shouhuo";
                 var result = sen.Database.SqlQuery<MingXiItem>(sql, @params);
                 return result.ToList();

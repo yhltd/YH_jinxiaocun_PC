@@ -57,7 +57,7 @@ namespace Web.scheduling.service
             PageUtil<paibanbiao_detail> page = new PageUtil<paibanbiao_detail>();
             page.nowPage = nowPage;
             page.pageCount = pageCount;
-            page.total = pbd.Count();
+            page.total = pbd.Count(page.getSkip(), page.getTake(), user.company, staff_name, banci);
             page.pageList = pbd.getList(page.getSkip(), page.getTake(), user.company,staff_name,banci);
             return page;
         }

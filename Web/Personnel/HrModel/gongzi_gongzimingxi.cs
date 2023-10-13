@@ -70,5 +70,6 @@ namespace Web.Personnel.HrModel
         public string BB { get; set; }
         public string BC { get; set; }
         public string BD { get; set; }
+        public string BE { get; set; }
     }
 }

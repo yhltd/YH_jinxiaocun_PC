@@ -17,7 +17,7 @@ namespace Web.Personnel
         SqlConnection conn = null;
         SqlDataReader str = null;
         SqlCommand cmd = null;
-        string[] aa = new string[55];
+        string[] aa = new string[56];
         public static string a;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -194,8 +194,9 @@ namespace Web.Personnel
                     aa[52] = (string)str["BB"];
                     aa[53] = (string)str["BC"];
                     aa[54] = (string)str["BD"];
+                    aa[55] = (string)str["BE"];
                 }
-                for (int i = 1; i < 55; i++)
+                for (int i = 1; i < 56; i++)
                 {
                     if (i == 21 || i == 23 || i == 22 || i == 32 || i == 24 || i == 42 || i == 33 || i == 11 || i == 49 || i == 51 || i == 10 || i == 41)
                     {
@@ -234,6 +235,7 @@ namespace Web.Personnel
                     //    ((TextBox)this.FindControl("TextBox" + i.ToString())).Text = aa[i - 1];
                     //}
                 }
+                ((TextBox)this.FindControl("TextBox55")).Text = aa[55];
                 Textbox1.Attributes["onblur"] = ClientScript.GetPostBackEventReference(Button3, null);
             }
 
@@ -241,7 +243,7 @@ namespace Web.Personnel
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            string[] sqlarry = new string[] { "B", "C", "D", "E", " F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "ASA", "ATA", "AU", "AV", "AW", "AX", "AY", "AZ", "BA", "BB", "BC", "BD" };
+            string[] sqlarry = new string[] { "B", "C", "D", "E", " F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "AA", "AB", "AC", "AD", "AE", "AF", "AG", "AH", "AI", "AJ", "AK", "AL", "AM", "AN", "AO", "AP", "AQ", "AR", "ASA", "ATA", "AU", "AV", "AW", "AX", "AY", "AZ", "BA", "BB", "BC","BE","BD" };
             //string a = Request["strs"].ToString();
             string[] bb = new string[55];
             bb[54] = a;
@@ -268,7 +270,7 @@ namespace Web.Personnel
                     sqlStr += sqlarry[i - 1] + "='" + Request.Form["TextBox" + i] + "'";
                 }
             }
-
+            sqlStr += ",BE='" + Request.Form["TextBox55"] + "' ";
             sqlStr += " where id='"+bb[54]+"';";
             cmd = new SqlCommand(sqlStr, conn);
             cmd.ExecuteNonQuery();

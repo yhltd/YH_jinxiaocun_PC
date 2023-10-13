@@ -174,6 +174,7 @@
     <EntitySetMapping Name="gongzi_renyuan">
       <EntityTypeMapping TypeName="yaoModel.gongzi_renyuan">
         <MappingFragment StoreEntitySet="gongzi_renyuan">
+          <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
           <ScalarProperty Name="AD" ColumnName="AD" />
           <ScalarProperty Name="AC" ColumnName="AC" />
           <ScalarProperty Name="AB" ColumnName="AB" />
@@ -319,6 +320,7 @@
     <EntitySetMapping Name="baitaoquanxian">
       <EntityTypeMapping TypeName="yaoModel.baitaoquanxian">
         <MappingFragment StoreEntitySet="baitaoquanxian">
+          <ScalarProperty Name="李老六最后修改日期" ColumnName="李老六最后修改日期" />
           <ScalarProperty Name="fff最后修改日期" ColumnName="fff最后修改日期" />
           <ScalarProperty Name="j最后修改日期" ColumnName="j最后修改日期" />
           <ScalarProperty Name="h最后修改日期" ColumnName="h最后修改日期" />
@@ -439,6 +441,7 @@
     <EntitySetMapping Name="baitaoquanxian_copy1">
       <EntityTypeMapping TypeName="yaoModel.baitaoquanxian_copy1">
         <MappingFragment StoreEntitySet="baitaoquanxian_copy1">
+          <ScalarProperty Name="chashanquanxian" ColumnName="chashanquanxian" />
           <ScalarProperty Name="renyuan_id" ColumnName="renyuan_id" />
           <ScalarProperty Name="CX" ColumnName="CX" />
           <ScalarProperty Name="CW" ColumnName="CW" />
@@ -765,6 +768,13 @@
     <EntitySetMapping Name="baitaoquanxian_renyun">
       <EntityTypeMapping TypeName="yaoModel.baitaoquanxian_renyun">
         <MappingFragment StoreEntitySet="baitaoquanxian_renyun">
+          <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
+          <ScalarProperty Name="bumen" ColumnName="bumen" />
+          <ScalarProperty Name="quanxian_id" ColumnName="quanxian_id" />
+          <ScalarProperty Name="bianhao" ColumnName="bianhao" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="zhuangtai" ColumnName="zhuangtai" />
           <ScalarProperty Name="renyuan_id" ColumnName="renyuan_id" />
           <ScalarProperty Name="E" ColumnName="E" />
           <ScalarProperty Name="D" ColumnName="D" />
@@ -1698,6 +1708,7 @@
     <EntitySetMapping Name="gongzi_shenpi">
       <EntityTypeMapping TypeName="yaoModel.gongzi_shenpi">
         <MappingFragment StoreEntitySet="gongzi_shenpi">
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
           <ScalarProperty Name="riqi" ColumnName="riqi" />
           <ScalarProperty Name="shenpiren" ColumnName="shenpiren" />
           <ScalarProperty Name="quanqin_tianshu" ColumnName="quanqin_tianshu" />
@@ -1705,7 +1716,6 @@
           <ScalarProperty Name="qiye_zhichu" ColumnName="qiye_zhichu" />
           <ScalarProperty Name="geren_zhichu" ColumnName="geren_zhichu" />
           <ScalarProperty Name="shifa_gongzi" ColumnName="shifa_gongzi" />
-          <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

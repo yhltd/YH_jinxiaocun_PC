@@ -312,6 +312,7 @@
           <Property Name="h最后修改日期" Type="date" />
           <Property Name="j最后修改日期" Type="date" />
           <Property Name="fff最后修改日期" Type="date" />
+          <Property Name="李老六最后修改日期" Type="date" />
         </EntityType>
         <EntityType Name="baitaoquanxian_copy1">
           <Key>
@@ -421,6 +422,7 @@
           <Property Name="CW" Type="varchar" MaxLength="255" />
           <Property Name="CX" Type="varchar" MaxLength="255" />
           <Property Name="renyuan_id" Type="varchar" MaxLength="255" />
+          <Property Name="chashanquanxian" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="baitaoquanxian_copy2">
           <Key>
@@ -646,6 +648,13 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
           <Property Name="renyuan_id" Type="varchar" MaxLength="255" />
+          <Property Name="zhuangtai" Type="varchar" MaxLength="255" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="phone" Type="varchar" MaxLength="255" />
+          <Property Name="bianhao" Type="varchar" MaxLength="255" />
+          <Property Name="quanxian_id" Type="varchar" MaxLength="255" />
+          <Property Name="bumen" Type="varchar" MaxLength="255" />
+          <Property Name="wechart_user" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="dearhylo9_cangku">
           <Key>
@@ -762,6 +771,7 @@
           <Property Name="BB" Type="varchar" MaxLength="255" />
           <Property Name="BC" Type="varchar" MaxLength="255" />
           <Property Name="BD" Type="varchar" MaxLength="255" />
+          <Property Name="BE" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="gongzi_kaoqinjilu">
           <Key>
@@ -902,6 +912,7 @@
           <Property Name="AB" Type="varchar" MaxLength="255" />
           <Property Name="AC" Type="varchar" MaxLength="255" />
           <Property Name="AD" Type="varchar" MaxLength="255" />
+          <Property Name="wechart_user" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'yao.dbo.gongzi_renyuanManager' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -929,7 +940,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="varchar" MaxLength="255" />
           <Property Name="shifa_gongzi" Type="varchar" MaxLength="255" />
           <Property Name="geren_zhichu" Type="varchar" MaxLength="255" />
           <Property Name="qiye_zhichu" Type="varchar" MaxLength="255" />
@@ -937,6 +947,7 @@
           <Property Name="quanqin_tianshu" Type="varchar" MaxLength="255" />
           <Property Name="shenpiren" Type="varchar" MaxLength="255" />
           <Property Name="riqi" Type="varchar" MaxLength="255" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="gongzi_shezhi">
           <Key>
@@ -1789,42 +1800,6 @@
           <Property Name="time" Type="datetime" Nullable="false" />
           <Property Name="number" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6013: The table/view 'yao.dbo.gongzi_title' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="gongzi_title">
-        <Property Name="bumenhuizong" Type="nvarchar" MaxLength="255" />
-        <Property Name="bumenxiangqing" Type="nvarchar" MaxLength="255" />
-        <Property Name="gongzimingxi" Type="nvarchar" MaxLength="255" />
-        <Property Name="shebaoxiangqing" Type="nvarchar" MaxLength="255" />
-        <Property Name="shebaohuizong" Type="nvarchar" MaxLength="255" />
-        <Property Name="baopan" Type="nvarchar" MaxLength="255" />
-        <Property Name="baoshui" Type="nvarchar" MaxLength="255" />
-        <Property Name="kaoqinbiao" Type="nvarchar" MaxLength="255" />
-        <Property Name="gerensuodeshui" Type="nvarchar" MaxLength="255" />
-        <Property Name="renyuanjibenxinxi" Type="nvarchar" MaxLength="255" />
-        <Property Name="gongzitiao" Type="nvarchar" MaxLength="255" />
-        <Property Name="renyuanxinxiguanli" Type="nvarchar" MaxLength="255" />
-        <Property Name="kaoqinjilu" Type="nvarchar" MaxLength="255" />
-        <Property Name="peizhi" Type="nvarchar" MaxLength="255" />
-        <Property Name="yuangongdangan" Type="nvarchar" MaxLength="255" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'yao.dbo.test' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="test">
-        <Property Name="姓名" Type="varchar" MaxLength="255" />
-        <Property Name="年龄" Type="int" />
-        <Property Name="性别" Type="varchar" MaxLength="255" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'yao.guest.t_user' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="t_user">
-        <Property Name="name" Type="varchar" MaxLength="255" />
-        <Property Name="age" Type="int" />
-        <Property Name="sex" Type="varchar" MaxLength="255" />
-      </EntityType>-->
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -2102,6 +2077,7 @@
           <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gongzi_renyuanManager">
           <Key>
@@ -2331,6 +2307,7 @@
           <Property Type="DateTime" Name="h最后修改日期" Precision="0" />
           <Property Type="DateTime" Name="j最后修改日期" Precision="0" />
           <Property Type="DateTime" Name="fff最后修改日期" Precision="0" />
+          <Property Type="DateTime" Name="李老六最后修改日期" Precision="0" />
         </EntityType>
         <EntityType Name="baitaoquanxian_copy1">
           <Key>
@@ -2440,6 +2417,7 @@
           <Property Type="String" Name="CW" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="CX" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="renyuan_id" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="chashanquanxian" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="baitaoquanxian_copy2">
           <Key>
@@ -2665,6 +2643,13 @@
           <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="renyuan_id" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhuangtai" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="phone" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="bianhao" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="quanxian_id" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="dearhylo9_cangku">
           <Key>
@@ -3544,7 +3529,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="shifa_gongzi" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="geren_zhichu" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="qiye_zhichu" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -3552,6 +3536,7 @@
           <Property Type="String" Name="quanqin_tianshu" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="shenpiren" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3732,6 +3717,7 @@
           <EntitySetMapping Name="gongzi_renyuan">
             <EntityTypeMapping TypeName="yaoModel.gongzi_renyuan">
               <MappingFragment StoreEntitySet="gongzi_renyuan">
+                <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
                 <ScalarProperty Name="AD" ColumnName="AD" />
                 <ScalarProperty Name="AC" ColumnName="AC" />
                 <ScalarProperty Name="AB" ColumnName="AB" />
@@ -3877,6 +3863,7 @@
           <EntitySetMapping Name="baitaoquanxian">
             <EntityTypeMapping TypeName="yaoModel.baitaoquanxian">
               <MappingFragment StoreEntitySet="baitaoquanxian">
+                <ScalarProperty Name="李老六最后修改日期" ColumnName="李老六最后修改日期" />
                 <ScalarProperty Name="fff最后修改日期" ColumnName="fff最后修改日期" />
                 <ScalarProperty Name="j最后修改日期" ColumnName="j最后修改日期" />
                 <ScalarProperty Name="h最后修改日期" ColumnName="h最后修改日期" />
@@ -3997,6 +3984,7 @@
           <EntitySetMapping Name="baitaoquanxian_copy1">
             <EntityTypeMapping TypeName="yaoModel.baitaoquanxian_copy1">
               <MappingFragment StoreEntitySet="baitaoquanxian_copy1">
+                <ScalarProperty Name="chashanquanxian" ColumnName="chashanquanxian" />
                 <ScalarProperty Name="renyuan_id" ColumnName="renyuan_id" />
                 <ScalarProperty Name="CX" ColumnName="CX" />
                 <ScalarProperty Name="CW" ColumnName="CW" />
@@ -4323,6 +4311,13 @@
           <EntitySetMapping Name="baitaoquanxian_renyun">
             <EntityTypeMapping TypeName="yaoModel.baitaoquanxian_renyun">
               <MappingFragment StoreEntitySet="baitaoquanxian_renyun">
+                <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
+                <ScalarProperty Name="bumen" ColumnName="bumen" />
+                <ScalarProperty Name="quanxian_id" ColumnName="quanxian_id" />
+                <ScalarProperty Name="bianhao" ColumnName="bianhao" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="zhuangtai" ColumnName="zhuangtai" />
                 <ScalarProperty Name="renyuan_id" ColumnName="renyuan_id" />
                 <ScalarProperty Name="E" ColumnName="E" />
                 <ScalarProperty Name="D" ColumnName="D" />
@@ -5256,6 +5251,7 @@
           <EntitySetMapping Name="gongzi_shenpi">
             <EntityTypeMapping TypeName="yaoModel.gongzi_shenpi">
               <MappingFragment StoreEntitySet="gongzi_shenpi">
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
                 <ScalarProperty Name="riqi" ColumnName="riqi" />
                 <ScalarProperty Name="shenpiren" ColumnName="shenpiren" />
                 <ScalarProperty Name="quanqin_tianshu" ColumnName="quanqin_tianshu" />
@@ -5263,7 +5259,6 @@
                 <ScalarProperty Name="qiye_zhichu" ColumnName="qiye_zhichu" />
                 <ScalarProperty Name="geren_zhichu" ColumnName="geren_zhichu" />
                 <ScalarProperty Name="shifa_gongzi" ColumnName="shifa_gongzi" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

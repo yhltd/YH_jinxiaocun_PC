@@ -26,7 +26,7 @@ namespace Web.RDLC
         {
             try
             {
-                ReportViewer2.LocalReport.ReportPath = @"RDLC/Report1.rdlc";
+                ReportViewer2.LocalReport.ReportPath = @"./RDLC/Report1.rdlc";
                 //假数据
                 List<rukuPrint> OnlineShow_datas1 = new List<rukuPrint>();
                 if (Session["printList"] != null) {

@@ -26,7 +26,7 @@ namespace Web.RDLC
         {
             try
             {
-                ReportViewer3.LocalReport.ReportPath = @"RDLC/Report3.rdlc";
+                ReportViewer3.LocalReport.ReportPath = @"./RDLC/Report3.rdlc";
                 //假数据
                 List<ming_xi_info> OnlineShow_datas1 = new List<ming_xi_info>();
                 if (Session["printList"] != null) {

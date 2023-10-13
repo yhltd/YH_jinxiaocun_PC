@@ -3061,6 +3061,16 @@
       <DependentUpon>yuangongdangan.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="qi_chu.aspx.cs">
       <DependentUpon>qi_chu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3810,6 +3820,10 @@
     <Content Include="scheduling\web\static\element\fonts\element-icons.ttf" />
     <Content Include="scheduling\web\static\element\fonts\element-icons.woff" />
     <Content Include="scheduling\web\download\云合排产管理系统_使用说明.rar" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
     <None Include="副本 Web.Debug.config">
       <DependentUpon>副本 Web.config</DependentUpon>
     </None>
@@ -3826,6 +3840,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="RDLC\Report3.rdlc" />
     <EmbeddedResource Include="RDLC\Report2.rdlc" />
     <EmbeddedResource Include="RDLC\Report1.rdlc" />

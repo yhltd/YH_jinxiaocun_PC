@@ -307,6 +307,7 @@
     <Property Name="h最后修改日期" Type="date" />
     <Property Name="j最后修改日期" Type="date" />
     <Property Name="fff最后修改日期" Type="date" />
+    <Property Name="李老六最后修改日期" Type="date" />
   </EntityType>
   <EntityType Name="baitaoquanxian_copy1">
     <Key>
@@ -416,6 +417,7 @@
     <Property Name="CW" Type="varchar" MaxLength="255" />
     <Property Name="CX" Type="varchar" MaxLength="255" />
     <Property Name="renyuan_id" Type="varchar" MaxLength="255" />
+    <Property Name="chashanquanxian" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="baitaoquanxian_copy2">
     <Key>
@@ -641,6 +643,13 @@
     <Property Name="D" Type="varchar" MaxLength="255" />
     <Property Name="E" Type="varchar" MaxLength="255" />
     <Property Name="renyuan_id" Type="varchar" MaxLength="255" />
+    <Property Name="zhuangtai" Type="varchar" MaxLength="255" />
+    <Property Name="email" Type="varchar" MaxLength="255" />
+    <Property Name="phone" Type="varchar" MaxLength="255" />
+    <Property Name="bianhao" Type="varchar" MaxLength="255" />
+    <Property Name="quanxian_id" Type="varchar" MaxLength="255" />
+    <Property Name="bumen" Type="varchar" MaxLength="255" />
+    <Property Name="wechart_user" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="dearhylo9_cangku">
     <Key>
@@ -757,6 +766,7 @@
     <Property Name="BB" Type="varchar" MaxLength="255" />
     <Property Name="BC" Type="varchar" MaxLength="255" />
     <Property Name="BD" Type="varchar" MaxLength="255" />
+    <Property Name="BE" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="gongzi_kaoqinjilu">
     <Key>
@@ -897,6 +907,7 @@
     <Property Name="AB" Type="varchar" MaxLength="255" />
     <Property Name="AC" Type="varchar" MaxLength="255" />
     <Property Name="AD" Type="varchar" MaxLength="255" />
+    <Property Name="wechart_user" Type="varchar" MaxLength="255" />
   </EntityType>
   <!--Errors Found During Generation:
       warning 6002: The table/view 'yao.dbo.gongzi_renyuanManager' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -924,7 +935,6 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="varchar" MaxLength="255" />
     <Property Name="shifa_gongzi" Type="varchar" MaxLength="255" />
     <Property Name="geren_zhichu" Type="varchar" MaxLength="255" />
     <Property Name="qiye_zhichu" Type="varchar" MaxLength="255" />
@@ -932,6 +942,7 @@
     <Property Name="quanqin_tianshu" Type="varchar" MaxLength="255" />
     <Property Name="shenpiren" Type="varchar" MaxLength="255" />
     <Property Name="riqi" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="gongzi_shezhi">
     <Key>
@@ -1784,40 +1795,4 @@
     <Property Name="time" Type="datetime" Nullable="false" />
     <Property Name="number" Type="varchar" Nullable="false" MaxLength="255" />
   </EntityType>
-  <!--Errors Found During Generation:
-      warning 6013: The table/view 'yao.dbo.gongzi_title' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="gongzi_title">
-        <Property Name="bumenhuizong" Type="nvarchar" MaxLength="255" />
-        <Property Name="bumenxiangqing" Type="nvarchar" MaxLength="255" />
-        <Property Name="gongzimingxi" Type="nvarchar" MaxLength="255" />
-        <Property Name="shebaoxiangqing" Type="nvarchar" MaxLength="255" />
-        <Property Name="shebaohuizong" Type="nvarchar" MaxLength="255" />
-        <Property Name="baopan" Type="nvarchar" MaxLength="255" />
-        <Property Name="baoshui" Type="nvarchar" MaxLength="255" />
-        <Property Name="kaoqinbiao" Type="nvarchar" MaxLength="255" />
-        <Property Name="gerensuodeshui" Type="nvarchar" MaxLength="255" />
-        <Property Name="renyuanjibenxinxi" Type="nvarchar" MaxLength="255" />
-        <Property Name="gongzitiao" Type="nvarchar" MaxLength="255" />
-        <Property Name="renyuanxinxiguanli" Type="nvarchar" MaxLength="255" />
-        <Property Name="kaoqinjilu" Type="nvarchar" MaxLength="255" />
-        <Property Name="peizhi" Type="nvarchar" MaxLength="255" />
-        <Property Name="yuangongdangan" Type="nvarchar" MaxLength="255" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'yao.dbo.test' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="test">
-        <Property Name="姓名" Type="varchar" MaxLength="255" />
-        <Property Name="年龄" Type="int" />
-        <Property Name="性别" Type="varchar" MaxLength="255" />
-      </EntityType>
-      Errors Found During Generation:
-      warning 6013: The table/view 'yao.guest.t_user' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-      
-      <EntityType Name="t_user">
-        <Property Name="name" Type="varchar" MaxLength="255" />
-        <Property Name="age" Type="int" />
-        <Property Name="sex" Type="varchar" MaxLength="255" />
-      </EntityType>-->
 </Schema>

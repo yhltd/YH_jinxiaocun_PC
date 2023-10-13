@@ -7,7 +7,7 @@ namespace Web.jxc_service
 {
     public class ServicePage
     {
-        public int pageCount = 20;
+        public int pageCount = 10;
         public int count;
         public int nowPage = 1;
         public int countPage;

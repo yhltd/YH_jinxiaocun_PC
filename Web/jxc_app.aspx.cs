@@ -31,7 +31,7 @@ namespace Web
                 //设置下载方式=>附件
                 Response.AddHeader("Content-Disposition", "attachment;filename=app-debug.apk");
                 //获取文件的绝对路径
-                string filename = Server.MapPath("download/app-debug.apk");
+                string filename = Server.MapPath("./download/app-debug.apk");
                 //将文件直接写入HTTP响应输出流
                 Response.TransmitFile(filename);
             }

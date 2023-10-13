@@ -37,14 +37,29 @@ namespace Web.scheduling.dao
             }
         }
 
-        public int Count()
+        public int Count(int skip, int take, String company, string staff_name, string banci)
         {
+            var @params = new SqlParameter[]{
+                new SqlParameter("@staff_name", staff_name),
+                new SqlParameter("@banci", banci),
+                new SqlParameter("@company", company),
+            };
+            string sql = "select * from paibanbiao_detail where staff_name like '%' + @staff_name + '%' and b like '%' + @banci + '%' and company=@company order by e desc,id ";
             using (se = new schedulingEntities())
             {
-                var result = se.paibanbiao_detail.Count();
-                return (int)result;
+                var result = se.Database.SqlQuery<paibanbiao_detail>(sql, @params).OrderBy(pd => pd.c);
+                return result.ToList().Count;
             }
         }
+
+        //public int Count()
+        //{
+        //    using (se = new schedulingEntities())
+        //    {
+        //        var result = se.paibanbiao_detail.Count();
+        //        return (int)result;
+        //    }
+        //}
 
         public Boolean delete<T>(int id) where T : class
         {

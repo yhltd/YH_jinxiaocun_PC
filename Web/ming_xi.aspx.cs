@@ -79,7 +79,7 @@ namespace Web
                 foreach (yh_jinxiaocun_mingxi mingxi in list)
                 {
 
-                    sw.WriteLine(mingxi.orderid + "\t" + mingxi.sp_dm + "\t" + mingxi.cpname + "\t" + mingxi.cplb + "\t" + mingxi.cpsj + "\t" + mingxi.cpsl + "\t" + mingxi.mxtype + "\t'" + mingxi.shijian + "\t" + mingxi.gongsi + "\t" + mingxi.shou_h);
+                    sw.WriteLine(mingxi.orderid + "\t" + mingxi.sp_dm + "\t" + mingxi.cpname + "\t" + mingxi.cplb + "\t" + mingxi.cpsj + "\t" + mingxi.cpsl + "\t" + mingxi.mxtype + "\t'" + mingxi.shijian + "\t" + mingxi.gs_name + "\t" + mingxi.shou_h);
 
                 }
 

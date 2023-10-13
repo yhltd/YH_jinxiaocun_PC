@@ -273,6 +273,7 @@
     <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="gongzi_renyuanManager">
     <Key>
@@ -502,6 +503,7 @@
     <Property Type="DateTime" Name="h最后修改日期" Precision="0" />
     <Property Type="DateTime" Name="j最后修改日期" Precision="0" />
     <Property Type="DateTime" Name="fff最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="李老六最后修改日期" Precision="0" />
   </EntityType>
   <EntityType Name="baitaoquanxian_copy1">
     <Key>
@@ -611,6 +613,7 @@
     <Property Type="String" Name="CW" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="CX" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="renyuan_id" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="chashanquanxian" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="baitaoquanxian_copy2">
     <Key>
@@ -836,6 +839,13 @@
     <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="renyuan_id" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhuangtai" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="email" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="phone" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bianhao" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="quanxian_id" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="dearhylo9_cangku">
     <Key>
@@ -1715,7 +1725,6 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="shifa_gongzi" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="geren_zhichu" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="qiye_zhichu" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -1723,5 +1732,6 @@
     <Property Type="String" Name="quanqin_tianshu" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="shenpiren" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

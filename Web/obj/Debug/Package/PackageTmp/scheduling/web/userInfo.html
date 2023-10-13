@@ -1,0 +1,558 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="../../finance/web/assets/js/Jquery.js"></script>
+    <link href="static/element/index.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/css/main.css">
+
+    <script type="text/javascript" src="static/vue/vue.js"></script>
+    <script type="text/javascript" src="static/element/index.js"></script>
+    <script type="text/javascript" src="static/axios/axios.js"></script>
+    <script type="text/javascript" src="../../Myadmin/js/Jquery.js"></script>
+    <script type="text/javascript" src="../../Myadmin/js/qrcode.min.js"></script>
+    <script src="static/js/main.js"></script>
+
+    <title>云合排产管理系统</title>
+
+    <script>
+        function watchVideo() {
+            $(".videoCanvas").show();
+            $(".video-mask").show();
+        }
+
+        $("#video-shut").click(function () {
+            $("#video").trigger("pause");
+            $(".videoCanvas").hide();
+            $(".video-mask").hide();
+        })
+
+        $('.videoCanvas').mouseover(function (event) {
+            $('.video-shut').show();
+        })
+
+        $('.videoCanvas').mouseout(function (event) {
+            $('.video-shut').hide();
+        })
+
+        function close_video() {
+
+            $("#video").trigger("pause");
+            $(".videoCanvas").hide();
+            $(".video-mask").hide();
+        }
+    </script>
+    <style>
+        /* 视频播放 */
+        .video-mask {
+          position: fixed;
+          z-index: 9999;
+          background: rgba(33, 33, 33, .8);
+          top: 0;
+          width: 100%;
+          height: 100%;
+          display: none;
+        }
+
+        .videoCanvas {
+          position: fixed;
+          z-index: 10000;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          display: none;
+        }
+
+        .video-shut {
+          position: absolute;
+          height: 32px;
+          width: 32px;
+          margin: 10px 10px 0 0;
+          right: 0px;
+          text-align: center;
+          display: block;
+          z-index: 9999;
+          cursor: pointer;
+          /*display: none;*/
+        }
+
+        .el-table {
+            /*position: absolute;*/
+            min-width: 1300px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- 视频 -->
+    <div class="video-mask" id="video-mask"></div>
+    <div class="videoCanvas" id="videoCanvas" style="display: none;">
+    <span class="video-shut" id="video-shut" onclick="close_video()">
+        <img src="static/img/close.png" style="width: 28px; height: 28px;" >
+    </span>
+        <video id="video" controls src="./static/video/账号管理.mp4" width="700" height="400"></video>
+    </div>
+    <div id="qrcode" style="display: none"></div>
+    <div id="userInfo" style="display: none;" :style="{display: 'block'}">
+        <el-container>
+            <el-main>
+                <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="6">
+                        <el-input v-model="user_code" placeholder="查询账号" clearable></el-input>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-button-group style="width:600px">
+                            <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getList('查询')">查询</el-button>
+                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList('刷新')">刷新</el-button>
+                            <el-button icon="el-icon-circle-plus-outline" type="primary" @click="addVisible = true">添加</el-button>
+                            <el-button icon="el-icon-video-camera" type="primary" onclick="watchVideo()"></el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+                <el-table
+                    :data="list"
+                    :height="tableHeight"
+                    v-loading="loading"    
+                    style="width: 100%;margin-top: 10px;font-size:15px"
+                >
+                    <el-table-column type="expand">
+                        <template slot-scope="props">
+                            <el-form
+                                :model="props.row"
+                                :rules="orderRules"
+                                ref="updateForm"
+                                label-width="80px"
+                            >
+                                <el-form-item label="账号" prop="user_code">
+                                    <el-input v-model="props.row.user_code" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="密码" prop="password">
+                                    <el-input v-model="props.row.password" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="部门" prop="department_name">
+                                    <el-input v-model="props.row.department_name" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="状态" prop="state">
+                                    <el-select v-model="order.state" style="width: 220px">
+                                        <el-option v-for="state in options"
+                                            :label="state.text"
+                                            :key="state.value"
+                                            :value="state.value"
+                                        ></el-option>
+                                    </el-select>
+                                </el-form-item>
+                             
+                            </el-form>
+
+                            <el-button 
+                                type="primary" 
+                                icon="el-icon-upload"
+                                :loading="updateLoading"
+                                @click="updateOrder('updateForm')"
+                            >保存</el-button>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column prop="user_code" label="账号" sortable></el-table-column>
+                    <el-table-column prop="password" label="密码" sortable></el-table-column>
+                    <el-table-column prop="department_name" label="部门" sortable></el-table-column>
+                    <el-table-column prop="state" label="状态" sortable></el-table-column>
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                            <el-popconfirm title="确定删除吗？" @confirm="deleteOrder(scope.row.id)" hide-icon>
+                                <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
+                            </el-popconfirm>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="二维码">
+                        <template slot-scope="scope">
+                            <el-button icon="el-icon-printer" type="danger" size="small" slot="reference" @click="qr_make(scope.row.user_code,scope.row.password,scope.row.company,'云合排产管理系统')">下载</el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination 
+                    background 
+                    layout="prev, pager, next" 
+                    :current-page.sync="now"
+                    :total="total"
+                    :page-size="size"
+                    :hide-on-single-page="total <= size" 
+                    @current-change="getList('刷新')"
+                    style="margin-top: 10px"
+                ></el-pagination>
+            </el-main>
+        </el-container>
+
+         <el-drawer
+            title="注册账号"
+            :visible.sync="addVisible"
+            direction="ltr"
+            :modal="false"
+            size="50%"
+            ref="orderDrawer"
+             v-loading="saveLoading"
+        >
+            <el-form
+                :model="order"
+                :rules="orderRules"
+                ref="addForm"
+               label-width="80px"
+                label-position="left"
+                status-icon
+            >
+                <el-form-item label="账号" prop="user_code">
+                    <el-input v-model="order.user_code" style="width: 220px"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" prop="password">
+                    <el-input v-model="order.password" style="width: 220px"></el-input>
+                </el-form-item>
+                <el-form-item label="部门" prop="department_name">
+                    <el-input v-model="order.department_name" style="width: 220px"></el-input>
+                </el-form-item>
+                <el-form-item label="状态" prop="state">
+                    <el-select v-model="order.state" style="width: 220px">
+                       <el-option v-for="state in options"
+                            :label="state.text"
+                            :key="state.value"
+                            :value="state.value"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                </el-form>
+                <el-button 
+                    type="primary" 
+                    icon="el-icon-upload"
+                    style="margin-left:100px"
+                    @click="addOrder('addForm')"
+                >保存</el-button>
+            </el-drawer>
+    </div>
+
+     <script>
+         new Vue({
+             el: '#userInfo',
+             data: {
+                 tableHeight: window.innerHeight - 120,
+                 now: 1,
+                 size: 20,
+                 total: 0,
+                 list: [],
+                 user_code: '',
+                 order: {},
+                 riqi: '',
+
+                 loading: false,
+                 updateLoading: false,
+                 saveLoading: false,
+                 addVisible: false,
+
+                 options: [
+                    { value: "正常", text: "正常" },
+                    { value: "禁用", text: "禁用" },
+                 ],
+
+                 orderRules: {
+                     order_number: [
+                         { required: true, message: '订单号不能为空', trigger: 'blur' }
+                     ],
+                     moudle: [
+                         { required: true, message: '模块不能为空', trigger: 'blur' }
+                     ],
+                     riqi: [
+                         { required: true, message: '日期不能为空', trigger: 'blur' }
+                     ],
+                     num: [
+                         { required: true, message: '数量', trigger: 'blur' }
+                     ],
+                 },
+             },
+             methods: {
+                 getList: function (type) {
+                     var _this = this;
+                     if (type == "刷新") {
+                         _this.user_code = "";
+                     }
+                     _this.loading = true;
+                     axios.post(myUrl('user/getList'), {
+                         user_code: _this.user_code,
+                         nowPage: _this.now,
+                         pageCount: _this.size,
+                     }).then(function (res) {
+                         if (res.code == 200) {
+                             _this.total = res.data.total
+                             _this.list = res.data.pageList
+                         }
+                         if (res.code == 500) {
+                             _this.$notify({
+                                 title: res.msg,
+                                 type: 'error'
+                             });
+                         }
+                         _this.loading = false;
+                     }).catch(function (err) {
+                         _this.$notify.error({
+                             title: err.msg
+                         });
+                         _this.loading = false;
+                     })
+                 },
+                 addOrder: function (formName) {
+                     var _this = this;
+                     _this.$refs[formName].validate(function (valid) {
+                         if (valid) {
+                             _this.loading = true;
+                             axios.post(myUrl('user/save'), {
+                                 user_info: _this.$refs[formName].model
+                             }).then(function (res) {
+                                 if (res.code == 200) {
+                                     _this.$notify({
+                                         title: res.msg,
+                                         type: 'success'
+                                     });
+                                     _this.deptVisible = false,
+                                     _this.addVisible = false,
+                                     _this.getList('刷新');
+                                     
+                                 }
+                                 if (res.code == 500) {
+                                     _this.$notify({
+                                         title: res.msg,
+                                         type: 'error'
+                                     });
+
+                                 }
+                                 _this.loading = false;
+                             }).catch(function (err) {
+                                 _this.$notify.error({
+                                     title: err.msg
+                                 });
+                                 _this.loading = false;
+                             })
+                         }
+                     })
+                 },
+
+                 //addDepartment1: function (formName) {
+                 //    var _this = this;
+                 //    _this.$refs[formName].validate(function (valid) {
+                 //        if (valid) {
+                 //            //_this.saveLoading = true;
+                 //            axios.post(myUrl('department_new/departmentList'), {
+                 //                departmentInfo: _this.department
+                 //            }).then(function (res) {
+                 //                if (res.code == 200) {
+                 //                    _this.$notify({
+                 //                        title: res.msg,
+                 //                        type: 'success'
+                 //                    });
+                 //                    _this.getList();
+                 //                    _this.$refs.addDepartment.closeDrawer();
+                 //                }
+                 //                // _this.saveLoading = false;
+                 //            }).catch(function (err) {
+                 //                _this.$notify.error({
+                 //                    title: err.msg
+                 //                });
+                 //                // _this.saveLoading = false;
+                 //            })
+                 //        }
+                 //    })
+                 //},
+
+                 qr_make: function (username,password,company,system) {
+                     var _this = this;
+                     console.log(username)
+                     console.log(password)
+                     console.log(company)
+                     console.log(system)
+                     var url = window.top.location.href
+                     console.log(url)
+                     var str = name + "`" + password + "`" + company + "`" + "云合排产管理系统"
+                     $.ajax({
+                         type: "post", //要用post方式     
+                         url: "/Myadmin/HouTai/YongHuGuanli.aspx/EncryptAes",
+                         contentType: "application/json; charset=utf-8",
+                         async: false,
+                         dataType: "json",
+                         data: JSON.stringify({
+                             source: str,
+                         }),
+                         success: function (data) {
+                             console.log(data)
+                             console.log(window.top.location.href)
+                             var this_url = window.top.location.href.replace("/scheduling/web/index.html", "/Myadmin/login.aspx")
+                             console.log(this_url)
+                             this_url = this_url + "?user=" + data.d
+                             console.log(this_url)
+                             var qrcode_container = document.getElementById('qrcode');
+                             // 生成二维码
+                             var qrcode = new QRCode(qrcode_container, {
+                                 text: this_url, // 二维码中的内容
+                                 width: 200, // 二维码的宽度
+                                 height: 200, // 二维码的高度
+                                 colorDark: "#000000", // 二维码的颜色
+                                 colorLight: "#ffffff", // 二维码的背景色
+                             });
+                             var base64_qrcode = qrcode_container.firstChild.toDataURL("image/png");
+                             console.log(base64_qrcode)
+                             downloadFileByBase64(username + ".png", base64_qrcode.split(",")[1])
+                         },
+                         error: function (err) {
+                             console.log(err)
+                         }
+                     });
+                 },
+
+                    dataURLtoBlob:function(dataurl, name) {//name:文件名
+                    var mime = name.substring(name.lastIndexOf('.') + 1)//后缀名
+                    var bstr = atob(dataurl), n = bstr.length, u8arr = new Uint8Array(n);
+                    while (n--) {
+                        u8arr[n] = bstr.charCodeAt(n);
+                    }
+                    return new Blob([u8arr], { type: mime });
+                    },
+
+                    downloadFile:function(url, name) {
+                        var a = document.createElement("a")//创建a标签触发点击下载
+                        a.setAttribute("href", url)//附上
+                        a.setAttribute("download", name);
+                        a.setAttribute("target", "_blank");
+                        var clickEvent = document.createEvent("MouseEvents");
+                        clickEvent.initEvent("click", true, true);
+                        a.dispatchEvent(clickEvent);
+                    },
+
+                    //主函数
+                    downloadFileByBase64:function(name, base64) {
+                        var myBlob = dataURLtoBlob(base64, name);
+                        var myUrl = URL.createObjectURL(myBlob);
+                        downloadFile(myUrl, name)
+                    },
+
+                    //获取后缀
+                    getType:function(file) {
+                        var filename = file;
+                        var index1 = filename.lastIndexOf(".");
+                        var index2 = filename.length;
+                        var type = filename.substring(index1 + 1, index2);
+                        return type;
+                    },
+
+                    //根据文件后缀 获取base64前缀不同
+                    getBase64Type:function (type) {
+                        switch (type) {
+                            case 'data:text/plain;base64':
+                                return 'txt';
+                            case 'data:application/msword;base64':
+                                return 'doc';
+                            case 'data:application/vnd.openxmlformats-officedocument.wordprocessingml.document;base64':
+                                return 'docx';
+                            case 'data:application/vnd.ms-excel;base64':
+                                return 'xls';
+                            case 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64':
+                                return 'xlsx';
+                            case 'data:application/pdf;base64':
+                                return 'pdf';
+                            case 'data:application/vnd.openxmlformats-officedocument.presentationml.presentation;base64':
+                                return 'pptx';
+                            case 'data:application/vnd.ms-powerpoint;base64':
+                                return 'ppt';
+                            case 'data:image/png;base64':
+                                return 'png';
+                            case 'data:image/jpeg;base64':
+                                return 'jpg';
+                            case 'data:image/gif;base64':
+                                return 'gif';
+                            case 'data:image/svg+xml;base64':
+                                return 'svg';
+                            case 'data:image/x-icon;base64':
+                                return 'ico';
+                            case 'data:image/bmp;base64':
+                                return 'bmp';
+                        }
+                    },
+
+                    base64ToBlob:function(code) {
+                        code = code.replace(/[\n\r]/g, '');
+                        var raw = window.atob(code);
+                        var rawLength = raw.length;
+                        var uInt8Array = new Uint8Array(rawLength);
+                        for (var i = 0; i < rawLength; ++i) {
+                            uInt8Array[i] = raw.charCodeAt(i)
+                        }
+                        return new Blob([uInt8Array], { type: 'application/pdf' })
+                    },
+
+                 deleteOrder: function (id) {
+                     var _this = this;
+                     axios.post(myUrl('user/delete'), {
+                         id: id,
+                     }).then(function (res) {
+                         if (res.code == 200) {
+                             _this.$notify({
+                                 title: res.msg,
+                                 type: 'success'
+                             });
+                             _this.getList('刷新');
+                         }
+                         if (res.code == 500) {
+                             _this.$notify({
+                                 title: res.msg,
+                                 type: 'error'
+                             });
+
+                         }
+                     }).catch(function (err) {
+                         _this.$notify.error({
+                             title: err.msg
+                         });
+                     })
+                 },
+
+                 updateOrder: function (formName) {
+                     var _this = this;
+                     _this.$refs[formName].validate(function (valid) {
+                         if (valid) {
+                             _this.updateLoading = true;
+                             axios.post(myUrl('user/update'), {
+                                 user_info: _this.$refs[formName].model
+                             }).then(function (res) {
+                                 if (res.code == 200) {
+                                     _this.$notify({
+                                         title: res.msg,
+                                         type: 'success'
+                                     });
+                                     _this.getList('刷新');
+                                     // _this.$refs.addDrawer.closeDrawer();
+                                 }
+                                 if (res.code == 500) {
+                                     _this.$notify({
+                                         title: res.msg,
+                                         type: 'error'
+                                     });
+
+                                 }
+                                 _this.updateLoading = false;
+                             }).catch(function (err) {
+                                 _this.$notify.error({
+                                     title: err.msg
+                                 });
+                                 _this.updateLoading = false;
+                             })
+                         }
+                     })
+                 },
+
+             },
+
+             mounted: function () {
+                 this.getList('刷新');
+             }
+         })
+    </script>
+
+</body>
+</html>

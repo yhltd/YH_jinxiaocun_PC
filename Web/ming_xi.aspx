@@ -142,7 +142,7 @@
             height: 40px;
             background-color: white;
             border: 0.5px solid #f2f2f2;
-            font-size: 4px;
+            font-size: 16px;
         }
 
         .auto-style1 {
@@ -197,8 +197,33 @@
             var rowIndex = $("#del_row_cs1").context.rowIndex;
             $("#del_row" + row + "").remove();
         }
+        function js_select() {
+            var time_qs1 = document.getElementById('time_qs').value;
+            var time_jz1 = document.getElementById('time_jz').value;
+            console.log(time_qs1)
+           setCookie('ks_riqi', time_qs1, 30); //保存帐号到cookie，有效期7天
+            setCookie('js_riqi', time_jz1, 30);
+        }
+        function setCookie(name, value, day) {
+            var date = new Date();
+            date.setDate(date.getDate() + day);
+            document.cookie = name + '=' + value + ';expires=' + date;
+        };
+        //获取cookie
+        function getCookie(name) {
+            var reg = RegExp(name + '=([^;]+)');
+            var arr = document.cookie.match(reg);
+            if (arr) {
+                return arr[1];
+            } else {
+                return '';
+            }
+        };
+        //删除cookie
+        function delCookie(name) {
+            setCookie(name, null, -1);
+        };
 
-        
 
         $(function () {
 
@@ -341,21 +366,34 @@
 
 
         $(document).ready(function () {
-            var time = new Date();
+          var time = new Date();
             var day = ("0" + time.getDate()).slice(-2);
             var month = ("0" + (time.getMonth() + 1)).slice(-2);
             var today = time.getFullYear() + "-" + (month) + "-" + "01";
-            $('#time_qs').val(today);
-
-
-            time.setMonth(time.getMonth() + 1);
-            time.setDate('1');
-            // 获取本月最后一天
-            time.setDate(time.getDate() - 1);
-            var today1 = time.getFullYear() + "-" + (month) + "-" + time.getDate();;
-            $('#time_jz').val(today1);
-
-
+        
+            var ks_riqi = '<%= Session["ks_riqi"] %>';
+            var js_riqi = '<%= Session["js_riqi"] %>';
+            
+            //var ks_riqi_1 = getCookie('ks_riqi');
+            //var js_riqi_1 = getCookie('js_riqi');
+           // console.log(ks_riqi_1)
+           // console.log(js_riqi_1)
+            //var ks_riqi = Session["ks_riqi"];
+            console.log(ks_riqi)
+            console.log(js_riqi)
+            if (ks_riqi == '' &&  js_riqi == '') {
+                $('#time_qs').val(today);
+                time.setMonth(time.getMonth() + 1);
+                time.setDate('1');
+                // 获取本月最后一天
+                time.setDate(time.getDate() - 1);
+                var today1 = time.getFullYear() + "-" + (month) + "-" + time.getDate();;
+                $('#time_jz').val(today1);
+            } else {
+                $('#time_qs').val(ks_riqi);
+                $('#time_jz').val(js_riqi);
+            }
+            console.log( $('#time_jz').val())
             // 生成二维码
             var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
             console.log(elText)
@@ -386,7 +424,7 @@
                 canvas_barcode.innerHTML = this_html
             }
         })
-
+        
 
 
     </script>
@@ -403,7 +441,8 @@
                     <input type="date" class="time_select" name="time_jz" id="time_jz" />
                     <label class="lable_select"></label>
                     <input type="text" class="time_select" placeholder="订单号" name="order_number" id="order_number" />
-                    <asp:Button ID="Button3" class="mingxi_input_tr_tj" style="width:61px" OnClick="rq_select" Text="查询" runat="server" />
+                    <asp:Button ID="Button3" class="mingxi_input_tr_tj" style="width:61px" OnClick="rq_select" OnClientClick="js_select()" Text="查询" runat="server" />
+                    
                     <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" style="width:61px" Text="删除" runat="server" />
                     <asp:Button ID="Button2" class="mingxi_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
                     <asp:Button ID="Button4" class="mingxi_input_tr_tj" style="width:61px" OnClick="mx_save" Text="保存" runat="server" />

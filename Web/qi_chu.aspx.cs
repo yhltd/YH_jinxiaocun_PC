@@ -46,6 +46,7 @@ namespace Web
 
                 try
                 {
+                    Session["jichu"] = null;
                     List<JinChuZiLiaoItem> list = Session["jichu"] as List<JinChuZiLiaoItem>;
                     if (list == null)
                     {
@@ -74,6 +75,7 @@ namespace Web
         {
             try
             {
+            
                 List<yh_jinxiaocun_qichushu> list = this.fen_ye(user.gongsi);
                 Session["qi_chu_select"] = list;
                 row_count = list.Count;

@@ -59,14 +59,16 @@ namespace Web.Server
             }
         }
 
-        public List<yh_jinxiaocun_mingxi> ming_xi_select(string gs_name, int limit1, int limit2)
+        public List<yh_jinxiaocun_mingxi> ming_xi_select(string gs_name, int limit1, int limit2, String kstime88, String jstime88)
         {
-            limit2 = 20;
+            
             using (ServerEntities sen = new ServerEntities()) {
-                var riqi1 = DateTime.Now.ToString("yyyy-MM-01");
-                var riqi2 = DateTime.Now.ToString("yyyy-MM-31"); 
-                string[] mm = riqi1.Split('-');
-                int m = Convert.ToInt32(mm[1]);
+               var limit = 20;
+               var riqi1 = DateTime.Now.ToString("yyyy-MM-01");
+               var riqi2 = DateTime.Now.ToString("yyyy-MM-31");
+
+               string[] mm = riqi1.Split('-');
+               int m = Convert.ToInt32(mm[1]);
                 //if (m == 2)
                 //{
                 //    riqi2 = DateTime.Now.ToString("yyyy-MM-28");
@@ -79,10 +81,15 @@ namespace Web.Server
                 //   // riqi2 = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")).AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
                 //}
 
-                riqi2 = DateTime.Parse(DateTime.Now.ToString("yyyy").ToString() + "/" + DateTime.Now.ToString("MM").ToString() + "/1").AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
-            
-                //string sql = "select * from yh_jinxiaocun_mingxi where gs_name = '" + gs_name + "' order by shijian desc limit " + limit1 + "," + limit2 + " ";
-                string sql = "select * from yh_jinxiaocun_mingxi where shijian>='" + riqi1 + "' and shijian<='" + riqi2 + "' ";
+              riqi2 = DateTime.Parse(DateTime.Now.ToString("yyyy").ToString() + "/" + DateTime.Now.ToString("MM").ToString() + "/1").AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
+
+               if (kstime88 == null || kstime88.Length < 1)
+                   kstime88 = riqi1;
+               if (jstime88 == null || jstime88.Length < 1)
+                   jstime88 = riqi2; 
+
+               string sql = "select * from yh_jinxiaocun_mingxi where gs_name = '" + gs_name + "'and shijian>'" + kstime88 + "'and shijian<'" + jstime88 + "' order by shijian desc limit " + limit1 + "," + limit2 + " ";
+               // string sql = "select * from yh_jinxiaocun_mingxi where shijian>='" + riqi1 + "' and shijian<='" + riqi2 + "' ";
                 var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql);
                 return result.ToList();
             }

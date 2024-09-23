@@ -43,7 +43,7 @@
             height: 40px;
             background-color: white;
             border: 0.5px solid #f2f2f2;
-            font-size: 4px;
+            font-size:16px;
         }
 
         .select_xl {

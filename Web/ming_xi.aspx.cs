@@ -23,8 +23,12 @@ namespace Web
         private static yh_jinxiaocun_user user;
         private Boolean xiayiye = false;
 
+        private String kstime88;
+        private String jstime88;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+          
             user = (yh_jinxiaocun_user)Session["user"];
             if (user.AdminIS.Equals("false"))
             {
@@ -37,6 +41,7 @@ namespace Web
             {
                 try
                 {
+                    Session["ming_xi_select_dd"] = null;
                     page.countPage = this.getCountPage();
                     List<yh_jinxiaocun_mingxi> list = Session["ming_xi_select_dd"] as List<yh_jinxiaocun_mingxi>;
                     if (list == null)
@@ -48,6 +53,11 @@ namespace Web
                         Session["dq_ye_mx_dd"] = 0;
                     }
                     lblCurrentPage.Text = page.nowPage.ToString();
+                    if ( Session["ks_riqi"]!=null)
+                    {
+                        kstime88 = Session["ks_riqi"].ToString();
+                        jstime88 = Session["js_riqi"].ToString();
+                    }
                 }
                 catch
                 {
@@ -138,12 +148,16 @@ namespace Web
 
         public void ming_xi_select(string gs_name)
         {
+           
+            Session["ming_xi_select_dd"] = null;
             MingxiModel buiness = new MingxiModel();
-            Session["ming_xi_select_dd"] = buiness.ming_xi_select(gs_name, page.getLimit1(), page.getLimit2());
+            Session["ming_xi_select_dd"] = buiness.ming_xi_select(gs_name, page.getLimit1(), page.getLimit2(), kstime88, jstime88);
         }
 
         protected void shou_ye_Click(object sender, EventArgs e)
         {
+            kstime88 = Context.Request["time_qs"].ToString();
+            jstime88 = Context.Request["time_jz"].ToString();
             if (page.nowPage == 1)
             {
                 Response.Write("<script>alert('已经是第一页');</script>");
@@ -160,6 +174,8 @@ namespace Web
 
         protected void shang_ye_Click(object sender, EventArgs e)
         {
+            kstime88 = Context.Request["time_qs"].ToString();
+            jstime88=Context.Request["time_jz"].ToString();
             if (page.nowPage == 1)
             {
                 Response.Write("<script>alert('已经是第一页');</script>");
@@ -176,6 +192,8 @@ namespace Web
 
         protected void xia_ye_Click(object sender, EventArgs e)
         {
+            kstime88 = Context.Request["time_qs"].ToString();
+            jstime88 = Context.Request["time_jz"].ToString();
             if (page.countPage < (page.nowPage + 1))
             {
                 Response.Write("<script>alert('已经是最后一页');</script>");
@@ -193,6 +211,8 @@ namespace Web
 
         protected void mo_ye_Click(object sender, EventArgs e)
         {
+            kstime88 = Context.Request["time_qs"].ToString();
+            jstime88 = Context.Request["time_jz"].ToString();
             if (page.nowPage == page.countPage)
             {
                 Response.Write("<script>alert('已经是最后一页');</script>");
@@ -212,8 +232,21 @@ namespace Web
 
             try
             {
+                Session["ming_xi_select_dd"] = null;
+               
                 //string ks = Context.Request["time_qs"].ToString();
                 //string js = Context.Request["time_jz"].ToString();
+                Session["ks_riqi"] = Context.Request["time_qs"].ToString();
+                Session["js_riqi"] = Context.Request["time_jz"].ToString();
+                //HttpCookie time_jz_cookie1 = Request.Cookies["time_jz_1"];
+                HttpCookie time_jz_cookie1 = new HttpCookie("time_jz_1");
+                //HttpCookie time_qs_cookie2 = Request.Cookies["time_qs"];
+                time_jz_cookie1["ks_riqi"] = Context.Request["time_qs"].ToString();
+                time_jz_cookie1["js_riqi"] = Context.Request["time_jz"].ToString();
+
+                kstime88 = Context.Request["time_qs"].ToString();
+                jstime88 = Context.Request["time_jz"].ToString();
+
                 Session["ming_xi_select_dd"] = ri_qi_select(Context.Request["time_qs"].ToString(), Context.Request["time_jz"].ToString(), Context.Request["order_number"].ToString(), user.gongsi);
             }
             catch
@@ -247,6 +280,7 @@ namespace Web
             Boolean result = true;
             try
             {
+                Session["ming_xi_select_dd"] = null;
                 List<yh_jinxiaocun_mingxi> list = Session["ming_xi_select_dd"] as List<yh_jinxiaocun_mingxi>;
                 for (int i = 0; i < list.Count; i++)
                 {

@@ -37,6 +37,7 @@ namespace Web
             {
                 try
                 {
+                    Session["jxc_z_select"] = null;
                     page.countPage = this.getCountPage();
                     shuaxin();
                     lblCurrentPage.Text = page.nowPage.ToString();

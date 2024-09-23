@@ -37,53 +37,57 @@
                 var this_file = file[0];
                 var fileName = file[0].name;
                 var obj = [];
-                oFReader.readAsDataURL(this_file);
-                oFReader.onloadend = function (oFRevent) {
-                    this_file = oFRevent.target.result;
-                    this_file = this_file.split(",")[1]
-                    console.log(this_file)
-                    console.log(upd_id)
+                if(this_file.size>1024 * 1024){
+                    alert("文件超过1兆，请重新上传！")
+                }else{
+                    oFReader.readAsDataURL(this_file);
+                    oFReader.onloadend = function (oFRevent) {
+                        this_file = oFRevent.target.result;
+                        this_file = this_file.split(",")[1]
+                        console.log(this_file)
+                        console.log(upd_id)
 
 
-                    var fileInput = document.getElementById('file');
-                    fileInput.value = ""
-                    fileInput.outerHTML = fileInput.outerHTML;
+                        var fileInput = document.getElementById('file');
+                        fileInput.value = ""
+                        fileInput.outerHTML = fileInput.outerHTML;
 
-                    $.ajax({
-                        type: "post", //要用post方式                 
-                        url: "/ji_chu_zi_liao_page.aspx/picture_upd",//方法所在页面和方法名
-                        contentType: "application/json; charset=utf-8",
-                        async: false,
-                        dataType: "json",
-                        data: JSON.stringify({
-                            id:upd_id,
-                            base64:this_file
-                        }),
-                        success: function (data) {
-                            alert(data.d);//返回的数据用data.d获取内容
-                            window.location.reload();
-                        },
-                        error: function (err) {
-                            alert(err);
-                        }
-                    });
+                        $.ajax({
+                            type: "post", //要用post方式                 
+                            url: "/ji_chu_zi_liao_page.aspx/picture_upd",//方法所在页面和方法名
+                            contentType: "application/json; charset=utf-8",
+                            async: false,
+                            dataType: "json",
+                            data: JSON.stringify({
+                                id:upd_id,
+                                base64:this_file
+                            }),
+                            success: function (data) {
+                                alert(data.d);//返回的数据用data.d获取内容
+                                window.location.reload();
+                            },
+                            error: function (err) {
+                                alert(err);
+                            }
+                        });
 
-                    //$ajax({
-                    //    type: 'post',
-                    //    url: '/ji_chu_zi_liao_page.aspx/picture_upd',
-                    //    data: JSON.stringify({
-                    //        id:upd_id,
-                    //        base64:this_file
-                    //    }),
-                    //    dataType: 'json',
-                    //    contentType: 'application/json;charset=utf-8',
-                    //    async: false,
-                    //    success: function (data) {
-                    //        alert(data.d);//返回的数据用data.d获取内容
-                    //        window.location.reload();
-                    //    },
-                    //})
-                };
+                        //$ajax({
+                        //    type: 'post',
+                        //    url: '/ji_chu_zi_liao_page.aspx/picture_upd',
+                        //    data: JSON.stringify({
+                        //        id:upd_id,
+                        //        base64:this_file
+                        //    }),
+                        //    dataType: 'json',
+                        //    contentType: 'application/json;charset=utf-8',
+                        //    async: false,
+                        //    success: function (data) {
+                        //        alert(data.d);//返回的数据用data.d获取内容
+                        //        window.location.reload();
+                        //    },
+                        //})
+                    };
+                }
             });
         })
 
@@ -289,7 +293,7 @@
             height: 40px;
             background-color: white;
             border: 0.5px solid #f2f2f2;
-            font-size: 4px;
+            font-size: 16px;
         }
 
         .auto-style1 {
@@ -390,7 +394,7 @@
                 %>
                 <tr id="del_row_cs<%=i%>">
                     <%--style="font-size: 90%; padding-left: 2%;"--%>
-                    <td><%=(i+1) %></td>
+                    <td class="bg_bj"><%=(i+1) %></td>
                     <td >
                         <input type="text" class="input_tr" id="sp_name" name="sp_dm_cs<%=i%>" value="<%=jczj_select[i].sp_dm%>" /></td>
                     <td class="bg_bj">

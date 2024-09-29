@@ -26,7 +26,15 @@ namespace Web.Util
             using (System.Security.Cryptography.RSACryptoServiceProvider rsa = new System.Security.Cryptography.RSACryptoServiceProvider(param))
             {
                 byte[] plaindata = System.Text.Encoding.Default.GetBytes(express);//将要加密的字符串转换为字节数组
-                byte[] encryptdata = rsa.Encrypt(plaindata, false);//将加密后的字节数据转换为新的加密字节数组
+                byte[] encryptdata;
+                if (plaindata.Length < 110)
+                {
+                    encryptdata = rsa.Encrypt(plaindata, false);//将加密后的字节数据转换为新的加密字节数组
+                }
+                else
+                {
+                    encryptdata = plaindata;
+                }
                 return Convert.ToBase64String(encryptdata);//将加密后的字节数组转换为字符串
             }
         }
@@ -42,7 +50,15 @@ namespace Web.Util
             using (System.Security.Cryptography.RSACryptoServiceProvider rsa = new System.Security.Cryptography.RSACryptoServiceProvider(param))
             {
                 byte[] encryptdata = Convert.FromBase64String(ciphertext);
-                byte[] decryptdata = rsa.Decrypt(encryptdata, false);
+                 byte[] decryptdata;
+                if (encryptdata.Length == 128)
+                {
+                    decryptdata = rsa.Decrypt(encryptdata, false);
+                }
+                else
+                {
+                    decryptdata = encryptdata;
+                }
                 return System.Text.Encoding.Default.GetString(decryptdata);
             }
         }

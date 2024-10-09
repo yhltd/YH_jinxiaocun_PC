@@ -21,6 +21,8 @@ namespace Web.Personnel
         int n = 0;
         int x = 0;
         int f = 0;
+        int chidao = 0;
+        int chuqin = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["gongsi"].ToString() == null)
@@ -47,6 +49,7 @@ namespace Web.Personnel
             for (int i = 4; i <= 34; i++) {
                 ListItem item = ((DropDownList)this.FindControl("DropDownList" + i.ToString())).Items.FindByText("出勤");
                 item.Selected = true;
+                m = m + 1;
             }
             
 
@@ -117,6 +120,7 @@ namespace Web.Personnel
                 {
                     conn.Open();
                 }
+                
                 //str = conn.BeginTransaction();
                 string moth = "";
                 if (Convert.ToInt32(Request.Form["TextBox2"]) < 10)
@@ -127,6 +131,23 @@ namespace Web.Personnel
                 {
                     moth = Request.Form["TextBox2"];
                 }
+                for (int i = 4; i <= 34; i++)
+                {
+                    
+                    if (Request.Form["DropDownList" + i] == "迟到")
+                    {
+                        chidao = chidao + 1;
+                    }
+                }
+               
+                for (int i = 4; i <= 34; i++)
+                {
+                    if (Request.Form["DropDownList" + i] != "旷勤")
+                    {
+                       chuqin = chuqin + 1;
+                    }
+                }
+              
                 string sqlStr = "insert into gongzi_kaoqinjilu (year,moth,name,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,AA,AB,AC,AD,AE,AF,AG,AH,AI,AJ,AK,AL,AM,AN,AO) VALUES ('" + Request.Form["TextBox1"] + "','" + moth + "','" + Request.Form["TextBox3"] + "',";
                 for (int i = 4; i < 35; i++)
                 {
@@ -139,7 +160,10 @@ namespace Web.Personnel
                         sqlStr += "'_',";
                     }
                 }
-                sqlStr += "'" + Request.Form["TextBox35"] + "','" + Request.Form["TextBox36"] + "','" + Request.Form["TextBox37"] + "','" + Request.Form["TextBox38"] + "','" + Request.Form["TextBox39"] + "','" + Session["gongsi"].ToString() + "');";
+                TextBox36.Text = chuqin.ToString();
+                TextBox39.Text = chidao.ToString();
+                //sqlStr += "'" + Request.Form["TextBox35"] + "','" + Request.Form["TextBox36"] + "','" + Request.Form["TextBox37"] + "','" + Request.Form["TextBox38"] + "','" + Request.Form["TextBox39"] + "','" + Session["gongsi"].ToString() + "');";
+                sqlStr += "'" + Request.Form["TextBox35"] + "','" + chuqin.ToString() + "','" + Request.Form["TextBox37"] + "','" + Request.Form["TextBox38"] + "','" + chidao.ToString() +"','" + Session["gongsi"].ToString() + "');";
                 cmd = new SqlCommand(sqlStr, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();

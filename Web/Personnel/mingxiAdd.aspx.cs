@@ -363,8 +363,8 @@ namespace Web.Personnel
 
 
             //税前工资
+            //((TextBox)this.FindControl("TextBox44")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
             ((TextBox)this.FindControl("TextBox44")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
-
             for (int i = 0; i < list.Count; i++) 
             {
                 //岗位工资

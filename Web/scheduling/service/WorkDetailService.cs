@@ -336,7 +336,7 @@ namespace Web.scheduling.service
             return workItemList;
         }
 
-        public Boolean getChanneng1(List<WorkItem> list, List<int> workModuleIdList, DateTime ks1, DateTime js1, double scsl, string is_insert)
+        public Boolean getChanneng2(List<WorkItem> list, List<int> workModuleIdList, DateTime ks1, DateTime js1, double scsl, string is_insert)
         {
             bool is_changneng = true;
             try
@@ -616,7 +616,7 @@ namespace Web.scheduling.service
             }
             
         }
-        public Boolean getChanneng2(List<WorkItem> list, List<int> workModuleIdList, DateTime ks1, DateTime js1, double scsl, string is_insert)
+        public Boolean getChanneng1(List<WorkItem> list, List<int> workModuleIdList, DateTime ks1, DateTime js1, double scsl, string is_insert)
         {
 
             //最终需要返回的集合

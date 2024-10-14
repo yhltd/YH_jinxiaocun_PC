@@ -133,6 +133,7 @@ namespace Web.scheduling
             if (user.password.Equals(oldPwd))
             {
                 user.password = newPwd;
+                user.state = "正常";
                 return cd.update<user_info>(user) ? user : null;
             }
             else

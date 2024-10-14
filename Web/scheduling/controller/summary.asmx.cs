@@ -22,7 +22,7 @@ namespace Web.scheduling.controller
         private WorkModuleService wms;
 
         [WebMethod]
-        public string page(int nowPage, int pageCount, int typeId, string orderId)
+        public string page(int nowPage, int pageCount, int typeId, String orderId)
         {
             try
             {

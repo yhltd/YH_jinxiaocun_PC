@@ -438,29 +438,68 @@ function balanceBtn() {
         dataType: "xml",
         success: function (data) {
             var result = getJson(data);
-            if (result.code == 200) {
-                if (result.data.check) {
-                    $.messager.show({
-                        title: '验证成功',
-                        msg: '借贷相差' + result.data.num,
-                        style: {
-                            right: '',
-                            top: document.body.scrollTop + document.documentElement.scrollTop,
-                            bottom: ''
+            $(function () {
+                ajaxUtil({
+                    url: "web_service/user_management.asmx/quanxianGet",
+                    loading: true,
+                }, function (result) {
+                    if (result.code == 200) {
+                        quanxian = result.data
+                        if (quanxian.kmzz_select == "是") {
+                            if (result.code == 200) {
+                                if (result.data.check) {
+                                    $.messager.show({
+                                        title: '验证成功',
+                                        msg: '借贷相差' + result.data.num,
+                                        style: {
+                                            right: '',
+                                            top: document.body.scrollTop + document.documentElement.scrollTop,
+                                            bottom: ''
+                                        }
+                                    });
+                                } else {
+                                    $.messager.show({
+                                        title: '验证失败',
+                                        msg: '借贷相差' + result.data.num,
+                                        style: {
+                                            right: '',
+                                            top: document.body.scrollTop + document.documentElement.scrollTop,
+                                            bottom: ''
+                                        }
+                                    });
+                                }
+                            }
+                        } else {
+                            $.messager.alert('Warning', '无权限');
                         }
-                    });
-                } else {
-                    $.messager.show({
-                        title: '验证失败',
-                        msg: '借贷相差' + result.data.num,
-                        style: {
-                            right: '',
-                            top: document.body.scrollTop + document.documentElement.scrollTop,
-                            bottom: ''
-                        }
-                    });
-                }
-            }
+                    }
+                });
+
+            })
+
+            // if (result.code == 200) {
+                // if (result.data.check) {
+                    // $.messager.show({
+                        //   title: '验证成功',
+                        //  msg: '借贷相差' + result.data.num,
+                        // style: {
+                            //   right: '',
+                            //top: document.body.scrollTop + document.documentElement.scrollTop,
+                            //bottom: ''
+                            //}
+                        //});
+                    //} else {
+                    //$.messager.show({
+                        //title: '验证失败',
+                        //msg: '借贷相差' + result.data.num,
+                        //style: {
+                            //right: '',
+                            ////top: document.body.scrollTop + document.documentElement.scrollTop,
+                            //bottom: ''
+                            //        }
+                        //     });
+                    //   }
+          //  }
         },
         error: function (err) {
             alert("错误！")

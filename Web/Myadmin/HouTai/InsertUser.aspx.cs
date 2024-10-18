@@ -103,7 +103,8 @@ namespace Web.Myadmin.HouTai
                         int pd = u.add(uer);
                         if (pd > 0)
                         {
-                            Response.Write("<script>alert('添加成功！');layer.close(layer.index);</script>");
+                           Response.Write("<script>alert('添加成功！');layer.close(layer.index);</script>");
+                           // Response.Write("<script>alert('添加成功！');</script>");
                         }
                     }
                     else

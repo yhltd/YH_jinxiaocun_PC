@@ -30,8 +30,10 @@ namespace Web.Personnel
             {
                 Button2.Enabled = false;
                 Button3.Enabled = false;
+                Button1.Enabled = false;
                 Button2.BackColor = System.Drawing.ColorTranslator.FromHtml("gray");
                 Button3.BackColor = System.Drawing.ColorTranslator.FromHtml("gray");
+                Button1.BackColor = System.Drawing.ColorTranslator.FromHtml("gray");
             }
             if (str[5].ToString() == "0")
             {

@@ -33,6 +33,7 @@ function getList() {
         if (result.code == 200) {
             setTable(result.data)
         }
+       
     });
 }
 
@@ -46,9 +47,27 @@ function sel() {
             dep:dep
         }
     }, function (result) {
-        if (result.code == 200) {
-            setTable(result.data)
-        }
+        $(function () {
+            ajaxUtil({
+                url: "web_service/user_management.asmx/quanxianGet",
+                loading: true,
+            }, function (result) {
+                if (result.code == 200) {
+                    quanxian = result.data
+                    if (quanxian.bmsz_select == "是") {
+                        if (result.code == 200) {
+                            setTable(result.data)
+                        }
+                    } else {
+                        $.messager.alert('Warning', '无权限');
+                    }
+                }
+            });
+
+        })
+      //  if (result.code == 200) {
+       //     setTable(result.data)
+//}
     });
 }
 

@@ -74,6 +74,7 @@ function getList() {
             if (result.code == 200) {
                 setTable(result.data)
             }
+           
         },
         error: function (err) {
             alert("错误！")

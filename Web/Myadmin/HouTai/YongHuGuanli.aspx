@@ -193,9 +193,10 @@
                     $('.container,header,footer', iframeBody).remove();
                 },
                 yes: function (index) {
-                    console.log(index)
-                    shwoAddrs();
+                    console.log(index);
                     layer.close(index);
+                    shwoAddrs();
+                    
                 },
                 end: function () {
                     shuaxin();

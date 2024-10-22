@@ -38,6 +38,21 @@ function getList() {
 }
 
 function sel() {
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.bmsz_select == "是") {
+                sel1();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+}
+function sel1() {
     dep = $("#dep").textbox('getValue')
     ajaxUtil({
         url: "web_service/department.asmx/getList2",
@@ -45,26 +60,13 @@ function sel() {
         data: {
             financePageJson: JSON.stringify(page),
             dep:dep
-        }
+        },
+        
     }, function (result) {
-        $(function () {
-            ajaxUtil({
-                url: "web_service/user_management.asmx/quanxianGet",
-                loading: true,
-            }, function (result) {
-                if (result.code == 200) {
-                    quanxian = result.data
-                    if (quanxian.bmsz_select == "是") {
-                        if (result.code == 200) {
-                            setTable(result.data)
-                        }
-                    } else {
-                        $.messager.alert('Warning', '无权限');
-                    }
-                }
-            });
-
-        })
+          if (result.code == 200) {
+        setTable(result.data)
+           }
+        
       //  if (result.code == 200) {
        //     setTable(result.data)
 //}

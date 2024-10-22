@@ -160,6 +160,7 @@ namespace Web.finance.model
             //查询最大行号
             var maxPageParam = new SqlParameter("@maxPageParam", financePage.getMax());
 
+            var depParam = new SqlParameter("@dep", dep);
             string sql = "select a.id,a.rownum,a.department as department1,a.man,a.company from (select *,row_number() over(order by id) as rownum from Department where company = @company) as a where a.rownum > @minPageParam and a.rownum < @maxPageParam and department like '%" + dep + "%'";
             var result = fin.Database.SqlQuery<DepartmentItem>(sql, companyParam, minPageParam, maxPageParam);
             try

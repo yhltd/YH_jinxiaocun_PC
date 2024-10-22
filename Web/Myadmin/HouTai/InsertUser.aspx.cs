@@ -103,7 +103,10 @@ namespace Web.Myadmin.HouTai
                         int pd = u.add(uer);
                         if (pd > 0)
                         {
-                           Response.Write("<script>alert('添加成功！');layer.close(layer.index);</script>");
+                           //Response.Write("<script>alert('添加成功！');layer.close(layer.index);</script>");
+                           Response.Write("<script>alert('添加成功！');</script>");
+                           Response.Write("<script>var index = parent.layer.getFrameIndex(window.name);</script>");
+                           Response.Write("<script>parent.layer.close(index);</script>");
                            // Response.Write("<script>alert('添加成功！');</script>");
                         }
                     }
@@ -140,7 +143,11 @@ namespace Web.Myadmin.HouTai
                             if (pd > 0)
                             {
                                 
-                                Response.Write("<script>alert('修改成功！');layer.close(layer.index);</script>");
+                                //Response.Write("<script>alert('修改成功！');layer.close(layer.index);</script>");
+                                Response.Write("<script>alert('修改成功！');</script>");
+                                Response.Write("<script>var index = parent.layer.getFrameIndex(window.name);</script>");
+                                Response.Write("<script>parent.layer.close(index);</script>");
+                                
                                 //Response.Redirect("../HouTai/InsertUser.aspx");
                                 //Response.Write("<script>layer.opener==null;layer.close();</script>");
                                 

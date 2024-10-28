@@ -106,12 +106,21 @@ namespace Web
         {
             StockModel stock = new StockModel();
             string code = Context.Request["code"];
-            string time_start = Context.Request["time_start"] == "" ? "1999-01-01" : Context.Request["time_start"];
-            string time_end = Context.Request["time_end"] == "" ? "2999-01-01" : Context.Request["time_end"];
+           string  time_start = txtCompletionTime.Text.ToString();
+           string time_end = txttime_end.Text.ToString();
+            if(time_start ==""){
+                time_start = "1999-01-01";
+            }
+            if (time_end == "")
+            {
+                time_end = "2999-01-01";
+            }
+           // string time_start = Context.Request["time_start"] == "" ? "1999-01-01" : Context.Request["time_start"];
+           // string time_end = Context.Request["time_end"] == "" ? "2999-01-01" : Context.Request["time_end"];
 
 
-            time_start = txtCompletionTime.Text.ToString();
-            time_end = txttime_end.Text.ToString();
+            //time_start = txtCompletionTime.Text.ToString();
+           // time_end = txttime_end.Text.ToString();
             if (code.IndexOf("where ") != -1)
             {
                 Session["jxc_z_select"] = stock.jxc_select_qrcode(user.gongsi, code);

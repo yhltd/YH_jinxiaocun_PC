@@ -269,7 +269,10 @@
                                 message: '请重新登录',
                                 type: 'success'
                             });
-                            window.location.href = '/'
+                            setTimeout(function () {
+                                window.location.href = '/';
+                            }, 700);
+                          //  window.location.href = '/'
                         } else if (res.code == -1) {
                             _this.$notify({
                                 title: res.msg,

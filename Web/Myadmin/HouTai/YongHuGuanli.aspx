@@ -193,49 +193,17 @@
                     $('.container,header,footer', iframeBody).remove();
                 },
                 yes: function (index) {
-                    console.log(index);
-                    layer.close(index);
                     shwoAddrs();
                     
                 },
                 end: function () {
+                    alert("123123")
                     shuaxin();
                    
                 }
             })
         }
-/*        function openZiyemian() {
-            title = '添加用户';
-            url = 'InsertUser.aspx?type=insert';
-            layui.use('layer', function () {
-                var layer = layui.layer;
-          //  });
-            layer.open({
-                type: 2,
-                title: title,
-                shadeClose: true, //点击遮罩关闭层
-                area: ['623px', '454px'],
-                content: url,
-                scrollbar: false,
-                success: function (layero, index) {
-                    var iframeBody = document.getElementById($('.layui-layer-content').find('iframe').prop('id')).contentWindow.document.body;
-                    $(".manage_location_wrap", iframeBody).appendTo(iframeBody);
-                    $('.container,header,footer', iframeBody).remove();
-                },
-                yes: function (index) {
-                    shwoAddrs();
-                    console.log("1")
-                    layer.close(index);
-                    console.log("2")
-                },
-                end: function () {
-                    shuaxin();
-                  
-                }
-            })
-            });
-        }
-*/
+
         function openZiyemian() {
             title = '添加用户';
             url = 'InsertUser.aspx?type=insert';

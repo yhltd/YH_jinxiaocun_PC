@@ -19,8 +19,9 @@ function getList() {
             financePageJson: JSON.stringify(page)
         }
     }, function (result) {
+       
         if (result.code == 200) {
-            setTable(result.data)
+           setTable(result.data)
         }
     });
 }
@@ -387,6 +388,22 @@ function toReset() {
 
 //查询
 function sel() {
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.zhgl_select == "是") {
+                sel1();
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+}
+
+function sel1() {
     var username = $("#username").val();
     ajaxUtil({
         url: "web_service/user_management.asmx/queryList",
@@ -399,9 +416,10 @@ function sel() {
         if (result.code == 200) {
             setTable(result.data)
         }
+
+
     });
 }
-
 function qr_make(name, password, gongsi) {
     console.log(name)
     console.log(password)

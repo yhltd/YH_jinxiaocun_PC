@@ -39,7 +39,11 @@ namespace Web
             string error = "发生异常页: " + Request.Url.ToString() + "";
             error += "异常信息: " + objErr.Message + "";
             Server.ClearError();
-            Application["error"] = error;
+            if (error .Contains("异常信息: DataBinding:“System.Data.DataRowView”不包含名为“id”的属性"))
+            {
+                error = "此页面没有相关数据，请按照操作流程先后顺序填入其他页面相应数据后会自动显示此页面信息";
+            }
+                Application["error"] = error;
             Response.Redirect("~/ErrorPage/ErrorPage.aspx?Error=" + error);
         }
 

@@ -421,7 +421,109 @@ function getList2(classId,code) {
 }
 
 //平衡验证
+//function balanceBtn() {
+//    $.ajax({
+//        type: 'Post',
+//        url: "web_service/accounting.asmx/balanceCheck",
+//        beforeSend: function () {
+//            $.messager.progress({
+//                title: '提示',
+//                msg: '正在验证',
+//                text: ''
+//            });
+//        },
+//        complete: function () {
+//            $.messager.progress('close');
+//        },
+//        dataType: "xml",
+//        success: function (data) {
+//            var result = getJson(data);
+//            $(function () {
+//                ajaxUtil({
+//                    url: "web_service/user_management.asmx/quanxianGet",
+//                    loading: true,
+//                }, function (result) {
+//                    if (result.code == 200) {
+//                        quanxian = result.data
+//                        if (quanxian.kmzz_select == "是") {
+//                            if (result.code == 200) {
+//                                if (result.data.check) {
+//                                    $.messager.show({
+//                                        title: '验证成功',
+//                                        msg: '借贷相差' + result.data.num,
+//                                        style: {
+//                                            right: '',
+//                                            top: document.body.scrollTop + document.documentElement.scrollTop,
+//                                            bottom: ''
+//                                        }
+//                                    });
+//                                } else {
+//                                    $.messager.show({
+//                                        title: '验证失败',
+//                                        msg: '借贷相差' + result.data.num,
+//                                        style: {
+//                                            right: '',
+//                                            top: document.body.scrollTop + document.documentElement.scrollTop,
+//                                            bottom: ''
+//                                        }
+//                                    });
+//                                }
+//                            }
+//                        } else {
+//                            $.messager.alert('Warning', '无权限');
+//                        }
+//                    }
+//                });
+
+//            })
+
+//             if (result.code == 200) {
+//                 if (result.data.check) {
+//                     $.messager.show({
+//                           title: '验证成功',
+//                          msg: '借贷相差' + result.data.num,
+//                         style: {
+//                               right: '',
+//                            top: document.body.scrollTop + document.documentElement.scrollTop,
+//                            bottom: ''
+//                            }
+//                        });
+//                    } else {
+//                    $.messager.show({
+//                        title: '验证失败',
+//                        msg: '借贷相差' + result.data.num,
+//                        style: {
+//                            right: '',
+//                            //top: document.body.scrollTop + document.documentElement.scrollTop,
+//                            bottom: ''
+//                                    }
+//                             });
+//                       }
+//            }
+//        },
+//        error: function (err) {
+//            alert("错误！")
+//            console.log(err)
+//        }
+//    })
+//}
 function balanceBtn() {
+    ajaxUtil({
+        url: "web_service/user_management.asmx/quanxianGet",
+        loading: true,
+    }, function (result) {
+        if (result.code == 200) {
+            quanxian = result.data
+            if (quanxian.kmzz_select == "是") {
+                balanceBtn1()
+            } else {
+                $.messager.alert('Warning', '无权限');
+            }
+        }
+    });
+
+}
+function balanceBtn1() {
     $.ajax({
         type: 'Post',
         url: "web_service/accounting.asmx/balanceCheck",
@@ -438,29 +540,54 @@ function balanceBtn() {
         dataType: "xml",
         success: function (data) {
             var result = getJson(data);
-            if (result.code == 200) {
-                if (result.data.check) {
-                    $.messager.show({
-                        title: '验证成功',
-                        msg: '借贷相差' + result.data.num,
-                        style: {
-                            right: '',
-                            top: document.body.scrollTop + document.documentElement.scrollTop,
-                            bottom: ''
-                        }
-                    });
-                } else {
-                    $.messager.show({
-                        title: '验证失败',
-                        msg: '借贷相差' + result.data.num,
-                        style: {
-                            right: '',
-                            top: document.body.scrollTop + document.documentElement.scrollTop,
-                            bottom: ''
-                        }
-                    });
-                }
-            }
+                            if (result.code == 200) {
+                                if (result.data.check) {
+                                    $.messager.show({
+                                        title: '验证成功',
+                                        msg: '借贷相差' + result.data.num,
+                                        style: {
+                                            right: '',
+                                            top: document.body.scrollTop + document.documentElement.scrollTop,
+                                            bottom: ''
+                                        }
+                                    });
+                                } else {
+                                    $.messager.show({
+                                        title: '验证失败',
+                                        msg: '借贷相差' + result.data.num,
+                                        style: {
+                                            right: '',
+                                            top: document.body.scrollTop + document.documentElement.scrollTop,
+                                            bottom: ''
+                                        }
+                                    });
+                                }
+                            }
+                        
+
+            // if (result.code == 200) {
+            // if (result.data.check) {
+            // $.messager.show({
+            //   title: '验证成功',
+            //  msg: '借贷相差' + result.data.num,
+            // style: {
+            //   right: '',
+            //top: document.body.scrollTop + document.documentElement.scrollTop,
+            //bottom: ''
+            //}
+            //});
+            //} else {
+            //$.messager.show({
+            //title: '验证失败',
+            //msg: '借贷相差' + result.data.num,
+            //style: {
+            //right: '',
+            ////top: document.body.scrollTop + document.documentElement.scrollTop,
+            //bottom: ''
+            //        }
+            //     });
+            //   }
+            //  }
         },
         error: function (err) {
             alert("错误！")
@@ -468,6 +595,7 @@ function balanceBtn() {
         }
     })
 }
+
 
 //修改方法
 function update(rowItem) {

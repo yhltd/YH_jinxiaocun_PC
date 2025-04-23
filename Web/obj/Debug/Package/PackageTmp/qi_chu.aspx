@@ -273,8 +273,8 @@
                             <input type="text" class="input_tr" onchange="getJs(<%=i%>)" id="ck_dj<%=i%>" name="cpsj_cs<%=i%>" value="<%=qi_chu_select[i].cpsj%>" /></td>
                         <td class="bg_bj">
                             <input type="text" class="input_tr" onchange="getJs(<%=i%>)" id="ck_sl<%=i%>" name="cpsl_cs<%=i%>" value="<%=qi_chu_select[i].cpsl%>" /></td>
-                        <td class="bg_bj" id="dj_js<%=i%>">
-                            <%=qi_chu_select[i].cpsj == "" || qi_chu_select[i].cpsl == "" ? 0 : int.Parse(qi_chu_select[i].cpsj)*int.Parse(qi_chu_select[i].cpsl)%>
+                        <td class="bg_bj" id="dj_js<%=i%>" class="input_tr" >
+                            <input type="text" class="input_tr" value=" <%=qi_chu_select[i].cpsj == "" || qi_chu_select[i].cpsl == "" ? 0 : int.Parse(qi_chu_select[i].cpsj)*int.Parse(qi_chu_select[i].cpsl)%>" />
                         </td>
                         <td class="bg_bj" style="width: 43px;">
                             <input id="checkbox" name="Checkbox_bd<%=i%>" value=" <%=i%>" type="checkbox" />

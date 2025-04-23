@@ -315,7 +315,7 @@
                 <asp:SessionParameter Name="D" SessionField="zw1" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>--%>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] like '%'+@C+'%') AND ([D] like '%'+@D+'%') AND (Year([BC]) like '%'+@N+'%')) UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','' order by id desc">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] like '%'+@C+'%') AND ([D] like '%'+@D+'%') AND (Year([BC]) like '%'+@N+'%')) UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','' order by id desc">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />
@@ -324,7 +324,7 @@
                 <%--<asp:SessionParameter Name="Y" SessionField="Yue" Type="String" />--%>
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] like '%'+@C+'%') AND ([D] like '%'+@D+'%') AND (Year([BC]) like '%'+@N+'%') AND (Month([BC]) = @Y)) UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','' order by id desc">
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString46 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE (([BD] = @BD) AND ([C] like '%'+@C+'%') AND ([D] like '%'+@D+'%') AND (Year([BC]) like '%'+@N+'%') AND (Month([BC]) = @Y)) UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','' order by id desc">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
                 <asp:SessionParameter Name="C" SessionField="bm1" Type="String" />
@@ -333,7 +333,7 @@
                 <asp:SessionParameter Name="Y" SessionField="Yue" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString45 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE ([BD] = @BD)  UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','' order by id desc">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString45 %>" SelectCommand="SELECT * FROM [gongzi_gongzimingxi] WHERE ([BD] = @BD)  UNION select '','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','' order by id desc">
             <SelectParameters>
                 <asp:SessionParameter Name="BD" SessionField="gongsi" Type="String" />
             </SelectParameters>

@@ -15,7 +15,7 @@
     <!-- Custom CSS -->
     <link href="dist/css/style.min.css" rel="stylesheet">
     <link href="../css/common.css" rel="stylesheet">
-    
+    <link href="../Scripts/layui/css/modules/layer/default/layer.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -72,11 +72,12 @@
         }
     </style>
     <script src="../../Scripts/layui/layui.all.js"></script>
-
+    <script src="../../Scripts/layui/layui.js"></script>
     <script src="../../Scripts/layui/lay/modules/layer.js"></script>
 <%--    <script src="../../Scripts/jquery-1.4.1.min.js"></script>--%>
     <script src="../js/Jquery.js"></script>
     <script src="../js/qrcode.min.js"></script>
+    
     <script type="text/javascript" >
 
         $(function () {
@@ -193,37 +194,42 @@
                 },
                 yes: function (index) {
                     shwoAddrs();
+                    
                 },
                 end: function () {
+                    alert("123123")
                     shuaxin();
+                   
                 }
             })
         }
+
         function openZiyemian() {
             title = '添加用户';
             url = 'InsertUser.aspx?type=insert';
             layui.use('layer', function () {
                 var layer = layui.layer;
+                layer.open({
+                    type: 2,
+                    title: title,
+                    shadeClose: true, //点击遮罩关闭层
+                    area: ['623px', '454px'],
+                    content: url,
+                    scrollbar: false,
+                    success: function (layero, index) {
+                        var iframeBody = document.getElementById($('.layui-layer-content').find('iframe').prop('id')).contentWindow.document.body;
+                        $(".manage_location_wrap", iframeBody).appendTo(iframeBody);
+                        $('.container,header,footer', iframeBody).remove();
+                    },
+                    yes: function (index) {
+                        shwoAddrs();
+                    },
+                    end: function () {
+                        shuaxin();
+                      
+                    }
+                });
             });
-            layer.open({
-                type: 2,
-                title: title,
-                shadeClose: true, //点击遮罩关闭层
-                area: ['623px', '454px'],
-                content: url,
-                scrollbar: false,
-                success: function (layero, index) {
-                    var iframeBody = document.getElementById($('.layui-layer-content').find('iframe').prop('id')).contentWindow.document.body;
-                    $(".manage_location_wrap", iframeBody).appendTo(iframeBody);
-                    $('.container,header,footer', iframeBody).remove();
-                },
-                yes: function (index) {
-                    shwoAddrs();
-                },
-                end: function () {
-                    shuaxin();
-                }
-            })
         }
 
         function dataURLtoBlob(dataurl, name) {//name:文件名

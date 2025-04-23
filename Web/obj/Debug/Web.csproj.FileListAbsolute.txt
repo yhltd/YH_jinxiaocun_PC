@@ -610,3 +610,5 @@ E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.cache
 E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.compiled
 E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
 E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
+F:\git_version\YH_jinxiaocun_PC\Web\obj\Debug\Web.Properties.Resources.resources
+F:\git_version\YH_jinxiaocun_PC\Web\obj\Debug\Web.csproj.GenerateResource.Cache

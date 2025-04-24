@@ -227,3 +227,28 @@ table
     text-align: center;
     width: 60px;
 }
+
+
+
+.customPagerStyle .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+ 
+.customPagerStyle .pagination li {
+    margin: 0 5px;
+}
+ 
+.customPagerStyle .pagination li a {
+    text-decoration: none;
+    color: #007bff;
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+}
+ 
+.customPagerStyle .pagination li a:hover {
+    background-color: #007bff;
+    color: white;
+}

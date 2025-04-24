@@ -65,8 +65,9 @@
             <br />
             
             <%-- datasourceid="SqlDataSource1" --%>
-            <asp:gridview id="GridView1" runat="server" autogeneratecolumns="False"  allowpaging="True" datakeynames="id" onrowcreated="aaa">
-            <Columns>
+            <asp:gridview id="GridView1" runat="server" autogeneratecolumns="False"  allowpaging="True" datakeynames="id" onrowcreated="aaa" OnPageIndexChanging="GridView1_PageIndexChanging" >
+              <PagerStyle HorizontalAlign="left" BackColor="LightGray" Font-Size="Large"  />   
+                <Columns>
                <%-- <asp:CommandField ShowEditButton="True" ButtonType="Button" ItemStyle-CssClass="bt_upd1">
                 <HeaderStyle Wrap="False" />
                 <ItemStyle Wrap="False" />

@@ -70,6 +70,7 @@
                     <div id="grade-list2"></div>
                     <div id="grade-list3"></div>
                 </div>
+                <label style="color:red;font-size:18px">  *  首次使用系统新增左侧1类科目不能直接修改科目代码需要关闭此页面返回上一层，点击修改按钮手动修改科目代码</label>
                 <div>
                     <span id="newTextGrade"></span>
                     <span id="newTextCode"></span>

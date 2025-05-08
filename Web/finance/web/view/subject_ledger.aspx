@@ -29,6 +29,7 @@
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="sel()">查询</a>
             <a href="#" class="easyui-linkbutton btn-right" onclick="balanceBtn()">平衡验证</a>
             <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
+            <div><label style="color:red;font-size:12px">*注意上方科目代码筛选条件，只显示当前选择的科目代码，如点击修改科目代码后请及时调整下拉选项</label></div>
         </div>
         <%--style="height:540px"--%>
         <div class="main-item" >
@@ -70,7 +71,7 @@
                     <div id="grade-list2"></div>
                     <div id="grade-list3"></div>
                 </div>
-                <label style="color:red;font-size:18px">  *  首次使用系统新增左侧1类科目不能直接修改科目代码需要关闭此页面返回上一层，点击修改按钮手动修改科目代码</label>
+                <label style="color:red;font-size:12px">*首次使用系统新增左侧1类科目不能直接修改科目代码需要关闭此页面返回上一层，点击修改按钮手动修改科目代码。注意 修改科目代码时首位数字应为1-5区间</label>
                 <div>
                     <span id="newTextGrade"></span>
                     <span id="newTextCode"></span>

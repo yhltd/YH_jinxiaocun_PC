@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bds28428944_dbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="bds28428944_dbModelStoreContainer">
+          <EntitySet Name="control_soft_time" EntityType="bds28428944_dbModel.Store.control_soft_time" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="control_soft_time">
+          <Key>
+            <PropertyRef Name="_id" />
+          </Key>
+          <Property Name="_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="255" />
+          <Property Name="starttime" Type="nchar" MaxLength="255" />
+          <Property Name="endtime" Type="nchar" MaxLength="255" />
+          <Property Name="soft_name" Type="nchar" MaxLength="255" />
+          <Property Name="denglushijian" Type="nchar" MaxLength="255" />
+          <Property Name="password" Type="nchar" MaxLength="255" />
+          <Property Name="pid" Type="nchar" MaxLength="255" />
+          <Property Name="mark1" Type="nchar" MaxLength="255" />
+          <Property Name="mark2" Type="nchar" MaxLength="255" />
+          <Property Name="mark3" Type="nchar" MaxLength="255" />
+          <Property Name="mark4" Type="nchar" MaxLength="255" />
+          <Property Name="mark5" Type="nchar" MaxLength="255" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bds28428944_dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="bds28428944_dbEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="control_soft_time" EntityType="bds28428944_dbModel.control_soft_time" />
+        </EntityContainer>
+        <EntityType Name="control_soft_time">
+          <Key>
+            <PropertyRef Name="C_id" />
+          </Key>
+          <Property Name="C_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="starttime" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="endtime" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="soft_name" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="denglushijian" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="password" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="pid" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="mark1" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="mark2" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="mark3" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="mark4" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+          <Property Name="mark5" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bds28428944_dbModelStoreContainer" CdmEntityContainer="bds28428944_dbEntities">
+          <EntitySetMapping Name="control_soft_time">
+            <EntityTypeMapping TypeName="bds28428944_dbModel.control_soft_time">
+              <MappingFragment StoreEntitySet="control_soft_time">
+                <ScalarProperty Name="C_id" ColumnName="_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="endtime" ColumnName="endtime" />
+                <ScalarProperty Name="soft_name" ColumnName="soft_name" />
+                <ScalarProperty Name="denglushijian" ColumnName="denglushijian" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+                <ScalarProperty Name="mark1" ColumnName="mark1" />
+                <ScalarProperty Name="mark2" ColumnName="mark2" />
+                <ScalarProperty Name="mark3" ColumnName="mark3" />
+                <ScalarProperty Name="mark4" ColumnName="mark4" />
+                <ScalarProperty Name="mark5" ColumnName="mark5" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

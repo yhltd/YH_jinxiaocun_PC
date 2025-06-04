@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bds28428944_dbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="bds28428944_dbEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="control_soft_time" EntityType="bds28428944_dbModel.control_soft_time" />
+  </EntityContainer>
+  <EntityType Name="control_soft_time">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="starttime" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="endtime" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="soft_name" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="denglushijian" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="password" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="pid" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="mark1" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="mark2" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="mark3" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="mark4" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+    <Property Name="mark5" Type="String" MaxLength="255" Unicode="true" FixedLength="true" />
+  </EntityType>
+</Schema>

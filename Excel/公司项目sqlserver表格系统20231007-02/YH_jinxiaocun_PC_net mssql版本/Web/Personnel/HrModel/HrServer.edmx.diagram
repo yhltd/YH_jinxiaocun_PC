@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea54b71b089d4051ab7491cf565ecc48" Name="关系图1" ZoomLevel="72">
+        <EntityTypeShape EntityType="yaoModel.gongzi_gongzimingxi" Width="2.25" PointX="17.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_kaoqinjilu" Width="1.5" PointX="11.796495867798335" PointY="9.1758506489805178" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_kaoqinmingxi" Width="1.5" PointX="4.875" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_peizhi" Width="1.5" PointX="7" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_renyuan" Width="1.5" PointX="2.25" PointY="1.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_renyuanManager" Width="1.5" PointX="3.875" PointY="1.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_shezhi" Width="1.5" PointX="7.125" PointY="2.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_viewNames" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.bainiantiantianmumen" Width="1.5" PointX="5.3691041084793882" PointY="30.93326681802667" />
+        <EntityTypeShape EntityType="yaoModel.bainiantiantianmumenmubiao" Width="1.5" PointX="3.6638477890118244" PointY="26.023421120840787" />
+        <EntityTypeShape EntityType="yaoModel.bainiantiantianmumenrenyuan" Width="1.5" PointX="2.6019750864254196" PointY="26.453069341579951" />
+        <EntityTypeShape EntityType="yaoModel.baitaoquanxian" Width="1.5" PointX="10.320249688960729" PointY="26.776679379295874" />
+        <EntityTypeShape EntityType="yaoModel.baitaoquanxian_copy1" Width="1.5" PointX="7.08550333561632" PointY="28.979899345422115" />
+        <EntityTypeShape EntityType="yaoModel.baitaoquanxian_copy2" Width="1.5" PointX="11.150099766976247" PointY="22.816529746547587" />
+        <EntityTypeShape EntityType="yaoModel.baitaoquanxian_gongsi" Width="1.5" PointX="11.970534458742726" PointY="12.762686943990499" />
+        <EntityTypeShape EntityType="yaoModel.baitaoquanxian_renyun" Width="1.5" PointX="4.6630899052429431" PointY="9.193222884644392" />
+        <EntityTypeShape EntityType="yaoModel.dearhylo9_cangku" Width="1.5" PointX="0.025016393524136579" PointY="4.3009995391131373" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.dearhylo9_jiandan" Width="1.5" PointX="2.8979838354969321" PointY="5.5118460978902162" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.dearhylo9_renyuan" Width="1.5" PointX="12.5" PointY="1" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.dearhylo9_tuihuo" Width="1.5" PointX="13.75" PointY="19.625" />
+        <EntityTypeShape EntityType="yaoModel.kaozhiguang147852" Width="1.5" PointX="14.5" PointY="8.125" />
+        <EntityTypeShape EntityType="yaoModel.kaozhiguang147852_gongzi" Width="1.5" PointX="0.33901885353914407" PointY="26.731895697643932" />
+        <EntityTypeShape EntityType="yaoModel.kaozhiguang147852_jiben" Width="1.5" PointX="11.523640583978798" PointY="3.9961224514972988" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.kaozhiguang147852_jixie" Width="1.5" PointX="7.5793079061337316" PointY="6.0554468957965479" />
+        <EntityTypeShape EntityType="yaoModel.kaozhiguang147852_sika" Width="1.5" PointX="3.8958953078351426" PointY="31.3861901012185" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_chanpinguanli" Width="1.5" PointX="6.8301231129235234" PointY="7.090026545845916" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_chanpinxinxi" Width="1.5" PointX="1.2359225979242114" PointY="7.7679804450683205" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_chuku" Width="1.5" PointX="2.4745570488621285" PointY="7.3572106693672064" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_fuzhu" Width="1.5" PointX="3.8844757470695654" PointY="5.15746493877725" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_gongyingshang" Width="1.5" PointX="5.375" PointY="3.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_kehu" Width="1.5" PointX="2.8672676528185921" PointY="13.18576802927338" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_kucun" Width="1.5" PointX="6.4726987623016807" PointY="13.758822820037056" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_mingxi" Width="1.5" PointX="0.83779476994545887" PointY="23.6049260308989" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_mingxiguanli" Width="1.5" PointX="4.9910350409294644" PointY="26.030527812442987" />
+        <EntityTypeShape EntityType="yaoModel.liuchanglin_renyuan" Width="1.5" PointX="0.24339548695990604" PointY="31.215681537620576" />
+        <EntityTypeShape EntityType="yaoModel.lv_al" Width="1.5" PointX="4.125" PointY="15.75" />
+        <EntityTypeShape EntityType="yaoModel.lv_bcd" Width="1.5" PointX="1.1106768087999321" PointY="21.344669128462982" />
+        <EntityTypeShape EntityType="yaoModel.lv_td" Width="1.5" PointX="9.7805818420744419" PointY="30.830191537193112" />
+        <EntityTypeShape EntityType="yaoModel.lv_xhjr" Width="1.5" PointX="9.5808821495533376" PointY="0.78877013958467646" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.tb846607026_cunkuan" Width="1.5" PointX="10.517614183257155" PointY="14.898553110146221" />
+        <EntityTypeShape EntityType="yaoModel.tb846607026_jibie" Width="1.5" PointX="3.2881543483995617" PointY="23.678152482806777" />
+        <EntityTypeShape EntityType="yaoModel.tb846607026_jine" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.tb846607026_peizhi" Width="1.5" PointX="9.955884491072915" PointY="5.3448798681352656" />
+        <EntityTypeShape EntityType="yaoModel.tb846607026_shouyi" Width="1.5" PointX="2.2115359838174355" PointY="24.29872993766271" />
+        <EntityTypeShape EntityType="yaoModel.tb846607026_tixian" Width="1.5" PointX="11" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_chukubiao" Width="1.5" PointX="10.182466539639265" PointY="26.4719093416221" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_gongyingshangxinxi" Width="1.5" PointX="4.9611808811133642" PointY="24.447892736852118" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_kehuxinxi" Width="1.5" PointX="4.792329213019614" PointY="18.75610151270223" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_kucun" Width="1.5" PointX="8.5679544976763218" PointY="19.145227456067328" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_peizhibiao" Width="1.5" PointX="9.1866661166710166" PointY="7.1247821930445649" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_renyaunxinxi" Width="1.5" PointX="8.507510878382023" PointY="26.180959937246964" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_rukubiao" Width="1.5" PointX="3" PointY="11.125" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_shangpinxinxi" Width="1.5" PointX="12.5" PointY="3" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_tuihuobiao" Width="1.5" PointX="1.5480831458922864" PointY="13.951124466001581" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_xiadan" Width="1.5" PointX="5.1324108248261782" PointY="7.768627259772563" />
+        <EntityTypeShape EntityType="yaoModel.wodeliangnianfa_zhanghu" Width="1.5" PointX="5.1780718514593653" PointY="9.5698318526008315" />
+        <EntityTypeShape EntityType="yaoModel.zeng_stock" Width="1.5" PointX="3.4164351687843144" PointY="4.4563533237466375" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.zeng_user" Width="1.5" PointX="10.033184123240963" PointY="15.967894591376137" />
+        <EntityTypeShape EntityType="yaoModel.zeng_wares" Width="1.5" PointX="0.28435966385731459" PointY="16.725294910709046" />
+        <EntityTypeShape EntityType="yaoModel.zhangfengliang2025_daili" Width="1.5" PointX="7.203674066440982" PointY="28.889239518385956" />
+        <EntityTypeShape EntityType="yaoModel.zhangfengliang2025_jishiben" Width="1.5" PointX="6.6403112777696514" PointY="21.010696838149194" />
+        <EntityTypeShape EntityType="yaoModel.zhangfengliang2025_kucun" Width="1.5" PointX="14.125" PointY="1.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.zhangfengliang2025_mingxi" Width="1.5" PointX="1.52341403696845" PointY="8.8587798368459474" />
+        <EntityTypeShape EntityType="yaoModel.zhangfengliang2025_renyuanguanli" Width="1.5" PointX="9.5" PointY="11.375" />
+        <EntityTypeShape EntityType="yaoModel.zhangfengliang2025_rukumingxi" Width="1.5" PointX="3.2119217101540052" PointY="7.3254500661629489" />
+        <EntityTypeShape EntityType="yaoModel.zhaobiaodailhuizong" Width="1.5" PointX="2.9933673287710953" PointY="6.4037916094082368" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.zheng_020826_config" Width="1.5" PointX="3.1091226856732379" PointY="20.922188962307846" />
+        <EntityTypeShape EntityType="yaoModel.zheng_020826_gameInfo" Width="1.5" PointX="9.0794465379228111" PointY="14.587451658485202" />
+        <EntityTypeShape EntityType="yaoModel.zheng_020826_model" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="yaoModel.zheng_020826_userInfo" Width="1.5" PointX="1.6799003247543705" PointY="22.068252514148249" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_shenpi" Width="1.5" PointX="5.915846259294006" PointY="27.141015557172249" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+.min{ padding-top:9px;}
+.setup_box{ border:1px solid #ccc; margin-top:15px; padding:1px; box-shadow:3px 3px 3px #ccc; width:99%;}
+.h_title{ height:30px; line-height:30px; background:url(../img/h_ba.jpg) repeat-x; padding-left:10px; border:1px solid #ccc; margin-bottom:1px;}
+.h_title h4{ background:url(../img/h_ht.jpg) no-repeat 0 center; font-size:12px; padding-left:12px; color:#4b4b4b;}
+.setup_box table{ border:1px solid #ededed; border-collapse:collapse; width:100%;}
+.setup_box table td{ height:36px; line-height:36px; vertical-align:middle; border-bottom:1px solid #ededed; font-size:12px; color:#426374;}
+.setup_box table .table_left{ background:#f5f4f4; padding-right:10px; width:112px; font-size:12px; color:#4b4b4b; text-align:right; border-left:1px solid #ededed;}
+
+.setup_box table input,.setup_box table select{ width:70%; height:20px; line-height:20px; padding-left:4px; border:1px solid #ccc; color:#426374; vertical-align:middle; margin-left:10px; font-size:12px;}
+.setup_box table .red{ color:#F00;}
+.btn_box{padding:26px 0px 26px 125px;}
+.btn_box a{ float:left; width:75px; height:29px; margin-right:10px; font-size:14px; text-align:center; line-height:29px; font-weight:bold;}
+.save{ background:url(../img/save.jpg) no-repeat; color:#fff;}
+.cancel{ background:url(../img/quxiao.jpg) no-repeat; color:#333;}
+
+#change_password span{ padding-left:10px;}
+.setup_box #change_password input{ width:310px;}

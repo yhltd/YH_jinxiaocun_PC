@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <link rel="stylesheet" href="static/css/main.css">
+    <link href="static/element/index.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="static/vue/vue.js"></script>
+    <script type="text/javascript" src="static/element/index.js"></script>
+    <script type="text/javascript" src="static/axios/axios.js"></script>
+    <script src="static/js/main.js"></script>
+
+    <title>云合排产管理系统</title>
+</head>
+<body>
+    <div id="bom">
+        <el-container>
+            <el-main>
+                <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="5">
+                        <el-input placeholder="物料编码" v-model="code" clearable></el-input>
+                    </el-col>
+                    <el-col :span="5">
+                        <el-input placeholder="物料名称" v-model="name" clearable></el-input>
+                    </el-col>
+                    <el-col :span="5">
+                        <el-input placeholder="物料类别" v-model="type" clearable></el-input>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-button-group>
+                            <el-button icon="el-icon-search" type="primary" @click="getList">查询</el-button>
+                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getInitList"></el-button>
+                            <el-button icon="el-icon-circle-plus-outline" type="primary" @click="addVisible = true"></el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+                <el-table :data="list" v-loading="loading" style="width: 100%;">
+                    <el-table-column type="expand">
+                        <template slot-scope="props">
+                            <el-form
+                                :model="props.row"
+                                :rules="rules"
+                                ref="updateForm"
+                                label-width="80px"
+                            >
+                                <el-form-item label="物料编码" prop="code">
+                                    <el-input v-model="props.row.code" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="物料名称" prop="name">
+                                    <el-input v-model="props.row.name" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="类别" prop="type">
+                                    <el-input v-model="props.row.type" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="规格" prop="norms">
+                                    <el-input v-model="props.row.norms" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="描述" prop="comment">
+                                    <el-input v-model="props.row.comment" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="大小" prop="size">
+                                    <el-input v-model.number="props.row.size" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="单位" prop="unit">
+                                    <el-input v-model="props.row.unit" style="width: 220px"></el-input>
+                                </el-form-item>
+                            </el-form>
+                            <el-button 
+                                type="primary" 
+                                icon="el-icon-upload"
+                                :loading="updateLoading"
+                                @click="updateBom('updateForm')"
+                            >保存</el-button>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="code" label="物料编码" sortable></el-table-column>
+                    <el-table-column prop="name" label="物料名称" sortable></el-table-column>
+                    <el-table-column prop="type" label="类别" sortable></el-table-column>
+                    <el-table-column prop="norms" label="规格" sortable></el-table-column>
+                    <el-table-column prop="comment" label="描述" sortable></el-table-column>
+                    <el-table-column prop="size" label="大小" sortable></el-table-column>
+                    <el-table-column prop="unit" label="单位" sortable></el-table-column>
+                    <el-table-column prop="useNum" label="使用数量" sortable></el-table-column>
+                    <el-table-column label="操作">
+                        <template slot-scope="scope">
+                            <el-popconfirm title="确定删除吗？" @confirm="deleteBom(scope.row.id)" hide-icon>
+                                <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
+                            </el-popconfirm>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-pagination 
+                    background
+                    layout="prev, pager, next" 
+                    :current-page.sync="now"
+                    :total="total"
+                    :page-size="size"
+                    :hide-on-single-page="total <= size" 
+                    @current-change="getList"
+                    style="margin-top: 10px"
+                ></el-pagination>
+            </el-main>
+        </el-container>
+
+        <el-drawer
+            title="新增物料"
+            :visible.sync="addVisible"
+            direction="ltr"
+            :modal="false"
+            size="70%"
+            ref="addDrawer"
+            v-loading="saveLoading"
+        >
+            <el-form
+                :model="bom"
+                :rules="rules"
+                ref="addForm"
+                label-width="100px"
+            >
+                <el-form-item label="物料编码" prop="code">
+                    <el-input v-model="bom.code"></el-input>
+                </el-form-item>
+                <el-form-item label="物料名称" prop="name">
+                    <el-input v-model="bom.name"></el-input>
+                </el-form-item>
+                <el-form-item label="类别" prop="type">
+                    <el-input v-model="bom.type"></el-input>
+                </el-form-item>
+                <el-form-item label="规格" prop="norms">
+                    <el-input v-model="bom.norms"></el-input>
+                </el-form-item>
+                <el-form-item label="描述" prop="comment">
+                    <el-input v-model="bom.comment"></el-input>
+                </el-form-item>
+                <el-form-item label="大小" prop="size">
+                    <el-input v-model.number="bom.size"></el-input>
+                </el-form-item>
+                <el-form-item label="单位" prop="unit">
+                    <el-input v-model="bom.unit"></el-input>
+                </el-form-item>
+            </el-form>
+            <el-button 
+                type="primary" 
+                icon="el-icon-upload"
+                @click="addBom('addForm')"
+            >保存</el-button>
+        </el-drawer>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#bom',
+            data: {
+
+                now: 1,
+                size: 20,
+                total: 0,
+                code: '',
+                name: '',
+                type: '',
+                loading: false,
+                list: [],
+
+                rules: {
+                    code: [
+                        { required: true, message: '物料编码不能为空', trigger: 'blur' }
+                    ],
+                    name: [
+                        { required: true, message: '物料名称不能为空', trigger: 'blur' }
+                    ],
+                    type: [
+                        { required: true, message: '类别不能为空', trigger: 'blur' }
+                    ],
+                    size: [
+                        { required: true, message: '大小不能为空', trigger: 'blur' },
+                        { type: 'number', message: '大小必须为数字值' }
+                    ]
+                },
+                updateLoading: false,
+
+                addVisible: false,
+                bom: {},
+                saveLoading: false
+            },
+            methods: {
+                getList: function () {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('bom/page'), {
+                        nowPage: _this.now,
+                        pageCount: _this.size,
+                        code: _this.code,
+                        name: _this.name,
+                        type: _this.type
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.total = res.data.total;
+                            _this.list = res.data.pageList
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+                getInitList: function () {
+                    this.code = '';
+                    this.name = '';
+                    this.type = '';
+                    this.getList();
+                },
+                updateBom: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.updateLoading = true;
+                            axios.post(myUrl('bom/update'), {
+                                bomInfo: _this.$refs[formName].model
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.getList();
+                                }
+                                _this.updateLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.updateLoading = false;
+                            })
+                        }
+                    })
+                },
+                deleteBom: function (id) {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('bom/delete'), {
+                        id: id
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'success'
+                            });
+                            _this.getList();
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+                addBom: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.saveLoading = true;
+                            axios.post(myUrl('bom/save'), {
+                                bomInfo: _this.bom
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.getList();
+                                    _this.$refs.addDrawer.closeDrawer();
+                                }
+                                _this.saveLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.saveLoading = false;
+                            })
+                        }
+                    })
+                }
+            },
+            mounted: function () {
+                this.getList();
+            }
+        })
+    </script>
+
+    <style>
+        .el-form
+        {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: start;
+
+        }
+        .el-form-item
+        {
+            margin-right: 10px
+        }
+    </style>
+</body>
+</html>

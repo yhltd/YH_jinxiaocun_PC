@@ -1,0 +1,1737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="yaoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="yaoEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.gongzi_gongzimingxi" />
+    <EntitySet Name="gongzi_kaoqinjilu" EntityType="yaoModel.gongzi_kaoqinjilu" />
+    <EntitySet Name="gongzi_kaoqinmingxi" EntityType="yaoModel.gongzi_kaoqinmingxi" />
+    <EntitySet Name="gongzi_peizhi" EntityType="yaoModel.gongzi_peizhi" />
+    <EntitySet Name="gongzi_renyuan" EntityType="yaoModel.gongzi_renyuan" />
+    <EntitySet Name="gongzi_renyuanManager" EntityType="yaoModel.gongzi_renyuanManager" />
+    <EntitySet Name="gongzi_shezhi" EntityType="yaoModel.gongzi_shezhi" />
+    <EntitySet Name="gongzi_viewNames" EntityType="yaoModel.gongzi_viewNames" />
+    <EntitySet Name="bainiantiantianmumen" EntityType="yaoModel.bainiantiantianmumen" />
+    <EntitySet Name="bainiantiantianmumenmubiao" EntityType="yaoModel.bainiantiantianmumenmubiao" />
+    <EntitySet Name="bainiantiantianmumenrenyuan" EntityType="yaoModel.bainiantiantianmumenrenyuan" />
+    <EntitySet Name="baitaoquanxian" EntityType="yaoModel.baitaoquanxian" />
+    <EntitySet Name="baitaoquanxian_copy1" EntityType="yaoModel.baitaoquanxian_copy1" />
+    <EntitySet Name="baitaoquanxian_copy2" EntityType="yaoModel.baitaoquanxian_copy2" />
+    <EntitySet Name="baitaoquanxian_gongsi" EntityType="yaoModel.baitaoquanxian_gongsi" />
+    <EntitySet Name="baitaoquanxian_renyun" EntityType="yaoModel.baitaoquanxian_renyun" />
+    <EntitySet Name="dearhylo9_cangku" EntityType="yaoModel.dearhylo9_cangku" />
+    <EntitySet Name="dearhylo9_jiandan" EntityType="yaoModel.dearhylo9_jiandan" />
+    <EntitySet Name="dearhylo9_renyuan" EntityType="yaoModel.dearhylo9_renyuan" />
+    <EntitySet Name="dearhylo9_tuihuo" EntityType="yaoModel.dearhylo9_tuihuo" />
+    <EntitySet Name="kaozhiguang147852" EntityType="yaoModel.kaozhiguang147852" />
+    <EntitySet Name="kaozhiguang147852_gongzi" EntityType="yaoModel.kaozhiguang147852_gongzi" />
+    <EntitySet Name="kaozhiguang147852_jiben" EntityType="yaoModel.kaozhiguang147852_jiben" />
+    <EntitySet Name="kaozhiguang147852_jixie" EntityType="yaoModel.kaozhiguang147852_jixie" />
+    <EntitySet Name="kaozhiguang147852_sika" EntityType="yaoModel.kaozhiguang147852_sika" />
+    <EntitySet Name="liuchanglin_chanpinguanli" EntityType="yaoModel.liuchanglin_chanpinguanli" />
+    <EntitySet Name="liuchanglin_chanpinxinxi" EntityType="yaoModel.liuchanglin_chanpinxinxi" />
+    <EntitySet Name="liuchanglin_chuku" EntityType="yaoModel.liuchanglin_chuku" />
+    <EntitySet Name="liuchanglin_fuzhu" EntityType="yaoModel.liuchanglin_fuzhu" />
+    <EntitySet Name="liuchanglin_gongyingshang" EntityType="yaoModel.liuchanglin_gongyingshang" />
+    <EntitySet Name="liuchanglin_kehu" EntityType="yaoModel.liuchanglin_kehu" />
+    <EntitySet Name="liuchanglin_kucun" EntityType="yaoModel.liuchanglin_kucun" />
+    <EntitySet Name="liuchanglin_mingxi" EntityType="yaoModel.liuchanglin_mingxi" />
+    <EntitySet Name="liuchanglin_mingxiguanli" EntityType="yaoModel.liuchanglin_mingxiguanli" />
+    <EntitySet Name="liuchanglin_renyuan" EntityType="yaoModel.liuchanglin_renyuan" />
+    <EntitySet Name="lv_al" EntityType="yaoModel.lv_al" />
+    <EntitySet Name="lv_bcd" EntityType="yaoModel.lv_bcd" />
+    <EntitySet Name="lv_td" EntityType="yaoModel.lv_td" />
+    <EntitySet Name="lv_xhjr" EntityType="yaoModel.lv_xhjr" />
+    <EntitySet Name="tb846607026_cunkuan" EntityType="yaoModel.tb846607026_cunkuan" />
+    <EntitySet Name="tb846607026_jibie" EntityType="yaoModel.tb846607026_jibie" />
+    <EntitySet Name="tb846607026_jine" EntityType="yaoModel.tb846607026_jine" />
+    <EntitySet Name="tb846607026_peizhi" EntityType="yaoModel.tb846607026_peizhi" />
+    <EntitySet Name="tb846607026_shouyi" EntityType="yaoModel.tb846607026_shouyi" />
+    <EntitySet Name="tb846607026_tixian" EntityType="yaoModel.tb846607026_tixian" />
+    <EntitySet Name="wodeliangnianfa_chukubiao" EntityType="yaoModel.wodeliangnianfa_chukubiao" />
+    <EntitySet Name="wodeliangnianfa_gongyingshangxinxi" EntityType="yaoModel.wodeliangnianfa_gongyingshangxinxi" />
+    <EntitySet Name="wodeliangnianfa_kehuxinxi" EntityType="yaoModel.wodeliangnianfa_kehuxinxi" />
+    <EntitySet Name="wodeliangnianfa_kucun" EntityType="yaoModel.wodeliangnianfa_kucun" />
+    <EntitySet Name="wodeliangnianfa_peizhibiao" EntityType="yaoModel.wodeliangnianfa_peizhibiao" />
+    <EntitySet Name="wodeliangnianfa_renyaunxinxi" EntityType="yaoModel.wodeliangnianfa_renyaunxinxi" />
+    <EntitySet Name="wodeliangnianfa_rukubiao" EntityType="yaoModel.wodeliangnianfa_rukubiao" />
+    <EntitySet Name="wodeliangnianfa_shangpinxinxi" EntityType="yaoModel.wodeliangnianfa_shangpinxinxi" />
+    <EntitySet Name="wodeliangnianfa_tuihuobiao" EntityType="yaoModel.wodeliangnianfa_tuihuobiao" />
+    <EntitySet Name="wodeliangnianfa_xiadan" EntityType="yaoModel.wodeliangnianfa_xiadan" />
+    <EntitySet Name="wodeliangnianfa_zhanghu" EntityType="yaoModel.wodeliangnianfa_zhanghu" />
+    <EntitySet Name="zeng_stock" EntityType="yaoModel.zeng_stock" />
+    <EntitySet Name="zeng_user" EntityType="yaoModel.zeng_user" />
+    <EntitySet Name="zeng_wares" EntityType="yaoModel.zeng_wares" />
+    <EntitySet Name="zhangfengliang2025_daili" EntityType="yaoModel.zhangfengliang2025_daili" />
+    <EntitySet Name="zhangfengliang2025_jishiben" EntityType="yaoModel.zhangfengliang2025_jishiben" />
+    <EntitySet Name="zhangfengliang2025_kucun" EntityType="yaoModel.zhangfengliang2025_kucun" />
+    <EntitySet Name="zhangfengliang2025_mingxi" EntityType="yaoModel.zhangfengliang2025_mingxi" />
+    <EntitySet Name="zhangfengliang2025_renyuanguanli" EntityType="yaoModel.zhangfengliang2025_renyuanguanli" />
+    <EntitySet Name="zhangfengliang2025_rukumingxi" EntityType="yaoModel.zhangfengliang2025_rukumingxi" />
+    <EntitySet Name="zhaobiaodailhuizong" EntityType="yaoModel.zhaobiaodailhuizong" />
+    <EntitySet Name="zheng_020826_config" EntityType="yaoModel.zheng_020826_config" />
+    <EntitySet Name="zheng_020826_gameInfo" EntityType="yaoModel.zheng_020826_gameInfo" />
+    <EntitySet Name="zheng_020826_model" EntityType="yaoModel.zheng_020826_model" />
+    <EntitySet Name="zheng_020826_userInfo" EntityType="yaoModel.zheng_020826_userInfo" />
+    <EntitySet Name="gongzi_shenpi" EntityType="yaoModel.gongzi_shenpi" />
+  </EntityContainer>
+  <EntityType Name="gongzi_gongzimingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="B" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="C" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="D" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="E" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="F" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="G" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="H" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="I" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="J" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="K" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="L" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="M" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="N" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="O" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="P" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Q" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="R" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="S" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="T" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="U" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="V" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="W" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="X" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Y" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Z" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AB" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AC" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AD" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AE" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AF" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AG" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AH" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AI" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AJ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AK" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AL" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AM" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AN" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AO" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AP" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AQ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AR" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ASA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="ATA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AU" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AV" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AW" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AX" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AY" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="AZ" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="BA" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="BB" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="BC" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="BD" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="gongzi_kaoqinjilu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="year" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="moth" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AO" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_kaoqinmingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_peizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="kaoqin" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="kaoqin_peizhi" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="zhiwu" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="year" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="month" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="day" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="chidao_koukuan" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="geren_yiliao" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qiye_yiliao" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="geren_shengyu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qiye_shengyu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="geren_gongjijin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qiye_gongjijin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="yiliao_jishu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="geren_nianjin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhinajin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="nianjin_jishu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="lixi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jixiao_gongzi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="geren_yanglao" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qiye_yanglao" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gangwei" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gangwei_gongzi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qiye_shiye" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongzi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shuilv" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kuadu_gongzi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qiye_gongshang" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jintie" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qiye_nianjin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="nianjin1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jiabanfei" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="yansuangongshi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="queqin_koukuan" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="geren_shiye" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_renyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_renyuanManager">
+    <Key>
+      <PropertyRef Name="R_id" />
+      <PropertyRef Name="add" />
+      <PropertyRef Name="del" />
+      <PropertyRef Name="upd" />
+      <PropertyRef Name="sel" />
+      <PropertyRef Name="look" />
+      <PropertyRef Name="view_id" />
+    </Key>
+    <Property Type="Int32" Name="R_id" Nullable="false" />
+    <Property Type="Int32" Name="add" Nullable="false" />
+    <Property Type="Int32" Name="del" Nullable="false" />
+    <Property Type="Int32" Name="upd" Nullable="false" />
+    <Property Type="Int32" Name="sel" Nullable="false" />
+    <Property Type="Int32" Name="look" Nullable="false" />
+    <Property Type="Int32" Name="view_id" Nullable="false" />
+  </EntityType>
+  <EntityType Name="gongzi_shezhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="gongsi" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shezhi" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="yi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="er" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_viewNames">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="viewName" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="viewName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="bainiantiantianmumen">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="riqi" Precision="0" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="bainiantiantianmumenmubiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="bainiantiantianmumenrenyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="A" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AZ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BYY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BZ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="人员" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="公司" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="日期" Precision="0" />
+    <Property Type="DateTime" Name="a最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="b最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="c最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="d最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="e最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="f最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="g最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="h最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="j最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="fff最后修改日期" Precision="0" />
+    <Property Type="DateTime" Name="李老六最后修改日期" Precision="0" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian_copy1">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="quanxian" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AZ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BYY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BZ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="renyuan_id" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="chashanquanxian" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian_copy2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="A" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AZ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BYY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BZ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="公司" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian_gongsi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ASS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AZ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BX" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BYY" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="BZ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CH" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CI" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CJ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CK" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CL" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CM" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CN" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CO" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CP" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CQ" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CR" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CS" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CT" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CU" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CV" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CW" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CX" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="baitaoquanxian_renyun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="renyuan_id" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhuangtai" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="email" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="phone" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bianhao" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="quanxian_id" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="dearhylo9_cangku">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="dearhylo9_jiandan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="dearhylo9_renyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="dearhylo9_tuihuo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xiangmu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jieduan" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhanghao" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mi" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852_gongzi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852_jiben">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852_jixie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="kaozhiguang147852_sika">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_chanpinguanli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="I" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="J" Precision="18" Scale="2" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_chanpinxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_chuku">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_fuzhu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_gongyingshang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_kehu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_kucun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_mingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="liuchanglin_mingxiguanli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="O" Precision="18" Scale="2" />
+    <Property Type="Decimal" Name="P" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="liuchanglin_renyuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="lv_al">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="J" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="K" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="L" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="M" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="N" Precision="19" Scale="4" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cid" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="lv_bcd">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="J" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="K" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="L" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="M" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="N" Precision="19" Scale="4" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cid" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="lv_td">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="J" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="K" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="L" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="M" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="N" Precision="19" Scale="4" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cid" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="lv_xhjr">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="J" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="K" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="L" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="M" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="N" Precision="19" Scale="4" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cid" />
+    <Property Type="String" Name="AH" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb846607026_cunkuan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb846607026_jibie">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb846607026_jine">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb846607026_peizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb846607026_shouyi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tb846607026_tixian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_chukubiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_gongyingshangxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_kehuxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_kucun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_peizhibiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_renyaunxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_rukubiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_shangpinxinxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_tuihuobiao">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_xiadan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="wodeliangnianfa_zhanghu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zeng_stock">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="String" Name="productCode" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="discount" />
+    <Property Type="String" Name="direction" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="userName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="num" />
+    <Property Type="DateTime" Name="time" Precision="3" />
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="comment" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="payType" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="order_id" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zeng_user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="String" Name="userName" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="password" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="power" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shop" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="qrCode_shop" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="deviceId" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="serviceId" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="characteristicId" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zeng_wares">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="String" Name="code" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="price" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="num" />
+    <Property Type="String" Name="cloth" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="norms" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mark1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mark2" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mark3" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mark4" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mark5" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_daili">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="D" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_jishiben">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_kucun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="产品编号" />
+    <Property Type="String" Name="产品名称" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="规格" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="数量" Precision="18" Scale="1" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_mingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="C" Precision="0" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="H" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="I" Precision="18" Scale="1" />
+    <Property Type="Decimal" Name="J" Precision="18" Scale="1" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="examine_tag" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="print_tag" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_renyuanguanli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zhangfengliang2025_rukumingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="入库日期" Precision="0" />
+    <Property Type="String" Name="入库人" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="产品编号" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="产品名称" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="规格" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="数量" />
+  </EntityType>
+  <EntityType Name="zhaobiaodailhuizong">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="I" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="J" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="K" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="L" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="M" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="N" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="O" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="P" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Q" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="R" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="S" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="T" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="U" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="V" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="W" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="X" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Y" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Z" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AA" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AB" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AE" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AF" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AG" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zheng_020826_config">
+    <Key>
+      <PropertyRef Name="pwd" />
+    </Key>
+    <Property Type="String" Name="pwd" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="zheng_020826_gameInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="space" />
+      <PropertyRef Name="model_id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="space" Nullable="false" />
+    <Property Type="Int32" Name="model_id" Nullable="false" />
+    <Property Type="DateTime" Name="time" Precision="0" />
+    <Property Type="Int32" Name="amount" />
+    <Property Type="Int32" Name="game_top" />
+  </EntityType>
+  <EntityType Name="zheng_020826_model">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="model_top" />
+  </EntityType>
+  <EntityType Name="zheng_020826_userInfo">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="game_id" />
+      <PropertyRef Name="time" />
+      <PropertyRef Name="number" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="game_id" Nullable="false" />
+    <Property Type="DateTime" Name="time" Nullable="false" Precision="3" />
+    <Property Type="String" Name="number" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_shenpi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="shifa_gongzi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="geren_zhichu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qiye_zhichu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="yuangong_renshu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="quanqin_tianshu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shenpiren" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

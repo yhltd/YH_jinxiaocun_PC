@@ -1,0 +1,790 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="schedulingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="schedulingModelStoreContainer">
+          <EntitySet Name="bom_info" EntityType="schedulingModel.Store.bom_info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="department" EntityType="schedulingModel.Store.department" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="holiday_config" EntityType="schedulingModel.Store.holiday_config" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="module_info" EntityType="schedulingModel.Store.module_info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="module_type" EntityType="schedulingModel.Store.module_type" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="order_bom" EntityType="schedulingModel.Store.order_bom" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="order_check" EntityType="schedulingModel.Store.order_check" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="order_info" EntityType="schedulingModel.Store.order_info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.Store.paibanbiao_detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.Store.paibanbiao_info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.Store.paibanbiao_renyuan" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="time_config" EntityType="schedulingModel.Store.time_config" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="user_info1" EntityType="schedulingModel.Store.user_info1" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="work_detail" EntityType="schedulingModel.Store.work_detail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="work_detail1" EntityType="schedulingModel.Store.work_detail1" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="work_detail2" EntityType="schedulingModel.Store.work_detail2" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="work_module" EntityType="schedulingModel.Store.work_module" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="bom_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="norms" Type="varchar" MaxLength="255" />
+          <Property Name="comment" Type="varchar" MaxLength="255" />
+          <Property Name="unit" Type="varchar" MaxLength="255" />
+          <Property Name="size" Type="float" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="type" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="department_name" Type="varchar" MaxLength="255" />
+          <Property Name="add" Type="varchar" MaxLength="5" />
+          <Property Name="del" Type="varchar" MaxLength="5" />
+          <Property Name="upd" Type="varchar" MaxLength="5" />
+          <Property Name="sel" Type="varchar" MaxLength="5" />
+          <Property Name="view_name" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="holiday_config">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="day_or_reset" Type="date" Nullable="false" />
+          <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="module_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="num" Type="float" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="module_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="order_bom">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="bom_id" Type="int" Nullable="false" />
+          <Property Name="use_num" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_check">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_number" Type="varchar" MaxLength="255" />
+          <Property Name="moudle" Type="varchar" MaxLength="255" />
+          <Property Name="riqi" Type="varchar" MaxLength="255" />
+          <Property Name="num" Type="float" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="order_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="product_name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="norms" Type="varchar" MaxLength="255" />
+          <Property Name="order_id" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="set_date" Type="datetime2" Precision="0" />
+          <Property Name="set_num" Type="int" Nullable="false" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="is_complete" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="paibanbiao_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="staff_name" Type="varchar" MaxLength="255" />
+          <Property Name="phone_number" Type="varchar" MaxLength="255" />
+          <Property Name="banci" Type="varchar" MaxLength="255" />
+          <Property Name="department_name" Type="varchar" MaxLength="255" />
+          <Property Name="id_number" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="b" Type="varchar" MaxLength="255" />
+          <Property Name="c" Type="varchar" MaxLength="255" />
+          <Property Name="d" Type="varchar" MaxLength="255" />
+          <Property Name="e" Type="varchar" MaxLength="255" />
+          <Property Name="f" Type="varchar" MaxLength="255" />
+          <Property Name="g" Type="varchar" MaxLength="255" />
+          <Property Name="h" Type="varchar" MaxLength="255" />
+          <Property Name="i" Type="varchar" MaxLength="255" />
+          <Property Name="j" Type="varchar" MaxLength="255" />
+          <Property Name="k" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="paibanbiao_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="paibanbiao_detail_id" Type="int" />
+          <Property Name="riqi" Type="varchar" MaxLength="255" />
+          <Property Name="renshu" Type="varchar" MaxLength="255" />
+          <Property Name="plan_name" Type="varchar" MaxLength="255" />
+          <Property Name="department_name" Type="varchar" MaxLength="255" />
+          <Property Name="remarks1" Type="varchar" MaxLength="255" />
+          <Property Name="remarks2" Type="varchar" MaxLength="255" />
+          <Property Name="remarks3" Type="varchar" MaxLength="255" />
+          <Property Name="remarks4" Type="varchar" MaxLength="255" />
+          <Property Name="remarks5" Type="varchar" MaxLength="255" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="paibanbiao_renyuan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="staff_name" Type="varchar" MaxLength="255" />
+          <Property Name="phone_number" Type="varchar" MaxLength="255" />
+          <Property Name="banci" Type="varchar" MaxLength="255" />
+          <Property Name="department_name" Type="varchar" MaxLength="255" />
+          <Property Name="id_number" Type="varchar" MaxLength="255" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="b" Type="varchar" MaxLength="255" />
+          <Property Name="c" Type="varchar" MaxLength="255" />
+          <Property Name="d" Type="varchar" MaxLength="255" />
+          <Property Name="e" Type="varchar" MaxLength="255" />
+          <Property Name="f" Type="varchar" MaxLength="255" />
+          <Property Name="g" Type="varchar" MaxLength="255" />
+          <Property Name="h" Type="varchar" MaxLength="255" />
+          <Property Name="i" Type="varchar" MaxLength="255" />
+          <Property Name="j" Type="varchar" MaxLength="255" />
+          <Property Name="k" Type="varchar" MaxLength="255" />
+          <Property Name="l" Type="varchar" MaxLength="255" />
+          <Property Name="m" Type="varchar" MaxLength="255" />
+          <Property Name="n" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="time_config">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="week" Type="int" />
+          <Property Name="morning_start" Type="varchar" MaxLength="8" />
+          <Property Name="morning_end" Type="varchar" MaxLength="8" />
+          <Property Name="noon_start" Type="varchar" MaxLength="8" />
+          <Property Name="noon_end" Type="varchar" MaxLength="8" />
+          <Property Name="night_start" Type="varchar" MaxLength="8" />
+          <Property Name="night_end" Type="varchar" MaxLength="8" />
+          <Property Name="company" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="user_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_code" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="department_name" Type="varchar" MaxLength="255" />
+          <Property Name="state" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="user_info1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_code" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="department_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="work_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="work_num" Type="int" Nullable="false" />
+          <Property Name="work_start_date" Type="datetime2" Nullable="false" />
+          <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="row_num" Type="int" />
+          <Property Name="is_insert" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="work_detail1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="work_num" Type="int" />
+          <Property Name="work_start_date" Type="datetime2" />
+          <Property Name="company" Type="varchar" MaxLength="255" />
+          <Property Name="row_num" Type="int" />
+          <Property Name="is_insert" Type="int" />
+        </EntityType>
+        <EntityType Name="work_detail2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="work_num" Type="int" Nullable="false" />
+          <Property Name="work_start_date" Type="datetime2" Nullable="false" Precision="0" />
+          <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="row_num" Type="int" />
+          <Property Name="is_insert" Type="int" />
+        </EntityType>
+        <EntityType Name="work_module">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="work_id" Type="int" Nullable="false" />
+          <Property Name="module_id" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="schedulingModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="schedulingEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="module_info" EntityType="schedulingModel.module_info" />
+          <EntitySet Name="module_type" EntityType="schedulingModel.module_type" />
+          <EntitySet Name="holiday_config" EntityType="schedulingModel.holiday_config" />
+          <EntitySet Name="time_config" EntityType="schedulingModel.time_config" />
+          <EntitySet Name="bom_info" EntityType="schedulingModel.bom_info" />
+          <EntitySet Name="order_bom" EntityType="schedulingModel.order_bom" />
+          <EntitySet Name="order_info" EntityType="schedulingModel.order_info" />
+          <EntitySet Name="work_detail" EntityType="schedulingModel.work_detail" />
+          <EntitySet Name="work_module" EntityType="schedulingModel.work_module" />
+          <EntitySet Name="department" EntityType="schedulingModel.department" />
+          <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.paibanbiao_renyuan" />
+          <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.paibanbiao_detail" />
+          <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.paibanbiao_info" />
+          <EntitySet Name="order_check" EntityType="schedulingModel.order_check" />
+          <EntitySet Name="user_info1" EntityType="schedulingModel.user_info1" />
+          <EntitySet Name="work_detail2" EntityType="schedulingModel.work_detail2" />
+          <EntitySet Name="user_info" EntityType="schedulingModel.user_info" />
+          <EntitySet Name="work_detail1" EntityType="schedulingModel.work_detail1" />
+        </EntityContainer>
+        <EntityType Name="module_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="type_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="num" Type="Double" />
+          <Property Name="parent_id" Type="Int32" />
+          <Property Name="company" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="module_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="company" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="holiday_config">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="day_or_reset" Nullable="false" Precision="0" />
+          <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="time_config">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="week" />
+          <Property Type="String" Name="morning_start" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="morning_end" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="noon_start" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="noon_end" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="night_start" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="night_end" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="company" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="bom_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="norms" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="comment" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="unit" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="size" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_bom">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="Int32" Name="bom_id" Nullable="false" />
+          <Property Type="Int32" Name="use_num" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="code" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Type="String" Name="product_name" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Type="String" Name="norms" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="order_id" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Type="DateTime" Name="set_date" Precision="0" />
+          <Property Type="Int32" Name="set_num" Nullable="false" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="is_complete" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="work_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="Int32" Name="work_num" Nullable="false" />
+          <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="7" />
+          <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="row_num" />
+          <Property Type="Int32" Name="is_insert" />
+          <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="work_module">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="work_id" Nullable="false" />
+          <Property Type="Int32" Name="module_id" Nullable="false" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="add" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="del" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="upd" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="sel" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="view_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="paibanbiao_renyuan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="staff_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="phone_number" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="banci" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="id_number" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="b" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="c" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="d" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="e" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="f" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="g" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="h" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="i" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="j" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="k" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="l" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="m" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="n" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="paibanbiao_detail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="staff_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="phone_number" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="banci" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="id_number" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="b" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="c" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="d" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="e" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="f" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="g" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="h" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="i" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="j" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="k" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="paibanbiao_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="paibanbiao_detail_id" />
+          <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="renshu" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="plan_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="remarks1" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="remarks2" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="remarks3" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="remarks4" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="remarks5" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="order_check">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="order_number" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="moudle" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="num" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="user_info1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="user_code" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="work_detail2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="order_id" Nullable="false" />
+          <Property Type="Int32" Name="work_num" Nullable="false" />
+          <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="0" />
+          <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="row_num" />
+          <Property Type="Int32" Name="is_insert" />
+        </EntityType>
+        <EntityType Name="user_info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="user_code" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="state" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="work_detail1">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="order_id" />
+          <Property Type="Int32" Name="work_num" />
+          <Property Type="DateTime" Name="work_start_date" Precision="7" />
+          <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="row_num" />
+          <Property Type="Int32" Name="is_insert" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="schedulingModelStoreContainer" CdmEntityContainer="schedulingEntities">
+    <EntitySetMapping Name="module_info">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.module_info)">
+        <MappingFragment StoreEntitySet="module_info">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="module_type">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.module_type)">
+        <MappingFragment StoreEntitySet="module_type">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="holiday_config">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.holiday_config)">
+        <MappingFragment StoreEntitySet="holiday_config">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="day_or_reset" ColumnName="day_or_reset" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="time_config">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.time_config)">
+        <MappingFragment StoreEntitySet="time_config">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="week" ColumnName="week" />
+          <ScalarProperty Name="morning_start" ColumnName="morning_start" />
+          <ScalarProperty Name="morning_end" ColumnName="morning_end" />
+          <ScalarProperty Name="noon_start" ColumnName="noon_start" />
+          <ScalarProperty Name="noon_end" ColumnName="noon_end" />
+          <ScalarProperty Name="night_start" ColumnName="night_start" />
+          <ScalarProperty Name="night_end" ColumnName="night_end" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bom_info">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.bom_info)">
+        <MappingFragment StoreEntitySet="bom_info">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="norms" ColumnName="norms" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_bom">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.order_bom)">
+        <MappingFragment StoreEntitySet="order_bom">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="bom_id" ColumnName="bom_id" />
+          <ScalarProperty Name="use_num" ColumnName="use_num" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_info">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.order_info)">
+        <MappingFragment StoreEntitySet="order_info">
+          <ScalarProperty Name="is_complete" ColumnName="is_complete" />
+                <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+          <ScalarProperty Name="norms" ColumnName="norms" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="set_date" ColumnName="set_date" />
+          <ScalarProperty Name="set_num" ColumnName="set_num" />
+          <ScalarProperty Name="company" ColumnName="company" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="work_detail">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.work_detail)">
+        <MappingFragment StoreEntitySet="work_detail">
+          <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="work_num" ColumnName="work_num" />
+          <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="row_num" ColumnName="row_num" />
+          <ScalarProperty Name="is_insert" ColumnName="is_insert" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="work_module">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.work_module)">
+        <MappingFragment StoreEntitySet="work_module">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="work_id" ColumnName="work_id" />
+          <ScalarProperty Name="module_id" ColumnName="module_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="department">
+      <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.department)">
+        <MappingFragment StoreEntitySet="department">
+          <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <ScalarProperty Name="add" ColumnName="add" />
+          <ScalarProperty Name="del" ColumnName="del" />
+          <ScalarProperty Name="upd" ColumnName="upd" />
+          <ScalarProperty Name="sel" ColumnName="sel" />
+          <ScalarProperty Name="view_name" ColumnName="view_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="paibanbiao_renyuan">
+            <EntityTypeMapping TypeName="schedulingModel.paibanbiao_renyuan">
+              <MappingFragment StoreEntitySet="paibanbiao_renyuan">
+                <ScalarProperty Name="n" ColumnName="n" />
+                <ScalarProperty Name="m" ColumnName="m" />
+                <ScalarProperty Name="l" ColumnName="l" />
+                <ScalarProperty Name="k" ColumnName="k" />
+                <ScalarProperty Name="j" ColumnName="j" />
+                <ScalarProperty Name="i" ColumnName="i" />
+                <ScalarProperty Name="h" ColumnName="h" />
+                <ScalarProperty Name="g" ColumnName="g" />
+                <ScalarProperty Name="f" ColumnName="f" />
+                <ScalarProperty Name="e" ColumnName="e" />
+                <ScalarProperty Name="d" ColumnName="d" />
+                <ScalarProperty Name="c" ColumnName="c" />
+                <ScalarProperty Name="b" ColumnName="b" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="id_number" ColumnName="id_number" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="banci" ColumnName="banci" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="staff_name" ColumnName="staff_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paibanbiao_detail">
+            <EntityTypeMapping TypeName="schedulingModel.paibanbiao_detail">
+              <MappingFragment StoreEntitySet="paibanbiao_detail">
+                <ScalarProperty Name="k" ColumnName="k" />
+                <ScalarProperty Name="j" ColumnName="j" />
+                <ScalarProperty Name="i" ColumnName="i" />
+                <ScalarProperty Name="h" ColumnName="h" />
+                <ScalarProperty Name="g" ColumnName="g" />
+                <ScalarProperty Name="f" ColumnName="f" />
+                <ScalarProperty Name="e" ColumnName="e" />
+                <ScalarProperty Name="d" ColumnName="d" />
+                <ScalarProperty Name="c" ColumnName="c" />
+                <ScalarProperty Name="b" ColumnName="b" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="id_number" ColumnName="id_number" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="banci" ColumnName="banci" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="staff_name" ColumnName="staff_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="paibanbiao_info">
+            <EntityTypeMapping TypeName="schedulingModel.paibanbiao_info">
+              <MappingFragment StoreEntitySet="paibanbiao_info">
+                <ScalarProperty Name="remarks5" ColumnName="remarks5" />
+                <ScalarProperty Name="remarks4" ColumnName="remarks4" />
+                <ScalarProperty Name="remarks3" ColumnName="remarks3" />
+                <ScalarProperty Name="remarks2" ColumnName="remarks2" />
+                <ScalarProperty Name="remarks1" ColumnName="remarks1" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+                <ScalarProperty Name="renshu" ColumnName="renshu" />
+                <ScalarProperty Name="riqi" ColumnName="riqi" />
+                <ScalarProperty Name="paibanbiao_detail_id" ColumnName="paibanbiao_detail_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_check">
+            <EntityTypeMapping TypeName="schedulingModel.order_check">
+              <MappingFragment StoreEntitySet="order_check">
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="riqi" ColumnName="riqi" />
+                <ScalarProperty Name="moudle" ColumnName="moudle" />
+                <ScalarProperty Name="order_number" ColumnName="order_number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_info1">
+            <EntityTypeMapping TypeName="schedulingModel.user_info1">
+              <MappingFragment StoreEntitySet="user_info1">
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_code" ColumnName="user_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="work_detail2">
+            <EntityTypeMapping TypeName="schedulingModel.work_detail2">
+              <MappingFragment StoreEntitySet="work_detail2">
+                <ScalarProperty Name="is_insert" ColumnName="is_insert" />
+                <ScalarProperty Name="row_num" ColumnName="row_num" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />
+                <ScalarProperty Name="work_num" ColumnName="work_num" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_info">
+            <EntityTypeMapping TypeName="schedulingModel.user_info">
+              <MappingFragment StoreEntitySet="user_info">
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user_code" ColumnName="user_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="work_detail1">
+            <EntityTypeMapping TypeName="schedulingModel.work_detail1">
+              <MappingFragment StoreEntitySet="work_detail1">
+                <ScalarProperty Name="is_insert" ColumnName="is_insert" />
+                <ScalarProperty Name="row_num" ColumnName="row_num" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />
+                <ScalarProperty Name="work_num" ColumnName="work_num" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

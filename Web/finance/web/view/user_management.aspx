@@ -15,6 +15,7 @@
     <script type="text/javascript" src="../assets/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/css/subject_ledger.css"/>
     <script type="text/javascript" src="../assets/js/main.js"></script>
     <script type="text/javascript" src="../assets/js/parsing.js"></script>
     <script type="text/javascript" src="../assets/js/user_management.js"></script>
@@ -26,7 +27,7 @@
         <div class="toolbar">
             &nbsp;&nbsp;账号：
             <input id="username" class="easyui-textbox" style="margin-left:20px" value=""/>
-            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="sel()">查询</a>
+            <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="sel()">查询</a>
         </div>
         <div class="main-item">
             <div style="height:95%" id="data-table" class="easyui-datagrid"></div>

@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="yh_noticeModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="yh_noticeModel1StoreContainer">
+          <EntitySet Name="notice" EntityType="yh_noticeModel1.Store.notice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="product_pushnews" EntityType="yh_noticeModel1.Store.product_pushnews" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="notice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="uname" Type="varchar" MaxLength="255" />
+          <Property Name="uid" Type="varchar" MaxLength="255" />
+          <Property Name="address" Type="varchar" MaxLength="255" />
+          <Property Name="uinfo" Type="varchar" MaxLength="255" />
+          <Property Name="picture" Type="varchar(max)" />
+          <Property Name="lei" Type="varchar" MaxLength="255" />
+          <Property Name="fdate" Type="varchar" MaxLength="255" />
+          <Property Name="detail" Type="varchar" MaxLength="255" />
+          <Property Name="video" Type="varchar(max)" />
+          <Property Name="picture_name" Type="varchar" MaxLength="255" />
+          <Property Name="video_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="product_pushnews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="gsname" Type="varchar" MaxLength="255" />
+          <Property Name="xtname" Type="varchar" MaxLength="255" />
+          <Property Name="tpname1" Type="varchar" MaxLength="255" />
+          <Property Name="tptop1" Type="varchar(max)" />
+          <Property Name="tpname2" Type="varchar" MaxLength="255" />
+          <Property Name="tptop2" Type="varchar(max)" />
+          <Property Name="tpname3" Type="varchar" MaxLength="255" />
+          <Property Name="tptop3" Type="varchar(max)" />
+          <Property Name="tpname4" Type="varchar" MaxLength="255" />
+          <Property Name="tptop4" Type="varchar(max)" />
+          <Property Name="tpname5" Type="varchar" MaxLength="255" />
+          <Property Name="tptop5" Type="varchar(max)" />
+          <Property Name="tpname6" Type="varchar" MaxLength="255" />
+          <Property Name="tptop6" Type="varchar(max)" />
+          <Property Name="topkuan" Type="varchar" MaxLength="255" />
+          <Property Name="topgao" Type="varchar" MaxLength="255" />
+          <Property Name="xuankuan" Type="varchar" MaxLength="255" />
+          <Property Name="xuangao" Type="varchar" MaxLength="255" />
+          <Property Name="date" Type="datetime2" Precision="0" />
+          <Property Name="textbox" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu1" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu2" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu3" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu4" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu5" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu6" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu7" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu8" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu9" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu10" Type="varchar" MaxLength="255" />
+          <Property Name="qidate" Type="datetime2" Precision="0" />
+          <Property Name="zhidate" Type="datetime2" Precision="0" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="yh_noticeModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="yh_noticeEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="product_pushnews" EntityType="yh_noticeModel1.product_pushnews" />
+          <EntitySet Name="notice" EntityType="yh_noticeModel1.notice" />
+        </EntityContainer>
+        <EntityType Name="product_pushnews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="gsname" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="xtname" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tpname1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tptop1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="tpname2" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tptop2" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="tpname3" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tptop3" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="tpname4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tptop4" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="tpname5" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tptop5" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="tpname6" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="tptop6" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="topkuan" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="topgao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="xuankuan" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="xuangao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="textbox" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu2" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu3" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu5" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu6" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu7" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu8" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu9" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="beizhu10" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Type="DateTime" Name="qidate" Precision="0" />
+          <Property Type="DateTime" Name="zhidate" Precision="0" />
+        </EntityType>
+        <EntityType Name="notice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="uname" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="uid" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="address" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="uinfo" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="picture" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="lei" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fdate" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="detail" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="video" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="picture_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="video_name" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="yh_noticeModel1StoreContainer" CdmEntityContainer="yh_noticeEntities1">
+          <EntitySetMapping Name="product_pushnews">
+            <EntityTypeMapping TypeName="yh_noticeModel1.product_pushnews">
+              <MappingFragment StoreEntitySet="product_pushnews">
+                <ScalarProperty Name="zhidate" ColumnName="zhidate" />
+                <ScalarProperty Name="qidate" ColumnName="qidate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="gsname" ColumnName="gsname" />
+                <ScalarProperty Name="xtname" ColumnName="xtname" />
+                <ScalarProperty Name="tpname1" ColumnName="tpname1" />
+                <ScalarProperty Name="tptop1" ColumnName="tptop1" />
+                <ScalarProperty Name="tpname2" ColumnName="tpname2" />
+                <ScalarProperty Name="tptop2" ColumnName="tptop2" />
+                <ScalarProperty Name="tpname3" ColumnName="tpname3" />
+                <ScalarProperty Name="tptop3" ColumnName="tptop3" />
+                <ScalarProperty Name="tpname4" ColumnName="tpname4" />
+                <ScalarProperty Name="tptop4" ColumnName="tptop4" />
+                <ScalarProperty Name="tpname5" ColumnName="tpname5" />
+                <ScalarProperty Name="tptop5" ColumnName="tptop5" />
+                <ScalarProperty Name="tpname6" ColumnName="tpname6" />
+                <ScalarProperty Name="tptop6" ColumnName="tptop6" />
+                <ScalarProperty Name="topkuan" ColumnName="topkuan" />
+                <ScalarProperty Name="topgao" ColumnName="topgao" />
+                <ScalarProperty Name="xuankuan" ColumnName="xuankuan" />
+                <ScalarProperty Name="xuangao" ColumnName="xuangao" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="textbox" ColumnName="textbox" />
+                <ScalarProperty Name="beizhu1" ColumnName="beizhu1" />
+                <ScalarProperty Name="beizhu2" ColumnName="beizhu2" />
+                <ScalarProperty Name="beizhu3" ColumnName="beizhu3" />
+                <ScalarProperty Name="beizhu4" ColumnName="beizhu4" />
+                <ScalarProperty Name="beizhu5" ColumnName="beizhu5" />
+                <ScalarProperty Name="beizhu6" ColumnName="beizhu6" />
+                <ScalarProperty Name="beizhu7" ColumnName="beizhu7" />
+                <ScalarProperty Name="beizhu8" ColumnName="beizhu8" />
+                <ScalarProperty Name="beizhu9" ColumnName="beizhu9" />
+                <ScalarProperty Name="beizhu10" ColumnName="beizhu10" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notice">
+            <EntityTypeMapping TypeName="yh_noticeModel1.notice">
+              <MappingFragment StoreEntitySet="notice">
+                <ScalarProperty Name="video_name" ColumnName="video_name" />
+                <ScalarProperty Name="picture_name" ColumnName="picture_name" />
+                <ScalarProperty Name="video" ColumnName="video" />
+                <ScalarProperty Name="detail" ColumnName="detail" />
+                <ScalarProperty Name="fdate" ColumnName="fdate" />
+                <ScalarProperty Name="lei" ColumnName="lei" />
+                <ScalarProperty Name="picture" ColumnName="picture" />
+                <ScalarProperty Name="uinfo" ColumnName="uinfo" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="uname" ColumnName="uname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

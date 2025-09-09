@@ -143,38 +143,16 @@
 
     </script>
     <style type="text/css">
-        #biao_ge {
-            /*margin: 0px auto;*/
-        }
-
-
 
         .hidden_load {
             display: none;
         }
 
-        .input_tr {
-            border: none;
-            height: 90%;
-            width: 90%;
-        }
-
-        .auto-style1 {
-            height: 49px;
-            text-align: center;
-            background-color: #2F4056;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-        }
         td
         {
             text-align: center;
             height: 40px;
             background-color: white;
-            border: 0.5px solid #f2f2f2;
             font-size: 10px;
         }
 
@@ -189,15 +167,6 @@
             width:100%;
             overflow:scroll;
         }
-        .page_bt
-        {
-            border: none;
-            background-color: #009688;
-            color: white;
-            width: 50px;
-            height: 25px;
-            border-radius: 2px;
-        }
         .fun_div
         {
             width: 100%;
@@ -207,14 +176,160 @@
             justify-content: start;
             align-items: center;
         }
+
+
+         .page_bt {
+            border: none;
+            background-color: #009688;
+            color: white;
+            width: 50px;
+            height: 25px;
+            border-radius: 2px;
+        }
+        .auto-style1 {
+            height: 49px;
+            text-align: center;
+            /*background-color: #2F4056;*/
+            background-color:#143268;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            position:sticky;
+            /*border:1px solid white;*/           
+        }
+
+
+
+        .item_td {
+            text-align: center;
+            height: 40px;
+            color:black;
+            font-size:14px;
+            background-color: #98c9d9;
+            /*border: 2.5px solid white;*/
+        }
+
+          tr:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        /* 奇数行样式 */
+        tr:nth-child(odd) .item_td {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .item_td {
+            background-color: #e0f7fa; 
+        }
+
+        
+        .qichu_input {
+            margin-top:10px;
+            margin-left: 10px;
+            width: 80px;
+            height: 30px;
+            border: none;
+            background-color: #009688;
+            color: white;
+            cursor: pointer;
+            border-radius: 2px;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .table_input {
+            border: none;
+            color:black;
+            height: 90%;
+            width: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .table_input {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .table_input {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+
+                 /* 奇数行样式 */
+        tr:nth-child(odd) .bg_bj {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .bg_bj {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+
+        .input_tr {
+            border: none;
+            text-align: center;
+            color:black;
+            width: 90%;
+            height: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .input_tr {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .input_tr {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+
         .select_input {
-            width: 300px;
+            width: 200px;
             border: none;
             height: 64%;
-            border: 1px solid #C2C2C2;
+            border: 1px solid white;
             border-radius: 3px;
-            margin-top:20px;
         }
+
+
+        .d-main.table_div {
+            overflow:auto;
+            margin-left:1%;
+            margin-top:30px;
+            box-sizing: border-box;
+            padding-left:5px;
+            padding-right:5px;
+            width:97.5%;
+            height:80%;
+            border:3px solid #D3D3D3;
+             box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            
+        }
+        .d-header {
+            margin-left:1%;
+            margin-top:10px;
+            padding:5px;
+            width:97%;
+            height: 50px;
+            min-height:50px;
+           background-color: #D3D3D3;
+           border-radius:5px;
+           box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+           
+        }
+
+
+
     </style>
     <title></title>
 </head>
@@ -224,26 +339,26 @@
             <input type="hidden" id="xx_hidden" value="tj_false" />
             <input type="hidden" id="row_i1" name="row_i" />
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
-            <div class="d-header fun_div">
+            <div class="d-header">
                 <%--<input id='ru_cx' class='select_input' autocomplete='off'  placeholder='按商品名称/商品代码搜索' />--%>
                 <asp:TextBox ID='qc_cx' class='select_input' Autocomplete='off'  runat="server" placeholder="按商品名称搜索"/>
-                <asp:Button  ID="qc_query" OnClick="bt_chaxun" class="qichu_input_tr_tj" Text="查询" runat="server" />
-                <asp:Button OnClick="qc_tj" ID="dj_row" class="qichu_input_tr_tj" Text="提交" runat="server" />
-                <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="qichu_input_tr_tj" Text="批量删除" runat="server" />
-                <asp:Button ID="Button2" class="qichu_input_tr_tj" OnClick="bt_select_Click" Text="刷新数据" runat="server" />
+                <asp:Button  ID="qc_query" OnClick="bt_chaxun" class="qichu_input" Text="查询" runat="server" UseSubmitBehavior="false" />
+                <asp:Button OnClick="qc_tj" ID="dj_row" class="qichu_input" Text="提交" runat="server" UseSubmitBehavior="false" />
+                <asp:Button OnClick="del_qichu" ID="del_qc_btu" class="qichu_input" Text="批量删除" runat="server" UseSubmitBehavior="false" />
+                <asp:Button ID="Button2" class="qichu_input" OnClick="bt_select_Click" Text="刷新数据" runat="server" UseSubmitBehavior="false" />
             </div>
             <div class="d-main table_div">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 1%;">
                     <tr id="dj_yh">
-                        <td class="auto-style1" style="width: 100px;">序号</td>
-                        <th class="auto-style1" style="width: 155px">图片</th>
-                        <td class="auto-style1" style="width: 130px;">商品名称</td>
-                        <td class="auto-style1" style="width: 130px;">商品代码</td>
-                        <td class="auto-style1" style="width: 130px;">商品类别</td>
-                        <td class="auto-style1" style="width: 130px;">商品售价</td>
-                        <td class="auto-style1" style="width: 130px;">商品数量</td>
-                        <td class="auto-style1" style="width: 130px">金额</td>
-                        <td class="auto-style1" style="width: 100px;">功能</td>
+                        <td class="auto-style1" style="width: 10%;">序号</td>
+                        <th class="auto-style1" style="width: 13%">图片</th>
+                        <td class="auto-style1" style="width: 13%;">商品名称</td>
+                        <td class="auto-style1" style="width: 13%;">商品代码</td>
+                        <td class="auto-style1" style="width: 11%;">商品类别</td>
+                        <td class="auto-style1" style="width: 10%;">商品售价</td>
+                        <td class="auto-style1" style="width: 10%;">商品数量</td>
+                        <td class="auto-style1" style="width: 10%">金额</td>
+                        <td class="auto-style1" style="width: 10%;">功能</td>
                     </tr>
                     <%
                         System.Collections.Generic.List<Web.Server.yh_jinxiaocun_qichushu> qi_chu_select = Session["qi_chu_select"] as System.Collections.Generic.List<Web.Server.yh_jinxiaocun_qichushu>;
@@ -258,7 +373,7 @@
                     %>
                     <tr id="del_row_cs<%=i%>">
                         <%--style="font-size: 90%; padding-left: 2%;"--%>
-                        <td style="font-size: 14px; padding-left: 0.5%; width: 18px;"><%=(i+1) %>
+                        <td style="font-size: 14px; padding-left: 0.5%; width: 18px;"class="input_tr"><%=(i+1) %>
                             <input class="input_tr" type="hidden" id="id<%=i%>" name="id<%=i%>" value="<%=qi_chu_select[i]._id%>" />
                         </td>
                         <td class="bg_bj">
@@ -287,7 +402,7 @@
                 </table>
             </div>
 
-            <div class="d-footer" style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
+            <div class="d-footer" style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;height:0;overflow:hidden">
                 <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
                 <asp:Label runat="server" ID="lblCurrentPage" style=" font-weight:bold"></asp:Label>
@@ -295,7 +410,7 @@
                 <asp:Button CssClass="page_bt" ID="mo_ye" OnClick="mo_ye_Click" Text="末页" runat="server" />
                 <span id="heji"></span>
             </div>
-        </div>
+            </div>
     </form>
 </body>
 </html>

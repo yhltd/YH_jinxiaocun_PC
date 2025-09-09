@@ -123,6 +123,10 @@
     <Content Include="finance\web\assets\js\qrcode.min.js" />
     <Content Include="finance\web\view\downloadExcel.aspx" />
     <Content Include="finance\web\view\downloadApp.aspx" />
+    <Content Include="Images\xiazai.png" />
+    <Content Include="Images\xiazaitubiao.ico" />
+    <Content Include="Images\xiazaitubiao.jpg" />
+    <Content Include="Images\xiazaitubiao.png" />
     <Content Include="jxc_excel.aspx" />
     <Content Include="jxc_app.aspx" />
     <Content Include="Default.aspx" />
@@ -2003,6 +2007,7 @@
     <Compile Include="ck_san.aspx.designer.cs">
       <DependentUpon>ck_san.aspx</DependentUpon>
     </Compile>
+    <Compile Include="finance\service\IndexService.cs" />
     <Compile Include="finance\web\view\downloadExcel.aspx.cs">
       <DependentUpon>downloadExcel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3071,6 +3076,30 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Pushnews\dao\PushNewsDao.cs" />
+    <Compile Include="Pushnews\model\product_pushnews.cs">
+      <DependentUpon>PushNews.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pushnews\model\PushNews.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PushNews.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pushnews\model\PushNews.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PushNews.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pushnews\model\PushNews.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PushNews.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Pushnews\utils\ErrorUtil1.cs" />
+    <Compile Include="Pushnews\utils\JsonUtil.cs" />
+    <Compile Include="Pushnews\utils\PageUtil1.cs" />
+    <Compile Include="Pushnews\utils\RsaUtil.cs" />
+    <Compile Include="Pushnews\utils\TokenUtil.cs" />
     <Compile Include="qi_chu.aspx.cs">
       <DependentUpon>qi_chu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3269,6 +3298,7 @@
     <Compile Include="scheduling\service\PaibanbiaoInfoService.cs" />
     <Compile Include="scheduling\service\PaiBanDetailService.cs" />
     <Compile Include="scheduling\service\OrderInfoService.cs" />
+    <Compile Include="scheduling\service\PushService.cs" />
     <Compile Include="scheduling\service\RenyuanService.cs" />
     <Compile Include="scheduling\service\TimeConfigService.cs" />
     <Compile Include="scheduling\service\UserInfoService.cs" />
@@ -3427,6 +3457,7 @@
     <Folder Include="App_Start\" />
     <Folder Include="finance\web\assets\js\EasyUI\App_LocalResources\" />
     <Folder Include="Myadmin\KEditor\attached\" />
+    <Folder Include="Pushnews\controller\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\China_System.Common\Order.Common.csproj">
@@ -3794,6 +3825,7 @@
     </Content>
     <Content Include="Server\Server.edmx.diagram">
       <DependentUpon>Server.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Server\Server.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -3823,6 +3855,23 @@
     <Content Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Pushnews\model\PushNews.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PushNews.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Pushnews\model\PushNews.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PushNews.edmx</DependentUpon>
+      <LastGenOutput>PushNews.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Pushnews\model\PushNews.edmx.diagram">
+      <DependentUpon>PushNews.edmx</DependentUpon>
+    </Content>
+    <Content Include="Pushnews\model\PushNews.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PushNews.edmx</DependentUpon>
+      <LastGenOutput>PushNews.cs</LastGenOutput>
     </Content>
     <None Include="副本 Web.Debug.config">
       <DependentUpon>副本 Web.config</DependentUpon>

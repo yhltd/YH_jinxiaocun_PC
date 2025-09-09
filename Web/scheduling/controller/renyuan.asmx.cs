@@ -8,6 +8,9 @@ using Web.scheduling.model;
 using Web.scheduling.service;
 using Web.scheduling.utils;
 
+
+using Web.Pushnews.model;
+
 namespace Web.scheduling.controller
 {
     /// <summary>
@@ -57,7 +60,7 @@ namespace Web.scheduling.controller
                 return ResultUtil.error("查询失败");
             }
         }
-
+       
 
         [WebMethod]
         public string getList(int nowPage, int pageCount,string staff_name,string staff_banci)

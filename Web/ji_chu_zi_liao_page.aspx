@@ -292,14 +292,13 @@
             text-align: center;
             height: 40px;
             background-color: white;
-            border: 0.5px solid #f2f2f2;
             font-size: 16px;
         }
 
         .auto-style1 {
            height: 49px;
             text-align: center;
-            background-color: #2F4056;
+            background-color: #143268;
             color: white;
             font-size: 16px;
             font-weight: bold;
@@ -327,14 +326,34 @@
             align-items: center;
         }
 
-        .input_tr
-        {
+      .input_tr {
             border: none;
-            height: 90%;
+            text-align: center;
+            color:black;
             width: 90%;
-            text-align:center;
+            height: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .input_tr {
+            background-color:#D3D3D3;
         }
 
+        /* 偶数行样式 */
+        tr:nth-child(even) .input_tr {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+
+          /* 奇数行样式 */
+        tr:nth-child(odd) .bg_bj {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .bg_bj {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+
+       
         #checkbox
         {
             zoom: 1.5;
@@ -343,9 +362,43 @@
             width: 300px;
             border: none;
             height: 64%;
-            border: 1px solid #C2C2C2;
             border-radius: 3px;
             /*margin-top:20px;*/
+        }
+
+        .d-main {
+            overflow:auto;
+            margin-left:1%;
+            margin-top:30px;
+            box-sizing: border-box;
+            padding-left:5px;
+            padding-right:5px;
+            width:97%;
+            height:80%;
+            border:3px solid #D3D3D3;
+             box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            
+        }
+        .top-div {
+            margin-left:1%;
+            margin-top:10px;
+            padding:5px;
+            width:97%;
+            min-height:50px;
+           background-color: #D3D3D3;
+           border-radius:5px;
+           box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+           
         }
     </style>
     <title></title>
@@ -365,6 +418,7 @@
                 <input type="button" id="barcode_print" class="input_tr_tj" value="打印条形码">
                 <input type="file" id="file" hidden="hidden">
             </div>
+            <div class="d-main">
             <input type="hidden" id="tj_pd_id" name="tj_pd" />
             <input type="hidden" id="row_i1" name="row_i" />
             <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="">
@@ -425,6 +479,7 @@
                     }
                 %>
             </table>
+                </div>
         </div>
     </form>
 </body>

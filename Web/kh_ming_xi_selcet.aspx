@@ -15,12 +15,14 @@
         {
             height: 49px;
             text-align: center;
-            background-color: #2F4056;
+            /*background-color: #2F4056;*/
+            background-color:#143268;
             color: white;
             font-size: 16px;
             font-weight: bold;
-            position: sticky;
-            top: 0;
+            position:sticky;
+            /*border:1px solid white;*/
+            top : 0;
         }
 
         td
@@ -43,6 +45,30 @@
             border-radius: 2px;
             margin-left: 10px;
         }
+        .td_cl {
+            text-align: center;
+            height: 40px;
+            color:black;
+            font-size:14px;
+            background-color: #98c9d9;
+            /*border: 2.5px solid white;*/
+        }
+
+          tr:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        /* 奇数行样式 */
+        tr:nth-child(odd) .td_cl {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .td_cl {
+            background-color: #e0f7fa; 
+        }
 
         .select_xl
         {
@@ -64,6 +90,41 @@
         {
             overflow-y: auto;
         }
+          .d-main {
+            overflow:auto;
+            margin-left:1%;
+            margin-top:30px;
+            box-sizing: border-box;
+            padding-left:5px;
+            padding-right:5px;
+            width:97%;
+            height:80%;
+            border:3px solid #D3D3D3;
+             box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            
+        }
+        .d-header {
+            margin-left:1%;
+            margin-top:10px;
+            padding:5px;
+            width:97%;
+            min-height:50px;
+           background-color: #D3D3D3;
+           border-radius:5px;
+           box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+           
+        }
+
     </style>
     <title></title>
 </head>
@@ -129,13 +190,13 @@
                        
                     %>
                     <tr id="Tr1">
-                        <td><%=mingxi[i].shou_h %></td>
-                        <td><%=mingxi[i].sp_dm%></td>
-                        <td><%=mingxi[i].cpname %></td>
-                        <td><%=mingxi[i].cplb %></td>
-                        <%--<td><%=mingxi[i].cpname %></td>--%>
-                        <td><%=mingxi[i].ruku_num %></td>
-                        <td><%=mingxi[i].ruku_price %></td>
+                        <td class="td_cl"><%=mingxi[i].shou_h %></td>
+                        <td class="td_cl"><%=mingxi[i].sp_dm%></td>
+                        <td class="td_cl"><%=mingxi[i].cpname %></td>
+                        <td class="td_cl"><%=mingxi[i].cplb %></td>
+                        <%--<td class="td_cl"><%=mingxi[i].cpname %></td>--%>
+                        <td class="td_cl"><%=mingxi[i].ruku_num %></td>
+                        <td class="td_cl"><%=mingxi[i].ruku_price %></td>
                     </tr>
                     <%
                         }

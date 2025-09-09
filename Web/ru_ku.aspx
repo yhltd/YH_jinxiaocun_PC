@@ -360,13 +360,16 @@
             border-radius: 2px;
         }
         .auto-style1 {
+            display:flexbox;
             height: 49px;
             text-align: center;
-            background-color: #2F4056;
+            /*background-color: #2F4056;*/
+            background-color:#143268;
             color: white;
             font-size: 16px;
             font-weight: bold;
             position:sticky;
+            /*border:1px solid white;*/
             top : 0;
         }
 
@@ -384,43 +387,89 @@
             background-color: #009688;
             color: white;
             cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         .item_td {
             text-align: center;
             height: 40px;
-            background-color: white;
-            border: 0.5px solid #f2f2f2;
+            color:black;
+            font-size:14px;
+            background-color: #98c9d9;
+            /*border: 2.5px solid white;*/
         }
+
+          tr:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        /* 奇数行样式 */
+        tr:nth-child(odd) .item_td {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .item_td {
+            background-color: #e0f7fa; 
+        }
+
+        
         .rk_bt {
             margin-left: 10px;
-            width: 91px;
+            width: 90px;
             height: 30px;
             border: none;
             background-color: #009688;
             color: white;
             cursor: pointer;
             border-radius: 2px;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         .table_input {
             border: none;
+            color:black;
             height: 90%;
             width: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .table_input {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .table_input {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
         }
 
         .input_tr {
             border: none;
             text-align: center;
+            color:black;
             width: 90%;
             height: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .input_tr {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .input_tr {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
         }
 
         .select_input {
             width: 300px;
             border: none;
             height: 64%;
-            border: 1px solid #C2C2C2;
+            border: 1px solid white;
             border-radius: 3px;
         }
+
         .ruku_div {
             width: 50%;
             height: 40%;
@@ -431,6 +480,7 @@
             z-index: 20;
             box-shadow: 10px 10px 15px;
             border-radius:2px
+            
         }
         .ruku_info_div {
             width: 91%;
@@ -466,12 +516,47 @@
             top: 0;
             
         }
+        .d-main {
+            overflow:auto;
+            margin-left:1%;
+            margin-top:30px;
+            box-sizing: border-box;
+            padding-left:5px;
+            padding-right:5px;
+            width:97.5%;
+            height:80%;
+            border:3px solid #D3D3D3;
+             box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            
+        }
+        .d-header {
+            margin-left:1%;
+            margin-top:10px;
+            padding:5px;
+            width:97%;
+            min-height:50px;
+            background-color: #D3D3D3;
+            border-radius:5px;
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+           
+        }
     </style>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
 </head>
 <body>
+
     <form id="form1" runat="server">
         <div>
             <input type="hidden" id="hangshu" name="hangshu" />
@@ -488,19 +573,19 @@
                 <input id='qr_code_text' class='select_input' autocomplete='off' placeholder='选中此处扫描商品二维码' style="margin-left:10px;width:150px" onkeypress="Enter(event)"/>
                 <div id="last_code" style="margin-left:10px;"></div>
             </div> 
-            <div class="d-main" id="table_div" style="width:100%;overflow:scroll;">
+            <div class="d-main" id="table_div">
 
                 <table id="biao_ge" name="bg_row" cellspacing="0" cellpadding="0">
                     <tr id="dj_yh">
-                        <td class="auto-style1" style="width: 100px">入库</td>
-                        <td class="auto-style1" style="width: 100px">序号</td>
-                        <td class="auto-style1" style="width: 130px;">商品名称</td>
-                        <td class="auto-style1" style="width: 130px;">商品代码</td>
-                        <td class="auto-style1" style="width: 130px;">商品类别</td>
-                        <td class="auto-style1" style="width: 130px;">商品单位</td>
-                        <td class="auto-style1" style="width: 130px;">数量</td>
-                        <td class="auto-style1" style="width: 130px;">单价</td>
-                        <td class="auto-style1" style="width: 100px;">功能</td>
+                        <td class="auto-style1" style="width: 10%">入库</td>
+                        <td class="auto-style1" style="width: 10%">序号</td>
+                        <td class="auto-style1" style="width: 15%;">商品名称</td>
+                        <td class="auto-style1" style="width: 15%;">商品代码</td>
+                        <td class="auto-style1" style="width: 10%;">商品类别</td>
+                        <td class="auto-style1" style="width: 10%;">商品单位</td>
+                        <td class="auto-style1" style="width: 10%;">数量</td>
+                        <td class="auto-style1" style="width: 10%;">单价</td>
+                        <td class="auto-style1" style="width: 10%;">功能</td>
                       </tr>
                 </table>
             </div>

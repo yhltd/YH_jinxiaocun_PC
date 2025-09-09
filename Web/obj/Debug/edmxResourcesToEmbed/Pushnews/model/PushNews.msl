@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="yh_noticeModel1StoreContainer" CdmEntityContainer="yh_noticeEntities1">
+    <EntitySetMapping Name="product_pushnews">
+      <EntityTypeMapping TypeName="yh_noticeModel1.product_pushnews">
+        <MappingFragment StoreEntitySet="product_pushnews">
+          <ScalarProperty Name="zhidate" ColumnName="zhidate" />
+          <ScalarProperty Name="qidate" ColumnName="qidate" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="gsname" ColumnName="gsname" />
+          <ScalarProperty Name="xtname" ColumnName="xtname" />
+          <ScalarProperty Name="tpname1" ColumnName="tpname1" />
+          <ScalarProperty Name="tptop1" ColumnName="tptop1" />
+          <ScalarProperty Name="tpname2" ColumnName="tpname2" />
+          <ScalarProperty Name="tptop2" ColumnName="tptop2" />
+          <ScalarProperty Name="tpname3" ColumnName="tpname3" />
+          <ScalarProperty Name="tptop3" ColumnName="tptop3" />
+          <ScalarProperty Name="tpname4" ColumnName="tpname4" />
+          <ScalarProperty Name="tptop4" ColumnName="tptop4" />
+          <ScalarProperty Name="tpname5" ColumnName="tpname5" />
+          <ScalarProperty Name="tptop5" ColumnName="tptop5" />
+          <ScalarProperty Name="tpname6" ColumnName="tpname6" />
+          <ScalarProperty Name="tptop6" ColumnName="tptop6" />
+          <ScalarProperty Name="topkuan" ColumnName="topkuan" />
+          <ScalarProperty Name="topgao" ColumnName="topgao" />
+          <ScalarProperty Name="xuankuan" ColumnName="xuankuan" />
+          <ScalarProperty Name="xuangao" ColumnName="xuangao" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="textbox" ColumnName="textbox" />
+          <ScalarProperty Name="beizhu1" ColumnName="beizhu1" />
+          <ScalarProperty Name="beizhu2" ColumnName="beizhu2" />
+          <ScalarProperty Name="beizhu3" ColumnName="beizhu3" />
+          <ScalarProperty Name="beizhu4" ColumnName="beizhu4" />
+          <ScalarProperty Name="beizhu5" ColumnName="beizhu5" />
+          <ScalarProperty Name="beizhu6" ColumnName="beizhu6" />
+          <ScalarProperty Name="beizhu7" ColumnName="beizhu7" />
+          <ScalarProperty Name="beizhu8" ColumnName="beizhu8" />
+          <ScalarProperty Name="beizhu9" ColumnName="beizhu9" />
+          <ScalarProperty Name="beizhu10" ColumnName="beizhu10" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notice">
+      <EntityTypeMapping TypeName="yh_noticeModel1.notice">
+        <MappingFragment StoreEntitySet="notice">
+          <ScalarProperty Name="video_name" ColumnName="video_name" />
+          <ScalarProperty Name="picture_name" ColumnName="picture_name" />
+          <ScalarProperty Name="video" ColumnName="video" />
+          <ScalarProperty Name="detail" ColumnName="detail" />
+          <ScalarProperty Name="fdate" ColumnName="fdate" />
+          <ScalarProperty Name="lei" ColumnName="lei" />
+          <ScalarProperty Name="picture" ColumnName="picture" />
+          <ScalarProperty Name="uinfo" ColumnName="uinfo" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="uname" ColumnName="uname" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

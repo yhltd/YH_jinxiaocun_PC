@@ -10,3 +10,163 @@ form
     align-items: start;
     padding: 15px;
 }
+
+.datagrid-header-row{
+     background: linear-gradient(to bottom, #6366f1, #8b5cf6, #a855f7);
+     transition: none !important;
+     pointer-events: none !important;
+}
+
+.panel-header {
+    background: linear-gradient(135deg, #4a6cf7 0%, #8a54ff 100%);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 12px 12px 0 0;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+    margin-bottom: 0;
+    border: none;
+}
+
+.panel-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.1) 50%, 
+        transparent 100%);
+    transform: rotate(45deg);
+    animation: shimmer 3s infinite linear;
+}
+
+.panel-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.5), 
+        transparent);
+}
+
+@keyframes shimmer {
+    0% {
+        transform: rotate(45deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateX(100%);
+    }
+}
+
+.panel-header-text {
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+
+.datagrid-body tr:nth-child(odd) {
+  background-color: #f0f2ff; 
+    transition: background-color 0.3s ease;
+}
+
+.datagrid-body tr:nth-child(even) {
+  background-color: #f8f5ff; 
+    transition: background-color 0.3s ease;
+}
+
+.datagrid-body tr:hover {
+  background-color: #e6e8ff !important;
+}
+
+.datagrid-toolbar {
+    background: linear-gradient(to right, #f8fafc 0%, #f1f5f9 100%);
+    padding: 8px 10px;
+    margin:8px 0;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    
+}
+
+.datagrid-toolbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(to bottom, #4a6cf7, #8a54ff);
+    border-radius: 8px 0 0 8px;
+}
+
+
+.datagrid-toolbar .l-btn-icon-left  {
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 2px 3px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(99, 102, 241, 0.25);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    min-width: 70px;
+    text-align: center;
+
+
+}
+.datagrid-toolbar .l-btn-icon-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, 
+        transparent, 
+        rgba(255, 255, 255, 0.15), 
+        transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.datagrid-toolbar .l-btn-icon-left:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.35);
+}
+
+.datagrid-toolbar .l-btn-icon-left:hover::before {
+    transform: translateX(100%);
+}
+
+.datagrid-toolbar .l-btn-icon-left:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(99, 102, 241, 0.2);
+}
+
+/* 按钮文字样式 - 与表格文字风格一致 */
+.datagrid-toolbar .l-btn-icon-left {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    letter-spacing: 0.3px;
+}

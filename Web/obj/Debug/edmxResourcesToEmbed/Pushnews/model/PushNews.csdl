@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="yh_noticeModel1" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="yh_noticeEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="product_pushnews" EntityType="yh_noticeModel1.product_pushnews" />
+    <EntitySet Name="notice" EntityType="yh_noticeModel1.notice" />
+  </EntityContainer>
+  <EntityType Name="product_pushnews">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="gsname" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="xtname" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="tpname1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="tptop1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="tpname2" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="tptop2" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="tpname3" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="tptop3" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="tpname4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="tptop4" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="tpname5" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="tptop5" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="tpname6" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="tptop6" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="topkuan" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="topgao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="xuankuan" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="xuangao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="textbox" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu2" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu3" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu4" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu5" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu6" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu7" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu8" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu9" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="beizhu10" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="DateTime" Name="qidate" Precision="0" />
+    <Property Type="DateTime" Name="zhidate" Precision="0" />
+  </EntityType>
+  <EntityType Name="notice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="uname" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="uid" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="address" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="uinfo" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="picture" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="lei" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="fdate" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="detail" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="video" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="picture_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="video_name" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

@@ -25,4 +25,5 @@ namespace Web.Server
         public string gs_name { get; set; }
         public string mark1 { get; set; }
     }
+
 }

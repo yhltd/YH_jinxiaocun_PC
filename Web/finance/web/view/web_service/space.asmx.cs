@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Services;
 using Web.finance.util;
 using Web.Util;
+using Web.Pushnews.model;
+using Web.Pushnews.dao;
 
 namespace Web.finance.web.view.web_service
 {
@@ -47,5 +49,32 @@ namespace Web.finance.web.view.web_service
                 return FinanceResultData.getFinanceResultData().success(code, null, msg);
             }
         }
+
+
+
+        //新加
+        [WebMethod]
+        public List<product_pushnews> GetPushNewsData()
+        {
+            try
+            {
+                PushNewsDao dao = new PushNewsDao();
+                return dao.SelectListCW();
+            }
+            catch (InvalidOperationException)
+            {
+                return new List<product_pushnews>();
+            }
+            catch
+            {
+                return new List<product_pushnews>();
+            }
+        }
+
+
+
+
+
+
     }
 }

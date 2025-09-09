@@ -22,8 +22,23 @@
 </head>
 <body>
     <div id="app" style="display: none;" :style="{display: 'block'}">
+        <div class="carousel-container">
+            <button type="button" class="clean-btn-div" @click="yinClick()">×</button>
+            <div class="carousel-images" id="carouselImages"></div>
+        </div>
+
+        <div class="carousel-index">
+            <button type="button" class="index-btn-div" @click="tanClick()">×</button>
+            <div class="index-images">
+                <div class="index-item" id="Div2">
+                    <img src="https://picsum.photos/id/13/800/500" />
+                </div>
+            </div>
+         </div>
+
+
         <el-menu mode="horizontal" background-color="#314060" text-color="#fff" active-text-color="#fff" >
-                
+            <div class="header-top">
             <div class="menu-box" @click="collapse = !collapse" >
                 <i v-if="collapse" class="el-icon-s-unfold"></i>
                 <i v-else="collapse" class="el-icon-s-fold"></i>
@@ -31,9 +46,13 @@
             <span class="header-title">
                 云合排产管理系统
             </span>
-
+            <div class="marquee-container">
+                <div class="marquee-content" ref="marqueeText">
+                    这是一段需要循环滚动的长文本内容，当文本完全滚动出容器后，会从右侧重新开始滚动...
+                </div>
+            </div>
             <img src="../../finance/web/assets/img/animat-diamond-color.gif" style="height: 70px;margin-left:3%">
-            <a style="color:white;margin-left:45%" href="../web/download/app-debug.apk" class="header-title2">下载APP</a >
+            <a style="color:white;" href="../web/download/app-debug.apk" class="header-title2">下载APP</a >
             <a style="color:white" href="../web/download/排产系统.xlsm" class="header-title2">下载Excel</a >
             
             
@@ -58,7 +77,7 @@
                 </el-dropdown-menu>
                
             </el-dropdown>
-                
+              </div>  
         </el-menu>
 
 
@@ -179,7 +198,47 @@
                 },
                 updatePwdLoading: false,
                 dlProgress: 0,
-                jinduVisible:false,
+                jinduVisible: false,
+
+                pushnewsarr:[],
+                textboxValue:"",
+                dinggao : "100",
+                tankuan : "300",
+                 image : [
+                    {
+                        tptop2: ""
+                    },
+                    {
+                        tptop3: ""
+                    },
+                    {
+                        tptop4: ""
+                    },
+                    {
+                        tptop5: ""
+                    },
+                    {
+                        tptop6: ""
+                    }
+
+                ],
+                 xuantu : [
+                     {
+                         tptop1: ""
+                     }
+                 ],
+
+                 images: [
+                    { url: "", alt: "图1" },
+                    { url: "", alt: "图2" },
+                    { url: "", alt: "图3" },
+                    { url: "", alt: "图4" },
+                    { url: "", alt: "图5" }
+                        ],
+                        currentIndex: 0,
+                        interval: null,
+                        totalItems: 5
+     
             },
             methods: {
                 getUsername: function () {
@@ -308,9 +367,223 @@
                     }).catch(function (err) {
 
                     })
+                },
+
+
+                getPushNews: function () {
+                    var _this = this;
+                    axios.post(myUrl('user/GetPushNewsData'), {
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            var pushnewsarr = res.data;
+                            var textboxValue = pushnewsarr[0].textbox;
+                            var jsonData = pushnewsarr[0].tptop1;
+                            var tankuan = pushnewsarr[0].xuankuan;
+                            var dinggaoValue = pushnewsarr[0].topgao || "100";
+
+                            if (jsonData && jsonData.trim() !== "") {
+                                _this.xuantu[0].tptop1 = "data:image/jpg;base64," + jsonData;
+
+                            } else {
+                                _this.xuantu[0].tptop1 = "";
+                            }
+
+                            _this.$nextTick(function () {
+                                var targetImg = document.querySelector('.index-images img');
+                                if (targetImg && _this.xuantu[0].tptop1) {
+                                    targetImg.src = _this.xuantu[0].tptop1;
+                                }
+                            });
+                            document.documentElement.style.setProperty('--tankuan', tankuan + "px");
+                            document.documentElement.style.setProperty('--dinggao', dinggaoValue + "px");
+
+                            if (pushnewsarr[0].tptop2 && pushnewsarr[0].tptop2.trim() !== "") {
+                                _this.image[0].tptop2 = "data:image/jpg;base64," + pushnewsarr[0].tptop2;
+                            } else {
+                                _this.image[0].tptop2 = "";
+                            }
+                            if (pushnewsarr[0].tptop3 && pushnewsarr[0].tptop3.trim() !== "") {
+                                _this.image[1].tptop3 = "data:image/jpg;base64," + pushnewsarr[0].tptop3;
+                            } else {
+                                _this.image[1].tptop3 = "";
+                            }
+                            if (pushnewsarr[0].tptop4 && pushnewsarr[0].tptop4.trim() !== "") {
+                                _this.image[2].tptop4 = "data:image/jpg;base64," + pushnewsarr[0].tptop4;
+                            } else {
+                                _this.image[2].tptop4 = "";
+                            }
+                            if (pushnewsarr[0].tptop5 && pushnewsarr[0].tptop5.trim() !== "") {
+                                _this.image[3].tptop5 = "data:image/jpg;base64," + pushnewsarr[0].tptop5;
+                            } else {
+                                _this.image[3].tptop5 = "";
+                            }
+                            if (pushnewsarr[0].tptop6 && pushnewsarr[0].tptop6.trim() !== "") {
+                                _this.image[4].tptop6 = "data:image/jpg;base64," + pushnewsarr[0].tptop6;
+                            } else {
+                                _this.image[4].tptop6 = "";
+                            }
+
+
+
+                            _this.images = [
+                                {
+                                    url: _this.image[0].tptop2 || "https://picsum.photos/id/10/800/500",
+                                    alt: "图1"
+                                },
+                                {
+                                    url: _this.image[1].tptop3 || "https://picsum.photos/id/11/800/500",
+                                    alt: "图2"
+                                },
+                                {
+                                    url: _this.image[2].tptop4 || "https://picsum.photos/id/12/800/500",
+                                    alt: "图3"
+                                },
+                                {
+                                    url: _this.image[3].tptop5 || "https://picsum.photos/id/10/800/500",
+                                    alt: "图4"
+                                },
+                                {
+                                    url: _this.image[4].tptop6 || "https://picsum.photos/id/12/800/500",
+                                    alt: "图5"
+                                }
+                            ];
+
+   
+                            _this.totalItems = _this.images.length;
+                            _this.$nextTick(function () {
+                                _this.initCarousel();
+                                _this.startCarousel();
+                            });
+
+                            _this.setMarqueeText(textboxValue);
+                        }
+                    }).catch(function (err) {
+
+                    })
+                },
+
+
+                setMarqueeText: function (text) {
+                    var _this = this;
+                    this.$nextTick(function () {
+                        if (_this.$refs.marqueeText) {
+                            _this.$refs.marqueeText.textContent = text;
+                        } else {
+                            console.error('未找到marqueeText元素');
+                        }
+                    });
+                },
+                initCarousel: function () {
+                    var _this = this;
+
+                    this.$nextTick(function () {
+                        var carouselImages = document.getElementById("carouselImages");
+                        if (!carouselImages) {
+                            return;
+                        }
+
+                        // 清空容器
+                        carouselImages.innerHTML = '';
+
+                        for (var i = 0; i < _this.images.length; i++) {
+
+                            var item = document.createElement("div");
+                            item.className = "carousel-item";
+                            item.id = "img" + (i + 1);
+
+                            var img = document.createElement("img");
+                            img.src = _this.images[i].url;
+                            img.alt = _this.images[i].alt;
+
+                            item.appendChild(img);
+                            carouselImages.appendChild(item);
+                        }
+
+                        _this.switchImage('img1');
+                    });
+                },
+
+                switchImage: function(imgId) {
+                    // 移除所有active类
+                    var items = document.querySelectorAll('.carousel-item');
+                    items.forEach(function(item) {
+                        item.classList.remove('active');
+                    });
+    
+                    // 添加active类到当前项
+                    var currentItem = document.getElementById(imgId);
+                    if (currentItem) {
+                        currentItem.classList.add('active');
+                    }
+
+                    // 计算并设置transform
+                    var index = parseInt(imgId.replace('img', '')) - 1;
+                    var carouselImages = document.querySelector('.carousel-images');
+                    if (carouselImages) {
+                        carouselImages.style.transform = "translateX(-" + (index * 100) + "%)";
+                    }
+                },
+
+                autoSwitch: function() {
+                    // 获取当前active的项
+                    var activeItem = document.querySelector('.carousel-item.active');
+                    if (!activeItem) return;
+    
+                    var currentId = activeItem.id;
+                    var currentNum = parseInt(currentId.replace('img', ''));
+                    var nextNum = (currentNum % this.images.length) + 1;
+    
+                    this.switchImage('img' + nextNum);
+                },
+
+                startCarousel: function() {
+                    var _this = this;
+                    if (this.interval) {
+                        clearInterval(this.interval);
+                    }
+
+                    this.interval = setInterval(function() {
+                        _this.autoSwitch();
+                    }, 3000);
+
+                    var container = document.querySelector('.carousel-container');
+                    if (container) {
+                        if (_this._mouseEnterHandler) {
+                            container.removeEventListener('mouseenter', _this._mouseEnterHandler);
+                        }
+                        if (_this._mouseLeaveHandler) {
+                            container.removeEventListener('mouseleave', _this._mouseLeaveHandler);
+                        }
+        
+                        _this._mouseEnterHandler = function() {
+                            if (_this.interval) {
+                                clearInterval(_this.interval);
+                            }
+                        };
+        
+                        _this._mouseLeaveHandler = function() {
+                            _this.interval = setInterval(function() {
+                                _this.autoSwitch();
+                            }, 3000);
+                        };
+        
+                        container.addEventListener('mouseenter', _this._mouseEnterHandler);
+                        container.addEventListener('mouseleave', _this._mouseLeaveHandler);
+                    }
+                },
+
+                yinClick:function () {
+                    document.querySelector('.carousel-container').classList.add('hidden');  // 隐藏顶部元素
+                },
+                tanClick: function () {
+                    document.querySelector('.carousel-index').classList.add('hidden');  // 隐藏弹窗元素
                 }
+
+
+
             },
             
+
 
             computed: {
                 asideClass: function () {
@@ -325,6 +598,7 @@
                 }
                 this_.getUsername();
                 this_.getDepartment();
+                this_.getPushNews();
 
             }
         })
@@ -434,6 +708,252 @@
             cursor: pointer;
             font-size: 15px;
         }
+
+              .carousel-container {
+            width: 100%;
+            height: var(--dinggao);
+            position: relative;
+            overflow: hidden;
+            margin-bottom:5px;
+        }
+        .carousel-images {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+     
+        .carousel-index {
+            width: var(--tankuan);
+            position: fixed;
+            z-index: 9998;
+            box-shadow: 0 0 30px rgba(0,0,0,0.6);
+            border: 3px solid white;
+            border-radius: 15px;
+            animation: smooth-drift 40s infinite ease-in-out;
+            transform: translateZ(0);
+            will-change: transform; 
+        }
+
+        @keyframes smooth-drift {
+            0%, 100% { 
+                transform: translate(5vw, 20vh); 
+            }
+            25% {
+                transform: translate(40vw, 1vh);
+            }
+            50% {
+                transform: translate(65vw, 30vh);
+            }
+            75% {
+                transform: translate(30vw, 50vh);
+            }
+        }
+
+        .index-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            backface-visibility: hidden;
+        }
+
+        .marquee-container {
+            flex: 1;
+            max-width: 30%;
+            margin: 0 20px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(29, 36, 102, 0.7) 0%, rgba(43, 55, 129, 0.7) 50%, rgba(58, 77, 163, 0.7) 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), 
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .marquee-container:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .marquee-content {
+            color: rgba(255, 255, 255, 0.95);
+            white-space: nowrap;
+            position: absolute;
+            animation: marquee 20s linear infinite;
+            font-size: 16px;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            padding-right: 40px; /* 防止文本切断 */
+        }
+
+        .marquee-content:before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: translateY(-50%) scale(0.8); }
+            50% { opacity: 1; transform: translateY(-50%) scale(1.1); }
+            100% { opacity: 0.5; transform: translateY(-50%) scale(0.8); }
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .marquee-container {
+                max-width: 100%;
+                margin: 10px 0;
+                height: 44px;
+            }
+    
+            .marquee-content {
+                font-size: 14px;
+                animation-duration: 15s;
+            }
+        }
+
+
+        #Iframe1 {
+            height:100%;
+        }
+
+               .top_tu {
+            width:100%;
+            height:100px;
+            background-color:#4ebbb1
+        }
+        .hidden {
+            display: none;
+        }
+        .itu {
+            width:100%;
+            height:100%
+        }
+        .btn-div_top {
+            width:100%;
+            display:flex;
+            justify-content:center;
+        }
+        .clean-btn-div {
+             background-color: transparent;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            font-size: 13px;
+            border-radius: 50%;
+            position: absolute; 
+            z-index: 9999;
+            top: 0;            
+            right: 0;           
+            text-align: center;
+            margin: 10px;       
+            transform: none;   
+        }
+
+        .index-btn-div {
+            background-color: transparent;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            font-size: 13px;
+            border-radius: 50%;
+            position: absolute; 
+            z-index: 9999;
+            top: 0;            
+            right: 0;           
+            text-align: center;
+            margin: 10px;       
+            transform: none;   
+        }
+            
+        .index-btn-div:hover {
+            cursor: pointer;
+        }
+
+        .clean-btn-div:hover {
+            cursor: pointer;
+        }
+        
+        .header-top {
+            background: linear-gradient(130deg, #1d2466 0%, #2b3781 50%, #3a4da3 100%);
+            color: white;
+            padding: 0.85rem 2rem;
+            display:flex;
+
+        }
+
+        .header-title2 {
+            display: inline-block;
+            padding: 1px 24px;
+            background: linear-gradient(130deg, #2b3781 0%, #4a5da3 100%);
+            color: white;
+            font-family: 'Microsoft YaHei', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 13px;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+  
+ 
+        }
+
+
+        .header-title2:hover {
+            background: linear-gradient(130deg, #3a4da3 0%, #4a5fc1 100%);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .header-title2:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        
+
+
+
     </style>
 </body>
 </html>

@@ -13,7 +13,7 @@
     <script type="text/javascript" src="../assets/js/EasyUI/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../assets/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../assets/css/subject_ledger.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/css/voucherSummary.css"/>
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
     <script type="text/javascript" src="../assets/js/main.js"></script>
     <script type="text/javascript" src="../assets/js/parsing.js"></script>
@@ -26,14 +26,14 @@
             <input id="clases" name="clases" value=""/>
             &nbsp;&nbsp;科目代码：
             <input id="code" class="easyui-numberbox" style="margin-left:20px" value=""/>
-            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="sel()">查询</a>
-            <a href="#" class="easyui-linkbutton btn-right" onclick="balanceBtn()">平衡验证</a>
-            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
+            <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="sel()">查询</a>
+            <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'‌icon-balance‌',width:120" onclick="balanceBtn()">平衡验证</a>
+            <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
             <div><label style="color:red;font-size:12px">*注意上方科目代码筛选条件，只显示当前选择的科目代码，如点击修改科目代码后请及时调整下拉选项</label></div>
         </div>
         <%--style="height:540px"--%>
         <div class="main-item" >
-            <div style="height:95%" id="data-table" class="easyui-datagrid"></div>
+            <div style="height:90%" id="data-table" class="easyui-datagrid"></div>
             <div id="data-page" class="easyui-pagination"></div>
         </div>
     </div>

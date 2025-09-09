@@ -73,6 +73,12 @@
             var user = getUrlParams("user")
             console.log(user)
             if (user != false) {
+                //var companyName = xiala3.value;
+                //console.log("记录的公司名称:", companyName);
+
+                //// 存储到sessionStorage（前端临时存储）
+                //sessionStorage.setItem('currentCompanyName', companyName);
+
                 $.ajax({
                     type: "post", //要用post方式     
                     url: "/Myadmin/HouTai/YongHuGuanli.aspx/DecryptAes",

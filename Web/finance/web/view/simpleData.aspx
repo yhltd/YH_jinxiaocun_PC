@@ -14,6 +14,7 @@
     <script type="text/javascript" src="../assets/js/EasyUI/locale/easyui-lang-zh_CN.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../assets/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/css/subject_ledger.css"/>
     <script type="text/javascript" src="../assets/js/main.js"></script>
     <script type="text/javascript" src="../assets/js/parsing.js"></script>
     <script type="text/javascript" src="../assets/js/simpleData.js"></script>
@@ -28,8 +29,8 @@
             <input id="start_date" class="easyui-datebox" value=""/>
             <label>结束日期:</label>
             <input id="stop_date" class="easyui-datebox" value=""/>
-            <a href="#" class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
-            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
+            <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
+            <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">
             <div style="height:95%" id="data-table" class="easyui-datagrid"></div>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="yh_noticeModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="yh_noticeModel1StoreContainer">
+    <EntitySet Name="notice" EntityType="yh_noticeModel1.Store.notice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="product_pushnews" EntityType="yh_noticeModel1.Store.product_pushnews" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="notice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="uname" Type="varchar" MaxLength="255" />
+    <Property Name="uid" Type="varchar" MaxLength="255" />
+    <Property Name="address" Type="varchar" MaxLength="255" />
+    <Property Name="uinfo" Type="varchar" MaxLength="255" />
+    <Property Name="picture" Type="varchar(max)" />
+    <Property Name="lei" Type="varchar" MaxLength="255" />
+    <Property Name="fdate" Type="varchar" MaxLength="255" />
+    <Property Name="detail" Type="varchar" MaxLength="255" />
+    <Property Name="video" Type="varchar(max)" />
+    <Property Name="picture_name" Type="varchar" MaxLength="255" />
+    <Property Name="video_name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="product_pushnews">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="gsname" Type="varchar" MaxLength="255" />
+    <Property Name="xtname" Type="varchar" MaxLength="255" />
+    <Property Name="tpname1" Type="varchar" MaxLength="255" />
+    <Property Name="tptop1" Type="varchar(max)" />
+    <Property Name="tpname2" Type="varchar" MaxLength="255" />
+    <Property Name="tptop2" Type="varchar(max)" />
+    <Property Name="tpname3" Type="varchar" MaxLength="255" />
+    <Property Name="tptop3" Type="varchar(max)" />
+    <Property Name="tpname4" Type="varchar" MaxLength="255" />
+    <Property Name="tptop4" Type="varchar(max)" />
+    <Property Name="tpname5" Type="varchar" MaxLength="255" />
+    <Property Name="tptop5" Type="varchar(max)" />
+    <Property Name="tpname6" Type="varchar" MaxLength="255" />
+    <Property Name="tptop6" Type="varchar(max)" />
+    <Property Name="topkuan" Type="varchar" MaxLength="255" />
+    <Property Name="topgao" Type="varchar" MaxLength="255" />
+    <Property Name="xuankuan" Type="varchar" MaxLength="255" />
+    <Property Name="xuangao" Type="varchar" MaxLength="255" />
+    <Property Name="date" Type="datetime2" Precision="0" />
+    <Property Name="textbox" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu1" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu2" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu3" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu4" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu5" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu6" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu7" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu8" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu9" Type="varchar" MaxLength="255" />
+    <Property Name="beizhu10" Type="varchar" MaxLength="255" />
+    <Property Name="qidate" Type="datetime2" Precision="0" />
+    <Property Name="zhidate" Type="datetime2" Precision="0" />
+  </EntityType>
+</Schema>

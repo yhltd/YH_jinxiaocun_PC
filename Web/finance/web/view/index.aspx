@@ -31,16 +31,44 @@
     <script type="text/javascript" src="../assets/js/update_user.js"></script>
 </head>
 <body>
-    </script>
-    <div id="main" class="easyui-layout">
-        <div id="north" data-options="region:'north'" style="height: 68.9px;background:url(../assets/img/caiwu_daohanglan.jpg);">
+
+        <div class="carousel-container">
+            <button type="button" class="clean-btn-div" onclick="yinClick()">×</button>
+            <div class="carousel-images" id="carouselImages"></div>
+        </div>
+
+        <div class="carousel-index">
+            <button type="button" class="index-btn-div" onclick="tanClick()">×</button>
+            <div class="index-images">
+                <div class="index-item" id="Div2">
+                    <img src="https://picsum.photos/id/13/800/500" />
+                </div>
+            </div>
+         </div>
+
+    <div id="main" class="easyui-layout main-top">
+        <div id="north" data-options="region:'north'" style="height: 68.9px;background: linear-gradient(135deg, #3a0ca3 0%, #4cc9f0 100%);
+                color: white;
+                padding: 25px 30px;
+                border-radius: 16px;
+                margin-bottom: 25px;
+                box-shadow: 0 8px 24px rgba(74, 108, 247, 0.3);
+                position: relative;
+                overflow: hidden;">
             <div class="north-left" style="color:white">
                 <a href="http://www.yhocn.cn" >
                 <img src="../assets/img/tm_logo.png" style="height: 55px;"/>
                 </a>
                 云合未来财务系统
             </div>
-            <img src="../assets/img/animat-diamond-color.gif"/ style="height: 100%;margin-left:30%">
+
+            <div class="marquee-container">
+                <div class="marquee-content" id="marqueeText">
+                    这是一段需要循环滚动的长文本内容，当文本完全滚动出容器后，会从右侧重新开始滚动...
+                </div>
+            </div>
+            <img src="../assets/img/animat-diamond-color.gif"/ style="height:100px;width:100px; z-index:9999;">
+
             <div id="Div1" class="north-left" style="color:white">
                 <a style="color:white;margin-right:20px" href="./downloadApp.aspx" class="leftNav_li">下载APP</a>
                 <a style="color:white" href="./downloadExcel.aspx" class="leftNav_li">下载Excel</a>
@@ -51,13 +79,13 @@
             </div>
         </div>
         <div class="north-right-float">
-            <div id="update-pwd-btn" class="north-right-float-item">
+            <div id="update-pwd-btn" class="north-right-float-item" >
                 修改登陆密码
             </div>
-            <div id="update-do-btn" class="north-right-float-item">
+            <div id="update-do-btn" class="north-right-float-item" >
                 修改操作密码
             </div>
-            <div id="sign-out-btn" class="north-right-float-item">
+            <div id="sign-out-btn" class="north-right-float-item" >
                 退出系统
             </div>
 
@@ -65,7 +93,7 @@
                 新建用户账号
             </div>--%>
         </div>
-        <div id="west" data-options="region:'west'" style="width:202px">
+        <div id="west" data-options="region:'west'" style="width:202px;">
             <div class="easyui-sidemenu" data-options="data:left_data,onSelect:tolink"></div>
         </div>
         <div id="center" data-options="region:'center'">

@@ -41,6 +41,7 @@ namespace Web
         }
 
         SqlConnection conn = null;
+        SqlConnection conn2 = null;
         SqlDataReader str = null;
         SqlCommand cmd = null;
 
@@ -467,9 +468,14 @@ namespace Web
                         {
 
                             conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;MultipleActiveResultSets=true;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                            conn2 = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_notice;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
                             if (conn.State == ConnectionState.Closed)
                             {
                                 conn.Open();
+                            }
+                            if (conn2.State == ConnectionState.Closed)
+                            {
+                                conn2.Open();
                             }
                             string now = DateTime.Now.ToShortDateString().ToString();
                             string this_sql = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='人事'";
@@ -543,9 +549,14 @@ namespace Web
                     {
 
                         conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                        conn2 = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_notice;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
                         if (conn.State == ConnectionState.Closed)
                         {
                             conn.Open();
+                        }
+                        if (conn2.State == ConnectionState.Closed)
+                        {
+                            conn2.Open();
                         }
                         string now = DateTime.Now.ToShortDateString().ToString();
                         string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
@@ -601,10 +612,16 @@ namespace Web
                 }
                 else
                 {
+
                     conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                    conn2 = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_notice;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
                     if (conn.State == ConnectionState.Closed)
                     {
                         conn.Open();
+                    }
+                    if (conn2.State == ConnectionState.Closed)
+                    {
+                        conn2.Open();
                     }
                     string now = DateTime.Now.ToShortDateString().ToString();
                     string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='财务'";
@@ -653,9 +670,14 @@ namespace Web
                     else
                     {
                         conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
+                        conn2 = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_notice;Uid=sa;Pwd=Lyh07910_001;");
                         if (conn.State == ConnectionState.Closed)
                         {
                             conn.Open();
+                        }
+                        if (conn2.State == ConnectionState.Closed)
+                        {
+                            conn2.Open();
                         }
                         string now = DateTime.Now.ToShortDateString().ToString();
                         string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";

@@ -60,6 +60,7 @@
         }
 
         .input_tr {
+           margin-left: 10px;
             width: 91px;
             height: 30px;
             border: none;
@@ -67,7 +68,9 @@
             color: white;
             cursor: pointer;
             border-radius: 2px;
-            margin-left: 10px;
+            display: inline-block;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .table_div {
@@ -86,23 +89,19 @@
             top: 0;
         }
 
+
+
         .bk_bt2 {
-            height: 25px;
+            height: 49px;
             text-align: center;
-            background-color: #2F4056;
+            /*background-color: #2F4056;*/
+            background-color:#143268;
             color: white;
             font-size: 16px;
             font-weight: bold;
-            position: sticky;
-            top: 0;
-        }
-
-        .auto-style1 {
-            text-align: center;
-            height: 35px;
-            background-color: white;
-            border: 0.5px solid #f2f2f2;
-            font-size: 16px;
+            position:sticky;
+            /*border:1px solid white;*/
+            top : 0;
         }
 
         .time_select {
@@ -142,6 +141,74 @@
             display: flex;
             align-items: center;
         }
+
+
+
+
+        
+        .auto-style1 {
+            text-align: center;
+            height: 40px;
+            color:black;
+            font-size:14px;
+            background-color: #98c9d9;
+            /*border: 2.5px solid white;*/
+        }
+
+          tr:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        /* 奇数行样式 */
+        tr:nth-child(odd) .auto-style1 {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .auto-style1 {
+            background-color: #e0f7fa; 
+        }
+
+
+        .table_div{
+            overflow:auto;
+            margin-left:1%;
+            margin-top:10px;
+            box-sizing: border-box;
+            padding-left:5px;
+            padding-right:5px;
+            width:98%;
+            height:80%;
+            border:3px solid #D3D3D3;
+             box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            
+        }
+        .top-fun {
+            margin-left:1%;
+            margin-top:10px;
+            padding:5px;
+            width:97%;
+            min-height:50px;
+           background-color: #D3D3D3;
+           border-radius:5px;
+           box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+           
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -173,25 +240,25 @@
             <div class="table_div">
                 <table cellspacing="0" cellpadding="0" class="biao_ge" name="bg_row" style="width: 100%">
                     <tr id="Tr1">
-                        <th colspan="1" rowspan="2" class="bk_bt2">序号</th>
-                        <th colspan="1" rowspan="2" class="bk_bt2" style="width: 130px">商品代码</th>
-                        <th colspan="1" rowspan="2" class="bk_bt2" style="width: 150px">商品名称</th>
-                        <td colspan="1" rowspan="2" class="bk_bt2">商品类别</td>
-                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 140px">期初</td>
-                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 140px">入库</td>
-                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 140px">出库</td>
-                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 140px">结存</td>
-                        <th colspan="1" rowspan="2" class="bk_bt2">边缘存量</th>
+                        <th colspan="1" rowspan="2" class="bk_bt2" style="width: 10%">序号</th>
+                        <th colspan="1" rowspan="2" class="bk_bt2" style="width: 10%">商品代码</th>
+                        <th colspan="1" rowspan="2" class="bk_bt2" style="width: 11%">商品名称</th>
+                        <td colspan="1" rowspan="2" class="bk_bt2" style="width: 11%">商品类别</td>
+                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 12%">期初</td>
+                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 12%">入库</td>
+                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 12%">出库</td>
+                        <td colspan="2" rowspan="1" class="bk_bt2" style="width: 12%">结存</td>
+                        <th colspan="1" rowspan="2" class="bk_bt2" style="width: 10%">边缘存量</th>
                     </tr>
                     <tr id="dj_yh">
-                        <th class="bk_bt2 bottom" style="width: 70px">数量</th>
-                        <th class="bk_bt2 bottom" style="width: 70px">金额</th>
-                        <th class="bk_bt2 bottom" style="width: 70px">数量</th>
-                        <th class="bk_bt2 bottom" style="width: 70px">金额</th>
-                        <th class="bk_bt2 bottom" style="width: 70px">数量</th>
-                        <th class="bk_bt2 bottom" style="width: 70px">金额</th>
-                        <th class="bk_bt2 bottom" style="width: 70px">结存</th>
-                        <th class="bk_bt2 bottom" style="width: 70px">金额</th>
+                        <th class="bk_bt2 bottom" style="width: 6%">数量</th>
+                        <th class="bk_bt2 bottom" style="width: 6%">金额</th>
+                        <th class="bk_bt2 bottom" style="width: 6%">数量</th>
+                        <th class="bk_bt2 bottom" style="width: 6%">金额</th>
+                        <th class="bk_bt2 bottom" style="width: 6%">数量</th>
+                        <th class="bk_bt2 bottom" style="width: 6%">金额</th>
+                        <th class="bk_bt2 bottom" style="width: 6%">结存</th>
+                        <th class="bk_bt2 bottom" style="width: 6%">金额</th>
                     </tr>
                     <%
                

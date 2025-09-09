@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 using System.Web.SessionState;
 using System.Web.Services;
 using Web.Server;
+using Web.Pushnews.dao;
+using Web.Pushnews.model;
 
 
 namespace Web
@@ -48,6 +50,40 @@ namespace Web
                 Response.Write("<script>;location='~/wqx.aspx';</script>");
             }
         }
+
+
+
+
+
+       [System.Web.Services.WebMethod]
+        public static List<product_pushnews> GetPushNewsData() 
+        {
+            try
+            {
+                var context = HttpContext.Current;
+                var user = (yh_jinxiaocun_user)context.Session["user"];
+
+
+                if (user == null)
+                    return new List<product_pushnews>();
+
+
+                if (user.AdminIS != null && user.AdminIS.Equals("false"))
+                    return new List<product_pushnews>();
+
+    
+                PushNewsDao pushNewsDao = new PushNewsDao();
+                return pushNewsDao.SelectList(); 
+            }
+            catch (Exception ex)
+            {
+                return new List<product_pushnews>(); 
+            }
+        }
+
+
+
+
 
         private void NewMethod()
         {

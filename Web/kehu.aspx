@@ -76,34 +76,70 @@
             text-align: center;
             height: 40px;
             background-color: white;
-            border: 0.5px solid #f2f2f2;
             font-size: 4px;
         }
 
-        .auto-style1
-        {
+       .auto-style1 {
             height: 49px;
             text-align: center;
-            background-color: #2F4056;
+            /*background-color: #2F4056;*/
+            background-color:#143268;
             color: white;
             font-size: 16px;
             font-weight: bold;
-            position: sticky;
-            top: 0;
+            position:sticky;
+            /*border:1px solid white;*/
+            top : 0;
         }
 
-        .select_input {
-            width: 300px;
+        .table_input {
             border: none;
-            height: 64%;
-            border: 1px solid #C2C2C2;
-            border-radius: 3px;
+            color:black;
+            height: 90%;
+            width: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .table_input {
+            background-color:#D3D3D3;
         }
 
-        .input_tr_sc
-        {
+        /* 偶数行样式 */
+        tr:nth-child(even) .table_input {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
         }
 
+        .input_tr {
+            border: none;
+            text-align: center;
+            color:black;
+            width: 90%;
+            height: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .input_tr {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .input_tr {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+        
+
+            /* 奇数行样式 */
+        tr:nth-child(odd) .bg_bj {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .bg_bj {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+
+        #checkbox {
+            background-color:red!important;
+        }
+    
         .input_tr_tj
         {
             width: 91px;
@@ -114,32 +150,61 @@
             cursor: pointer;
             border-radius: 2px;
             margin-left: 10px;
+            margin-top:10px;
         }
 
-        .hidden_load
-        {
-        }
-
-        .input_tr_sx
-        {
-        }
-        .top-div
-        {
-            width: 100%;
-            height: 50px;
-            display: flex;
-            flex-direction: row;
-            justify-content: start;
-            align-items: center;
-        }
         .select_input {
             width: 300px;
             border: none;
             height: 64%;
-            border: 1px solid #C2C2C2;
             border-radius: 3px;
             /*margin-top:20px;*/
         }
+
+        tr:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
+
+         .table_div {
+            overflow:auto;
+            margin-left:1%;
+            margin-top:10px;
+            box-sizing: border-box;
+            padding-left:5px;
+            padding-right:5px;
+            width:97%;
+            height:80%;
+            border:3px solid #D3D3D3;
+                box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            
+        }
+        .top-div {
+            margin-left:1%;
+            margin-top:10px;
+            padding:5px;
+            height: 50px;
+            width:97%;
+            min-height:50px;
+            background-color: #D3D3D3;
+            border-radius:5px;
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+           
+        }
+
+
     </style>
     <title></title>
 </head>
@@ -175,7 +240,7 @@
                     %>
                     <tr id="del_row_cs<%=i %>">
                         <%--style="font-size: 90%; padding-left: 2%;"--%>
-                        <td style="font-size: 14px; padding-left: 0.5%; width: 22px;"><%=(i+1) %></td>
+                        <td style="font-size: 14px;  padding-left: 0.5%; width: 22px;" class="input_tr"><%=(i+1) %></td>
                         <td class="bg_bj">
                             <input type="text"class="input_tr" id="beizhu" name="beizhu_cs<%=i %>" value="<%=kehu[i].beizhu %>" /></td>
                         <td class="bg_bj">
@@ -183,7 +248,7 @@
                         <td class="bg_bj">
                             <input type="text" class="input_tr" id="lianxifangshi" name="lianxifangshi_cs<%=i %>" value="<%=kehu[i].lianxifangshi %>" /></td>
                         <td class="bg_bj">
-                            <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i %>" value="<%=kehu[i]._id %>" /><input id="checkbox" name="Checkbox_bd<%=i %>" value=" <%=i %>" type="checkbox" /></td>
+                            <input type="hidden" class="input_tr" id="Text3" name="id_cs<%=i %>" value="<%=kehu[i]._id %>" /><input id="checkbox"  name="Checkbox_bd<%=i %>" value=" <%=i %>" type="checkbox" /></td>
                     </tr>
 
                     <%

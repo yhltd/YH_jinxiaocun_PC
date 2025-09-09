@@ -42,38 +42,392 @@
         }
     </script>
     <style>
-        /* 视频播放 */
+       /* 视频播放器样式 */
         .video-mask {
-          position: fixed;
-          z-index: 9999;
-          background: rgba(33, 33, 33, .8);
-          top: 0;
-          width: 100%;
-          height: 100%;
-          display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9998;
+            display: none;
         }
 
         .videoCanvas {
-          position: fixed;
-          z-index: 10000;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .video-shut {
-          position: absolute;
-          height: 32px;
-          width: 32px;
-          margin: 10px 10px 0 0;
-          right: 0px;
-          text-align: center;
-          display: block;
-          z-index: 9999;
-          cursor: pointer;
-          /*display: none;*/
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            padding: 4px;
+            transition: all 0.3s ease;
         }
+
+        .video-shut:hover {
+            background: #ff6b6b;
+            transform: scale(1.1);
+        }
+
+        #video {
+            border-radius: 8px;
+            background: #000;
+        }
+
+        /* 工作时间卡片样式 */
+        .el-card {
+            border-radius: 12px !important;
+            border: 1px solid rgba(26, 42, 108, 0.1) !important;
+            background: linear-gradient(135deg, rgba(26, 42, 108, 0.02) 0%, rgba(42, 82, 152, 0.02) 100%) !important;
+            box-shadow: 0 4px 20px rgba(26, 42, 108, 0.08) !important;
+            transition: all 0.3s ease !important;
+            margin-bottom: 20px;
+        }
+
+        .el-card:hover {
+            box-shadow: 0 8px 24px rgba(26, 42, 108, 0.12) !important;
+        }
+
+        .el-card__header {
+            padding: 16px 24px !important;
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            border-radius: 12px 12px 0 0 !important;
+            border: none !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .el-card__header span {
+            color: white !important;
+            font-size: 18px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.5px;
+        }
+
+        .el-card__header .el-button {
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .el-card__header .el-button:hover {
+            color: white !important;
+            transform: translateY(-1px);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 表格样式优化 */
+        .el-table {
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            box-shadow: 0 2px 12px rgba(26, 42, 108, 0.1) !important;
+            font-size: 14px !important;
+            background: white !important;
+        }
+
+        .el-table th {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            border: none !important;
+            padding: 14px 10px !important;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .el-table td {
+            padding: 12px 10px !important;
+            border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
+            text-align: center;
+        }
+
+        /* 斑马线效果 */
+        .el-table .el-table__row:nth-child(even) {
+             background-color: rgba(58, 97, 171, 0.08)
+        }
+
+        .el-table .el-table__row:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .el-table .el-table__row:hover td {
+            background: linear-gradient(135deg, rgba(26, 42, 108, 0.08) 0%, rgba(42, 82, 152, 0.08) 100%) !important;
+        }
+
+        /* 时间选择器样式 */
+        .time-picker {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .time-picker .el-col {
+            display: flex;
+            justify-content: center;
+        }
+
+        .el-time-select {
+            width: 180px !important;
+        }
+
+        .el-time-select .el-input__inner {
+            border-radius: 8px !important;
+            border: 1px solid rgba(26, 42, 108, 0.2) !important;
+            background: white !important;
+            height: 36px;
+            line-height: 36px;
+        }
+
+        .el-time-select .el-input__inner:focus {
+            border-color: #1a2a6c !important;
+            box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.1) !important;
+        }
+
+        /* 保存按钮样式 */
+        .el-button--primary {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            border: none !important;
+            border-radius: 8px !important;
+            color: white !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+            padding: 10px 20px !important;
+        }
+
+        .el-button--primary:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(26, 42, 108, 0.3) !important;
+            opacity: 0.9 !important;
+        }
+
+        /* 抽屉样式优化 */
+        .el-drawer {
+            border-radius: 12px 0 0 12px !important;
+            box-shadow: -4px 0 20px rgba(26, 42, 108, 0.15) !important;
+        }
+
+        .el-drawer__header {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            color: white !important;
+            padding: 16px 20px !important;
+            margin-bottom: 0 !important;
+            border-radius: 12px 0 0 0 !important;
+        }
+
+        .el-drawer__title {
+            color: white !important;
+            font-weight: 600 !important;
+        }
+
+        .el-drawer__close-btn {
+            color: white !important;
+            font-size: 18px !important;
+        }
+
+        .el-drawer__body {
+            padding: 20px !important;
+            background: #f8fafc !important;
+        }
+
+        /* 休息日列表样式 */
+        .holiday-list {
+            margin-top: 20px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .holiday-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(26, 42, 108, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .holiday-item:hover {
+            transform: translateX(-2px);
+            box-shadow: 0 4px 12px rgba(26, 42, 108, 0.15);
+        }
+
+        .holiday-delete {
+            color: #ff6b6b;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .holiday-delete:hover {
+            background: rgba(255, 107, 107, 0.1);
+            transform: scale(1.1);
+        }
+
+        .holiday-tag {
+            text-align: center;
+            padding: 16px;
+            color: rgba(26, 42, 108, 0.6);
+            font-size: 14px;
+        }
+
+        /* 日期选择器样式 */
+        .el-date-picker {
+            width: 100% !important;
+        }
+
+        .el-date-picker .el-input__inner {
+            border-radius: 8px !important;
+            border: 1px solid rgba(26, 42, 108, 0.2) !important;
+        }
+
+        .el-date-picker .el-input__inner:focus {
+            border-color: #1a2a6c !important;
+            box-shadow: 0 0 0 2px rgba(26, 42, 108, 0.1) !important;
+        }
+
+        /* 添加休息日按钮 */
+        .el-button--primary[icon="el-icon-circle-plus-outline"] {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        /* 加载动画 */
+        .el-icon-loading {
+            color: #1a2a6c !important;
+            font-size: 16px;
+            margin-right: 8px;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .videoCanvas {
+                width: 90% !important;
+                height: auto !important;
+            }
+    
+            #video {
+                width: 100% !important;
+                height: auto !important;
+            }
+    
+            .time-picker {
+                flex-direction: column;
+                gap: 10px;
+            }
+    
+            .time-picker .el-col {
+                width: 100% !important;
+            }
+    
+            .el-time-select {
+                width: 100% !important;
+            }
+    
+            .holiday-item {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+
+        /* 自定义滚动条 */
+        .holiday-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .holiday-list::-webkit-scrollbar-track {
+            background: rgba(26, 42, 108, 0.05);
+            border-radius: 3px;
+        }
+
+        .holiday-list::-webkit-scrollbar-thumb {
+            background: rgba(26, 42, 108, 0.2);
+            border-radius: 3px;
+        }
+
+        .holiday-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(26, 42, 108, 0.3);
+        }
+
+        /* 动画效果 */
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .holiday-item {
+            animation: slideInRight 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .el-table__row {
+            animation: fadeIn 0.5s ease;
+        }
+
+        .header-top {
+            width:100%;
+            display:flex;
+            justify-content: space-between;
+        }
+
+       
+        /* 按钮基础样式 */
+        .xiu-btn {
+            width:100px;
+            height:40px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding:15px;
+            margin-right:6px;
+            color: white;
+            border: none;
+            box-shadow: 0 2px 8px rgba(26, 42, 108, 0.15);
+        }
+
+        /* 悬停状态 */
+        .xiu-btn:hover {
+          background-color: #e6f2ff;
+          color: #409eff;
+          border-color: #66b1ff;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+
     </style>
 </head>
 <body>

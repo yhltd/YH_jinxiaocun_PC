@@ -10,6 +10,9 @@ using Web.finance.util;
 using Web.scheduling.dao;
 using Web.scheduling.model;
 using Web.scheduling.utils;
+using Web.Pushnews.model;
+using Web.Pushnews.dao;
+
 
 namespace Web.scheduling.controller
 {
@@ -55,6 +58,50 @@ namespace Web.scheduling.controller
                 return ResultUtil.error("修改失败");
             }
         }
+
+
+        //新加
+        [WebMethod]
+        public string GetPushNewsData()
+        {
+            try
+            {
+                PushNewsDao dao = new PushNewsDao();
+                var data = dao.SelectListPC();
+
+                // 创建响应对象
+                var response = new
+                {
+                    code = 200,
+                    msg = "查询成功",
+                    data = data
+                };
+
+                // 序列化为JSON字符串
+                return Newtonsoft.Json.JsonConvert.SerializeObject(response);
+            }
+            catch (InvalidOperationException ex)
+            {
+                var errorResponse = new
+                {
+                    code = 500,
+                    msg = "查询失败: " + ex.Message,
+                    data = new List<product_pushnews>()
+                };
+                return Newtonsoft.Json.JsonConvert.SerializeObject(errorResponse);
+            }
+            catch (Exception ex)
+            {
+                var errorResponse = new
+                {
+                    code = 500,
+                    msg = "系统错误: " + ex.Message,
+                    data = new List<product_pushnews>()
+                };
+                return Newtonsoft.Json.JsonConvert.SerializeObject(errorResponse);
+            }
+        }
+
 
         [WebMethod]
         public string getUsername()

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services;
+using Web.Pushnews.model;
+using Web.Pushnews.dao;
 
 namespace Web.Personnel
 {
@@ -21,6 +24,13 @@ namespace Web.Personnel
             {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
             }
+
+            List<product_pushnews> newsData = GetPushNewsData();
+            Response.Write("<script>console.log('获取到数据:', " + Newtonsoft.Json.JsonConvert.SerializeObject(newsData) + ");</script>");
+            string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(newsData);
+            string script = "var pushNewsData = " + jsonData + ";";
+            ClientScript.RegisterStartupScript(this.GetType(), "PushNewsData", script, true);
+
             string conString = ConfigurationManager.AppSettings["yao"];
             conn = new SqlConnection(conString);  //数据库连接。
             if (conn.State == ConnectionState.Closed)
@@ -32,10 +42,14 @@ namespace Web.Personnel
             str = cmd.ExecuteReader();
             while (str.Read())
             {
-                if (str[6].ToString() == "1") {
+
+                if (str[6].ToString() == "1")
+                {
                     string[] arr1 = new string[] { str[0].ToString(), str[1].ToString(), str[2].ToString(), str[3].ToString(), str[4].ToString(), str[5].ToString(), str[6].ToString() };
                     Session["arr1"] = arr1;
                 }
+
+
                 if (str[6].ToString() == "2")
                 {
                     string[] arr2 = new string[] { str[0].ToString(), str[1].ToString(), str[2].ToString(), str[3].ToString(), str[4].ToString(), str[5].ToString(), str[6].ToString() };
@@ -92,6 +106,23 @@ namespace Web.Personnel
                     string[] arr12 = new string[] { str[0].ToString(), str[1].ToString(), str[2].ToString(), str[3].ToString(), str[4].ToString(), str[5].ToString(), str[6].ToString() };
                     Session["arr12"] = arr12;
                 }
+            }
+        }
+
+        public List<product_pushnews> GetPushNewsData()
+        {
+            try
+            {
+                PushNewsDao dao = new PushNewsDao();
+                return dao.SelectListRS();
+            }
+            catch (InvalidOperationException)
+            {
+                return new List<product_pushnews>();
+            }
+            catch
+            {
+                return new List<product_pushnews>();
             }
         }
     }

@@ -1,4 +1,7 @@
-﻿$(function () {
+﻿
+
+
+$(function () {
     clearCss("panel-tool")
     $(".layout-panel-west > div").css({
         "height": height*0.9-1 + "px" 
@@ -224,4 +227,212 @@ function getInstruction() {
             alert(result.msg);
         }
     })
+}
+
+
+var pushnewsarr = []
+var textboxValue = ""
+var dinggao = "100"
+var tankuan = "300"
+var images = [
+    {
+        tptop2: ""
+    },
+    {
+        tptop3: ""
+    },
+    {
+        tptop4: ""
+    },
+    {
+        tptop5: ""
+    },
+    {
+        tptop6: ""
+    }
+
+]
+var xuantu = [
+     {
+         tptop1: ""
+     }
+]
+
+
+$(document).ready(function () {
+    getPushNews();
+    setmarqueetext(textboxValue);
+
+});
+
+function getPushNews() {
+    $.ajax({
+        type: "POST",
+        url: "web_service/space.asmx/GetPushNewsData",
+        data: JSON.stringify({}),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            if (result && result.d) {
+                console.log("接收到的数据:", result.d);
+                setList(result.d);
+                pushnewsarr = result.d;
+
+                if (pushnewsarr && pushnewsarr.length > 0) {
+
+                    // 获取第一个元素的 textbox 值
+
+                    textboxValue = pushnewsarr[0].textbox;
+                    jsonData = pushnewsarr[0].tptop1;
+                    tankuan = pushnewsarr[0].xuankuan;
+                    console.log(" 返回数据tankuan", tankuan);
+                    dinggao = pushnewsarr[0].topgao || "100";
+                    if (pushnewsarr[0].tptop1 && pushnewsarr[0].tptop1.trim() !== "") {
+                        xuantu[0].tptop1 = "data:image/jpg;base64," + pushnewsarr[0].tptop1;
+                    } else {
+                        xuantu[0].tptop1 = "";
+                    }
+                    if (pushnewsarr[0].tptop2 && pushnewsarr[0].tptop2.trim() !== "") {
+                        images[0].tptop2 = "data:image/jpg;base64," + pushnewsarr[0].tptop2;
+                    } else {
+                        images[0].tptop2 = "";
+                    }
+                    if (pushnewsarr[0].tptop3 && pushnewsarr[0].tptop3.trim() !== "") {
+                        images[1].tptop3 = "data:image/jpg;base64," + pushnewsarr[0].tptop3;
+                    } else {
+                        images[1].tptop3 = "";
+                    }
+                    if (pushnewsarr[0].tptop4 && pushnewsarr[0].tptop4.trim() !== "") {
+                        images[2].tptop4 = "data:image/jpg;base64," + pushnewsarr[0].tptop4;
+                    } else {
+                        images[2].tptop4 = "";
+                    }
+                    if (pushnewsarr[0].tptop5 && pushnewsarr[0].tptop5.trim() !== "") {
+                        images[3].tptop5 = "data:image/jpg;base64," + pushnewsarr[0].tptop5;
+                    } else {
+                        images[3].tptop5 = "";
+                    }
+                    if (pushnewsarr[0].tptop6 && pushnewsarr[0].tptop6.trim() !== "") {
+                        images[4].tptop6 = "data:image/jpg;base64," + pushnewsarr[0].tptop6;
+                    } else {
+                        images[4].tptop6 = "";
+                    }
+
+                    images = [
+                        {
+                            url: images[0].tptop2 || "https://picsum.photos/id/10/800/500",
+                            alt: "图1"
+                        },
+                        {
+                            url: images[1].tptop3 || "https://picsum.photos/id/11/800/500",
+                            alt: "图2"
+                        },
+                        {
+                            url: images[2].tptop4 || "https://picsum.photos/id/12/800/500",
+                            alt: "图3"
+                        },
+                        {
+                            url: images[3].tptop5 || "https://picsum.photos/id/10/800/500",
+                            alt: "图4"
+                        },
+                        {
+                            url: images[4].tptop6 || "https://picsum.photos/id/12/800/500",
+                            alt: "图5"
+                        }
+                    ];
+
+
+                    var currentIndex = 0;
+                    var totalItems = images.length;
+                    var interval;
+
+                    // 初始化轮播图
+                    function initCarousel() {
+                        var carouselImages = $("#carouselImages");
+                        carouselImages.empty();
+
+                        // 根据数组动态生成轮播项
+                        for (var i = 0; i < images.length; i++) {
+                            var item = $("<div>").addClass("carousel-item").attr("id", "img" + (i + 1));
+                            var img = $("<img>").attr("src", images[i].url).attr("alt", images[i].alt);
+                            item.append(img);
+                            carouselImages.append(item);
+                        }
+                    }
+
+                    function switchImage(imgId) {
+                        $(".carousel-item").removeClass("active");
+                        $("#" + imgId).addClass("active");
+
+                        var index = parseInt(imgId.replace('img', '')) - 1;
+                        $(".carousel-images").css("transform", "translateX(-" + (index * 100) + "%)");
+                    }
+
+                    function autoSwitch() {
+                        currentIndex = (currentIndex + 1) % totalItems;
+                        var imgId = "img" + (currentIndex + 1);
+                        switchImage(imgId);
+                    }
+
+                    $(document).ready(function () {
+                        initCarousel();
+                        interval = setInterval(autoSwitch, 3000);
+                        switchImage('img1');
+
+                        $(".carousel-container").hover(
+                            function () { clearInterval(interval); },
+                            function () { interval = setInterval(autoSwitch, 3000); }
+                        );
+                    });
+
+                    setmarqueetext(textboxValue);
+
+                    var targetImg = document.querySelector('.index-images img');
+
+                    if (targetImg && xuantu[0].tptop1) {
+                        targetImg.src = xuantu[0].tptop1;
+                    }
+
+                    document.documentElement.style.setProperty('--tankuan', tankuan + "px");
+                    document.documentElement.style.setProperty('--dinggao', dinggao + "px")
+                } else {
+                    console.log(" 返回数据为空或未定义");
+                }
+
+            } else {
+                console.log("没有数据或数据格式错误");
+                setList([]);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("请求失败:", error);
+            setList([]);
+        }
+    });
+}
+
+function setmarqueetext(text) {
+    var marqueetext = document.getElementById("marqueeText");
+    if (marqueetext) {
+        marqueeText.textContent = text;
+    }
+}
+
+
+function setList(data) {
+    console.log("setList接收到的数据:", data);
+    if (data && data.length > 0) {
+        data.forEach(function (item) {
+            //console.log("项目ID:", item.id, "内容:", item.textbox);
+        });
+    } else {
+        //console.log("没有数据可显示");
+    }
+}
+
+function yinClick() {
+    document.querySelector('.carousel-container').classList.add('hidden');  // 隐藏顶部元素
+}
+function tanClick() {
+    document.querySelector('.carousel-index').classList.add('hidden');  // 隐藏弹窗元素
 }

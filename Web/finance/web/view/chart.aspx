@@ -19,6 +19,7 @@
     <script type="text/javascript" src="../assets/js/chart.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/themes/default/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="../assets/css/subject_ledger.css"/>
     <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/themes/icon.css"/>
     <link rel="stylesheet" type="text/css" href="../assets/js/EasyUI/demo/demo.css"/>
 
@@ -33,7 +34,7 @@
 		    <input id="start_date" type="text" class="easyui-datebox">
             <label for="voucherDate">  结束时间：</label>
 		    <input id="stop_date" type="text" class="easyui-datebox">
-            <a class="easyui-linkbutton btn-right" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()" style="margin-left:10px">查询</a>
+            <a class="easyui-linkbutton btn-right l-btn-icon-left " data-options="iconCls:'icon-search',width:80" onclick="selectBtn()" style="margin-left:10px">查询</a>
         </div>
     </div>
     <div id="main-item">

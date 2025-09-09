@@ -71,3 +71,175 @@ iframe
         background-color: #f2f2f2;
         transition: .2s;
     }
+
+      .carousel-container {
+            width: 100%;
+            height: var(--dinggao);
+            position: relative;
+            overflow: hidden;
+            margin-bottom:5px;
+        }
+        .carousel-images {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+     
+        .carousel-index {
+            width: var(--tankuan);
+            position: fixed;
+            z-index: 9998;
+            box-shadow: 0 0 30px rgba(0,0,0,0.6);
+            border: 3px solid white;
+            border-radius: 15px;
+            animation: smooth-drift 40s infinite ease-in-out;
+            transform: translateZ(0);
+            will-change: transform; 
+        }
+
+        @keyframes smooth-drift {
+            0%, 100% { 
+                transform: translate(5vw, 20vh); 
+            }
+            25% {
+                transform: translate(40vw, 1vh);
+            }
+            50% {
+                transform: translate(65vw, 30vh);
+            }
+            75% {
+                transform: translate(30vw, 50vh);
+            }
+        }
+
+        .index-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            backface-visibility: hidden;
+        }
+
+         .marquee-container {
+            flex: 1;
+            max-width: 40%;
+            margin: 0 20px;
+            position: relative;
+            background: linear-gradient(135deg, #3a0ca3 0%, #4cc9f0 100%);
+            color: white;
+            padding-top:15px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 24px rgba(74, 108, 247, 0.3);
+            overflow: hidden;
+            height: 68.9px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            white-space: nowrap;
+            transition: transform 0.3s;
+            font-size:28px;
+        }
+
+        .marquee-content {
+            color: #e0f7fa;
+            white-space: nowrap;
+            position: absolute;
+            animation: marquee 15s linear infinite;
+            font-size: 20px;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .scrolling-container {
+            width: 100px; 
+            height: 30px;
+            overflow: hidden;
+            white-space: nowrap;
+            border: 1px solid #ccc;
+            position: relative;
+            float:center;
+        }
+        .scrolling-text {
+            position: absolute;
+            right: 0;
+        }
+
+
+        #Iframe1 {
+            height:100%;
+        }
+
+               .top_tu {
+            width:100%;
+            height:100px;
+            background-color:#4ebbb1
+        }
+        .hidden {
+            display: none;
+        }
+        .itu {
+            width:100%;
+            height:100%
+        }
+        .btn-div_top {
+            width:100%;
+            display:flex;
+            justify-content:center;
+        }
+        .clean-btn-div {
+             background-color: transparent;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            font-size: 13px;
+            border-radius: 50%;
+            position: absolute; 
+            z-index: 9999;
+            top: 0;            
+            right: 0;           
+            text-align: center;
+            margin: 10px;       
+            transform: none;   
+        }
+
+        .index-btn-div {
+            background-color: transparent;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border: 1px solid white;
+            font-size: 13px;
+            border-radius: 50%;
+            position: absolute; 
+            z-index: 9999;
+            top: 0;            
+            right: 0;           
+            text-align: center;
+            margin: 10px;       
+            transform: none;   
+        }
+            
+        .index-btn-div:hover {
+            cursor: pointer;
+        }
+
+        .clean-btn-div:hover {
+            cursor: pointer;
+        }

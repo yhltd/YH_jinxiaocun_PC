@@ -570,6 +570,13 @@ E:\yho169\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
 E:\yho169\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
 D:\yho135\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.Properties.Resources.resources
 D:\yho135\工作\YH_jinxiaocun_PC\Web\obj\Debug\Web.csproj.GenerateResource.Cache
+F:\git_version\YH_jinxiaocun_PC\Web\obj\Debug\Web.Properties.Resources.resources
+F:\git_version\YH_jinxiaocun_PC\Web\obj\Debug\Web.csproj.GenerateResource.Cache
+E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.Properties.Resources.resources
+E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.csproj.GenerateResource.Cache
+E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.cache
+E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.compiled
 E:\yh_soft\YH_jinxiaocun_PC\Web\bin\cfgList.config
 E:\yh_soft\YH_jinxiaocun_PC\Web\bin\Web.dll
 E:\yh_soft\YH_jinxiaocun_PC\Web\bin\Web.pdb
@@ -603,12 +610,5 @@ E:\yh_soft\YH_jinxiaocun_PC\Web\bin\zh-Hans\EntityFramework.resources.dll
 E:\yh_soft\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
 E:\yh_soft\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Http.resources.dll
 E:\yh_soft\YH_jinxiaocun_PC\Web\bin\zh-Hans\System.Web.Http.WebHost.resources.dll
-E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
-E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.Properties.Resources.resources
-E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.csproj.GenerateResource.Cache
-E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.cache
-E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\RdlCompile.compiled
 E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.dll
 E:\yh_soft\YH_jinxiaocun_PC\Web\obj\Debug\Web.pdb
-F:\git_version\YH_jinxiaocun_PC\Web\obj\Debug\Web.Properties.Resources.resources
-F:\git_version\YH_jinxiaocun_PC\Web\obj\Debug\Web.csproj.GenerateResource.Cache

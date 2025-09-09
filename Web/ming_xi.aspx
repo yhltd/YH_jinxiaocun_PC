@@ -76,12 +76,12 @@
             transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
         }
 
-            .rk_btu:focus {
-                border-color: #66afe9;
-                outline: 0;
-                -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-                box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            }
+        .rk_btu:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+        }
 
         .input_tr_sx {
             margin-left: 10%;
@@ -148,12 +148,12 @@
         .auto-style1 {
             height: 49px;
             text-align: center;
-            background-color: #2F4056;
+            background-color:#143268;
             color: white;
             font-size: 16px;
             font-weight: bold;
-            position: sticky;
-            top: 0;
+            position:sticky;
+            top : 0;
         }
 
         .page_bt {
@@ -170,6 +170,101 @@
             text-align: center;
             width: 90%;
             height: 90%;
+        }
+
+
+         .item_td {
+            text-align: center;
+            height: 40px;
+            color:black;
+            font-size:14px;
+            background-color: #98c9d9;
+            /*border: 2.5px solid white;*/
+        }
+
+          tr:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        /* 奇数行样式 */
+        tr:nth-child(odd) .item_td {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .item_td {
+            background-color: #e0f7fa; 
+        }
+
+         .table_input {
+            border: none;
+            color:black;
+            height: 90%;
+            width: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .table_input {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .table_input {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+
+        .input_tr {
+            border: none;
+            text-align: center;
+            color:black;
+            width: 90%;
+            height: 90%;
+        }
+         /* 奇数行样式 */
+        tr:nth-child(odd) .input_tr {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .input_tr {
+            background-color: #e0f7fa;  /* 更浅的蓝色 */
+        }
+
+        .d-header {
+            margin-left:1%;
+            margin-top:10px;
+            padding:5px;
+            width:97%;
+            min-height:50px;
+           background-color: #D3D3D3;
+           border-radius:5px;
+           box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+           
+        }
+
+        .d-main {
+            overflow:auto;
+            margin-left:1%;
+            margin-top:30px;
+            box-sizing: border-box;
+            padding-left:5px;
+            padding-right:5px;
+            height:80%;
+            width:97%;
+            border:3px solid #D3D3D3;
+             box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            
         }
     </style>
     <title></title>
@@ -455,23 +550,23 @@
                 </div>
             </div>
 
-            <div class="d-main table_div" style="width:100%;overflow:scroll;">
+            <div class="d-main table_div" style="width:100%;">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row">
                     <tr id="dj_yh">                     
-                        <td class="auto-style1" style="width: 50px">序号</td>
-                        <th class="auto-style1" style="width: 105px">二维码</th>
-                        <th class="auto-style1" style="width: 150px">条形码</th>
-                        <td class="auto-style1" style="width: 120px">订单号</td>
-                        <td class="auto-style1" style="width: 100px">商品代码</td>
-                        <td class="auto-style1" style="width: 100px">商品名称</td>
-                        <td class="auto-style1" style="width: 100px">商品类别</td>
-                        <td class="auto-style1" style="width: 100px">价格</td>
-                        <td class="auto-style1" style="width: 100px">数量</td>
-                        <td class="auto-style1" style="width: 100px">明细类型</td>
-                        <td class="auto-style1" style="width: 140px">时间</td>
-                        <td class="auto-style1" style="width: 100px">公司名</td>
-                        <td class="auto-style1" style="width: 100px">收/进货方</td>
-                        <td class="auto-style1" style="width: 50px">功能</td>
+                        <td class="auto-style1" style="width: 5%">序号</td>
+                        <th class="auto-style1" style="width: 10%">二维码</th>
+                        <th class="auto-style1" style="width: 10%">条形码</th>
+                        <td class="auto-style1" style="width: 10%">订单号</td>
+                        <td class="auto-style1" style="width: 8%">商品代码</td>
+                        <td class="auto-style1" style="width: 8%">商品名称</td>
+                        <td class="auto-style1" style="width: 8%">商品类别</td>
+                        <td class="auto-style1" style="width: 5%">价格</td>
+                        <td class="auto-style1" style="width: 5%">数量</td>
+                        <td class="auto-style1" style="width: 5%">明细类型</td>
+                        <td class="auto-style1" style="width: 5%">时间</td>
+                        <td class="auto-style1" style="width: 8%">公司名</td>
+                        <td class="auto-style1" style="width: 8%">收/进货方</td>
+                        <td class="auto-style1" style="width: 5%">功能</td>
                     </tr>
 
                     <%
@@ -536,7 +631,7 @@
                     %>
                 </table>
             </div>
-            <div class="d-footer" style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center;">
+            <div class="d-footer" style="width: 300px;height: 70px;display: flex;justify-content: space-around;align-items: center; height:0;overflow:hidden;">
                 <asp:Button CssClass="page_bt" ID="shou_ye" OnClick="shou_ye_Click" Text="首页" runat="server" />
                 <asp:Button CssClass="page_bt" ID="shang_ye" OnClick="shang_ye_Click" Text="上一页" runat="server" />
                 <asp:Label runat="server" ID="lblCurrentPage" style=" font-weight:bold"></asp:Label>

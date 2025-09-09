@@ -13,14 +13,16 @@
     <style type="text/css">
 
         .auto-style1 {
-            height: 49px;
+               height: 49px;
             text-align: center;
-            background-color: #2F4056;
+            /*background-color: #2F4056;*/
+            background-color:#143268;
             color: white;
             font-size: 16px;
             font-weight: bold;
-            position: sticky;
-            top: 0;
+            position:sticky;
+            /*border:1px solid white;*/
+            top : 0;
         }
         .header-bottom
         {
@@ -38,13 +40,6 @@
             margin-left: 10px;
         }
 
-        .td_css {
-            text-align: center;
-            height: 40px;
-            background-color: white;
-            border: 0.5px solid #f2f2f2;
-            font-size:16px;
-        }
 
         .select_xl {
             width: 185px;
@@ -52,19 +47,65 @@
             border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
-        .top-div
-        {
-            width: 100%;
-            height: 50px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-start;
-            align-items: center;
+            .td_css {
+            text-align: center;
+            height: 40px;
+            color:black;
+            font-size:14px;
+            background-color: #98c9d9;
+            /*border: 2.5px solid white;*/
         }
-        .table_div
-        {
-            width: 100%;
-            overflow: scroll;
+
+          tr:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        
+        /* 奇数行样式 */
+        tr:nth-child(odd) .td_css {
+            background-color:#D3D3D3;
+        }
+
+        /* 偶数行样式 */
+        tr:nth-child(even) .td_css {
+            background-color: #e0f7fa; 
+        }
+
+         .d-main {
+            overflow:auto;
+            margin-left:1%;
+            margin-top:50px;
+            box-sizing: border-box;
+            padding-left:5px;
+            padding-right:5px;
+            width:97%;
+            height:80%;
+            border:3px solid #D3D3D3;
+             box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            
+        }
+        .d-header {
+            margin-left:1%;
+            padding:5px;
+            width:97%;
+            height:10%;
+            min-height:50px;
+            margin-top:10px;
+           background-color: #D3D3D3;
+           border-radius:5px;
+           box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+           
         }
     </style>
     <script type="text/javascript">

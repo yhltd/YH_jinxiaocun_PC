@@ -123,6 +123,8 @@
     <Content Include="finance\web\assets\js\qrcode.min.js" />
     <Content Include="finance\web\view\downloadExcel.aspx" />
     <Content Include="finance\web\view\downloadApp.aspx" />
+    <Content Include="Images\1111.png" />
+    <Content Include="Images\2222.png" />
     <Content Include="Images\xiazai.png" />
     <Content Include="Images\xiazaitubiao.ico" />
     <Content Include="Images\xiazaitubiao.jpg" />

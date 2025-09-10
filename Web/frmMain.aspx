@@ -557,7 +557,8 @@
 
          .carousel-container {
             width: 100%;
-            height: var(--dinggao);
+            /*height: var(--dinggao);*/
+            height:100px;
             position: relative;
             overflow: hidden;
             margin-bottom:5px;
@@ -767,7 +768,9 @@
             cursor: pointer;
             background-color:#30a99e;
         }
-
+        .carousel-images img {
+            width:100%
+        }
 
 
     </style>
@@ -778,7 +781,10 @@
 
         <div class="carousel-container">
             <button type="button" class="clean-btn-div" onclick="yinClick()">×</button>
-            <div class="carousel-images" id="carouselImages"></div>
+            <div class="carousel-images" id="carouselImages">
+                 <img src="images/2222.png" alt="图5" >
+
+            </div>
         </div>
 
         <div class="carousel-index">

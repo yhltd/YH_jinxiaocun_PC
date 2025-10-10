@@ -170,6 +170,53 @@
             return false;
         };
 
+        document.addEventListener('DOMContentLoaded', function() {
+          const container = document.getElementById('particles');
+          const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                createParticle(container);
+            }
+            
+            function createParticle(parent) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小 (2px - 8px)
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // 随机动画延迟和持续时间
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                
+                // 随机透明度
+                particle.style.opacity = Math.random() * 0.5 + 0.3;
+                
+                parent.appendChild(particle);
+            }
+        });
+
+
+        function switchTab(tabName) {
+            // 切换标签样式
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+        });
+        event.target.classList.add('active');
+            
+        // 切换内容显示
+        document.getElementById('account-login').classList.toggle('hidden', tabName !== 'account');
+        document.getElementById('qrcode-login').classList.toggle('hidden', tabName !== 'qrcode');
+        document.getElementById('phone-login').classList.toggle('hidden', tabName !== 'phone');
+        }
+
+
     </script>
     <style type="text/css">
         .auto-style1 {
@@ -190,16 +237,17 @@
         }
         option {
             text-align:center;
+                color: black;
         }
         </style>
 </head>
 
-<body>
+<body class="particle-container" id="particles">
     <div class="mains">
         <div class="inners">
-            <img src="images/companyLogo.png" height="80" style="float:left;left:20px;position:absolute;" />
+            <img class="floating-img" src="images/companyLogo.png" height="80" style="float:left;left:2px;position:absolute;" />
             <p align="right">
-                <span style="font-size: 12pt" class="font_gray"><%=version%></span>
+                <span style="font-size: 12pt ;color:white" class="font_gray"><%=version%></span>
             </p>
             <%--<div class="lefts">
                 <p align="right" class="pname">
@@ -222,48 +270,56 @@
                     <input type="hidden" value="chklogin" name="reaction">
 
                     <div class="center">
-                        <div class="inner">
-                            <table cellpadding="0" cellspacing="0" id="innnertalbe">
+                   <div class="inner">
+                     <div class="tab-switcher">
+                        <div class="tab active" onclick="switchTab('account')">密码登录</div>
+                        <div class="tab" onclick="switchTab('phone')">手机号登录</div>
+                         <div class="tab" onclick="switchTab('qrcode')">扫码登录</div>
+                     </div>
+                           
 
-                                <tr>
-                                    <td height="60">
+                         <div id="account-login">
+             <table cellpadding="0" cellspacing="0" id="innnertalbe">
+
+                                <tr style="margin-top:10px">
+                                    <td height="50">
                                         <p align="right" style="width: 81px">
-                                            <b><span style="font-size: 13pt">系统：</span></b>
+                                            <b><span style="font-size: 13pt">系&nbsp; 统：</span></b>
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <asp:DropDownList ID="DropDownList3" runat="server" Style="color: wheat; background-color: black" class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="xitong_select"></asp:DropDownList>
+                                        <asp:DropDownList ID="DropDownList3" runat="server" Style="color:#383838; " class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="xitong_select"></asp:DropDownList>
 
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td height="60">
+                                    <td height="50">
                                         <p align="right" style="width: 81px">
                                             <b><span style="font-size: 13pt">数据库：</span></b>
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <asp:DropDownList ID="DropDownList1" runat="server" Style="color: wheat; background-color: black" class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="bian"></asp:DropDownList>
+                                        <asp:DropDownList ID="DropDownList1" runat="server" Style="color:#383838; " class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="bian"></asp:DropDownList>
 
                                     </td>
                                 </tr>
 
                                  <tr>
-                                    <td height="60">
+                                    <td height="50" >
                                         <p align="right" style="width: 81px">
-                                            <b><span style="font-size: 13pt">公 司 名：</span></b>
+                                            <b><span style="font-size: 13pt">公司名：</span></b>
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <asp:DropDownList ID="DropDownList2" runat="server" Style="color: wheat; background-color: black" class="select_w150" ></asp:DropDownList>
+                                        <asp:DropDownList ID="DropDownList2" runat="server" Style="color: #383838; " class="select_w150" ></asp:DropDownList>
                                         </td>
                                 </tr>
 
                                 <tr>
-                                    <td height="60">
+                                    <td height="50" >
                                         <p align="right" style="width: 81px">
-                                            <b><span style="font-size: 13pt">用 户 名：</span></b>
+                                            <b><span style="font-size: 13pt">用户名：</span></b>
                                         </p>
                                     </td>
                                     <td class="auto-style1">
@@ -271,8 +327,8 @@
                                 </tr>
 
                                 <tr>
-                                    <td height="60">
-                                        <p align="right">
+                                    <td height="50">
+                                        <p align="right" style="width: 81px">
                                             <b><span style="font-size: 13pt">密&nbsp; 码：</span></b>
                                         </p>
                                     </td>
@@ -281,10 +337,10 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="center">
-                                        <input name="remember" type="checkbox"  id="remember" style="margin-top: 3px;height: auto;"  />
+                                    <td align="center" style="margin-left:150px">
+                                        <input name="remember" type="checkbox"  id="remember" style="margin-top: 8px;height: auto;"  />
                                     </td>
-                                    <td>
+                                    <td style="margin-left:10px">
                                         <p align="left">
                                             <b><span style="font-size: 13pt">30天内记住密码</span></b>
                                         </p>
@@ -300,7 +356,7 @@
 
                                 <tr>
                                     <td height="49"></td>
-                                    <td class="auto-style1">
+                                    <td class=" btn">
                                         <asp:Button type="button" ID="image" runat="server" Text=" 登 录 " class="LoginSub" OnClick="HtmlBtn_Click" OnClientClick="CheckLogin()" />
 
                                         <asp:Button ID="btcreate" runat="server" Text=" 找回密码 " class="LoginSub" OnClick="Btchangepas_Click" Visible="true" />
@@ -313,19 +369,19 @@
 
                                 </tr>
 
-                                <tr>
+                              <%--  <tr>
                                     <br>
                                     <td height="49"></td>
                                     <td class="auto-style1">
-                                      <%--  <asp:Button ID="Btchangepas" runat="server" Text=" 改密 " class="LoginSub" OnClick="Btchangepas_Click" Visible="True" />
+                                        <asp:Button ID="Btchangepas" runat="server" Text=" 改密 " class="LoginSub" OnClick="Btchangepas_Click" Visible="True" />
                                         <asp:Button ID="frmmain" runat="server" Text=" 主页面 " class="LoginSub" OnClick="Btmain_Click" Visible="False" />
-                                        --%>
+                                        
                                         <br>
                                         <span style="color: #FF0000;"></span>
                                     </td>
 
 
-                                </tr>
+                                </tr>--%>
                               <%--  <tr>
                                     <td align="center" colspan="5">
                                         <asp:Button ID="Button1" runat="server" Text=" 游客登录 " class="NOLoginSub" OnClick="HtmlNOlogin_Click" Visible="True" Width="285px" />
@@ -336,7 +392,28 @@
                                     </td>
                                 </tr>--%>
                             </table>
-                        </div>
+            </div>
+                        <div id="qrcode-login" class="hidden">
+                <div class="qrcode-container">
+                    <div class="qrcode-placeholder"></div>
+                    <p class="qrcode-tip">请使用手机APP扫描二维码登录</p>
+                    <button type="button" class="btn2" onclick="refreshQRCode()">刷新二维码</button>
+                </div>
+            </div>
+
+                         <div id="phone-login" class="hidden">
+                <div class="form-group">
+                        <label for="username">手机号</label>
+                        <input type="text" id="Text1" placeholder="请输入手机号">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">验证码</label>
+                        <input style="  width: 81%;border-right: 0;border-radius: 8px 0 0 8px;" type="password" id="password1" placeholder="请输入验证码">
+                        <button class="btn-yzm"  disabled="disabled">获取验证码</button>
+                    </div>
+                    <button style="width:100%" type="button" class="btn2" onclick="login()">登录</button>
+            </div>
+                     
                         <div class="clearfix"></div>
 
                     </div>
@@ -347,11 +424,11 @@
         </div>
         <div class="ui-login-footer">
             <p style="vertical-align:bottom;line-height:20px">
-                <span class="font_gray">云合未来计算机技术有限公司  © Copyright 2018-2030   联系电话：16619776280</span>
+                <span class="font_gray" style="color:white">云合未来计算机技术有限公司  © Copyright 2018-2030   联系电话：16619776280</span>
                 <%--辽ICP备19018259号 云合未来计算机技术有限公司 技术支持 www.yhocn.cn--%>
             </p>
             <p style="vertical-align:bottom;line-height:20px">
-                <span class="font_gray">云合未来计算机技术有限公司 技术支持 www.yhocn.cn</span>
+                <span class="font_gray" style="color:white">云合未来计算机技术有限公司 技术支持 www.yhocn.cn</span>
             </p>
         </div>
     </div>

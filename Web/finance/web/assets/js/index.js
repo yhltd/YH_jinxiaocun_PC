@@ -266,10 +266,14 @@ $(document).ready(function () {
 });
 
 function getPushNews() {
+    var savedCompany = localStorage.getItem('savedCompany') || '';
+
     $.ajax({
         type: "POST",
         url: "web_service/space.asmx/GetPushNewsData",
-        data: JSON.stringify({}),
+        data: JSON.stringify({
+            companyName: savedCompany  // 传递公司名称参数
+        }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -287,6 +291,41 @@ function getPushNews() {
                     tankuan = pushnewsarr[0].xuankuan;
                     console.log(" 返回数据tankuan", tankuan);
                     dinggao = pushnewsarr[0].topgao || "100";
+
+
+                    if (pushnewsarr[0].beizhu3 && pushnewsarr[0].beizhu3.trim() !== "") {
+                        var headerTitle = document.querySelector('.logo');
+                        if (headerTitle) {
+                            headerTitle.textContent = pushnewsarr[0].beizhu3.trim();
+                        }
+                    }
+
+                    if (pushnewsarr[0].beizhu2 && pushnewsarr[0].beizhu2.trim() !== "") {
+                        var logoImage = "data:image/jpg;base64," + pushnewsarr[0].beizhu2;
+                        var logoImg = document.querySelector('a[href="http://www.yhocn.cn"] img.logo1');
+
+                        if (logoImg) {
+                            logoImg.src = logoImage;
+                            console.log("Logo图片已替换为base64图片");
+                        } else {
+                            console.log("未找到目标logo图片元素");
+                        }
+                    }
+
+                    if (pushnewsarr && pushnewsarr.length > 0 && pushnewsarr[0].beizhu1 && pushnewsarr[0].beizhu1.trim() === "隐藏广告") {
+
+                        // 隐藏两个div
+                        var carouselContainer = document.querySelector('.carousel-container');
+                        var carouselIndex = document.querySelector('.carousel-index');
+
+                        if (carouselContainer) carouselContainer.style.display = 'none';
+                        if (carouselIndex) carouselIndex.style.display = 'none';
+
+                        // 直接返回，不执行后续逻辑
+                        return;
+                    }
+
+
                     if (pushnewsarr[0].tptop1 && pushnewsarr[0].tptop1.trim() !== "") {
                         xuantu[0].tptop1 = "data:image/jpg;base64," + pushnewsarr[0].tptop1;
                     } else {
@@ -320,23 +359,23 @@ function getPushNews() {
 
                     images = [
                         {
-                            url: images[0].tptop2 || "https://picsum.photos/id/10/800/500",
+                            url: images[0].tptop2,
                             alt: "图1"
                         },
                         {
-                            url: images[1].tptop3 || "https://picsum.photos/id/11/800/500",
+                            url: images[1].tptop3,
                             alt: "图2"
                         },
                         {
-                            url: images[2].tptop4 || "https://picsum.photos/id/12/800/500",
+                            url: images[2].tptop4,
                             alt: "图3"
                         },
                         {
-                            url: images[3].tptop5 || "https://picsum.photos/id/10/800/500",
+                            url: images[3].tptop5,
                             alt: "图4"
                         },
                         {
-                            url: images[4].tptop6 || "https://picsum.photos/id/12/800/500",
+                            url: images[4].tptop6,
                             alt: "图5"
                         }
                     ];

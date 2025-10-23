@@ -15,7 +15,6 @@
             var oPswd = document.getElementById('password');
             var oRemember = document.getElementById('remember');
             var oForm = document.getElementById('MyForm');
-
             //页面初始化时，如果帐号密码cookie存在则填充
             if (getCookie('user') && getCookie('pwd')) {
                 oUser.value = getCookie('user');
@@ -65,6 +64,8 @@
 
         $(document).ready(function(){
 
+            loadPushNewsData();
+
             var xiala1 = document.getElementById('DropDownList3');
             var xiala2 = document.getElementById('DropDownList1');
             var xiala3 = document.getElementById('DropDownList2');
@@ -73,6 +74,7 @@
             var user = getUrlParams("user")
             console.log(user)
             if (user != false) {
+                alert("beidiaoyong")
                 //var companyName = xiala3.value;
                 //console.log("记录的公司名称:", companyName);
 
@@ -141,18 +143,50 @@
             setCookie(name, null, -1);
         };
 
-
         function CheckLogin() {
+            // 验证用户名
             if (document.MyForm.username.value == "") {
                 alert("请输入用户名再提交！");
                 document.MyForm.username.focus();
                 return false
             }
+    
+            // 验证密码
             if (document.MyForm.password.value == "") {
                 alert("请输入密码再提交！");
                 document.MyForm.password.focus()
                 return false
             }
+    
+            // 获取公司名并保存到 localStorage
+            var companySelect = document.getElementById('DropDownList2');
+            if (companySelect) {
+                var companyName = companySelect.options[companySelect.selectedIndex].text;
+                if (companyName && companyName.trim() !== '') {
+                    localStorage.setItem('savedCompany', companyName);
+                    console.log('保存company到localStorage:', companyName);
+                } else {
+                    console.log('公司名称为空，不保存到localStorage');
+                }
+            } else {
+                console.log('未找到公司名下拉框');
+            }
+
+            //系统名称
+            var xtSelect = document.getElementById('DropDownList1');
+            if (xtSelect) {
+                var xtName = xtSelect.options[xtSelect.selectedIndex].text;
+                if (xtName && xtName.trim() !== '') {
+                    localStorage.setItem('savedSys', xtName);
+                    console.log('保存company到localStorage:', xtName);
+                } else {
+                    console.log('公司名称为空，不保存到localStorage');
+                }
+            } else {
+                console.log('未找到公司名下拉框');
+            }
+    
+            return true; // 验证通过，允许表单提交
         }
 
         function getUrlParams(key) {
@@ -217,6 +251,50 @@
         }
 
 
+
+
+        function loadPushNewsData() {
+            var savedCompany = localStorage.getItem('savedCompany') || '';
+            var savedsys = localStorage.getItem('savedSys') || '';
+            // 使用jQuery AJAX调用WebMethod
+            $.ajax({
+                type: "POST",
+                url: "login.aspx/GetPushNewsLogo", // 注意：这里应该是当前页面或其他包含WebMethod的页面
+                data: JSON.stringify({ 
+                    companyName: savedCompany, 
+                    systemName: savedsys 
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    
+                    console.log("完整响应:", response);
+                    console.log("返回数据:", response.d);
+                    if (response.d[0].beizhu2.trim() !== "") {
+                        var logoImg = document.querySelector('img.floating-img');
+                        if (logoImg) {
+                            logoImg.src = "data:image/jpg;base64," + response.d[0].beizhu2;
+                        }
+                    }
+
+                    if (response.d[0].beizhu3.trim() !== "") {
+    
+                        // 替换标题文本
+                        var titleElement = document.querySelector('.lefts span');
+                        if (titleElement) {
+                            titleElement.textContent = response.d[0].beizhu3;
+                            console.log("标题已替换为:", response.d[0].beizhu3);
+                        }
+                    }
+                       
+                },
+                error: function (xhr, status, error) {
+                    console.error("加载推送新闻数据失败:", error);
+                }
+            });
+        }
+
+
     </script>
     <style type="text/css">
         .auto-style1 {
@@ -239,6 +317,11 @@
             text-align:center;
                 color: black;
         }
+       .particle-container {
+    background: url('images/beijinglog.png') no-repeat center center;
+    background-size: cover;
+}
+
         </style>
 </head>
 
@@ -249,13 +332,10 @@
             <p align="right">
                 <span style="font-size: 12pt ;color:white" class="font_gray"><%=version%></span>
             </p>
-            <%--<div class="lefts">
-                <p align="right" class="pname">
-                    <b><span style="font-size: 36pt">云和未来一体化系统</span></b>
-                </p>
-            </div>--%>
+            
 
             <div class="login">
+
                 <form name="MyForm" id="MyForm" runat="server" method="post" action="login.aspx">
                     <div style="display:none">
                         <input type="hidden" id="_DropDownList1" name ="_DropDownList1" value="" />
@@ -270,7 +350,15 @@
                     <input type="hidden" value="chklogin" name="reaction">
 
                     <div class="center">
+                        <div class="lefts" style="text-align: center;width:100%">
+                            <div style="text-align: center;width:100%" >
+                                <b><span style="font-size: 42pt; color:white;">云和未来一体化系统</span></b>
+                            </div>
+                    
+
+            </div>
                    <div class="inner">
+
                      <div class="tab-switcher">
                         <div class="tab active" onclick="switchTab('account')">密码登录</div>
                         <div class="tab" onclick="switchTab('phone')">手机号登录</div>

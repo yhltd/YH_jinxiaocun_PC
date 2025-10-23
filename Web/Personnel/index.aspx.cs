@@ -20,12 +20,21 @@ namespace Web.Personnel
         SqlCommand cmd = null;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["gongsi"].ToString() == null)
+            if (Session["gongsi"] == null || string.IsNullOrEmpty(Session["gongsi"].ToString()))
             {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+                return;
             }
 
-            List<product_pushnews> newsData = GetPushNewsData();
+            // 获取公司名称 - 从Session中获取
+            string companyName = Session["gongsi"].ToString();
+            if (companyName == "上海恒晨人力资源有限公司")
+            {
+                companyName = "上海恒晨人力资源有限公司_hr";
+            }
+
+            // 传递公司名称参数
+            List<product_pushnews> newsData = GetPushNewsData(companyName);
             Response.Write("<script>console.log('获取到数据:', " + Newtonsoft.Json.JsonConvert.SerializeObject(newsData) + ");</script>");
             string jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(newsData);
             string script = "var pushNewsData = " + jsonData + ";";
@@ -109,12 +118,12 @@ namespace Web.Personnel
             }
         }
 
-        public List<product_pushnews> GetPushNewsData()
+        public List<product_pushnews> GetPushNewsData(string companyName)
         {
             try
             {
                 PushNewsDao dao = new PushNewsDao();
-                return dao.SelectListRS();
+                return dao.SelectListRS(companyName);
             }
             catch (InvalidOperationException)
             {

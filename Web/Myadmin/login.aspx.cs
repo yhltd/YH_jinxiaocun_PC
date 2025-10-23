@@ -15,11 +15,36 @@ using Web.jxc_service;
 using Web.scheduling;
 using Web.Server;
 using Web.Service;
+using Web.Pushnews.dao;
+using Web.Pushnews.model;
 
 namespace Web
 {
     public partial class login : System.Web.UI.Page
     {
+
+        [System.Web.Services.WebMethod]
+        public static List<product_pushnews> GetPushNewsLogo(string companyName, string systemName)
+        {
+            // 检查两个参数是否都有值，没有则直接返回空列表
+            if (string.IsNullOrEmpty(companyName) || string.IsNullOrEmpty(systemName))
+            {
+                return new List<product_pushnews>();
+            }
+
+            // 两个参数都有值，执行查询
+            PushNewsDao pushNewsDao = new PushNewsDao();
+            return pushNewsDao.SelectListByCompanyAndSystem(companyName, systemName);
+        }
+
+
+
+
+
+
+
+
+
         public string alterinfo1;
         public string user;
         public string pass;

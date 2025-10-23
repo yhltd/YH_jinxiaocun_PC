@@ -41,7 +41,7 @@
             <button type="button" class="index-btn-div" onclick="tanClick()">×</button>
             <div class="index-images">
                 <div class="index-item" id="Div2">
-                    <img src="https://picsum.photos/id/13/800/500" />
+                    <img src="" />
                 </div>
             </div>
          </div>
@@ -57,9 +57,10 @@
                 overflow: hidden;">
             <div class="north-left" style="color:white">
                 <a href="http://www.yhocn.cn" >
-                <img src="../assets/img/tm_logo.png" style="height: 55px;"/>
+                <img class="logo1" src="../assets/img/tm_logo.png" style="height: 55px;"/>
                 </a>
-                云合未来财务系统
+                
+                <div class="logo" style="color:white">云合未来财务系统</div>
             </div>
 
             <div class="marquee-container">

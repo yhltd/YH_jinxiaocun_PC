@@ -56,28 +56,26 @@ namespace Web
 
 
        [System.Web.Services.WebMethod]
-        public static List<product_pushnews> GetPushNewsData() 
+        public static List<product_pushnews> GetPushNewsData(string companyName)
         {
             try
             {
                 var context = HttpContext.Current;
                 var user = (yh_jinxiaocun_user)context.Session["user"];
 
-
                 if (user == null)
                     return new List<product_pushnews>();
-
 
                 if (user.AdminIS != null && user.AdminIS.Equals("false"))
                     return new List<product_pushnews>();
 
-    
                 PushNewsDao pushNewsDao = new PushNewsDao();
-                return pushNewsDao.SelectList(); 
+                return pushNewsDao.SelectList(companyName); // 传递公司名称参数
             }
             catch (Exception ex)
             {
-                return new List<product_pushnews>(); 
+     
+                return new List<product_pushnews>();
             }
         }
 

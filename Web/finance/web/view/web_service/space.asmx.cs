@@ -54,12 +54,12 @@ namespace Web.finance.web.view.web_service
 
         //新加
         [WebMethod]
-        public List<product_pushnews> GetPushNewsData()
+        public List<product_pushnews> GetPushNewsData(string companyName)
         {
             try
             {
                 PushNewsDao dao = new PushNewsDao();
-                return dao.SelectListCW();
+                return dao.SelectListCW(companyName);  // 传递公司名称参数
             }
             catch (InvalidOperationException)
             {

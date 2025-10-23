@@ -60,14 +60,14 @@ namespace Web.scheduling.controller
         }
 
 
-        //新加
         [WebMethod]
-        public string GetPushNewsData()
+        public string GetPushNewsData(string companyName)
         {
             try
             {
                 PushNewsDao dao = new PushNewsDao();
-                var data = dao.SelectListPC();
+                // 传递公司名称参数
+                var data = dao.SelectListPC(companyName);
 
                 // 创建响应对象
                 var response = new

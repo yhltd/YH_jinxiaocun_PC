@@ -31,7 +31,7 @@
             <button type="button" class="index-btn-div" @click="tanClick()">×</button>
             <div class="index-images">
                 <div class="index-item" id="Div2">
-                    <img src="https://picsum.photos/id/13/800/500" />
+                    <img src="" />
                 </div>
             </div>
          </div>
@@ -372,14 +372,42 @@
 
                 getPushNews: function () {
                     var _this = this;
+
+                    var savedCompany = localStorage.getItem('savedCompany') || '';
                     axios.post(myUrl('user/GetPushNewsData'), {
+                        companyName: savedCompany  // 传递公司名称参数
                     }).then(function (res) {
                         if (res.code == 200) {
+
+                            
+
+
                             var pushnewsarr = res.data;
                             var textboxValue = pushnewsarr[0].textbox;
                             var jsonData = pushnewsarr[0].tptop1;
                             var tankuan = pushnewsarr[0].xuankuan;
                             var dinggaoValue = pushnewsarr[0].topgao || "100";
+
+
+                            if (pushnewsarr[0].beizhu3 && pushnewsarr[0].beizhu3.trim() !== "") {
+                                var headerTitle = document.querySelector('.header-title');
+                                if (headerTitle) {
+                                    headerTitle.textContent = pushnewsarr[0].beizhu3.trim();
+                                }
+                            }
+
+                            if (pushnewsarr && pushnewsarr.length > 0 && pushnewsarr[0].beizhu1 && pushnewsarr[0].beizhu1.trim() === "隐藏广告") {
+
+                                // 隐藏两个div
+                                var carouselContainer = document.querySelector('.carousel-container');
+                                var carouselIndex = document.querySelector('.carousel-index');
+
+                                if (carouselContainer) carouselContainer.style.display = 'none';
+                                if (carouselIndex) carouselIndex.style.display = 'none';
+
+                                // 直接返回，不执行后续逻辑
+                                return;
+                            }
 
                             if (jsonData && jsonData.trim() !== "") {
                                 _this.xuantu[0].tptop1 = "data:image/jpg;base64," + jsonData;
@@ -427,23 +455,23 @@
 
                             _this.images = [
                                 {
-                                    url: _this.image[0].tptop2 || "https://picsum.photos/id/10/800/500",
+                                    url: _this.image[0].tptop2,
                                     alt: "图1"
                                 },
                                 {
-                                    url: _this.image[1].tptop3 || "https://picsum.photos/id/11/800/500",
+                                    url: _this.image[1].tptop3,
                                     alt: "图2"
                                 },
                                 {
-                                    url: _this.image[2].tptop4 || "https://picsum.photos/id/12/800/500",
+                                    url: _this.image[2].tptop4,
                                     alt: "图3"
                                 },
                                 {
-                                    url: _this.image[3].tptop5 || "https://picsum.photos/id/10/800/500",
+                                    url: _this.image[3].tptop5,
                                     alt: "图4"
                                 },
                                 {
-                                    url: _this.image[4].tptop6 || "https://picsum.photos/id/12/800/500",
+                                    url: _this.image[4].tptop6,
                                     alt: "图5"
                                 }
                             ];

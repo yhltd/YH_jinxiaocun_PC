@@ -50,10 +50,14 @@
         });
 
         function getPushNews() {
+
+            var savedCompany = localStorage.getItem('savedCompany') || '';
             $.ajax({
                 type: "POST",
                 url: "frmMain.aspx/GetPushNewsData",
-                data: JSON.stringify({}),
+                data: JSON.stringify({
+                    companyName: savedCompany  // 传递公司名称参数
+                }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (result) {
@@ -62,7 +66,50 @@
                         setList(result.d);
                         pushnewsarr = result.d;
 
+                       
+
                         if (pushnewsarr && pushnewsarr.length > 0) {
+                            var firstNews = pushnewsarr[0];
+                            if (firstNews.beizhu2 && firstNews.beizhu2.trim() !== "") {
+                                var logoImage = "data:image/jpg;base64," + firstNews.beizhu2;
+                                var logoImg = document.querySelector('a[href="http://www.yhocn.cn"] img.logo');
+
+                                if (logoImg) {
+                                    logoImg.src = logoImage;
+                                    console.log("Logo图片已替换为base64图片");
+                                } else {
+                                    console.log("未找到目标logo图片元素");
+                                }
+                            }
+
+                            // 判断beizhu3字段 - 替换文字内容
+                            if (firstNews.beizhu3 && firstNews.beizhu3.trim() !== "") {
+                                var navLink = document.querySelector('a[href="http://www.yhocn.cn"].leftNav_li_header');
+                                if (navLink) {
+                                    // 找到包含"云合未来进销存"文字的文本节点
+                                    for (var i = 0; i < navLink.childNodes.length; i++) {
+                                        if (navLink.childNodes[i].nodeType === 3 && // 文本节点
+                                            navLink.childNodes[i].textContent.includes('云合未来进销存')) {
+                                            navLink.childNodes[i].textContent = firstNews.beizhu3;
+                                            console.log("文字内容已替换为:", firstNews.beizhu3);
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    console.log("未找到目标导航链接元素");
+                                }
+                            }
+
+                            if (firstNews.beizhu1 && firstNews.beizhu1.trim() === "隐藏广告") {
+                                console.log("检测到隐藏广告，隐藏轮播图容器");
+
+                                // 隐藏两个div
+                                $('.carousel-container').hide();
+                                $('.carousel-index').hide();
+
+                                // 直接返回，不执行后续逻辑
+                                return;
+                            }
                             // 获取第一个元素的 textbox 值
                             textboxValue = pushnewsarr[0].textbox;
                             jsonData = pushnewsarr[0].tptop1;
@@ -101,23 +148,23 @@
                            
                             images = [
                                 {
-                                    url: images[0].tptop2 || "https://picsum.photos/id/10/800/500",
+                                    url: images[0].tptop2 ,
                                     alt: "图1"
                                 },
                                 {
-                                    url: images[1].tptop3 || "https://picsum.photos/id/11/800/500",
+                                    url: images[1].tptop3,
                                     alt: "图2"
                                 },
                                 {
-                                    url: images[2].tptop4 || "https://picsum.photos/id/12/800/500",
+                                    url: images[2].tptop4,
                                     alt: "图3"
                                 },
                                 {
-                                    url: images[3].tptop5 || "https://picsum.photos/id/10/800/500",
+                                    url: images[3].tptop5,
                                     alt: "图4"
                                 },
                                 {
-                                    url: images[4].tptop6 || "https://picsum.photos/id/12/800/500",
+                                    url: images[4].tptop6,
                                     alt: "图5"
                                 }
                             ];
@@ -791,7 +838,7 @@
             <button type="button" class="index-btn-div" onclick="tanClick()">×</button>
             <div class="index-images">
                 <div class="index-item" id="Div1">
-                    <img src="https://picsum.photos/id/13/800/500" alt="图5">
+                    <img src="" alt="图5">
                 </div>
             </div>
          </div>

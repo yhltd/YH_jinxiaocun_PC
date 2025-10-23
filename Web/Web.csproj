@@ -1324,6 +1324,7 @@
     <Content Include="Myadmin\images\1221111.jpg" />
     <Content Include="Myadmin\images\background2.jpg" />
     <Content Include="Myadmin\images\background.jpg" />
+    <Content Include="Myadmin\images\beijinglog.png" />
     <Content Include="Myadmin\images\companyLogo.png" />
     <Content Include="Myadmin\images\gbg.jpg" />
     <Content Include="Myadmin\images\gs_logo.png" />

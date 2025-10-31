@@ -318,9 +318,9 @@
                 color: black;
         }
        .particle-container {
-    background: url('images/beijinglog.png') no-repeat center center;
-    background-size: cover;
-}
+            background: url('images/beijinglog.png') no-repeat center center;
+            background-size: cover;
+        }
 
         </style>
 </head>
@@ -354,9 +354,7 @@
                             <div style="text-align: center;width:100%" >
                                 <b><span style="font-size: 42pt; color:white;">云和未来一体化系统</span></b>
                             </div>
-                    
-
-            </div>
+                        </div>
                    <div class="inner">
 
                      <div class="tab-switcher">
@@ -367,7 +365,7 @@
                            
 
                          <div id="account-login">
-             <table cellpadding="0" cellspacing="0" id="innnertalbe">
+                         <table cellpadding="0" cellspacing="0" id="innnertalbe">
 
                                 <tr style="margin-top:10px">
                                     <td height="50">
@@ -401,7 +399,7 @@
                                     </td>
                                     <td class="auto-style1">
                                         <asp:DropDownList ID="DropDownList2" runat="server" Style="color: #383838; " class="select_w150" ></asp:DropDownList>
-                                        </td>
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -411,7 +409,8 @@
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <input name="username" autocomplete="off" type="text" class="select_w150" id="username" size="16" maxlength="100" value="<%=user%>" /></td>
+                                        <input name="username" autocomplete="off" type="text" class="select_w150" id="username" size="16" maxlength="100" value="<%=user%>" />
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -481,7 +480,7 @@
                                 </tr>--%>
                             </table>
             </div>
-                        <div id="qrcode-login" class="hidden">
+            <div id="qrcode-login" class="hidden">
                 <div class="qrcode-container">
                     <div class="qrcode-placeholder"></div>
                     <p class="qrcode-tip">请使用手机APP扫描二维码登录</p>
@@ -489,17 +488,17 @@
                 </div>
             </div>
 
-                         <div id="phone-login" class="hidden">
+            <div id="phone-login" class="hidden">
                 <div class="form-group">
                         <label for="username">手机号</label>
                         <input type="text" id="Text1" placeholder="请输入手机号">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">验证码</label>
-                        <input style="  width: 81%;border-right: 0;border-radius: 8px 0 0 8px;" type="password" id="password1" placeholder="请输入验证码">
-                        <button class="btn-yzm"  disabled="disabled">获取验证码</button>
-                    </div>
-                    <button style="width:100%" type="button" class="btn2" onclick="login()">登录</button>
+                </div>
+                <div class="form-group">
+                    <label for="password">验证码</label>
+                    <input style="  width: 81%;border-right: 0;border-radius: 8px 0 0 8px;" type="password" id="password1" placeholder="请输入验证码">
+                    <button class="btn-yzm"  disabled="disabled">获取验证码</button>
+                </div>
+                <button style="width:100%" type="button" class="btn2" onclick="login()">登录</button>
             </div>
                      
                         <div class="clearfix"></div>

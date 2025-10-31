@@ -99,6 +99,8 @@ body{
     bottom:0;
     margin: auto;
 	}
+
+
 .login .center .inner #innnertalbe{
 	width:450px;}	
 .login .center .inner input{
@@ -127,6 +129,7 @@ body{
     transition: all 0.3s;
     margin-left: 30px;
 	}
+
  .NOLoginSub{
 	border-style: none;
     border-color: inherit;
@@ -140,6 +143,7 @@ body{
 	color:#b6ff00;
 	font-family:"Microsoft Yahei",Arial, Helvetica, sans-serif;
 	}
+
 .login .center .inner .LoginSub:hover{
 	border:none;
      transform: translateY(-2px);
@@ -227,7 +231,7 @@ body{
 
          .tab-switcher {
               display: flex;
-    border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #eee;
         background:white;
         border-radius: 20px 20px 0 0;
             font-size: 15px;
@@ -257,8 +261,8 @@ body{
             flex-direction: column;
             align-items: center;
             padding: 20px 0;
-                  background: white;
-    border-radius: 0 0 20px 20px;
+            background: white;
+            border-radius: 0 0 20px 20px;
         }
         .qrcode-placeholder {
             width: 180px;
@@ -350,6 +354,6 @@ table tr {
     display: flex;
     width: 450px;
 }
-    table tr td p {
-        margin-top: 3px;
-    }
+table tr td p {
+    margin-top: 3px;
+}

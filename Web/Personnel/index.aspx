@@ -144,7 +144,7 @@
                     }
                 }
 
-                if (pushnewsarr && pushnewsarr.length > 0 && pushnewsarr[0].beizhu1 && pushnewsarr[0].beizhu1.trim() === "隐藏广告") {
+                if (pushnewsarr && pushnewsarr.length > 0 && pushnewsarr[0].beizhu1 && pushnewsarr[0].beizhu1.trim() === "隐藏广告" || !pushnewsarr || pushnewsarr.length === 0) {
 
                     // 隐藏两个div
                     var carouselContainer = document.querySelector('.carousel-container');
@@ -354,7 +354,7 @@
         .carousel-images {
             display: flex;
             width: 300%;
-            height: 100%;
+            /*height: 100%;*/
             transition: transform 0.5s ease-in-out;
         }
 

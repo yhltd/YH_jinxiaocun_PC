@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="yh_jinxiaocun_excelModelStoreContainer" CdmEntityContainer="yh_jinxiaocun_excelEntities3">
+    <EntitySetMapping Name="yh_jinxiaocun_chanpin_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_chanpin_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_chanpin_mssql">
+          <ScalarProperty Name="C_id" ColumnName="_id" />
+          <ScalarProperty Name="C_openid" ColumnName="_openid" />
+          <ScalarProperty Name="bigImg" ColumnName="bigImg" />
+          <ScalarProperty Name="finduser" ColumnName="finduser" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="value0" ColumnName="value0" />
+          <ScalarProperty Name="value1" ColumnName="value1" />
+          <ScalarProperty Name="value2" ColumnName="value2" />
+          <ScalarProperty Name="value3" ColumnName="value3" />
+          <ScalarProperty Name="value4" ColumnName="value4" />
+          <ScalarProperty Name="value5" ColumnName="value5" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_chuhuofang_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_chuhuofang_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_chuhuofang_mssql">
+          <ScalarProperty Name="C_openid" ColumnName="_openid" />
+          <ScalarProperty Name="beizhu" ColumnName="beizhu" />
+          <ScalarProperty Name="finduser" ColumnName="finduser" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="lianxidizhi" ColumnName="lianxidizhi" />
+          <ScalarProperty Name="lianxifangshi" ColumnName="lianxifangshi" />
+          <ScalarProperty Name="C_id" ColumnName="_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_jichuziliao_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_jichuziliao_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_jichuziliao_mssql">
+          <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lei_bie" ColumnName="lei_bie" />
+          <ScalarProperty Name="dan_wei" ColumnName="dan_wei" />
+          <ScalarProperty Name="shou_huo" ColumnName="shou_huo" />
+          <ScalarProperty Name="gong_huo" ColumnName="gong_huo" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="zh_name" ColumnName="zh_name" />
+          <ScalarProperty Name="gs_name" ColumnName="gs_name" />
+          <ScalarProperty Name="mark1" ColumnName="mark1" />
+          <ScalarProperty Name="bianyuan" ColumnName="bianyuan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_jinhuofang_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_jinhuofang_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_jinhuofang_mssql">
+          <ScalarProperty Name="C_id" ColumnName="_id" />
+          <ScalarProperty Name="C_openid" ColumnName="_openid" />
+          <ScalarProperty Name="beizhu" ColumnName="beizhu" />
+          <ScalarProperty Name="finduser" ColumnName="finduser" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="lianxidizhi" ColumnName="lianxidizhi" />
+          <ScalarProperty Name="lianxifangshi" ColumnName="lianxifangshi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_kucun_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_kucun_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_kucun_mssql">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="shou_jia" ColumnName="shou_jia" />
+          <ScalarProperty Name="jin_jia" ColumnName="jin_jia" />
+          <ScalarProperty Name="lei_lb" ColumnName="lei_lb" />
+          <ScalarProperty Name="shu_liang" ColumnName="shu_liang" />
+          <ScalarProperty Name="jia_ge" ColumnName="jia_ge" />
+          <ScalarProperty Name="ri_qi" ColumnName="ri_qi" />
+          <ScalarProperty Name="gong_huo" ColumnName="gong_huo" />
+          <ScalarProperty Name="shou_huo" ColumnName="shou_huo" />
+          <ScalarProperty Name="dan_hao" ColumnName="dan_hao" />
+          <ScalarProperty Name="tou_xiang" ColumnName="tou_xiang" />
+          <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
+          <ScalarProperty Name="bei_zhu" ColumnName="bei_zhu" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="zh_name" ColumnName="zh_name" />
+          <ScalarProperty Name="gs_name" ColumnName="gs_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_mingxi_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_mingxi_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_mingxi_mssql">
+          <ScalarProperty Name="C_id" ColumnName="_id" />
+          <ScalarProperty Name="C_openid" ColumnName="_openid" />
+          <ScalarProperty Name="cpid" ColumnName="cpid" />
+          <ScalarProperty Name="cpjj" ColumnName="cpjj" />
+          <ScalarProperty Name="cplb" ColumnName="cplb" />
+          <ScalarProperty Name="cpname" ColumnName="cpname" />
+          <ScalarProperty Name="cpsj" ColumnName="cpsj" />
+          <ScalarProperty Name="cpsl" ColumnName="cpsl" />
+          <ScalarProperty Name="finduser" ColumnName="finduser" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="mxtype" ColumnName="mxtype" />
+          <ScalarProperty Name="orderid" ColumnName="orderid" />
+          <ScalarProperty Name="shijian" ColumnName="shijian" />
+          <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
+          <ScalarProperty Name="shou_h" ColumnName="shou_h" />
+          <ScalarProperty Name="zh_name" ColumnName="zh_name" />
+          <ScalarProperty Name="gs_name" ColumnName="gs_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_qichushu_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_qichushu_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_qichushu_mssql">
+          <ScalarProperty Name="C_id" ColumnName="_id" />
+          <ScalarProperty Name="C_openid" ColumnName="_openid" />
+          <ScalarProperty Name="cpid" ColumnName="cpid" />
+          <ScalarProperty Name="cpjg" ColumnName="cpjg" />
+          <ScalarProperty Name="cpjj" ColumnName="cpjj" />
+          <ScalarProperty Name="cplb" ColumnName="cplb" />
+          <ScalarProperty Name="cpname" ColumnName="cpname" />
+          <ScalarProperty Name="cpsj" ColumnName="cpsj" />
+          <ScalarProperty Name="cpsl" ColumnName="cpsl" />
+          <ScalarProperty Name="mxtype" ColumnName="mxtype" />
+          <ScalarProperty Name="shijian" ColumnName="shijian" />
+          <ScalarProperty Name="zh_name" ColumnName="zh_name" />
+          <ScalarProperty Name="gs_name" ColumnName="gs_name" />
+          <ScalarProperty Name="mark1" ColumnName="mark1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_user_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_user_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_user_mssql">
+          <ScalarProperty Name="C_id" ColumnName="_id" />
+          <ScalarProperty Name="AdminIS" ColumnName="AdminIS" />
+          <ScalarProperty Name="Btype" ColumnName="Btype" />
+          <ScalarProperty Name="Createdate" ColumnName="Createdate" />
+          <ScalarProperty Name="C_openid" ColumnName="_openid" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="jigoudaima" ColumnName="jigoudaima" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="mi_bao" ColumnName="mi_bao" />
+          <ScalarProperty Name="C_id1" ColumnName="C_id" />
+          <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
+          <ScalarProperty Name="touxiang" ColumnName="touxiang" />
+          <ScalarProperty Name="shujuku" ColumnName="shujuku" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_yongliaosheding_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_yongliaosheding_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_yongliaosheding_mssql">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
+          <ScalarProperty Name="yuan_liao_name" ColumnName="yuan_liao_name" />
+          <ScalarProperty Name="yuan_liao_sl" ColumnName="yuan_liao_sl" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="yl_tx" ColumnName="yl_tx" />
+          <ScalarProperty Name="zh_name" ColumnName="zh_name" />
+          <ScalarProperty Name="gs_name" ColumnName="gs_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_zhengli_mssql">
+      <EntityTypeMapping TypeName="yh_jinxiaocun_excelModel.yh_jinxiaocun_zhengli_mssql">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_zhengli_mssql">
+          <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="lei_bie" ColumnName="lei_bie" />
+          <ScalarProperty Name="dan_wei" ColumnName="dan_wei" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="zh_name" ColumnName="zh_name" />
+          <ScalarProperty Name="gs_name" ColumnName="gs_name" />
+          <ScalarProperty Name="beizhu" ColumnName="beizhu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

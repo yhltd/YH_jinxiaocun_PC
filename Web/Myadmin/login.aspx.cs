@@ -17,6 +17,7 @@ using Web.Server;
 using Web.Service;
 using Web.Pushnews.dao;
 using Web.Pushnews.model;
+using MySql.Data.MySqlClient;
 
 namespace Web
 {
@@ -67,6 +68,7 @@ namespace Web
 
         SqlConnection conn = null;
         SqlConnection conn2 = null;
+        SqlConnection conn3 = null;
         SqlDataReader str = null;
         SqlCommand cmd = null;
 
@@ -135,7 +137,13 @@ namespace Web
             }
             else if (DropDownList1.SelectedItem.Text == "云合未来进销存系统")
             {
+                conn3 = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_jinxiaocun_excel;Uid=sa;Pwd=Lyh07910_001;");
+                if (conn3.State == ConnectionState.Closed)
+                {
+                    conn3.Open();
+                }
                 DropDownList2.Items.Clear();
+                Session["shujuku"] = 1;
                 UserModel userModel = new UserModel();
                 try
                 {
@@ -551,6 +559,23 @@ namespace Web
             else if (servename.ToString() == "云合未来进销存系统")
             {
                 UserModel userModel = new UserModel();
+                conn3 = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_jinxiaocun_excel;Uid=sa;Pwd=Lyh07910_001;");
+                if (conn3.State == ConnectionState.Closed)
+                {
+                    conn3.Open();
+                }
+                Session["shujuku"] = 0;
+                string sqlStr3 = "select * from yh_jinxiaocun_user_mssql where gongsi = '" + gs_name + "' and name = '" + username + "' and password = '" + txtSAPPassword + "'";
+
+                cmd = new SqlCommand(sqlStr3, conn3);
+                str = cmd.ExecuteReader();
+
+
+                if (str.Read()) // 移动到第一行
+                {
+                    Session["shujuku"] = 1;
+                }
+
                 string msg = "";
                 yh_jinxiaocun_user user;
                 try
@@ -574,7 +599,10 @@ namespace Web
                     {
 
                         conn = new SqlConnection("Data Source=sqloledb;server=bds28428944.my3w.com;Database=bds28428944_db;Uid=bds28428944;Pwd=07910Lyh;");  //数据库连接。
-                        conn2 = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_notice;Uid=sa;Pwd=Lyh07910_001;");  //数据库连接。
+                        conn2 = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_notice;Uid=sa;Pwd=Lyh07910_001;");
+                       
+                        //SqlConnection conn4 = new SqlConnection("Data Source=server;Initial Catalog=yh_jinxiaocun_pc;User ID=sa;Password=Lyh07910_001;");
+
                         if (conn.State == ConnectionState.Closed)
                         {
                             conn.Open();
@@ -583,6 +611,13 @@ namespace Web
                         {
                             conn2.Open();
                         }
+      
+                        //if (conn4.State == ConnectionState.Closed)
+                        //{
+                        //    conn4.Open();
+                        //}
+
+
                         string now = DateTime.Now.ToShortDateString().ToString();
                         string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
                         cmd = new SqlCommand(sqlStr, conn);
@@ -614,6 +649,9 @@ namespace Web
                             }
 
                         }
+
+                       
+
                         Session["userNum"] = thisNum;
                         Session.Timeout = 10000;
                         Session["user"] = user;

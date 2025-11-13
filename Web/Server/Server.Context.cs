@@ -24,6 +24,8 @@ namespace Web.Server
         {
             throw new UnintentionalCodeFirstException();
         }
+
+
     
         public DbSet<yh_jinxiaocun_chanpin> yh_jinxiaocun_chanpin { get; set; }
         public DbSet<yh_jinxiaocun_chuhuofang> yh_jinxiaocun_chuhuofang { get; set; }

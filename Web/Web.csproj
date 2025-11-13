@@ -2025,6 +2025,51 @@
     <Compile Include="finance\web\view\downloadApp.aspx.designer.cs">
       <DependentUpon>downloadApp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="JxcServer\JxcServer.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JxcServer.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\JxcServer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\JxcServer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JxcServer.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_chanpin_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_chuhuofang_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_jichuziliao_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_jinhuofang_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_kucun_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_mingxi_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_qichushu_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_user_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_yongliaosheding_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JxcServer\yh_jinxiaocun_zhengli_mssql.cs">
+      <DependentUpon>JxcServer.tt</DependentUpon>
+    </Compile>
     <Compile Include="jxc_excel.aspx.cs">
       <DependentUpon>jxc_excel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3810,6 +3855,23 @@
     <Content Include="Personnel\download\云合未来人事管理系统_使用说明.rar" />
     <Content Include="download\云合未来进销存管理系统_使用说明.rar" />
     <Content Include="ClassDiagram1.cd" />
+    <EntityDeploy Include="JxcServer\JxcServer.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JxcServer.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="JxcServer\JxcServer.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JxcServer.edmx</DependentUpon>
+      <LastGenOutput>JxcServer.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="JxcServer\JxcServer.edmx.diagram">
+      <DependentUpon>JxcServer.edmx</DependentUpon>
+    </Content>
+    <Content Include="JxcServer\JxcServer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JxcServer.edmx</DependentUpon>
+      <LastGenOutput>JxcServer.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\Cardweb.pubxml" />
     <None Include="Properties\PublishProfiles\jxc_test.pubxml" />
     <None Include="Properties\PublishProfiles\Yh_jinxiaocun.pubxml" />

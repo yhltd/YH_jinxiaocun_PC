@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="816911e5194e4a4ba250ab9e5c765b81" Name="关系图1">
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_chanpin_mssql" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_chuhuofang_mssql" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_jichuziliao_mssql" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_jinhuofang_mssql" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_kucun_mssql" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_mingxi_mssql" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_qichushu_mssql" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_user_mssql" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_yongliaosheding_mssql" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="yh_jinxiaocun_excelModel.yh_jinxiaocun_zhengli_mssql" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

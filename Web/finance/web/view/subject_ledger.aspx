@@ -27,7 +27,7 @@
             &nbsp;&nbsp;科目代码：
             <input id="code" class="easyui-numberbox" style="margin-left:20px" value=""/>
             <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="sel()">查询</a>
-            <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'‌icon-balance‌',width:120" onclick="balanceBtn()">平衡验证</a>
+            <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'‌icon-balance‌',width:120" onclick="balanceBtn(); return false;" style="margin-right: 22px;">平衡验证</a>
             <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
             <div><label style="color:red;font-size:12px">*注意上方科目代码筛选条件，只显示当前选择的科目代码，如点击修改科目代码后请及时调整下拉选项</label></div>
         </div>

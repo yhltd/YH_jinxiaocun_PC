@@ -38,18 +38,20 @@ iframe
 .north-right-float
 {
     display: none;
-    position: fixed;
+    z-index: 19;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
     width: 120px;
     height: 150px;
     right: 50px;
-    top: 80px;
+    top: calc(-40px + var(--dinggao, 0px));
     background-color: white;
-    z-index: 19;
-    box-shadow: 0 2px 4px rgba(0,0,0,.12),0 0 6px rgba(0,0,0,.04);
+    z-index: 9999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 2px;
+
 }
 .north-right-float-item
 {

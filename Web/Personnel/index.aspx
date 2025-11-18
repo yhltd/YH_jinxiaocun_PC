@@ -20,10 +20,10 @@
             $("#xiala").toggle(
                 function () {
                     $("#userFun_div").show();
-                    $("#userFun_div").animate({ top: "70px" }, 200, "swing");
+                    $("#userFun_div").animate( 200, "swing");
                 },
                 function () {
-                    $("#userFun_div").animate({ top: "-100px" }, 200, "swing", function () {
+                    $("#userFun_div").animate( 200, "swing", function () {
                         $("#userFun_div").hide();
                     })
                 }
@@ -282,7 +282,7 @@
     <style>
         #userFun_div
         {
-            display: flex;
+            /*display: flex;
             position: fixed;
             width: 90px;
             height: 100px;
@@ -294,7 +294,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 2px;
+            border-radius: 2px;*/
+            display: none; /* 添加这行 */
+            position: absolute;
+            width: 120px;
+            height: 150px;
+            right: 50px;
+            background-color: white;
+            z-index: 9999;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+            flex-direction: column;
+            justify-content: center;
         }
         .userFun_item
         {

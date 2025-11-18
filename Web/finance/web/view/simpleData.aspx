@@ -29,7 +29,7 @@
             <input id="start_date" class="easyui-datebox" value=""/>
             <label>结束日期:</label>
             <input id="stop_date" class="easyui-datebox" value=""/>
-            <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="selectBtn()">查询</a>
+            <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="selectBtn(); return false;">查询</a>
             <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">

@@ -44,6 +44,7 @@
             cursor: pointer;
             border-radius: 2px;
             margin-left: 10px;
+            margin-right: 10px;
         }
         .td_cl {
             text-align: center;
@@ -159,7 +160,7 @@
                 <asp:Button OnClick="kh_mx_select_Click" ID="Button2" class="input_tr" Text="查询" runat="server" />
                 <asp:Button OnClick="kh_mx_select_load" ID="Button1" class="input_tr" Text="刷新" runat="server" />
                 <asp:Button ID="btn_print" class="button" onmouseover="this.className='ui-btn ui-btn-search-hover'"
-                                onmouseout="this.className='button'" runat="server" Text="e打印" OnClick="toExcel" Width="10%" Height="30px" />
+                                onmouseout="this.className='button'" runat="server" Text="e打印" OnClick="toExcel" Width="100px" Height="30px" />
             </div>
 
             <div class="d-main table_div">

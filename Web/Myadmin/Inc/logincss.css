@@ -2,7 +2,7 @@
 *{
 	padding:0px;
 	margin:0px;
-	color:#383838;
+	    color: #ffffff;
 	font-family:"Microsoft Yahei",arial;}
 
 li{
@@ -11,11 +11,22 @@ li{
 
 img{border:0; 
 }
-table {     border-collapse: collapse;
+.biaoti {
+      animation: suofang 5s linear infinite;
+          position: absolute;
+    top: 90px;
+}
+table { 
+        /*border-collapse: collapse;*/
     border-radius: 0 0 20px 20px;
+      
     position: absolute;
-    /* box-shadow: 1px 1px 4px 1px #ffffff, -1px -1px 4px 1px white; */
-    background: white;
+    box-sizing:border-box;
+     box-shadow: 1px 1px 4px 1px #ffffff, -1px -1px 4px 1px white; 
+       background: linear-gradient(163deg, #2d5feddb, #091441b5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    overflow:hidden;
 } 
 html { overflow:-moz-scrollbars-vertical; }
 
@@ -42,7 +53,7 @@ body{
 	font-size:12px;
 	color:#075D6C;
 	padding-top:0px;
-    background:url("../images/bg-login.jpg") no-repeat;
+   
     background-size:100% 110%;
     background-attachment:fixed;
 }
@@ -90,26 +101,60 @@ body{
 .login .center .inner{
 	/*padding-top:85px;*/
 	float:right;
-	width:450px;
-
+	width:400px;
     position:fixed;
     top:30%;
     right:0;
     left:0;
     bottom:0;
     margin: auto;
+     transition: all 0.4s ease;
+        /* 初始位置在左侧屏幕外 */
+            transform: translateX(-100vw);
+       
+            /* 动画设置 */
+            animation: slideIn 1s ease-out forwards;
+            animation-delay: 0.6s;
+   
 	}
+ @keyframes slideIn {
+            0% {
+                transform: translateX(-100vw);
+                opacity: 0;
+            }
+            80% {
+                transform: translateX(20px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
 
+.yzm {
+    width:100%
+}
+.phoneipt {
+     transition: all 0.4s ease;
+}
+.phoneipt:hover {
+    transform:translateY(-2px);
+}
 
 .login .center .inner #innnertalbe{
-	width:450px;}	
+	width:400px;}	
 .login .center .inner input{
-	line-height:35px;
+	line-height:40px;
 	padding:0 5px;
 	font-size:15px;
 	font-family:"Microsoft Yahei",Arial, Helvetica, sans-serif;
 	    color: #383838;
-        background: #eeeeee;
+      background: rgb(255 255 255 / 35%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+        
 	}
 .login .center .inner input:hover{
 	border:1px solid #FFA100;
@@ -127,7 +172,8 @@ body{
     background: linear-gradient(to right, #00e6f1 0%, #4092db 50%, #92afe1 100%);
     border-radius: 10px;
     transition: all 0.3s;
-    margin-left: 30px;
+    margin:auto;
+       
 	}
 
  .NOLoginSub{
@@ -145,10 +191,11 @@ body{
 	}
 
 .login .center .inner .LoginSub:hover{
-	border:none;
+	
      transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
-}	
+            border: 2px solid #ffffff;
+}
 
 
 .login .center .inner  .verifycode{
@@ -178,9 +225,12 @@ body{
 	overflow:hidden; }
 .btn {
         position: absolute;
-    bottom: 0px;
-    left: 54px;
+    bottom: 10px;
+  
+    width:100%;
         height: 40px;
+        display: flex;
+    justify-content: space-between;
 }
 
 @keyframes float1 {
@@ -230,13 +280,83 @@ body{
 
 
          .tab-switcher {
-              display: flex;
-        border-bottom: 1px solid #eee;
-        background:white;
-        border-radius: 20px 20px 0 0;
-            font-size: 15px;
-                overflow: hidden;
+    display: flex;
+    /* border-bottom: 1px solid #eee; */
+ 
+  background: #ffffff;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px 20px 0 0;
+    font-size: 15px;
+    overflow: hidden;
+    border-bottom: 0;
+       box-shadow: 1px 1px 4px 1px #ffffff, -1px -1px 4px 1px white;
+    
         }
+
+
+
+            #phone-login::before {
+               content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #21caffe8, rgb(245 245 245 / 44%), #190d75d1);
+    
+    z-index: -1;
+    animation: rotateAnimation 3s linear infinite;
+        }
+
+             .qrcode-container::before {
+               content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #21caffe8, rgb(245 245 245 / 44%), #190d75d1);
+    
+    z-index: -1;
+    animation: rotateAnimation 3s linear infinite;
+        }
+
+              .tab-switcher::before {
+               content: '';
+    position: absolute;
+ 
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #196e89e8, rgb(0 6 255 / 61%), #1f0ea1d1);
+    z-index: -1;
+    
+        }
+
+                    table::before {
+               content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, #21caffe8, rgb(245 245 245 / 44%), #190d75d1);
+    
+    z-index: -1;
+    animation: rotateAnimation 3s linear infinite;
+        }
+
+
+            
+/* 定义旋转动画 */
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
         .tab {
             flex: 1;
             text-align: center;
@@ -244,13 +364,18 @@ body{
             cursor: pointer;
             transition: all 0.3s;
             font-weight: 600;
-            color: #404040;
+            color: #FFFFFF;
         }
         .tab.active {
-                color: #0015da;
-       background: #ffffff;
-    border-bottom: 2px solid #4361ee
+                color: #21fff7;
+    
+    /*border-bottom: 2px solid #4361ee*/
         }
+
+.tab:hover {
+    color:wheat;
+     transform:translateY(-2px);
+}
         .tab-content {
             padding: 30px;
         }
@@ -261,8 +386,12 @@ body{
             flex-direction: column;
             align-items: center;
             padding: 20px 0;
-            background: white;
+              background: linear-gradient(163deg, #2d5feddb, #091441b5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+              box-shadow: 1px 1px 4px 1px #ffffff, -1px -1px 4px 1px white;
             border-radius: 0 0 20px 20px;
+            overflow:hidden
         }
         .qrcode-placeholder {
             width: 180px;
@@ -280,7 +409,7 @@ body{
             font-size: 14px;
         }
         .qrcode-tip {
-                color: #383838;
+                color: #FFFFFF;
             font-size: 14px;
             text-align: center;
             margin-bottom: 20px;
@@ -299,10 +428,12 @@ body{
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+           transition: all 0.3s;
         }
         .btn2:hover {
-            background: #3a56d4;
+              transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+            border: 2px solid #ffffff;
         }
 
 
@@ -312,7 +443,7 @@ body{
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #555;
+               color: #ffffff;
             font-size: 14px;
         }
         .form-group input {
@@ -329,31 +460,121 @@ body{
         }
 
 #phone-login {
-    padding:20px;
-    border-radius:0 0 20px 20px;
-        background: white;
+    padding: 20px;
+    border-radius: 0 0 20px 20px;
+     background: linear-gradient(163deg, #2d5feddb, #091441b5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    overflow: hidden;
+   
+    border-top: 0px;
+       box-shadow: 1px 1px 4px 1px #ffffff, -1px -1px 4px 1px white;
 }
+
 
 
 
 .btn-yzm {
       /* border: none; */
-    border: 1px solid #ddd;
-    line-height: 35px;
+       border: 1px solid rgba(255, 255, 255, 0.1);
+    line-height: 40px;
     padding: 0;
     font-size: 15px;
     font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
-    color: black;
+    color: #777777;
     border-left: 0;
     border-radius: 0 10px 10px 0;
     margin-left: -4px;
-    background: #eeeeee;
+   background: rgb(255 255 255 / 35%);
 }
 
 table tr {
     display: flex;
-    width: 450px;
+    width: 400px;
 }
 table tr td p {
     margin-top: 3px;
 }
+
+
+  /* 涟漪效果样式 */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+        }
+
+
+         @keyframes suofang {
+               0% {
+    transform: scale(1); /* 初始尺寸 */
+  }
+  50% {
+    transform: scale(0.95); /* 中间放大 */
+  }
+  100% {
+    transform: scale(1); /* 最终回到原始尺寸 */
+  }
+           
+        }
+
+            .method-2::before {
+    content: '';
+    position: absolute;
+    top: 59%;
+    left: 20%;
+    width: 60%;
+    height: 28px;
+    /*background: linear-gradient(90deg, #6c63ff, #29c4ff);*/
+      background:linear-gradient(90deg, #bfbfbfbd, #ffffffd4, #d7d7d78a);
+    border-radius: 50% 50% 50% 50%;
+    /* transform: translateY(-50%) rotate(-135deg) scaleY(2); */
+    filter: blur(2.5px);
+    animation: wave 5s ease-in-out infinite;
+        }
+
+              .method-3::before {
+content: '';
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 38%;
+    height: 18px;
+     background:linear-gradient(90deg, #bfbfbfbd, #ffffffd4, #d7d7d78a);
+    border-radius: 50% 50% 50% 50%;
+    transform: translateY(-50%) rotate(-135deg) scaleY(2);
+    filter: blur(1.8px);
+    animation: wave 3s ease-in-out infinite;
+        }
+
+                .method-4::before {
+    content: '';
+    position: absolute;
+    top: 70%;
+    left: 60%;
+    width: 38%;
+    height: 18px;
+     background:linear-gradient(90deg, #bfbfbfbd, #ffffffd4, #d7d7d78a);
+    border-radius: 50% 50% 50% 50%;
+    transform: translateY(-50%) rotate(-135deg) scaleY(2);
+    filter: blur(1.8px);
+    animation: wave 3s ease-in-out infinite;
+        }
+
+
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(-50%) rotate(-45deg) scaleY(1); }
+            50% { transform: translateY(-50%) rotate(-43deg) scaleY(1.2); }
+        }

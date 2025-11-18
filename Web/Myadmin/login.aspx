@@ -234,6 +234,9 @@
                 
                 parent.appendChild(particle);
             }
+
+
+
         });
 
 
@@ -294,6 +297,44 @@
             });
         }
 
+        // 创建涟漪效果
+        function createRipple(event) {
+            const ripple = document.createElement('div');
+            ripple.classList.add('ripple');
+            
+            // 设置涟漪位置
+            const x = event.clientX;
+            const y = event.clientY;
+            
+            // 设置涟漪大小
+            const size = Math.min(window.innerWidth, window.innerHeight) * 0.1;
+            
+            // 设置涟漪样式
+            ripple.style.left = `${x - size/2}px`;
+            ripple.style.top = `${y - size/2}px`;
+            ripple.style.width = `${size}px`;
+            ripple.style.height = `${size}px`;
+            
+            // 随机颜色
+            const colors = [
+                'rgba(255, 255, 255, 0.6)',
+                'rgba(100, 200, 255, 0.6)',
+                'rgba(255, 100, 200, 0.6)',
+                'rgba(100, 255, 200, 0.6)'
+            ];
+            ripple.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            // 添加到页面
+            document.body.appendChild(ripple);
+            
+            // 动画结束后移除元素
+            setTimeout(() => {
+                ripple.remove();
+        }, 600);
+        }
+        
+        // 为整个页面添加点击事件
+        document.addEventListener('click', createRipple);
 
     </script>
     <style type="text/css">
@@ -326,6 +367,21 @@
 </head>
 
 <body class="particle-container" id="particles">
+
+     <div class="curve-demo">
+                    <div class="curve method-2"></div>
+                </div>
+
+     <div class="curve-demo">
+                    <div class="curve method-3"></div>
+                </div>
+     <div class="curve-demo">
+                    <div class="curve method-4"></div>
+                </div>
+   
+
+
+
     <div class="mains">
         <div class="inners">
             <img class="floating-img" src="images/companyLogo.png" height="80" style="float:left;left:2px;position:absolute;" />
@@ -351,12 +407,13 @@
 
                     <div class="center">
                         <div class="lefts" style="text-align: center;width:100%">
-                            <div style="text-align: center;width:100%" >
+                            <div  class="biaoti" style="text-align: center;width:100%" >
                                 <b><span style="font-size: 42pt; color:white;">云和未来一体化系统</span></b>
                             </div>
-                        </div>
+                    
+                           </div>
                    <div class="inner">
-
+                   
                      <div class="tab-switcher">
                         <div class="tab active" onclick="switchTab('account')">密码登录</div>
                         <div class="tab" onclick="switchTab('phone')">手机号登录</div>
@@ -374,7 +431,7 @@
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <asp:DropDownList ID="DropDownList3" runat="server" Style="color:#383838; " class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="xitong_select"></asp:DropDownList>
+                                        <asp:DropDownList ID="DropDownList3" runat="server" Style="color:#FFFFFF; " class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="xitong_select"></asp:DropDownList>
 
                                     </td>
                                 </tr>
@@ -386,7 +443,7 @@
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <asp:DropDownList ID="DropDownList1" runat="server" Style="color:#383838; " class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="bian"></asp:DropDownList>
+                                        <asp:DropDownList ID="DropDownList1" runat="server"  Style="color:#FFFFFF; " class="select_w150" AutoPostBack="true" OnSelectedIndexChanged="bian"></asp:DropDownList>
 
                                     </td>
                                 </tr>
@@ -398,7 +455,7 @@
                                         </p>
                                     </td>
                                     <td class="auto-style1">
-                                        <asp:DropDownList ID="DropDownList2" runat="server" Style="color: #383838; " class="select_w150" ></asp:DropDownList>
+                                        <asp:DropDownList ID="DropDownList2" runat="server"  Style="color:#FFFFFF; " class="select_w150" ></asp:DropDownList>
                                     </td>
                                 </tr>
 
@@ -424,7 +481,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td align="center" style="margin-left:150px">
+                                    <td align="center" style="margin-left:130px;margin-bottom:10px">
                                         <input name="remember" type="checkbox"  id="remember" style="margin-top: 8px;height: auto;"  />
                                     </td>
                                     <td style="margin-left:10px">
@@ -491,25 +548,28 @@
             <div id="phone-login" class="hidden">
                 <div class="form-group">
                         <label for="username">手机号</label>
-                        <input type="text" id="Text1" placeholder="请输入手机号">
+                    <div class="phoneipt yzm">
+                        <input  type="text" id="Text1" placeholder="请输入手机号">
+                        </div>
                 </div>
                 <div class="form-group">
                     <label for="password">验证码</label>
-                    <input style="  width: 81%;border-right: 0;border-radius: 8px 0 0 8px;" type="password" id="password1" placeholder="请输入验证码">
+                  
+                    <div class="phoneipt yzm">
+                    <input style="  width: 78%;border-right: 0;border-radius: 8px 0 0 8px;" type="password" id="password1" placeholder="请输入验证码">
                     <button class="btn-yzm"  disabled="disabled">获取验证码</button>
+                      </div>
                 </div>
                 <button style="width:100%" type="button" class="btn2" onclick="login()">登录</button>
             </div>
-                     
+                
                         <div class="clearfix"></div>
-
+                        
                     </div>
-
+                        </div>
                 </form>
-            </div>
 
-        </div>
-        <div class="ui-login-footer">
+                  <div class="ui-login-footer">
             <p style="vertical-align:bottom;line-height:20px">
                 <span class="font_gray" style="color:white">云合未来计算机技术有限公司  © Copyright 2018-2030   联系电话：16619776280</span>
                 <%--辽ICP备19018259号 云合未来计算机技术有限公司 技术支持 www.yhocn.cn--%>
@@ -518,6 +578,10 @@
                 <span class="font_gray" style="color:white">云合未来计算机技术有限公司 技术支持 www.yhocn.cn</span>
             </p>
         </div>
+            </div>
+
+        </div>
+      
     </div>
 
 </body>

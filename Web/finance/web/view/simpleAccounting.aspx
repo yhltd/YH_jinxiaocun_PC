@@ -29,7 +29,11 @@
             <label>项目:</label>
             <input class="easyui-textbox" id="project" />
 
-            <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="getList()">查询</a>
+<%--            <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="getList()">查询</a>--%>
+            <a href="javascript:void(0);" class="easyui-linkbutton btn-right l-btn-icon-left" 
+   data-options="iconCls:'icon-search',width:80" onclick="getList(); return false;">
+   查询
+</a>
             <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">

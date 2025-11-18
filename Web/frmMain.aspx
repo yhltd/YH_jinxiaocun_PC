@@ -283,15 +283,42 @@
                     alert("您没有权限")
                 }
             })
+            
+            $("#goUserManagersvg").click(function () {
+                var items = $(".leftNav_li_active");
+                for (var i = 0; i < items.length; i++) {
+                    var id = items[i].id
+                    $("#" + id).removeClass("leftNav_li_active")
+                    $("#" + id).addClass("leftNav_li");
+                }
+                if (true) {
+                    $("#Iframe1").attr("src", "Myadmin/HouTai/YongHuGuanli.aspx");
+                } else {
+                    alert("您没有权限")
+                }
+            })
 
             $("#userName").toggle(
                 function () {
                     $("#userFun_div").show();
-                    $("#userFun_div").animate({ top: "70px" }, 200, "swing");
+                    $("#userFun_div").animate(200, "swing");
                     panduan = true
                 },
                 function () {
-                    $("#userFun_div").animate({ top: "-100px" }, 200, "swing", function () {
+                    $("#userFun_div").animate(200, "swing", function () {
+                        $("#userFun_div").hide();
+                    })
+                }
+            )
+            
+            $("#userNamesvg").toggle(
+                function () {
+                    $("#userFun_div").show();
+                    $("#userFun_div").animate(200, "swing");
+                    panduan = true
+                },
+                function () {
+                    $("#userFun_div").animate(200, "swing", function () {
                         $("#userFun_div").hide();
                     })
                 }
@@ -307,6 +334,19 @@
             window.onblur = function () {
                 if (panduan) {
                     $("#userName").click();
+                    panduan = false
+                }
+            }
+            $("html").on('click', function (e) {
+                if (panduan) {
+                    $("#userNamesvg").click();
+                    panduan = false
+                }
+            })
+
+            window.onblur = function () {
+                if (panduan) {
+                    $("#userNamesvg").click();
                     panduan = false
                 }
             }
@@ -502,12 +542,12 @@
         
         #userFun_div
         {
-            display: flex;
+            display: none;
             position: fixed;
             width: 120px;
             height: 150px;
             right: 10px;
-            top: -100px;
+            /*top: -100px;*/
             background-color: white;
             z-index: 19;
             box-shadow: 0 2px 4px rgba(0,0,0,.12),0 0 6px rgba(0,0,0,.04);
@@ -604,8 +644,8 @@
 
          .carousel-container {
             width: 100%;
-            /*height: var(--dinggao);*/
-            height:100px;
+            height: var(--dinggao);
+            /*height:100px;*/
             position: relative;
             overflow: hidden;
             margin-bottom:5px;
@@ -870,8 +910,10 @@
                 <a style="color:white" href="./jxc_excel.aspx" class="bt_top" style="color:white">下载Excel</a>
             </div>
 
+
+
             <div class="function_top">
-                <svg  class=" bt_toptp" id="goUserManager" viewBox="0 0 1024 1024" version="1.1"  width="32" height="32">
+                <svg  class=" bt_toptp" id="goUserManagersvg" viewBox="0 0 1024 1024" version="1.1"  width="32" height="32">
                     <path d="M1021.60182 765.5c-1.3-16.3-4.3-17.8-20.4-16.5-17.8 1.4-32.9-7.5-39.1-23-6.3-15.9-1.7-32.3 12.2-43.7 9.4-7.7 10.5-13.9 2-22.9-12.8-13.5-26.1-26.6-40-38.9-10.8-9.6-15.8-8.3-25 3.2-11.2 14-29 18.2-45.2 10.7-15.2-7.1-22.3-20.1-21.2-38.5 0.8-12.6-2.9-17.1-15.5-18-9.8-0.8-19.7-1.3-28.9-1.9-9.7 1.1-18.8 1.9-27.7 3.1-12.5 1.7-15.3 5.3-14.2 18.2 1.7 19.5-6.5 34.1-22.6 40.8-15.7 6.5-31.9 1.8-44.3-12.7-7.3-8.6-13.7-9.9-21.7-2.2-13.6 12.7-26.9 25.9-39.2 39.8-10.6 11.9-9.4 15.9 2.8 26.1 11.6 9.7 16.6 22.1 13.4 37-3.3 15.2-13 25-28 28.5-5.5 1.3-11.6 0.5-17.5 0.4-7.9-0.1-12.9 3.5-14 11.3-2.9 21.5-3 43.1 0.9 64.6 1.5 8.5 6.1 11.8 14.6 11.2 4.5-0.3 9.1-1.3 13.5-0.9 15.8 1.6 28.2 12.1 32.5 26.8 4.3 14.7-0.8 29.7-13.5 39.9-10.4 8.4-11.6 14.2-2.5 23.9 12.6 13.4 25.6 26.4 39.4 38.5 11.7 10.3 16.2 9.1 26-3.4 13.4-17.2 37.5-19.5 53.9-5.4 11 9.5 14 21.4 12.5 35.3-1.1 10.3 2.7 16.2 11.7 16.3 20.2 0.4 40.5 0.5 60.6-0.7 13.1-0.8 15.7-5.5 14.2-18.7-2.2-19.2 5.9-34.2 22-41.1 16.3-6.9 32.7-2.2 44.8 12.7 7.4 9.1 13.9 10.5 22.2 2.5 13.9-13.2 27.3-26.9 40-41.2 9.2-10.4 7.9-16-3.2-24.4-9.3-7-14.5-16.3-15.2-27.9-1.4-23.6 17.9-41.6 41.8-39.2 12.2 1.2 18.2-2.3 18.5-12.9 0.6-19 0.8-37.9-0.6-56.7zM804.50182 889.9c-52.5-0.6-94.7-43.3-94-95.3 0.7-51.3 43-93.5 93.7-93.3 52.3 0.2 95.5 43.2 94.9 94.7-0.5 52.1-43.2 94.4-94.6 93.9z m0 0" fill="#dbdbdb"></path>
                     <path d="M627.70182 587.5l-58.5-18-61.2-30.6v-69.4s46.2-29.5 52.3-73.1c2.3-0.1 4.7-0.3 7.6-0.7 33.3-4 57.5-85.9 57.5-85.9s1.6-38.3-18.6-38.3c-2.3 0-24.8 0.3-26.7 1l5.1-67.9 0.6-51.8s0.4-141.1-172.2-142.7C234.40182 11.6 268.00182 87.5 268.00182 87.5c0 0.2 0.1 0.3 0.1 0.5-22.3 12.8-33.6 32.5-33.6 72.7 0 87.4 11 118.8 11 118.8l-25.2-8s-28.9 2.9-26.4 36.6c2.5 33.8 30.9 83.5 64.2 87.5 2.5 0.3 4.7 0.5 6.7 0.6 0.1 53.2 46.7 74.5 46.7 74.5l0.4 66.3-62.4 32.2-184.4 58.4S-0.39818 647.3 0.00182 729.9l1.3 101.5h533.2c-1.6-12.1-3.7-24.2-3.7-36.8 0-83.3 38.1-157 96.9-207.1z"  fill="#dbdbdb"></path>
                 </svg>
@@ -879,7 +921,7 @@
               <%--  <img class="bt_top" src="Images/user.png" style="height:25px;width:25px;padding-bottom: 15px;"/>--%>
              </div>
             <div class="function_top">   
-                 <svg viewBox="0 0 1024 1024" version="1.1" id="userName" class="bt_toptp" width="32" height="32">
+                 <svg viewBox="0 0 1024 1024" version="1.1" id="userNamesvg" class="bt_toptp" width="32" height="32">
                     <path d="M512 960c-80 0-160 0.1-240-0.1-25-0.1-50-5-70-20-35-20-55-50-60-90-4-30-2-60 0-90 3-40 10-80 20-120 10-30 25-60 45-85 25-30 60-45 95-50 10-1 20 2 30 8 15 10 30 20 50 30 35 20 75 35 120 35 45-0.5 85-15 125-40 15-8 25-15 40-25 10-8 20-10 35-10 30 4 60 15 85 40 20 20 30 40 45 65 15 35 20 70 25 110 5 40 8 80 7 120-1 35-10 65-30 90-20 20-45 35-70 40-10 2-20 3-35 3C680 960 600 960 512 960z" fill="#dbdbdb"/>
                     <path d="M288 288c-2-120 105-220 225-220 120 0 220 100 220 225-1 120-100 220-225 220C390 510 290 410 288 288z" fill="#dbdbdb"/>
                 </svg>

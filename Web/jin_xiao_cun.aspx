@@ -230,7 +230,7 @@
             
                     <asp:Button ID="Button1" class="input_tr" OnClick="jxc_select" Text="查询" runat="server" UseSubmitBehavior="false"/>
                     <asp:Button ID="Button2" class="input_tr" OnClick="jxc_load" Text="刷新数据" runat="server" UseSubmitBehavior="false"/>
-                    <input id='order_code_text' class='input_select' autocomplete='off' placeholder='扫码订单二维码' style="margin-left:10px;" onkeypress="Enter(event)"/>
+                    <input id='order_code_text' class='input_select' autocomplete='off' placeholder='扫码订单二维码' style="margin-left:5px;" onkeypress="Enter(event)"/>
                 </div>
                 <div class="top-fun-item">
                     <asp:Button ID="downexcel" class="input_tr" OnClick="toExcel" Text="保存至excel" runat="server" UseSubmitBehavior="false"/>

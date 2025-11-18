@@ -379,11 +379,23 @@ div {
 .select_w150 {
      height: 35px;
     font-size: 15px;
-    width: 350px;
+    width: 300px;
     _margin-top: 3px;
-    border-radius: 5px;
-    border: none;
-         background-color:#eeeeee
+    border-radius: 10px;
+     transition: transform 0.5s ease;
+       background: rgb(255 255 255 / 35%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.select_w150:hover {
+     height: 35px;
+    font-size: 15px;
+    width: 300px;
+    _margin-top: 3px;
+    border-radius: 10px;
+      transform: translateY(-2px);
+       background: rgb(255 255 255 / 35%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .select_w151 {

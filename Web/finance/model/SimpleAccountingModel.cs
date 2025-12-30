@@ -106,7 +106,7 @@ namespace Web.finance.model
 
             var projectParam = new SqlParameter("@project", project);
 
-            string sql = "select '' as company,kehu,project,sum(receivable) as receivable,sum(receipts) as receipts,sum(cope) as cope,sum(payment) as payment,1 as id,'' as accounting,null as insert_date,'' as zhaiyao from SimpleData where company=@company and kehu like '%'+@kehu+'%' and project like '%'+@project+'%' group by kehu,project";
+            string sql = "select '' as company,kehu,project,sum(receivable) as receivable,sum(nashuijine) as nashuijine,sum(yijiaoshuijine) as yijiaoshuijine,sum(receipts) as receipts,sum(cope) as cope,sum(payment) as payment,1 as id,'' as accounting,null as insert_date,'' as zhaiyao from SimpleData where company=@company and kehu like '%'+@kehu+'%' and project like '%'+@project+'%' group by kehu,project";
 
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, kehuParam, projectParam);
 

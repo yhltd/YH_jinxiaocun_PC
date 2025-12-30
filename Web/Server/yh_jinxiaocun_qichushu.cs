@@ -15,7 +15,7 @@ namespace Web.Server
     public partial class yh_jinxiaocun_qichushu
     {
         public int _id { get; set; }
-        public string _openid { get; set; }
+        public string C_openid { get; set; }
         public string cpid { get; set; }
         public string cpjg { get; set; }
         public string cpjj { get; set; }
@@ -28,5 +28,6 @@ namespace Web.Server
         public string zh_name { get; set; }
         public string gs_name { get; set; }
         public string mark1 { get; set; }
+        public string cangku { get; set; }
     }
 }

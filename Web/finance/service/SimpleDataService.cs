@@ -65,8 +65,17 @@ namespace Web.finance.service
         /// </summary>
         /// <param name="simpleData"></param>
         /// <returns></returns>
-        public Boolean updSimpleData(SimpleData simpleData) {
+        //public Boolean updSimpleData(SimpleData simpleData) {
+        //    simpleData.company = account.company;
+        //    int result = commonModel.comUpd<SimpleData>(simpleData);
+        //    return result > 0;
+        //}
+        public Boolean updSimpleData(SimpleData simpleData)
+        {
             simpleData.company = account.company;
+            // 确保税相关字段有值
+            simpleData.nashuijine = simpleData.nashuijine ?? 0;
+            simpleData.yijiaoshuijine = simpleData.yijiaoshuijine ?? 0;
             int result = commonModel.comUpd<SimpleData>(simpleData);
             return result > 0;
         }

@@ -117,18 +117,40 @@
   <ItemGroup>
     <Content Include="bin\Web.dll" />
     <Content Include="bin\Web.pdb" />
+    <Content Include="caigoudan.aspx" />
+    <Content Include="caigoutuihuo.aspx" />
+    <Content Include="caigoutuihuotongji.aspx" />
+    <Content Include="cangku.aspx" />
     <Content Include="chu_ku.aspx" />
     <Content Include="ck_san.aspx" />
+    <Content Include="finance\web\assets\css\statistics.css" />
+    <Content Include="finance\web\assets\js\gongzimingxi.js" />
+    <Content Include="finance\web\assets\js\shuilvpeizhi.js" />
+    <Content Include="finance\web\assets\js\statistics.js" />
+    <Content Include="finance\web\assets\js\waibipeizhi.js" />
     <Content Include="finance\web\assets\js\qrcode.js" />
     <Content Include="finance\web\assets\js\qrcode.min.js" />
+    <Content Include="finance\web\assets\js\ysyfpz.js" />
     <Content Include="finance\web\view\downloadExcel.aspx" />
     <Content Include="finance\web\view\downloadApp.aspx" />
+    <Content Include="finance\web\view\gongzimingxi.aspx" />
+    <Content Include="finance\web\view\shuilvpeizhi.aspx" />
+    <Content Include="finance\web\view\statistics.aspx" />
+    <Content Include="finance\web\view\waibipeizhi.aspx" />
+    <Content Include="finance\web\view\web_service\gongzimingxi.asmx" />
+    <Content Include="finance\web\view\web_service\shuilvpeihzi.asmx" />
+    <Content Include="finance\web\view\web_service\Statistics.asmx" />
+    <Content Include="finance\web\view\web_service\waibipeizhi.asmx" />
+    <Content Include="finance\web\view\web_service\ysyfpz.asmx" />
+    <Content Include="finance\web\view\ysyfpz.aspx" />
     <Content Include="Images\1111.png" />
     <Content Include="Images\2222.png" />
     <Content Include="Images\xiazai.png" />
     <Content Include="Images\xiazaitubiao.ico" />
     <Content Include="Images\xiazaitubiao.jpg" />
     <Content Include="Images\xiazaitubiao.png" />
+    <Content Include="Images\背景.jpeg" />
+    <Content Include="jinchutongji.aspx" />
     <Content Include="jxc_excel.aspx" />
     <Content Include="jxc_app.aspx" />
     <Content Include="Default.aspx" />
@@ -1213,7 +1235,7 @@
     <Content Include="Images\yhltd.ico" />
     <Content Include="Images\zhuangyu_03.jpg" />
     <Content Include="Images\维修.png" />
-    <Content Include="Images\背景.jpeg" />
+    <Content Include="Images\背景443.jpeg" />
     <Content Include="Images\退出登录.png" />
     <Content Include="ImportData.aspx" />
     <Content Include="jin_xiao_cun.aspx" />
@@ -1221,6 +1243,9 @@
     <Content Include="jxc_shuoming.aspx" />
     <Content Include="kehu.aspx" />
     <Content Include="kh_ming_xi_selcet.aspx" />
+    <Content Include="kucundiaobo.aspx" />
+    <Content Include="kucunjiya.aspx" />
+    <Content Include="kucunpandian.aspx" />
     <Content Include="ming_xi.aspx" />
     <Content Include="Myadmin\HouTai\admin.aspx" />
     <Content Include="Myadmin\HouTai\assets\images\custom-select.png" />
@@ -1770,6 +1795,7 @@
     <Content Include="Personnel\size.aspx" />
     <Content Include="Personnel\wuquanxian.aspx" />
     <Content Include="Personnel\yuangongdangan.aspx" />
+    <Content Include="qimoshu.aspx" />
     <Content Include="qi_chu.aspx" />
     <Content Include="RDLC\sp_rc_ku_select_dayin.aspx" />
     <Content Include="RDLC\frm_ReportForm.aspx" />
@@ -1981,6 +2007,8 @@
     <Content Include="statelist.asp" />
     <Content Include="sysm.aspx" />
     <Content Include="test_jxc.aspx" />
+    <Content Include="tuihuomingxi.aspx" />
+    <Content Include="tuihuo_statistics.aspx" />
     <Content Include="ViewImage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1995,6 +2023,34 @@
     <Content Include="WebForm2.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="caigoudan.aspx.cs">
+      <DependentUpon>caigoudan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="caigoudan.aspx.designer.cs">
+      <DependentUpon>caigoudan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="caigoutuihuo.aspx.cs">
+      <DependentUpon>caigoutuihuo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="caigoutuihuo.aspx.designer.cs">
+      <DependentUpon>caigoutuihuo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="caigoutuihuotongji.aspx.cs">
+      <DependentUpon>caigoutuihuotongji.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="caigoutuihuotongji.aspx.designer.cs">
+      <DependentUpon>caigoutuihuotongji.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cangku.aspx.cs">
+      <DependentUpon>cangku.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cangku.aspx.designer.cs">
+      <DependentUpon>cangku.aspx</DependentUpon>
+    </Compile>
     <Compile Include="cfgList.cs" />
     <Compile Include="chu_ku.aspx.cs">
       <DependentUpon>chu_ku.aspx</DependentUpon>
@@ -2010,7 +2066,28 @@
     <Compile Include="ck_san.aspx.designer.cs">
       <DependentUpon>ck_san.aspx</DependentUpon>
     </Compile>
+    <Compile Include="finance\model\gongzimingxi.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\gongzimingxiModel.cs" />
+    <Compile Include="finance\model\shuilvPeizhi.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\shuilvpeizhiModel.cs" />
+    <Compile Include="finance\model\waibiPeizhi.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\waibipeizhiModel.cs" />
+    <Compile Include="finance\model\ysyfpeizhi.cs">
+      <DependentUpon>Finance.tt</DependentUpon>
+    </Compile>
+    <Compile Include="finance\model\ysyfpzModel.cs" />
+    <Compile Include="finance\service\gongzimingxiService.cs" />
     <Compile Include="finance\service\IndexService.cs" />
+    <Compile Include="finance\service\shuilvpeizhiService.cs" />
+    <Compile Include="finance\service\StatisticsService.cs" />
+    <Compile Include="finance\service\waibipeizhiService.cs" />
+    <Compile Include="finance\service\ysyfpeizhiService.cs" />
     <Compile Include="finance\web\view\downloadExcel.aspx.cs">
       <DependentUpon>downloadExcel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2024,6 +2101,68 @@
     </Compile>
     <Compile Include="finance\web\view\downloadApp.aspx.designer.cs">
       <DependentUpon>downloadApp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\gongzimingxi.aspx.cs">
+      <DependentUpon>gongzimingxi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\gongzimingxi.aspx.designer.cs">
+      <DependentUpon>gongzimingxi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\shuilvpeizhi.aspx.cs">
+      <DependentUpon>shuilvpeizhi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\shuilvpeizhi.aspx.designer.cs">
+      <DependentUpon>shuilvpeizhi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\statistics.aspx.cs">
+      <DependentUpon>statistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\statistics.aspx.designer.cs">
+      <DependentUpon>statistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\waibipeizhi.aspx.cs">
+      <DependentUpon>waibipeizhi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\waibipeizhi.aspx.designer.cs">
+      <DependentUpon>waibipeizhi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\gongzimingxi.asmx.cs">
+      <DependentUpon>gongzimingxi.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\shuilvpeihzi.asmx.cs">
+      <DependentUpon>shuilvpeihzi.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\Statistics.asmx.cs">
+      <DependentUpon>Statistics.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\waibipeizhi.asmx.cs">
+      <DependentUpon>waibipeizhi.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\web_service\ysyfpz.asmx.cs">
+      <DependentUpon>ysyfpz.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\ysyfpz.aspx.cs">
+      <DependentUpon>ysyfpz.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="finance\web\view\ysyfpz.aspx.designer.cs">
+      <DependentUpon>ysyfpz.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="jinchutongji.aspx.cs">
+      <DependentUpon>jinchutongji.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="jinchutongji.aspx.designer.cs">
+      <DependentUpon>jinchutongji.aspx</DependentUpon>
     </Compile>
     <Compile Include="JxcServer\JxcServer.Context.cs">
       <AutoGen>True</AutoGen>
@@ -2611,6 +2750,27 @@
     <Compile Include="kh_ming_xi_selcet.aspx.designer.cs">
       <DependentUpon>kh_ming_xi_selcet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="kucundiaobo.aspx.cs">
+      <DependentUpon>kucundiaobo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="kucundiaobo.aspx.designer.cs">
+      <DependentUpon>kucundiaobo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="kucunjiya.aspx.cs">
+      <DependentUpon>kucunjiya.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="kucunjiya.aspx.designer.cs">
+      <DependentUpon>kucunjiya.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="kucunpandian.aspx.cs">
+      <DependentUpon>kucunpandian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="kucunpandian.aspx.designer.cs">
+      <DependentUpon>kucunpandian.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ming_xi.aspx.cs">
       <DependentUpon>ming_xi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3148,6 +3308,13 @@
     <Compile Include="Pushnews\utils\PageUtil1.cs" />
     <Compile Include="Pushnews\utils\RsaUtil.cs" />
     <Compile Include="Pushnews\utils\TokenUtil.cs" />
+    <Compile Include="qimoshu.aspx.cs">
+      <DependentUpon>qimoshu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="qimoshu.aspx.designer.cs">
+      <DependentUpon>qimoshu.aspx</DependentUpon>
+    </Compile>
     <Compile Include="qi_chu.aspx.cs">
       <DependentUpon>qi_chu.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3361,6 +3528,8 @@
     <Compile Include="scheduling\utils\TokenUtil.cs" />
     <Compile Include="ServerEntity\JinChuZiLiaoItem.cs" />
     <Compile Include="ServerEntity\MingXiItem.cs" />
+    <Compile Include="ServerEntity\QiChuQiMoShuItem.cs" />
+    <Compile Include="Server\CangKuModel.cs" />
     <Compile Include="Server\JinChuModel.cs" />
     <Compile Include="Server\ChuHuoFangModel.cs" />
     <Compile Include="Server\JinHuoFangModel.cs" />
@@ -3384,7 +3553,11 @@
     </Compile>
     <Compile Include="Server\ShouHuoModel.cs" />
     <Compile Include="Server\StockModel.cs" />
+    <Compile Include="Server\TuiHuomxModel.cs" />
     <Compile Include="Server\UserModel.cs" />
+    <Compile Include="Server\yh_jinxiaocun_cangku.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
     <Compile Include="Server\yh_jinxiaocun_chanpin.cs">
       <DependentUpon>Server.tt</DependentUpon>
     </Compile>
@@ -3410,6 +3583,9 @@
       <DependentUpon>Server.tt</DependentUpon>
     </Compile>
     <Compile Include="Server\yh_jinxiaocun_qichushu.cs">
+      <DependentUpon>Server.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Server\yh_jinxiaocun_tuihuomingxi.cs">
       <DependentUpon>Server.tt</DependentUpon>
     </Compile>
     <Compile Include="Server\yh_jinxiaocun_user.cs">
@@ -3442,6 +3618,20 @@
     </Compile>
     <Compile Include="test_jxc.aspx.designer.cs">
       <DependentUpon>test_jxc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tuihuomingxi.aspx.cs">
+      <DependentUpon>tuihuomingxi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tuihuomingxi.aspx.designer.cs">
+      <DependentUpon>tuihuomingxi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tuihuo_statistics.aspx.cs">
+      <DependentUpon>tuihuo_statistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tuihuo_statistics.aspx.designer.cs">
+      <DependentUpon>tuihuo_statistics.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewImage.aspx.cs">
       <DependentUpon>ViewImage.aspx</DependentUpon>
@@ -3477,6 +3667,13 @@
     </Compile>
     <Compile Include="wqx1.aspx.designer.cs">
       <DependentUpon>wqx1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="xiaoshoutuihuo.aspx.cs">
+      <DependentUpon>xiaoshoutuihuo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="xiaoshoutuihuo.aspx.designer.cs">
+      <DependentUpon>xiaoshoutuihuo.aspx</DependentUpon>
     </Compile>
     <Compile Include="yejiguanli.aspx.cs">
       <DependentUpon>yejiguanli.aspx</DependentUpon>
@@ -3533,6 +3730,7 @@
   <ItemGroup>
     <Content Include="wqx.aspx" />
     <Content Include="wqx1.aspx" />
+    <Content Include="xiaoshoutuihuo.aspx" />
     <Content Include="yejiguanli.aspx" />
     <Content Include="yl_set_page.aspx" />
     <Content Include="zheng_li_page.aspx" />

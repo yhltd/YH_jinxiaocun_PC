@@ -317,7 +317,7 @@
             width:97%;
             height: 50px;
             min-height:50px;
-           background-color: #D3D3D3;
+           background: linear-gradient(135deg, #3030c7 0%, #2424a1 50%, #a8a8d2 100%);
            border-radius:5px;
            box-shadow: 
                 0 4px 6px rgba(0, 0, 0, 0.1),

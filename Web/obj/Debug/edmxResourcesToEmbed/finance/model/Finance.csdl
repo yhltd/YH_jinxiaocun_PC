@@ -24,6 +24,10 @@
     <EntitySet Name="AccountingPeizhi" EntityType="FinanceModel.AccountingPeizhi" />
     <EntitySet Name="InvoicePeizhi" EntityType="FinanceModel.InvoicePeizhi" />
     <EntitySet Name="KehuPeizhi" EntityType="FinanceModel.KehuPeizhi" />
+    <EntitySet Name="ysyfpeizhi" EntityType="FinanceModel.ysyfpeizhi" />
+    <EntitySet Name="shuilvPeizhi" EntityType="FinanceModel.shuilvPeizhi" />
+    <EntitySet Name="waibiPeizhi" EntityType="FinanceModel.waibiPeizhi" />
+    <EntitySet Name="gongzimingxi" EntityType="FinanceModel.gongzimingxi" />
   </EntityContainer>
   <EntityType Name="Account">
     <Key>
@@ -36,6 +40,9 @@
     <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="salt" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
     <Property Name="bianhao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xingming" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="touxiang" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Accounting">
     <Key>
@@ -132,6 +139,8 @@
     <Property Type="DateTime" Name="insert_date" Precision="3" />
     <Property Type="String" Name="kehu" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="zhaiyao" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="nashuijine" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="yijiaoshuijine" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="VoucherSummary">
     <Key>
@@ -301,5 +310,53 @@
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="kehu" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ysyfpeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ysyf" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xiangmumingcheng" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jine" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ysyfkemu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="shuilvPeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="shuilv" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="linjiezhi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="waibiPeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="huilv" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="bizhong" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzimingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="renming" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="shijian" Precision="3" />
+    <Property Type="String" Name="ticheng" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xiaoshoushuliang" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xiaoshoujine" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="chanpinchengben" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="yinhangzhanghu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="koukuan" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="gongzi" Precision="19" Scale="4" />
+    <Property Type="Decimal" Name="yifu" Precision="19" Scale="4" />
+    <Property Type="String" Name="beizhu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="kkqgongzi" Precision="19" Scale="4" />
   </EntityType>
 </Schema>

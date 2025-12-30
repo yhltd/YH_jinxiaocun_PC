@@ -31,5 +31,6 @@ namespace Web.Server
         public string shou_h { get; set; }
         public string zh_name { get; set; }
         public string gs_name { get; set; }
+        public string cangku { get; set; }
     }
 }

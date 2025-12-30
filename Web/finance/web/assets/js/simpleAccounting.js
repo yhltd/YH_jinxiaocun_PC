@@ -105,6 +105,8 @@ function setTable(data) {
                     return row.cope - row.payment;
                 }
             },
+            { field: 'nashuijine', align: 'center', title: '纳税金额', width: 150 },
+            { field: 'yijiaoshuijine', align: 'center', title: '已交税金额', width: 150 },
         ]]
     })
 

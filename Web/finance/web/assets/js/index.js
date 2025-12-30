@@ -186,6 +186,26 @@ var left_data = [{
         iconCls: 'icon-jijianzongzhang',
         url: 'YingFu.aspx'
     }, {
+        text: '应收应付配置',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'ysyfpz.aspx'
+    }, {
+        text: '利润统计',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'statistics.aspx'
+    }, {
+        text: '税率配置',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'shuilvpeizhi.aspx'
+    }, {
+        text: '工资明细',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'gongzimingxi.aspx'
+    }, {
+        text: '外币配置',
+        iconCls: 'icon-jijianzongzhang',
+        url: 'waibipeizhi.aspx'
+    }, {
         text: '使用说明',
         iconCls: 'icon-shiyongshuoming',
         url: 'instructions.aspx'

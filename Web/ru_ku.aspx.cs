@@ -57,6 +57,9 @@ namespace Web
                     case "insert":
                         result = insert_ruku(Request["infos"].ToString());
                         break;
+                    case "warehouseList":
+                        result = getWarehouseList();
+                        break;
                 }
                 if (!result.Equals(string.Empty)) {
                     Response.Clear();
@@ -66,6 +69,41 @@ namespace Web
             }
             else {
                 Response.Write("<script>alert('请登录！'); window.parent.location.href='/Myadmin/Login.aspx';</script>");
+            }
+        }
+
+        // 添加获取仓库列表的方法
+        public static string getWarehouseList()
+        {
+            try
+            {
+                // 使用我们刚才创建的 CangKuModel
+                CangKuModel cangKuModel = new CangKuModel();
+                List<yh_jinxiaocun_cangku> warehouses = cangKuModel.getList(user.gongsi);
+
+                // 提取仓库名称列表
+                List<string> warehouseNames = new List<string>();
+                foreach (var warehouse in warehouses)
+                {
+                    if (!string.IsNullOrEmpty(warehouse.cangku))
+                    {
+                        warehouseNames.Add(warehouse.cangku);
+                    }
+                }
+
+                // 如果没有仓库，返回空数组
+                if (warehouseNames.Count == 0)
+                {
+                    warehouseNames.Add(""); // 空选项
+                }
+
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                return js.Serialize(warehouseNames);
+            }
+            catch (Exception ex)
+            {
+                // 记录错误并返回空数组
+                return "[]";
             }
         }
 
@@ -106,8 +144,18 @@ namespace Web
                 items infoList = new items();
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 infoList = js.Deserialize<items>(list);
+                // 2. 提取仓库信息
+                string rwarehouse = "";
+
+                if (infoList != null)
+                {
+                    var data = js.Deserialize<Dictionary<string, object>>(list);
+                    if (data.ContainsKey("Rwarehouse"))
+                        rwarehouse = data["Rwarehouse"].ToString();
+                }
+
                 MingxiModel mingXiModel = new MingxiModel();
-                int result = mingXiModel.add(infoList, user.gongsi, user.name, "入库");
+                int result = mingXiModel.add(infoList, user.gongsi, user.name, "入库", rwarehouse);
                 return result.ToString();
             }
             catch

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="StockModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="StockModelStoreContainer">
+    <EntitySet Name="yh_jinxiaocun_cangku" EntityType="StockModel.Store.yh_jinxiaocun_cangku" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
     <EntitySet Name="yh_jinxiaocun_chanpin" EntityType="StockModel.Store.yh_jinxiaocun_chanpin" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
     <EntitySet Name="yh_jinxiaocun_chuhuofang" EntityType="StockModel.Store.yh_jinxiaocun_chuhuofang" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
     <EntitySet Name="yh_jinxiaocun_chuhuofang1" EntityType="StockModel.Store.yh_jinxiaocun_chuhuofang1" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
@@ -10,10 +11,19 @@
     <EntitySet Name="yh_jinxiaocun_kucun" EntityType="StockModel.Store.yh_jinxiaocun_kucun" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
     <EntitySet Name="yh_jinxiaocun_mingxi" EntityType="StockModel.Store.yh_jinxiaocun_mingxi" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
     <EntitySet Name="yh_jinxiaocun_qichushu" EntityType="StockModel.Store.yh_jinxiaocun_qichushu" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
+    <EntitySet Name="yh_jinxiaocun_tuihuomingxi" EntityType="StockModel.Store.yh_jinxiaocun_tuihuomingxi" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
     <EntitySet Name="yh_jinxiaocun_user" EntityType="StockModel.Store.yh_jinxiaocun_user" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
     <EntitySet Name="yh_jinxiaocun_yongliaosheding" EntityType="StockModel.Store.yh_jinxiaocun_yongliaosheding" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
     <EntitySet Name="yh_jinxiaocun_zhengli" EntityType="StockModel.Store.yh_jinxiaocun_zhengli" store:Type="Tables" Schema="yh_jinxiaocun_pc" />
   </EntityContainer>
+  <EntityType Name="yh_jinxiaocun_cangku">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="cangku" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="yh_jinxiaocun_chanpin">
     <Key>
       <PropertyRef Name="_id" />
@@ -68,7 +78,7 @@
     <Property Name="zh_name" Type="varchar" MaxLength="255" />
     <Property Name="gs_name" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="mark1" Type="longtext" />
-    <Property Name="maxNum" Type="int" />
+    <Property Name="bianyuan" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_jinhuofang">
     <Key>
@@ -115,6 +125,7 @@
     <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="zh_name" Type="varchar" MaxLength="255" />
     <Property Name="gs_name" Type="varchar" MaxLength="255" />
+    <Property Name="cangku" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_mingxi">
     <Key>
@@ -137,6 +148,7 @@
     <Property Name="shou_h" Type="varchar" MaxLength="255" />
     <Property Name="zh_name" Type="varchar" MaxLength="255" />
     <Property Name="gs_name" Type="varchar" MaxLength="255" />
+    <Property Name="cangku" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_qichushu">
     <Key>
@@ -155,7 +167,32 @@
     <Property Name="shijian" Type="varchar" MaxLength="255" />
     <Property Name="zh_name" Type="varchar" MaxLength="255" />
     <Property Name="gs_name" Type="varchar" MaxLength="255" />
-    <Property Name="mark1" Type="varchar" MaxLength="255" />
+    <Property Name="mark1" Type="longtext" />
+    <Property Name="cangku" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_tuihuomingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="cplb" Type="varchar" MaxLength="255" />
+    <Property Name="cpname" Type="varchar" MaxLength="255" />
+    <Property Name="cpsj" Type="varchar" MaxLength="255" />
+    <Property Name="cpsl" Type="varchar" MaxLength="255" />
+    <Property Name="_openid" Type="int" />
+    <Property Name="cpid" Type="int" />
+    <Property Name="cpjj" Type="varchar" MaxLength="255" />
+    <Property Name="finduser" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="mxtype" Type="varchar" MaxLength="255" />
+    <Property Name="ordeid" Type="int" />
+    <Property Name="shijian" Type="varchar" MaxLength="255" />
+    <Property Name="sp_dm" Type="varchar" MaxLength="255" />
+    <Property Name="shou_h" Type="varchar" MaxLength="255" />
+    <Property Name="zh_name" Type="varchar" MaxLength="255" />
+    <Property Name="gs_name" Type="varchar" MaxLength="255" />
+    <Property Name="cangku" Type="varchar" MaxLength="255" />
+    <Property Name="ruku" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_user">
     <Key>
@@ -171,7 +208,10 @@
     <Property Name="name" Type="varchar" MaxLength="255" />
     <Property Name="password" Type="varchar" MaxLength="255" />
     <Property Name="mi_bao" Type="varchar" MaxLength="255" />
-    <Property Name="C_id" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="C_id" Type="varchar" MaxLength="255" />
+    <Property Name="wechart_user" Type="varchar" MaxLength="255" />
+    <Property Name="touxiang" Type="longtext" />
+    <Property Name="shujuku" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_yongliaosheding">
     <Key>

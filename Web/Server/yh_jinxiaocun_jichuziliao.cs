@@ -24,6 +24,6 @@ namespace Web.Server
         public string zh_name { get; set; }
         public string gs_name { get; set; }
         public string mark1 { get; set; }
+        public string bianyuan { get; set; }
     }
-
 }

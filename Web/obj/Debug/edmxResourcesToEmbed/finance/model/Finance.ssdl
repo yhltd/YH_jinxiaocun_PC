@@ -12,6 +12,7 @@
     <EntitySet Name="Department" EntityType="FinanceModel.Store.Department" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FinancingExpenditure" EntityType="FinanceModel.Store.FinancingExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FinancingIncome" EntityType="FinanceModel.Store.FinancingIncome" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="gongzimingxi" EntityType="FinanceModel.Store.gongzimingxi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InvestmentExpenditure" EntityType="FinanceModel.Store.InvestmentExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InvestmentIncome" EntityType="FinanceModel.Store.InvestmentIncome" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Invoice" EntityType="FinanceModel.Store.Invoice" store:Type="Tables" Schema="dbo" />
@@ -20,10 +21,13 @@
     <EntitySet Name="ManagementExpenditure" EntityType="FinanceModel.Store.ManagementExpenditure" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ManagementIncome" EntityType="FinanceModel.Store.ManagementIncome" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="quanxian" EntityType="FinanceModel.Store.quanxian" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="shuilvPeizhi" EntityType="FinanceModel.Store.shuilvPeizhi" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SimpleAccounting" EntityType="FinanceModel.Store.SimpleAccounting" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="SimpleData" EntityType="FinanceModel.Store.SimpleData" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="VoucherSummary" EntityType="FinanceModel.Store.VoucherSummary" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="VoucherWord" EntityType="FinanceModel.Store.VoucherWord" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="waibiPeizhi" EntityType="FinanceModel.Store.waibiPeizhi" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ysyfpeizhi" EntityType="FinanceModel.Store.ysyfpeizhi" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
   <EntityType Name="Account">
     <Key>
@@ -36,6 +40,9 @@
     <Property Name="name" Type="varchar" MaxLength="255" />
     <Property Name="salt" Type="varchar" MaxLength="32" />
     <Property Name="bianhao" Type="varchar" MaxLength="255" />
+    <Property Name="wechart_user" Type="varchar" MaxLength="255" />
+    <Property Name="xingming" Type="varchar" MaxLength="255" />
+    <Property Name="touxiang" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Accounting">
     <Key>
@@ -147,6 +154,25 @@
     <Property Name="financingIncome" Type="varchar" MaxLength="255" />
     <Property Name="company" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="gongzimingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="renming" Type="varchar" MaxLength="255" />
+    <Property Name="shijian" Type="datetime" />
+    <Property Name="ticheng" Type="varchar" MaxLength="255" />
+    <Property Name="xiaoshoushuliang" Type="varchar" MaxLength="255" />
+    <Property Name="xiaoshoujine" Type="varchar" MaxLength="255" />
+    <Property Name="chanpinchengben" Type="varchar" MaxLength="255" />
+    <Property Name="yinhangzhanghu" Type="varchar" MaxLength="255" />
+    <Property Name="koukuan" Type="money" />
+    <Property Name="gongzi" Type="money" />
+    <Property Name="yifu" Type="money" />
+    <Property Name="beizhu" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+    <Property Name="kkqgongzi" Type="money" />
+  </EntityType>
   <EntityType Name="InvestmentExpenditure">
     <Key>
       <PropertyRef Name="id" />
@@ -249,6 +275,15 @@
     <Property Name="zhgl_select" Type="varchar" MaxLength="255" />
     <Property Name="bianhao" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="shuilvPeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="shuilv" Type="varchar" MaxLength="255" />
+    <Property Name="linjiezhi" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
   <EntityType Name="SimpleAccounting">
     <Key>
       <PropertyRef Name="id" />
@@ -275,6 +310,8 @@
     <Property Name="insert_date" Type="datetime" />
     <Property Name="kehu" Type="varchar" MaxLength="255" />
     <Property Name="zhaiyao" Type="varchar" MaxLength="255" />
+    <Property Name="nashuijine" Type="money" />
+    <Property Name="yijiaoshuijine" Type="money" />
   </EntityType>
   <EntityType Name="VoucherSummary">
     <Key>
@@ -300,6 +337,26 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="word" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="waibiPeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="huilv" Type="varchar" MaxLength="255" />
+    <Property Name="bizhong" Type="varchar" MaxLength="255" />
+    <Property Name="company" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="ysyfpeizhi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ysyf" Type="varchar" MaxLength="255" />
+    <Property Name="xiangmumingcheng" Type="varchar" MaxLength="255" />
+    <Property Name="jine" Type="varchar" MaxLength="255" />
+    <Property Name="ysyfkemu" Type="varchar" MaxLength="255" />
     <Property Name="company" Type="varchar" MaxLength="255" />
   </EntityType>
 </Schema>

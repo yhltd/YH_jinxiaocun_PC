@@ -18,11 +18,15 @@ namespace Web.Server
         public string AdminIS { get; set; }
         public string Btype { get; set; }
         public string Createdate { get; set; }
-        public string _openid { get; set; }
+        public string C_openid { get; set; }
         public string gongsi { get; set; }
         public string jigoudaima { get; set; }
         public string name { get; set; }
         public string password { get; set; }
         public string mi_bao { get; set; }
+        public string C_id1 { get; set; }
+        public string wechart_user { get; set; }
+        public string touxiang { get; set; }
+        public string shujuku { get; set; }
     }
 }

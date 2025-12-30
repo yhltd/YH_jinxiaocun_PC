@@ -21,6 +21,7 @@
         $(function () {
             getList();
             getGongHuoList();
+            getWarehouseList();
             $('#dj_row').click(function () {
                 $('#row_i1').val($('#biao_ge tr').length);
             })
@@ -91,6 +92,8 @@
                     alert('请生成订单号');
                     return;
                 }
+                var Cwarehouse = $("#ruku_warehouse").val();
+                ruku.Cwarehouse = Cwarehouse;
                 ruku.orderid = $('.order_id_input').val()
                 $.ajax({
                     type: 'Post',
@@ -442,6 +445,44 @@
                 });
             }
         };
+
+
+
+        function getWarehouseList() {
+            $.ajax({
+                type: "Post",
+                url: "chu_ku.aspx",
+                data: {
+                    act: "warehouseList"
+                },
+                dataType: "json",
+                success: function (warehouses) {
+                  
+                    // 填充入库仓库下拉框
+                    var rukuWarehouseSelect = $('#ruku_warehouse');
+                    rukuWarehouseSelect.empty(); // 清空现有选项
+
+                    if (warehouses && warehouses.length > 0) {
+                        // 入库仓库默认选中第一个仓库
+                        rukuWarehouseSelect.append('<option value="' + warehouses[0] + '" selected>' + warehouses[0] + '</option>');
+
+                        // 添加其他选项
+                        for (var i = 1; i < warehouses.length; i++) {
+                            rukuWarehouseSelect.append('<option value="' + warehouses[i] + '">' + warehouses[i] + '</option>');
+                        }
+                    } else {
+                        // 如果没有仓库，添加一个空选项
+                        rukuWarehouseSelect.append('<option value="" selected>请先添加仓库</option>');
+                    }
+                },
+                error: function (err) {
+                    console.log("获取仓库列表失败:", err);
+                    // 失败时设置默认值
+                    $('#ruku_warehouse').html('<option value="" selected>获取仓库失败</option>');
+                }
+            });
+        }
+
     </script>
     <style type='text/css'>
         .page_bt {
@@ -580,7 +621,7 @@
         }
         .ruku_info_div {
             width: 91%;
-            height: 60%;
+            height: 30%;
             display: flex;
             align-items: center;
             margin: auto;
@@ -636,7 +677,7 @@
             padding:5px;
             width:98%;
             min-height:50px;
-            background-color: #D3D3D3;
+            background: linear-gradient(135deg, #3030c7 0%, #2424a1 50%, #a8a8d2 100%);
             border-radius:5px;
             box-shadow: 
                 0 4px 6px rgba(0, 0, 0, 0.1),
@@ -697,6 +738,13 @@
         <div class='ruku_info_div'>
             <input class='order_id_input' placeholder="请输入订单号" value=""/>
             <select class='gonghuo_select' onchange='getGongguo(this.value)'></select>
+        </div>
+        <div style="height: 30%;margin-bottom: 10px;">
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">出库仓库</label>
+            <select id="ruku_warehouse" style="margin-left: 40px;width: 200px;height: 30px;border: none;border: 1px solid #F0F0F0;">
+                <option value="A仓库" selected>A仓库</option>
+                <option value="B仓库">B仓库</option>
+            </select>
         </div>
         <div class='ruku_bottom_div'>
             <input class='rk_bt' id='back_ruku' type='button' value='返回'/>

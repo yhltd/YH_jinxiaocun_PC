@@ -14,7 +14,7 @@ namespace Web.Server
     
     public partial class yh_jinxiaocun_chuhuofang
     {
-        public string _openid { get; set; }
+        public string C_openid { get; set; }
         public string beizhu { get; set; }
         public string finduser { get; set; }
         public string gongsi { get; set; }

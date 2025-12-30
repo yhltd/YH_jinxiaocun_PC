@@ -77,6 +77,9 @@ namespace SDZdb
         public string id;
         public string num;
         public string price;
+        public string kcsl;
+        public string sjsl;
+
     }
     public class items
     {

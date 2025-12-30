@@ -17,6 +17,11 @@
         <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_user" Width="2.625" PointX="0.5" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_yongliaosheding" Width="2.25" PointX="3.125" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_zhengli" Width="1.5" PointX="7" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_cangku" Width="1.5" PointX="4.5837435073143542" PointY="23.921871107035255" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_jichuziliao_bak" Width="1.5" PointX="4.6439046955871888" PointY="3.5494743453103466" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_jichuziliao_bak_maxnum" Width="1.5" PointX="1.2706161724732332" PointY="19.677699858172655" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_user_bak" Width="1.5" PointX="11.116687556317396" PointY="12.002797579394093" />
+        <EntityTypeShape EntityType="StockModel.yh_jinxiaocun_tuihuomingxi" Width="1.5" PointX="1.2518774220961506" PointY="17.844388999903757" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -28,6 +28,10 @@
         <EntityTypeShape EntityType="FinanceModel.AccountingPeizhi" Width="1.5" PointX="2.0596475163752435" PointY="27.407745627410591" />
         <EntityTypeShape EntityType="FinanceModel.InvoicePeizhi" Width="1.5" PointX="7.5793509052970212" PointY="19.226781019580915" />
         <EntityTypeShape EntityType="FinanceModel.KehuPeizhi" Width="1.5" PointX="5.6086667355190336" PointY="25.010456528985156" />
+        <EntityTypeShape EntityType="FinanceModel.ysyfpeizhi" Width="1.5" PointX="10.006757195110785" PointY="21.175628329243338" />
+        <EntityTypeShape EntityType="FinanceModel.shuilvPeizhi" Width="1.5" PointX="9.4361925858241467" PointY="26.393923473727853" />
+        <EntityTypeShape EntityType="FinanceModel.waibiPeizhi" Width="1.5" PointX="11.993148246776848" PointY="7.1774093393131206" />
+        <EntityTypeShape EntityType="FinanceModel.gongzimingxi" Width="1.5" PointX="7.7158972433376585" PointY="6.1824826477945232" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

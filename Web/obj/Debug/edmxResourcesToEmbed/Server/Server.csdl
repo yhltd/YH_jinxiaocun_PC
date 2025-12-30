@@ -13,6 +13,8 @@
     <EntitySet Name="yh_jinxiaocun_user" EntityType="StockModel.yh_jinxiaocun_user" />
     <EntitySet Name="yh_jinxiaocun_yongliaosheding" EntityType="StockModel.yh_jinxiaocun_yongliaosheding" />
     <EntitySet Name="yh_jinxiaocun_zhengli" EntityType="StockModel.yh_jinxiaocun_zhengli" />
+    <EntitySet Name="yh_jinxiaocun_cangku" EntityType="StockModel.yh_jinxiaocun_cangku" />
+    <EntitySet Name="yh_jinxiaocun_tuihuomingxi" EntityType="StockModel.yh_jinxiaocun_tuihuomingxi" />
   </EntityContainer>
   <EntityType Name="yh_jinxiaocun_chanpin">
     <Key>
@@ -68,7 +70,7 @@
     <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="gs_name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="mark1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Type="Int32" Name="maxNum" />
+    <Property Type="String" Name="bianyuan" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_jinhuofang">
     <Key>
@@ -115,6 +117,7 @@
     <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="cangku" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_mingxi">
     <Key>
@@ -137,6 +140,7 @@
     <Property Name="shou_h" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="cangku" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_qichushu">
     <Key>
@@ -155,7 +159,8 @@
     <Property Name="shijian" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Name="mark1" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="mark1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Type="String" Name="cangku" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_user">
     <Key>
@@ -171,7 +176,10 @@
     <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="password" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="mi_bao" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-    <Property Type="String" Name="C_id1" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="C_id1" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="touxiang" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shujuku" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="yh_jinxiaocun_yongliaosheding">
     <Key>
@@ -198,5 +206,37 @@
     <Property Name="zh_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Name="gs_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
     <Property Type="String" Name="beizhu" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_cangku">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="cangku" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="yh_jinxiaocun_tuihuomingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="cplb" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cpname" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cpsj" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cpsl" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="C_openid" />
+    <Property Type="Int32" Name="cpid" />
+    <Property Type="String" Name="cpjj" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="finduser" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mxtype" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ordeid" />
+    <Property Type="String" Name="shijian" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="sp_dm" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shou_h" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zh_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gs_name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cangku" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ruku" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

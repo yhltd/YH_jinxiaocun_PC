@@ -167,7 +167,7 @@ namespace Web.Server
         //        return sen.Database.ExecuteSqlCommand(sql);
         //    }
         //}
-        public int add(items item, string company, string name, string mxtype)
+        public int add(items item, string company, string name, string mxtype, string Rwarehouse)
         {
             if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
             {
@@ -182,8 +182,8 @@ namespace Web.Server
 
                         for (int i = 0; i < item.itemList.Count; i++)
                         {
-                            string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name) 
-                                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name 
+                            string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
                                  from yh_jinxiaocun_jichuziliao where id = @id";
 
                             var parameters = new MySqlParameter[]
@@ -196,6 +196,7 @@ namespace Web.Server
                         new MySqlParameter("@shou_h", item.gonghuo),
                         new MySqlParameter("@zh_name", name),
                         new MySqlParameter("@gs_name", company),
+                        new MySqlParameter("@cangku", Rwarehouse),
                         new MySqlParameter("@id", item.itemList[i].id)
                     };
 
@@ -213,8 +214,8 @@ namespace Web.Server
 
                         for (int i = 0; i < item.itemList.Count; i++)
                         {
-                            string sql = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name) 
-                                 SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name 
+                            string sql = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                                 SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
                                  FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
 
                             var parameters = new System.Data.SqlClient.SqlParameter[]
@@ -227,6 +228,7 @@ namespace Web.Server
                         new System.Data.SqlClient.SqlParameter("@shou_h", item.gonghuo),
                         new System.Data.SqlClient.SqlParameter("@zh_name", name),
                         new System.Data.SqlClient.SqlParameter("@gs_name", company),
+                        new System.Data.SqlClient.SqlParameter("@cangku", Rwarehouse),
                         new System.Data.SqlClient.SqlParameter("@id", item.itemList[i].id)
                     };
 
@@ -245,8 +247,8 @@ namespace Web.Server
 
                 for (int i = 0; i < item.itemList.Count; i++)
                 {
-                    string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name) 
-                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name 
+                    string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
                          from yh_jinxiaocun_jichuziliao where id = @id";
 
                     var parameters = new MySqlParameter[]
@@ -259,10 +261,423 @@ namespace Web.Server
                 new MySqlParameter("@shou_h", item.gonghuo),
                 new MySqlParameter("@zh_name", name),
                 new MySqlParameter("@gs_name", company),
+                new MySqlParameter("@cangku", Rwarehouse),
                 new MySqlParameter("@id", item.itemList[i].id)
             };
 
                     affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+                }
+                return affectedRows;
+            }
+        }
+
+
+        public int addCG(List<yh_jinxiaocun_mingxi> list)
+        {
+            if (list == null || list.Count == 0)
+            {
+                return 0;
+            }
+
+            if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
+            {
+                int shujukuValue = (int)HttpContext.Current.Session["shujuku"];
+
+                if (shujukuValue == 0) // MySQL
+                {
+                    using (ServerEntities sen = new ServerEntities())
+                    {
+                        string date_now = DateTime.Now.ToString();
+                        int affectedRows = 0;
+
+                        foreach (var item in list)
+                        {
+                            // 构建参数化SQL
+                            string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                                 from yh_jinxiaocun_jichuziliao where sp_dm = @sp_dm and gs_name = @gs_name";
+
+                            var parameters = new MySqlParameter[]
+                            {
+                                new MySqlParameter("@price", item.cpsj ?? (object)DBNull.Value),
+                                new MySqlParameter("@num", item.cpsl ?? (object)DBNull.Value),
+                                new MySqlParameter("@mxtype", item.mxtype ?? (object)DBNull.Value),
+                                new MySqlParameter("@orderid", item.orderid ?? (object)DBNull.Value),
+                                new MySqlParameter("@shijian", date_now),
+                                new MySqlParameter("@shou_h", item.shou_h ?? (object)DBNull.Value),
+                                new MySqlParameter("@zh_name", item.zh_name ?? (object)DBNull.Value),
+                                new MySqlParameter("@gs_name", item.gs_name ?? (object)DBNull.Value),
+                                new MySqlParameter("@cangku", item.cangku ?? (object)DBNull.Value),
+                                new MySqlParameter("@sp_dm", item.sp_dm ?? (object)DBNull.Value),
+                                new MySqlParameter("@gs_name_basic", item.gs_name ?? (object)DBNull.Value)
+                            };
+
+                            try
+                            {
+                                affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+                            }
+                            catch (Exception ex)
+                            {
+                                // 记录错误但继续处理其他记录
+                                System.Diagnostics.Debug.WriteLine("错误");
+                            }
+                        }
+                        return affectedRows;
+                    }
+                }
+                else if (shujukuValue == 1) // SQL Server
+                {
+                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+                    {
+                        string date_now = DateTime.Now.ToString();
+                        int affectedRows = 0;
+
+                        foreach (var item in list)
+                        {
+                            string sql = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                                 SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                                 FROM yh_jinxiaocun_jichuziliao_mssql WHERE sp_dm = @sp_dm AND gs_name = @gs_name_basic";
+
+                            var parameters = new System.Data.SqlClient.SqlParameter[]
+                            {
+                                new System.Data.SqlClient.SqlParameter("@price", item.cpsj ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@num", item.cpsl ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@mxtype", item.mxtype ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@orderid", item.orderid ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@shijian", date_now),
+                                new System.Data.SqlClient.SqlParameter("@shou_h", item.shou_h ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@zh_name", item.zh_name ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@gs_name", item.gs_name ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@cangku", item.cangku ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@sp_dm", item.sp_dm ?? (object)DBNull.Value),
+                                new System.Data.SqlClient.SqlParameter("@gs_name_basic", item.gs_name ?? (object)DBNull.Value)
+                            };
+
+                            try
+                            {
+                                affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+                            }
+                            catch (Exception ex)
+                            {
+                                // 记录错误但继续处理其他记录
+                                System.Diagnostics.Debug.WriteLine("错误");
+                            }
+                        }
+                        return affectedRows;
+                    }
+                }
+            }
+
+            // 默认使用MySQL数据库
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string date_now = DateTime.Now.ToString();
+                int affectedRows = 0;
+
+                foreach (var item in list)
+                {
+                    string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                         from yh_jinxiaocun_jichuziliao where sp_dm = @sp_dm and gs_name = @gs_name_basic";
+
+                    var parameters = new MySqlParameter[]
+                    {
+                        new MySqlParameter("@price", item.cpsj ?? (object)DBNull.Value),
+                        new MySqlParameter("@num", item.cpsl ?? (object)DBNull.Value),
+                        new MySqlParameter("@mxtype", item.mxtype ?? (object)DBNull.Value),
+                        new MySqlParameter("@orderid", item.orderid ?? (object)DBNull.Value),
+                        new MySqlParameter("@shijian", date_now),
+                        new MySqlParameter("@shou_h", item.shou_h ?? (object)DBNull.Value),
+                        new MySqlParameter("@zh_name", item.zh_name ?? (object)DBNull.Value),
+                        new MySqlParameter("@gs_name", item.gs_name ?? (object)DBNull.Value),
+                        new MySqlParameter("@cangku", item.cangku ?? (object)DBNull.Value),
+                        new MySqlParameter("@sp_dm", item.sp_dm ?? (object)DBNull.Value),
+                        new MySqlParameter("@gs_name_basic", item.gs_name ?? (object)DBNull.Value)
+                    };
+
+                    try
+                    {
+                        affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+                    }
+                    catch (Exception ex)
+                    {
+                        // 记录错误但继续处理其他记录
+                        System.Diagnostics.Debug.WriteLine("错误");
+                    }
+                }
+                return affectedRows;
+            }
+        }
+
+        public int addPD(items item, string company, string name,string warehouse)
+        {
+            if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
+            {
+                int shujukuValue = (int)HttpContext.Current.Session["shujuku"];
+
+                if (shujukuValue == 0) // MySQL
+                {
+                    using (ServerEntities sen = new ServerEntities())
+                    {
+                        string date_now = DateTime.Now.ToString();
+                        int affectedRows = 0;
+
+                        for (int i = 0; i < item.itemList.Count; i++)
+                        {
+                            string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                                 from yh_jinxiaocun_jichuziliao where id = @id";
+
+                            var parameters = new MySqlParameter[]
+                    {
+                        new MySqlParameter("@price", item.itemList[i].price),
+                        new MySqlParameter("@num", item.itemList[i].sjsl),
+                        new MySqlParameter("@mxtype", item.itemList[i].kcsl),
+                        new MySqlParameter("@orderid", item.orderid),
+                        new MySqlParameter("@shijian", date_now),
+                        new MySqlParameter("@shou_h", item.gonghuo),
+                        new MySqlParameter("@zh_name", name),
+                        new MySqlParameter("@gs_name", company),
+                        new MySqlParameter("@cangku", warehouse),
+                        new MySqlParameter("@id", item.itemList[i].id)
+                    };
+
+                            affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+                        }
+                        return affectedRows;
+                    }
+                }
+                else if (shujukuValue == 1) // SQL Server
+                {
+                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+                    {
+                        string date_now = DateTime.Now.ToString();
+                        int affectedRows = 0;
+
+                        for (int i = 0; i < item.itemList.Count; i++)
+                        {
+                            string sql = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                                 SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
+                                 FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
+
+                            var parameters = new System.Data.SqlClient.SqlParameter[]
+                    {
+                        new System.Data.SqlClient.SqlParameter("@price", item.itemList[i].price),
+                        new System.Data.SqlClient.SqlParameter("@num", item.itemList[i].sjsl),
+                        new System.Data.SqlClient.SqlParameter("@mxtype", item.itemList[i].kcsl),
+                        new System.Data.SqlClient.SqlParameter("@orderid", item.orderid),
+                        new System.Data.SqlClient.SqlParameter("@shijian", date_now),
+                        new System.Data.SqlClient.SqlParameter("@shou_h", item.gonghuo),
+                        new System.Data.SqlClient.SqlParameter("@zh_name", name),
+                        new System.Data.SqlClient.SqlParameter("@gs_name", company),
+                        new System.Data.SqlClient.SqlParameter("@cangku", warehouse),
+                        new System.Data.SqlClient.SqlParameter("@id", item.itemList[i].id)
+                    };
+
+                            affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+                        }
+                        return affectedRows;
+                    }
+                }
+            }
+
+            // 默认使用MySQL数据库
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string date_now = DateTime.Now.ToString();
+                int affectedRows = 0;
+
+                for (int i = 0; i < item.itemList.Count; i++)
+                {
+                    string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
+                         from yh_jinxiaocun_jichuziliao where id = @id";
+
+                    var parameters = new MySqlParameter[]
+            {
+                new MySqlParameter("@price", item.itemList[i].price),
+                new MySqlParameter("@num", item.itemList[i].sjsl),
+                new MySqlParameter("@mxtype", item.itemList[i].kcsl),
+                new MySqlParameter("@orderid", item.orderid),
+                new MySqlParameter("@shijian", date_now),
+                new MySqlParameter("@shou_h", item.gonghuo),
+                new MySqlParameter("@zh_name", name),
+                new MySqlParameter("@gs_name", company),
+                new MySqlParameter("@cangku", warehouse),
+                new MySqlParameter("@id", item.itemList[i].id)
+            };
+
+                    affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+                }
+                return affectedRows;
+            }
+        }
+
+        public int addDB(items item, string company, string name, string Rmxtype, string Cmxtype, string Rwarehouse, string Cwarehouse)
+        {
+            if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
+            {
+                int shujukuValue = (int)HttpContext.Current.Session["shujuku"];
+
+                if (shujukuValue == 0) // MySQL
+                {
+                    using (ServerEntities sen = new ServerEntities())
+                    {
+                        string date_now = DateTime.Now.ToString();
+                        int affectedRows = 0;
+
+                        for (int i = 0; i < item.itemList.Count; i++)
+                        {
+                            // 第一条记录：调拨入库到Rwarehouse（调入仓库）
+                            string sqlIn = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                         from yh_jinxiaocun_jichuziliao where id = @id";
+
+                            var parametersIn = new MySqlParameter[]
+                    {
+                        new MySqlParameter("@price", item.itemList[i].price),
+                        new MySqlParameter("@num", item.itemList[i].num),
+                        new MySqlParameter("@mxtype", Rmxtype), // 调拨入库
+                        new MySqlParameter("@orderid", item.orderid),
+                        new MySqlParameter("@shijian", date_now),
+                        new MySqlParameter("@shou_h", item.gonghuo),
+                        new MySqlParameter("@zh_name", name),
+                        new MySqlParameter("@gs_name", company),
+                        new MySqlParameter("@cangku", Rwarehouse), // 调入仓库
+                        new MySqlParameter("@id", item.itemList[i].id)
+                    };
+
+                            affectedRows += sen.Database.ExecuteSqlCommand(sqlIn, parametersIn);
+
+                            // 第二条记录：调拨出库从Cwarehouse（调出仓库）
+                            string sqlOut = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                         from yh_jinxiaocun_jichuziliao where id = @id";
+
+                            var parametersOut = new MySqlParameter[]
+                    {
+                        new MySqlParameter("@price", item.itemList[i].price),
+                        new MySqlParameter("@num", item.itemList[i].num),
+                        new MySqlParameter("@mxtype", Cmxtype), // 调拨出库
+                        new MySqlParameter("@orderid", item.orderid),
+                        new MySqlParameter("@shijian", date_now),
+                        new MySqlParameter("@shou_h", item.gonghuo),
+                        new MySqlParameter("@zh_name", name),
+                        new MySqlParameter("@gs_name", company),
+                        new MySqlParameter("@cangku", Cwarehouse), // 调出仓库
+                        new MySqlParameter("@id", item.itemList[i].id)
+                    };
+
+                            affectedRows += sen.Database.ExecuteSqlCommand(sqlOut, parametersOut);
+                        }
+                        return affectedRows;
+                    }
+                }
+                else if (shujukuValue == 1) // SQL Server
+                {
+                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+                    {
+                        string date_now = DateTime.Now.ToString();
+                        int affectedRows = 0;
+
+                        for (int i = 0; i < item.itemList.Count; i++)
+                        {
+                            // 第一条记录：调拨入库
+                            string sqlIn = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                         SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                         FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
+
+                            var parametersIn = new System.Data.SqlClient.SqlParameter[]
+                    {
+                        new System.Data.SqlClient.SqlParameter("@price", item.itemList[i].price),
+                        new System.Data.SqlClient.SqlParameter("@num", item.itemList[i].num),
+                        new System.Data.SqlClient.SqlParameter("@mxtype", Rmxtype), // 调拨入库
+                        new System.Data.SqlClient.SqlParameter("@orderid", item.orderid),
+                        new System.Data.SqlClient.SqlParameter("@shijian", date_now),
+                        new System.Data.SqlClient.SqlParameter("@shou_h", item.gonghuo),
+                        new System.Data.SqlClient.SqlParameter("@zh_name", name),
+                        new System.Data.SqlClient.SqlParameter("@gs_name", company),
+                        new System.Data.SqlClient.SqlParameter("@cangku", Rwarehouse), // 调入仓库
+                        new System.Data.SqlClient.SqlParameter("@id", item.itemList[i].id)
+                    };
+
+                            affectedRows += sen.Database.ExecuteSqlCommand(sqlIn, parametersIn);
+
+                            // 第二条记录：调拨出库
+                            string sqlOut = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                         SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                         FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
+
+                            var parametersOut = new System.Data.SqlClient.SqlParameter[]
+                    {
+                        new System.Data.SqlClient.SqlParameter("@price", item.itemList[i].price),
+                        new System.Data.SqlClient.SqlParameter("@num", item.itemList[i].num),
+                        new System.Data.SqlClient.SqlParameter("@mxtype", Cmxtype), // 调拨出库
+                        new System.Data.SqlClient.SqlParameter("@orderid", item.orderid),
+                        new System.Data.SqlClient.SqlParameter("@shijian", date_now),
+                        new System.Data.SqlClient.SqlParameter("@shou_h", item.gonghuo),
+                        new System.Data.SqlClient.SqlParameter("@zh_name", name),
+                        new System.Data.SqlClient.SqlParameter("@gs_name", company),
+                        new System.Data.SqlClient.SqlParameter("@cangku", Cwarehouse), // 调出仓库
+                        new System.Data.SqlClient.SqlParameter("@id", item.itemList[i].id)
+                    };
+
+                            affectedRows += sen.Database.ExecuteSqlCommand(sqlOut, parametersOut);
+                        }
+                        return affectedRows;
+                    }
+                }
+            }
+
+            // 默认使用MySQL数据库
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string date_now = DateTime.Now.ToString();
+                int affectedRows = 0;
+
+                for (int i = 0; i < item.itemList.Count; i++)
+                {
+                    // 调拨入库记录
+                    string sqlIn = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                 from yh_jinxiaocun_jichuziliao where id = @id";
+
+                    var parametersIn = new MySqlParameter[]
+            {
+                new MySqlParameter("@price", item.itemList[i].price),
+                new MySqlParameter("@num", item.itemList[i].num),
+                new MySqlParameter("@mxtype", Rmxtype), // 调拨入库
+                new MySqlParameter("@orderid", item.orderid),
+                new MySqlParameter("@shijian", date_now),
+                new MySqlParameter("@shou_h", item.gonghuo),
+                new MySqlParameter("@zh_name", name),
+                new MySqlParameter("@gs_name", company),
+                new MySqlParameter("@cangku", Rwarehouse), // 调入仓库
+                new MySqlParameter("@id", item.itemList[i].id)
+            };
+
+                    affectedRows += sen.Database.ExecuteSqlCommand(sqlIn, parametersIn);
+
+                    // 调拨出库记录
+                    string sqlOut = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+                 from yh_jinxiaocun_jichuziliao where id = @id";
+
+                    var parametersOut = new MySqlParameter[]
+            {
+                new MySqlParameter("@price", item.itemList[i].price),
+                new MySqlParameter("@num", item.itemList[i].num),
+                new MySqlParameter("@mxtype", Cmxtype), // 调拨出库
+                new MySqlParameter("@orderid", item.orderid),
+                new MySqlParameter("@shijian", date_now),
+                new MySqlParameter("@shou_h", item.gonghuo),
+                new MySqlParameter("@zh_name", name),
+                new MySqlParameter("@gs_name", company),
+                new MySqlParameter("@cangku", Cwarehouse), // 调出仓库
+                new MySqlParameter("@id", item.itemList[i].id)
+            };
+
+                    affectedRows += sen.Database.ExecuteSqlCommand(sqlOut, parametersOut);
                 }
                 return affectedRows;
             }
@@ -1252,6 +1667,135 @@ namespace Web.Server
                     affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
                 }
                 return affectedRows;
+            }
+        }
+
+
+
+        // 获取所有进出明细数据（带基本筛选）
+        public List<yh_jinxiaocun_mingxi> GetAllJinchuDetails(string gongsi, string mxtype = null, string startDate = null, string endDate = null)
+        {
+            if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
+            {
+                int shujukuValue = (int)HttpContext.Current.Session["shujuku"];
+
+                if (shujukuValue == 0) // MySQL
+                {
+                    using (ServerEntities sen = new ServerEntities())
+                    {
+                        // 构建基本查询
+                        string sql = @"
+                SELECT * 
+                FROM yh_jinxiaocun_mingxi 
+                WHERE gs_name = @gongsi";
+
+                        var parameters = new List<MySqlParameter>
+                {
+                    new MySqlParameter("@gongsi", gongsi)
+                };
+
+                        // 添加进出类型筛选
+                        if (!string.IsNullOrEmpty(mxtype))
+                        {
+                            sql += " AND mxtype = @mxtype";
+                            parameters.Add(new MySqlParameter("@mxtype", mxtype));
+                        }
+
+                        // 添加日期筛选
+                        if (!string.IsNullOrEmpty(startDate))
+                        {
+                            sql += " AND DATE(shijian) >= @startDate";
+                            parameters.Add(new MySqlParameter("@startDate", startDate));
+                        }
+
+                        if (!string.IsNullOrEmpty(endDate))
+                        {
+                            sql += " AND DATE(shijian) <= @endDate";
+                            parameters.Add(new MySqlParameter("@endDate", endDate));
+                        }
+
+                        sql += " ORDER BY shijian DESC";
+
+                        return sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql, parameters.ToArray()).ToList();
+                    }
+                }
+                else if (shujukuValue == 1) // SQL Server
+                {
+                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+                    {
+                        // 构建基本查询
+                        string sql = @"
+                SELECT * 
+                FROM yh_jinxiaocun_mingxi_mssql
+                WHERE gs_name = @gongsi";
+
+                        var parameters = new List<System.Data.SqlClient.SqlParameter>
+                {
+                    new System.Data.SqlClient.SqlParameter("@gongsi", gongsi)
+                };
+
+                        // 添加进出类型筛选
+                        if (!string.IsNullOrEmpty(mxtype))
+                        {
+                            sql += " AND mxtype = @mxtype";
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@mxtype", mxtype));
+                        }
+
+                        // 添加日期筛选
+                        if (!string.IsNullOrEmpty(startDate))
+                        {
+                            sql += " AND CONVERT(date, shijian) >= @startDate";
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", startDate));
+                        }
+
+                        if (!string.IsNullOrEmpty(endDate))
+                        {
+                            sql += " AND CONVERT(date, shijian) <= @endDate";
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@endDate", endDate));
+                        }
+
+                        sql += " ORDER BY shijian DESC";
+
+                        return sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql, parameters.ToArray()).ToList();
+                    }
+                }
+            }
+
+            // 默认使用MySQL数据库
+            using (ServerEntities sen = new ServerEntities())
+            {
+                string sql = @"
+        SELECT * 
+        FROM yh_jinxiaocun_mingxi 
+        WHERE gs_name = @gongsi";
+
+                var parameters = new List<MySqlParameter>
+        {
+            new MySqlParameter("@gongsi", gongsi)
+        };
+
+                // 添加进出类型筛选
+                if (!string.IsNullOrEmpty(mxtype))
+                {
+                    sql += " AND mxtype = @mxtype";
+                    parameters.Add(new MySqlParameter("@mxtype", mxtype));
+                }
+
+                if (!string.IsNullOrEmpty(startDate))
+                {
+                    sql += " AND DATE(shijian) >= @startDate";
+                    parameters.Add(new MySqlParameter("@startDate", startDate));
+                }
+
+                if (!string.IsNullOrEmpty(endDate))
+                {
+                    sql += " AND DATE(shijian) <= @endDate";
+                    parameters.Add(new MySqlParameter("@endDate", endDate));
+                }
+
+                sql += " ORDER BY shijian DESC";
+
+                return sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql, parameters.ToArray()).ToList();
             }
         }
     }

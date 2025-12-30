@@ -4,6 +4,9 @@
     <EntitySetMapping Name="Account">
       <EntityTypeMapping TypeName="FinanceModel.Account">
         <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="touxiang" ColumnName="touxiang" />
+          <ScalarProperty Name="xingming" ColumnName="xingming" />
+          <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="company" ColumnName="company" />
           <ScalarProperty Name="pwd" ColumnName="pwd" />
@@ -106,6 +109,8 @@
     <EntitySetMapping Name="SimpleData">
       <EntityTypeMapping TypeName="FinanceModel.SimpleData">
         <MappingFragment StoreEntitySet="SimpleData">
+          <ScalarProperty Name="yijiaoshuijine" ColumnName="yijiaoshuijine" />
+          <ScalarProperty Name="nashuijine" ColumnName="nashuijine" />
           <ScalarProperty Name="zhaiyao" ColumnName="zhaiyao" />
           <ScalarProperty Name="kehu" ColumnName="kehu" />
           <ScalarProperty Name="insert_date" ColumnName="insert_date" />
@@ -297,6 +302,58 @@
         <MappingFragment StoreEntitySet="KehuPeizhi">
           <ScalarProperty Name="company" ColumnName="company" />
           <ScalarProperty Name="kehu" ColumnName="kehu" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ysyfpeizhi">
+      <EntityTypeMapping TypeName="FinanceModel.ysyfpeizhi">
+        <MappingFragment StoreEntitySet="ysyfpeizhi">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="ysyfkemu" ColumnName="ysyfkemu" />
+          <ScalarProperty Name="jine" ColumnName="jine" />
+          <ScalarProperty Name="xiangmumingcheng" ColumnName="xiangmumingcheng" />
+          <ScalarProperty Name="ysyf" ColumnName="ysyf" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="shuilvPeizhi">
+      <EntityTypeMapping TypeName="FinanceModel.shuilvPeizhi">
+        <MappingFragment StoreEntitySet="shuilvPeizhi">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="linjiezhi" ColumnName="linjiezhi" />
+          <ScalarProperty Name="shuilv" ColumnName="shuilv" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="waibiPeizhi">
+      <EntityTypeMapping TypeName="FinanceModel.waibiPeizhi">
+        <MappingFragment StoreEntitySet="waibiPeizhi">
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="bizhong" ColumnName="bizhong" />
+          <ScalarProperty Name="huilv" ColumnName="huilv" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gongzimingxi">
+      <EntityTypeMapping TypeName="FinanceModel.gongzimingxi">
+        <MappingFragment StoreEntitySet="gongzimingxi">
+          <ScalarProperty Name="kkqgongzi" ColumnName="kkqgongzi" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="beizhu" ColumnName="beizhu" />
+          <ScalarProperty Name="yifu" ColumnName="yifu" />
+          <ScalarProperty Name="gongzi" ColumnName="gongzi" />
+          <ScalarProperty Name="koukuan" ColumnName="koukuan" />
+          <ScalarProperty Name="yinhangzhanghu" ColumnName="yinhangzhanghu" />
+          <ScalarProperty Name="chanpinchengben" ColumnName="chanpinchengben" />
+          <ScalarProperty Name="xiaoshoujine" ColumnName="xiaoshoujine" />
+          <ScalarProperty Name="xiaoshoushuliang" ColumnName="xiaoshoushuliang" />
+          <ScalarProperty Name="ticheng" ColumnName="ticheng" />
+          <ScalarProperty Name="shijian" ColumnName="shijian" />
+          <ScalarProperty Name="renming" ColumnName="renming" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

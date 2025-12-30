@@ -47,7 +47,7 @@
     <EntitySetMapping Name="yh_jinxiaocun_jichuziliao">
       <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_jichuziliao">
         <MappingFragment StoreEntitySet="yh_jinxiaocun_jichuziliao">
-          <ScalarProperty Name="maxNum" ColumnName="maxNum" />
+          <ScalarProperty Name="bianyuan" ColumnName="bianyuan" />
           <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="lei_bie" ColumnName="lei_bie" />
@@ -90,6 +90,7 @@
     <EntitySetMapping Name="yh_jinxiaocun_kucun">
       <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_kucun">
         <MappingFragment StoreEntitySet="yh_jinxiaocun_kucun">
+          <ScalarProperty Name="cangku" ColumnName="cangku" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="shou_jia" ColumnName="shou_jia" />
           <ScalarProperty Name="jin_jia" ColumnName="jin_jia" />
@@ -113,6 +114,7 @@
     <EntitySetMapping Name="yh_jinxiaocun_mingxi">
       <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_mingxi">
         <MappingFragment StoreEntitySet="yh_jinxiaocun_mingxi">
+          <ScalarProperty Name="cangku" ColumnName="cangku" />
           <ScalarProperty Name="C_id" ColumnName="_id" />
           <ScalarProperty Name="C_openid" ColumnName="_openid" />
           <ScalarProperty Name="cpid" ColumnName="cpid" />
@@ -136,6 +138,7 @@
     <EntitySetMapping Name="yh_jinxiaocun_qichushu">
       <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_qichushu">
         <MappingFragment StoreEntitySet="yh_jinxiaocun_qichushu">
+          <ScalarProperty Name="cangku" ColumnName="cangku" />
           <ScalarProperty Name="C_id" ColumnName="_id" />
           <ScalarProperty Name="C_openid" ColumnName="_openid" />
           <ScalarProperty Name="cpid" ColumnName="cpid" />
@@ -156,6 +159,9 @@
     <EntitySetMapping Name="yh_jinxiaocun_user">
       <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_user">
         <MappingFragment StoreEntitySet="yh_jinxiaocun_user">
+          <ScalarProperty Name="shujuku" ColumnName="shujuku" />
+          <ScalarProperty Name="touxiang" ColumnName="touxiang" />
+          <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
           <ScalarProperty Name="C_id1" ColumnName="C_id" />
           <ScalarProperty Name="C_id" ColumnName="_id" />
           <ScalarProperty Name="AdminIS" ColumnName="AdminIS" />
@@ -195,6 +201,40 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="zh_name" ColumnName="zh_name" />
           <ScalarProperty Name="gs_name" ColumnName="gs_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_cangku">
+      <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_cangku">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_cangku">
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="cangku" ColumnName="cangku" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yh_jinxiaocun_tuihuomingxi">
+      <EntityTypeMapping TypeName="StockModel.yh_jinxiaocun_tuihuomingxi">
+        <MappingFragment StoreEntitySet="yh_jinxiaocun_tuihuomingxi">
+          <ScalarProperty Name="ruku" ColumnName="ruku" />
+          <ScalarProperty Name="cangku" ColumnName="cangku" />
+          <ScalarProperty Name="gs_name" ColumnName="gs_name" />
+          <ScalarProperty Name="zh_name" ColumnName="zh_name" />
+          <ScalarProperty Name="shou_h" ColumnName="shou_h" />
+          <ScalarProperty Name="sp_dm" ColumnName="sp_dm" />
+          <ScalarProperty Name="shijian" ColumnName="shijian" />
+          <ScalarProperty Name="ordeid" ColumnName="ordeid" />
+          <ScalarProperty Name="mxtype" ColumnName="mxtype" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="finduser" ColumnName="finduser" />
+          <ScalarProperty Name="cpjj" ColumnName="cpjj" />
+          <ScalarProperty Name="cpid" ColumnName="cpid" />
+          <ScalarProperty Name="C_openid" ColumnName="_openid" />
+          <ScalarProperty Name="cpsl" ColumnName="cpsl" />
+          <ScalarProperty Name="cpsj" ColumnName="cpsj" />
+          <ScalarProperty Name="cpname" ColumnName="cpname" />
+          <ScalarProperty Name="cplb" ColumnName="cplb" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

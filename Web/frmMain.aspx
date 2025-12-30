@@ -66,8 +66,6 @@
                         setList(result.d);
                         pushnewsarr = result.d;
 
-                       
-
                         if (pushnewsarr && pushnewsarr.length > 0) {
                             var firstNews = pushnewsarr[0];
                             if (firstNews.beizhu2 && firstNews.beizhu2.trim() !== "") {
@@ -485,7 +483,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: linear-gradient(135deg, #3d566e 0%, #2c3e50 100%);
+            background: linear-gradient(180deg, #065ceb 0%, #7474be 100%);
             height: 70px;
             padding: 0 20px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
@@ -752,88 +750,6 @@
 
 
 
-
-        
-        /* 导航容器 */
-        .vertical-nav {
-            width: 220px;
-            background-color: #2c3e50;
-        }
-        
-        /* 一级导航项 */
-        .nav-item {
-            position: relative;
-            border-bottom: 1px solid #34495e;
-        }
-        
-        /* 导航链接基础样式 */
-        .nav-link {
-            display: block;
-            padding: 14px 20px;
-            color: #ecf0f1;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .nav-link:hover {
-            background-color: #34495e;
-        }
-        
-        /* 二级导航容器 */
-        .sub-nav {
-            list-style: none;
-            display: none;
-            background-color: #34495e;
-        }
-        
-        /* 三级导航容器 */
-        .sub-sub-nav {
-            list-style: none;
-            display: none;
-            background-color: #3d566e;
-        }
-        
-        /* 当前激活的导航项 */
-        .active > .nav-link {
-            background-color: #3498db;
-        }
-        
-        /* 显示子菜单的箭头图标 */
-        .has-submenu > .nav-link:after {
-            content: ">";
-            float: right;
-            transform: rotate(90deg);
-        }
-        
-        /* 悬停显示子菜单 */
-        .nav-item:hover > .sub-nav {
-            display: block;
-        }
-        
-        .sub-nav-item:hover > .sub-sub-nav {
-            display: block;
-        }
-        
-        /* 二级菜单项样式 */
-        .sub-nav-item {
-            position: relative;
-            border-bottom: 1px solid #3d566e;
-        }
-        
-        .sub-nav .nav-link {
-            padding-left: 30px;
-        }
-        
-        /* 三级菜单项样式 */
-        .sub-sub-nav-item {
-            border-bottom: 1px solid #4b6988;
-        }
-        
-        .sub-sub-nav .nav-link {
-            padding-left: 40px;
-        }
-
-
         .daohang {
             display:flex;
             background-color:white;
@@ -849,7 +765,7 @@
             font-size:20px;
             border:none;
             border-radius:3px;
-            background-color:#4ebbb1;
+            background-color:#1a1a2e;
         }
         .bt_dao:hover {
             cursor: pointer;
@@ -929,103 +845,6 @@
             </div>
         </div>
 
-         <%-- <nav class="vertical-nav">
-        <ul>
-            <li class="nav-item active">
-                <a href="#" class="nav-link">首页</a>
-            </li>
-            
-            <li class="nav-item has-submenu">
-                <a href="#" class="nav-link">采购</a>
-                <ul class="sub-nav">
-                    <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购单</a></li>
-                    <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购单</a></li>
-                    <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购退货单</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购换货单</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购明细</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购退货单</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购商品统计</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购金额统计</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">采购波动分析</a></li>
-                 
-                </ul>
-            </li>
-            
-            <li class="nav-item has-submenu">
-                <a href="#" class="nav-link">销售</a>
-                <ul class="sub-nav">
-                    <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">销售单</a></li>
-                    <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">销售退货单</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">销售换货单</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">销售明细</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">销售出库单</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">销售产品统计</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">销售金额统计</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">销售波动分析</a></li>
-                </ul>
-            </li>
-            
-            <li class="nav-item has-submenu">
-                <a href="#" class="nav-link">库存</a>
-                <ul class="sub-nav">
-                   <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">库存数额查询</a></li>
-                    <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">库存调拨单</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">其他入库</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">其他出库</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">库存费用分摊</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">库存盘点</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">库存盘点记录</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">库存调货统计</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">库存变动统计</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">库存积压统计</a></li>
-                </ul>
-            </li>
-
-            <li class="nav-item has-submenu">
-                <a href="#" class="nav-link">期初</a>
-                <ul class="sub-nav">
-                   <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">期初商品数量</a></li>
-                    <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">期初商品金额</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">期初应收应付</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">期初收支账户</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">期初资产负债</a></li>
-            
-                </ul>
-            </li>
-
-            <li class="nav-item has-submenu">
-                <a href="#" class="nav-link">资料</a>
-                <ul class="sub-nav">
-                   <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">商品信息</a></li>
-                    <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">客户资料</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">供应商资料</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">物流资料</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">员工资料</a></li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">仓库资料</a></li>
-                        <li class="sub-nav-item has-submenu">
-                        <a href="#" class="nav-link">打印单模板</a>
-                        <ul class="sub-sub-nav">
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">采购打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">采购入库打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">采购退货打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">采购换货打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">销售打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">销售退货打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">销售换货打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">库存调拨打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">其他出库打印单</a></li>
-                            <li class="sub-sub-nav-item"><a href="#" class="nav-link">其他入库打印单</a></li>
-                           
-                        </ul>
-                    </li>
-                     <li class="sub-nav-item has-submenu"><a href="#" class="nav-link">支付方式</a></li>
-                </ul>
-            </li>
-
-        </ul>
-    </nav>--%>
-
-
         <div class="main-div">
             <div class="daohang">
                 
@@ -1035,7 +854,19 @@
        
                     <li><a href="#" id="r_k" class="leftNav_li" onclick="add_li('r_k','ru_ku.aspx')" title="入库单双击入库可以添加一行,此表是根据明细表合计来查询的">入库单</a></li>
                     <li><a href="#" id="c_k" class="leftNav_li" onclick="add_li('c_k','chu_ku.aspx')" title="出库单双击出库可以添加一行,此表是根据明细表合计来查询的">出库单</a></li>
+                    <li><a href="#" id="d_b" class="leftNav_li" onclick="add_li('d_b','kucundiaobo.aspx')">库存调拨</a></li>
+                    <li><a href="#" id="p_d" class="leftNav_li" onclick="add_li('p_d','kucunpandian.aspx')">库存盘点</a></li>
+                    <li><a href="#" id="t_h" class="leftNav_li" onclick="add_li('t_h','xiaoshoutuihuo.aspx')">销售退货</a></li>
+                    <li><a href="#" id="t_t" class="leftNav_li" onclick="add_li('t_t','tuihuo_statistics.aspx')">销售退货统计</a></li>
+                    <li><a href="#" id="c_tt" class="leftNav_li" onclick="add_li('c_tt','caigoutuihuotongji.aspx')">采购退货统计</a></li>
+                     <li><a href="#" id="jc_tj" class="leftNav_li" onclick="add_li('jc_tj','jinchutongji.aspx')">进出明细统计</a></li>
+                    <li><a href="#" id="c_g" class="leftNav_li" onclick="add_li('c_g','caigoudan.aspx')">采购单</a></li>
+                    <li><a href="#" id="c_t" class="leftNav_li" onclick="add_li('c_t','caigoutuihuo.aspx')">采购退货</a></li>
+                    <li><a href="#" id="tuihuo_mingxi" class="leftNav_li" onclick="add_li('tuihuo_mingxi','tuihuomingxi.aspx')">采购未入库明细</a></li>
                     <li><a href="#" id="q_c" class="leftNav_li" onclick="add_li('q_c','qi_chu.aspx')" title="期初数双击序号可以添加一行">期初数</a></li>
+                    <li><a href="#" id="q_m" class="leftNav_li" onclick="add_li('q_m','qimoshu.aspx')">期末数</a></li>
+                    <li><a href="#" id="cang_ku" class="leftNav_li" onclick="add_li('cang_ku','cangku.aspx')">仓库资料</a></li>
+                    <li><a href="#" id="j_y" class="leftNav_li" onclick="add_li('j_y','kucunjiya.aspx')">库存积压统计</a></li>
                     <li><a href="#" id="m_x" class="leftNav_li" onclick="add_li('m_x','ming_xi.aspx')" title="明细双击序号可以添加一行">明细</a></li>
                     <li><a href="#" id="j_x" class="leftNav_li" onclick="add_li('j_x','jin_xiao_cun.aspx')" title="明细双击序号可以添加一行,此表是根据明细表来判断期初，入库，出库，结存结果相加来查询">进销存</a></li>
                     <li><a href="#" id="j_c" class="leftNav_li" onclick="add_li('j_c','sp_rc_ku_select.aspx')">商品进出查询</a></li>

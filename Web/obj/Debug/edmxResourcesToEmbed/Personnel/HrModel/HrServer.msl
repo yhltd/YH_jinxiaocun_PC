@@ -174,6 +174,7 @@
     <EntitySetMapping Name="gongzi_renyuan">
       <EntityTypeMapping TypeName="yaoModel.gongzi_renyuan">
         <MappingFragment StoreEntitySet="gongzi_renyuan">
+          <ScalarProperty Name="touxiang" ColumnName="touxiang" />
           <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
           <ScalarProperty Name="AD" ColumnName="AD" />
           <ScalarProperty Name="AC" ColumnName="AC" />
@@ -768,6 +769,7 @@
     <EntitySetMapping Name="baitaoquanxian_renyun">
       <EntityTypeMapping TypeName="yaoModel.baitaoquanxian_renyun">
         <MappingFragment StoreEntitySet="baitaoquanxian_renyun">
+          <ScalarProperty Name="touxiang" ColumnName="touxiang" />
           <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
           <ScalarProperty Name="bumen" ColumnName="bumen" />
           <ScalarProperty Name="quanxian_id" ColumnName="quanxian_id" />
@@ -988,20 +990,6 @@
     <EntitySetMapping Name="liuchanglin_kehu">
       <EntityTypeMapping TypeName="yaoModel.liuchanglin_kehu">
         <MappingFragment StoreEntitySet="liuchanglin_kehu">
-          <ScalarProperty Name="E" ColumnName="E" />
-          <ScalarProperty Name="D" ColumnName="D" />
-          <ScalarProperty Name="C" ColumnName="C" />
-          <ScalarProperty Name="B" ColumnName="B" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="liuchanglin_kucun">
-      <EntityTypeMapping TypeName="yaoModel.liuchanglin_kucun">
-        <MappingFragment StoreEntitySet="liuchanglin_kucun">
-          <ScalarProperty Name="H" ColumnName="H" />
-          <ScalarProperty Name="G" ColumnName="G" />
-          <ScalarProperty Name="F" ColumnName="F" />
           <ScalarProperty Name="E" ColumnName="E" />
           <ScalarProperty Name="D" ColumnName="D" />
           <ScalarProperty Name="C" ColumnName="C" />
@@ -1716,6 +1704,101 @@
           <ScalarProperty Name="qiye_zhichu" ColumnName="qiye_zhichu" />
           <ScalarProperty Name="geren_zhichu" ColumnName="geren_zhichu" />
           <ScalarProperty Name="shifa_gongzi" ColumnName="shifa_gongzi" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gongzi_dongtaigongshi">
+      <EntityTypeMapping TypeName="yaoModel.gongzi_dongtaigongshi">
+        <MappingFragment StoreEntitySet="gongzi_dongtaigongshi">
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="gongshi" ColumnName="gongshi" />
+          <ScalarProperty Name="zhuziduan" ColumnName="zhuziduan" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gongzi_dongtaimingxi">
+      <EntityTypeMapping TypeName="yaoModel.gongzi_dongtaimingxi">
+        <MappingFragment StoreEntitySet="gongzi_dongtaimingxi">
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gongzi_gongzuoshijian">
+      <EntityTypeMapping TypeName="yaoModel.gongzi_gongzuoshijian">
+        <MappingFragment StoreEntitySet="gongzi_gongzuoshijian">
+          <ScalarProperty Name="repeat_end_date" ColumnName="repeat_end_date" />
+          <ScalarProperty Name="schedule_status" ColumnName="schedule_status" />
+          <ScalarProperty Name="schedule_title" ColumnName="schedule_title" />
+          <ScalarProperty Name="repeat_type" ColumnName="repeat_type" />
+          <ScalarProperty Name="work_days" ColumnName="work_days" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="riqi" ColumnName="riqi" />
+          <ScalarProperty Name="year_month" ColumnName="year_month" />
+          <ScalarProperty Name="wuxiushijianjs" ColumnName="wuxiushijianjs" />
+          <ScalarProperty Name="wuxiushijianks" ColumnName="wuxiushijianks" />
+          <ScalarProperty Name="gongzuoshijianjs" ColumnName="gongzuoshijianjs" />
+          <ScalarProperty Name="gongzuoshijianks" ColumnName="gongzuoshijianks" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gongzi_jianliguanli">
+      <EntityTypeMapping TypeName="yaoModel.gongzi_jianliguanli">
+        <MappingFragment StoreEntitySet="gongzi_jianliguanli">
+          <ScalarProperty Name="mianshipizhu" ColumnName="mianshipizhu" />
+          <ScalarProperty Name="zhuangtai" ColumnName="zhuangtai" />
+          <ScalarProperty Name="wenjian" ColumnName="wenjian" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="beizhu" ColumnName="beizhu" />
+          <ScalarProperty Name="tijiaoshijian" ColumnName="tijiaoshijian" />
+          <ScalarProperty Name="mubiaogangwei" ColumnName="mubiaogangwei" />
+          <ScalarProperty Name="xueli" ColumnName="xueli" />
+          <ScalarProperty Name="touliren" ColumnName="touliren" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gongzi_lizhishenpi">
+      <EntityTypeMapping TypeName="yaoModel.gongzi_lizhishenpi">
+        <MappingFragment StoreEntitySet="gongzi_lizhishenpi">
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="shenpiyuanyin" ColumnName="shenpiyuanyin" />
+          <ScalarProperty Name="shenpijieguo" ColumnName="shenpijieguo" />
+          <ScalarProperty Name="shenqingyuanyin" ColumnName="shenqingyuanyin" />
+          <ScalarProperty Name="tijiaoriqi" ColumnName="tijiaoriqi" />
+          <ScalarProperty Name="xingming" ColumnName="xingming" />
+          <ScalarProperty Name="bumen" ColumnName="bumen" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gongzi_qingjiashenpi">
+      <EntityTypeMapping TypeName="yaoModel.gongzi_qingjiashenpi">
+        <MappingFragment StoreEntitySet="gongzi_qingjiashenpi">
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="shenpiyuanyin" ColumnName="shenpiyuanyin" />
+          <ScalarProperty Name="zhuangtai" ColumnName="zhuangtai" />
+          <ScalarProperty Name="qingjiayuanyin" ColumnName="qingjiayuanyin" />
+          <ScalarProperty Name="jzqingjiashijan" ColumnName="jzqingjiashijan" />
+          <ScalarProperty Name="qsqingjiashijian" ColumnName="qsqingjiashijian" />
+          <ScalarProperty Name="tijiaoshijian" ColumnName="tijiaoshijian" />
+          <ScalarProperty Name="xingming" ColumnName="xingming" />
+          <ScalarProperty Name="bumen" ColumnName="bumen" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gongzi_tongjitu">
+      <EntityTypeMapping TypeName="yaoModel.gongzi_tongjitu">
+        <MappingFragment StoreEntitySet="gongzi_tongjitu">
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="config_data" ColumnName="config_data" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

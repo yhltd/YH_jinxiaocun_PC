@@ -32,7 +32,6 @@
     <EntitySet Name="liuchanglin_fuzhu" EntityType="yaoModel.liuchanglin_fuzhu" />
     <EntitySet Name="liuchanglin_gongyingshang" EntityType="yaoModel.liuchanglin_gongyingshang" />
     <EntitySet Name="liuchanglin_kehu" EntityType="yaoModel.liuchanglin_kehu" />
-    <EntitySet Name="liuchanglin_kucun" EntityType="yaoModel.liuchanglin_kucun" />
     <EntitySet Name="liuchanglin_mingxi" EntityType="yaoModel.liuchanglin_mingxi" />
     <EntitySet Name="liuchanglin_mingxiguanli" EntityType="yaoModel.liuchanglin_mingxiguanli" />
     <EntitySet Name="liuchanglin_renyuan" EntityType="yaoModel.liuchanglin_renyuan" />
@@ -72,6 +71,13 @@
     <EntitySet Name="zheng_020826_model" EntityType="yaoModel.zheng_020826_model" />
     <EntitySet Name="zheng_020826_userInfo" EntityType="yaoModel.zheng_020826_userInfo" />
     <EntitySet Name="gongzi_shenpi" EntityType="yaoModel.gongzi_shenpi" />
+    <EntitySet Name="gongzi_dongtaigongshi" EntityType="yaoModel.gongzi_dongtaigongshi" />
+    <EntitySet Name="gongzi_dongtaimingxi" EntityType="yaoModel.gongzi_dongtaimingxi" />
+    <EntitySet Name="gongzi_gongzuoshijian" EntityType="yaoModel.gongzi_gongzuoshijian" />
+    <EntitySet Name="gongzi_jianliguanli" EntityType="yaoModel.gongzi_jianliguanli" />
+    <EntitySet Name="gongzi_lizhishenpi" EntityType="yaoModel.gongzi_lizhishenpi" />
+    <EntitySet Name="gongzi_qingjiashenpi" EntityType="yaoModel.gongzi_qingjiashenpi" />
+    <EntitySet Name="gongzi_tongjitu" EntityType="yaoModel.gongzi_tongjitu" />
   </EntityContainer>
   <EntityType Name="gongzi_gongzimingxi">
     <Key>
@@ -274,6 +280,7 @@
     <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="touxiang" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="gongzi_renyuanManager">
     <Key>
@@ -846,6 +853,7 @@
     <Property Type="String" Name="quanxian_id" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="touxiang" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="dearhylo9_cangku">
     <Key>
@@ -1043,19 +1051,6 @@
     <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="liuchanglin_kucun">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="liuchanglin_mingxi">
     <Key>
@@ -1733,5 +1728,93 @@
     <Property Type="String" Name="shenpiren" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_dongtaigongshi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="zhuziduan" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongshi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_dongtaimingxi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="name" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_gongzuoshijian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="gongzuoshijianks" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongzuoshijianjs" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wuxiushijianks" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wuxiushijianjs" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="year_month" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="work_days" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="repeat_type" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="schedule_title" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="schedule_status" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="repeat_end_date" MaxLength="1" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="gongzi_jianliguanli">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="touliren" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xueli" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mubiaogangwei" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="tijiaoshijian" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="beizhu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wenjian" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhuangtai" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="mianshipizhu" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_lizhishenpi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xingming" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="tijiaoriqi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shenqingyuanyin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shenpijieguo" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shenpiyuanyin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_qingjiashenpi">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xingming" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="tijiaoshijian" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qsqingjiashijian" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="jzqingjiashijan" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="qingjiayuanyin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="zhuangtai" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shenpiyuanyin" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="gongzi_tongjitu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="config_data" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="create_time" Precision="3" />
   </EntityType>
 </Schema>

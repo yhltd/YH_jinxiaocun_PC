@@ -13,6 +13,7 @@
         * {
             margin: 0;
             padding: 0;
+            overflow: auto;
             box-sizing: border-box;
             font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
@@ -24,7 +25,7 @@
             display: flex;
         }
        .ti {
-            background: linear-gradient(135deg, #2E8B57 0%, #3CB371 30%, #20B2AA 100%);
+            background: linear-gradient(135deg, rgba(22, 10, 141, 0.95) 0%, rgba(59, 77, 203, 0.95) 50%, rgba(90, 95, 221, 0.95) 100%);
             color: white;
             padding: 6px 30px;
             border-radius: 12px 12px 0 0;
@@ -92,12 +93,12 @@
         /* 表单区域样式 */
         .header-top {
             background: white;
-            padding: 20px 30px;
+            padding: 20px 10px;
             border-radius: 0 0 12px 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 10px;
             align-items: center;
             margin-bottom:10px;
         }
@@ -126,10 +127,9 @@
         }
         
         .top_bt {
-            background: linear-gradient(to right, #2E8B57, #3CB371);
+            background: linear-gradient(to bottom, #07f2e7, #071ec1);
             color: white;
             border: none;
-            padding: 12px 20px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
@@ -143,7 +143,7 @@
         }
         
         .top_bt:hover {
-            background: linear-gradient(to right, #26734d, #2fa866);
+            background: linear-gradient(to bottom, #07f2e7, #071ec1);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(46, 139, 87, 0.3);
         }
@@ -179,7 +179,7 @@
         
         table#ridView1 th[scope="col"],
         table th[scope="col"] {
-            background: linear-gradient(to bottom, #2E8B57, #3CB371) !important;
+            background: linear-gradient(to bottom, #4b77d0, #0521e8);
             color: white !important;
             padding: 15px !important;
             text-align: center !important;
@@ -231,7 +231,6 @@
 
         /* 表头立体效果 */
         table th {
-            background: linear-gradient(to bottom, #4CAF50, #2E8B57) !important;
             color: white !important;
             padding: 15px !important;
             text-align: center !important;
@@ -331,7 +330,7 @@
         </div>
         <div class="header-top">
         <asp:Label ID="Label1" runat="server" Height="30px" Text="部门：" style="text-align:center"></asp:Label>
-        <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="C" DataValueField="C" style="text-align:center;border:0.5px solid #378888">
+        <asp:DropDownList ID="DropDownList1" runat="server" Height="30px" Width="110px"  CssClass="top_select_input" DataSourceID="SqlDataSource5" DataTextField="C" DataValueField="C" style="text-align:center;border:0.5px solid #378888">
             <asp:ListItem></asp:ListItem>
              <asp:ListItem></asp:ListItem>
         </asp:DropDownList>
@@ -345,9 +344,8 @@
                 <asp:SessionParameter Name="gongsi" SessionField="gongsi" Type="String" />
             </SelectParameters>
         </asp:SqlDataSource>
-&nbsp;&nbsp;&nbsp;
         <asp:Label ID="Label2" runat="server" Height="30px" Text="岗位：" style="text-align:center"></asp:Label>
-        <asp:DropDownList ID="DropDownList2" runat="server" Height="30px" Width="120px"  CssClass="top_select_input" DataSourceID="SqlDataSource4" DataTextField="D" DataValueField="D" style="text-align:center;border:0.5px solid #378888">
+        <asp:DropDownList ID="DropDownList2" runat="server" Height="30px" Width="110px"  CssClass="top_select_input" DataSourceID="SqlDataSource4" DataTextField="D" DataValueField="D" style="text-align:center;border:0.5px solid #378888">
         <asp:ListItem></asp:ListItem>
         <asp:ListItem></asp:ListItem>
         </asp:DropDownList>

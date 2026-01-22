@@ -19,12 +19,12 @@
         
         body {
             background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-            padding: 20px;
+            padding: 10px;
             min-height: 100vh;
             display: flex;
         }
        .ti {
-            background: linear-gradient(135deg, #2E8B57 0%, #3CB371 30%, #20B2AA 100%);
+            background: linear-gradient(135deg, rgba(22, 10, 141, 0.95) 0%, rgba(59, 77, 203, 0.95) 50%, rgba(90, 95, 221, 0.95) 100%);
             color: white;
             padding: 6px 30px;
             border-radius: 12px 12px 0 0;
@@ -126,10 +126,9 @@
         }
         
         .top_bt {
-            background: linear-gradient(to right, #2E8B57, #3CB371);
+            background: linear-gradient(to bottom, #07f2e7, #071ec1);
             color: white;
             border: none;
-            padding: 12px 20px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
@@ -143,7 +142,7 @@
         }
         
         .top_bt:hover {
-            background: linear-gradient(to right, #26734d, #2fa866);
+            background: linear-gradient(to bottom, #07f2e7, #071ec1);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(46, 139, 87, 0.3);
         }
@@ -179,7 +178,7 @@
         
         table#ridView1 th[scope="col"],
         table th[scope="col"] {
-            background: linear-gradient(to bottom, #2E8B57, #3CB371) !important;
+            background: linear-gradient(to bottom, #4b77d0, #0521e8);
             color: white !important;
             padding: 15px !important;
             text-align: center !important;
@@ -231,7 +230,6 @@
 
         /* 表头立体效果 */
         table th {
-            background: linear-gradient(to bottom, #4CAF50, #2E8B57) !important;
             color: white !important;
             padding: 15px !important;
             text-align: center !important;

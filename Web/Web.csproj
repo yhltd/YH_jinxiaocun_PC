@@ -1720,8 +1720,17 @@
     <Content Include="Personnel\bumenxiangqing.aspx" />
     <Content Include="Personnel\bumenxiangqing1.aspx" />
     <Content Include="Personnel\changepwd.aspx" />
+    <Content Include="Personnel\dongtaigzmingxi.aspx" />
     <Content Include="Personnel\downloadExcel.aspx" />
     <Content Include="Personnel\downloadApp.aspx" />
+    <Content Include="Personnel\gongzuoshijian.aspx" />
+    <Content Include="Personnel\jianli.aspx" />
+    <Content Include="Personnel\jianlishenpi.aspx" />
+    <Content Include="Personnel\lizhishenpi.aspx" />
+    <Content Include="Personnel\lizhishenqing.aspx" />
+    <Content Include="Personnel\mianshiguanli.aspx" />
+    <Content Include="Personnel\qiandao.aspx" />
+    <Content Include="Personnel\qingjiashenpi.aspx" />
     <Content Include="Personnel\shenpi.aspx" />
     <Content Include="Personnel\css\common.css" />
     <Content Include="Personnel\css\gridview.css" />
@@ -1793,6 +1802,7 @@
     <Content Include="Personnel\shebao.aspx" />
     <Content Include="Personnel\shuomingshu.aspx" />
     <Content Include="Personnel\size.aspx" />
+    <Content Include="Personnel\tongjitu.aspx" />
     <Content Include="Personnel\wuquanxian.aspx" />
     <Content Include="Personnel\yuangongdangan.aspx" />
     <Content Include="qimoshu.aspx" />
@@ -2869,6 +2879,13 @@
     <Compile Include="Personnel\changepwd.aspx.designer.cs">
       <DependentUpon>changepwd.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personnel\dongtaigzmingxi.aspx.cs">
+      <DependentUpon>dongtaigzmingxi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\dongtaigzmingxi.aspx.designer.cs">
+      <DependentUpon>dongtaigzmingxi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Personnel\downloadExcel.aspx.cs">
       <DependentUpon>downloadExcel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2882,6 +2899,83 @@
     </Compile>
     <Compile Include="Personnel\downloadApp.aspx.designer.cs">
       <DependentUpon>downloadApp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\gongzuoshijian.aspx.cs">
+      <DependentUpon>gongzuoshijian.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\gongzuoshijian.aspx.designer.cs">
+      <DependentUpon>gongzuoshijian.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_dongtaigongshi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_dongtaimingxi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_gongzuoshijian.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_jianliguanli.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_lizhishenpi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_qingjiashenpi.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\HrModel\gongzi_tongjitu.cs">
+      <DependentUpon>HrServer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\jianli.aspx.cs">
+      <DependentUpon>jianli.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\jianli.aspx.designer.cs">
+      <DependentUpon>jianli.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\jianlishenpi.aspx.cs">
+      <DependentUpon>jianlishenpi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\jianlishenpi.aspx.designer.cs">
+      <DependentUpon>jianlishenpi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\lizhishenpi.aspx.cs">
+      <DependentUpon>lizhishenpi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\lizhishenpi.aspx.designer.cs">
+      <DependentUpon>lizhishenpi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\lizhishenqing.aspx.cs">
+      <DependentUpon>lizhishenqing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\lizhishenqing.aspx.designer.cs">
+      <DependentUpon>lizhishenqing.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\mianshiguanli.aspx.cs">
+      <DependentUpon>mianshiguanli.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\mianshiguanli.aspx.designer.cs">
+      <DependentUpon>mianshiguanli.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\qiandao.aspx.cs">
+      <DependentUpon>qiandao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\qiandao.aspx.designer.cs">
+      <DependentUpon>qiandao.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\qingjiashenpi.aspx.cs">
+      <DependentUpon>qingjiashenpi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\qingjiashenpi.aspx.designer.cs">
+      <DependentUpon>qingjiashenpi.aspx</DependentUpon>
     </Compile>
     <Compile Include="Personnel\shenpi.aspx.cs">
       <DependentUpon>shenpi.aspx</DependentUpon>
@@ -3042,9 +3136,6 @@
       <DependentUpon>HrServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Personnel\HrModel\liuchanglin_kehu.cs">
-      <DependentUpon>HrServer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Personnel\HrModel\liuchanglin_kucun.cs">
       <DependentUpon>HrServer.tt</DependentUpon>
     </Compile>
     <Compile Include="Personnel\HrModel\liuchanglin_mingxi.cs">
@@ -3258,6 +3349,13 @@
     </Compile>
     <Compile Include="Personnel\size.aspx.designer.cs">
       <DependentUpon>size.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personnel\tongjitu.aspx.cs">
+      <DependentUpon>tongjitu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personnel\tongjitu.aspx.designer.cs">
+      <DependentUpon>tongjitu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Personnel\wuquanxian.aspx.cs">
       <DependentUpon>wuquanxian.aspx</DependentUpon>

@@ -539,27 +539,15 @@
         }
 
         .header_login_info_con {
-             background: linear-gradient(
-                135deg, 
-                #2E8B57 0%, 
-                #3CB371 30%, 
-                #4FCE7B 70%, 
-                #66D98F 100%
-              );
-              box-shadow: 0 4px 12px rgba(46, 139, 87, 0.2);
-                    }
+            background: linear-gradient(to right, #160a8d 0%, #3b4dcb 50%, #5a5fdd 100%);
+            box-shadow: 0 4px 12px rgba(46, 139, 87, 0.2);
+        }
 
         .bt-in {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(
-                135deg, 
-                rgba(46, 139, 87, 0.7) 0%, 
-                rgba(60, 179, 113, 0.7) 30%, 
-                rgba(79, 206, 123, 0.7) 70%, 
-                rgba(102, 217, 143, 0.7) 100%
-            );
+            background: linear-gradient(to bottom, #07f2e7, #071ec1);
             color: white !important;
             text-decoration: none;
             padding: 8px 16px;
@@ -575,13 +563,7 @@
         }
 
         .bt-in:hover {
-            background: linear-gradient(
-                135deg, 
-                rgba(46, 139, 87, 0.9) 0%, 
-                rgba(60, 179, 113, 0.9) 30%, 
-                rgba(79, 206, 123, 0.9) 70%, 
-                rgba(102, 217, 143, 0.9) 100%
-            );
+            background: linear-gradient(to bottom, #07f2e7, #071ec1);
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(46, 139, 87, 0.4);
             color: white !important;
@@ -703,6 +685,16 @@
                     <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/birthday.aspx','生日提醒')">生日提醒<img src="../Personnel/images/gerenxinxi.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/gerensuode.aspx','个人所得税')" title="计税工资=(应税工资*税率)的和,记录该条数据有几条,个人所得税=(代扣个人所得税*税率)的和">个人所得税<img src="../Personnel/images/gerensuodeshui.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/gongzitiao.aspx','工资条')">工资条<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/jianli.aspx','简历管理')">简历管理<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/mianshiguanli.aspx','面试管理')">面试管理<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/jianlishenpi.aspx','简历审批')">简历审批<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/lizhishenpi.aspx','离职审批')">离职审批<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/lizhishenqing.aspx','离职申请')">离职申请<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/qingjiashenpi.aspx','请假审批')">请假审批<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/dongtaigzmingxi.aspx','动态工资明细')">动态工资明细<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/gongzuoshijian.aspx','工作时间')">工作时间<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/qiandao.aspx','签到')">签到<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
+                    <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/tongjitu.aspx','统计图')">统计图<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
                     <li><a href="#" class="leftNav1_li" onclick="a('../Personnel/shuomingshu.aspx','使用说明')">下载使用说明<img src="../Personnel/images/gongzitiao.png" style="float: right;height: 50%;" /></a></li>
                 </ul>
             </div>

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ea54b71b089d4051ab7491cf565ecc48" Name="关系图1" ZoomLevel="72">
+      <Diagram DiagramId="ea54b71b089d4051ab7491cf565ecc48" Name="关系图1" ZoomLevel="121">
         <EntityTypeShape EntityType="yaoModel.gongzi_gongzimingxi" Width="2.25" PointX="17.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="yaoModel.gongzi_kaoqinjilu" Width="1.5" PointX="11.796495867798335" PointY="9.1758506489805178" IsExpanded="false" />
         <EntityTypeShape EntityType="yaoModel.gongzi_kaoqinmingxi" Width="1.5" PointX="4.875" PointY="0.875" IsExpanded="false" />
@@ -36,7 +36,6 @@
         <EntityTypeShape EntityType="yaoModel.liuchanglin_fuzhu" Width="1.5" PointX="3.8844757470695654" PointY="5.15746493877725" IsExpanded="false" />
         <EntityTypeShape EntityType="yaoModel.liuchanglin_gongyingshang" Width="1.5" PointX="5.375" PointY="3.125" IsExpanded="false" />
         <EntityTypeShape EntityType="yaoModel.liuchanglin_kehu" Width="1.5" PointX="2.8672676528185921" PointY="13.18576802927338" />
-        <EntityTypeShape EntityType="yaoModel.liuchanglin_kucun" Width="1.5" PointX="6.4726987623016807" PointY="13.758822820037056" />
         <EntityTypeShape EntityType="yaoModel.liuchanglin_mingxi" Width="1.5" PointX="0.83779476994545887" PointY="23.6049260308989" />
         <EntityTypeShape EntityType="yaoModel.liuchanglin_mingxiguanli" Width="1.5" PointX="4.9910350409294644" PointY="26.030527812442987" />
         <EntityTypeShape EntityType="yaoModel.liuchanglin_renyuan" Width="1.5" PointX="0.24339548695990604" PointY="31.215681537620576" />
@@ -76,6 +75,13 @@
         <EntityTypeShape EntityType="yaoModel.zheng_020826_model" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="false" />
         <EntityTypeShape EntityType="yaoModel.zheng_020826_userInfo" Width="1.5" PointX="1.6799003247543705" PointY="22.068252514148249" />
         <EntityTypeShape EntityType="yaoModel.gongzi_shenpi" Width="1.5" PointX="5.915846259294006" PointY="27.141015557172249" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_dongtaigongshi" Width="1.5" PointX="1.3007189674771946" PointY="31.701511069993259" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_dongtaimingxi" Width="1.5" PointX="0.31692919149851856" PointY="16.924567603005361" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_gongzuoshijian" Width="1.5" PointX="10.368504132315751" PointY="8.1131168641676741" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_jianliguanli" Width="1.5" PointX="4.8584359422598205" PointY="10.618760203299466" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_lizhishenpi" Width="1.5" PointX="2.2948952570068162" PointY="30.653886690108983" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_qingjiashenpi" Width="1.5" PointX="1.3891732810946058" PointY="16.28180821998129" />
+        <EntityTypeShape EntityType="yaoModel.gongzi_tongjitu" Width="1.5" PointX="9.0043499660698458" PointY="1.0946737681956373" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

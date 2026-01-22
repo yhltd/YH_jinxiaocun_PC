@@ -56,7 +56,6 @@ namespace Web.Personnel.HrModel
         public DbSet<liuchanglin_fuzhu> liuchanglin_fuzhu { get; set; }
         public DbSet<liuchanglin_gongyingshang> liuchanglin_gongyingshang { get; set; }
         public DbSet<liuchanglin_kehu> liuchanglin_kehu { get; set; }
-        public DbSet<liuchanglin_kucun> liuchanglin_kucun { get; set; }
         public DbSet<liuchanglin_mingxi> liuchanglin_mingxi { get; set; }
         public DbSet<liuchanglin_mingxiguanli> liuchanglin_mingxiguanli { get; set; }
         public DbSet<liuchanglin_renyuan> liuchanglin_renyuan { get; set; }

@@ -3,6 +3,28 @@
     height: 100%;
     display: flex;
     align-items: center;
+    background: 
+        linear-gradient(135deg, 
+            #1a1a1a 0%, 
+            #2d2d2d 25%, 
+            #1a1a1a 50%, 
+            #2d2d2d 75%, 
+            #1a1a1a 100%
+        ),
+        /* 斜纹纹理 */
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.02) 2px,
+            rgba(255, 255, 255, 0.02) 4px
+        );
+    background-blend-mode: overlay;
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 5px;
 }
     .leftNav1 ul {
         padding: 0;
@@ -31,75 +53,70 @@
         border-radius: 0;
     }
 
-/* 默认状态 */
-.leftNav1_li {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #f8fffe 0%, #e6f7f3 30%, #d4f0e8 70%, #c2e9de 100%);
-    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.1);
-    color: #2E8B57 ;
-    border-right: 1px solid #e0f2f1;
-    cursor: pointer;
-    padding-left: 20px;
-    text-decoration: none;
-    font-size: 92%;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-right: 20px;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-/* 鼠标悬浮状态 */
-.leftNav1_li:hover {
-    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 30%, #90caf9 70%, #64b5f6 100%);
-    box-shadow: 0 6px 16px rgba(30, 136, 229, 0.2);
-    color: #1565C0;
-    border-right: 1px solid #bbdefb;
-    transform: translateX(4px);
-}
-
-/* 选中/激活状态 */
-.leftNav1_li.active {
-    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 30%, #a5d6a7 70%, #81c784 100%)!important ;
-    box-shadow: 0 4px 12px rgba(46, 139, 87, 0.25);
-    color: #1B5E20;
-    border-right: 3px solid #2E8B57;
-    font-weight: 600;
-    border:2px solid #2E8B57 !important;
-}
-
-/* 选中状态的指示器 */
-.leftNav1_li.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background: linear-gradient(to bottom, #2E8B57, #3CB371);
-    border-radius: 0 2px 2px 0;
-}
-
-
-/* 聚焦状态（可访问性） */
-.leftNav1_li:focus {
-    outline: 2px solid #2E8B57;
-    outline-offset: -2px;
-}
 .header_login_info_con {
     height: 70px;
-    box-shadow: 0px 10px 12px 0 rgba(0, 0, 0, 0.1);
-    background-color: white;
+    background: linear-gradient(135deg, 
+        rgba(22, 10, 141, 0.95) 0%, 
+        rgba(59, 77, 203, 0.95) 50%, 
+        rgba(90, 95, 221, 0.95) 100%
+    );
     z-index: 100;
     margin-bottom: 1px;
     display: flex;
     position: sticky;
     align-items: center;
     justify-content: space-between;
-    background: url(../images/daohanglan.jpg) no-repeat;
-    background-size:100% 100%;
+    
+    /* 玻璃立体效果 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    /* 立体阴影 */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+    
+    /* 边框发光 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    
+    /* 圆角 */
+    border-radius: 6px;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+/* 玻璃边缘高光 */
+.header_login_info_con::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(255, 255, 255, 0.6),
+        transparent
+    );
+}
+
+/* 底部反射光 */
+.header_login_info_con::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
 }
 .header_login_info_con div:first-child{
     width: 20%;
@@ -116,12 +133,13 @@
     display: flex;
     bottom: 0;
     justify-content: start;
-    align-items: flex-end;
     z-index: 10;
     width: 100%;
+    height: 100%;
 }
 li {
     height:3.2rem;
+    margin: 5px;
 }
 .tuichu{
     text-decoration:none;
@@ -130,4 +148,383 @@ li {
 .tuichu:hover{
     text-decoration:none;
     color:blue;
+}
+
+.leftNav1_li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    
+    /* 保持蓝紫色系，但加深并添加纹理 */
+        background: linear-gradient(135deg, rgb(56 45 200 / 95%) 0%, rgba(22, 10, 141, 0.9) 25%, rgba(43, 52, 185, 0.85) 50%, rgba(59, 77, 203, 0.8) 75%, rgba(90, 95, 221, 0.75) 100%);
+    
+    /* 特殊形状 - 倾斜切角效果 */
+    clip-path: polygon(
+        0 0, 
+        94% 0, 
+        100% 50%, 
+        94% 100%, 
+        0 100%
+    );
+    
+    /* 立体边框效果 */
+    border: none;
+    position: relative;
+    
+    /* 立体阴影效果 - 增强立体感 */
+    box-shadow: 
+        /* 外阴影 */
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        /* 内阴影增加深度 */
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+        /* 左侧高光 */
+        inset 2px 0 4px rgba(255, 255, 255, 0.08),
+        /* 右侧阴影 */
+        inset -2px 0 4px rgba(0, 0, 0, 0.2);
+    
+    color: #ffffff;
+    cursor: pointer;
+    padding-left: 20px;
+    padding-right: 28px;
+    text-decoration: none;
+    font-size: 92%;
+    flex-direction: row;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    
+    /* 切角处的装饰效果 */
+    overflow: hidden;
+}
+
+/* 切角高光线 */
+.leftNav1_li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 25px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.2) 50%,
+        transparent
+    );
+    transform: rotate(45deg);
+    transform-origin: top right;
+    z-index: 1;
+}
+
+/* 切角阴影线 */
+.leftNav1_li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 24px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 0, 0, 0.3) 50%,
+        transparent
+    );
+    transform: rotate(45deg);
+    transform-origin: top right;
+    z-index: 1;
+}
+
+/* 左侧高光线 */
+.leftNav1_li .nav-highlight {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        rgba(255, 193, 7, 0.3),
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+}
+
+/* 悬停效果 */
+.leftNav1_li:hover {
+    background: 
+        linear-gradient(135deg, 
+            rgba(22, 10, 141, 0.95) 0%, 
+            rgba(43, 52, 185, 0.9) 25%, 
+            rgba(59, 77, 203, 0.85) 50%, 
+            rgba(90, 95, 221, 0.8) 75%, 
+            rgba(121, 134, 203, 0.75) 100%
+        ),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.04) 2px,
+            rgba(255, 255, 255, 0.04) 4px
+        );
+    
+    /* 悬停时的阴影变化 */
+    box-shadow: 
+        0 6px 16px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        inset 2px 0 6px rgba(255, 255, 255, 0.1),
+        inset -2px 0 6px rgba(0, 0, 0, 0.15);
+    
+    /* 轻微上浮效果 */
+    transform: translateY(-1px);
+    
+    /* 悬停时的高光变化 */
+    border-left: 2px solid rgba(255, 193, 7, 0.2);
+}
+
+/* 激活状态 */
+.leftNav1_li.active {
+    background: 
+        linear-gradient(135deg, 
+            rgba(255, 193, 7, 0.95) 0%, 
+            rgba(255, 152, 0, 0.9) 25%, 
+            rgba(255, 167, 38, 0.85) 50%, 
+            rgba(255, 179, 0, 0.8) 75%, 
+            rgba(255, 193, 7, 0.75) 100%
+        ),
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.1) 2px,
+            rgba(255, 255, 255, 0.1) 4px
+        );
+    
+    color: #160a8d;
+    font-weight: 600;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+    
+    /* 激活状态的立体阴影 */
+    box-shadow: 
+        0 0 20px rgba(255, 193, 7, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        inset 2px 0 8px rgba(255, 255, 255, 0.2),
+        inset -2px 0 8px rgba(0, 0, 0, 0.15);
+    
+    /* 激活状态的高光线 */
+    border-left: 3px solid #160a8d;
+}
+
+/* 激活状态的图标颜色 */
+.leftNav1_li.active .nav-icon {
+    color: #160a8d;
+    filter: drop-shadow(0 2px 4px rgba(22, 10, 141, 0.3));
+}
+
+/* 图标样式 */
+.nav-icon {
+    margin-right: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+/* 图标悬停效果 */
+.leftNav1_li:hover .nav-icon {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* 文本样式 */
+.nav-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
+
+/* 箭头图标 */
+.nav-arrow {
+    margin-left: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.leftNav1_li:hover .nav-arrow {
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateX(3px);
+}
+
+/* 徽章样式（可选） */
+.nav-badge {
+    margin-left: 8px;
+    background: linear-gradient(135deg, #ff5252, #f44336);
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 16px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(244, 67, 54, 0.3);
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .leftNav1_li {
+        clip-path: polygon(
+            0 0, 
+            92% 0, 
+            98% 50%, 
+            92% 100%, 
+            0 100%
+        );
+        padding-left: 16px;
+        padding-right: 20px;
+    }
+}
+
+/* 左侧导航栏容器 - 添加滚动条 */
+.leftNav-container {
+    height: calc(100vh - 70px); /* 减去头部高度 */
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px; /* 为滚动条留出空间 */
+}
+
+/* 自定义滚动条样式 - 与主题颜色匹配 */
+.leftNav-container::-webkit-scrollbar {
+    width: 8px; /* 滚动条宽度 */
+}
+
+/* 滚动条轨道 */
+.leftNav-container::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, 
+        rgba(15, 7, 112, 0.1) 0%,
+        rgba(22, 10, 141, 0.15) 50%,
+        rgba(15, 7, 112, 0.1) 100%
+    );
+    border-radius: 4px;
+    margin: 4px 0;
+}
+
+/* 滚动条滑块 */
+.leftNav-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, white, #f8f9fa);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* 滚动条滑块悬停效果 */
+.leftNav-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to bottom, white, #f8f9fa);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+        0 0 8px rgba(91, 95, 221, 0.4);
+}
+
+/* 滚动条滑块激活状态 */
+.leftNav-container::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(to bottom, white, #f8f9fa);
+}
+
+/* 滚动条角部 */
+.leftNav-container::-webkit-scrollbar-corner {
+    background: rgba(15, 7, 112, 0.2);
+    border-radius: 0 0 4px 0;
+}
+
+/* 火狐浏览器兼容样式 */
+.leftNav-container {
+    scrollbar-width: thin;
+    scrollbar-color: #3b4dcb rgba(15, 7, 112, 0.1);
+}
+
+/* 导航项悬停时，如果容器有滚动条，确保不覆盖滚动条 */
+.leftNav1_li:hover {
+    margin-right: 2px; /* 悬停时留出滚动条空间 */
+}
+
+/* 如果导航项需要适应滚动条，可以微调 */
+.leftNav1_li {
+    margin-right: 2px; /* 默认留出滚动条空间 */
+}
+
+/* 可选：平滑滚动效果 */
+.leftNav-container {
+    scroll-behavior: smooth;
+}
+
+/* 滚动条显示/隐藏过渡效果 */
+.leftNav-container::-webkit-scrollbar {
+    transition: all 0.3s ease;
+}
+
+.leftNav-container::-webkit-scrollbar-thumb {
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 当内容很少时隐藏滚动条 */
+.leftNav-container:not(.always-show-scrollbar)::-webkit-scrollbar-thumb {
+    opacity: 0.7;
+}
+
+.leftNav-container:hover::-webkit-scrollbar-thumb {
+    opacity: 1;
+}
+
+/* 对于IE和Edge的兼容性 */
+.leftNav-container {
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* 如果需要支持触摸设备，可以增加滚动条的可点击区域 */
+@media (hover: none) and (pointer: coarse) {
+    .leftNav-container::-webkit-scrollbar {
+        width: 12px; /* 触摸设备上更宽 */
+    }
+    
+    .leftNav-container::-webkit-scrollbar-thumb {
+        min-height: 40px; /* 触摸设备上最小高度 */
+    }
+}
+
+/* 如果导航栏有内边距，确保滚动条正确显示 */
+.leftNav-container {
+    box-sizing: border-box;
+}
+
+/* 可选：滚动条提示动画 */
+@keyframes scrollbarHint {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+.leftNav-container.scroll-hint::-webkit-scrollbar-thumb {
+    animation: scrollbarHint 2s ease-in-out 2;
+}
+
+/* 确保内容不会在滚动条后面 */
+.leftNav-container .nav-content {
+    padding-right: 2px; /* 为滚动条留出额外空间 */
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .leftNav-container::-webkit-scrollbar {
+        width: 6px; /* 移动端更窄 */
+    }
+    
+    .leftNav-container {
+        padding-right: 4px;
+    }
 }

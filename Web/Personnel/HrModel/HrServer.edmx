@@ -6,22 +6,755 @@
     <edmx:StorageModels>
     <Schema Namespace="yaoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="yaoModelStoreContainer">
-          <EntitySet Name="bainiantiantianmumen" EntityType="yaoModel.Store.bainiantiantianmumen" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="bainiantiantianmumenmubiao" EntityType="yaoModel.Store.bainiantiantianmumenmubiao" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="bainiantiantianmumenrenyuan" EntityType="yaoModel.Store.bainiantiantianmumenrenyuan" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="baitaoquanxian" EntityType="yaoModel.Store.baitaoquanxian" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="baitaoquanxian_copy1" EntityType="yaoModel.Store.baitaoquanxian_copy1" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="baitaoquanxian_copy2" EntityType="yaoModel.Store.baitaoquanxian_copy2" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="baitaoquanxian_gongsi" EntityType="yaoModel.Store.baitaoquanxian_gongsi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="baitaoquanxian_renyun" EntityType="yaoModel.Store.baitaoquanxian_renyun" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="dearhylo9_cangku" EntityType="yaoModel.Store.dearhylo9_cangku" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="dearhylo9_jiandan" EntityType="yaoModel.Store.dearhylo9_jiandan" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="dearhylo9_renyuan" EntityType="yaoModel.Store.dearhylo9_renyuan" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="dearhylo9_tuihuo" EntityType="yaoModel.Store.dearhylo9_tuihuo" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.Store.gongzi_gongzimingxi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="gongzi_kaoqinjilu" EntityType="yaoModel.Store.gongzi_kaoqinjilu" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="gongzi_kaoqinmingxi" EntityType="yaoModel.Store.gongzi_kaoqinmingxi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="gongzi_peizhi" EntityType="yaoModel.Store.gongzi_peizhi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="bainiantiantianmumen" EntityType="yaoModel.Store.bainiantiantianmumen" store:Type="Tables" store:Schema="dbo" store:Name="bainiantiantianmumen">
+            <DefiningQuery>SELECT 
+      [bainiantiantianmumen].[id] AS [id], 
+      [bainiantiantianmumen].[riqi] AS [riqi], 
+      [bainiantiantianmumen].[C] AS [C], 
+      [bainiantiantianmumen].[D] AS [D], 
+      [bainiantiantianmumen].[E] AS [E], 
+      [bainiantiantianmumen].[F] AS [F], 
+      [bainiantiantianmumen].[G] AS [G], 
+      [bainiantiantianmumen].[H] AS [H], 
+      [bainiantiantianmumen].[I] AS [I], 
+      [bainiantiantianmumen].[J] AS [J], 
+      [bainiantiantianmumen].[K] AS [K], 
+      [bainiantiantianmumen].[L] AS [L], 
+      [bainiantiantianmumen].[M] AS [M], 
+      [bainiantiantianmumen].[N] AS [N], 
+      [bainiantiantianmumen].[O] AS [O], 
+      [bainiantiantianmumen].[P] AS [P], 
+      [bainiantiantianmumen].[Q] AS [Q], 
+      [bainiantiantianmumen].[R] AS [R], 
+      [bainiantiantianmumen].[S] AS [S], 
+      [bainiantiantianmumen].[T] AS [T], 
+      [bainiantiantianmumen].[U] AS [U], 
+      [bainiantiantianmumen].[V] AS [V], 
+      [bainiantiantianmumen].[W] AS [W]
+      FROM [dbo].[bainiantiantianmumen] AS [bainiantiantianmumen]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="bainiantiantianmumenmubiao" EntityType="yaoModel.Store.bainiantiantianmumenmubiao" store:Type="Tables" store:Schema="dbo" store:Name="bainiantiantianmumenmubiao">
+            <DefiningQuery>SELECT 
+      [bainiantiantianmumenmubiao].[id] AS [id], 
+      [bainiantiantianmumenmubiao].[B] AS [B], 
+      [bainiantiantianmumenmubiao].[C] AS [C], 
+      [bainiantiantianmumenmubiao].[D] AS [D], 
+      [bainiantiantianmumenmubiao].[E] AS [E], 
+      [bainiantiantianmumenmubiao].[F] AS [F], 
+      [bainiantiantianmumenmubiao].[G] AS [G], 
+      [bainiantiantianmumenmubiao].[H] AS [H], 
+      [bainiantiantianmumenmubiao].[I] AS [I], 
+      [bainiantiantianmumenmubiao].[J] AS [J], 
+      [bainiantiantianmumenmubiao].[K] AS [K], 
+      [bainiantiantianmumenmubiao].[L] AS [L], 
+      [bainiantiantianmumenmubiao].[M] AS [M], 
+      [bainiantiantianmumenmubiao].[N] AS [N], 
+      [bainiantiantianmumenmubiao].[O] AS [O], 
+      [bainiantiantianmumenmubiao].[P] AS [P], 
+      [bainiantiantianmumenmubiao].[Q] AS [Q], 
+      [bainiantiantianmumenmubiao].[R] AS [R], 
+      [bainiantiantianmumenmubiao].[S] AS [S], 
+      [bainiantiantianmumenmubiao].[T] AS [T], 
+      [bainiantiantianmumenmubiao].[U] AS [U], 
+      [bainiantiantianmumenmubiao].[V] AS [V], 
+      [bainiantiantianmumenmubiao].[W] AS [W], 
+      [bainiantiantianmumenmubiao].[X] AS [X], 
+      [bainiantiantianmumenmubiao].[Y] AS [Y], 
+      [bainiantiantianmumenmubiao].[Z] AS [Z], 
+      [bainiantiantianmumenmubiao].[AA] AS [AA], 
+      [bainiantiantianmumenmubiao].[AB] AS [AB], 
+      [bainiantiantianmumenmubiao].[AC] AS [AC]
+      FROM [dbo].[bainiantiantianmumenmubiao] AS [bainiantiantianmumenmubiao]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="bainiantiantianmumenrenyuan" EntityType="yaoModel.Store.bainiantiantianmumenrenyuan" store:Type="Tables" store:Schema="dbo" store:Name="bainiantiantianmumenrenyuan">
+            <DefiningQuery>SELECT 
+      [bainiantiantianmumenrenyuan].[id] AS [id], 
+      [bainiantiantianmumenrenyuan].[B] AS [B], 
+      [bainiantiantianmumenrenyuan].[C] AS [C], 
+      [bainiantiantianmumenrenyuan].[D] AS [D], 
+      [bainiantiantianmumenrenyuan].[E] AS [E], 
+      [bainiantiantianmumenrenyuan].[F] AS [F], 
+      [bainiantiantianmumenrenyuan].[G] AS [G]
+      FROM [dbo].[bainiantiantianmumenrenyuan] AS [bainiantiantianmumenrenyuan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="baitaoquanxian" EntityType="yaoModel.Store.baitaoquanxian" store:Type="Tables" store:Schema="dbo" store:Name="baitaoquanxian">
+            <DefiningQuery>SELECT 
+      [baitaoquanxian].[id] AS [id], 
+      [baitaoquanxian].[A] AS [A], 
+      [baitaoquanxian].[B] AS [B], 
+      [baitaoquanxian].[C] AS [C], 
+      [baitaoquanxian].[D] AS [D], 
+      [baitaoquanxian].[E] AS [E], 
+      [baitaoquanxian].[F] AS [F], 
+      [baitaoquanxian].[G] AS [G], 
+      [baitaoquanxian].[H] AS [H], 
+      [baitaoquanxian].[I] AS [I], 
+      [baitaoquanxian].[J] AS [J], 
+      [baitaoquanxian].[K] AS [K], 
+      [baitaoquanxian].[L] AS [L], 
+      [baitaoquanxian].[M] AS [M], 
+      [baitaoquanxian].[N] AS [N], 
+      [baitaoquanxian].[O] AS [O], 
+      [baitaoquanxian].[P] AS [P], 
+      [baitaoquanxian].[Q] AS [Q], 
+      [baitaoquanxian].[R] AS [R], 
+      [baitaoquanxian].[S] AS [S], 
+      [baitaoquanxian].[T] AS [T], 
+      [baitaoquanxian].[U] AS [U], 
+      [baitaoquanxian].[V] AS [V], 
+      [baitaoquanxian].[W] AS [W], 
+      [baitaoquanxian].[X] AS [X], 
+      [baitaoquanxian].[Y] AS [Y], 
+      [baitaoquanxian].[Z] AS [Z], 
+      [baitaoquanxian].[AA] AS [AA], 
+      [baitaoquanxian].[AB] AS [AB], 
+      [baitaoquanxian].[AC] AS [AC], 
+      [baitaoquanxian].[AD] AS [AD], 
+      [baitaoquanxian].[AE] AS [AE], 
+      [baitaoquanxian].[AF] AS [AF], 
+      [baitaoquanxian].[AG] AS [AG], 
+      [baitaoquanxian].[AH] AS [AH], 
+      [baitaoquanxian].[AI] AS [AI], 
+      [baitaoquanxian].[AJ] AS [AJ], 
+      [baitaoquanxian].[AK] AS [AK], 
+      [baitaoquanxian].[AL] AS [AL], 
+      [baitaoquanxian].[AM] AS [AM], 
+      [baitaoquanxian].[AN] AS [AN], 
+      [baitaoquanxian].[AO] AS [AO], 
+      [baitaoquanxian].[AP] AS [AP], 
+      [baitaoquanxian].[AQ] AS [AQ], 
+      [baitaoquanxian].[AR] AS [AR], 
+      [baitaoquanxian].[ASS] AS [ASS], 
+      [baitaoquanxian].[AT] AS [AT], 
+      [baitaoquanxian].[AU] AS [AU], 
+      [baitaoquanxian].[AV] AS [AV], 
+      [baitaoquanxian].[AW] AS [AW], 
+      [baitaoquanxian].[AX] AS [AX], 
+      [baitaoquanxian].[AY] AS [AY], 
+      [baitaoquanxian].[AZ] AS [AZ], 
+      [baitaoquanxian].[BA] AS [BA], 
+      [baitaoquanxian].[BB] AS [BB], 
+      [baitaoquanxian].[BC] AS [BC], 
+      [baitaoquanxian].[BD] AS [BD], 
+      [baitaoquanxian].[BE] AS [BE], 
+      [baitaoquanxian].[BF] AS [BF], 
+      [baitaoquanxian].[BG] AS [BG], 
+      [baitaoquanxian].[BH] AS [BH], 
+      [baitaoquanxian].[BI] AS [BI], 
+      [baitaoquanxian].[BJ] AS [BJ], 
+      [baitaoquanxian].[BK] AS [BK], 
+      [baitaoquanxian].[BL] AS [BL], 
+      [baitaoquanxian].[BM] AS [BM], 
+      [baitaoquanxian].[BN] AS [BN], 
+      [baitaoquanxian].[BO] AS [BO], 
+      [baitaoquanxian].[BP] AS [BP], 
+      [baitaoquanxian].[BQ] AS [BQ], 
+      [baitaoquanxian].[BR] AS [BR], 
+      [baitaoquanxian].[BS] AS [BS], 
+      [baitaoquanxian].[BT] AS [BT], 
+      [baitaoquanxian].[BU] AS [BU], 
+      [baitaoquanxian].[BV] AS [BV], 
+      [baitaoquanxian].[BW] AS [BW], 
+      [baitaoquanxian].[BX] AS [BX], 
+      [baitaoquanxian].[BYY] AS [BYY], 
+      [baitaoquanxian].[BZ] AS [BZ], 
+      [baitaoquanxian].[CA] AS [CA], 
+      [baitaoquanxian].[CB] AS [CB], 
+      [baitaoquanxian].[CC] AS [CC], 
+      [baitaoquanxian].[CD] AS [CD], 
+      [baitaoquanxian].[CE] AS [CE], 
+      [baitaoquanxian].[CF] AS [CF], 
+      [baitaoquanxian].[CG] AS [CG], 
+      [baitaoquanxian].[CH] AS [CH], 
+      [baitaoquanxian].[CI] AS [CI], 
+      [baitaoquanxian].[CJ] AS [CJ], 
+      [baitaoquanxian].[CK] AS [CK], 
+      [baitaoquanxian].[CL] AS [CL], 
+      [baitaoquanxian].[CM] AS [CM], 
+      [baitaoquanxian].[CN] AS [CN], 
+      [baitaoquanxian].[CO] AS [CO], 
+      [baitaoquanxian].[CP] AS [CP], 
+      [baitaoquanxian].[CQ] AS [CQ], 
+      [baitaoquanxian].[CR] AS [CR], 
+      [baitaoquanxian].[CS] AS [CS], 
+      [baitaoquanxian].[CT] AS [CT], 
+      [baitaoquanxian].[CU] AS [CU], 
+      [baitaoquanxian].[CV] AS [CV], 
+      [baitaoquanxian].[人员] AS [人员], 
+      [baitaoquanxian].[公司] AS [公司], 
+      [baitaoquanxian].[日期] AS [日期], 
+      [baitaoquanxian].[a最后修改日期] AS [a最后修改日期], 
+      [baitaoquanxian].[b最后修改日期] AS [b最后修改日期], 
+      [baitaoquanxian].[c最后修改日期] AS [c最后修改日期], 
+      [baitaoquanxian].[d最后修改日期] AS [d最后修改日期], 
+      [baitaoquanxian].[e最后修改日期] AS [e最后修改日期], 
+      [baitaoquanxian].[f最后修改日期] AS [f最后修改日期], 
+      [baitaoquanxian].[g最后修改日期] AS [g最后修改日期], 
+      [baitaoquanxian].[h最后修改日期] AS [h最后修改日期], 
+      [baitaoquanxian].[j最后修改日期] AS [j最后修改日期], 
+      [baitaoquanxian].[fff最后修改日期] AS [fff最后修改日期], 
+      [baitaoquanxian].[李老六最后修改日期] AS [李老六最后修改日期]
+      FROM [dbo].[baitaoquanxian] AS [baitaoquanxian]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="baitaoquanxian_copy1" EntityType="yaoModel.Store.baitaoquanxian_copy1" store:Type="Tables" store:Schema="dbo" store:Name="baitaoquanxian_copy1">
+            <DefiningQuery>SELECT 
+      [baitaoquanxian_copy1].[id] AS [id], 
+      [baitaoquanxian_copy1].[quanxian] AS [quanxian], 
+      [baitaoquanxian_copy1].[B] AS [B], 
+      [baitaoquanxian_copy1].[C] AS [C], 
+      [baitaoquanxian_copy1].[D] AS [D], 
+      [baitaoquanxian_copy1].[E] AS [E], 
+      [baitaoquanxian_copy1].[F] AS [F], 
+      [baitaoquanxian_copy1].[G] AS [G], 
+      [baitaoquanxian_copy1].[H] AS [H], 
+      [baitaoquanxian_copy1].[I] AS [I], 
+      [baitaoquanxian_copy1].[J] AS [J], 
+      [baitaoquanxian_copy1].[K] AS [K], 
+      [baitaoquanxian_copy1].[L] AS [L], 
+      [baitaoquanxian_copy1].[M] AS [M], 
+      [baitaoquanxian_copy1].[N] AS [N], 
+      [baitaoquanxian_copy1].[O] AS [O], 
+      [baitaoquanxian_copy1].[P] AS [P], 
+      [baitaoquanxian_copy1].[Q] AS [Q], 
+      [baitaoquanxian_copy1].[R] AS [R], 
+      [baitaoquanxian_copy1].[S] AS [S], 
+      [baitaoquanxian_copy1].[T] AS [T], 
+      [baitaoquanxian_copy1].[U] AS [U], 
+      [baitaoquanxian_copy1].[V] AS [V], 
+      [baitaoquanxian_copy1].[W] AS [W], 
+      [baitaoquanxian_copy1].[X] AS [X], 
+      [baitaoquanxian_copy1].[Y] AS [Y], 
+      [baitaoquanxian_copy1].[Z] AS [Z], 
+      [baitaoquanxian_copy1].[AA] AS [AA], 
+      [baitaoquanxian_copy1].[AB] AS [AB], 
+      [baitaoquanxian_copy1].[AC] AS [AC], 
+      [baitaoquanxian_copy1].[AD] AS [AD], 
+      [baitaoquanxian_copy1].[AE] AS [AE], 
+      [baitaoquanxian_copy1].[AF] AS [AF], 
+      [baitaoquanxian_copy1].[AG] AS [AG], 
+      [baitaoquanxian_copy1].[AH] AS [AH], 
+      [baitaoquanxian_copy1].[AI] AS [AI], 
+      [baitaoquanxian_copy1].[AJ] AS [AJ], 
+      [baitaoquanxian_copy1].[AK] AS [AK], 
+      [baitaoquanxian_copy1].[AL] AS [AL], 
+      [baitaoquanxian_copy1].[AM] AS [AM], 
+      [baitaoquanxian_copy1].[AN] AS [AN], 
+      [baitaoquanxian_copy1].[AO] AS [AO], 
+      [baitaoquanxian_copy1].[AP] AS [AP], 
+      [baitaoquanxian_copy1].[AQ] AS [AQ], 
+      [baitaoquanxian_copy1].[AR] AS [AR], 
+      [baitaoquanxian_copy1].[ASS] AS [ASS], 
+      [baitaoquanxian_copy1].[AT] AS [AT], 
+      [baitaoquanxian_copy1].[AU] AS [AU], 
+      [baitaoquanxian_copy1].[AV] AS [AV], 
+      [baitaoquanxian_copy1].[AW] AS [AW], 
+      [baitaoquanxian_copy1].[AX] AS [AX], 
+      [baitaoquanxian_copy1].[AY] AS [AY], 
+      [baitaoquanxian_copy1].[AZ] AS [AZ], 
+      [baitaoquanxian_copy1].[BA] AS [BA], 
+      [baitaoquanxian_copy1].[BB] AS [BB], 
+      [baitaoquanxian_copy1].[BC] AS [BC], 
+      [baitaoquanxian_copy1].[BD] AS [BD], 
+      [baitaoquanxian_copy1].[BE] AS [BE], 
+      [baitaoquanxian_copy1].[BF] AS [BF], 
+      [baitaoquanxian_copy1].[BG] AS [BG], 
+      [baitaoquanxian_copy1].[BH] AS [BH], 
+      [baitaoquanxian_copy1].[BI] AS [BI], 
+      [baitaoquanxian_copy1].[BJ] AS [BJ], 
+      [baitaoquanxian_copy1].[BK] AS [BK], 
+      [baitaoquanxian_copy1].[BL] AS [BL], 
+      [baitaoquanxian_copy1].[BM] AS [BM], 
+      [baitaoquanxian_copy1].[BN] AS [BN], 
+      [baitaoquanxian_copy1].[BO] AS [BO], 
+      [baitaoquanxian_copy1].[BP] AS [BP], 
+      [baitaoquanxian_copy1].[BQ] AS [BQ], 
+      [baitaoquanxian_copy1].[BR] AS [BR], 
+      [baitaoquanxian_copy1].[BS] AS [BS], 
+      [baitaoquanxian_copy1].[BT] AS [BT], 
+      [baitaoquanxian_copy1].[BU] AS [BU], 
+      [baitaoquanxian_copy1].[BV] AS [BV], 
+      [baitaoquanxian_copy1].[BW] AS [BW], 
+      [baitaoquanxian_copy1].[BX] AS [BX], 
+      [baitaoquanxian_copy1].[BYY] AS [BYY], 
+      [baitaoquanxian_copy1].[BZ] AS [BZ], 
+      [baitaoquanxian_copy1].[CA] AS [CA], 
+      [baitaoquanxian_copy1].[CB] AS [CB], 
+      [baitaoquanxian_copy1].[CC] AS [CC], 
+      [baitaoquanxian_copy1].[CD] AS [CD], 
+      [baitaoquanxian_copy1].[CE] AS [CE], 
+      [baitaoquanxian_copy1].[CF] AS [CF], 
+      [baitaoquanxian_copy1].[CG] AS [CG], 
+      [baitaoquanxian_copy1].[CH] AS [CH], 
+      [baitaoquanxian_copy1].[CI] AS [CI], 
+      [baitaoquanxian_copy1].[CJ] AS [CJ], 
+      [baitaoquanxian_copy1].[CK] AS [CK], 
+      [baitaoquanxian_copy1].[CL] AS [CL], 
+      [baitaoquanxian_copy1].[CM] AS [CM], 
+      [baitaoquanxian_copy1].[CN] AS [CN], 
+      [baitaoquanxian_copy1].[CO] AS [CO], 
+      [baitaoquanxian_copy1].[CP] AS [CP], 
+      [baitaoquanxian_copy1].[CQ] AS [CQ], 
+      [baitaoquanxian_copy1].[CR] AS [CR], 
+      [baitaoquanxian_copy1].[CS] AS [CS], 
+      [baitaoquanxian_copy1].[CT] AS [CT], 
+      [baitaoquanxian_copy1].[CU] AS [CU], 
+      [baitaoquanxian_copy1].[CV] AS [CV], 
+      [baitaoquanxian_copy1].[CW] AS [CW], 
+      [baitaoquanxian_copy1].[CX] AS [CX], 
+      [baitaoquanxian_copy1].[renyuan_id] AS [renyuan_id], 
+      [baitaoquanxian_copy1].[chashanquanxian] AS [chashanquanxian]
+      FROM [dbo].[baitaoquanxian_copy1] AS [baitaoquanxian_copy1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="baitaoquanxian_copy2" EntityType="yaoModel.Store.baitaoquanxian_copy2" store:Type="Tables" store:Schema="dbo" store:Name="baitaoquanxian_copy2">
+            <DefiningQuery>SELECT 
+      [baitaoquanxian_copy2].[id] AS [id], 
+      [baitaoquanxian_copy2].[A] AS [A], 
+      [baitaoquanxian_copy2].[B] AS [B], 
+      [baitaoquanxian_copy2].[C] AS [C], 
+      [baitaoquanxian_copy2].[D] AS [D], 
+      [baitaoquanxian_copy2].[E] AS [E], 
+      [baitaoquanxian_copy2].[F] AS [F], 
+      [baitaoquanxian_copy2].[G] AS [G], 
+      [baitaoquanxian_copy2].[H] AS [H], 
+      [baitaoquanxian_copy2].[I] AS [I], 
+      [baitaoquanxian_copy2].[J] AS [J], 
+      [baitaoquanxian_copy2].[K] AS [K], 
+      [baitaoquanxian_copy2].[L] AS [L], 
+      [baitaoquanxian_copy2].[M] AS [M], 
+      [baitaoquanxian_copy2].[N] AS [N], 
+      [baitaoquanxian_copy2].[O] AS [O], 
+      [baitaoquanxian_copy2].[P] AS [P], 
+      [baitaoquanxian_copy2].[Q] AS [Q], 
+      [baitaoquanxian_copy2].[R] AS [R], 
+      [baitaoquanxian_copy2].[S] AS [S], 
+      [baitaoquanxian_copy2].[T] AS [T], 
+      [baitaoquanxian_copy2].[U] AS [U], 
+      [baitaoquanxian_copy2].[V] AS [V], 
+      [baitaoquanxian_copy2].[W] AS [W], 
+      [baitaoquanxian_copy2].[X] AS [X], 
+      [baitaoquanxian_copy2].[Y] AS [Y], 
+      [baitaoquanxian_copy2].[Z] AS [Z], 
+      [baitaoquanxian_copy2].[AA] AS [AA], 
+      [baitaoquanxian_copy2].[AB] AS [AB], 
+      [baitaoquanxian_copy2].[AC] AS [AC], 
+      [baitaoquanxian_copy2].[AD] AS [AD], 
+      [baitaoquanxian_copy2].[AE] AS [AE], 
+      [baitaoquanxian_copy2].[AF] AS [AF], 
+      [baitaoquanxian_copy2].[AG] AS [AG], 
+      [baitaoquanxian_copy2].[AH] AS [AH], 
+      [baitaoquanxian_copy2].[AI] AS [AI], 
+      [baitaoquanxian_copy2].[AJ] AS [AJ], 
+      [baitaoquanxian_copy2].[AK] AS [AK], 
+      [baitaoquanxian_copy2].[AL] AS [AL], 
+      [baitaoquanxian_copy2].[AM] AS [AM], 
+      [baitaoquanxian_copy2].[AN] AS [AN], 
+      [baitaoquanxian_copy2].[AO] AS [AO], 
+      [baitaoquanxian_copy2].[AP] AS [AP], 
+      [baitaoquanxian_copy2].[AQ] AS [AQ], 
+      [baitaoquanxian_copy2].[AR] AS [AR], 
+      [baitaoquanxian_copy2].[ASS] AS [ASS], 
+      [baitaoquanxian_copy2].[AT] AS [AT], 
+      [baitaoquanxian_copy2].[AU] AS [AU], 
+      [baitaoquanxian_copy2].[AV] AS [AV], 
+      [baitaoquanxian_copy2].[AW] AS [AW], 
+      [baitaoquanxian_copy2].[AX] AS [AX], 
+      [baitaoquanxian_copy2].[AY] AS [AY], 
+      [baitaoquanxian_copy2].[AZ] AS [AZ], 
+      [baitaoquanxian_copy2].[BA] AS [BA], 
+      [baitaoquanxian_copy2].[BB] AS [BB], 
+      [baitaoquanxian_copy2].[BC] AS [BC], 
+      [baitaoquanxian_copy2].[BD] AS [BD], 
+      [baitaoquanxian_copy2].[BE] AS [BE], 
+      [baitaoquanxian_copy2].[BF] AS [BF], 
+      [baitaoquanxian_copy2].[BG] AS [BG], 
+      [baitaoquanxian_copy2].[BH] AS [BH], 
+      [baitaoquanxian_copy2].[BI] AS [BI], 
+      [baitaoquanxian_copy2].[BJ] AS [BJ], 
+      [baitaoquanxian_copy2].[BK] AS [BK], 
+      [baitaoquanxian_copy2].[BL] AS [BL], 
+      [baitaoquanxian_copy2].[BM] AS [BM], 
+      [baitaoquanxian_copy2].[BN] AS [BN], 
+      [baitaoquanxian_copy2].[BO] AS [BO], 
+      [baitaoquanxian_copy2].[BP] AS [BP], 
+      [baitaoquanxian_copy2].[BQ] AS [BQ], 
+      [baitaoquanxian_copy2].[BR] AS [BR], 
+      [baitaoquanxian_copy2].[BS] AS [BS], 
+      [baitaoquanxian_copy2].[BT] AS [BT], 
+      [baitaoquanxian_copy2].[BU] AS [BU], 
+      [baitaoquanxian_copy2].[BV] AS [BV], 
+      [baitaoquanxian_copy2].[BW] AS [BW], 
+      [baitaoquanxian_copy2].[BX] AS [BX], 
+      [baitaoquanxian_copy2].[BYY] AS [BYY], 
+      [baitaoquanxian_copy2].[BZ] AS [BZ], 
+      [baitaoquanxian_copy2].[CA] AS [CA], 
+      [baitaoquanxian_copy2].[CB] AS [CB], 
+      [baitaoquanxian_copy2].[CC] AS [CC], 
+      [baitaoquanxian_copy2].[CD] AS [CD], 
+      [baitaoquanxian_copy2].[CE] AS [CE], 
+      [baitaoquanxian_copy2].[CF] AS [CF], 
+      [baitaoquanxian_copy2].[CG] AS [CG], 
+      [baitaoquanxian_copy2].[CH] AS [CH], 
+      [baitaoquanxian_copy2].[CI] AS [CI], 
+      [baitaoquanxian_copy2].[CJ] AS [CJ], 
+      [baitaoquanxian_copy2].[CK] AS [CK], 
+      [baitaoquanxian_copy2].[CL] AS [CL], 
+      [baitaoquanxian_copy2].[CM] AS [CM], 
+      [baitaoquanxian_copy2].[CN] AS [CN], 
+      [baitaoquanxian_copy2].[CO] AS [CO], 
+      [baitaoquanxian_copy2].[CP] AS [CP], 
+      [baitaoquanxian_copy2].[CQ] AS [CQ], 
+      [baitaoquanxian_copy2].[CR] AS [CR], 
+      [baitaoquanxian_copy2].[CS] AS [CS], 
+      [baitaoquanxian_copy2].[CT] AS [CT], 
+      [baitaoquanxian_copy2].[CU] AS [CU], 
+      [baitaoquanxian_copy2].[CV] AS [CV], 
+      [baitaoquanxian_copy2].[公司] AS [公司]
+      FROM [dbo].[baitaoquanxian_copy2] AS [baitaoquanxian_copy2]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="baitaoquanxian_gongsi" EntityType="yaoModel.Store.baitaoquanxian_gongsi" store:Type="Tables" store:Schema="dbo" store:Name="baitaoquanxian_gongsi">
+            <DefiningQuery>SELECT 
+      [baitaoquanxian_gongsi].[id] AS [id], 
+      [baitaoquanxian_gongsi].[B] AS [B], 
+      [baitaoquanxian_gongsi].[C] AS [C], 
+      [baitaoquanxian_gongsi].[D] AS [D], 
+      [baitaoquanxian_gongsi].[E] AS [E], 
+      [baitaoquanxian_gongsi].[F] AS [F], 
+      [baitaoquanxian_gongsi].[G] AS [G], 
+      [baitaoquanxian_gongsi].[H] AS [H], 
+      [baitaoquanxian_gongsi].[I] AS [I], 
+      [baitaoquanxian_gongsi].[J] AS [J], 
+      [baitaoquanxian_gongsi].[K] AS [K], 
+      [baitaoquanxian_gongsi].[L] AS [L], 
+      [baitaoquanxian_gongsi].[M] AS [M], 
+      [baitaoquanxian_gongsi].[N] AS [N], 
+      [baitaoquanxian_gongsi].[O] AS [O], 
+      [baitaoquanxian_gongsi].[P] AS [P], 
+      [baitaoquanxian_gongsi].[Q] AS [Q], 
+      [baitaoquanxian_gongsi].[R] AS [R], 
+      [baitaoquanxian_gongsi].[S] AS [S], 
+      [baitaoquanxian_gongsi].[T] AS [T], 
+      [baitaoquanxian_gongsi].[U] AS [U], 
+      [baitaoquanxian_gongsi].[V] AS [V], 
+      [baitaoquanxian_gongsi].[W] AS [W], 
+      [baitaoquanxian_gongsi].[X] AS [X], 
+      [baitaoquanxian_gongsi].[Y] AS [Y], 
+      [baitaoquanxian_gongsi].[Z] AS [Z], 
+      [baitaoquanxian_gongsi].[AA] AS [AA], 
+      [baitaoquanxian_gongsi].[AB] AS [AB], 
+      [baitaoquanxian_gongsi].[AC] AS [AC], 
+      [baitaoquanxian_gongsi].[AD] AS [AD], 
+      [baitaoquanxian_gongsi].[AE] AS [AE], 
+      [baitaoquanxian_gongsi].[AF] AS [AF], 
+      [baitaoquanxian_gongsi].[AG] AS [AG], 
+      [baitaoquanxian_gongsi].[AH] AS [AH], 
+      [baitaoquanxian_gongsi].[AI] AS [AI], 
+      [baitaoquanxian_gongsi].[AJ] AS [AJ], 
+      [baitaoquanxian_gongsi].[AK] AS [AK], 
+      [baitaoquanxian_gongsi].[AL] AS [AL], 
+      [baitaoquanxian_gongsi].[AM] AS [AM], 
+      [baitaoquanxian_gongsi].[AN] AS [AN], 
+      [baitaoquanxian_gongsi].[AO] AS [AO], 
+      [baitaoquanxian_gongsi].[AP] AS [AP], 
+      [baitaoquanxian_gongsi].[AQ] AS [AQ], 
+      [baitaoquanxian_gongsi].[AR] AS [AR], 
+      [baitaoquanxian_gongsi].[ASS] AS [ASS], 
+      [baitaoquanxian_gongsi].[AT] AS [AT], 
+      [baitaoquanxian_gongsi].[AU] AS [AU], 
+      [baitaoquanxian_gongsi].[AV] AS [AV], 
+      [baitaoquanxian_gongsi].[AW] AS [AW], 
+      [baitaoquanxian_gongsi].[AX] AS [AX], 
+      [baitaoquanxian_gongsi].[AY] AS [AY], 
+      [baitaoquanxian_gongsi].[AZ] AS [AZ], 
+      [baitaoquanxian_gongsi].[BA] AS [BA], 
+      [baitaoquanxian_gongsi].[BB] AS [BB], 
+      [baitaoquanxian_gongsi].[BC] AS [BC], 
+      [baitaoquanxian_gongsi].[BD] AS [BD], 
+      [baitaoquanxian_gongsi].[BE] AS [BE], 
+      [baitaoquanxian_gongsi].[BF] AS [BF], 
+      [baitaoquanxian_gongsi].[BG] AS [BG], 
+      [baitaoquanxian_gongsi].[BH] AS [BH], 
+      [baitaoquanxian_gongsi].[BI] AS [BI], 
+      [baitaoquanxian_gongsi].[BJ] AS [BJ], 
+      [baitaoquanxian_gongsi].[BK] AS [BK], 
+      [baitaoquanxian_gongsi].[BL] AS [BL], 
+      [baitaoquanxian_gongsi].[BM] AS [BM], 
+      [baitaoquanxian_gongsi].[BN] AS [BN], 
+      [baitaoquanxian_gongsi].[BO] AS [BO], 
+      [baitaoquanxian_gongsi].[BP] AS [BP], 
+      [baitaoquanxian_gongsi].[BQ] AS [BQ], 
+      [baitaoquanxian_gongsi].[BR] AS [BR], 
+      [baitaoquanxian_gongsi].[BS] AS [BS], 
+      [baitaoquanxian_gongsi].[BT] AS [BT], 
+      [baitaoquanxian_gongsi].[BU] AS [BU], 
+      [baitaoquanxian_gongsi].[BV] AS [BV], 
+      [baitaoquanxian_gongsi].[BW] AS [BW], 
+      [baitaoquanxian_gongsi].[BX] AS [BX], 
+      [baitaoquanxian_gongsi].[BYY] AS [BYY], 
+      [baitaoquanxian_gongsi].[BZ] AS [BZ], 
+      [baitaoquanxian_gongsi].[CA] AS [CA], 
+      [baitaoquanxian_gongsi].[CB] AS [CB], 
+      [baitaoquanxian_gongsi].[CC] AS [CC], 
+      [baitaoquanxian_gongsi].[CD] AS [CD], 
+      [baitaoquanxian_gongsi].[CE] AS [CE], 
+      [baitaoquanxian_gongsi].[CF] AS [CF], 
+      [baitaoquanxian_gongsi].[CG] AS [CG], 
+      [baitaoquanxian_gongsi].[CH] AS [CH], 
+      [baitaoquanxian_gongsi].[CI] AS [CI], 
+      [baitaoquanxian_gongsi].[CJ] AS [CJ], 
+      [baitaoquanxian_gongsi].[CK] AS [CK], 
+      [baitaoquanxian_gongsi].[CL] AS [CL], 
+      [baitaoquanxian_gongsi].[CM] AS [CM], 
+      [baitaoquanxian_gongsi].[CN] AS [CN], 
+      [baitaoquanxian_gongsi].[CO] AS [CO], 
+      [baitaoquanxian_gongsi].[CP] AS [CP], 
+      [baitaoquanxian_gongsi].[CQ] AS [CQ], 
+      [baitaoquanxian_gongsi].[CR] AS [CR], 
+      [baitaoquanxian_gongsi].[CS] AS [CS], 
+      [baitaoquanxian_gongsi].[CT] AS [CT], 
+      [baitaoquanxian_gongsi].[CU] AS [CU], 
+      [baitaoquanxian_gongsi].[CV] AS [CV], 
+      [baitaoquanxian_gongsi].[CW] AS [CW], 
+      [baitaoquanxian_gongsi].[CX] AS [CX]
+      FROM [dbo].[baitaoquanxian_gongsi] AS [baitaoquanxian_gongsi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="baitaoquanxian_renyun" EntityType="yaoModel.Store.baitaoquanxian_renyun" store:Type="Tables" store:Schema="dbo" store:Name="baitaoquanxian_renyun">
+            <DefiningQuery>SELECT 
+      [baitaoquanxian_renyun].[id] AS [id], 
+      [baitaoquanxian_renyun].[B] AS [B], 
+      [baitaoquanxian_renyun].[C] AS [C], 
+      [baitaoquanxian_renyun].[D] AS [D], 
+      [baitaoquanxian_renyun].[E] AS [E], 
+      [baitaoquanxian_renyun].[renyuan_id] AS [renyuan_id], 
+      [baitaoquanxian_renyun].[zhuangtai] AS [zhuangtai], 
+      [baitaoquanxian_renyun].[email] AS [email], 
+      [baitaoquanxian_renyun].[phone] AS [phone], 
+      [baitaoquanxian_renyun].[bianhao] AS [bianhao], 
+      [baitaoquanxian_renyun].[quanxian_id] AS [quanxian_id], 
+      [baitaoquanxian_renyun].[bumen] AS [bumen], 
+      [baitaoquanxian_renyun].[wechart_user] AS [wechart_user], 
+      [baitaoquanxian_renyun].[touxiang] AS [touxiang]
+      FROM [dbo].[baitaoquanxian_renyun] AS [baitaoquanxian_renyun]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="dearhylo9_cangku" EntityType="yaoModel.Store.dearhylo9_cangku" store:Type="Tables" store:Schema="dbo" store:Name="dearhylo9_cangku">
+            <DefiningQuery>SELECT 
+      [dearhylo9_cangku].[id] AS [id], 
+      [dearhylo9_cangku].[B] AS [B], 
+      [dearhylo9_cangku].[C] AS [C], 
+      [dearhylo9_cangku].[D] AS [D], 
+      [dearhylo9_cangku].[E] AS [E], 
+      [dearhylo9_cangku].[F] AS [F], 
+      [dearhylo9_cangku].[G] AS [G]
+      FROM [dbo].[dearhylo9_cangku] AS [dearhylo9_cangku]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="dearhylo9_jiandan" EntityType="yaoModel.Store.dearhylo9_jiandan" store:Type="Tables" store:Schema="dbo" store:Name="dearhylo9_jiandan">
+            <DefiningQuery>SELECT 
+      [dearhylo9_jiandan].[id] AS [id], 
+      [dearhylo9_jiandan].[B] AS [B], 
+      [dearhylo9_jiandan].[C] AS [C], 
+      [dearhylo9_jiandan].[D] AS [D], 
+      [dearhylo9_jiandan].[E] AS [E], 
+      [dearhylo9_jiandan].[F] AS [F], 
+      [dearhylo9_jiandan].[G] AS [G], 
+      [dearhylo9_jiandan].[H] AS [H], 
+      [dearhylo9_jiandan].[I] AS [I], 
+      [dearhylo9_jiandan].[J] AS [J], 
+      [dearhylo9_jiandan].[K] AS [K], 
+      [dearhylo9_jiandan].[L] AS [L], 
+      [dearhylo9_jiandan].[M] AS [M], 
+      [dearhylo9_jiandan].[N] AS [N], 
+      [dearhylo9_jiandan].[O] AS [O]
+      FROM [dbo].[dearhylo9_jiandan] AS [dearhylo9_jiandan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="dearhylo9_renyuan" EntityType="yaoModel.Store.dearhylo9_renyuan" store:Type="Tables" store:Schema="dbo" store:Name="dearhylo9_renyuan">
+            <DefiningQuery>SELECT 
+      [dearhylo9_renyuan].[id] AS [id], 
+      [dearhylo9_renyuan].[B] AS [B], 
+      [dearhylo9_renyuan].[C] AS [C], 
+      [dearhylo9_renyuan].[D] AS [D]
+      FROM [dbo].[dearhylo9_renyuan] AS [dearhylo9_renyuan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="dearhylo9_tuihuo" EntityType="yaoModel.Store.dearhylo9_tuihuo" store:Type="Tables" store:Schema="dbo" store:Name="dearhylo9_tuihuo">
+            <DefiningQuery>SELECT 
+      [dearhylo9_tuihuo].[id] AS [id], 
+      [dearhylo9_tuihuo].[B] AS [B], 
+      [dearhylo9_tuihuo].[C] AS [C], 
+      [dearhylo9_tuihuo].[D] AS [D], 
+      [dearhylo9_tuihuo].[E] AS [E], 
+      [dearhylo9_tuihuo].[F] AS [F], 
+      [dearhylo9_tuihuo].[G] AS [G], 
+      [dearhylo9_tuihuo].[H] AS [H], 
+      [dearhylo9_tuihuo].[I] AS [I]
+      FROM [dbo].[dearhylo9_tuihuo] AS [dearhylo9_tuihuo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gongzi_dongtaigongshi" EntityType="yaoModel.Store.gongzi_dongtaigongshi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_dongtaimingxi" EntityType="yaoModel.Store.gongzi_dongtaimingxi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_gongzimingxi" EntityType="yaoModel.Store.gongzi_gongzimingxi" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_gongzimingxi">
+            <DefiningQuery>SELECT 
+      [gongzi_gongzimingxi].[id] AS [id], 
+      [gongzi_gongzimingxi].[B] AS [B], 
+      [gongzi_gongzimingxi].[C] AS [C], 
+      [gongzi_gongzimingxi].[D] AS [D], 
+      [gongzi_gongzimingxi].[E] AS [E], 
+      [gongzi_gongzimingxi].[F] AS [F], 
+      [gongzi_gongzimingxi].[G] AS [G], 
+      [gongzi_gongzimingxi].[H] AS [H], 
+      [gongzi_gongzimingxi].[I] AS [I], 
+      [gongzi_gongzimingxi].[J] AS [J], 
+      [gongzi_gongzimingxi].[K] AS [K], 
+      [gongzi_gongzimingxi].[L] AS [L], 
+      [gongzi_gongzimingxi].[M] AS [M], 
+      [gongzi_gongzimingxi].[N] AS [N], 
+      [gongzi_gongzimingxi].[O] AS [O], 
+      [gongzi_gongzimingxi].[P] AS [P], 
+      [gongzi_gongzimingxi].[Q] AS [Q], 
+      [gongzi_gongzimingxi].[R] AS [R], 
+      [gongzi_gongzimingxi].[S] AS [S], 
+      [gongzi_gongzimingxi].[T] AS [T], 
+      [gongzi_gongzimingxi].[U] AS [U], 
+      [gongzi_gongzimingxi].[V] AS [V], 
+      [gongzi_gongzimingxi].[W] AS [W], 
+      [gongzi_gongzimingxi].[X] AS [X], 
+      [gongzi_gongzimingxi].[Y] AS [Y], 
+      [gongzi_gongzimingxi].[Z] AS [Z], 
+      [gongzi_gongzimingxi].[AA] AS [AA], 
+      [gongzi_gongzimingxi].[AB] AS [AB], 
+      [gongzi_gongzimingxi].[AC] AS [AC], 
+      [gongzi_gongzimingxi].[AD] AS [AD], 
+      [gongzi_gongzimingxi].[AE] AS [AE], 
+      [gongzi_gongzimingxi].[AF] AS [AF], 
+      [gongzi_gongzimingxi].[AG] AS [AG], 
+      [gongzi_gongzimingxi].[AH] AS [AH], 
+      [gongzi_gongzimingxi].[AI] AS [AI], 
+      [gongzi_gongzimingxi].[AJ] AS [AJ], 
+      [gongzi_gongzimingxi].[AK] AS [AK], 
+      [gongzi_gongzimingxi].[AL] AS [AL], 
+      [gongzi_gongzimingxi].[AM] AS [AM], 
+      [gongzi_gongzimingxi].[AN] AS [AN], 
+      [gongzi_gongzimingxi].[AO] AS [AO], 
+      [gongzi_gongzimingxi].[AP] AS [AP], 
+      [gongzi_gongzimingxi].[AQ] AS [AQ], 
+      [gongzi_gongzimingxi].[AR] AS [AR], 
+      [gongzi_gongzimingxi].[ASA] AS [ASA], 
+      [gongzi_gongzimingxi].[ATA] AS [ATA], 
+      [gongzi_gongzimingxi].[AU] AS [AU], 
+      [gongzi_gongzimingxi].[AV] AS [AV], 
+      [gongzi_gongzimingxi].[AW] AS [AW], 
+      [gongzi_gongzimingxi].[AX] AS [AX], 
+      [gongzi_gongzimingxi].[AY] AS [AY], 
+      [gongzi_gongzimingxi].[AZ] AS [AZ], 
+      [gongzi_gongzimingxi].[BA] AS [BA], 
+      [gongzi_gongzimingxi].[BB] AS [BB], 
+      [gongzi_gongzimingxi].[BC] AS [BC], 
+      [gongzi_gongzimingxi].[BD] AS [BD], 
+      [gongzi_gongzimingxi].[BE] AS [BE]
+      FROM [dbo].[gongzi_gongzimingxi] AS [gongzi_gongzimingxi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gongzi_gongzuoshijian" EntityType="yaoModel.Store.gongzi_gongzuoshijian" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_jianliguanli" EntityType="yaoModel.Store.gongzi_jianliguanli" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_kaoqinjilu" EntityType="yaoModel.Store.gongzi_kaoqinjilu" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_kaoqinjilu">
+            <DefiningQuery>SELECT 
+      [gongzi_kaoqinjilu].[id] AS [id], 
+      [gongzi_kaoqinjilu].[year] AS [year], 
+      [gongzi_kaoqinjilu].[moth] AS [moth], 
+      [gongzi_kaoqinjilu].[name] AS [name], 
+      [gongzi_kaoqinjilu].[E] AS [E], 
+      [gongzi_kaoqinjilu].[F] AS [F], 
+      [gongzi_kaoqinjilu].[G] AS [G], 
+      [gongzi_kaoqinjilu].[H] AS [H], 
+      [gongzi_kaoqinjilu].[I] AS [I], 
+      [gongzi_kaoqinjilu].[J] AS [J], 
+      [gongzi_kaoqinjilu].[K] AS [K], 
+      [gongzi_kaoqinjilu].[L] AS [L], 
+      [gongzi_kaoqinjilu].[M] AS [M], 
+      [gongzi_kaoqinjilu].[N] AS [N], 
+      [gongzi_kaoqinjilu].[O] AS [O], 
+      [gongzi_kaoqinjilu].[P] AS [P], 
+      [gongzi_kaoqinjilu].[Q] AS [Q], 
+      [gongzi_kaoqinjilu].[R] AS [R], 
+      [gongzi_kaoqinjilu].[S] AS [S], 
+      [gongzi_kaoqinjilu].[T] AS [T], 
+      [gongzi_kaoqinjilu].[U] AS [U], 
+      [gongzi_kaoqinjilu].[V] AS [V], 
+      [gongzi_kaoqinjilu].[W] AS [W], 
+      [gongzi_kaoqinjilu].[X] AS [X], 
+      [gongzi_kaoqinjilu].[Y] AS [Y], 
+      [gongzi_kaoqinjilu].[Z] AS [Z], 
+      [gongzi_kaoqinjilu].[AA] AS [AA], 
+      [gongzi_kaoqinjilu].[AB] AS [AB], 
+      [gongzi_kaoqinjilu].[AC] AS [AC], 
+      [gongzi_kaoqinjilu].[AD] AS [AD], 
+      [gongzi_kaoqinjilu].[AE] AS [AE], 
+      [gongzi_kaoqinjilu].[AF] AS [AF], 
+      [gongzi_kaoqinjilu].[AG] AS [AG], 
+      [gongzi_kaoqinjilu].[AH] AS [AH], 
+      [gongzi_kaoqinjilu].[AI] AS [AI], 
+      [gongzi_kaoqinjilu].[AJ] AS [AJ], 
+      [gongzi_kaoqinjilu].[AK] AS [AK], 
+      [gongzi_kaoqinjilu].[AL] AS [AL], 
+      [gongzi_kaoqinjilu].[AM] AS [AM], 
+      [gongzi_kaoqinjilu].[AN] AS [AN], 
+      [gongzi_kaoqinjilu].[AO] AS [AO]
+      FROM [dbo].[gongzi_kaoqinjilu] AS [gongzi_kaoqinjilu]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gongzi_kaoqinmingxi" EntityType="yaoModel.Store.gongzi_kaoqinmingxi" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_kaoqinmingxi">
+            <DefiningQuery>SELECT 
+      [gongzi_kaoqinmingxi].[id] AS [id], 
+      [gongzi_kaoqinmingxi].[name] AS [name], 
+      [gongzi_kaoqinmingxi].[C] AS [C], 
+      [gongzi_kaoqinmingxi].[D] AS [D], 
+      [gongzi_kaoqinmingxi].[E] AS [E], 
+      [gongzi_kaoqinmingxi].[F] AS [F], 
+      [gongzi_kaoqinmingxi].[G] AS [G], 
+      [gongzi_kaoqinmingxi].[H] AS [H], 
+      [gongzi_kaoqinmingxi].[I] AS [I], 
+      [gongzi_kaoqinmingxi].[J] AS [J], 
+      [gongzi_kaoqinmingxi].[K] AS [K]
+      FROM [dbo].[gongzi_kaoqinmingxi] AS [gongzi_kaoqinmingxi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gongzi_lizhishenpi" EntityType="yaoModel.Store.gongzi_lizhishenpi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_peizhi" EntityType="yaoModel.Store.gongzi_peizhi" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_peizhi">
+            <DefiningQuery>SELECT 
+      [gongzi_peizhi].[gongsi] AS [gongsi], 
+      [gongzi_peizhi].[kaoqin] AS [kaoqin], 
+      [gongzi_peizhi].[kaoqin_peizhi] AS [kaoqin_peizhi], 
+      [gongzi_peizhi].[bumen] AS [bumen], 
+      [gongzi_peizhi].[zhiwu] AS [zhiwu], 
+      [gongzi_peizhi].[year] AS [year], 
+      [gongzi_peizhi].[month] AS [month], 
+      [gongzi_peizhi].[day] AS [day], 
+      [gongzi_peizhi].[id] AS [id], 
+      [gongzi_peizhi].[chidao_koukuan] AS [chidao_koukuan], 
+      [gongzi_peizhi].[geren_yiliao] AS [geren_yiliao], 
+      [gongzi_peizhi].[qiye_yiliao] AS [qiye_yiliao], 
+      [gongzi_peizhi].[geren_shengyu] AS [geren_shengyu], 
+      [gongzi_peizhi].[qiye_shengyu] AS [qiye_shengyu], 
+      [gongzi_peizhi].[geren_gongjijin] AS [geren_gongjijin], 
+      [gongzi_peizhi].[qiye_gongjijin] AS [qiye_gongjijin], 
+      [gongzi_peizhi].[yiliao_jishu] AS [yiliao_jishu], 
+      [gongzi_peizhi].[geren_nianjin] AS [geren_nianjin], 
+      [gongzi_peizhi].[zhinajin] AS [zhinajin], 
+      [gongzi_peizhi].[nianjin_jishu] AS [nianjin_jishu], 
+      [gongzi_peizhi].[lixi] AS [lixi], 
+      [gongzi_peizhi].[jixiao_gongzi] AS [jixiao_gongzi], 
+      [gongzi_peizhi].[geren_yanglao] AS [geren_yanglao], 
+      [gongzi_peizhi].[qiye_yanglao] AS [qiye_yanglao], 
+      [gongzi_peizhi].[gangwei] AS [gangwei], 
+      [gongzi_peizhi].[gangwei_gongzi] AS [gangwei_gongzi], 
+      [gongzi_peizhi].[qiye_shiye] AS [qiye_shiye], 
+      [gongzi_peizhi].[gongzi] AS [gongzi], 
+      [gongzi_peizhi].[shuilv] AS [shuilv], 
+      [gongzi_peizhi].[kuadu_gongzi] AS [kuadu_gongzi], 
+      [gongzi_peizhi].[qiye_gongshang] AS [qiye_gongshang], 
+      [gongzi_peizhi].[jintie] AS [jintie], 
+      [gongzi_peizhi].[qiye_nianjin] AS [qiye_nianjin], 
+      [gongzi_peizhi].[nianjin1] AS [nianjin1], 
+      [gongzi_peizhi].[jiabanfei] AS [jiabanfei], 
+      [gongzi_peizhi].[yansuangongshi] AS [yansuangongshi], 
+      [gongzi_peizhi].[queqin_koukuan] AS [queqin_koukuan], 
+      [gongzi_peizhi].[geren_shiye] AS [geren_shiye]
+      FROM [dbo].[gongzi_peizhi] AS [gongzi_peizhi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="gongzi_qingjiashenpi" EntityType="yaoModel.Store.gongzi_qingjiashenpi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="gongzi_renyuan" EntityType="yaoModel.Store.gongzi_renyuan" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="gongzi_renyuanManager" EntityType="yaoModel.Store.gongzi_renyuanManager" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_renyuanManager">
             <DefiningQuery>SELECT 
@@ -36,54 +769,636 @@
           </EntitySet>
           <EntitySet Name="gongzi_shenpi" EntityType="yaoModel.Store.gongzi_shenpi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="gongzi_shezhi" EntityType="yaoModel.Store.gongzi_shezhi" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="gongzi_tongjitu" EntityType="yaoModel.Store.gongzi_tongjitu" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="gongzi_viewNames" EntityType="yaoModel.Store.gongzi_viewNames" store:Type="Tables" store:Schema="dbo" store:Name="gongzi_viewNames">
             <DefiningQuery>SELECT 
       [gongzi_viewNames].[id] AS [id], 
       [gongzi_viewNames].[viewName] AS [viewName]
       FROM [dbo].[gongzi_viewNames] AS [gongzi_viewNames]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="kaozhiguang147852" EntityType="yaoModel.Store.kaozhiguang147852" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="kaozhiguang147852_gongzi" EntityType="yaoModel.Store.kaozhiguang147852_gongzi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="kaozhiguang147852_jiben" EntityType="yaoModel.Store.kaozhiguang147852_jiben" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="kaozhiguang147852_jixie" EntityType="yaoModel.Store.kaozhiguang147852_jixie" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="kaozhiguang147852_sika" EntityType="yaoModel.Store.kaozhiguang147852_sika" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_chanpinguanli" EntityType="yaoModel.Store.liuchanglin_chanpinguanli" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_chanpinxinxi" EntityType="yaoModel.Store.liuchanglin_chanpinxinxi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_chuku" EntityType="yaoModel.Store.liuchanglin_chuku" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_fuzhu" EntityType="yaoModel.Store.liuchanglin_fuzhu" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_gongyingshang" EntityType="yaoModel.Store.liuchanglin_gongyingshang" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_kehu" EntityType="yaoModel.Store.liuchanglin_kehu" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_kucun" EntityType="yaoModel.Store.liuchanglin_kucun" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_mingxi" EntityType="yaoModel.Store.liuchanglin_mingxi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_mingxiguanli" EntityType="yaoModel.Store.liuchanglin_mingxiguanli" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="liuchanglin_renyuan" EntityType="yaoModel.Store.liuchanglin_renyuan" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="lv_al" EntityType="yaoModel.Store.lv_al" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="lv_bcd" EntityType="yaoModel.Store.lv_bcd" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="lv_td" EntityType="yaoModel.Store.lv_td" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="lv_xhjr" EntityType="yaoModel.Store.lv_xhjr" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tb846607026_cunkuan" EntityType="yaoModel.Store.tb846607026_cunkuan" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tb846607026_jibie" EntityType="yaoModel.Store.tb846607026_jibie" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tb846607026_jine" EntityType="yaoModel.Store.tb846607026_jine" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tb846607026_peizhi" EntityType="yaoModel.Store.tb846607026_peizhi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tb846607026_shouyi" EntityType="yaoModel.Store.tb846607026_shouyi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="tb846607026_tixian" EntityType="yaoModel.Store.tb846607026_tixian" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_chukubiao" EntityType="yaoModel.Store.wodeliangnianfa_chukubiao" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_gongyingshangxinxi" EntityType="yaoModel.Store.wodeliangnianfa_gongyingshangxinxi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_kehuxinxi" EntityType="yaoModel.Store.wodeliangnianfa_kehuxinxi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_kucun" EntityType="yaoModel.Store.wodeliangnianfa_kucun" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_peizhibiao" EntityType="yaoModel.Store.wodeliangnianfa_peizhibiao" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_renyaunxinxi" EntityType="yaoModel.Store.wodeliangnianfa_renyaunxinxi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_rukubiao" EntityType="yaoModel.Store.wodeliangnianfa_rukubiao" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_shangpinxinxi" EntityType="yaoModel.Store.wodeliangnianfa_shangpinxinxi" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_tuihuobiao" EntityType="yaoModel.Store.wodeliangnianfa_tuihuobiao" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_xiadan" EntityType="yaoModel.Store.wodeliangnianfa_xiadan" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="wodeliangnianfa_zhanghu" EntityType="yaoModel.Store.wodeliangnianfa_zhanghu" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="zeng_stock" EntityType="yaoModel.Store.zeng_stock" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="zeng_user" EntityType="yaoModel.Store.zeng_user" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="zeng_wares" EntityType="yaoModel.Store.zeng_wares" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="zhangfengliang2025_daili" EntityType="yaoModel.Store.zhangfengliang2025_daili" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="zhangfengliang2025_jishiben" EntityType="yaoModel.Store.zhangfengliang2025_jishiben" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="zhangfengliang2025_kucun" EntityType="yaoModel.Store.zhangfengliang2025_kucun" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="kaozhiguang147852" EntityType="yaoModel.Store.kaozhiguang147852" store:Type="Tables" store:Schema="dbo" store:Name="kaozhiguang147852">
+            <DefiningQuery>SELECT 
+      [kaozhiguang147852].[id] AS [id], 
+      [kaozhiguang147852].[name] AS [name], 
+      [kaozhiguang147852].[xiangmu] AS [xiangmu], 
+      [kaozhiguang147852].[jieduan] AS [jieduan], 
+      [kaozhiguang147852].[zhanghao] AS [zhanghao], 
+      [kaozhiguang147852].[mi] AS [mi]
+      FROM [dbo].[kaozhiguang147852] AS [kaozhiguang147852]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="kaozhiguang147852_gongzi" EntityType="yaoModel.Store.kaozhiguang147852_gongzi" store:Type="Tables" store:Schema="dbo" store:Name="kaozhiguang147852_gongzi">
+            <DefiningQuery>SELECT 
+      [kaozhiguang147852_gongzi].[id] AS [id], 
+      [kaozhiguang147852_gongzi].[B] AS [B], 
+      [kaozhiguang147852_gongzi].[C] AS [C], 
+      [kaozhiguang147852_gongzi].[D] AS [D], 
+      [kaozhiguang147852_gongzi].[E] AS [E]
+      FROM [dbo].[kaozhiguang147852_gongzi] AS [kaozhiguang147852_gongzi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="kaozhiguang147852_jiben" EntityType="yaoModel.Store.kaozhiguang147852_jiben" store:Type="Tables" store:Schema="dbo" store:Name="kaozhiguang147852_jiben">
+            <DefiningQuery>SELECT 
+      [kaozhiguang147852_jiben].[id] AS [id], 
+      [kaozhiguang147852_jiben].[B] AS [B], 
+      [kaozhiguang147852_jiben].[C] AS [C], 
+      [kaozhiguang147852_jiben].[D] AS [D], 
+      [kaozhiguang147852_jiben].[E] AS [E]
+      FROM [dbo].[kaozhiguang147852_jiben] AS [kaozhiguang147852_jiben]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="kaozhiguang147852_jixie" EntityType="yaoModel.Store.kaozhiguang147852_jixie" store:Type="Tables" store:Schema="dbo" store:Name="kaozhiguang147852_jixie">
+            <DefiningQuery>SELECT 
+      [kaozhiguang147852_jixie].[id] AS [id], 
+      [kaozhiguang147852_jixie].[B] AS [B], 
+      [kaozhiguang147852_jixie].[C] AS [C], 
+      [kaozhiguang147852_jixie].[D] AS [D], 
+      [kaozhiguang147852_jixie].[E] AS [E], 
+      [kaozhiguang147852_jixie].[F] AS [F], 
+      [kaozhiguang147852_jixie].[G] AS [G], 
+      [kaozhiguang147852_jixie].[H] AS [H], 
+      [kaozhiguang147852_jixie].[I] AS [I]
+      FROM [dbo].[kaozhiguang147852_jixie] AS [kaozhiguang147852_jixie]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="kaozhiguang147852_sika" EntityType="yaoModel.Store.kaozhiguang147852_sika" store:Type="Tables" store:Schema="dbo" store:Name="kaozhiguang147852_sika">
+            <DefiningQuery>SELECT 
+      [kaozhiguang147852_sika].[id] AS [id], 
+      [kaozhiguang147852_sika].[B] AS [B], 
+      [kaozhiguang147852_sika].[C] AS [C], 
+      [kaozhiguang147852_sika].[D] AS [D], 
+      [kaozhiguang147852_sika].[E] AS [E]
+      FROM [dbo].[kaozhiguang147852_sika] AS [kaozhiguang147852_sika]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_chanpinguanli" EntityType="yaoModel.Store.liuchanglin_chanpinguanli" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_chanpinguanli">
+            <DefiningQuery>SELECT 
+      [liuchanglin_chanpinguanli].[id] AS [id], 
+      [liuchanglin_chanpinguanli].[B] AS [B], 
+      [liuchanglin_chanpinguanli].[C] AS [C], 
+      [liuchanglin_chanpinguanli].[D] AS [D], 
+      [liuchanglin_chanpinguanli].[E] AS [E], 
+      [liuchanglin_chanpinguanli].[F] AS [F], 
+      [liuchanglin_chanpinguanli].[G] AS [G], 
+      [liuchanglin_chanpinguanli].[H] AS [H], 
+      [liuchanglin_chanpinguanli].[I] AS [I], 
+      [liuchanglin_chanpinguanli].[J] AS [J], 
+      [liuchanglin_chanpinguanli].[K] AS [K], 
+      [liuchanglin_chanpinguanli].[L] AS [L], 
+      [liuchanglin_chanpinguanli].[M] AS [M]
+      FROM [dbo].[liuchanglin_chanpinguanli] AS [liuchanglin_chanpinguanli]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_chanpinxinxi" EntityType="yaoModel.Store.liuchanglin_chanpinxinxi" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_chanpinxinxi">
+            <DefiningQuery>SELECT 
+      [liuchanglin_chanpinxinxi].[id] AS [id], 
+      [liuchanglin_chanpinxinxi].[B] AS [B], 
+      [liuchanglin_chanpinxinxi].[C] AS [C], 
+      [liuchanglin_chanpinxinxi].[D] AS [D], 
+      [liuchanglin_chanpinxinxi].[E] AS [E], 
+      [liuchanglin_chanpinxinxi].[F] AS [F], 
+      [liuchanglin_chanpinxinxi].[G] AS [G], 
+      [liuchanglin_chanpinxinxi].[H] AS [H], 
+      [liuchanglin_chanpinxinxi].[I] AS [I]
+      FROM [dbo].[liuchanglin_chanpinxinxi] AS [liuchanglin_chanpinxinxi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_chuku" EntityType="yaoModel.Store.liuchanglin_chuku" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_chuku">
+            <DefiningQuery>SELECT 
+      [liuchanglin_chuku].[id] AS [id], 
+      [liuchanglin_chuku].[B] AS [B], 
+      [liuchanglin_chuku].[C] AS [C], 
+      [liuchanglin_chuku].[D] AS [D], 
+      [liuchanglin_chuku].[E] AS [E], 
+      [liuchanglin_chuku].[F] AS [F], 
+      [liuchanglin_chuku].[G] AS [G], 
+      [liuchanglin_chuku].[H] AS [H], 
+      [liuchanglin_chuku].[I] AS [I], 
+      [liuchanglin_chuku].[J] AS [J], 
+      [liuchanglin_chuku].[K] AS [K], 
+      [liuchanglin_chuku].[L] AS [L]
+      FROM [dbo].[liuchanglin_chuku] AS [liuchanglin_chuku]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_fuzhu" EntityType="yaoModel.Store.liuchanglin_fuzhu" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_fuzhu">
+            <DefiningQuery>SELECT 
+      [liuchanglin_fuzhu].[id] AS [id], 
+      [liuchanglin_fuzhu].[B] AS [B], 
+      [liuchanglin_fuzhu].[C] AS [C], 
+      [liuchanglin_fuzhu].[D] AS [D], 
+      [liuchanglin_fuzhu].[E] AS [E], 
+      [liuchanglin_fuzhu].[F] AS [F], 
+      [liuchanglin_fuzhu].[G] AS [G], 
+      [liuchanglin_fuzhu].[H] AS [H], 
+      [liuchanglin_fuzhu].[I] AS [I], 
+      [liuchanglin_fuzhu].[J] AS [J], 
+      [liuchanglin_fuzhu].[K] AS [K], 
+      [liuchanglin_fuzhu].[L] AS [L], 
+      [liuchanglin_fuzhu].[M] AS [M]
+      FROM [dbo].[liuchanglin_fuzhu] AS [liuchanglin_fuzhu]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_gongyingshang" EntityType="yaoModel.Store.liuchanglin_gongyingshang" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_gongyingshang">
+            <DefiningQuery>SELECT 
+      [liuchanglin_gongyingshang].[id] AS [id], 
+      [liuchanglin_gongyingshang].[B] AS [B], 
+      [liuchanglin_gongyingshang].[C] AS [C], 
+      [liuchanglin_gongyingshang].[D] AS [D], 
+      [liuchanglin_gongyingshang].[E] AS [E]
+      FROM [dbo].[liuchanglin_gongyingshang] AS [liuchanglin_gongyingshang]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_kehu" EntityType="yaoModel.Store.liuchanglin_kehu" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_kehu">
+            <DefiningQuery>SELECT 
+      [liuchanglin_kehu].[id] AS [id], 
+      [liuchanglin_kehu].[B] AS [B], 
+      [liuchanglin_kehu].[C] AS [C], 
+      [liuchanglin_kehu].[D] AS [D], 
+      [liuchanglin_kehu].[E] AS [E]
+      FROM [dbo].[liuchanglin_kehu] AS [liuchanglin_kehu]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_mingxi" EntityType="yaoModel.Store.liuchanglin_mingxi" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_mingxi">
+            <DefiningQuery>SELECT 
+      [liuchanglin_mingxi].[id] AS [id], 
+      [liuchanglin_mingxi].[B] AS [B], 
+      [liuchanglin_mingxi].[C] AS [C], 
+      [liuchanglin_mingxi].[D] AS [D], 
+      [liuchanglin_mingxi].[E] AS [E], 
+      [liuchanglin_mingxi].[F] AS [F], 
+      [liuchanglin_mingxi].[G] AS [G], 
+      [liuchanglin_mingxi].[H] AS [H], 
+      [liuchanglin_mingxi].[I] AS [I], 
+      [liuchanglin_mingxi].[J] AS [J], 
+      [liuchanglin_mingxi].[K] AS [K], 
+      [liuchanglin_mingxi].[L] AS [L], 
+      [liuchanglin_mingxi].[M] AS [M], 
+      [liuchanglin_mingxi].[N] AS [N]
+      FROM [dbo].[liuchanglin_mingxi] AS [liuchanglin_mingxi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_mingxiguanli" EntityType="yaoModel.Store.liuchanglin_mingxiguanli" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_mingxiguanli">
+            <DefiningQuery>SELECT 
+      [liuchanglin_mingxiguanli].[id] AS [id], 
+      [liuchanglin_mingxiguanli].[B] AS [B], 
+      [liuchanglin_mingxiguanli].[C] AS [C], 
+      [liuchanglin_mingxiguanli].[D] AS [D], 
+      [liuchanglin_mingxiguanli].[E] AS [E], 
+      [liuchanglin_mingxiguanli].[F] AS [F], 
+      [liuchanglin_mingxiguanli].[G] AS [G], 
+      [liuchanglin_mingxiguanli].[H] AS [H], 
+      [liuchanglin_mingxiguanli].[I] AS [I], 
+      [liuchanglin_mingxiguanli].[J] AS [J], 
+      [liuchanglin_mingxiguanli].[K] AS [K], 
+      [liuchanglin_mingxiguanli].[L] AS [L], 
+      [liuchanglin_mingxiguanli].[M] AS [M], 
+      [liuchanglin_mingxiguanli].[N] AS [N], 
+      [liuchanglin_mingxiguanli].[O] AS [O], 
+      [liuchanglin_mingxiguanli].[P] AS [P]
+      FROM [dbo].[liuchanglin_mingxiguanli] AS [liuchanglin_mingxiguanli]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="liuchanglin_renyuan" EntityType="yaoModel.Store.liuchanglin_renyuan" store:Type="Tables" store:Schema="dbo" store:Name="liuchanglin_renyuan">
+            <DefiningQuery>SELECT 
+      [liuchanglin_renyuan].[id] AS [id], 
+      [liuchanglin_renyuan].[B] AS [B], 
+      [liuchanglin_renyuan].[C] AS [C], 
+      [liuchanglin_renyuan].[D] AS [D]
+      FROM [dbo].[liuchanglin_renyuan] AS [liuchanglin_renyuan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="lv_al" EntityType="yaoModel.Store.lv_al" store:Type="Tables" store:Schema="dbo" store:Name="lv_al">
+            <DefiningQuery>SELECT 
+      [lv_al].[id] AS [id], 
+      [lv_al].[B] AS [B], 
+      [lv_al].[C] AS [C], 
+      [lv_al].[D] AS [D], 
+      [lv_al].[E] AS [E], 
+      [lv_al].[F] AS [F], 
+      [lv_al].[G] AS [G], 
+      [lv_al].[H] AS [H], 
+      [lv_al].[I] AS [I], 
+      [lv_al].[J] AS [J], 
+      [lv_al].[K] AS [K], 
+      [lv_al].[L] AS [L], 
+      [lv_al].[M] AS [M], 
+      [lv_al].[N] AS [N], 
+      [lv_al].[O] AS [O], 
+      [lv_al].[P] AS [P], 
+      [lv_al].[Q] AS [Q], 
+      [lv_al].[R] AS [R], 
+      [lv_al].[S] AS [S], 
+      [lv_al].[T] AS [T], 
+      [lv_al].[U] AS [U], 
+      [lv_al].[V] AS [V], 
+      [lv_al].[W] AS [W], 
+      [lv_al].[X] AS [X], 
+      [lv_al].[Y] AS [Y], 
+      [lv_al].[Z] AS [Z], 
+      [lv_al].[AA] AS [AA], 
+      [lv_al].[AB] AS [AB], 
+      [lv_al].[AC] AS [AC], 
+      [lv_al].[AD] AS [AD], 
+      [lv_al].[AE] AS [AE], 
+      [lv_al].[AF] AS [AF], 
+      [lv_al].[AG] AS [AG], 
+      [lv_al].[cid] AS [cid], 
+      [lv_al].[AH] AS [AH]
+      FROM [dbo].[lv_al] AS [lv_al]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="lv_bcd" EntityType="yaoModel.Store.lv_bcd" store:Type="Tables" store:Schema="dbo" store:Name="lv_bcd">
+            <DefiningQuery>SELECT 
+      [lv_bcd].[id] AS [id], 
+      [lv_bcd].[B] AS [B], 
+      [lv_bcd].[C] AS [C], 
+      [lv_bcd].[D] AS [D], 
+      [lv_bcd].[E] AS [E], 
+      [lv_bcd].[F] AS [F], 
+      [lv_bcd].[G] AS [G], 
+      [lv_bcd].[H] AS [H], 
+      [lv_bcd].[I] AS [I], 
+      [lv_bcd].[J] AS [J], 
+      [lv_bcd].[K] AS [K], 
+      [lv_bcd].[L] AS [L], 
+      [lv_bcd].[M] AS [M], 
+      [lv_bcd].[N] AS [N], 
+      [lv_bcd].[O] AS [O], 
+      [lv_bcd].[P] AS [P], 
+      [lv_bcd].[Q] AS [Q], 
+      [lv_bcd].[R] AS [R], 
+      [lv_bcd].[S] AS [S], 
+      [lv_bcd].[T] AS [T], 
+      [lv_bcd].[U] AS [U], 
+      [lv_bcd].[V] AS [V], 
+      [lv_bcd].[W] AS [W], 
+      [lv_bcd].[X] AS [X], 
+      [lv_bcd].[Y] AS [Y], 
+      [lv_bcd].[Z] AS [Z], 
+      [lv_bcd].[AA] AS [AA], 
+      [lv_bcd].[AB] AS [AB], 
+      [lv_bcd].[AC] AS [AC], 
+      [lv_bcd].[AD] AS [AD], 
+      [lv_bcd].[AE] AS [AE], 
+      [lv_bcd].[AF] AS [AF], 
+      [lv_bcd].[AG] AS [AG], 
+      [lv_bcd].[cid] AS [cid], 
+      [lv_bcd].[AH] AS [AH]
+      FROM [dbo].[lv_bcd] AS [lv_bcd]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="lv_td" EntityType="yaoModel.Store.lv_td" store:Type="Tables" store:Schema="dbo" store:Name="lv_td">
+            <DefiningQuery>SELECT 
+      [lv_td].[id] AS [id], 
+      [lv_td].[B] AS [B], 
+      [lv_td].[C] AS [C], 
+      [lv_td].[D] AS [D], 
+      [lv_td].[E] AS [E], 
+      [lv_td].[F] AS [F], 
+      [lv_td].[G] AS [G], 
+      [lv_td].[H] AS [H], 
+      [lv_td].[I] AS [I], 
+      [lv_td].[J] AS [J], 
+      [lv_td].[K] AS [K], 
+      [lv_td].[L] AS [L], 
+      [lv_td].[M] AS [M], 
+      [lv_td].[N] AS [N], 
+      [lv_td].[O] AS [O], 
+      [lv_td].[P] AS [P], 
+      [lv_td].[Q] AS [Q], 
+      [lv_td].[R] AS [R], 
+      [lv_td].[S] AS [S], 
+      [lv_td].[T] AS [T], 
+      [lv_td].[U] AS [U], 
+      [lv_td].[V] AS [V], 
+      [lv_td].[W] AS [W], 
+      [lv_td].[X] AS [X], 
+      [lv_td].[Y] AS [Y], 
+      [lv_td].[Z] AS [Z], 
+      [lv_td].[AA] AS [AA], 
+      [lv_td].[AB] AS [AB], 
+      [lv_td].[AC] AS [AC], 
+      [lv_td].[AD] AS [AD], 
+      [lv_td].[AE] AS [AE], 
+      [lv_td].[AF] AS [AF], 
+      [lv_td].[AG] AS [AG], 
+      [lv_td].[cid] AS [cid], 
+      [lv_td].[AH] AS [AH]
+      FROM [dbo].[lv_td] AS [lv_td]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="lv_xhjr" EntityType="yaoModel.Store.lv_xhjr" store:Type="Tables" store:Schema="dbo" store:Name="lv_xhjr">
+            <DefiningQuery>SELECT 
+      [lv_xhjr].[id] AS [id], 
+      [lv_xhjr].[B] AS [B], 
+      [lv_xhjr].[C] AS [C], 
+      [lv_xhjr].[D] AS [D], 
+      [lv_xhjr].[E] AS [E], 
+      [lv_xhjr].[F] AS [F], 
+      [lv_xhjr].[G] AS [G], 
+      [lv_xhjr].[H] AS [H], 
+      [lv_xhjr].[I] AS [I], 
+      [lv_xhjr].[J] AS [J], 
+      [lv_xhjr].[K] AS [K], 
+      [lv_xhjr].[L] AS [L], 
+      [lv_xhjr].[M] AS [M], 
+      [lv_xhjr].[N] AS [N], 
+      [lv_xhjr].[O] AS [O], 
+      [lv_xhjr].[P] AS [P], 
+      [lv_xhjr].[Q] AS [Q], 
+      [lv_xhjr].[R] AS [R], 
+      [lv_xhjr].[S] AS [S], 
+      [lv_xhjr].[T] AS [T], 
+      [lv_xhjr].[U] AS [U], 
+      [lv_xhjr].[V] AS [V], 
+      [lv_xhjr].[W] AS [W], 
+      [lv_xhjr].[X] AS [X], 
+      [lv_xhjr].[Y] AS [Y], 
+      [lv_xhjr].[Z] AS [Z], 
+      [lv_xhjr].[AA] AS [AA], 
+      [lv_xhjr].[AB] AS [AB], 
+      [lv_xhjr].[AC] AS [AC], 
+      [lv_xhjr].[AD] AS [AD], 
+      [lv_xhjr].[AE] AS [AE], 
+      [lv_xhjr].[AF] AS [AF], 
+      [lv_xhjr].[AG] AS [AG], 
+      [lv_xhjr].[cid] AS [cid], 
+      [lv_xhjr].[AH] AS [AH]
+      FROM [dbo].[lv_xhjr] AS [lv_xhjr]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tb846607026_cunkuan" EntityType="yaoModel.Store.tb846607026_cunkuan" store:Type="Tables" store:Schema="dbo" store:Name="tb846607026_cunkuan">
+            <DefiningQuery>SELECT 
+      [tb846607026_cunkuan].[id] AS [id], 
+      [tb846607026_cunkuan].[B] AS [B], 
+      [tb846607026_cunkuan].[C] AS [C], 
+      [tb846607026_cunkuan].[D] AS [D], 
+      [tb846607026_cunkuan].[E] AS [E], 
+      [tb846607026_cunkuan].[F] AS [F], 
+      [tb846607026_cunkuan].[G] AS [G], 
+      [tb846607026_cunkuan].[H] AS [H], 
+      [tb846607026_cunkuan].[I] AS [I]
+      FROM [dbo].[tb846607026_cunkuan] AS [tb846607026_cunkuan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tb846607026_jibie" EntityType="yaoModel.Store.tb846607026_jibie" store:Type="Tables" store:Schema="dbo" store:Name="tb846607026_jibie">
+            <DefiningQuery>SELECT 
+      [tb846607026_jibie].[id] AS [id], 
+      [tb846607026_jibie].[B] AS [B]
+      FROM [dbo].[tb846607026_jibie] AS [tb846607026_jibie]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tb846607026_jine" EntityType="yaoModel.Store.tb846607026_jine" store:Type="Tables" store:Schema="dbo" store:Name="tb846607026_jine">
+            <DefiningQuery>SELECT 
+      [tb846607026_jine].[id] AS [id], 
+      [tb846607026_jine].[B] AS [B], 
+      [tb846607026_jine].[C] AS [C], 
+      [tb846607026_jine].[D] AS [D], 
+      [tb846607026_jine].[E] AS [E]
+      FROM [dbo].[tb846607026_jine] AS [tb846607026_jine]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tb846607026_peizhi" EntityType="yaoModel.Store.tb846607026_peizhi" store:Type="Tables" store:Schema="dbo" store:Name="tb846607026_peizhi">
+            <DefiningQuery>SELECT 
+      [tb846607026_peizhi].[id] AS [id], 
+      [tb846607026_peizhi].[B] AS [B], 
+      [tb846607026_peizhi].[C] AS [C], 
+      [tb846607026_peizhi].[D] AS [D], 
+      [tb846607026_peizhi].[E] AS [E]
+      FROM [dbo].[tb846607026_peizhi] AS [tb846607026_peizhi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tb846607026_shouyi" EntityType="yaoModel.Store.tb846607026_shouyi" store:Type="Tables" store:Schema="dbo" store:Name="tb846607026_shouyi">
+            <DefiningQuery>SELECT 
+      [tb846607026_shouyi].[id] AS [id], 
+      [tb846607026_shouyi].[B] AS [B], 
+      [tb846607026_shouyi].[C] AS [C], 
+      [tb846607026_shouyi].[D] AS [D]
+      FROM [dbo].[tb846607026_shouyi] AS [tb846607026_shouyi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tb846607026_tixian" EntityType="yaoModel.Store.tb846607026_tixian" store:Type="Tables" store:Schema="dbo" store:Name="tb846607026_tixian">
+            <DefiningQuery>SELECT 
+      [tb846607026_tixian].[id] AS [id], 
+      [tb846607026_tixian].[B] AS [B], 
+      [tb846607026_tixian].[C] AS [C], 
+      [tb846607026_tixian].[D] AS [D]
+      FROM [dbo].[tb846607026_tixian] AS [tb846607026_tixian]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_chukubiao" EntityType="yaoModel.Store.wodeliangnianfa_chukubiao" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_chukubiao">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_chukubiao].[id] AS [id], 
+      [wodeliangnianfa_chukubiao].[B] AS [B], 
+      [wodeliangnianfa_chukubiao].[C] AS [C], 
+      [wodeliangnianfa_chukubiao].[D] AS [D], 
+      [wodeliangnianfa_chukubiao].[E] AS [E], 
+      [wodeliangnianfa_chukubiao].[F] AS [F], 
+      [wodeliangnianfa_chukubiao].[G] AS [G], 
+      [wodeliangnianfa_chukubiao].[H] AS [H], 
+      [wodeliangnianfa_chukubiao].[I] AS [I], 
+      [wodeliangnianfa_chukubiao].[J] AS [J], 
+      [wodeliangnianfa_chukubiao].[K] AS [K], 
+      [wodeliangnianfa_chukubiao].[L] AS [L], 
+      [wodeliangnianfa_chukubiao].[M] AS [M], 
+      [wodeliangnianfa_chukubiao].[N] AS [N], 
+      [wodeliangnianfa_chukubiao].[O] AS [O], 
+      [wodeliangnianfa_chukubiao].[P] AS [P], 
+      [wodeliangnianfa_chukubiao].[Q] AS [Q], 
+      [wodeliangnianfa_chukubiao].[R] AS [R], 
+      [wodeliangnianfa_chukubiao].[S] AS [S], 
+      [wodeliangnianfa_chukubiao].[T] AS [T], 
+      [wodeliangnianfa_chukubiao].[U] AS [U], 
+      [wodeliangnianfa_chukubiao].[V] AS [V], 
+      [wodeliangnianfa_chukubiao].[W] AS [W]
+      FROM [dbo].[wodeliangnianfa_chukubiao] AS [wodeliangnianfa_chukubiao]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_gongyingshangxinxi" EntityType="yaoModel.Store.wodeliangnianfa_gongyingshangxinxi" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_gongyingshangxinxi">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_gongyingshangxinxi].[id] AS [id], 
+      [wodeliangnianfa_gongyingshangxinxi].[B] AS [B], 
+      [wodeliangnianfa_gongyingshangxinxi].[C] AS [C], 
+      [wodeliangnianfa_gongyingshangxinxi].[D] AS [D], 
+      [wodeliangnianfa_gongyingshangxinxi].[E] AS [E]
+      FROM [dbo].[wodeliangnianfa_gongyingshangxinxi] AS [wodeliangnianfa_gongyingshangxinxi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_kehuxinxi" EntityType="yaoModel.Store.wodeliangnianfa_kehuxinxi" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_kehuxinxi">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_kehuxinxi].[id] AS [id], 
+      [wodeliangnianfa_kehuxinxi].[B] AS [B], 
+      [wodeliangnianfa_kehuxinxi].[C] AS [C], 
+      [wodeliangnianfa_kehuxinxi].[D] AS [D], 
+      [wodeliangnianfa_kehuxinxi].[E] AS [E]
+      FROM [dbo].[wodeliangnianfa_kehuxinxi] AS [wodeliangnianfa_kehuxinxi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_kucun" EntityType="yaoModel.Store.wodeliangnianfa_kucun" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_kucun">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_kucun].[id] AS [id], 
+      [wodeliangnianfa_kucun].[B] AS [B], 
+      [wodeliangnianfa_kucun].[C] AS [C], 
+      [wodeliangnianfa_kucun].[D] AS [D], 
+      [wodeliangnianfa_kucun].[E] AS [E], 
+      [wodeliangnianfa_kucun].[F] AS [F], 
+      [wodeliangnianfa_kucun].[G] AS [G], 
+      [wodeliangnianfa_kucun].[H] AS [H], 
+      [wodeliangnianfa_kucun].[I] AS [I], 
+      [wodeliangnianfa_kucun].[J] AS [J], 
+      [wodeliangnianfa_kucun].[K] AS [K], 
+      [wodeliangnianfa_kucun].[L] AS [L], 
+      [wodeliangnianfa_kucun].[M] AS [M], 
+      [wodeliangnianfa_kucun].[N] AS [N]
+      FROM [dbo].[wodeliangnianfa_kucun] AS [wodeliangnianfa_kucun]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_peizhibiao" EntityType="yaoModel.Store.wodeliangnianfa_peizhibiao" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_peizhibiao">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_peizhibiao].[id] AS [id], 
+      [wodeliangnianfa_peizhibiao].[B] AS [B], 
+      [wodeliangnianfa_peizhibiao].[C] AS [C]
+      FROM [dbo].[wodeliangnianfa_peizhibiao] AS [wodeliangnianfa_peizhibiao]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_renyaunxinxi" EntityType="yaoModel.Store.wodeliangnianfa_renyaunxinxi" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_renyaunxinxi">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_renyaunxinxi].[id] AS [id], 
+      [wodeliangnianfa_renyaunxinxi].[B] AS [B], 
+      [wodeliangnianfa_renyaunxinxi].[C] AS [C], 
+      [wodeliangnianfa_renyaunxinxi].[D] AS [D], 
+      [wodeliangnianfa_renyaunxinxi].[E] AS [E]
+      FROM [dbo].[wodeliangnianfa_renyaunxinxi] AS [wodeliangnianfa_renyaunxinxi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_rukubiao" EntityType="yaoModel.Store.wodeliangnianfa_rukubiao" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_rukubiao">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_rukubiao].[id] AS [id], 
+      [wodeliangnianfa_rukubiao].[B] AS [B], 
+      [wodeliangnianfa_rukubiao].[C] AS [C], 
+      [wodeliangnianfa_rukubiao].[D] AS [D], 
+      [wodeliangnianfa_rukubiao].[E] AS [E], 
+      [wodeliangnianfa_rukubiao].[F] AS [F], 
+      [wodeliangnianfa_rukubiao].[G] AS [G], 
+      [wodeliangnianfa_rukubiao].[H] AS [H], 
+      [wodeliangnianfa_rukubiao].[I] AS [I], 
+      [wodeliangnianfa_rukubiao].[J] AS [J], 
+      [wodeliangnianfa_rukubiao].[K] AS [K], 
+      [wodeliangnianfa_rukubiao].[L] AS [L], 
+      [wodeliangnianfa_rukubiao].[M] AS [M], 
+      [wodeliangnianfa_rukubiao].[N] AS [N], 
+      [wodeliangnianfa_rukubiao].[O] AS [O], 
+      [wodeliangnianfa_rukubiao].[P] AS [P], 
+      [wodeliangnianfa_rukubiao].[Q] AS [Q]
+      FROM [dbo].[wodeliangnianfa_rukubiao] AS [wodeliangnianfa_rukubiao]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_shangpinxinxi" EntityType="yaoModel.Store.wodeliangnianfa_shangpinxinxi" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_shangpinxinxi">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_shangpinxinxi].[id] AS [id], 
+      [wodeliangnianfa_shangpinxinxi].[B] AS [B], 
+      [wodeliangnianfa_shangpinxinxi].[C] AS [C], 
+      [wodeliangnianfa_shangpinxinxi].[D] AS [D], 
+      [wodeliangnianfa_shangpinxinxi].[E] AS [E], 
+      [wodeliangnianfa_shangpinxinxi].[F] AS [F], 
+      [wodeliangnianfa_shangpinxinxi].[G] AS [G]
+      FROM [dbo].[wodeliangnianfa_shangpinxinxi] AS [wodeliangnianfa_shangpinxinxi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_tuihuobiao" EntityType="yaoModel.Store.wodeliangnianfa_tuihuobiao" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_tuihuobiao">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_tuihuobiao].[id] AS [id], 
+      [wodeliangnianfa_tuihuobiao].[B] AS [B], 
+      [wodeliangnianfa_tuihuobiao].[C] AS [C], 
+      [wodeliangnianfa_tuihuobiao].[D] AS [D], 
+      [wodeliangnianfa_tuihuobiao].[E] AS [E], 
+      [wodeliangnianfa_tuihuobiao].[F] AS [F], 
+      [wodeliangnianfa_tuihuobiao].[G] AS [G], 
+      [wodeliangnianfa_tuihuobiao].[H] AS [H], 
+      [wodeliangnianfa_tuihuobiao].[I] AS [I], 
+      [wodeliangnianfa_tuihuobiao].[J] AS [J], 
+      [wodeliangnianfa_tuihuobiao].[K] AS [K], 
+      [wodeliangnianfa_tuihuobiao].[L] AS [L], 
+      [wodeliangnianfa_tuihuobiao].[M] AS [M], 
+      [wodeliangnianfa_tuihuobiao].[N] AS [N], 
+      [wodeliangnianfa_tuihuobiao].[O] AS [O]
+      FROM [dbo].[wodeliangnianfa_tuihuobiao] AS [wodeliangnianfa_tuihuobiao]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_xiadan" EntityType="yaoModel.Store.wodeliangnianfa_xiadan" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_xiadan">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_xiadan].[id] AS [id], 
+      [wodeliangnianfa_xiadan].[B] AS [B], 
+      [wodeliangnianfa_xiadan].[C] AS [C], 
+      [wodeliangnianfa_xiadan].[D] AS [D], 
+      [wodeliangnianfa_xiadan].[E] AS [E], 
+      [wodeliangnianfa_xiadan].[F] AS [F], 
+      [wodeliangnianfa_xiadan].[G] AS [G], 
+      [wodeliangnianfa_xiadan].[H] AS [H], 
+      [wodeliangnianfa_xiadan].[I] AS [I], 
+      [wodeliangnianfa_xiadan].[J] AS [J], 
+      [wodeliangnianfa_xiadan].[K] AS [K], 
+      [wodeliangnianfa_xiadan].[L] AS [L], 
+      [wodeliangnianfa_xiadan].[M] AS [M], 
+      [wodeliangnianfa_xiadan].[N] AS [N], 
+      [wodeliangnianfa_xiadan].[O] AS [O], 
+      [wodeliangnianfa_xiadan].[P] AS [P], 
+      [wodeliangnianfa_xiadan].[Q] AS [Q]
+      FROM [dbo].[wodeliangnianfa_xiadan] AS [wodeliangnianfa_xiadan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wodeliangnianfa_zhanghu" EntityType="yaoModel.Store.wodeliangnianfa_zhanghu" store:Type="Tables" store:Schema="dbo" store:Name="wodeliangnianfa_zhanghu">
+            <DefiningQuery>SELECT 
+      [wodeliangnianfa_zhanghu].[id] AS [id], 
+      [wodeliangnianfa_zhanghu].[B] AS [B], 
+      [wodeliangnianfa_zhanghu].[C] AS [C], 
+      [wodeliangnianfa_zhanghu].[D] AS [D], 
+      [wodeliangnianfa_zhanghu].[E] AS [E], 
+      [wodeliangnianfa_zhanghu].[F] AS [F], 
+      [wodeliangnianfa_zhanghu].[G] AS [G], 
+      [wodeliangnianfa_zhanghu].[H] AS [H], 
+      [wodeliangnianfa_zhanghu].[I] AS [I], 
+      [wodeliangnianfa_zhanghu].[J] AS [J], 
+      [wodeliangnianfa_zhanghu].[K] AS [K], 
+      [wodeliangnianfa_zhanghu].[L] AS [L]
+      FROM [dbo].[wodeliangnianfa_zhanghu] AS [wodeliangnianfa_zhanghu]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zeng_stock" EntityType="yaoModel.Store.zeng_stock" store:Type="Tables" store:Schema="dbo" store:Name="zeng_stock">
+            <DefiningQuery>SELECT 
+      [zeng_stock].[productCode] AS [productCode], 
+      [zeng_stock].[discount] AS [discount], 
+      [zeng_stock].[direction] AS [direction], 
+      [zeng_stock].[userName] AS [userName], 
+      [zeng_stock].[num] AS [num], 
+      [zeng_stock].[time] AS [time], 
+      [zeng_stock].[id] AS [id], 
+      [zeng_stock].[comment] AS [comment], 
+      [zeng_stock].[payType] AS [payType], 
+      [zeng_stock].[order_id] AS [order_id]
+      FROM [dbo].[zeng_stock] AS [zeng_stock]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zeng_user" EntityType="yaoModel.Store.zeng_user" store:Type="Tables" store:Schema="dbo" store:Name="zeng_user">
+            <DefiningQuery>SELECT 
+      [zeng_user].[userName] AS [userName], 
+      [zeng_user].[password] AS [password], 
+      [zeng_user].[power] AS [power], 
+      [zeng_user].[shop] AS [shop], 
+      [zeng_user].[id] AS [id], 
+      [zeng_user].[qrCode_shop] AS [qrCode_shop], 
+      [zeng_user].[deviceId] AS [deviceId], 
+      [zeng_user].[serviceId] AS [serviceId], 
+      [zeng_user].[characteristicId] AS [characteristicId]
+      FROM [dbo].[zeng_user] AS [zeng_user]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zeng_wares" EntityType="yaoModel.Store.zeng_wares" store:Type="Tables" store:Schema="dbo" store:Name="zeng_wares">
+            <DefiningQuery>SELECT 
+      [zeng_wares].[code] AS [code], 
+      [zeng_wares].[name] AS [name], 
+      [zeng_wares].[price] AS [price], 
+      [zeng_wares].[id] AS [id], 
+      [zeng_wares].[num] AS [num], 
+      [zeng_wares].[cloth] AS [cloth], 
+      [zeng_wares].[norms] AS [norms], 
+      [zeng_wares].[type] AS [type], 
+      [zeng_wares].[mark1] AS [mark1], 
+      [zeng_wares].[mark2] AS [mark2], 
+      [zeng_wares].[mark3] AS [mark3], 
+      [zeng_wares].[mark4] AS [mark4], 
+      [zeng_wares].[mark5] AS [mark5]
+      FROM [dbo].[zeng_wares] AS [zeng_wares]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zhangfengliang2025_daili" EntityType="yaoModel.Store.zhangfengliang2025_daili" store:Type="Tables" store:Schema="dbo" store:Name="zhangfengliang2025_daili">
+            <DefiningQuery>SELECT 
+      [zhangfengliang2025_daili].[id] AS [id], 
+      [zhangfengliang2025_daili].[B] AS [B], 
+      [zhangfengliang2025_daili].[C] AS [C], 
+      [zhangfengliang2025_daili].[D] AS [D], 
+      [zhangfengliang2025_daili].[E] AS [E]
+      FROM [dbo].[zhangfengliang2025_daili] AS [zhangfengliang2025_daili]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zhangfengliang2025_jishiben" EntityType="yaoModel.Store.zhangfengliang2025_jishiben" store:Type="Tables" store:Schema="dbo" store:Name="zhangfengliang2025_jishiben">
+            <DefiningQuery>SELECT 
+      [zhangfengliang2025_jishiben].[id] AS [id], 
+      [zhangfengliang2025_jishiben].[B] AS [B], 
+      [zhangfengliang2025_jishiben].[C] AS [C], 
+      [zhangfengliang2025_jishiben].[D] AS [D]
+      FROM [dbo].[zhangfengliang2025_jishiben] AS [zhangfengliang2025_jishiben]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zhangfengliang2025_kucun" EntityType="yaoModel.Store.zhangfengliang2025_kucun" store:Type="Tables" store:Schema="dbo" store:Name="zhangfengliang2025_kucun">
+            <DefiningQuery>SELECT 
+      [zhangfengliang2025_kucun].[id] AS [id], 
+      [zhangfengliang2025_kucun].[产品编号] AS [产品编号], 
+      [zhangfengliang2025_kucun].[产品名称] AS [产品名称], 
+      [zhangfengliang2025_kucun].[规格] AS [规格], 
+      [zhangfengliang2025_kucun].[数量] AS [数量]
+      FROM [dbo].[zhangfengliang2025_kucun] AS [zhangfengliang2025_kucun]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="zhangfengliang2025_mingxi" EntityType="yaoModel.Store.zhangfengliang2025_mingxi" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="zhangfengliang2025_renyuanguanli" EntityType="yaoModel.Store.zhangfengliang2025_renyuanguanli" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="zhangfengliang2025_rukumingxi" EntityType="yaoModel.Store.zhangfengliang2025_rukumingxi" store:Type="Tables" Schema="dbo" />
@@ -120,6 +1435,9 @@
       FROM [dbo].[zheng_020826_userInfo] AS [zheng_020826_userInfo]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.bainiantiantianmumen”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="bainiantiantianmumen">
           <Key>
             <PropertyRef Name="id" />
@@ -148,6 +1466,9 @@
           <Property Name="V" Type="varchar" MaxLength="255" />
           <Property Name="W" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.bainiantiantianmumenmubiao”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="bainiantiantianmumenmubiao">
           <Key>
             <PropertyRef Name="id" />
@@ -182,6 +1503,9 @@
           <Property Name="AB" Type="varchar" MaxLength="255" />
           <Property Name="AC" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.bainiantiantianmumenrenyuan”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="bainiantiantianmumenrenyuan">
           <Key>
             <PropertyRef Name="id" />
@@ -194,6 +1518,9 @@
           <Property Name="F" Type="varchar" MaxLength="255" />
           <Property Name="G" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.baitaoquanxian”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="baitaoquanxian">
           <Key>
             <PropertyRef Name="id" />
@@ -314,6 +1641,9 @@
           <Property Name="fff最后修改日期" Type="date" />
           <Property Name="李老六最后修改日期" Type="date" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.baitaoquanxian_copy1”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="baitaoquanxian_copy1">
           <Key>
             <PropertyRef Name="id" />
@@ -424,6 +1754,9 @@
           <Property Name="renyuan_id" Type="varchar" MaxLength="255" />
           <Property Name="chashanquanxian" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.baitaoquanxian_copy2”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="baitaoquanxian_copy2">
           <Key>
             <PropertyRef Name="id" />
@@ -531,6 +1864,9 @@
           <Property Name="CV" Type="varchar" MaxLength="255" />
           <Property Name="公司" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.baitaoquanxian_gongsi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="baitaoquanxian_gongsi">
           <Key>
             <PropertyRef Name="id" />
@@ -638,6 +1974,9 @@
           <Property Name="CW" Type="varchar" MaxLength="255" />
           <Property Name="CX" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.baitaoquanxian_renyun”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="baitaoquanxian_renyun">
           <Key>
             <PropertyRef Name="id" />
@@ -655,7 +1994,11 @@
           <Property Name="quanxian_id" Type="varchar" MaxLength="255" />
           <Property Name="bumen" Type="varchar" MaxLength="255" />
           <Property Name="wechart_user" Type="varchar" MaxLength="255" />
+          <Property Name="touxiang" Type="varchar(max)" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.dearhylo9_cangku”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="dearhylo9_cangku">
           <Key>
             <PropertyRef Name="id" />
@@ -668,6 +2011,9 @@
           <Property Name="F" Type="varchar" MaxLength="255" />
           <Property Name="G" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.dearhylo9_jiandan”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="dearhylo9_jiandan">
           <Key>
             <PropertyRef Name="id" />
@@ -688,6 +2034,9 @@
           <Property Name="N" Type="varchar" MaxLength="255" />
           <Property Name="O" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.dearhylo9_renyuan”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="dearhylo9_renyuan">
           <Key>
             <PropertyRef Name="id" />
@@ -697,6 +2046,9 @@
           <Property Name="C" Type="varchar" MaxLength="255" />
           <Property Name="D" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.dearhylo9_tuihuo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="dearhylo9_tuihuo">
           <Key>
             <PropertyRef Name="id" />
@@ -711,6 +2063,26 @@
           <Property Name="H" Type="varchar" MaxLength="255" />
           <Property Name="I" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="gongzi_dongtaigongshi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="zhuziduan" Type="varchar" MaxLength="255" />
+          <Property Name="gongshi" Type="varchar" MaxLength="255" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="gongzi_dongtaimingxi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar(max)" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_gongzimingxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="gongzi_gongzimingxi">
           <Key>
             <PropertyRef Name="id" />
@@ -773,6 +2145,42 @@
           <Property Name="BD" Type="varchar" MaxLength="255" />
           <Property Name="BE" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="gongzi_gongzuoshijian">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="gongzuoshijianks" Type="varchar" MaxLength="255" />
+          <Property Name="gongzuoshijianjs" Type="varchar" MaxLength="255" />
+          <Property Name="wuxiushijianks" Type="varchar" MaxLength="255" />
+          <Property Name="wuxiushijianjs" Type="varchar" MaxLength="255" />
+          <Property Name="year_month" Type="varchar" MaxLength="255" />
+          <Property Name="riqi" Type="varchar" MaxLength="255" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
+          <Property Name="work_days" Type="nvarchar(max)" />
+          <Property Name="repeat_type" Type="nvarchar" MaxLength="255" />
+          <Property Name="schedule_title" Type="nvarchar" MaxLength="255" />
+          <Property Name="schedule_status" Type="nvarchar" MaxLength="255" />
+          <Property Name="repeat_end_date" Type="nvarchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="gongzi_jianliguanli">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="touliren" Type="varchar" MaxLength="255" />
+          <Property Name="xueli" Type="varchar" MaxLength="255" />
+          <Property Name="mubiaogangwei" Type="varchar" MaxLength="255" />
+          <Property Name="tijiaoshijian" Type="varchar" MaxLength="255" />
+          <Property Name="beizhu" Type="varchar" MaxLength="255" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
+          <Property Name="wenjian" Type="varchar" MaxLength="255" />
+          <Property Name="zhuangtai" Type="varchar" MaxLength="255" />
+          <Property Name="mianshipizhu" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_kaoqinjilu”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="gongzi_kaoqinjilu">
           <Key>
             <PropertyRef Name="id" />
@@ -819,6 +2227,9 @@
           <Property Name="AN" Type="varchar" MaxLength="255" />
           <Property Name="AO" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_kaoqinmingxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="gongzi_kaoqinmingxi">
           <Key>
             <PropertyRef Name="id" />
@@ -835,6 +2246,22 @@
           <Property Name="J" Type="varchar" MaxLength="255" />
           <Property Name="K" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="gongzi_lizhishenpi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bumen" Type="varchar" MaxLength="255" />
+          <Property Name="xingming" Type="varchar" MaxLength="255" />
+          <Property Name="tijiaoriqi" Type="varchar" MaxLength="255" />
+          <Property Name="shenqingyuanyin" Type="varchar" MaxLength="255" />
+          <Property Name="shenpijieguo" Type="varchar" MaxLength="255" />
+          <Property Name="shenpiyuanyin" Type="varchar" MaxLength="255" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_peizhi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="gongzi_peizhi">
           <Key>
             <PropertyRef Name="id" />
@@ -878,6 +2305,21 @@
           <Property Name="queqin_koukuan" Type="varchar" MaxLength="255" />
           <Property Name="geren_shiye" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="gongzi_qingjiashenpi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bumen" Type="varchar" MaxLength="255" />
+          <Property Name="xingming" Type="varchar" MaxLength="255" />
+          <Property Name="tijiaoshijian" Type="varchar" MaxLength="255" />
+          <Property Name="qsqingjiashijian" Type="varchar" MaxLength="255" />
+          <Property Name="jzqingjiashijan" Type="varchar" MaxLength="255" />
+          <Property Name="qingjiayuanyin" Type="varchar" MaxLength="255" />
+          <Property Name="zhuangtai" Type="varchar" MaxLength="255" />
+          <Property Name="shenpiyuanyin" Type="varchar" MaxLength="255" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="gongzi_renyuan">
           <Key>
             <PropertyRef Name="id" />
@@ -913,9 +2355,10 @@
           <Property Name="AC" Type="varchar" MaxLength="255" />
           <Property Name="AD" Type="varchar" MaxLength="255" />
           <Property Name="wechart_user" Type="varchar" MaxLength="255" />
+          <Property Name="touxiang" Type="varchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'yao.dbo.gongzi_renyuanManager' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_renyuanManager”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="gongzi_renyuanManager">
           <Key>
@@ -959,8 +2402,18 @@
           <Property Name="yi" Type="varchar" MaxLength="255" />
           <Property Name="er" Type="varchar" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'yao.dbo.gongzi_viewNames' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <EntityType Name="gongzi_tongjitu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="config_data" Type="varchar(max)" />
+          <Property Name="create_time" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.gongzi_viewNames”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="gongzi_viewNames">
           <Key>
@@ -970,6 +2423,9 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="viewName" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.kaozhiguang147852”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="kaozhiguang147852">
           <Key>
             <PropertyRef Name="id" />
@@ -981,6 +2437,9 @@
           <Property Name="zhanghao" Type="varchar" MaxLength="255" />
           <Property Name="mi" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.kaozhiguang147852_gongzi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="kaozhiguang147852_gongzi">
           <Key>
             <PropertyRef Name="id" />
@@ -991,6 +2450,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.kaozhiguang147852_jiben”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="kaozhiguang147852_jiben">
           <Key>
             <PropertyRef Name="id" />
@@ -1001,6 +2463,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.kaozhiguang147852_jixie”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="kaozhiguang147852_jixie">
           <Key>
             <PropertyRef Name="id" />
@@ -1015,6 +2480,9 @@
           <Property Name="H" Type="varchar" MaxLength="255" />
           <Property Name="I" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.kaozhiguang147852_sika”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="kaozhiguang147852_sika">
           <Key>
             <PropertyRef Name="id" />
@@ -1025,6 +2493,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_chanpinguanli”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_chanpinguanli">
           <Key>
             <PropertyRef Name="id" />
@@ -1043,6 +2514,9 @@
           <Property Name="L" Type="varchar" MaxLength="255" />
           <Property Name="M" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_chanpinxinxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_chanpinxinxi">
           <Key>
             <PropertyRef Name="id" />
@@ -1057,6 +2531,9 @@
           <Property Name="H" Type="varchar" MaxLength="255" />
           <Property Name="I" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_chuku”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_chuku">
           <Key>
             <PropertyRef Name="id" />
@@ -1074,6 +2551,9 @@
           <Property Name="K" Type="varchar" MaxLength="255" />
           <Property Name="L" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_fuzhu”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_fuzhu">
           <Key>
             <PropertyRef Name="id" />
@@ -1092,6 +2572,9 @@
           <Property Name="L" Type="varchar" MaxLength="255" />
           <Property Name="M" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_gongyingshang”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_gongyingshang">
           <Key>
             <PropertyRef Name="id" />
@@ -1102,6 +2585,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_kehu”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_kehu">
           <Key>
             <PropertyRef Name="id" />
@@ -1112,19 +2598,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
-        <EntityType Name="liuchanglin_kucun">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="B" Type="varchar" MaxLength="255" />
-          <Property Name="C" Type="varchar" MaxLength="255" />
-          <Property Name="D" Type="varchar" MaxLength="255" />
-          <Property Name="E" Type="varchar" MaxLength="255" />
-          <Property Name="F" Type="varchar" MaxLength="255" />
-          <Property Name="G" Type="varchar" MaxLength="255" />
-          <Property Name="H" Type="varchar" MaxLength="255" />
-        </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_mingxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_mingxi">
           <Key>
             <PropertyRef Name="id" />
@@ -1144,6 +2620,9 @@
           <Property Name="M" Type="varchar" MaxLength="255" />
           <Property Name="N" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_mingxiguanli”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_mingxiguanli">
           <Key>
             <PropertyRef Name="id" />
@@ -1165,6 +2644,9 @@
           <Property Name="O" Type="decimal" Scale="2" />
           <Property Name="P" Type="decimal" Scale="2" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.liuchanglin_renyuan”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="liuchanglin_renyuan">
           <Key>
             <PropertyRef Name="id" />
@@ -1174,6 +2656,9 @@
           <Property Name="C" Type="varchar" MaxLength="255" />
           <Property Name="D" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.lv_al”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="lv_al">
           <Key>
             <PropertyRef Name="id" />
@@ -1214,6 +2699,9 @@
           <Property Name="cid" Type="int" />
           <Property Name="AH" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.lv_bcd”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="lv_bcd">
           <Key>
             <PropertyRef Name="id" />
@@ -1254,6 +2742,9 @@
           <Property Name="cid" Type="int" />
           <Property Name="AH" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.lv_td”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="lv_td">
           <Key>
             <PropertyRef Name="id" />
@@ -1294,6 +2785,9 @@
           <Property Name="cid" Type="int" />
           <Property Name="AH" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.lv_xhjr”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="lv_xhjr">
           <Key>
             <PropertyRef Name="id" />
@@ -1334,6 +2828,9 @@
           <Property Name="cid" Type="int" />
           <Property Name="AH" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.tb846607026_cunkuan”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="tb846607026_cunkuan">
           <Key>
             <PropertyRef Name="id" />
@@ -1348,6 +2845,9 @@
           <Property Name="H" Type="varchar" MaxLength="255" />
           <Property Name="I" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.tb846607026_jibie”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="tb846607026_jibie">
           <Key>
             <PropertyRef Name="id" />
@@ -1355,6 +2855,9 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="B" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.tb846607026_jine”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="tb846607026_jine">
           <Key>
             <PropertyRef Name="id" />
@@ -1365,6 +2868,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.tb846607026_peizhi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="tb846607026_peizhi">
           <Key>
             <PropertyRef Name="id" />
@@ -1375,6 +2881,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.tb846607026_shouyi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="tb846607026_shouyi">
           <Key>
             <PropertyRef Name="id" />
@@ -1384,6 +2893,9 @@
           <Property Name="C" Type="varchar" MaxLength="255" />
           <Property Name="D" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.tb846607026_tixian”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="tb846607026_tixian">
           <Key>
             <PropertyRef Name="id" />
@@ -1393,6 +2905,9 @@
           <Property Name="C" Type="varchar" MaxLength="255" />
           <Property Name="D" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_chukubiao”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_chukubiao">
           <Key>
             <PropertyRef Name="id" />
@@ -1421,6 +2936,9 @@
           <Property Name="V" Type="varchar" MaxLength="255" />
           <Property Name="W" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_gongyingshangxinxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_gongyingshangxinxi">
           <Key>
             <PropertyRef Name="id" />
@@ -1431,6 +2949,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_kehuxinxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_kehuxinxi">
           <Key>
             <PropertyRef Name="id" />
@@ -1441,6 +2962,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_kucun”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_kucun">
           <Key>
             <PropertyRef Name="id" />
@@ -1460,6 +2984,9 @@
           <Property Name="M" Type="varchar" MaxLength="255" />
           <Property Name="N" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_peizhibiao”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_peizhibiao">
           <Key>
             <PropertyRef Name="id" />
@@ -1468,6 +2995,9 @@
           <Property Name="B" Type="varchar" MaxLength="255" />
           <Property Name="C" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_renyaunxinxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_renyaunxinxi">
           <Key>
             <PropertyRef Name="id" />
@@ -1478,6 +3008,9 @@
           <Property Name="D" Type="varchar" MaxLength="255" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_rukubiao”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_rukubiao">
           <Key>
             <PropertyRef Name="id" />
@@ -1500,6 +3033,9 @@
           <Property Name="P" Type="varchar" MaxLength="255" />
           <Property Name="Q" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_shangpinxinxi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_shangpinxinxi">
           <Key>
             <PropertyRef Name="id" />
@@ -1512,6 +3048,9 @@
           <Property Name="F" Type="varchar" MaxLength="255" />
           <Property Name="G" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_tuihuobiao”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_tuihuobiao">
           <Key>
             <PropertyRef Name="id" />
@@ -1532,6 +3071,9 @@
           <Property Name="N" Type="varchar" MaxLength="255" />
           <Property Name="O" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_xiadan”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_xiadan">
           <Key>
             <PropertyRef Name="id" />
@@ -1554,6 +3096,9 @@
           <Property Name="P" Type="varchar" MaxLength="255" />
           <Property Name="Q" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.wodeliangnianfa_zhanghu”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="wodeliangnianfa_zhanghu">
           <Key>
             <PropertyRef Name="id" />
@@ -1571,6 +3116,9 @@
           <Property Name="K" Type="varchar" MaxLength="255" />
           <Property Name="L" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zeng_stock”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="zeng_stock">
           <Key>
             <PropertyRef Name="id" />
@@ -1586,6 +3134,9 @@
           <Property Name="payType" Type="varchar" MaxLength="255" />
           <Property Name="order_id" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zeng_user”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="zeng_user">
           <Key>
             <PropertyRef Name="id" />
@@ -1600,6 +3151,9 @@
           <Property Name="serviceId" Type="varchar" MaxLength="100" />
           <Property Name="characteristicId" Type="varchar" MaxLength="100" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zeng_wares”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="zeng_wares">
           <Key>
             <PropertyRef Name="id" />
@@ -1618,6 +3172,9 @@
           <Property Name="mark4" Type="varchar" MaxLength="255" />
           <Property Name="mark5" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zhangfengliang2025_daili”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="zhangfengliang2025_daili">
           <Key>
             <PropertyRef Name="id" />
@@ -1628,6 +3185,9 @@
           <Property Name="D" Type="int" />
           <Property Name="E" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zhangfengliang2025_jishiben”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="zhangfengliang2025_jishiben">
           <Key>
             <PropertyRef Name="id" />
@@ -1637,6 +3197,9 @@
           <Property Name="C" Type="varchar" MaxLength="255" />
           <Property Name="D" Type="varchar" MaxLength="255" />
         </EntityType>
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zhangfengliang2025_kucun”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
+      -->
         <EntityType Name="zhangfengliang2025_kucun">
           <Key>
             <PropertyRef Name="id" />
@@ -1747,8 +3310,8 @@
           <Property Name="AF" Type="varchar" MaxLength="255" />
           <Property Name="AG" Type="varchar" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'yao.dbo.zheng_020826_config' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zheng_020826_config”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="zheng_020826_config">
           <Key>
@@ -1756,8 +3319,8 @@
           </Key>
           <Property Name="pwd" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'yao.dbo.zheng_020826_gameInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zheng_020826_gameInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="zheng_020826_gameInfo">
           <Key>
@@ -1774,8 +3337,8 @@
           <Property Name="amount" Type="int" />
           <Property Name="game_top" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'yao.dbo.zheng_020826_model' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zheng_020826_model”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="zheng_020826_model">
           <Key>
@@ -1785,8 +3348,8 @@
           <Property Name="name" Type="varchar" MaxLength="255" />
           <Property Name="model_top" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'yao.dbo.zheng_020826_userInfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+        <!--生成过程中发现错误:
+      警告 6002: 表/视图“yao.dbo.zheng_020826_userInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。
       -->
         <EntityType Name="zheng_020826_userInfo">
           <Key>
@@ -1836,7 +3399,6 @@
           <EntitySet Name="liuchanglin_fuzhu" EntityType="yaoModel.liuchanglin_fuzhu" />
           <EntitySet Name="liuchanglin_gongyingshang" EntityType="yaoModel.liuchanglin_gongyingshang" />
           <EntitySet Name="liuchanglin_kehu" EntityType="yaoModel.liuchanglin_kehu" />
-          <EntitySet Name="liuchanglin_kucun" EntityType="yaoModel.liuchanglin_kucun" />
           <EntitySet Name="liuchanglin_mingxi" EntityType="yaoModel.liuchanglin_mingxi" />
           <EntitySet Name="liuchanglin_mingxiguanli" EntityType="yaoModel.liuchanglin_mingxiguanli" />
           <EntitySet Name="liuchanglin_renyuan" EntityType="yaoModel.liuchanglin_renyuan" />
@@ -1876,6 +3438,13 @@
           <EntitySet Name="zheng_020826_model" EntityType="yaoModel.zheng_020826_model" />
           <EntitySet Name="zheng_020826_userInfo" EntityType="yaoModel.zheng_020826_userInfo" />
           <EntitySet Name="gongzi_shenpi" EntityType="yaoModel.gongzi_shenpi" />
+          <EntitySet Name="gongzi_dongtaigongshi" EntityType="yaoModel.gongzi_dongtaigongshi" />
+          <EntitySet Name="gongzi_dongtaimingxi" EntityType="yaoModel.gongzi_dongtaimingxi" />
+          <EntitySet Name="gongzi_gongzuoshijian" EntityType="yaoModel.gongzi_gongzuoshijian" />
+          <EntitySet Name="gongzi_jianliguanli" EntityType="yaoModel.gongzi_jianliguanli" />
+          <EntitySet Name="gongzi_lizhishenpi" EntityType="yaoModel.gongzi_lizhishenpi" />
+          <EntitySet Name="gongzi_qingjiashenpi" EntityType="yaoModel.gongzi_qingjiashenpi" />
+          <EntitySet Name="gongzi_tongjitu" EntityType="yaoModel.gongzi_tongjitu" />
         </EntityContainer>
         <EntityType Name="gongzi_gongzimingxi">
           <Key>
@@ -2078,6 +3647,7 @@
           <Property Type="String" Name="AC" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="AD" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="touxiang" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gongzi_renyuanManager">
           <Key>
@@ -2650,6 +4220,7 @@
           <Property Type="String" Name="quanxian_id" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="touxiang" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="dearhylo9_cangku">
           <Key>
@@ -2847,19 +4418,6 @@
           <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="liuchanglin_kucun">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="B" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="C" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="D" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="E" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="F" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="G" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="H" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="liuchanglin_mingxi">
           <Key>
@@ -3538,6 +5096,94 @@
           <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="gongzi_dongtaigongshi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="zhuziduan" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongshi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_dongtaimingxi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_gongzuoshijian">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="gongzuoshijianks" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongzuoshijianjs" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="wuxiushijianks" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="wuxiushijianjs" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="year_month" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="riqi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="work_days" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="repeat_type" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="schedule_title" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="schedule_status" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="repeat_end_date" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="gongzi_jianliguanli">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="touliren" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="xueli" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="mubiaogangwei" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tijiaoshijian" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="beizhu" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="wenjian" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhuangtai" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="mianshipizhu" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_lizhishenpi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="xingming" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tijiaoriqi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="shenqingyuanyin" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="shenpijieguo" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="shenpiyuanyin" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_qingjiashenpi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="bumen" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="xingming" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="tijiaoshijian" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="qsqingjiashijian" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="jzqingjiashijan" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="qingjiayuanyin" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zhuangtai" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="shenpiyuanyin" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gongzi_tongjitu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="config_data" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="create_time" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3717,6 +5363,7 @@
           <EntitySetMapping Name="gongzi_renyuan">
             <EntityTypeMapping TypeName="yaoModel.gongzi_renyuan">
               <MappingFragment StoreEntitySet="gongzi_renyuan">
+                <ScalarProperty Name="touxiang" ColumnName="touxiang" />
                 <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
                 <ScalarProperty Name="AD" ColumnName="AD" />
                 <ScalarProperty Name="AC" ColumnName="AC" />
@@ -4311,6 +5958,7 @@
           <EntitySetMapping Name="baitaoquanxian_renyun">
             <EntityTypeMapping TypeName="yaoModel.baitaoquanxian_renyun">
               <MappingFragment StoreEntitySet="baitaoquanxian_renyun">
+                <ScalarProperty Name="touxiang" ColumnName="touxiang" />
                 <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
                 <ScalarProperty Name="bumen" ColumnName="bumen" />
                 <ScalarProperty Name="quanxian_id" ColumnName="quanxian_id" />
@@ -4531,20 +6179,6 @@
           <EntitySetMapping Name="liuchanglin_kehu">
             <EntityTypeMapping TypeName="yaoModel.liuchanglin_kehu">
               <MappingFragment StoreEntitySet="liuchanglin_kehu">
-                <ScalarProperty Name="E" ColumnName="E" />
-                <ScalarProperty Name="D" ColumnName="D" />
-                <ScalarProperty Name="C" ColumnName="C" />
-                <ScalarProperty Name="B" ColumnName="B" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="liuchanglin_kucun">
-            <EntityTypeMapping TypeName="yaoModel.liuchanglin_kucun">
-              <MappingFragment StoreEntitySet="liuchanglin_kucun">
-                <ScalarProperty Name="H" ColumnName="H" />
-                <ScalarProperty Name="G" ColumnName="G" />
-                <ScalarProperty Name="F" ColumnName="F" />
                 <ScalarProperty Name="E" ColumnName="E" />
                 <ScalarProperty Name="D" ColumnName="D" />
                 <ScalarProperty Name="C" ColumnName="C" />
@@ -5259,6 +6893,101 @@
                 <ScalarProperty Name="qiye_zhichu" ColumnName="qiye_zhichu" />
                 <ScalarProperty Name="geren_zhichu" ColumnName="geren_zhichu" />
                 <ScalarProperty Name="shifa_gongzi" ColumnName="shifa_gongzi" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_dongtaigongshi">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_dongtaigongshi">
+              <MappingFragment StoreEntitySet="gongzi_dongtaigongshi">
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+                <ScalarProperty Name="gongshi" ColumnName="gongshi" />
+                <ScalarProperty Name="zhuziduan" ColumnName="zhuziduan" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_dongtaimingxi">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_dongtaimingxi">
+              <MappingFragment StoreEntitySet="gongzi_dongtaimingxi">
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_gongzuoshijian">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_gongzuoshijian">
+              <MappingFragment StoreEntitySet="gongzi_gongzuoshijian">
+                <ScalarProperty Name="repeat_end_date" ColumnName="repeat_end_date" />
+                <ScalarProperty Name="schedule_status" ColumnName="schedule_status" />
+                <ScalarProperty Name="schedule_title" ColumnName="schedule_title" />
+                <ScalarProperty Name="repeat_type" ColumnName="repeat_type" />
+                <ScalarProperty Name="work_days" ColumnName="work_days" />
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+                <ScalarProperty Name="riqi" ColumnName="riqi" />
+                <ScalarProperty Name="year_month" ColumnName="year_month" />
+                <ScalarProperty Name="wuxiushijianjs" ColumnName="wuxiushijianjs" />
+                <ScalarProperty Name="wuxiushijianks" ColumnName="wuxiushijianks" />
+                <ScalarProperty Name="gongzuoshijianjs" ColumnName="gongzuoshijianjs" />
+                <ScalarProperty Name="gongzuoshijianks" ColumnName="gongzuoshijianks" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_jianliguanli">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_jianliguanli">
+              <MappingFragment StoreEntitySet="gongzi_jianliguanli">
+                <ScalarProperty Name="mianshipizhu" ColumnName="mianshipizhu" />
+                <ScalarProperty Name="zhuangtai" ColumnName="zhuangtai" />
+                <ScalarProperty Name="wenjian" ColumnName="wenjian" />
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+                <ScalarProperty Name="beizhu" ColumnName="beizhu" />
+                <ScalarProperty Name="tijiaoshijian" ColumnName="tijiaoshijian" />
+                <ScalarProperty Name="mubiaogangwei" ColumnName="mubiaogangwei" />
+                <ScalarProperty Name="xueli" ColumnName="xueli" />
+                <ScalarProperty Name="touliren" ColumnName="touliren" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_lizhishenpi">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_lizhishenpi">
+              <MappingFragment StoreEntitySet="gongzi_lizhishenpi">
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+                <ScalarProperty Name="shenpiyuanyin" ColumnName="shenpiyuanyin" />
+                <ScalarProperty Name="shenpijieguo" ColumnName="shenpijieguo" />
+                <ScalarProperty Name="shenqingyuanyin" ColumnName="shenqingyuanyin" />
+                <ScalarProperty Name="tijiaoriqi" ColumnName="tijiaoriqi" />
+                <ScalarProperty Name="xingming" ColumnName="xingming" />
+                <ScalarProperty Name="bumen" ColumnName="bumen" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_qingjiashenpi">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_qingjiashenpi">
+              <MappingFragment StoreEntitySet="gongzi_qingjiashenpi">
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+                <ScalarProperty Name="shenpiyuanyin" ColumnName="shenpiyuanyin" />
+                <ScalarProperty Name="zhuangtai" ColumnName="zhuangtai" />
+                <ScalarProperty Name="qingjiayuanyin" ColumnName="qingjiayuanyin" />
+                <ScalarProperty Name="jzqingjiashijan" ColumnName="jzqingjiashijan" />
+                <ScalarProperty Name="qsqingjiashijian" ColumnName="qsqingjiashijian" />
+                <ScalarProperty Name="tijiaoshijian" ColumnName="tijiaoshijian" />
+                <ScalarProperty Name="xingming" ColumnName="xingming" />
+                <ScalarProperty Name="bumen" ColumnName="bumen" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gongzi_tongjitu">
+            <EntityTypeMapping TypeName="yaoModel.gongzi_tongjitu">
+              <MappingFragment StoreEntitySet="gongzi_tongjitu">
+                <ScalarProperty Name="create_time" ColumnName="create_time" />
+                <ScalarProperty Name="config_data" ColumnName="config_data" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

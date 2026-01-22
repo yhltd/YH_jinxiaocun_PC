@@ -132,7 +132,7 @@ table
 .bt_upd1 input {
     width: 50px;
     height: 33px;
-    background-color: #009688;
+    background: linear-gradient(to bottom, #07f2e7, #071ec1);
     border: none;
     color: white;
     border-radius: 5px;
@@ -145,7 +145,7 @@ table
 {
     width: 50px;
     height: 33px;
-    background-color: #009688;
+    background: linear-gradient(to bottom, #07f2e7, #071ec1);
     border: none;
     color: white;
     border-radius: 5px;
@@ -159,7 +159,7 @@ table
         cursor: pointer;
         width: 50px;
         height: 33px;
-        background-color: #009688;
+        background: linear-gradient(to bottom, #07f2e7, #071ec1);
         border: none;
         color: white;
         border-radius: 5px;
@@ -169,7 +169,7 @@ table
 {
     width: 50px;
     height: 33px;
-    background-color: #009688;
+    background: linear-gradient(to bottom, #07f2e7, #071ec1);
     border: none;
     color: white;
     border-radius: 5px;
@@ -182,7 +182,7 @@ table
 {
     width: 50px;
     height: 33px;
-    background-color: #009688;
+    background: linear-gradient(to bottom, #07f2e7, #071ec1);
     border: none;
     color: white;
     border-radius: 0px;
@@ -196,7 +196,7 @@ table
     cursor: pointer;
     width: 50px;
     height: 33px;
-    background-color: #009688;
+    background: linear-gradient(to bottom, #07f2e7, #071ec1);
     border: none;
     color: white;
     border-radius: 5px;

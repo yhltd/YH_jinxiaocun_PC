@@ -257,7 +257,38 @@ function setTable(data) {
     })
 }
 
+function selectBtn1() {
+    // 清空三个输入框的内容
+    $("#start_date").datebox('setValue', '');
+    $("#stop_date").datebox('setValue', '');
+    $("#word").combobox('setValue', '');
+
+    selectBtn();
+}
+
 function selectBtn() {
+
+    var startDate = $("#start_date").datebox('getText');
+    var stopDate = $("#stop_date").datebox('getText');
+
+    // 检查是否两个日期都选择了
+    if (startDate && stopDate) {
+        // 将日期字符串转换为Date对象进行比较
+        var start = new Date(startDate.replace(/-/g, '/'));
+        var stop = new Date(stopDate.replace(/-/g, '/'));
+
+        // 检查开始时间是否大于结束时间
+        if (start > stop) {
+            $.messager.alert('Warning', '开始时间不能大于结束时间！');
+            return false; // 停止执行
+        }
+    } else if (startDate || stopDate) {
+        // 如果只选择了一个日期
+        $.messager.alert('Warning', '请同时选择开始时间和结束时间！');
+        return false;
+    }
+
+
     ajaxUtil({
         url: "web_service/user_management.asmx/quanxianGet",
         loading: true,

@@ -437,11 +437,6 @@
             /*border: 2.5px solid white;*/
         }
 
-          tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
         
         /* 奇数行样式 */
         tr:nth-child(odd) .item_td {
@@ -509,20 +504,20 @@
         }
 
         .ruku_div {
-            width: 50%;
-            height: 40%;
-            position: fixed;
-            top: 10%;
-            left: 25%;
-            background-color: white;
-            z-index: 20;
-            box-shadow: 10px 10px 15px;
-            border-radius:2px
+                width: 30%;
+    height: 40%;
+    position: fixed;
+    top: 10%;
+    left: 30%;
+    background-color: white;
+    z-index: 20;
+    box-shadow: 10px 10px 15px;
+    border-radius: 2px;
             
         }
         .ruku_info_div {
             width: 91%;
-            height: 30%;
+            height: 25%;
             display: flex;
             align-items: center;
             margin: auto;
@@ -534,7 +529,6 @@
             border-radius: 2px;
         }
         .gonghuo_select {
-            margin-left: 40px;
             width: 200px;
             height: 30px;
             border: none;
@@ -638,12 +632,16 @@
     </form>
     <div class="ruku_div" style="display:none">
         <div class="ruku_info_div">
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px;margin-right: 5px; display: block;">订单号</label>
             <input class="order_id_input" placeholder="订单号" value=""/>
+        </div>
+        <div class="ruku_info_div">
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-right: 20px;">公司</label>
             <select class="gonghuo_select" onchange="getGongguo(this.value)"></select>
         </div>
-        <div style="height: 30%;margin-bottom: 10px;">
-            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">入库仓库</label>
-            <select id="ruku_warehouse" style="margin-left: 40px;width: 200px;height: 30px;border: none;border: 1px solid #F0F0F0;">
+        <div class="ruku_info_div">
+             <label style="font-size: 14px; color: #333; margin-bottom: 5px;margin-right: 5px; display: block;    margin-right: 20px;">仓库</label>
+            <select id="ruku_warehouse" style="width: 200px;height: 30px;border: none;border: 1px solid #F0F0F0;">
                 <option value="A仓库" selected>A仓库</option>
                 <option value="B仓库">B仓库</option>
             </select>

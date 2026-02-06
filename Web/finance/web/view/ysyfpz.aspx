@@ -32,6 +32,7 @@
             <label>项目名称:</label>
             <input id="xiangmumingcheng" class="easyui-textbox" value="" style="width: 120px;"/>
             <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="getList(); return false;">查询</a>
+             <a href="#" class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-search',width:80" onclick="getList1(); return false;">刷新</a>
             <a class="easyui-linkbutton btn-right l-btn-icon-left" data-options="iconCls:'icon-print',width:120" onclick="toExcel()">导出Excel</a>
         </div>
         <div class="main-item">

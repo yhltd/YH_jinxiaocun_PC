@@ -174,12 +174,6 @@
             font-size:14px;
             background-color: #98c9d9;
         }
-
-        tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
         
         /* 奇数行样式 */
         tr:nth-child(odd) .item_td {
@@ -293,6 +287,11 @@
                 inset 0 -1px 0 rgba(0, 0, 0, 0.1);
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
         }
+
+        .lable_select{
+            color:white;
+        }
+
         
     </style>
     <title>期初期末数量查询</title>
@@ -309,7 +308,7 @@
                 <input type="date" class="time_select" style="width: 150px;height: 32px;" name="time_qs" id="time_qs" />
                 <label class="lable_select" style="font-size: 16px;">期末日期：</label>
                 <input type="date" class="time_select" style="width: 150px;height: 32px;" name="time_jz" id="time_jz" />
-                <select id="warehouseSelect" name="warehouse_select" style="width: 120px;height: 32px;" class="warehouse-select">
+                <select id="warehouseSelect" name="warehouse_select" style="width: 120px;height: 32px;display:none;" class="warehouse-select" >
                 <!-- 动态加载仓库选项 -->
                 <option value="">请选择仓库</option>
                     <%
@@ -343,7 +342,8 @@
             </div>
             <div class="d-main table_div">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 1%; width: 100%; table-layout: fixed;">
-                <tr id="dj_yh">
+<%--                <tr id="dj_yh">--%>
+                <tr>
                     <td class="auto-style1" style="width: 4%;">序号</td>
                     <th class="auto-style1" style="width: 8%;">图片</th>
                     <td class="auto-style1" style="width: 12%;">商品名称</td>

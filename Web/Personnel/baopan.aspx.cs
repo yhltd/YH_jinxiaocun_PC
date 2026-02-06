@@ -133,6 +133,35 @@ namespace Web.Personnel
             HrMingXiModel hm = new HrMingXiModel();
             string ks = Request.Form["ks"];
             string js = Request.Form["js"];
+
+            // 检查是否两个日期都有输入
+            if (!string.IsNullOrEmpty(ks) && !string.IsNullOrEmpty(js))
+            {
+                // 将日期字符串转换为 DateTime 进行比较
+                DateTime startDate;
+                DateTime endDate;
+
+                if (DateTime.TryParse(ks, out startDate) && DateTime.TryParse(js, out endDate))
+                {
+                    // 检查开始时间是否大于结束时间
+                    if (startDate > endDate)
+                    {
+                        Response.Write("<script>alert('开始时间不能大于结束时间！');</script>");
+                        return; // 停止执行
+                    }
+                }
+                else
+                {
+                    Response.Write("<script>alert('日期格式不正确！');</script>");
+                    return;
+                }
+            }
+            else if (!string.IsNullOrEmpty(ks) || !string.IsNullOrEmpty(js))
+            {
+                // 如果只输入了一个日期
+                Response.Write("<script>alert('请同时输入开始时间和结束时间！');</script>");
+                return;
+            }
             if (notisnull(ks) == false)
             {
                 ks = "1900-01-01";

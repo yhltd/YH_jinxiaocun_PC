@@ -195,7 +195,35 @@ function update(rowItem) {
         modal: true
     });
 
-    $('#upd-gongzi-form').form('load', rowItem);
+    // 处理日期字段
+    var formData = Object.assign({}, rowItem);
+
+    // 如果使用EasyUI的datebox
+    if (formData.shijian) {
+        var date = null;
+
+        if (typeof formData.shijian === 'string') {
+            if (formData.shijian.indexOf('/Date(') === 0) {
+                var milliseconds = parseInt(formData.shijian.replace(/[^0-9]/g, ''));
+                date = new Date(milliseconds);
+            } else {
+                date = new Date(formData.shijian);
+            }
+        } else if (formData.shijian instanceof Date) {
+            date = formData.shijian;
+        }
+
+        if (date && !isNaN(date.getTime())) {
+            // 对于EasyUI的datebox，可以直接传递Date对象或格式化的字符串
+            formData.shijian = $.fn.datebox.defaults.formatter.call(this, date);
+        }
+    }
+
+    // 加载表单数据
+    $('#upd-gongzi-form').form('load', formData);
+
+    // 或者如果使用EasyUI的datebox，也可以单独设置日期框
+    // $('#upd-gongzi-form').find('[name="shijian"]').datebox('setValue', formData.shijian);
 }
 
 function toUpd() {

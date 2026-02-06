@@ -386,7 +386,7 @@
             <asp:ListItem>12</asp:ListItem>
         </asp:DropDownList>
         <asp:Button ID="Button1" runat="server" Height="30px" Text="搜索" OnClick="Button1_Click" CssClass="top_bt" style="margin-right:-10px" />
-        <asp:Button ID="Button2" runat="server" Height="30px" Text="所有" OnClick="Button2_Click" CssClass="top_bt" style="margin-right:-10px" />
+        <asp:Button ID="Button2" runat="server" Height="30px" Text="所有" OnClick="Button2_Click" OnClientClick="clearFilters(); return true;" CssClass="top_bt" style="margin-right:-10px" />
         <asp:Button ID="Button3" runat="server" Height="30px" Text="生成Excel" OnClick="toExcel" CssClass="top_bt" style="margin-right:-10px" />
         <asp:Button ID="Button4" runat="server" Height="30px" Text="打印" OnClick="print" CssClass="top_bt" style="margin-right:-10px" />
         <br />
@@ -658,3 +658,23 @@
     </form>
 </body>
 </html>
+
+<script type="text/javascript">
+    function clearFilters() {
+        // 清除部门
+        var dept = document.getElementById('<%= DropDownList1.ClientID %>');
+        if (dept) dept.selectedIndex = 0;
+
+        // 清除岗位
+        var position = document.getElementById('<%= DropDownList2.ClientID %>');
+        if (position) position.selectedIndex = 0;
+
+        // 清除年份
+        var year = document.getElementById('<%= DropDownList3.ClientID %>');
+        if (year) year.selectedIndex = 0;
+
+        // 清除月份
+        var month = document.getElementById('<%= DropDownList4.ClientID %>');
+        if (month) month.selectedIndex = 0;
+    }
+</script>

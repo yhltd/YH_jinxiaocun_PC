@@ -22,6 +22,22 @@ function getList() {
     var ks = $("#ks").datebox('getText');
     var js = $("#js").datebox('getText');
     var kehu = $("#kehu").val();
+
+    if (ks && js) {
+        // 将日期字符串转换为Date对象进行比较
+        var start = new Date(ks.replace(/-/g, '/'));
+        var stop = new Date(js.replace(/-/g, '/'));
+
+        // 检查开始时间是否大于结束时间
+        if (start > stop) {
+            $.messager.alert('Warning', '开始时间不能大于结束时间！');
+            return false; // 停止执行
+        }
+    } else if (ks || js) {
+        // 如果只选择了一个日期
+        $.messager.alert('Warning', '请同时选择开始时间和结束时间！');
+        return false;
+    }
     if (ks == "") {
         ks = "1900-1-1"
     }
@@ -92,7 +108,7 @@ function toExcel() {
     var ks = $("#ks").datebox('getText');
     var js = $("#js").datebox('getText');
     var kehu = $("#kehu").val();
-    if (ks = "") {
+    if (ks == "") {
         ks = "1900-1-1"
     }
     if (js == "") {

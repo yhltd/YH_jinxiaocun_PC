@@ -19,6 +19,8 @@
     <EntitySet Name="work_detail2" EntityType="schedulingModel.work_detail2" />
     <EntitySet Name="user_info" EntityType="schedulingModel.user_info" />
     <EntitySet Name="work_detail1" EntityType="schedulingModel.work_detail1" />
+    <EntitySet Name="shengchanxian" EntityType="schedulingModel.shengchanxian" />
+    <EntitySet Name="order_gongxu" EntityType="schedulingModel.order_gongxu" />
   </EntityContainer>
   <EntityType Name="module_info">
     <Key>
@@ -93,7 +95,7 @@
     <Property Type="String" Name="product_name" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Type="String" Name="norms" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="order_id" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Type="DateTime" Name="set_date" Precision="0" />
+    <Property Type="DateTime" Name="set_date" Precision="7" />
     <Property Type="Int32" Name="set_num" Nullable="false" />
     <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="is_complete" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -110,6 +112,7 @@
     <Property Type="Int32" Name="row_num" />
     <Property Type="Int32" Name="is_insert" />
     <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="jiezhishijian" Precision="7" />
   </EntityType>
   <EntityType Name="work_module">
     <Key>
@@ -156,6 +159,8 @@
     <Property Type="String" Name="l" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="m" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="n" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="shengchanxian" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongxu" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="paibanbiao_detail">
     <Key>
@@ -223,7 +228,7 @@
     <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="Int32" Name="order_id" Nullable="false" />
     <Property Type="Int32" Name="work_num" Nullable="false" />
-    <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="0" />
+    <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="7" />
     <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="row_num" />
     <Property Type="Int32" Name="is_insert" />
@@ -238,6 +243,8 @@
     <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="state" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="touxiang" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="work_detail1">
     <Key>
@@ -250,5 +257,24 @@
     <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="row_num" />
     <Property Type="Int32" Name="is_insert" />
+  </EntityType>
+  <EntityType Name="shengchanxian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="mingcheng" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongxu" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="xiaolv" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="order_gongxu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="order_id" />
+    <Property Type="Int32" Name="module_id" />
+    <Property Type="Int32" Name="module_num" />
   </EntityType>
 </Schema>

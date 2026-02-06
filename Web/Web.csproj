@@ -1823,7 +1823,9 @@
     <Content Include="scheduling\controller\orderCheck.asmx" />
     <Content Include="scheduling\controller\paibanbiaoInfo.asmx" />
     <Content Include="scheduling\controller\paibanDetail.asmx" />
+    <Content Include="scheduling\controller\paichan.asmx" />
     <Content Include="scheduling\controller\renyuan.asmx" />
+    <Content Include="scheduling\controller\shengchanxian.asmx" />
     <Content Include="scheduling\controller\timeConfig.asmx" />
     <Content Include="scheduling\controller\user.asmx" />
     <Content Include="scheduling\controller\work.asmx" />
@@ -1836,6 +1838,7 @@
     <Content Include="scheduling\web\paiban.html" />
     <Content Include="scheduling\web\paibanbiao_renyuan.html" />
     <Content Include="scheduling\web\paiban_detail.html" />
+    <Content Include="scheduling\web\shengchanxian.html" />
     <Content Include="scheduling\web\static\img\apic9216.jpg" />
     <Content Include="scheduling\web\static\img\background2.jpg" />
     <Content Include="scheduling\web\static\img\background.jpeg" />
@@ -1854,6 +1857,7 @@
     <Content Include="scheduling\web\static\img\psd34699.jpg" />
     <Content Include="scheduling\web\static\img\psd34984.jpg" />
     <Content Include="scheduling\web\static\img\tubiao.jpg" />
+    <Content Include="scheduling\web\paichan.html" />
     <Content Include="scheduling\web\static\video\20220822_113414.mp4" />
     <Content Include="scheduling\web\static\video\bom.mp4" />
     <Content Include="scheduling\web\static\video\人员信息.mp4" />
@@ -3491,8 +3495,16 @@
       <DependentUpon>paibanDetail.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="scheduling\controller\paichan.asmx.cs">
+      <DependentUpon>paichan.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="scheduling\controller\renyuan.asmx.cs">
       <DependentUpon>renyuan.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="scheduling\controller\shengchanxian.asmx.cs">
+      <DependentUpon>shengchanxian.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="scheduling\controller\timeConfig.asmx.cs">
@@ -3520,9 +3532,12 @@
     <Compile Include="scheduling\dao\OrderBomDao.cs" />
     <Compile Include="scheduling\dao\OrderCheckDao.cs" />
     <Compile Include="scheduling\dao\OrderDao.cs" />
+    <Compile Include="scheduling\dao\OrderModuleDao.cs" />
     <Compile Include="scheduling\dao\PaibanbiaoInfoDao.cs" />
     <Compile Include="scheduling\dao\PaibanDetailDao.cs" />
+    <Compile Include="scheduling\dao\PaiChanDao.cs" />
     <Compile Include="scheduling\dao\RenyuanDao.cs" />
+    <Compile Include="scheduling\dao\ShengchanxianDao.cs" />
     <Compile Include="scheduling\dao\TimeConfigDao.cs" />
     <Compile Include="scheduling\dao\UserInfoDao.cs" />
     <Compile Include="scheduling\dao\WorkDetailDao.cs" />
@@ -3537,6 +3552,7 @@
     <Compile Include="scheduling\model\holiday_config.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
+    <Compile Include="scheduling\model\ModuleInfoItem.cs" />
     <Compile Include="scheduling\model\ModuleItem.cs" />
     <Compile Include="scheduling\model\module_info.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
@@ -3548,6 +3564,9 @@
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\order_check.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="scheduling\model\order_gongxu.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\order_info.cs">
@@ -3577,6 +3596,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Scheduling.edmx</DependentUpon>
     </Compile>
+    <Compile Include="scheduling\model\shengchanxian.cs">
+      <DependentUpon>Scheduling.tt</DependentUpon>
+    </Compile>
     <Compile Include="scheduling\model\time_config.cs">
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
@@ -3587,6 +3609,7 @@
       <DependentUpon>Scheduling.tt</DependentUpon>
     </Compile>
     <Compile Include="scheduling\model\WorkDay.cs" />
+    <Compile Include="scheduling\model\WorkDetailDTO.cs" />
     <Compile Include="scheduling\model\WorkItem.cs" />
     <Compile Include="scheduling\model\WorkSummary.cs" />
     <Compile Include="scheduling\model\work_detail.cs">
@@ -3608,11 +3631,14 @@
     <Compile Include="scheduling\service\ModuleTypeService.cs" />
     <Compile Include="scheduling\service\OrderBomService.cs" />
     <Compile Include="scheduling\service\OrderCheckService.cs" />
+    <Compile Include="scheduling\service\OrderModuleService.cs" />
     <Compile Include="scheduling\service\PaibanbiaoInfoService.cs" />
     <Compile Include="scheduling\service\PaiBanDetailService.cs" />
     <Compile Include="scheduling\service\OrderInfoService.cs" />
+    <Compile Include="scheduling\service\PaiChanService.cs" />
     <Compile Include="scheduling\service\PushService.cs" />
     <Compile Include="scheduling\service\RenyuanService.cs" />
+    <Compile Include="scheduling\service\ShengchanxianService.cs" />
     <Compile Include="scheduling\service\TimeConfigService.cs" />
     <Compile Include="scheduling\service\UserInfoService.cs" />
     <Compile Include="scheduling\service\WorkDetailService.cs" />

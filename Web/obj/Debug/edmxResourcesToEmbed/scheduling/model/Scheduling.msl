@@ -89,6 +89,7 @@
     <EntitySetMapping Name="work_detail">
       <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.work_detail)">
         <MappingFragment StoreEntitySet="work_detail">
+          <ScalarProperty Name="jiezhishijian" ColumnName="jiezhishijian" />
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="order_id" ColumnName="order_id" />
@@ -126,6 +127,8 @@
     <EntitySetMapping Name="paibanbiao_renyuan">
       <EntityTypeMapping TypeName="schedulingModel.paibanbiao_renyuan">
         <MappingFragment StoreEntitySet="paibanbiao_renyuan">
+          <ScalarProperty Name="gongxu" ColumnName="gongxu" />
+          <ScalarProperty Name="shengchanxian" ColumnName="shengchanxian" />
           <ScalarProperty Name="n" ColumnName="n" />
           <ScalarProperty Name="m" ColumnName="m" />
           <ScalarProperty Name="l" ColumnName="l" />
@@ -228,6 +231,8 @@
     <EntitySetMapping Name="user_info">
       <EntityTypeMapping TypeName="schedulingModel.user_info">
         <MappingFragment StoreEntitySet="user_info">
+          <ScalarProperty Name="touxiang" ColumnName="touxiang" />
+          <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
           <ScalarProperty Name="state" ColumnName="state" />
           <ScalarProperty Name="department_name" ColumnName="department_name" />
           <ScalarProperty Name="company" ColumnName="company" />
@@ -245,6 +250,27 @@
           <ScalarProperty Name="company" ColumnName="company" />
           <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />
           <ScalarProperty Name="work_num" ColumnName="work_num" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="shengchanxian">
+      <EntityTypeMapping TypeName="schedulingModel.shengchanxian">
+        <MappingFragment StoreEntitySet="shengchanxian">
+          <ScalarProperty Name="xiaolv" ColumnName="xiaolv" />
+          <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+          <ScalarProperty Name="gongxu" ColumnName="gongxu" />
+          <ScalarProperty Name="mingcheng" ColumnName="mingcheng" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="order_gongxu">
+      <EntityTypeMapping TypeName="schedulingModel.order_gongxu">
+        <MappingFragment StoreEntitySet="order_gongxu">
+          <ScalarProperty Name="module_num" ColumnName="module_num" />
+          <ScalarProperty Name="module_id" ColumnName="module_id" />
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>

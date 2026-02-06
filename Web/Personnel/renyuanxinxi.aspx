@@ -332,6 +332,7 @@
         table#GridView1 tr.item:hover,
         table tr.item:hover {
             background: linear-gradient(to bottom, #E1F5FE, #B3E5FC) !important;
+            color:black !important;
             cursor: pointer;
         }
 
@@ -463,7 +464,7 @@
         <div class ="header-top">
         <asp:Label ID="Label1" runat="server" Height="30px" Text="姓名：" Width="80px" style="text-align:center"></asp:Label>
         <asp:TextBox ID="TextBox1" runat="server" CssClass="top_select_input" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888"></asp:TextBox>
-        <asp:Label ID="Label2" runat="server" Height="30px" Text="手机号：" Width="80px" style="text-align:center"></asp:Label>
+        <asp:Label ID="Label2" runat="server" Height="30px" Text="手机号：" Width="80px" style="text-align:center;"></asp:Label>
         <asp:TextBox ID="TextBox2" runat="server" CssClass="top_select_input" Height="30px" Width="150px" style="text-align:center;border:0.5px solid #378888"></asp:TextBox>
         <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="搜索" CssClass="top_bt" Height="30px" Width="80px"  style="margin-right:-10px"/>
         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="添加" CssClass="top_bt" Height="30px" Width="80px" style="margin-right:-10px" />

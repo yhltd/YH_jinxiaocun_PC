@@ -111,7 +111,6 @@
         }
         
         .top_select_input {
-            padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 6px;
             font-size: 15px;

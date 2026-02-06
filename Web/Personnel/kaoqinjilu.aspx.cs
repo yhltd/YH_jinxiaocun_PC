@@ -63,6 +63,20 @@ namespace Web.Personnel
         {
             string ks = Request.Form["ks"];
             string js = Request.Form["js"];
+            if (!string.IsNullOrEmpty(ks) && !string.IsNullOrEmpty(js))
+            {
+                DateTime startDate;
+                DateTime endDate;
+
+                if (DateTime.TryParse(ks, out startDate) && DateTime.TryParse(js, out endDate))
+                {
+                    if (startDate > endDate)
+                    {
+                        Response.Write("<script>alert('起始日期不能大于截止日期！');</script>");
+                        return;
+                    }
+                }
+            }
             if (ks == "")
             {
                 ks = "190001";

@@ -351,13 +351,7 @@
             <input type="date" name="ks" id="ks" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />
             &nbsp;&nbsp;&nbsp;
             <asp:label id="Label3" runat="server" height="30px" text="结束时间" width="80px" style="text-align: center"></asp:label>
-            <input type="date" name="js" id="js" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />
-            &nbsp;&nbsp;&nbsp;
-            <asp:button id="Button2" runat="server" text="搜索" onclick="Button2_Click" cssclass="top_bt" style="margin-right: -10px" height="30px" width="80px" />
-            <asp:button id="Button3" runat="server" height="30px" text="所有" width="80px" onclick="Button3_Click" cssclass="top_bt" style="margin-right: -10px" />
-            <asp:button id="Button4" cssclass="top_bt" runat="server" height="30px" text="生成Excel" width="80px" onclick="toExcel" style="margin-right: -10px" />
-            
-            <br />
+            <input type="date" name="js" id="js" class="top_select_input" class="top_select_input" style="height: 30px; width: 150px; margin-right: -10px; border: 0.5px solid #378888" />            
             
             <asp:label id="Label11" runat="server" height="30px" text="实发工资" width="80px" style="text-align: center;margin-top: 10px;" ></asp:label>
             <asp:textbox runat="server" id="Textbox11" cssclass="top_select_input" style="width:150px"></asp:textbox>
@@ -376,6 +370,9 @@
             <asp:label id="Label17" runat="server" height="30px" text="审批日期" width="80px" style="text-align: center"></asp:label>
             <asp:textbox runat="server" id="Textbox17" cssclass="top_select_input" textmode="date" style="width:150px"></asp:textbox>
             &nbsp;&nbsp;&nbsp;
+            <asp:button id="Button2" runat="server" text="搜索" onclick="Button2_Click" cssclass="top_bt" style="margin-right: -10px" height="30px" width="80px" />
+            <asp:button id="Button3" runat="server" height="30px" text="所有" width="80px" onclick="Button3_Click" cssclass="top_bt" style="margin-right: -10px" />
+            <asp:button id="Button4" cssclass="top_bt" runat="server" height="30px" text="生成Excel" width="80px" onclick="toExcel" style="margin-right: -10px" />
             <asp:button id="Button1" cssclass="top_bt" onclick="saveShenpi" runat="server" height="30px" text="保存审批记录" width="120px" style="margin-right: -10px" />
             <br />
             </div>

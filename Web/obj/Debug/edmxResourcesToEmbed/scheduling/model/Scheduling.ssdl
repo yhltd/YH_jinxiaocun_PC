@@ -8,10 +8,12 @@
     <EntitySet Name="module_type" EntityType="schedulingModel.Store.module_type" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="order_bom" EntityType="schedulingModel.Store.order_bom" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="order_check" EntityType="schedulingModel.Store.order_check" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="order_gongxu" EntityType="schedulingModel.Store.order_gongxu" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="order_info" EntityType="schedulingModel.Store.order_info" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.Store.paibanbiao_detail" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.Store.paibanbiao_info" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.Store.paibanbiao_renyuan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="shengchanxian" EntityType="schedulingModel.Store.shengchanxian" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="time_config" EntityType="schedulingModel.Store.time_config" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="user_info1" EntityType="schedulingModel.Store.user_info1" store:Type="Tables" Schema="dbo" />
@@ -94,6 +96,15 @@
     <Property Name="num" Type="float" />
     <Property Name="company" Type="varchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="order_gongxu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="order_id" Type="int" />
+    <Property Name="module_id" Type="int" />
+    <Property Name="module_num" Type="int" />
+  </EntityType>
   <EntityType Name="order_info">
     <Key>
       <PropertyRef Name="id" />
@@ -103,7 +114,7 @@
     <Property Name="product_name" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="norms" Type="varchar" MaxLength="255" />
     <Property Name="order_id" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="set_date" Type="datetime2" Precision="0" />
+    <Property Name="set_date" Type="datetime2" />
     <Property Name="set_num" Type="int" Nullable="false" />
     <Property Name="company" Type="varchar" MaxLength="255" />
     <Property Name="is_complete" Type="varchar" MaxLength="255" />
@@ -170,6 +181,18 @@
     <Property Name="l" Type="varchar" MaxLength="255" />
     <Property Name="m" Type="varchar" MaxLength="255" />
     <Property Name="n" Type="varchar" MaxLength="255" />
+    <Property Name="shengchanxian" Type="varchar" MaxLength="255" />
+    <Property Name="gongxu" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="shengchanxian">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="mingcheng" Type="varchar" MaxLength="255" />
+    <Property Name="gongxu" Type="varchar" MaxLength="255" />
+    <Property Name="gongsi" Type="varchar" MaxLength="255" />
+    <Property Name="xiaolv" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="time_config">
     <Key>
@@ -195,6 +218,8 @@
     <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="department_name" Type="varchar" MaxLength="255" />
     <Property Name="state" Type="varchar" MaxLength="255" />
+    <Property Name="wechart_user" Type="varchar" MaxLength="255" />
+    <Property Name="touxiang" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="user_info1">
     <Key>
@@ -218,6 +243,7 @@
     <Property Name="row_num" Type="int" />
     <Property Name="is_insert" Type="int" />
     <Property Name="type" Type="varchar" MaxLength="255" />
+    <Property Name="jiezhishijian" Type="datetime2" />
   </EntityType>
   <EntityType Name="work_detail1">
     <Key>
@@ -238,7 +264,7 @@
     <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="order_id" Type="int" Nullable="false" />
     <Property Name="work_num" Type="int" Nullable="false" />
-    <Property Name="work_start_date" Type="datetime2" Nullable="false" Precision="0" />
+    <Property Name="work_start_date" Type="datetime2" Nullable="false" />
     <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
     <Property Name="row_num" Type="int" />
     <Property Name="is_insert" Type="int" />

@@ -183,3 +183,7 @@
     color:white;
     gap: 10px;
 }
+
+.datagrid-header-check input {
+    display: none !important;  /* 隐藏表头复选框 */
+}

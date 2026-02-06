@@ -17,20 +17,54 @@ namespace Web.scheduling.dao
         /// </summary>
         /// <param name="company"></param>
         /// <returns></returns>
-        public List<paibanbiao_renyuan> getList(int skip, int take,String company,string staff_name,string staff_banci)
+        //public List<paibanbiao_renyuan> getList(int skip, int take,String company,string staff_name,string staff_banci)
+        //{
+        //    var @params = new SqlParameter[]{
+        //        new SqlParameter("@staff_name", staff_name),
+        //        new SqlParameter("@banci", staff_banci),
+        //        new SqlParameter("@company",company),
+        //    };
+        //    string sql = "select * from paibanbiao_renyuan where staff_name like '%'+ @staff_name +'%' and banci like '%'+ @banci +'%' and company=@company";
+        //    using (se = new schedulingEntities())
+        //    {
+        //        var result = se.Database.SqlQuery<paibanbiao_renyuan>(sql, @params).OrderBy(p => p.department_name).Skip(skip).Take(take);
+        //        //var result = se.paibanbiao_renyuan.Where(r => r.company == company).OrderBy(r => r.department_name).Skip(skip).Take(take);
+        //        return result.ToList();
+        //    }
+        //}
+        public List<paibanbiao_renyuan> getList(int skip, int take, String company, string staff_name, string staff_banci, string shengchanxian, string gongxu)
         {
             var @params = new SqlParameter[]{
-                new SqlParameter("@staff_name", staff_name),
-                new SqlParameter("@banci", staff_banci),
-                new SqlParameter("@company",company),
-            };
-            string sql = "select * from paibanbiao_renyuan where staff_name like '%'+ @staff_name +'%' and banci like '%'+ @banci +'%' and company=@company";
-            using (se = new schedulingEntities())
-            {
-                var result = se.Database.SqlQuery<paibanbiao_renyuan>(sql, @params).OrderBy(p => p.department_name).Skip(skip).Take(take);
-                //var result = se.paibanbiao_renyuan.Where(r => r.company == company).OrderBy(r => r.department_name).Skip(skip).Take(take);
-                return result.ToList();
-            }
+            new SqlParameter("@staff_name", staff_name ?? ""),
+            new SqlParameter("@banci", staff_banci ?? ""),
+            new SqlParameter("@shengchanxian", shengchanxian ?? ""),
+            new SqlParameter("@gongxu", gongxu ?? ""),
+            new SqlParameter("@company", company),
+            new SqlParameter("@skip", skip),
+            new SqlParameter("@take", take)
+        };
+
+                // 使用存储过程或更复杂的查询
+                string sql = @"
+            WITH FilteredData AS (
+                SELECT *,
+                       ROW_NUMBER() OVER (ORDER BY department_name) AS RowNum
+                FROM paibanbiao_renyuan 
+                WHERE company = @company 
+                AND (staff_name LIKE '%' + @staff_name + '%' OR @staff_name = '')
+                AND (banci LIKE '%' + @banci + '%' OR @banci = '')
+                AND (shengchanxian LIKE '%' + @shengchanxian + '%' OR @shengchanxian = '')
+                AND (gongxu LIKE '%' + @gongxu + '%' OR @gongxu = '')
+            )
+            SELECT * FROM FilteredData 
+            WHERE RowNum > @skip AND RowNum <= @skip + @take
+            ORDER BY RowNum";
+
+                using (se = new schedulingEntities())
+                {
+                    var result = se.Database.SqlQuery<paibanbiao_renyuan>(sql, @params).ToList();
+                    return result;
+                }
         }
 
         public int DepartmentCount()

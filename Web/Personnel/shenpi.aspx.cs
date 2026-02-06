@@ -35,6 +35,36 @@ namespace Web.Personnel
         {
             if (!Request.Form["TextBox1"].Equals(""))
             {
+
+                string ksValue = Request.Form["ks"];
+                string jsValue = Request.Form["js"];
+
+                // 如果两个日期都输入了，检查开始时间是否大于结束时间
+                if (!string.IsNullOrEmpty(ksValue) && !string.IsNullOrEmpty(jsValue))
+                {
+                    DateTime ksDate, jsDate;
+
+                    if (DateTime.TryParse(ksValue, out ksDate) && DateTime.TryParse(jsValue, out jsDate))
+                    {
+                        if (ksDate > jsDate)
+                        {
+                            Response.Write("<script>alert('开始时间不能大于结束时间！');</script>");
+                            return; // 停止执行
+                        }
+                    }
+                    else
+                    {
+                        Response.Write("<script>alert('日期格式不正确！');</script>");
+                        return;
+                    }
+                }
+                else if (!string.IsNullOrEmpty(ksValue) || !string.IsNullOrEmpty(jsValue))
+                {
+                    // 如果只输入了一个日期
+                    Response.Write("<script>alert('请同时输入开始时间和结束时间！');</script>");
+                    return;
+                }
+
                 Session["shenpiren"] = Request.Form["TextBox1"];
                 if (Request.Form["ks"].Equals(""))
                 {

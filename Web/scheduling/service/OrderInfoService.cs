@@ -64,7 +64,7 @@ namespace Web.scheduling.service
         /// <param name="orderInfo">订单信息</param>
         /// <param name="bomList">所用物料信息</param>
         /// <returns></returns>
-        public Boolean save(order_info orderInfo, List<BomInfoItem> bomList)
+        public Boolean save(order_info orderInfo, List<BomInfoItem> bomList, List<ModuleInfoItem> moduleList)
         {
             orderInfo.set_date = DateTime.Now;
             orderInfo.company = user.company;
@@ -80,8 +80,23 @@ namespace Web.scheduling.service
                     orderBom.use_num = bomInfo.useNum;
                     cd.save<order_bom>(orderBom);
                 }
+
+                if (orderInfo != null)
+                {
+                    order_gongxu orderModule;
+                    foreach (ModuleInfoItem moduleInfo in moduleList)
+                    {
+                        orderModule = new order_gongxu();
+                        orderModule.order_id = orderInfo.id;
+                        orderModule.module_id = moduleInfo.id;
+                        orderModule.module_num = moduleInfo.useNum;
+                        cd.save<order_gongxu>(orderModule);
+                    }
+                    return true;
+                }
                 return true;
             }
+            
             return false;
         }
 
@@ -91,7 +106,7 @@ namespace Web.scheduling.service
         /// <param name="orderInfo">订单信息</param>
         /// <param name="bomList">所用物料信息</param>
         /// <returns></returns>
-        public Boolean saveBom(int updOrderId, List<BomInfoItem> bomList)
+        public Boolean saveBom(int updOrderId, List<BomInfoItem> bomList, List<ModuleInfoItem> moduleList)
         {
             if (updOrderId != null)
             {
@@ -104,6 +119,18 @@ namespace Web.scheduling.service
                     orderBom.use_num = bomInfo.useNum;
                     cd.save<order_bom>(orderBom);
                 }
+
+                // 保存工序数据
+                order_gongxu orderModule;
+                foreach (ModuleInfoItem moduleInfo in moduleList)
+                {
+                    orderModule = new order_gongxu();
+                    orderModule.order_id = updOrderId;
+                    orderModule.module_id = moduleInfo.id;
+                    orderModule.module_num = moduleInfo.useNum;
+                    cd.save<order_gongxu>(orderModule);
+                }
+
                 return true;
             }
             return false;
@@ -127,12 +154,35 @@ namespace Web.scheduling.service
         /// <returns></returns>
         public Boolean delete(int id)
         {
-            OrderBomDao orderBomDao = new OrderBomDao();
-            if (orderBomDao.deleteBatchByOrderId(id))
+            using (var transaction = new TransactionScope())
             {
-                return cd.delete<order_info>(id);
+                try
+                {
+                    OrderBomDao orderBomDao = new OrderBomDao();
+                    OrderModuleDao orderModuleDao = new OrderModuleDao();
+
+                    // 删除关联数据
+                    orderBomDao.deleteBatchByOrderId(id);
+                    orderModuleDao.deleteBatchByOrderId(id);
+
+                    // 删除主订单
+                    bool result = cd.delete<order_info>(id);
+
+                    if (result)
+                    {
+                        transaction.Complete();
+                        return true;
+                    }
+
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    // 记录异常日志
+                    // LogHelper.Error($"删除订单失败，ID: {id}", ex);
+                    return false;
+                }
             }
-            return false;
         }
 
 
@@ -144,7 +194,14 @@ namespace Web.scheduling.service
         public Boolean deleteBom(int id)
         {
             OrderBomDao orderBomDao = new OrderBomDao();
-            return orderBomDao.deleteBatchByOrderId(id);
+            OrderModuleDao orderModuleDao = new OrderModuleDao();
+
+            // 删除物料关联
+            orderBomDao.deleteBatchByOrderId(id);
+            // 删除工序关联
+            orderModuleDao.deleteBatchByOrderId(id);
+
+            return true;
         }
 
     }

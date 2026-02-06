@@ -146,13 +146,11 @@
             color: white !important;
             font-weight: 600 !important;
             border: none !important;
-            padding: 14px 10px !important;
             text-align: center;
             font-size: 14px;
         }
 
         .el-table td {
-            padding: 12px 10px !important;
             border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
             text-align: center;
         }
@@ -290,10 +288,6 @@
             font-size: 14px;
         }
 
-        /* 日期选择器样式 */
-        .el-date-picker {
-            width: 100% !important;
-        }
 
         .el-date-picker .el-input__inner {
             border-radius: 8px !important;
@@ -450,8 +444,14 @@
                     <el-col :span="6">
                         <el-input v-model="staff_banci" placeholder="班次" clearable></el-input>
                     </el-col>
-                    <el-col :span="8">
-                        <el-button-group style="width:600px">
+                    <el-col :span="6">
+                        <el-input v-model="shengchanxian" placeholder="生产线" clearable></el-input>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input v-model="gongxu" placeholder="工序" clearable></el-input>
+                    </el-col>
+                    <el-col :span="8" style="width: 20.33333%;" >
+                        <el-button-group style="width:400px">
                             <el-button icon="el-icon-search" type="primary" :disabled="loading" @click="getList('查询')">查询</el-button>
                             <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList('刷新')">刷新</el-button>
                             <el-button icon="el-icon-circle-plus-outline" type="primary" @click="addVisible = true;">添加</el-button>
@@ -496,6 +496,16 @@
                                     </el-select>    
                                     <!--<el-input v-model="props.row.department_name" style="width: 220px"></el-input>-->
                                 </el-form-item>
+
+                                <!-- 新增生产线字段 -->
+                                <el-form-item label="生产线" prop="shengchanxian">
+                                    <el-input v-model="props.row.shengchanxian" style="width: 220px"></el-input>
+                                </el-form-item>
+                                <!-- 新增工序字段 -->
+                                <el-form-item label="工序" prop="gongxu">
+                                    <el-input v-model="props.row.gongxu" style="width: 220px"></el-input>
+                                </el-form-item>
+
                                 <el-form-item label="班次" prop="banci">
                                     <el-input v-model="props.row.banci" style="width: 220px" placeholder="此班次只作为记录"></el-input>
                                 </el-form-item>
@@ -513,6 +523,8 @@
                     <el-table-column prop="phone_number" label="电话" sortable></el-table-column>
                     <el-table-column prop="id_number" label="身份证号" sortable></el-table-column>
                     <el-table-column prop="department_name" label="部门名称" sortable></el-table-column>
+                    <el-table-column prop="shengchanxian" label="生产线" sortable></el-table-column>
+                    <el-table-column prop="gongxu" label="工序" sortable></el-table-column>
                     <el-table-column prop="banci" label="班次" sortable></el-table-column>
                     <el-table-column label="操作">
                         <template slot-scope="scope">
@@ -583,6 +595,13 @@
 
                     </el-select>               
                 </el-form-item>
+                <el-form-item label="生产线" prop="shengchanxian">
+                    <el-input v-model="paibanbiao_renyuan.shengchanxian" style="width: 300px" placeholder="请填写所属生产线"></el-input>
+                </el-form-item>
+                <!-- 新增工序字段 -->
+                <el-form-item label="工序" prop="gongxu">
+                    <el-input v-model="paibanbiao_renyuan.gongxu" style="width: 300px" placeholder="请填写负责工序"></el-input>
+                </el-form-item>
                 <el-form-item label="班次" prop="banci">
                     <el-input v-model="paibanbiao_renyuan.banci" style="width: 300px" placeholder="此班次只作为记录"></el-input>
                 </el-form-item>
@@ -612,7 +631,9 @@
                 departmentList: [],
                 department: [],
                 staff_name: '',
-                staff_banci:'',
+                staff_banci: '',
+                shengchanxian: '',  
+                gongxu: '',        
                 paibanbiao_renyuan: {},
                 rules: {
                     staff_name: [
@@ -632,6 +653,8 @@
                     if (type == "刷新") {
                         _this.staff_name = "";
                         _this.staff_banci = "";
+                        _this.shengchanxian = "";  
+                        _this.gongxu = "";   
                     }
                     _this.loading = true;
                     axios.post(myUrl('renyuan/getList'), {
@@ -639,6 +662,8 @@
                         pageCount: _this.size,
                         staff_name: _this.staff_name,
                         staff_banci: _this.staff_banci,
+                        shengchanxian: _this.shengchanxian, 
+                        gongxu: _this.gongxu,               
                     }).then(function (res) {
                         if (res.code == 200) {
                             _this.total = res.data.total
@@ -658,6 +683,24 @@
                         _this.loading = false;
                     })
                 },
+
+                // 添加清空表单的方法
+                resetForm: function () {
+                    this.paibanbiao_renyuan = {
+                        staff_name: '',
+                        phone_number: '',
+                        id_number: '',
+                        department_name: '',
+                        shengchanxian: '',
+                        gongxu: '',
+                        banci: ''
+                    };
+
+                    // 重置表单验证状态
+                    if (this.$refs.addForm) {
+                        this.$refs.addForm.clearValidate();
+                    }
+                },
                 
                 addForm: function (formName) {
                     var _this = this;
@@ -676,6 +719,8 @@
                                     });
                                     _this.deptVisible = false,
                                     _this.getList();
+                                    _this.addVisible = false;
+                                    _this.resetForm();
                                 }
                                 if (res.code == 500) {
                                     _this.$notify({

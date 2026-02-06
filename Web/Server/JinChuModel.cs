@@ -197,7 +197,7 @@ namespace Web.Server
                         if (!string.IsNullOrEmpty(startDate))
                         {
                             qichuDateCondition = " AND m.shijian <= @startDate";
-                            parameters.Add(new MySqlParameter("@startDate", startDate));
+                            parameters.Add(new MySqlParameter("@startDate", startDate + " 00:00:00"));
                         }
 
                         if (!string.IsNullOrEmpty(endDate))
@@ -351,7 +351,7 @@ namespace Web.Server
                         if (!string.IsNullOrEmpty(startDate))
                         {
                             qichuDateCondition = " AND m.shijian <= @startDate";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", startDate));
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", startDate + " 00:00:00"));
                         }
 
                         if (!string.IsNullOrEmpty(endDate))

@@ -290,18 +290,15 @@
                         <input type="text" id="endDate" class="form-control" placeholder="选择结束日期">
                     </div>
                 </div>
-                <div class="col-md-3">
+<%--                <div class="col-md-3">
                     <div class="form-group">
                         <label for="chartType"><i class="fas fa-chart-bar mr-2"></i>统计维度</label>
                         <select id="chartType" class="form-control">
                             <option value="daily">按日统计</option>
                             <option value="monthly">按月统计</option>
-                            <option value="product">按商品统计</option>
-                            <option value="category">按类别统计</option>
-                            <option value="warehouse">按仓库统计</option>
                         </select>
                     </div>
-                </div>
+                </div>--%>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label for="warehouse"><i class="fas fa-warehouse mr-2"></i>仓库筛选</label>

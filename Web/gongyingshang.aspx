@@ -117,12 +117,6 @@
             background-color: #98c9d9;
             /*border: 2.5px solid white;*/
         }
-
-          tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
         
         /* 奇数行样式 */
         tr:nth-child(odd) .input_tr {
@@ -208,6 +202,7 @@
             <div class="top-div">
                 <asp:TextBox ID='gys_cx_a' class='select_input' Autocomplete='off'  runat="server" placeholder="按供应商名称查询"/>
                 <asp:Button  ID="gys_query" OnClick="gys_chaxun" class="input_tr_tj" Text="查询" runat="server" />
+                <input type="button" id="dj_yh" class="input_tr_tj" value="添加">
                 <asp:Button  ID="dj_row" class="input_tr_tj" onclick="gys_tj" Text="提交" runat="server" />
                 <asp:Button  ID="del_button" class="input_tr_tj" OnClick="delete" Text="删除" runat="server" />
                 <asp:Button ID="Button2" class="input_tr_tj" OnClick="gys_select_load"  Text="刷新数据" runat="server" />

@@ -354,12 +354,6 @@
             /*border: 2.5px solid white;*/
         }
 
-          tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-        
         /* 奇数行样式 */
         tr:nth-child(odd) .item_td {
             background-color:#D3D3D3;
@@ -426,11 +420,11 @@
         }
 
         .ruku_div {
-            width: 50%;
+            width: 30%;
             height: 40%;
             position: fixed;
             top: 10%;
-            left: 25%;
+            left: 30%;
             background-color: white;
             z-index: 20;
             box-shadow: 10px 10px 15px;
@@ -574,7 +568,7 @@
                     <option value="B仓库">B仓库</option>
                 </select>
                  <input id="pd_bt" class="rk_bt" type="button" value="盘点"/>
-                <input id="shuaxin" class="rk_bt" type="button" value="刷新"/>          
+                <input id="shuaxin" class="rk_bt" type="button" value="查询"/>          
             </div> 
             <div class="d-main" id="table_div">
 
@@ -596,7 +590,11 @@
     </form>
     <div class="ruku_div" style="display:none">
         <div class="ruku_info_div">
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px;margin-right: 5px; display: block;">订单号</label>
             <input class="order_id_input" placeholder="订单号" value=""/>
+        </div>
+        <div class="ruku_info_div">
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px;margin-right: 5px; display: block;">公司</label>
             <select class="gonghuo_select" onchange="getGongguo(this.value)"></select>
         </div>
         <div class="ruku_bottom_div">

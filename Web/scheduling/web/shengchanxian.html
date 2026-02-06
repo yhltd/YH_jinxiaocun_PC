@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="../../finance/web/assets/js/Jquery.js"></script>
+    <link rel="stylesheet" href="static/css/main.css">
+    <link href="static/element/index.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="static/vue/vue.js"></script>
+    <script type="text/javascript" src="static/element/index.js"></script>
+    <script type="text/javascript" src="static/axios/axios.js"></script>
+    <script src="static/js/main.js"></script>
+
+    <title>云合排产管理系统</title>
+</head>
+<body>
+    <div id="shengchanxian" style="display: none;" :style="{display: 'block'}">
+        <el-container>
+            <el-main>
+                <!-- 查询条件 -->
+                <el-row :gutter="10" style="margin-bottom: 20px">
+                    <el-col :span="6">
+                        <el-input placeholder="工序" v-model="gongxu" clearable></el-input>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input placeholder="生产线名称" v-model="mingcheng" clearable></el-input>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-input placeholder="效率" v-model="xiaolv" clearable></el-input>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-button-group>
+                            <el-button icon="el-icon-search" type="primary" @click="getList">查询</el-button>
+                            <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getInitList">刷新</el-button>
+                            <el-button icon="el-icon-circle-plus-outline" type="primary" @click="addVisible = true">新增</el-button>
+                        </el-button-group>
+                    </el-col>
+                </el-row>
+
+                <!-- 数据表格 -->
+                <el-table :data="list" v-loading="loading" style="width: 100%;font-size:15px">
+                    <el-table-column type="expand">
+                        <template slot-scope="props">
+                            <el-form
+                                :model="props.row"
+                                :rules="rules"
+                                ref="updateForm"
+                                label-width="100px"
+                            >
+                                <el-form-item label="工序" prop="gongxu">
+                                    <el-input v-model="props.row.gongxu" style="width: 250px"></el-input>
+                                </el-form-item>
+                                <el-form-item label="生产线名称" prop="mingcheng">
+                                    <el-input v-model="props.row.mingcheng" style="width: 250px"></el-input>
+                                </el-form-item>
+                                 <el-form-item label="效率" prop="xiaolv">
+                                    <el-input v-model="props.row.xiaolv" style="width: 250px" placeholder="请输入效率"></el-input>
+                                </el-form-item>
+                            </el-form>
+                            <el-button 
+                                type="primary" 
+                                icon="el-icon-upload"
+                                :loading="updateLoading"
+                                @click="updateShengchanxian('updateForm')"
+                            >保存</el-button>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="序号" width="80" align="center">
+                        <template slot-scope="scope">
+                            {{ scope.$index + 1 }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="gongxu" label="工序"></el-table-column>
+                    <el-table-column prop="mingcheng" label="生产线名称"></el-table-column>
+                    <el-table-column prop="xiaolv" label="效率"></el-table-column>
+                    <el-table-column label="操作" width="120">
+                        <template slot-scope="scope">
+                            <el-popconfirm title="确定删除这条生产线吗？" @confirm="deleteShengchanxian(scope.row.id)" hide-icon>
+                                <el-button icon="el-icon-delete" type="danger" size="small" slot="reference">删除</el-button>
+                            </el-popconfirm>
+                        </template>
+                    </el-table-column>
+                </el-table>
+
+                <!-- 分页 -->
+                <el-pagination 
+                    background
+                    layout="prev, pager, next" 
+                    :current-page.sync="now"
+                    :total="total"
+                    :page-size="size"
+                    :hide-on-single-page="total <= size" 
+                    @current-change="getList"
+                    style="margin-top: 10px"
+                ></el-pagination>
+            </el-main>
+        </el-container>
+
+        <!-- 新增抽屉 -->
+        <el-drawer
+            title="新增生产线"
+            :visible.sync="addVisible"
+            direction="ltr"
+            :modal="false"
+            size="50%"
+            ref="addDrawer"
+            v-loading="saveLoading"
+        >
+            <el-form
+                :model="shengchanxian"
+                :rules="rules"
+                ref="addForm"
+                label-width="100px"
+            >
+                <el-form-item label="工序" prop="gongxu">
+                    <el-input v-model="shengchanxian.gongxu" placeholder="请输入工序"></el-input>
+                </el-form-item>
+                <el-form-item label="生产线名称" prop="mingcheng">
+                    <el-input v-model="shengchanxian.mingcheng" placeholder="请输入生产线名称"></el-input>
+                </el-form-item>
+                <el-form-item label="效率" prop="xiaolv">
+                    <el-input v-model="shengchanxian.xiaolv" placeholder="请输入效率"></el-input>
+                </el-form-item>
+            </el-form>
+            <div style="text-align: center; margin-top: 20px;">
+                <el-button 
+                    type="primary" 
+                    icon="el-icon-upload"
+                    @click="addShengchanxian('addForm')"
+                    style="width: 200px"
+                >保存</el-button>
+            </div>
+        </el-drawer>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#shengchanxian',
+            data: {
+                now: 1,
+                size: 20,
+                total: 0,
+                gongxu: '',
+                mingcheng: '',
+                xiaolv: '',
+                loading: false,
+                list: [],
+
+                rules: {
+                    gongxu: [
+                        { required: true, message: '工序不能为空', trigger: 'blur' },
+                        { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
+                    ],
+                    mingcheng: [
+                        { required: true, message: '生产线名称不能为空', trigger: 'blur' },
+                        { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
+                    ],
+                    xiaolv: [
+                        { max: 100, message: '长度不能超过100个字符', trigger: 'blur' }
+                    ]
+                },
+                updateLoading: false,
+
+                addVisible: false,
+                shengchanxian: {
+                    gongxu: '',
+                    mingcheng: '',
+                    xiaolv: ''
+                },
+                saveLoading: false
+            },
+            methods: {
+                getList: function () {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('shengchanxian/page'), {
+                        nowPage: _this.now,
+                        pageCount: _this.size,
+                        gongxu: _this.gongxu,
+                        mingcheng: _this.mingcheng,
+                        xiaolv: _this.xiaolv
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.total = res.data.total;
+                            _this.list = res.data.pageList;
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+                getInitList: function () {
+                    this.gongxu = '';
+                    this.mingcheng = '';
+                    this.xiaolv = '';
+                    this.getList();
+                },
+                updateShengchanxian: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.updateLoading = true;
+                            axios.post(myUrl('shengchanxian/update'), {
+                                shengchanxian: _this.$refs[formName].model
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.getList();
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
+                                _this.updateLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.updateLoading = false;
+                            })
+                        }
+                    })
+                },
+                deleteShengchanxian: function (id) {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('shengchanxian/delete'), {
+                        id: id
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'success'
+                            });
+                            _this.getList();
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.loading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.loading = false;
+                    })
+                },
+                addShengchanxian: function (formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function (valid) {
+                        if (valid) {
+                            _this.saveLoading = true;
+                            axios.post(myUrl('shengchanxian/save'), {
+                                shengchanxian: _this.shengchanxian
+                            }).then(function (res) {
+                                if (res.code == 200) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'success'
+                                    });
+                                    _this.getList();
+                                    _this.$refs.addDrawer.closeDrawer();
+                                    _this.shengchanxian = {
+                                        gongxu: '',
+                                        mingcheng: '',
+                                        xiaolv: ''
+                                    };
+                                }
+                                if (res.code == 500) {
+                                    _this.$notify({
+                                        title: res.msg,
+                                        type: 'error'
+                                    });
+                                }
+                                _this.saveLoading = false;
+                            }).catch(function (err) {
+                                _this.$notify.error({
+                                    title: err.msg
+                                });
+                                _this.saveLoading = false;
+                            })
+                        }
+                    })
+                }
+            },
+            mounted: function () {
+                this.getList();
+            }
+        })
+    </script>
+
+    <style>
+        /* 复用BOM页面的样式 */
+        .el-card {
+            border-radius: 12px !important;
+            border: 1px solid rgba(26, 42, 108, 0.1) !important;
+            background: linear-gradient(135deg, rgba(26, 42, 108, 0.02) 0%, rgba(42, 82, 152, 0.02) 100%) !important;
+            box-shadow: 0 4px 20px rgba(26, 42, 108, 0.08) !important;
+            transition: all 0.3s ease !important;
+            margin-bottom: 20px;
+        }
+
+        .el-card:hover {
+            box-shadow: 0 8px 24px rgba(26, 42, 108, 0.12) !important;
+        }
+
+        .el-card__header {
+            padding: 16px 24px !important;
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            border-radius: 12px 12px 0 0 !important;
+            border: none !important;
+        }
+
+        .el-table {
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            box-shadow: 0 2px 12px rgba(26, 42, 108, 0.1) !important;
+            font-size: 14px !important;
+            background: white !important;
+        }
+
+        .el-table th {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            border: none !important;
+            text-align: center;
+        }
+
+        .el-table td {
+            border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
+            text-align: center;
+        }
+
+        .el-table .el-table__row:nth-child(even) {
+            background-color: rgba(257, 246, 250, 1);
+        }
+
+        .el-table .el-table__row:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .el-button--primary {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            border: none !important;
+            border-radius: 8px !important;
+            color: white !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .el-button--primary:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(26, 42, 108, 0.3) !important;
+        }
+
+        .el-button--danger {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%) !important;
+            border: none !important;
+            border-radius: 6px !important;
+            color: white !important;
+            transition: all 0.3s ease !important;
+        }
+    </style>
+</body>
+</html>

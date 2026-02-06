@@ -146,13 +146,11 @@
             color: white !important;
             font-weight: 600 !important;
             border: none !important;
-            padding: 14px 10px !important;
             text-align: center;
             font-size: 14px;
         }
 
         .el-table td {
-            padding: 12px 10px !important;
             border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
             text-align: center;
         }
@@ -288,11 +286,6 @@
             padding: 16px;
             color: rgba(26, 42, 108, 0.6);
             font-size: 14px;
-        }
-
-        /* 日期选择器样式 */
-        .el-date-picker {
-            width: 100% !important;
         }
 
         .el-date-picker .el-input__inner {
@@ -465,16 +458,14 @@
                     <el-col :span="6">
                         <el-input v-model="orderId" placeholder="查询订单号" clearable></el-input>
                     </el-col>
-                    <el-col :span="6">
+<!--                    <el-col :span="6">
                         <el-date-picker v-model="ks" type="date" placeholder="选择开始日期"></el-date-picker>
                     </el-col>
                     <el-col :span="6">
                         <el-date-picker v-model="js" type="date" placeholder="选择结束日期"></el-date-picker>
-                    </el-col>
-                </el-row>
-                <el-row :gutter="10" style="margin-bottom: 20px">
+                    </el-col>-->
                     <el-col :span="8">
-                        <el-button-group style="width:700px">
+                        <el-button-group style="width:450px">
                             <el-button icon="el-icon-search" type="primary" @click="chaxun()">查询1</el-button>
                             <el-button icon="el-icon-search" type="primary" @click="chaxun2()">查询2</el-button>
                             <el-button icon="el-icon-refresh" type="primary" :disabled="loading" @click="getList">刷新</el-button>
@@ -482,6 +473,9 @@
                             <el-button icon="el-icon-video-camera" type="primary" onclick="watchVideo()"></el-button>
                         </el-button-group>
                     </el-col>
+                </el-row>
+                <el-row :gutter="10" style="margin-bottom: 20px">
+                    
                 </el-row>
                 <el-table
                     :data="list"

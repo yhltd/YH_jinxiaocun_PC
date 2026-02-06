@@ -13,6 +13,23 @@ function getList() {
     var myDate = new Date;
     var benqi_ks = $("#ks").datebox('getText');
     var benqi_js = $("#js").datebox('getText');
+
+    if (benqi_ks && benqi_js) {
+        // 将日期字符串转换为Date对象进行比较
+        var start = new Date(benqi_ks.replace(/-/g, '/'));
+        var stop = new Date(benqi_js.replace(/-/g, '/'));
+
+        // 检查开始时间是否大于结束时间
+        if (start > stop) {
+            $.messager.alert('Warning', '开始时间不能大于结束时间！');
+            return false; // 停止执行
+        }
+    } else if (benqi_ks || benqi_js) {
+        // 如果只选择了一个日期
+        $.messager.alert('Warning', '请同时选择开始时间和结束时间！');
+        return false;
+    }
+
     var bennian_ks = "";
     var bennian_js = "";
 

@@ -67,7 +67,7 @@ namespace Web.Personnel
                 }
                 if (Request.Form["js"].Equals(""))
                 {
-                    Session["js"] = "1900-1-1";
+                    Session["js"] = "2900-1-1";
                 }
                 else
                 {

@@ -755,12 +755,6 @@
             background-color: #98c9d9;
             /*border: 2.5px solid white;*/
         }
-
-          tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
         
         /* 奇数行样式 */
         tr:nth-child(odd) .item_td {
@@ -847,7 +841,8 @@
         }
         .order_id_input {
             border: 1px solid #F0F0F0;
-            width: 240px;
+            width: 200px;
+            margin-left: 35px;
             height: 30px;
             border-radius: 2px;
         }
@@ -1100,9 +1095,16 @@
         </div>
     </form>
     <div class="ruku_div" style="display:none">
-    <div class="ruku_info_div">
-        <input class="order_id_input" placeholder="采购单号" value=""/>
-        <select class="gonghuo_select" onchange="getGongguo(this.value)"></select>
+    <div style="height: 30%;margin-bottom: 10px;" class="ruku_info_div">
+        <div>
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">采购单号</label>
+            <input class="order_id_input" placeholder="采购单号" value=""/>
+        </div>
+        
+        <div>
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">供应商</label>
+             <select class="gonghuo_select" onchange="getGongguo(this.value)"></select>
+        </div>
     </div>
     <div style="height: 30%;margin-bottom: 10px;" class="ruku_info_div">
         <div>

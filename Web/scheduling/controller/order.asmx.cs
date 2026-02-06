@@ -149,7 +149,7 @@ namespace Web.scheduling.controller
 
 
         [WebMethod]
-        public string updBom(int updOrderId, List<BomInfoItem> bomList)
+        public string updBom(int updOrderId, List<BomInfoItem> bomList, List<ModuleInfoItem> moduleList)
         {
             using (TransactionScope tran = new TransactionScope())
             {
@@ -166,13 +166,13 @@ namespace Web.scheduling.controller
                     }
 
                     ois = new OrderInfoService();
-                    if (bomList.Count == 0 || bomList == null)
-                    {
-                        return ResultUtil.error("保存失败");
-                    }
+                    //if (bomList.Count == 0 || bomList == null)
+                    //{
+                    //    return ResultUtil.error("保存失败");
+                    //}
                     if (ois.deleteBom(updOrderId))
                     {
-                        if (ois.saveBom(updOrderId, bomList))
+                        if (ois.saveBom(updOrderId, bomList, moduleList))
                         {
                             tran.Complete();
                             return ResultUtil.success("保存成功");
@@ -181,6 +181,7 @@ namespace Web.scheduling.controller
                         {
                             return ResultUtil.error("保存失败");
                         }
+
                     }
                     else
                     {
@@ -199,8 +200,9 @@ namespace Web.scheduling.controller
         }
 
 
+
         [WebMethod]
-        public string save(order_info orderInfo, List<BomInfoItem> bomList)
+        public string save(order_info orderInfo, List<BomInfoItem> bomList, List<ModuleInfoItem> moduleList)
         {
             using (TransactionScope tran = new TransactionScope()) 
             {
@@ -221,7 +223,7 @@ namespace Web.scheduling.controller
                     {
                         return ResultUtil.error("保存失败");
                     }
-                    if (ois.save(orderInfo, bomList))
+                    if (ois.save(orderInfo, bomList, moduleList))
                     {
                         tran.Complete();
                         return ResultUtil.success("保存成功");
@@ -275,6 +277,34 @@ namespace Web.scheduling.controller
             catch
             {
                 return ResultUtil.error("修改失败");
+            }
+        }
+
+        [WebMethod]
+        public string getUseModuleList(int id)
+        {
+            try
+            {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("sel", "订单");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
+                OrderModuleService oms = new OrderModuleService();
+                return ResultUtil.success(oms.getList(id), "查询成功");
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch
+            {
+                return ResultUtil.error("查询失败");
             }
         }
 

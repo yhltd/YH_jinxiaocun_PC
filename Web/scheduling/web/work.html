@@ -290,24 +290,23 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="使用模块" prop="moduleList">
+                <el-form-item label="生产线" prop="xianList">
                     <el-select 
-                        v-model="work.moduleList" 
+                        v-model="work.xianList" 
                         filterable 
                         multiple 
-                        placeholder="请选择使用模块" 
-                        :loading="moduleLoading"
+                        placeholder="请选择生产线" 
+                        :loading="xianLoading"
                         collapse-tags
                         style="width: 230px;"
                     >
                         <el-option 
-                            v-for="module in moduleList" 
-                            :key="module.id" 
-                            :label="module.name" 
-                            :value="module.id"
+                            v-for="xian in xianList" 
+                            :key="xian.id" 
+                            :label="xian.mingcheng" 
+                            :value="xian.id"
                         >
-                            <span style="float: left">{{module.name}}</span>
-                            <span class="option-tag">效率：{{module.num}}</span>
+                            <span style="float: left">{{xian.mingcheng}}</span>
                         </el-option>
                     </el-select>
                 </el-form-item>
@@ -370,24 +369,23 @@
                     >
                     </el-date-picker>
                 </el-form-item>
-                <el-form-item label="使用模块" prop="moduleList">
+                <el-form-item label="生产线"  prop="xianList">
                     <el-select 
-                        v-model="work.moduleList" 
+                        v-model="work.xianList" 
                         filterable 
                         multiple 
-                        placeholder="请选择使用模块" 
-                        :loading="moduleLoading"
+                        placeholder="请选择生产线" 
+                        :loading="xianLoading"
                         collapse-tags
                         style="width: 230px;"
                     >
                         <el-option 
-                            v-for="module in moduleList" 
-                            :key="module.id" 
-                            :label="module.name" 
-                            :value="module.id"
+                            v-for="xian in xianList" 
+                            :key="xian.id" 
+                            :label="xian.mingcheng" 
+                            :value="xian.id"
                         >
-                            <span style="float: left">{{module.name}}</span>
-                            <span class="option-tag">效率：{{module.num}}</span>
+                            <span style="float: left">{{xian.mingcheng}}</span>
                         </el-option>
                     </el-select>
                 </el-form-item>
@@ -461,19 +459,19 @@
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="请选择模块：" class="labelStyle">
+                <el-form-item label="请选择生产线：" class="labelStyle">
                     <el-select 
                         style="width:150px"
-                        v-model="list.moudleInfo" 
+                        v-model="list.xianInfo" 
                         filterable 
-                        placeholder="请选择模块" 
+                        placeholder="请选择生产线" 
                         style="width: 230px"
                     >
                         <el-option 
-                            v-for="info in module" 
-                            :key="info.name" 
-                            :label="info.name" 
-                            :value="info.name"
+                            v-for="info in xianList"
+                            :key="info.mingcheng" 
+                            :label="info.mingcheng" 
+                            :value="info.id"
                         >
                         </el-option>
                     </el-select>
@@ -573,6 +571,9 @@
                 moduleLoading: false,
                 moduleList: [],
 
+                xianLoading: false,  // 新增：生产线加载状态
+                xianList: [],  // 新增：生产线列表
+
                 row_num:'',
 
                 saveLoading: false,
@@ -581,9 +582,12 @@
                     //row_num: [
                     //    { required: this.work.is_insert != 0 && this.work.is_insert != undefined , message: '编号不能为空', trigger: 'blur' }
                     //],
-                    moduleList: [
-                        { required: true, message: '使用模块不能为空', trigger: 'blur' }
+                    xianList: [  // 改为 xianList
+                        { required: true, message: '生产线不能为空', trigger: 'blur' }
                     ],
+                    //moduleList: [
+                    //    { required: true, message: '使用模块不能为空', trigger: 'blur' }
+                    //],
                     order_id: [
                         { required: true, message: '订单号不能为空', trigger: 'blur' }
                     ],
@@ -880,12 +884,20 @@
                     this.addVisible = true;
                     this.getOrderList();
                     this.getModuleList();
+                    // 确保生产线数据已加载
+                    if (!this.xianList || this.xianList.length === 0) {
+                        this.getXianAll();
+                    }
                 },
 
                 openPlDrawer: function () {
                     this.plVisible = true;
                     this.getOrderList();
                     this.getModuleList();
+                    // 确保生产线数据已加载
+                    if (!this.xianList || this.xianList.length === 0) {
+                        this.getXianAll();
+                    }
 
                 },
 
@@ -963,7 +975,7 @@
                                     is_insert: _this.work.is_insert,
                                     type:$.session.get('type'),
                                 },
-                                workModuleIdList: _this.work.moduleList
+                                workModuleIdList: _this.work.xianList
                             }).then(function (res) {
                                 if (res.code == 200) {
                                     _this.$notify({
@@ -1137,6 +1149,86 @@
                         }
                     })
                 },
+                getXianAll: function () {
+                    var _this = this;
+                    _this.xianLoading = true;
+    
+                    axios.post(myUrl('shengchanxian/getAll'), {})
+                        .then(function (res) {
+            
+                            var data = res.data;
+                            if (Array.isArray(data)) {
+                                _this.xianList = _this.getDistinctProductionLines(data);
+                            } else if (data && typeof data === 'object') {
+                                if (data.code === 200 && Array.isArray(data.data)) {
+                                    _this.xianList = _this.getDistinctProductionLines(data.data);
+                                } else if (data.d) {
+                                    try {
+                                        var parsed = JSON.parse(data.d);
+                                        console.log('WebService格式，解析后：', parsed);
+                                        if (parsed.code === 200 && Array.isArray(parsed.data)) {
+                                            _this.xianList = _this.getDistinctProductionLines(parsed.data);
+                                        } else if (Array.isArray(parsed)) {
+                                            _this.xianList = _this.getDistinctProductionLines(parsed);
+                                        }
+                                    } catch (e) {
+                                        console.error('解析JSON失败：', e);
+                                    }
+                                } else if (Array.isArray(data)) {
+                                    _this.xianList = _this.getDistinctProductionLines(data);
+                                }
+                            }
+            
+                            _this.xianLoading = false;
+                        })
+                        .catch(function (err) {
+                            console.error('请求失败：', err);
+                            _this.$notify.error({
+                                title: '获取生产线失败：' + (err.message || '网络错误')
+                            });
+                            _this.xianLoading = false;
+                        });
+                },
+
+                // 如果相同名称的生产线有不同的id，需要决定使用哪个id
+                getDistinctProductionLines: function(data) {
+                    if (!data || !Array.isArray(data)) {
+                        return [];
+                    }
+    
+                    // 使用对象存储每个名称对应的第一个id
+                    var nameMap = {};
+                    var result = [];
+    
+                    // 遍历数据，提取mingcheng字段并去重
+                    for (var i = 0; i < data.length; i++) {
+                        var item = data[i];
+                        if (item && item.mingcheng) {
+                            // 如果这个名称还没有处理过
+                            if (!nameMap[item.mingcheng]) {
+                                nameMap[item.mingcheng] = {
+                                    id: item.id,
+                                    gongxu: item.gongxu || ''
+                                };
+                            }
+                        }
+                    }
+    
+                    // 构建结果数组
+                    for (var name in nameMap) {
+                        if (nameMap.hasOwnProperty(name)) {
+                            result.push({
+                                id: nameMap[name].id,  // 使用对应的id
+                                name: name, 
+                                mingcheng: name,
+                                gongxu: nameMap[name].gongxu
+                            });
+                        }
+                    }
+    
+                    console.log('处理后的生产线数据：', result);
+                    return result;
+                },
 
                 rowIsInsert: function(row){
                     return row.row.is_insert > 0 ? {
@@ -1238,27 +1330,51 @@
                 },
 
                 getSelect:function(){
-                    this.options =[];
-                    var tempData =this.list;
-                    var hash = {};
-                    tempData = tempData.reduce(function (info, next) {
-                        hash[next.orderId] ? '' : hash[next.orderId] = true && info.push(next);
-                        return info;
-                    }, []);
-                    this.options = tempData;
-
-                    this.module=[];
-                    tempData =this.list;
-                    hash = {};
-                    tempData = tempData.reduce(function (info, next) {
-                        hash[next.moduleInfo.name] ? '' : hash[next.moduleInfo.name] = true && info.push(next);
-                        return info;
-                    }, []);
-                    for(var i=0;i<tempData.length;i++){
-                        this.module.push(tempData[i].moduleInfo)
+                    this.options = [];
+                    var tempData = this.list;
+    
+                    if (!tempData || !Array.isArray(tempData)) {
+                        return;
                     }
-
+    
+                    // 使用对象去重
+                    var hash = {};
+                    var uniqueData = [];
+    
+                    for (var i = 0; i < tempData.length; i++) {
+                        var item = tempData[i];
+                        if (item && item.orderId && !hash[item.orderId]) {
+                            hash[item.orderId] = true;
+                            uniqueData.push(item);
+                        }
+                    }
+    
+                    this.options = uniqueData;
+    
+                    // 如果xianList还没有数据，调用getXianAll
+                    if (!this.xianList || this.xianList.length === 0) {
+                        this.getXianAll();
+                    }
                 },
+
+            // 新增方法：从工作列表中提取生产线数据
+            getDistinctProductionLinesFromWorkList: function(workList) {
+                if (!workList || workList.length === 0) return [];
+    
+                // 这里假设workList中有生产线信息，根据实际情况调整
+                // 如果workList中没有生产线信息，可能需要单独调用getXianAll
+                var distinctNames = [...new Set(workList
+                    .filter(item => item.xianInfo)  // 过滤有生产线信息的项
+                    .map(item => item.xianInfo.name)
+                )];
+    
+                return distinctNames.map(name => {
+                    return {
+                        id: name,
+                        name: name
+                    };
+            });
+            },
 
                 tjnum: function(){
                     var sd=this.startDate
@@ -1268,6 +1384,10 @@
                     }
                     if(ed==null){
                         ed="2200-01-01"
+                    }
+                    if (sd && ed && sd > ed) {
+                        alert("开始日期不能大于结束日期！请重新选择日期。")
+                        return false; 
                     }
 
                     console.log(this.list)
@@ -1325,6 +1445,7 @@
             },
             mounted: function () {
                 this.workList();
+                this.getXianAll();
             }
         })
 
@@ -1476,13 +1597,11 @@
             color: white !important;
             font-weight: 600 !important;
             border: none !important;
-            padding: 14px 10px !important;
             text-align: center;
             font-size: 14px;
         }
 
         .el-table td {
-            padding: 12px 10px !important;
             border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
             text-align: center;
         }
@@ -1620,10 +1739,6 @@
             font-size: 14px;
         }
 
-        /* 日期选择器样式 */
-        .el-date-picker {
-            width: 100% !important;
-        }
 
         .el-date-picker .el-input__inner {
             border-radius: 8px !important;

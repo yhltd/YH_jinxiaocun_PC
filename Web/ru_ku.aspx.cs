@@ -201,16 +201,66 @@ namespace Web
         }
 
 
+        //protected void toExcel(object sender, EventArgs e)
+        //{
+
+        //    List<rukuPrint> OnlineShow_datas1 = new List<rukuPrint>();
+        //    int id = 0;
+        //    for (int i = 1; i < (Convert.ToInt32(Context.Request["hangshu"].ToString())); i++)
+        //    {
+        //        //item.Name = Response.  ;//.ToString();
+        //        JinChuModel jinchu = new JinChuModel();
+                
+        //        if (Request.Form["check" + i] == "true")
+        //        {
+        //            rukuPrint item = new rukuPrint();
+        //            id = Convert.ToInt32(Request.Form["checkbox" + i]);
+        //            List<yh_jinxiaocun_jichuziliao> list = jinchu.getListById(user.gongsi, id);
+        //            item.Cpname = list[0].name;
+        //            item.sp_dm = list[0].sp_dm;
+        //            item.Cpsl = Context.Request["num"+i].ToString();
+        //            item.Cpsj = Context.Request["price" + i].ToString();
+        //            item.Cplb = list[0].lei_bie;
+        //            item.Mxtype = list[0].dan_wei;
+        //            OnlineShow_datas1.Add(item);
+        //        }
+        //    }
+        //    Session["printList"] = OnlineShow_datas1;
+
+        //    Response.Redirect("./RDLC/frm_ReportForm.aspx");
+
+        //}
         protected void toExcel(object sender, EventArgs e)
         {
-
             List<rukuPrint> OnlineShow_datas1 = new List<rukuPrint>();
             int id = 0;
+            bool hasSelected = false;  // 添加标志变量
+
+            // 检查是否有选中的行
+            for (int i = 1; i < (Convert.ToInt32(Context.Request["hangshu"].ToString())); i++)
+            {
+                if (Request.Form["check" + i] == "true")
+                {
+                    hasSelected = true;
+                    break;  // 只要找到一个选中的行就跳出循环
+                }
+            }
+
+            // 如果没有选中的行，显示提示并返回
+            if (!hasSelected)
+            {
+                // 使用ClientScript注册JavaScript代码
+                string script = "<script>alert('请先选择要打印的商品！');</script>";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", script);
+                return;  // 停止执行后续代码
+            }
+
+            // 原来的数据处理逻辑
             for (int i = 1; i < (Convert.ToInt32(Context.Request["hangshu"].ToString())); i++)
             {
                 //item.Name = Response.  ;//.ToString();
                 JinChuModel jinchu = new JinChuModel();
-                
+
                 if (Request.Form["check" + i] == "true")
                 {
                     rukuPrint item = new rukuPrint();
@@ -218,7 +268,7 @@ namespace Web
                     List<yh_jinxiaocun_jichuziliao> list = jinchu.getListById(user.gongsi, id);
                     item.Cpname = list[0].name;
                     item.sp_dm = list[0].sp_dm;
-                    item.Cpsl = Context.Request["num"+i].ToString();
+                    item.Cpsl = Context.Request["num" + i].ToString();
                     item.Cpsj = Context.Request["price" + i].ToString();
                     item.Cplb = list[0].lei_bie;
                     item.Mxtype = list[0].dan_wei;
@@ -228,7 +278,7 @@ namespace Web
             Session["printList"] = OnlineShow_datas1;
 
             Response.Redirect("./RDLC/frm_ReportForm.aspx");
-
         }
+
     }
 }

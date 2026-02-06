@@ -209,11 +209,6 @@
             /*border: 2.5px solid white;*/
         }
 
-          tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
         
         /* 奇数行样式 */
         tr:nth-child(odd) .item_td {

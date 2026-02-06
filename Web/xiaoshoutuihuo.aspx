@@ -747,12 +747,6 @@
             background-color: #98c9d9;
             /*border: 2.5px solid white;*/
         }
-
-          tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
         
         /* 奇数行样式 */
         tr:nth-child(odd) .item_td {
@@ -819,29 +813,30 @@
         }
 
         .ruku_div {
-            width: 50%;
-            height: 40%;
-            position: fixed;
-            top: 10%;
-            left: 25%;
-            background-color: white;
-            z-index: 20;
-            box-shadow: 10px 10px 15px;
-            border-radius:2px
+                width: 25%;
+    height: 45%;
+    position: fixed;
+    top: 10%;
+    left: 30%;
+    background-color: white;
+    z-index: 20;
+    box-shadow: 10px 10px 15px;
+    border-radius: 2px;
             
         }
         .ruku_info_div {
             width: 91%;
-            height: 30%;
+            height: 25%;
             display: flex;
             align-items: center;
             margin: auto;
         }
         .order_id_input {
             border: 1px solid #F0F0F0;
-            width: 240px;
+            width: 200px;
             height: 30px;
             border-radius: 2px;
+            margin-left: 37px;
         }
         .gonghuo_select {
             margin-left: 40px;
@@ -1092,11 +1087,15 @@
         </div>
     </form>
     <div class="ruku_div" style="display:none">
-        <div class="ruku_info_div">
+        <div style="margin-bottom: 10px;">
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">退货单号</label>
             <input class="order_id_input" placeholder="退货单号" value=""/>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">退货仓库</label>
             <select class="gonghuo_select" onchange="getGongguo(this.value)"></select>
         </div>
-        <div style="height: 30%;margin-bottom: 10px;">
+        <div style="margin-bottom: 10px;">
             <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">退货仓库</label>
             <select id="ruku_warehouse" style="margin-left: 40px;width: 200px;height: 30px;border: none;border: 1px solid #F0F0F0;">
             </select>

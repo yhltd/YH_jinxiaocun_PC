@@ -23,6 +23,8 @@
         <EntityTypeShape EntityType="schedulingModel.work_detail2" Width="1.5" PointX="7.7557580544407285" PointY="25.77181395598306" />
         <EntityTypeShape EntityType="schedulingModel.user_info" Width="1.5" PointX="0.75" PointY="2.75" />
         <EntityTypeShape EntityType="schedulingModel.work_detail1" Width="1.5" PointX="6.8407087022628215" PointY="17.689420753014005" />
+        <EntityTypeShape EntityType="schedulingModel.shengchanxian" Width="1.5" PointX="1.5468614052733694" PointY="14.167208380143721" />
+        <EntityTypeShape EntityType="schedulingModel.order_gongxu" Width="1.5" PointX="11.630153557113443" PointY="15.683139137776168" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

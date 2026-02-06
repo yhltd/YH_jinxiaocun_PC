@@ -12,6 +12,10 @@
 var taxRates = [];
 var taxThresholds = [];
 
+var currencyData = [];  // 新增：存储外币配置数据
+var currentCurrency = 'RMB';  // 新增：当前选择的币种
+var currentExchangeRate = 1;  // 新增：当前选择的汇率
+
 // 计算弹窗相关变量
 var currentCalculationType = 'receivable';
 
@@ -51,6 +55,192 @@ function getYSYFConfig(projectName, type) {
     });
 
     return sum;
+}
+
+function WaiBi() {
+    $.ajax({
+        type: 'Post',
+        url: "web_service/waibipeizhi.asmx/getList",
+        beforeSend: function () {
+            $.messager.progress({
+                title: '提示',
+                msg: '正在加载外币配置',
+                text: ''
+            });
+        },
+        complete: function () {
+            $.messager.progress('close');
+        },
+        data: {
+            financePageJson: JSON.stringify(page),
+            huilv: "",  // 修改：传汇率参数
+            bizhong: ""  // 修改：传币种参数
+        },
+        dataType: "xml",
+        success: function (data) {
+            var result = getJson(data);
+            if (result.code == 200) {
+                // 保存外币数据
+                currencyData = result.data.pageList || [];
+                console.log("外币数据加载成功:", currencyData);
+
+                // 初始化币种下拉选项
+                initCurrencyCombobox();
+            }
+        },
+        error: function (err) {
+            alert("加载外币配置错误！")
+            console.log(err)
+        }
+    })
+}
+
+// 初始化币种下拉框
+function initCurrencyCombobox() {
+    if (!currencyData || currencyData.length === 0) {
+        console.warn('没有外币配置数据');
+        return;
+    }
+
+    // 处理币种数据，确保包含RMB
+    var currencyOptions = [];
+    var hasRMB = false;
+
+    currencyData.forEach(function (item) {
+        if (item.bizhong === 'RMB') {
+            hasRMB = true;
+        }
+        currencyOptions.push({
+            value: item.bizhong,
+            text: item.bizhong,
+            rate: item.huilv
+        });
+    });
+
+    // 如果没有RMB，添加默认RMB选项
+    if (!hasRMB) {
+        currencyOptions.unshift({
+            value: 'RMB',
+            text: 'RMB',
+            rate: '1'
+        });
+    }
+
+    // 初始化新增窗口币种下拉框
+    $('#add-currency').combobox({
+        valueField: 'value',
+        textField: 'text',
+        data: currencyOptions,
+        panelHeight: 'auto',
+        editable: false,
+        onSelect: function (record) {
+            currentCurrency = record.value;
+            currentExchangeRate = parseFloat(record.rate) || 1;
+            console.log('选择的币种:', currentCurrency, '汇率:', currentExchangeRate);
+
+            // 应用汇率转换到当前表单
+            applyExchangeRate('add');
+        }
+    }).combobox('setValue', 'RMB');
+
+    // 初始化修改窗口币种下拉框
+    $('#upd-currency').combobox({
+        valueField: 'value',
+        textField: 'text',
+        data: currencyOptions,
+        panelHeight: 'auto',
+        editable: false,
+        onSelect: function (record) {
+            currentCurrency = record.value;
+            currentExchangeRate = parseFloat(record.rate) || 1;
+            console.log('选择的币种:', currentCurrency, '汇率:', currentExchangeRate);
+
+            // 应用汇率转换到当前表单
+            applyExchangeRate('upd');
+        }
+    }).combobox('setValue', 'RMB');
+}
+
+// 应用汇率转换
+function applyExchangeRate(formType) {
+    if (currentExchangeRate === 1) {
+        console.log('汇率为1，无需转换');
+        return;
+    }
+
+    var prefix = formType === 'add' ? '#add-' : '#upd-';
+
+    // 需要转换的金额字段
+    var amountFields = ['receivable', 'receipts', 'cope', 'payment', 'yijiaoshuijine', 'nashuijine'];
+
+    amountFields.forEach(function (field) {
+        var selector = prefix + field;
+        var $field = $(selector);
+
+        if ($field.length > 0) {
+            try {
+                var currentValue = $field.val();
+                if (currentValue && !isNaN(currentValue) && currentValue !== '') {
+                    var originalValue = parseFloat(currentValue);
+                    var convertedValue = originalValue * currentExchangeRate;
+
+                    // 设置转换后的值
+                    if ($field.hasClass('easyui-numberbox') || $field.data('numberbox')) {
+                        $field.numberbox('setValue', convertedValue.toFixed(2));
+                    } else {
+                        $field.val(convertedValue.toFixed(2));
+                    }
+
+                    console.log(field + ' 转换: ' + originalValue + ' × ' + currentExchangeRate + ' = ' + convertedValue.toFixed(2));
+                }
+            } catch (e) {
+                console.warn('转换字段失败:', field, e);
+            }
+        }
+    });
+
+    // 显示转换提示
+    $.messager.show({
+        title: '汇率转换',
+        msg: '已按汇率 ' + currentExchangeRate + ' (' + currentCurrency + ') 转换金额字段',
+        timeout: 2000,
+        showType: 'slide'
+    });
+}
+
+// 反转汇率（用于编辑时显示原始值）
+function reverseExchangeRate(formType) {
+    if (currentExchangeRate === 1) {
+        return;
+    }
+
+    var prefix = formType === 'add' ? '#add-' : '#upd-';
+
+    var amountFields = ['receivable', 'receipts', 'cope', 'payment', 'yijiaoshuijine', 'nashuijine'];
+
+    amountFields.forEach(function (field) {
+        var selector = prefix + field;
+        var $field = $(selector);
+
+        if ($field.length > 0) {
+            try {
+                var currentValue = $field.val();
+                if (currentValue && !isNaN(currentValue) && currentValue !== '') {
+                    var convertedValue = parseFloat(currentValue);
+                    var originalValue = convertedValue / currentExchangeRate;
+
+                    // 设置原始值
+                    if ($field.hasClass('easyui-numberbox') || $field.data('numberbox')) {
+                        $field.numberbox('setValue', originalValue.toFixed(2));
+                    } else {
+                        $field.val(originalValue.toFixed(2));
+                    }
+                }
+            } catch (e) {
+                console.warn('反转汇率失败:', field, e);
+            }
+        }
+    });
 }
 
 // 加载应收应付配置
@@ -567,6 +757,9 @@ $(function () {
     // 加载应收应付配置
     loadYSYFConfig();
 
+    // 加载外币配置
+    WaiBi()
+
     // 添加调试按钮（临时使用）
     setTimeout(function () {
         // 在控制台添加调试命令
@@ -612,6 +805,22 @@ function selectBtn() {
 function getList() {
     var start_date = $("#start_date").datebox('getText');
     var stop_date = $("#stop_date").datebox('getText');
+
+    if (start_date && stop_date) {
+        // 将日期字符串转换为Date对象进行比较
+        var start = new Date(start_date.replace(/-/g, '/'));
+        var stop = new Date(stop_date.replace(/-/g, '/'));
+
+        // 检查开始时间是否大于结束时间
+        if (start > stop) {
+            $.messager.alert('Warning', '开始时间不能大于结束时间！');
+            return false; // 停止执行
+        }
+    } else if (start_date || stop_date) {
+        // 如果只选择了一个日期
+        $.messager.alert('Warning', '请同时选择开始时间和结束时间！');
+        return false;
+    }
     $.ajax({
         type: 'Post',
         url: "web_service/simpleData.asmx/getSimpleDataList",
@@ -769,11 +978,56 @@ function setTable(data) {
     })
 }
 
+//function update(rowItem) {
+//    $('#upd-simpleData-window').window({
+//        title: "修改",
+//        width: 600,
+//        height: 600,
+//        top: 20,
+//        collapsible: false,
+//        minimizable: false,
+//        maximizable: false,
+//        closable: true,
+//        draggable: true,
+//        resizable: false,
+//        shadow: false,
+//        modal: true,
+//        onBeforeOpen: function () {
+//            $("#upd-accounting").combobox({
+//                valueField: 'accounting',
+//                textField: 'accounting',
+//                width: 318,
+//                height: 38
+//            });
+
+//            $("#upd_kehu").combobox({
+//                valueField: 'kehu',
+//                textField: 'kehu',
+//                width: 318,
+//                height: 38
+//            });
+
+//            var insert_date = formatDate(rowItem.insert_date, 'MM/dd/yyyy HH:mm:ss')
+//            $('#upd_insert_date').datetimebox({
+//                panelWidth: 318,
+//                panelHeight: 280,
+//                width: 318,
+//                height: 38,
+//                value: insert_date
+//            });
+
+//            getAccounting('upd-accounting');
+//            getKehuPeizhi('upd_kehu');
+//        }
+//    });
+
+//    $('#upd-simpleData-form').form('load', rowItem);
+//}
 function update(rowItem) {
     $('#upd-simpleData-window').window({
         title: "修改",
-        width: 600,
-        height: 600,
+        width: 650,  // 增加宽度
+        height: 650,
         top: 20,
         collapsible: false,
         minimizable: false,
@@ -798,6 +1052,16 @@ function update(rowItem) {
                 height: 38
             });
 
+            // 新增币种选择下拉框
+            $("#upd-currency").combobox({
+                valueField: 'value',
+                textField: 'text',
+                width: 318,
+                height: 38,
+                panelHeight: 'auto',
+                editable: false
+            });
+
             var insert_date = formatDate(rowItem.insert_date, 'MM/dd/yyyy HH:mm:ss')
             $('#upd_insert_date').datetimebox({
                 panelWidth: 318,
@@ -809,17 +1073,94 @@ function update(rowItem) {
 
             getAccounting('upd-accounting');
             getKehuPeizhi('upd_kehu');
+
+            // 初始化币种下拉框
+            initCurrencyCombobox();
+
+            // 如果数据中有币种信息，设置币种下拉框
+            if (rowItem.currency) {
+                $('#upd-currency').combobox('setValue', rowItem.currency);
+                currentCurrency = rowItem.currency;
+
+                // 查找对应的汇率
+                var currencyItem = currencyData.find(function (item) {
+                    return item.bizhong === rowItem.currency;
+                });
+
+                if (currencyItem) {
+                    currentExchangeRate = parseFloat(currencyItem.huilv) || 1;
+                    // 如果币种不是RMB，需要反转汇率显示原始值
+                    if (currentExchangeRate !== 1) {
+                        reverseExchangeRate('upd');
+                    }
+                }
+            }
         }
     });
 
     $('#upd-simpleData-form').form('load', rowItem);
 }
 
+//function toUpd() {
+//    var updForm = $('#upd-simpleData-form').serialize();
+//    var params = JSON.parse(formToJson(decodeURIComponent(updForm, true)))
+//    if (checkForm(params)) {
+//        var item = $('#data-table').datagrid("getSelections")[0];
+//        item.accounting = params.accounting;
+//        item.project = params.project;
+//        item.receivable = params.receivable;
+//        item.receipts = params.receipts;
+//        item.cope = params.cope;
+//        item.payment = params.payment;
+//        item.insert_date = params.insert_date;
+//        item.kehu = params.kehu;
+//        item.zhaiyao = params.zhaiyao;
+//        item.yijiaoshuijine = params.yijiaoshuijine;  // 使用正确的字段名
+//        item.nashuijine = params.nashuijine;
+
+//        $.ajax({
+//            type: 'Post',
+//            url: "web_service/simpleData.asmx/updSimpleData",
+//            data: {
+//                newSimpleData: JSON.stringify(item)
+//            },
+//            dataType: "xml",
+//            success: function (data) {
+//                var result = getJson(data);
+//                alert(result.msg);
+//                if (result.code == 200) {
+//                    $('#upd-simpleData-window').window('close');
+//                    getList();
+//                }
+//            },
+//            error: function (err) {
+//                alert("错误！")
+//                console.log(err)
+//            }
+//        })
+//    }
+//}
 function toUpd() {
     var updForm = $('#upd-simpleData-form').serialize();
     var params = JSON.parse(formToJson(decodeURIComponent(updForm, true)))
     if (checkForm(params)) {
         var item = $('#data-table').datagrid("getSelections")[0];
+
+        // 获取当前选择的币种
+        var selectedCurrency = $('#upd-currency').combobox('getValue') || 'RMB';
+
+        // 如果选择了非RMB币种，需要将金额转回RMB存储
+        if (currentExchangeRate !== 1 && currentExchangeRate > 0) {
+            // 转换回RMB存储
+            var amountFields = ['receivable', 'receipts', 'cope', 'payment', 'yijiaoshuijine', 'nashuijine'];
+            amountFields.forEach(function (field) {
+                if (params[field]) {
+                    var convertedValue = parseFloat(params[field]);
+                    params[field] = (convertedValue / currentExchangeRate).toFixed(2);
+                }
+            });
+        }
+
         item.accounting = params.accounting;
         item.project = params.project;
         item.receivable = params.receivable;
@@ -829,8 +1170,10 @@ function toUpd() {
         item.insert_date = params.insert_date;
         item.kehu = params.kehu;
         item.zhaiyao = params.zhaiyao;
-        item.yijiaoshuijine = params.yijiaoshuijine;  // 使用正确的字段名
+        item.yijiaoshuijine = params.yijiaoshuijine;
         item.nashuijine = params.nashuijine;
+        item.currency = selectedCurrency;  // 新增：保存币种
+        item.exchange_rate = currentExchangeRate;  // 新增：保存汇率
 
         $.ajax({
             type: 'Post',
@@ -855,11 +1198,59 @@ function toUpd() {
     }
 }
 
+//function add() {
+//    $('#add-simpleData-window').window({
+//        title: "新增",
+//        width: 600,
+//        height: 600,
+//        top: 20,
+//        collapsible: false,
+//        minimizable: false,
+//        maximizable: false,
+//        closable: true,
+//        draggable: true,
+//        resizable: false,
+//        shadow: false,
+//        modal: true,
+//        onBeforeOpen: function () {
+//            $("#add-accounting").combobox({
+//                valueField: 'accounting',
+//                textField: 'accounting',
+//                width: 318,
+//                height: 38
+//            });
+
+//            $("#add_kehu").combobox({
+//                valueField: 'kehu',
+//                textField: 'kehu',
+//                width: 318,
+//                height: 38
+//            });
+
+//            $('#add_insert_date').datetimebox({
+//                okText: '确定',
+//                closeText: '关闭',
+//                currentText: '当前时间',
+//                panelWidth: 318,
+//                panelHeight: 280,
+//                width: 318,
+//                height: 38
+//            });
+
+//            getAccounting('add-accounting');
+//            getKehuPeizhi('add_kehu');
+//        },
+//        onClose: function () {
+//            toReset('add-simpleData-form');
+//        }
+//    });
+//}
+
 function add() {
     $('#add-simpleData-window').window({
         title: "新增",
-        width: 600,
-        height: 600,
+        width: 650,  // 增加宽度以容纳币种下拉框
+        height: 650,
         top: 20,
         collapsible: false,
         minimizable: false,
@@ -884,6 +1275,16 @@ function add() {
                 height: 38
             });
 
+            // 新增币种选择下拉框
+            $("#add-currency").combobox({
+                valueField: 'value',
+                textField: 'text',
+                width: 318,
+                height: 38,
+                panelHeight: 'auto',
+                editable: false
+            });
+
             $('#add_insert_date').datetimebox({
                 okText: '确定',
                 closeText: '关闭',
@@ -896,18 +1297,80 @@ function add() {
 
             getAccounting('add-accounting');
             getKehuPeizhi('add_kehu');
+
+            // 初始化币种下拉框
+            initCurrencyCombobox();
         },
         onClose: function () {
             toReset('add-simpleData-form');
+            // 重置币种为RMB
+            $('#add-currency').combobox('setValue', 'RMB');
+            currentCurrency = 'RMB';
+            currentExchangeRate = 1;
         }
     });
 }
 
+//function toAdd() {
+//    var addForm = $('#add-simpleData-form').serialize();
+//    var params = JSON.parse(formToJson(decodeURIComponent(addForm, true)))
+//    if (checkForm(params)) {
+//        // 确保字段名正确映射到后端
+//        var backendParams = {
+//            insert_date: params.insert_date,
+//            accounting: params.accounting,
+//            project: params.project,
+//            kehu: params.kehu,
+//            receivable: params.receivable,
+//            receipts: params.receipts,
+//            cope: params.cope,
+//            payment: params.payment,
+//            yijiaoshuijine: params.yijiaoshuijine,  // 正确的字段名
+//            nashuijine: params.nashuijine,
+//            zhaiyao: params.zhaiyao
+//        };
+
+//        $.ajax({
+//            type: 'Post',
+//            url: "web_service/simpleData.asmx/addSimpleData",
+//            data: {
+//                simpleDataJson: JSON.stringify(backendParams)
+//            },
+//            dataType: "xml",
+//            success: function (data) {
+//                var result = getJson(data);
+//                alert(result.msg);
+//                if (result.code == 200) {
+//                    $('#add-simpleData-window').window('close');
+//                    getList();
+//                }
+//            },
+//            error: function (err) {
+//                alert("错误！")
+//                console.log(err)
+//            }
+//        })
+//    }
+//}
 function toAdd() {
     var addForm = $('#add-simpleData-form').serialize();
     var params = JSON.parse(formToJson(decodeURIComponent(addForm, true)))
     if (checkForm(params)) {
-        // 确保字段名正确映射到后端
+        // 添加币种和汇率信息
+        var selectedCurrency = $('#add-currency').combobox('getValue') || 'RMB';
+
+        // 如果选择了非RMB币种，需要将金额转回RMB存储
+        if (currentExchangeRate !== 1 && currentExchangeRate > 0) {
+            // 转换回RMB存储
+            var amountFields = ['receivable', 'receipts', 'cope', 'payment', 'yijiaoshuijine', 'nashuijine'];
+            amountFields.forEach(function (field) {
+                if (params[field]) {
+                    var convertedValue = parseFloat(params[field]);
+                    params[field] = (convertedValue / currentExchangeRate).toFixed(2);
+                }
+            });
+        }
+
         var backendParams = {
             insert_date: params.insert_date,
             accounting: params.accounting,
@@ -917,9 +1380,11 @@ function toAdd() {
             receipts: params.receipts,
             cope: params.cope,
             payment: params.payment,
-            yijiaoshuijine: params.yijiaoshuijine,  // 正确的字段名
+            yijiaoshuijine: params.yijiaoshuijine,
             nashuijine: params.nashuijine,
-            zhaiyao: params.zhaiyao
+            zhaiyao: params.zhaiyao,
+            currency: selectedCurrency,  // 新增：保存币种
+            exchange_rate: currentExchangeRate  // 新增：保存汇率
         };
 
         $.ajax({
@@ -944,6 +1409,7 @@ function toAdd() {
         })
     }
 }
+
 
 function del(rows) {
     var ids = []

@@ -92,23 +92,28 @@
                         <el-menu-item index="模块单位" data-src="module.html" title="在模块类别中点击后面添加按钮可直接添加模块。&#10;在模块管理中可对模块增删改查，也可以将数据导出excel表格。">模块单位</el-menu-item>
                         <el-menu-item index="工作时间及休息日" data-src="time.html" title="此页面为配置每日工作时间，点击左侧箭头可对时间进行修改。&#10;点击右侧休息日按钮可以添加休息日。">工作时间及休息日</el-menu-item>
                         <el-menu-item index="BOM" data-src="bom.html"  title="此页面为物料配置，&#10;可以在此页面对物料进行增删改查，&#10;配置好后可以在后面的模块使用。">BOM</el-menu-item>
+                        <el-menu-item index="生产线" data-src="shengchanxian.html"  title="此页面为生产线配置，&#10;可以在此页面对生产线进行增删改查，&#10;配置好后可以在后面的模块使用。">生产线</el-menu-item>
                     </el-submenu>
                     <el-menu-item index="订单" data-src="order.html" title="订单页面中可以对订单进行增删改查，&#10添加订单时可以选择前面配置好的物料，&#10;此页面也可将数据导出到excel。">
                         <i class="el-icon-s-order"></i>
                         <span slot="title">订单</span>
                     </el-menu-item>
-                    <el-menu-item index="排产" data-src="work.html" title="排产页面可以选择订单根据之前配置的工作时间进行排产，&#10点击生产计划按钮可以选择日期查看当天各个订单的生产数量，&#10;点击统计按钮可选择日期来查看一段时间内的生产数量，&#10;点击图标按钮可根据日期、订单和模块生成图表。总量减去每个模块当天做的个数剩下的按天数依次往下排。">
+<!--                    <el-menu-item index="排产" data-src="work.html" title="排产页面可以选择订单根据之前配置的工作时间进行排产，&#10点击生产计划按钮可以选择日期查看当天各个订单的生产数量，&#10;点击统计按钮可选择日期来查看一段时间内的生产数量，&#10;点击图标按钮可根据日期、订单和模块生成图表。总量减去每个模块当天做的个数剩下的按天数依次往下排。">
+                        <i class="el-icon-date"></i>
+                        <span slot="title">排产</span>
+                    </el-menu-item>-->
+                    <el-menu-item index="排产" data-src="paichan.html" title="排产页面可以选择订单根据之前配置的工作时间进行排产，&#10点击生产计划按钮可以选择日期查看当天各个订单的生产数量，&#10;点击统计按钮可选择日期来查看一段时间内的生产数量，&#10;点击图标按钮可根据日期、订单和模块生成图表。总量减去每个模块当天做的个数剩下的按天数依次往下排。">
                         <i class="el-icon-date"></i>
                         <span slot="title">排产</span>
                     </el-menu-item>
-                    <el-menu-item index="排产核对" data-src="check.html" title="排产核对页面只作为记录表增删改查，&#10不会影响其他页面的数据。">
+<!--                    <el-menu-item index="排产核对" data-src="check.html" title="排产核对页面只作为记录表增删改查，&#10不会影响其他页面的数据。">
                         <i class="el-icon-date"></i>
                         <span slot="title">排产核对</span>
                     </el-menu-item>
                     <el-menu-item index="汇总" data-src="summary.html" title="汇总页面可以根据模块类别和订单号查询模块对应的效率和生产数量。根据模块名称判断到排产页面匹配到当前数据后计算和。">
                         <i class="el-icon-document"></i>
                         <span slot="title">汇总</span>
-                    </el-menu-item>
+                    </el-menu-item>-->
                     <el-menu-item index="部门" data-src="department_new.html" title="部门页面中可以对部门增删改查，&#10也可以对每个部门的每个页面进行权限编辑。">
                         <i class="el-icon-office-building"></i>
                         <span slot="title">部门</span>
@@ -714,7 +719,7 @@
         }
         .aside-open
         {
-            width: 250px;
+            width: 170px;
         }
         .aside-close
         {

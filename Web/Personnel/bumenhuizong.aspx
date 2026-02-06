@@ -10,6 +10,23 @@
 </head>
     
 <body  style="    margin: 0;">
+    <script type="text/javascript">
+        // 页面加载时从 localStorage 获取公司名并设置到隐藏字段
+        window.onload = function () {
+            // 从 localStorage 获取 savedCompany
+            var savedCompany = localStorage.getItem('savedCompany');
+
+            if (savedCompany) {
+                // 去掉 _hr 后缀
+                var companyName = savedCompany.split('_')[0];
+                // 将公司名设置到隐藏字段
+                document.getElementById('<%= hiddenCompanyName.ClientID %>').value = companyName;
+
+                // 可选：如果需要立即使用，可以触发服务器端事件
+                // __doPostBack('<%= Button1.ClientID %>', '');
+            }
+        }
+    </script>
         <style>
         * {
             margin: 0;
@@ -326,6 +343,7 @@
     </style>
     
     <form id="form1" runat="server">
+        <asp:HiddenField ID="hiddenCompanyName" runat="server" />
     <div>
         <div class="ti">
             <h1 >部门汇总</h1>
@@ -475,126 +493,129 @@
                 <asp:Parameter Name="id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString24 %>" DeleteCommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" SelectCommand="SELECT C,BD,count(DISTINCT B) AS ID,SUM(CAST(G AS float)) AS G,SUM(CAST(H AS float)) AS H,SUM(CAST(I AS float)) AS I,SUM(CAST(J AS float)) AS J,SUM(CAST(K AS float)) AS K,SUM(CAST(L AS float)) AS  L,SUM(CAST(M AS float)) AS M,SUM(CAST(N AS float)) AS N,SUM(CAST(O AS float)) AS O,SUM(CAST(P AS float)) AS P,SUM(CAST(Q AS float)) AS Q,SUM(CAST(R AS float)) AS R,SUM(CAST(S AS float)) AS S,SUM(CAST(T AS float)) AS T,SUM(CAST(U AS float)) AS U,SUM(CAST(V AS float)) AS V,SUM(CAST(W AS float)) AS W,SUM(CAST(X AS float)) AS X,SUM(CAST(Y AS float)) AS Y,SUM(CAST(Z AS float)) AS Z,SUM(CAST(AA AS float)) AS AA,SUM(CAST(AB AS float)) AS AB,SUM(CAST(AC AS float)) AS AC,SUM(CAST(AD AS float)) AS AD,SUM(CAST(AE AS float)) AS AE,SUM(CAST(AF AS float)) AS AF,SUM(CAST(AG AS float)) AS AG,SUM(CAST(AH AS float)) AS AH,SUM(CAST(AI AS float)) AS AI,SUM(CAST(AJ AS float)) AS AJ,SUM(CAST(AK AS float)) AS AK,SUM(CAST(AL AS float)) AS AL,SUM(CAST(AM AS float)) AS AM,SUM(CAST(AN AS float)) AS AN,SUM(CAST(AO AS float)) AS AO,SUM(CAST(AP AS float)) AS AP,SUM(CAST(AQ AS float)) AS AQ,SUM(CAST(AR AS float)) AS AR,SUM(CAST(ASA AS float)) AS ASA,SUM(CAST(ATA AS float)) AS ATA,SUM(CAST(AU AS float)) AS AU,SUM(CAST(AV AS float)) AS AV,SUM(CAST(AW AS float)) AS AW,SUM(CAST(AX AS float)) AS AX,SUM(CAST(AY AS float)) AS AY FROM gongzi_gongzimingxi WHERE [BD] like '%上海%'  GROUP BY c,bd" UpdateCommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L, [M] = @M, [N] = @N, [O] = @O, [P] = @P, [Q] = @Q, [R] = @R, [S] = @S, [T] = @T, [U] = @U, [V] = @V, [W] = @W, [X] = @X, [Y] = @Y, [Z] = @Z, [AA] = @AA, [AB] = @AB, [AC] = @AC, [AD] = @AD, [AE] = @AE, [AF] = @AF, [AG] = @AG, [AH] = @AH, [AI] = @AI, [AJ] = @AJ, [AK] = @AK, [AL] = @AL, [AM] = @AM, [AN] = @AN, [AO] = @AO, [AP] = @AP, [AQ] = @AQ, [AR] = @AR, [ASA] = @ASA, [ATA] = @ATA, [AU] = @AU, [AV] = @AV, [AW] = @AW, [AX] = @AX, [AY] = @AY, [AZ] = @AZ, [BA] = @BA, [BB] = @BB, [BC] = @BC, [BD] = @BD WHERE [id] = @id">
-            <DeleteParameters>
-                <asp:Parameter Name="id" Type="Int32" />
-            </DeleteParameters>
-            <InsertParameters>
-                <asp:Parameter Name="B" Type="String" />
-                <asp:Parameter Name="C" Type="String" />
-                <asp:Parameter Name="D" Type="String" />
-                <asp:Parameter Name="E" Type="String" />
-                <asp:Parameter Name="F" Type="String" />
-                <asp:Parameter Name="G" Type="String" />
-                <asp:Parameter Name="H" Type="String" />
-                <asp:Parameter Name="I" Type="String" />
-                <asp:Parameter Name="J" Type="String" />
-                <asp:Parameter Name="K" Type="String" />
-                <asp:Parameter Name="L" Type="String" />
-                <asp:Parameter Name="M" Type="String" />
-                <asp:Parameter Name="N" Type="String" />
-                <asp:Parameter Name="O" Type="String" />
-                <asp:Parameter Name="P" Type="String" />
-                <asp:Parameter Name="Q" Type="String" />
-                <asp:Parameter Name="R" Type="String" />
-                <asp:Parameter Name="S" Type="String" />
-                <asp:Parameter Name="T" Type="String" />
-                <asp:Parameter Name="U" Type="String" />
-                <asp:Parameter Name="V" Type="String" />
-                <asp:Parameter Name="W" Type="String" />
-                <asp:Parameter Name="X" Type="String" />
-                <asp:Parameter Name="Y" Type="String" />
-                <asp:Parameter Name="Z" Type="String" />
-                <asp:Parameter Name="AA" Type="String" />
-                <asp:Parameter Name="AB" Type="String" />
-                <asp:Parameter Name="AC" Type="String" />
-                <asp:Parameter Name="AD" Type="String" />
-                <asp:Parameter Name="AE" Type="String" />
-                <asp:Parameter Name="AF" Type="String" />
-                <asp:Parameter Name="AG" Type="String" />
-                <asp:Parameter Name="AH" Type="String" />
-                <asp:Parameter Name="AI" Type="String" />
-                <asp:Parameter Name="AJ" Type="String" />
-                <asp:Parameter Name="AK" Type="String" />
-                <asp:Parameter Name="AL" Type="String" />
-                <asp:Parameter Name="AM" Type="String" />
-                <asp:Parameter Name="AN" Type="String" />
-                <asp:Parameter Name="AO" Type="String" />
-                <asp:Parameter Name="AP" Type="String" />
-                <asp:Parameter Name="AQ" Type="String" />
-                <asp:Parameter Name="AR" Type="String" />
-                <asp:Parameter Name="ASA" Type="String" />
-                <asp:Parameter Name="ATA" Type="String" />
-                <asp:Parameter Name="AU" Type="String" />
-                <asp:Parameter Name="AV" Type="String" />
-                <asp:Parameter Name="AW" Type="String" />
-                <asp:Parameter Name="AX" Type="String" />
-                <asp:Parameter Name="AY" Type="String" />
-                <asp:Parameter Name="AZ" Type="String" />
-                <asp:Parameter Name="BA" Type="String" />
-                <asp:Parameter Name="BB" Type="String" />
-                <asp:Parameter Name="BC" Type="String" />
-                <asp:Parameter Name="BD" Type="String" />
-            </InsertParameters>
-            <UpdateParameters>
-                <asp:Parameter Name="B" Type="String" />
-                <asp:Parameter Name="C" Type="String" />
-                <asp:Parameter Name="D" Type="String" />
-                <asp:Parameter Name="E" Type="String" />
-                <asp:Parameter Name="F" Type="String" />
-                <asp:Parameter Name="G" Type="String" />
-                <asp:Parameter Name="H" Type="String" />
-                <asp:Parameter Name="I" Type="String" />
-                <asp:Parameter Name="J" Type="String" />
-                <asp:Parameter Name="K" Type="String" />
-                <asp:Parameter Name="L" Type="String" />
-                <asp:Parameter Name="M" Type="String" />
-                <asp:Parameter Name="N" Type="String" />
-                <asp:Parameter Name="O" Type="String" />
-                <asp:Parameter Name="P" Type="String" />
-                <asp:Parameter Name="Q" Type="String" />
-                <asp:Parameter Name="R" Type="String" />
-                <asp:Parameter Name="S" Type="String" />
-                <asp:Parameter Name="T" Type="String" />
-                <asp:Parameter Name="U" Type="String" />
-                <asp:Parameter Name="V" Type="String" />
-                <asp:Parameter Name="W" Type="String" />
-                <asp:Parameter Name="X" Type="String" />
-                <asp:Parameter Name="Y" Type="String" />
-                <asp:Parameter Name="Z" Type="String" />
-                <asp:Parameter Name="AA" Type="String" />
-                <asp:Parameter Name="AB" Type="String" />
-                <asp:Parameter Name="AC" Type="String" />
-                <asp:Parameter Name="AD" Type="String" />
-                <asp:Parameter Name="AE" Type="String" />
-                <asp:Parameter Name="AF" Type="String" />
-                <asp:Parameter Name="AG" Type="String" />
-                <asp:Parameter Name="AH" Type="String" />
-                <asp:Parameter Name="AI" Type="String" />
-                <asp:Parameter Name="AJ" Type="String" />
-                <asp:Parameter Name="AK" Type="String" />
-                <asp:Parameter Name="AL" Type="String" />
-                <asp:Parameter Name="AM" Type="String" />
-                <asp:Parameter Name="AN" Type="String" />
-                <asp:Parameter Name="AO" Type="String" />
-                <asp:Parameter Name="AP" Type="String" />
-                <asp:Parameter Name="AQ" Type="String" />
-                <asp:Parameter Name="AR" Type="String" />
-                <asp:Parameter Name="ASA" Type="String" />
-                <asp:Parameter Name="ATA" Type="String" />
-                <asp:Parameter Name="AU" Type="String" />
-                <asp:Parameter Name="AV" Type="String" />
-                <asp:Parameter Name="AW" Type="String" />
-                <asp:Parameter Name="AX" Type="String" />
-                <asp:Parameter Name="AY" Type="String" />
-                <asp:Parameter Name="AZ" Type="String" />
-                <asp:Parameter Name="BA" Type="String" />
-                <asp:Parameter Name="BB" Type="String" />
-                <asp:Parameter Name="BC" Type="String" />
-                <asp:Parameter Name="BD" Type="String" />
-                <asp:Parameter Name="id" Type="Int32" />
-            </UpdateParameters>
-        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:yaoConnectionString24 %>" DeleteCommand="DELETE FROM [gongzi_gongzimingxi] WHERE [id] = @id" InsertCommand="INSERT INTO [gongzi_gongzimingxi] ([B], [C], [D], [E], [F], [G], [H], [I], [J], [K], [L], [M], [N], [O], [P], [Q], [R], [S], [T], [U], [V], [W], [X], [Y], [Z], [AA], [AB], [AC], [AD], [AE], [AF], [AG], [AH], [AI], [AJ], [AK], [AL], [AM], [AN], [AO], [AP], [AQ], [AR], [ASA], [ATA], [AU], [AV], [AW], [AX], [AY], [AZ], [BA], [BB], [BC], [BD]) VALUES (@B, @C, @D, @E, @F, @G, @H, @I, @J, @K, @L, @M, @N, @O, @P, @Q, @R, @S, @T, @U, @V, @W, @X, @Y, @Z, @AA, @AB, @AC, @AD, @AE, @AF, @AG, @AH, @AI, @AJ, @AK, @AL, @AM, @AN, @AO, @AP, @AQ, @AR, @ASA, @ATA, @AU, @AV, @AW, @AX, @AY, @AZ, @BA, @BB, @BC, @BD)" SelectCommand="SELECT C,BD,count(DISTINCT B) AS ID,SUM(CAST(G AS float)) AS G,SUM(CAST(H AS float)) AS H,SUM(CAST(I AS float)) AS I,SUM(CAST(J AS float)) AS J,SUM(CAST(K AS float)) AS K,SUM(CAST(L AS float)) AS  L,SUM(CAST(M AS float)) AS M,SUM(CAST(N AS float)) AS N,SUM(CAST(O AS float)) AS O,SUM(CAST(P AS float)) AS P,SUM(CAST(Q AS float)) AS Q,SUM(CAST(R AS float)) AS R,SUM(CAST(S AS float)) AS S,SUM(CAST(T AS float)) AS T,SUM(CAST(U AS float)) AS U,SUM(CAST(V AS float)) AS V,SUM(CAST(W AS float)) AS W,SUM(CAST(X AS float)) AS X,SUM(CAST(Y AS float)) AS Y,SUM(CAST(Z AS float)) AS Z,SUM(CAST(AA AS float)) AS AA,SUM(CAST(AB AS float)) AS AB,SUM(CAST(AC AS float)) AS AC,SUM(CAST(AD AS float)) AS AD,SUM(CAST(AE AS float)) AS AE,SUM(CAST(AF AS float)) AS AF,SUM(CAST(AG AS float)) AS AG,SUM(CAST(AH AS float)) AS AH,SUM(CAST(AI AS float)) AS AI,SUM(CAST(AJ AS float)) AS AJ,SUM(CAST(AK AS float)) AS AK,SUM(CAST(AL AS float)) AS AL,SUM(CAST(AM AS float)) AS AM,SUM(CAST(AN AS float)) AS AN,SUM(CAST(AO AS float)) AS AO,SUM(CAST(AP AS float)) AS AP,SUM(CAST(AQ AS float)) AS AQ,SUM(CAST(AR AS float)) AS AR,SUM(CAST(ASA AS float)) AS ASA,SUM(CAST(ATA AS float)) AS ATA,SUM(CAST(AU AS float)) AS AU,SUM(CAST(AV AS float)) AS AV,SUM(CAST(AW AS float)) AS AW,SUM(CAST(AX AS float)) AS AX,SUM(CAST(AY AS float)) AS AY FROM gongzi_gongzimingxi WHERE [BD] like '%' + @companyName + '%'  GROUP BY c,bd" UpdateCommand="UPDATE [gongzi_gongzimingxi] SET [B] = @B, [C] = @C, [D] = @D, [E] = @E, [F] = @F, [G] = @G, [H] = @H, [I] = @I, [J] = @J, [K] = @K, [L] = @L, [M] = @M, [N] = @N, [O] = @O, [P] = @P, [Q] = @Q, [R] = @R, [S] = @S, [T] = @T, [U] = @U, [V] = @V, [W] = @W, [X] = @X, [Y] = @Y, [Z] = @Z, [AA] = @AA, [AB] = @AB, [AC] = @AC, [AD] = @AD, [AE] = @AE, [AF] = @AF, [AG] = @AG, [AH] = @AH, [AI] = @AI, [AJ] = @AJ, [AK] = @AK, [AL] = @AL, [AM] = @AM, [AN] = @AN, [AO] = @AO, [AP] = @AP, [AQ] = @AQ, [AR] = @AR, [ASA] = @ASA, [ATA] = @ATA, [AU] = @AU, [AV] = @AV, [AW] = @AW, [AX] = @AX, [AY] = @AY, [AZ] = @AZ, [BA] = @BA, [BB] = @BB, [BC] = @BC, [BD] = @BD WHERE [id] = @id">
+    <SelectParameters>
+        <asp:SessionParameter Name="companyName" SessionField="gongsi" Type="String" DefaultValue="上海" />
+    </SelectParameters>
+    <DeleteParameters>
+        <asp:Parameter Name="id" Type="Int32" />
+    </DeleteParameters>
+    <InsertParameters>
+        <asp:Parameter Name="B" Type="String" />
+        <asp:Parameter Name="C" Type="String" />
+        <asp:Parameter Name="D" Type="String" />
+        <asp:Parameter Name="E" Type="String" />
+        <asp:Parameter Name="F" Type="String" />
+        <asp:Parameter Name="G" Type="String" />
+        <asp:Parameter Name="H" Type="String" />
+        <asp:Parameter Name="I" Type="String" />
+        <asp:Parameter Name="J" Type="String" />
+        <asp:Parameter Name="K" Type="String" />
+        <asp:Parameter Name="L" Type="String" />
+        <asp:Parameter Name="M" Type="String" />
+        <asp:Parameter Name="N" Type="String" />
+        <asp:Parameter Name="O" Type="String" />
+        <asp:Parameter Name="P" Type="String" />
+        <asp:Parameter Name="Q" Type="String" />
+        <asp:Parameter Name="R" Type="String" />
+        <asp:Parameter Name="S" Type="String" />
+        <asp:Parameter Name="T" Type="String" />
+        <asp:Parameter Name="U" Type="String" />
+        <asp:Parameter Name="V" Type="String" />
+        <asp:Parameter Name="W" Type="String" />
+        <asp:Parameter Name="X" Type="String" />
+        <asp:Parameter Name="Y" Type="String" />
+        <asp:Parameter Name="Z" Type="String" />
+        <asp:Parameter Name="AA" Type="String" />
+        <asp:Parameter Name="AB" Type="String" />
+        <asp:Parameter Name="AC" Type="String" />
+        <asp:Parameter Name="AD" Type="String" />
+        <asp:Parameter Name="AE" Type="String" />
+        <asp:Parameter Name="AF" Type="String" />
+        <asp:Parameter Name="AG" Type="String" />
+        <asp:Parameter Name="AH" Type="String" />
+        <asp:Parameter Name="AI" Type="String" />
+        <asp:Parameter Name="AJ" Type="String" />
+        <asp:Parameter Name="AK" Type="String" />
+        <asp:Parameter Name="AL" Type="String" />
+        <asp:Parameter Name="AM" Type="String" />
+        <asp:Parameter Name="AN" Type="String" />
+        <asp:Parameter Name="AO" Type="String" />
+        <asp:Parameter Name="AP" Type="String" />
+        <asp:Parameter Name="AQ" Type="String" />
+        <asp:Parameter Name="AR" Type="String" />
+        <asp:Parameter Name="ASA" Type="String" />
+        <asp:Parameter Name="ATA" Type="String" />
+        <asp:Parameter Name="AU" Type="String" />
+        <asp:Parameter Name="AV" Type="String" />
+        <asp:Parameter Name="AW" Type="String" />
+        <asp:Parameter Name="AX" Type="String" />
+        <asp:Parameter Name="AY" Type="String" />
+        <asp:Parameter Name="AZ" Type="String" />
+        <asp:Parameter Name="BA" Type="String" />
+        <asp:Parameter Name="BB" Type="String" />
+        <asp:Parameter Name="BC" Type="String" />
+        <asp:Parameter Name="BD" Type="String" />
+    </InsertParameters>
+    <UpdateParameters>
+        <asp:Parameter Name="B" Type="String" />
+        <asp:Parameter Name="C" Type="String" />
+        <asp:Parameter Name="D" Type="String" />
+        <asp:Parameter Name="E" Type="String" />
+        <asp:Parameter Name="F" Type="String" />
+        <asp:Parameter Name="G" Type="String" />
+        <asp:Parameter Name="H" Type="String" />
+        <asp:Parameter Name="I" Type="String" />
+        <asp:Parameter Name="J" Type="String" />
+        <asp:Parameter Name="K" Type="String" />
+        <asp:Parameter Name="L" Type="String" />
+        <asp:Parameter Name="M" Type="String" />
+        <asp:Parameter Name="N" Type="String" />
+        <asp:Parameter Name="O" Type="String" />
+        <asp:Parameter Name="P" Type="String" />
+        <asp:Parameter Name="Q" Type="String" />
+        <asp:Parameter Name="R" Type="String" />
+        <asp:Parameter Name="S" Type="String" />
+        <asp:Parameter Name="T" Type="String" />
+        <asp:Parameter Name="U" Type="String" />
+        <asp:Parameter Name="V" Type="String" />
+        <asp:Parameter Name="W" Type="String" />
+        <asp:Parameter Name="X" Type="String" />
+        <asp:Parameter Name="Y" Type="String" />
+        <asp:Parameter Name="Z" Type="String" />
+        <asp:Parameter Name="AA" Type="String" />
+        <asp:Parameter Name="AB" Type="String" />
+        <asp:Parameter Name="AC" Type="String" />
+        <asp:Parameter Name="AD" Type="String" />
+        <asp:Parameter Name="AE" Type="String" />
+        <asp:Parameter Name="AF" Type="String" />
+        <asp:Parameter Name="AG" Type="String" />
+        <asp:Parameter Name="AH" Type="String" />
+        <asp:Parameter Name="AI" Type="String" />
+        <asp:Parameter Name="AJ" Type="String" />
+        <asp:Parameter Name="AK" Type="String" />
+        <asp:Parameter Name="AL" Type="String" />
+        <asp:Parameter Name="AM" Type="String" />
+        <asp:Parameter Name="AN" Type="String" />
+        <asp:Parameter Name="AO" Type="String" />
+        <asp:Parameter Name="AP" Type="String" />
+        <asp:Parameter Name="AQ" Type="String" />
+        <asp:Parameter Name="AR" Type="String" />
+        <asp:Parameter Name="ASA" Type="String" />
+        <asp:Parameter Name="ATA" Type="String" />
+        <asp:Parameter Name="AU" Type="String" />
+        <asp:Parameter Name="AV" Type="String" />
+        <asp:Parameter Name="AW" Type="String" />
+        <asp:Parameter Name="AX" Type="String" />
+        <asp:Parameter Name="AY" Type="String" />
+        <asp:Parameter Name="AZ" Type="String" />
+        <asp:Parameter Name="BA" Type="String" />
+        <asp:Parameter Name="BB" Type="String" />
+        <asp:Parameter Name="BC" Type="String" />
+        <asp:Parameter Name="BD" Type="String" />
+        <asp:Parameter Name="id" Type="Int32" />
+    </UpdateParameters>
+</asp:SqlDataSource>
     </div>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="id" AllowPaging="True" >
             <Columns>

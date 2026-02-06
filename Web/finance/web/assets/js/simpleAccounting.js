@@ -48,6 +48,17 @@ function selectBtn() {
     
 }
 
+function getList1() {
+
+    // 清空客户输入框
+    $('#kehu').textbox('setValue', '');
+
+    // 清空项目输入框  
+    $('#project').textbox('setValue', '');
+    getList();
+}
+
+
 function getList() {
     var kehu = $('#kehu').val();
     var project = $('#project').val();

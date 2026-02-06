@@ -120,7 +120,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
             <Top>0.125in</Top>
-            <Left>3.18924in</Left>
+            <Left>6.09177in</Left>
             <Height>0.42933in</Height>
             <Width>3.42708in</Width>
             <Style>
@@ -258,7 +258,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>改为</Value>
+                                  <Value>岗位</Value>
                                   <Style>
                                     <FontSize>14pt</FontSize>
                                   </Style>

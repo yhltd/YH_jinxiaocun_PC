@@ -115,7 +115,6 @@
     #DropDownList28, #DropDownList29, #DropDownList30, #DropDownList31, #DropDownList32, #DropDownList33,
     #DropDownList34 {
         height: 30px;
-        padding: 6px 12px;
         border: 1px solid #ddd;
         border-radius: 6px;
         font-size: 14px;
@@ -285,7 +284,7 @@
         #DropDownList22, #DropDownList23, #DropDownList24, #DropDownList25, #DropDownList26, #DropDownList27,
         #DropDownList28, #DropDownList29, #DropDownList30, #DropDownList31, #DropDownList32, #DropDownList33,
         #DropDownList34 {
-            width: 40px !important;
+            width: 100px !important;
             margin-right: 5px !important;
             font-size: 12px;
         }

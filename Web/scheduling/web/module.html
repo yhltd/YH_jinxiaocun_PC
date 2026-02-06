@@ -100,22 +100,27 @@
                 </div>
     
                 <div class="module-type-container">
-                    <el-tag
-                        class="module-type-tag" 
-                        :key="moduleType.id" 
+                    <el-popconfirm
                         v-for="(moduleType, index) in moduleTypeList" 
-
-                        @close="moduleTypeDelete(index)"
-                        effect="dark"
-                        size="medium"
+                        :key="moduleType.id"
+                        title="删除此类别会同时删除该类别下的所有模块，确定删除吗？"
+                        @confirm="moduleTypeDelete(index)"
+                        hide-icon
                     >
-                        <i class="el-icon-folder"></i>
-                        {{ moduleType.name }}
-                        <span class="tag-close-btn">
-                            <i class="el-icon-close"></i>
-                        </span>
-                    </el-tag>
-        
+                        <el-tag
+                            class="module-type-tag" 
+                            slot="reference"
+                            effect="dark"
+                            size="medium"
+                        >
+                            <i class="el-icon-folder"></i>
+                            {{ moduleType.name }}
+                            <span class="tag-close-btn">
+                                <i class="el-icon-close"></i>
+                            </span>
+                        </el-tag>
+                    </el-popconfirm>
+    
                     <el-tag 
                         class="new-module-type-tag" 
                         effect="plain" 
@@ -478,6 +483,19 @@
                         if(module != undefined) return module.name;
                     }
                 },
+                resetModuleForm: function() {
+                    this.module = {
+                        type_id: '',
+                        name: '',
+                        num: '',
+                        parent_id: ''
+                    };
+            
+                    // 重置表单验证状态
+                    if (this.$refs.moduleAddForm) {
+                        this.$refs.moduleAddForm.clearValidate();
+                    }
+                },
                 addModule: function(formName){
                     var _this = this;
                     _this.$refs[formName].validate(function(valid){
@@ -494,6 +512,8 @@
                                     });
                                     _this.getModulePage();
                                     _this.$refs.moduleDrawer.closeDrawer();
+                                    _this.addModuleDrawerVisible = false;
+                                    _this.resetModuleForm();
                                 }
                                 if (res.code == 500) {
                                     _this.$notify({
@@ -574,14 +594,66 @@
                         _this.moduleLoading = false;
                     })
                 },
+                //toExcel: function(){
+                //    var columns = {
+                //        type_id: '模块类别',
+                //        name: '名称',
+                //        num: '效率',
+                //        parent_id: '父模块'
+                //    }
+                //    exportExcel(this.modulePage.pageList, columns, '模块管理');
+                //}
                 toExcel: function(){
-                    var columns = {
-                        type_id: '模块类别',
-                        name: '名称',
-                        num: '效率',
-                        parent_id: '父模块'
+                    var _this = this;
+    
+                    // 创建格式化后的数据数组
+                    var formattedData = [];
+                    var pageData = _this.modulePage.pageList;
+    
+                    for (var i = 0; i < pageData.length; i++) {
+                        var item = pageData[i];
+        
+                        // 格式化模块类别
+                        var typeName = '';
+                        for (var j = 0; j < _this.moduleTypeList.length; j++) {
+                            if (_this.moduleTypeList[j].id == item.type_id) {
+                                typeName = _this.moduleTypeList[j].name;
+                                break;
+                            }
+                        }
+        
+                        // 格式化父模块
+                        var parentName = '';
+                        if (item.parent_id) {
+                            for (var k = 0; k < _this.moduleList.length; k++) {
+                                if (_this.moduleList[k].id == item.parent_id) {
+                                    parentName = _this.moduleList[k].name;
+                                    break;
+                                }
+                            }
+                        }
+        
+                        formattedData.push([
+                            typeName || item.type_id || '',    
+                            item.name || '',        
+                            item.num || 0,                
+                            parentName || ''                    
+                        ]);
                     }
-                    exportExcel(this.modulePage.pageList, columns, '模块管理');
+    
+                    // 定义表头（根据 exportExcel 函数的期望格式）
+                    var headers = ['模块类别', '名称', '效率/时', '父模块'];
+    
+                    // 尝试不同的调用方式
+                    try {
+                        // 方式1：传递表头和数据
+                        exportExcel(formattedData, headers, '模块管理');
+                    } catch (e) {
+                        console.error('方式1失败，尝试方式2', e);
+        
+                        // 方式2：只传递数据，不传表头
+                        exportExcel(formattedData, '模块管理');
+                    }
                 }
             },
             mounted: function () {
@@ -662,7 +734,7 @@
 }
 
 .module-type-tag {
-    padding: 10px 16px;
+    padding: 7px 4px;
     border-radius: 8px;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -712,7 +784,7 @@
 }
 
 .new-module-type-tag {
-    padding: 12px 20px;
+    padding: 7px 4px;
     border: 2px dashed #dcdfe6;
     background: #fafbfc;
     color: #606266;
@@ -912,13 +984,11 @@
     color: white !important;
     font-weight: 600 !important;
     border: none !important;
-    padding: 14px 10px !important;
     text-align: center;
     font-size: 14px;
 }
 
 .el-table td {
-    padding: 12px 10px !important;
     border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
     text-align: center;
 }

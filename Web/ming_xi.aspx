@@ -182,11 +182,6 @@
             /*border: 2.5px solid white;*/
         }
 
-          tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
         
         /* 奇数行样式 */
         tr:nth-child(odd) .item_td {
@@ -468,6 +463,10 @@
         
             var ks_riqi = '<%= Session["ks_riqi"] %>';
             var js_riqi = '<%= Session["js_riqi"] %>';
+            if (ks_riqi > js_riqi) {
+                alert("开始日期不能大于截止日期！")
+                return;
+            }
             
             //var ks_riqi_1 = getCookie('ks_riqi');
             //var js_riqi_1 = getCookie('js_riqi');

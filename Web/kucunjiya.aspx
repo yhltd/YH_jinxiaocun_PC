@@ -26,6 +26,18 @@
             });
         }
 
+        function clearSearchInputs() {
+            // 清空商品名称搜索框
+            document.getElementById('<%= qc_cx.ClientID %>').value = '';
+
+             // 清空积压数量临界值输入框
+             document.getElementById('<%= shuliang.ClientID %>').value = '';
+
+             // 清空仓库选择框（重置为"请选择仓库"）
+             document.getElementById('warehouseSelect').selectedIndex = 0;
+
+         }
+
         function heji() {
             // 计算期初金额合计
             var qichuTotal = 0;
@@ -173,11 +185,6 @@
             background-color: #98c9d9;
         }
 
-        tr:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
         
         /* 奇数行样式 */
         tr:nth-child(odd) .item_td {
@@ -335,7 +342,7 @@
                     %>
                     </select>
                 <asp:Button ID="qc_query" OnClick="bt_chaxun" class="qichu_input" Text="查询" runat="server" UseSubmitBehavior="false" />
-                <asp:Button ID="Button2" class="qichu_input" OnClick="bt_select_Click" Text="刷新数据" runat="server" UseSubmitBehavior="false" />
+               <asp:Button ID="Button2" class="qichu_input" OnClick="bt_select_Click" OnClientClick="clearSearchInputs()" Text="刷新数据" runat="server" UseSubmitBehavior="false" />
             </div>
             <div class="d-main table_div">
                 <table cellspacing="0" cellpadding="0" id="biao_ge" name="bg_row" style="margin-top: 1%; width: 100%; table-layout: fixed;">

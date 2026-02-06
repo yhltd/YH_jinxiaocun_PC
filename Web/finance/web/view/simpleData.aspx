@@ -58,6 +58,10 @@
                 <input class="easyui-textbox" id="upd_kehu" name="kehu" data-options="width: 318,height: 38"/>
             </div>
             <div class="form-item">
+                <label>币种:</label>
+                <input class="easyui-textbox" id="upd-currency" name="currency" data-options="width: 318,height: 38" />
+            </div>
+            <div class="form-item">
                 <label>应收:</label>
                 <input id="upd-receivable" class="easyui-numberbox" name="receivable" data-options="width: 248,height: 38,precision:2"/>
                 <button type="button" class="btn-small" onclick="setReceivableValueUltimate()" style="margin-left: 5px;height: 38px;">计算</button>
@@ -115,6 +119,11 @@
                 <label>客户/供应商:</label>
                 <input class="easyui-textbox" id="add_kehu" name="kehu" data-options="width: 318,height: 38"/>
             </div>
+            <div class="form-item">
+                <label>币种:</label>
+                <input class="easyui-textbox" id="add-currency" name="currency" data-options="width: 318,height: 38" />
+            </div>
+
             <div class="form-item">
                 <label>应收:</label>
                 <input id="add-receivable" class="easyui-numberbox" name="receivable" data-options="width: 248,height: 38,precision:2"/>

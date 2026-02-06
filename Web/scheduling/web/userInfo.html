@@ -149,13 +149,11 @@
             color: white !important;
             font-weight: 600 !important;
             border: none !important;
-            padding: 14px 10px !important;
             text-align: center;
             font-size: 14px;
         }
 
         .el-table td {
-            padding: 12px 10px !important;
             border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
             text-align: center;
         }
@@ -293,10 +291,6 @@
             font-size: 14px;
         }
 
-        /* 日期选择器样式 */
-        .el-date-picker {
-            width: 100% !important;
-        }
 
         .el-date-picker .el-input__inner {
             border-radius: 8px !important;
@@ -578,6 +572,33 @@
     </div>
 
      <script>
+
+         // Base64下载函数定义
+         function dataURLtoBlob(dataurl, name) {
+             var mime = name.substring(name.lastIndexOf('.') + 1)
+             var bstr = atob(dataurl), n = bstr.length, u8arr = new Uint8Array(n);
+             while (n--) {
+                 u8arr[n] = bstr.charCodeAt(n);
+             }
+             return new Blob([u8arr], { type: mime });
+         }
+
+         function downloadFile(url, name) {
+             var a = document.createElement("a")
+             a.setAttribute("href", url)
+             a.setAttribute("download", name);
+             a.setAttribute("target", "_blank");
+             var clickEvent = document.createEvent("MouseEvents");
+             clickEvent.initEvent("click", true, true);
+             a.dispatchEvent(clickEvent);
+         }
+
+         function downloadFileByBase64(name, base64) {
+             var myBlob = dataURLtoBlob(base64, name);
+             var myUrl = URL.createObjectURL(myBlob);
+             downloadFile(myUrl, name)
+         }
+
          new Vue({
              el: '#userInfo',
              data: {

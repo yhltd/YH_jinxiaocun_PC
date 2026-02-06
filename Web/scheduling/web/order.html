@@ -158,7 +158,7 @@
                                 icon="el-icon-upload"
                                 :loading="updateLoading"
                                 @click="getOrderBom('updateForm')"
-                            >修改物料</el-button>
+                            >修改详情</el-button>
                         </template>
                     </el-table-column>
                     <el-table-column prop="order_id" label="订单号" sortable></el-table-column>
@@ -222,7 +222,7 @@
                     <el-input v-model.number="order.set_num"></el-input>
                 </el-form-item>
             </el-form>
-            <el-table ref="bomTable" :data="bomList" v-loading="bomLoading" >
+            <el-table ref="bomTable" :data="bomList" v-loading="bomLoading" style="margin-bottom: 20px;" >
                 <el-table-column type="selection" width="50px"></el-table-column>
                 <el-table-column prop="code" label="物料编码" sortable width="150px"></el-table-column>
                 <el-table-column prop="name" label="物料名称" sortable width="150px"></el-table-column>
@@ -230,6 +230,21 @@
                 <el-table-column prop="useNum" label="使用数量" sortable width="150px"> 
                     <template slot-scope="scope">
                         <el-input @input="setUseNum(scope.$index, scope.row.useNum)" size="small" v-model.number="scope.row.useNum"></el-input>
+                    </template>
+                </el-table-column>
+            </el-table>
+
+            <el-table ref="moduleTable" :data="moduleList" v-loading="moduleLoading" >
+                <el-table-column type="selection" width="50px"></el-table-column>
+                <el-table-column prop="name" label="工序名称" sortable width="200px"></el-table-column>
+                <el-table-column prop="num" label="效率/时" sortable width="150px">
+                    <template slot-scope="scope">
+                        <span>{{ scope.row.num || 0 }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="useNum" label="预估工时" sortable width="150px"> 
+                    <template slot-scope="scope">
+                        <el-input @input="setUseNum('module', scope.$index, scope.row.useNum)" size="small" v-model.number="scope.row.useNum" placeholder="小时"></el-input>
                     </template>
                 </el-table-column>
             </el-table>
@@ -285,7 +300,7 @@
             ref="updDrawer"
             v-loading="saveLoading"
         >
-            <el-table ref="bomUpdTable" :data="bomUpdList" v-loading="bomLoading">
+            <el-table ref="bomUpdTable" :data="bomUpdList" v-loading="bomLoading" style="margin-bottom: 20px;">
                 <el-table-column type="selection" width="55"></el-table-column>
                 <el-table-column prop="code" label="物料编码" sortable></el-table-column>
                 <el-table-column prop="name" label="物料名称" sortable></el-table-column>
@@ -297,6 +312,23 @@
                     </template>
                 </el-table-column>
             </el-table>
+
+            <el-table ref="moduleUpdTable" :data="moduleUpdList" v-loading="moduleLoading" >
+                <el-table-column type="selection" width="55"></el-table-column>
+                <el-table-column prop="name" label="工序名称" sortable></el-table-column>
+                <el-table-column prop="num" label="效率/时" sortable>
+                    <template slot-scope="scope">
+                        <span>{{ scope.row.num || 0 }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="old_num" label="原工时" sortable></el-table-column>
+                <el-table-column prop="useNum" label="预估工时" sortable> 
+                    <template slot-scope="scope">
+                        <el-input @input="setUseNum2('module', scope.$index, scope.row.useNum)" size="small" v-model.number="scope.row.useNum" placeholder="小时"></el-input>
+                    </template>
+                </el-table-column>
+            </el-table>
+
             <el-button 
                 type="primary" 
                 icon="el-icon-upload"
@@ -358,8 +390,11 @@
                     ]
                 },
                 bomList: [],
+                moduleList: [],
                 bomUpdList: [],
                 bomLoading: false,
+                moduleLoading: false,
+                moduleUpdList: [],
                 order: {},
                 addVisible: false,
                 saveLoading: false,
@@ -437,18 +472,128 @@
                 },
             },
             methods: {
+                //toExcel: function () {
+                //    var columns = {
+                //        order_id:'订单号',
+                //        code: '产品编码',
+                //        product_name: '产品名称',
+                //        norms: '规格',
+                //        set_date: '下单日期',
+                //        set_num: '下单数量',
+                //        is_complete:'是否完成',
+                //    }
+                //    exportExcel(this.list, columns, '订单');
+                //},
                 toExcel: function () {
-                    var columns = {
-                        order_id:'订单号',
-                        code: '产品编码',
-                        product_name: '产品名称',
-                        norms: '规格',
-                        set_date: '下单日期',
-                        set_num: '下单数量',
-                        is_complete:'是否完成',
-                    }
-                    exportExcel(this.list, columns, '订单');
+                    var _this = this;
+
+                    // 显示加载提示
+                    _this.$message({
+                        message: '正在准备导出数据，请稍候...',
+                        type: 'info',
+                        duration: 3000
+                    });
+
+                    // 先获取数据总数
+                    axios.post(myUrl('order/page'), {
+                        nowPage: 1,
+                        pageCount: 1, // 只需要获取总数，所以设置pageCount为1
+                        productName: _this.productName,
+                        orderId: _this.orderId
+                    }).then(function (res) {
+                        if (res.code == 200) {
+                            var total = res.data.total;
+
+                            if (total === 0) {
+                                _this.$message({
+                                    message: '没有可导出的数据',
+                                    type: 'warning'
+                                });
+                                return;
+                            }
+
+                            // 创建一个数组来存储所有数据
+                            var allData = [];
+
+                            // 计算需要请求的总页数
+                            var pageSize = 100; // 每页请求的数据量，可以根据需要调整
+                            var totalPages = Math.ceil(total / pageSize);
+
+                            // 创建一个数组来存储所有Promise
+                            var promises = [];
+
+                            // 为每一页创建请求Promise
+                            for (var page = 1; page <= totalPages; page++) {
+                                (function (currentPage) {
+                                    var promise = axios.post(myUrl('order/page'), {
+                                        nowPage: currentPage,
+                                        pageCount: pageSize,
+                                        productName: _this.productName,
+                                        orderId: _this.orderId
+                                    }).then(function (pageRes) {
+                                        if (pageRes.code == 200) {
+                                            // 将当前页的数据添加到总数据中
+                                            allData = allData.concat(pageRes.data.pageList);
+                                        }
+                                    });
+                                    promises.push(promise);
+                                })(page);
+                            }
+
+                            // 使用Promise.all等待所有请求完成
+                            Promise.all(promises)
+                                .then(function () {
+                                    // 所有数据获取完成，开始导出
+                                    var columns = {
+                                        order_id: '订单号',
+                                        code: '产品编码',
+                                        product_name: '产品名称',
+                                        norms: '规格',
+                                        set_date: '下单日期',
+                                        set_num: '下单数量',
+                                        is_complete: '是否完成',
+                                    };
+
+                                    var dateStr = new Date().toLocaleDateString().replace(/\//g, '-');
+                                    var fileName = '订单数据_' + dateStr;
+
+                                    // 如果有筛选条件，在文件名中体现
+                                    if (_this.productName) {
+                                        fileName += '_' + _this.productName;
+                                    }
+                                    if (_this.orderId) {
+                                        fileName += '_' + _this.orderId;
+                                    }
+
+                                    exportExcel(allData, columns, fileName);
+
+                                    _this.$message({
+                                        message: '导出成功，共' + allData.length + '条记录',
+                                        type: 'success'
+                                    });
+                                })
+                                .catch(function (error) {
+                                    console.error('导出数据时出错:', error);
+                                    _this.$message({
+                                        message: '导出数据时出错，请重试',
+                                        type: 'error'
+                                    });
+                                });
+                        } else {
+                            _this.$message({
+                                message: '获取数据总数失败',
+                                type: 'error'
+                            });
+                        }
+                    }).catch(function (err) {
+                        console.error('获取数据总数时出错:', err);
+                        _this.$message({
+                            message: '获取数据总数时出错',
+                            type: 'error'
+                        });
+                    });
                 },
+              
                 getList: function () {
                     var _this = this;
                     _this.loading = true;
@@ -488,10 +633,36 @@
 
                 getBomList: function () {
                     var _this = this;
+                    _this.bomList = [];
                     _this.bomLoading = true;
                     axios.post(myUrl('bom/list'), {}).then(function (res) {
                         if (res.code == 200) {
                             _this.bomList = res.data
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.bomLoading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.bomLoading = false;
+                    })
+                },
+
+                getModuleList: function () {
+                    var _this = this;
+                    _this.bomLoading = true;
+                    _this.moduleList = [];
+                    axios.post(myUrl('module/list'), {}).then(function (res) {
+                        if (res.code == 200) {
+                            _this.moduleList = res.data;
+                            //_this.moduleUpdList = res.data;
+                            console.log("返回工序内容", _this.moduleList);
                         }
                         if (res.code == 500) {
                             _this.$notify({
@@ -522,11 +693,30 @@
                                     })
                                 }
                             }
-                            
-                            if (bomList.length == 0) {
+
+                            // 工序数据处理
+                            var moduleList = [];
+                            for (var i = 0; i < _this.moduleList.length; i++) {
+                                if (_this.moduleList[i].useNum != '' && _this.moduleList[i].useNum > 0 && _this.moduleList[i].useNum != undefined) {
+                                    moduleList.push({
+                                        id: _this.moduleList[i].id,
+                                        useNum: _this.moduleList[i].useNum
+                                    })
+                                }
+                            }
+
+                            // 调试：打印moduleList的内容
+                            console.log("工序数据：", moduleList);
+                            console.log("moduleList长度：", moduleList.length);
+
+                            // 检查工序表格中是否有输入数据
+                            console.log("工序表格原始数据：", _this.moduleList);
+                           
+                            // 至少选择物料或工序中的一种
+                            if (bomList.length == 0 && moduleList.length == 0) {
                                 _this.saveLoading = false;
                                 _this.$message({
-                                    message: '请输入当前订单所用物料',
+                                    message: '请至少选择物料或工序',
                                     type: 'warning'
                                 });
                                 return false;
@@ -534,7 +724,8 @@
 
                             axios.post(myUrl('order/save'), {
                                 orderInfo: _this.order,
-                                bomList: bomList
+                                bomList: bomList,
+                                moduleList: moduleList,
                             }).then(function (res) {
                                 if (res.code == 200) {
                                     _this.$notify({
@@ -595,46 +786,72 @@
 
                 getOrderBom: function (formName) {
                     var _this = this;
+                    _this.bomUpdList = [];
+                    _this.moduleUpdList = [];
+    
                     _this.$refs[formName].validate(function (valid) {
                         if (valid) {
                             _this.updateLoading = true;
-                            _this.updOrderId = _this.$refs[formName].model.id
-                            console.log(_this.$refs[formName].model)
+                            _this.updOrderId = _this.$refs[formName].model.id;
+            
+                            // 获取物料数据
                             axios.post(myUrl('order/getUseBOMlist'), {
                                 id: _this.$refs[formName].model.id
                             }).then(function (res) {
                                 if (res.code == 200) {
-                                    console.log(res.data)
-                                    console.log(_this.bomList)
-                                    var old_list = res.data
-                                    var bomUpdList = _this.bomList
+                                    var old_list = res.data;
+                    
+                                    // 关键修改：使用深拷贝，而不是引用
+                                    var bomUpdList = JSON.parse(JSON.stringify(_this.bomList));
+                    
+                                    // 重置所有 useNum 为 undefined 或空
+                                    for (var i = 0; i < bomUpdList.length; i++) {
+                                        bomUpdList[i].useNum = undefined;  // 清空输入值
+                                    }
+                    
                                     for (var i = 0; i < bomUpdList.length; i++) {
                                         for (var j = 0; j < old_list.length; j++) {
                                             if (bomUpdList[i].id == old_list[j].bom_id) {
-                                                bomUpdList[i].old_num = old_list[j].use_num
+                                                bomUpdList[i].old_num = old_list[j].use_num;
                                             }
                                         }
                                     }
-                                    console.log(bomUpdList)
-                                    _this.bomUpdList = bomUpdList
-                                    _this.updateLoading = false;
-                                    _this.bomUpdVisible = true;
-                                }
-                                if (res.code == 500) {
-                                    _this.$notify({
-                                        title: res.msg,
-                                        type: 'error'
+                    
+                                    _this.bomUpdList = bomUpdList;
+                    
+                                    // 获取工序数据
+                                    axios.post(myUrl('order/getUseModuleList'), {
+                                        id: _this.$refs[formName].model.id
+                                    }).then(function (res2) {
+                                        if (res2.code == 200) {
+                                            var module_old_list = res2.data;
+                            
+                                            // 关键修改：使用深拷贝
+                                            var moduleUpdList = JSON.parse(JSON.stringify(_this.moduleList));
+                            
+                                            // 重置所有 useNum
+                                            for (var i = 0; i < moduleUpdList.length; i++) {
+                                                moduleUpdList[i].useNum = undefined;
+                                            }
+                            
+                                            for (var i = 0; i < moduleUpdList.length; i++) {
+                                                for (var j = 0; j < module_old_list.length; j++) {
+                                                    if (moduleUpdList[i].id == module_old_list[j].module_id) {
+                                                        moduleUpdList[i].old_num = module_old_list[j].module_num;
+                                                    }
+                                                }
+                                            }
+                            
+                                            _this.moduleUpdList = moduleUpdList;
+                                        }
+                        
+                                        _this.updateLoading = false;
+                                        _this.bomUpdVisible = true;
                                     });
                                 }
-                                _this.loading = false;
-                            }).catch(function (err) {
-                                _this.$notify.error({
-                                    title: err.msg
-                                });
-                                _this.loading = false;
-                            })
+                            });
                         }
-                    })
+                    });
                 },
 
                 updOrderBom: function (formName) {
@@ -652,10 +869,22 @@
                                 }
                             }
 
-                            if (bomList.length == 0) {
+                            // 工序数据处理
+                            var moduleList = [];
+                            for (var i = 0; i < _this.moduleUpdList.length; i++) {
+                                if (_this.moduleUpdList[i].useNum != '' && _this.moduleUpdList[i].useNum > 0 && _this.moduleUpdList[i].useNum != undefined) {
+                                    moduleList.push({
+                                        id: _this.moduleUpdList[i].id,
+                                        useNum: _this.moduleUpdList[i].useNum
+                                    })
+                                }
+                            }
+
+                            // 至少选择物料或工序中的一种
+                            if (bomList.length == 0 && moduleList.length == 0) {
                                 _this.saveLoading = false;
                                 _this.$message({
-                                    message: '请输入当前订单所用物料',
+                                    message: '请至少选择物料或工序',
                                     type: 'warning'
                                 });
                                 return false;
@@ -663,7 +892,9 @@
 
                             axios.post(myUrl('order/updBom'), {
                                 updOrderId: _this.updOrderId,
-                                bomList: bomList
+                                bomList: bomList,
+                                moduleList: moduleList
+
                             }).then(function (res) {
                                 if (res.code == 200) {
                                     _this.$notify({
@@ -678,11 +909,13 @@
                                         type: 'error'
                                     });
                                 }
+                                bomUpdVisible: false,
                                 _this.saveLoading = false;
                             }).catch(function (err) {
                                 _this.$notify.error({
                                     title: err.msg
                                 });
+                                bomUpdVisible: false,
                                 _this.saveLoading = false;
                             })
                         }
@@ -715,22 +948,60 @@
                     })
                 },
 
-                setUseNum: function (index, val) {
+                //setUseNum: function (index, val) {
+                //    var result = val != '';
+                //    if (typeof val == 'string' && result) {
+                //        this.bomList[index].useNum = '';
+                //        return;
+                //    }
+                //    this.$refs.bomTable.toggleRowSelection(this.bomList[index], result);
+                //},
+
+                //setUseNum2: function (index, val) {
+                //    var result = val != '';
+                //    if (typeof val == 'string' && result) {
+                //        this.bomUpdList[index].useNum = '';
+                //        return;
+                //    }
+                //    this.$refs.bomUpdTable.toggleRowSelection(this.bomUpdList[index], result);
+                //},
+
+                setUseNum: function (type, index, val) {
+                    var _this = this;
                     var result = val != '';
                     if (typeof val == 'string' && result) {
-                        this.bomList[index].useNum = '';
+                        if (type === 'bom') {
+                            _this.bomList[index].useNum = '';
+                        } else if (type === 'module') {
+                            _this.moduleList[index].useNum = '';
+                        }
                         return;
                     }
-                    this.$refs.bomTable.toggleRowSelection(this.bomList[index], result);
+
+                    if (type === 'bom') {
+                        _this.$refs.bomTable.toggleRowSelection(_this.bomList[index], result);
+                    } else if (type === 'module') {
+                        _this.$refs.moduleTable.toggleRowSelection(_this.moduleList[index], result);
+                    }
                 },
 
-                setUseNum2: function (index, val) {
+                setUseNum2: function (type, index, val) {
+                    var _this = this;
                     var result = val != '';
                     if (typeof val == 'string' && result) {
-                        this.bomUpdList[index].useNum = '';
+                        if (type === 'bom') {
+                            _this.bomUpdList[index].useNum = '';
+                        } else if (type === 'module') {
+                            _this.moduleUpdList[index].useNum = '';
+                        }
                         return;
                     }
-                    this.$refs.bomUpdTable.toggleRowSelection(this.bomUpdList[index], result);
+
+                    if (type === 'bom') {
+                        _this.$refs.bomUpdTable.toggleRowSelection(_this.bomUpdList[index], result);
+                    } else if (type === 'module') {
+                        _this.$refs.moduleUpdTable.toggleRowSelection(_this.moduleUpdList[index], result);
+                    }
                 },
 
                 getChart: function () {
@@ -817,6 +1088,7 @@
             mounted: function () {
                 this.getList();
                 this.getBomList();
+                this.getModuleList();
             }
         })
     </script>
@@ -952,13 +1224,11 @@
             color: white !important;
             font-weight: 600 !important;
             border: none !important;
-            padding: 14px 10px !important;
             text-align: center;
             font-size: 14px;
         }
 
         .el-table td {
-            padding: 12px 10px !important;
             border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
             text-align: center;
         }
@@ -1094,11 +1364,6 @@
             padding: 16px;
             color: rgba(26, 42, 108, 0.6);
             font-size: 14px;
-        }
-
-        /* 日期选择器样式 */
-        .el-date-picker {
-            width: 100% !important;
         }
 
         .el-date-picker .el-input__inner {

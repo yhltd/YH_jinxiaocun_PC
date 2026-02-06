@@ -13,10 +13,12 @@
           <EntitySet Name="module_type" EntityType="schedulingModel.Store.module_type" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="order_bom" EntityType="schedulingModel.Store.order_bom" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="order_check" EntityType="schedulingModel.Store.order_check" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="order_gongxu" EntityType="schedulingModel.Store.order_gongxu" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="order_info" EntityType="schedulingModel.Store.order_info" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="paibanbiao_detail" EntityType="schedulingModel.Store.paibanbiao_detail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="paibanbiao_info" EntityType="schedulingModel.Store.paibanbiao_info" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="paibanbiao_renyuan" EntityType="schedulingModel.Store.paibanbiao_renyuan" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="shengchanxian" EntityType="schedulingModel.Store.shengchanxian" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="time_config" EntityType="schedulingModel.Store.time_config" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="user_info" EntityType="schedulingModel.Store.user_info" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="user_info1" EntityType="schedulingModel.Store.user_info1" store:Type="Tables" Schema="dbo" />
@@ -99,6 +101,15 @@
           <Property Name="num" Type="float" />
           <Property Name="company" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="order_gongxu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="order_id" Type="int" />
+          <Property Name="module_id" Type="int" />
+          <Property Name="module_num" Type="int" />
+        </EntityType>
         <EntityType Name="order_info">
           <Key>
             <PropertyRef Name="id" />
@@ -108,7 +119,7 @@
           <Property Name="product_name" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="norms" Type="varchar" MaxLength="255" />
           <Property Name="order_id" Type="varchar" Nullable="false" MaxLength="255" />
-          <Property Name="set_date" Type="datetime2" Precision="0" />
+          <Property Name="set_date" Type="datetime2" />
           <Property Name="set_num" Type="int" Nullable="false" />
           <Property Name="company" Type="varchar" MaxLength="255" />
           <Property Name="is_complete" Type="varchar" MaxLength="255" />
@@ -175,6 +186,18 @@
           <Property Name="l" Type="varchar" MaxLength="255" />
           <Property Name="m" Type="varchar" MaxLength="255" />
           <Property Name="n" Type="varchar" MaxLength="255" />
+          <Property Name="shengchanxian" Type="varchar" MaxLength="255" />
+          <Property Name="gongxu" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="shengchanxian">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="mingcheng" Type="varchar" MaxLength="255" />
+          <Property Name="gongxu" Type="varchar" MaxLength="255" />
+          <Property Name="gongsi" Type="varchar" MaxLength="255" />
+          <Property Name="xiaolv" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="time_config">
           <Key>
@@ -200,6 +223,8 @@
           <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="department_name" Type="varchar" MaxLength="255" />
           <Property Name="state" Type="varchar" MaxLength="255" />
+          <Property Name="wechart_user" Type="varchar" MaxLength="255" />
+          <Property Name="touxiang" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="user_info1">
           <Key>
@@ -223,6 +248,7 @@
           <Property Name="row_num" Type="int" />
           <Property Name="is_insert" Type="int" />
           <Property Name="type" Type="varchar" MaxLength="255" />
+          <Property Name="jiezhishijian" Type="datetime2" />
         </EntityType>
         <EntityType Name="work_detail1">
           <Key>
@@ -243,7 +269,7 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="order_id" Type="int" Nullable="false" />
           <Property Name="work_num" Type="int" Nullable="false" />
-          <Property Name="work_start_date" Type="datetime2" Nullable="false" Precision="0" />
+          <Property Name="work_start_date" Type="datetime2" Nullable="false" />
           <Property Name="company" Type="varchar" Nullable="false" MaxLength="255" />
           <Property Name="row_num" Type="int" />
           <Property Name="is_insert" Type="int" />
@@ -279,6 +305,8 @@
           <EntitySet Name="work_detail2" EntityType="schedulingModel.work_detail2" />
           <EntitySet Name="user_info" EntityType="schedulingModel.user_info" />
           <EntitySet Name="work_detail1" EntityType="schedulingModel.work_detail1" />
+          <EntitySet Name="shengchanxian" EntityType="schedulingModel.shengchanxian" />
+          <EntitySet Name="order_gongxu" EntityType="schedulingModel.order_gongxu" />
         </EntityContainer>
         <EntityType Name="module_info">
           <Key>
@@ -353,7 +381,7 @@
           <Property Type="String" Name="product_name" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Type="String" Name="norms" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="order_id" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Type="DateTime" Name="set_date" Precision="0" />
+          <Property Type="DateTime" Name="set_date" Precision="7" />
           <Property Type="Int32" Name="set_num" Nullable="false" />
           <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="is_complete" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -370,6 +398,7 @@
           <Property Type="Int32" Name="row_num" />
           <Property Type="Int32" Name="is_insert" />
           <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="jiezhishijian" Precision="7" />
         </EntityType>
         <EntityType Name="work_module">
           <Key>
@@ -416,6 +445,8 @@
           <Property Type="String" Name="l" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="m" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="n" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="shengchanxian" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongxu" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="paibanbiao_detail">
           <Key>
@@ -483,7 +514,7 @@
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="order_id" Nullable="false" />
           <Property Type="Int32" Name="work_num" Nullable="false" />
-          <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="0" />
+          <Property Type="DateTime" Name="work_start_date" Nullable="false" Precision="7" />
           <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="row_num" />
           <Property Type="Int32" Name="is_insert" />
@@ -498,6 +529,8 @@
           <Property Type="String" Name="company" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="department_name" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="state" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="wechart_user" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="touxiang" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="work_detail1">
           <Key>
@@ -510,6 +543,25 @@
           <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="row_num" />
           <Property Type="Int32" Name="is_insert" />
+        </EntityType>
+        <EntityType Name="shengchanxian">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="mingcheng" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongxu" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gongsi" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="xiaolv" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="order_gongxu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="order_id" />
+          <Property Type="Int32" Name="module_id" />
+          <Property Type="Int32" Name="module_num" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -605,7 +657,8 @@
     <EntitySetMapping Name="work_detail">
       <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.work_detail)">
         <MappingFragment StoreEntitySet="work_detail">
-          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="jiezhishijian" ColumnName="jiezhishijian" />
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="order_id" ColumnName="order_id" />
           <ScalarProperty Name="work_num" ColumnName="work_num" />
@@ -642,6 +695,8 @@
           <EntitySetMapping Name="paibanbiao_renyuan">
             <EntityTypeMapping TypeName="schedulingModel.paibanbiao_renyuan">
               <MappingFragment StoreEntitySet="paibanbiao_renyuan">
+                <ScalarProperty Name="gongxu" ColumnName="gongxu" />
+                <ScalarProperty Name="shengchanxian" ColumnName="shengchanxian" />
                 <ScalarProperty Name="n" ColumnName="n" />
                 <ScalarProperty Name="m" ColumnName="m" />
                 <ScalarProperty Name="l" ColumnName="l" />
@@ -744,6 +799,8 @@
           <EntitySetMapping Name="user_info">
             <EntityTypeMapping TypeName="schedulingModel.user_info">
               <MappingFragment StoreEntitySet="user_info">
+                <ScalarProperty Name="touxiang" ColumnName="touxiang" />
+                <ScalarProperty Name="wechart_user" ColumnName="wechart_user" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="department_name" ColumnName="department_name" />
                 <ScalarProperty Name="company" ColumnName="company" />
@@ -761,6 +818,27 @@
                 <ScalarProperty Name="company" ColumnName="company" />
                 <ScalarProperty Name="work_start_date" ColumnName="work_start_date" />
                 <ScalarProperty Name="work_num" ColumnName="work_num" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shengchanxian">
+            <EntityTypeMapping TypeName="schedulingModel.shengchanxian">
+              <MappingFragment StoreEntitySet="shengchanxian">
+                <ScalarProperty Name="xiaolv" ColumnName="xiaolv" />
+                <ScalarProperty Name="gongsi" ColumnName="gongsi" />
+                <ScalarProperty Name="gongxu" ColumnName="gongxu" />
+                <ScalarProperty Name="mingcheng" ColumnName="mingcheng" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="order_gongxu">
+            <EntityTypeMapping TypeName="schedulingModel.order_gongxu">
+              <MappingFragment StoreEntitySet="order_gongxu">
+                <ScalarProperty Name="module_num" ColumnName="module_num" />
+                <ScalarProperty Name="module_id" ColumnName="module_id" />
                 <ScalarProperty Name="order_id" ColumnName="order_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

@@ -9,6 +9,13 @@ $(function () {
     getList();
 })
 
+
+function getList1() {
+    $("#ysyf").textbox('setValue', '');
+    $("#xiangmumingcheng").textbox('setValue', '');
+    getList();
+}
+
 function getList() {
     var ysyf = $("#ysyf").combobox('getValue');
     var xiangmumingcheng = $("#xiangmumingcheng").val();

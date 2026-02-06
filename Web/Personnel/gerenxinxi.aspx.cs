@@ -61,6 +61,7 @@ namespace Web.Personnel
         protected void Button2_Click(object sender, EventArgs e)
         {
             GridView1.DataSourceID = "SqlDataSource1";
+            TextBox1.Text = "";
             GridView1.DataBind();
         }
         protected void Button3_Click(object sender, EventArgs e)

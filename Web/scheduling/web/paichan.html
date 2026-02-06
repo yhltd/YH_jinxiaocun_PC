@@ -1,0 +1,2787 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="../../finance/web/assets/js/Jquery.js"></script>
+    <link rel="stylesheet" href="static/css/main.css">
+    <link href="static/element/index.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="static/vue/vue.js"></script>
+    <script type="text/javascript" src="static/element/index.js"></script>
+    <script type="text/javascript" src="static/axios/axios.js"></script>
+    <script src="static/js/main.js"></script>
+
+    <title>云合排产管理系统</title>
+</head>
+<body>
+    <div id="paichan" style="display: none;" :style="{display: 'block'}">
+        <el-container>
+            <el-header height="80px">
+                <el-card shadow="always" style="margin-top: 10px">
+                    <el-form :inline="true" :model="queryForm" label-width="100px" size="medium">
+                        <el-row :gutter="20">
+                            <el-col :span="6">
+                                <el-form-item label="订单号">
+                                    <!-- 将input改为select -->
+                                    <el-select 
+                                        v-model="queryForm.orderId" 
+                                        placeholder="请选择订单号" 
+                                        filterable
+                                        clearable
+                                        style="width: 100%">
+                                        <el-option
+                                            v-for="item in orderList"
+                                            :key="item.id"
+                                            :label="item.order_id"
+                                            :value="item.id">
+                                            <span style="float: left">{{ item.order_id }}</span>
+                                            <span style="float: right; color: #8492a6; font-size: 13px">
+                                                {{ item.product_name }}
+                                            </span>
+                                        </el-option>
+                                    </el-select>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="4">
+                                <el-form-item>
+                                    <el-button-group style="display:flex;" >
+                                        <el-button type="primary" icon="el-icon-search" @click="getList">查询</el-button>
+                                        <el-button type="primary" icon="el-icon-refresh" @click="resetQuery">刷新</el-button>
+                                        <el-button type="primary" icon="el-icon-plus" @click="openAddDialog">新增</el-button>
+                                        <el-button type="primary" icon="el-icon-refresh" @click="calculatePaichan">重新计算排产</el-button>
+                                    </el-button-group>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                    </el-form>
+                </el-card>
+            </el-header>
+            
+            <el-main>
+                <!-- 数据表格 -->
+                <el-table 
+                    :data="list" 
+                    v-loading="loading" 
+                    style="width: 100%;font-size:15px"
+                    border
+                    stripe
+                    :key="tableKey"> 
+                    <el-table-column type="expand" >
+                        <template slot-scope="props">
+                            <el-form
+                                :model="props.row"
+                                :rules="rules"
+                                ref="updateForm"
+                                label-width="120px"
+                                style="padding: 20px"
+                            >
+                                <el-row :gutter="20">
+                                    <el-col :span="12">
+                                        <el-form-item label="订单号" prop="order_id">
+                                            <el-select 
+                                                v-model="props.row.order_id" 
+                                                placeholder="请选择订单号" 
+                                                filterable
+                                                clearable
+                                                @change="handleEditOrderChange($event, props.row)"
+                                                style="width: 100%">
+                                                <!-- 修改：value绑定为订单的id -->
+                                                <el-option
+                                                    v-for="item in orderList"
+                                                    :key="item.id"
+                                                    :label="item.order_id"
+                                                    :value="item.id">
+                                                    <span style="float: left">{{ item.order_id }}</span>
+                                                    <span style="float: right; color: #8492a6; font-size: 13px">
+                                                        {{ item.product_name }} ({{ item.set_num }})
+                                                    </span>
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <el-form-item label="生产数量" prop="work_num">
+                                            <el-input-number 
+                                                v-model="props.row.work_num" 
+                                                :min="1" 
+                                                controls-position="right"
+                                                style="width: 100%">
+                                            </el-input-number>
+                                        </el-form-item>
+                                    </el-col>
+                                </el-row>
+                                
+                                <el-row :gutter="20">
+                                    <el-col :span="12">
+                                        <el-form-item label="开始日期" prop="work_start_date">
+                                            <el-date-picker
+                                                v-model="props.row.work_start_date"
+                                                type="datetime"
+                                                placeholder="选择开始日期"
+                                                value-format="yyyy-MM-dd HH:mm"
+                                                format="yyyy-MM-dd HH:mm"
+                                                style="width: 100%">
+                                            </el-date-picker>
+                                        </el-form-item>
+                                    </el-col>
+
+                                    <el-col :span="12">
+                                        <el-form-item label="截止日期">
+                                            <el-date-picker
+                                                v-model="props.row.jiezhishijian"
+                                                type="datetime"
+                                                placeholder="订单截止日期"
+                                                value-format="yyyy-MM-dd HH:mm"
+                                                format="yyyy-MM-dd HH:mm"
+                                                style="width: 100%">
+                                            </el-date-picker>
+                                        </el-form-item>
+                                    </el-col>
+                                </el-row>
+
+                                <el-row :gutter="20">
+                                    <el-col :span="12">
+                                        <el-form-item label="类型" prop="type">
+                                            <el-select v-model="props.row.type" placeholder="请选择类型" style="width: 100%">
+                                                <el-option label="正常" value="normal"></el-option>
+                                                <el-option label="优先" value="urgent"></el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                    </el-col>
+                                </el-row>
+                                
+                            </el-form>
+                            <div style="text-align: center; margin-top: 20px;">
+                                <el-button 
+                                    type="primary" 
+                                    icon="el-icon-check"
+                                    :loading="updateLoading"
+                                    @click="updateItem('updateForm', props.row)"
+                                    style="width: 200px"
+                                >保存修改</el-button>
+                            </div>
+                        </template>
+                    </el-table-column>
+                    
+                    <el-table-column 
+                        type="index" 
+                        label="序号" 
+                        width="80" 
+                        align="center"
+                        :index="indexMethod">
+                    </el-table-column>
+                    <el-table-column prop="order_id" label="订单号" align="center" width="160">
+                        <template slot-scope="scope">
+                            {{ formatOrderId(scope.row.order_id) }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="work_num" label="排产数量" align="center" width="120"></el-table-column>
+                    <el-table-column prop="work_start_date" label="开始日期" align="center" width="180">
+                        <template slot-scope="scope">
+                            {{ formatDate(scope.row.work_start_date) }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="jiezhishijian" label="订单截止日期" align="center" width="180">
+                        <template slot-scope="scope">
+                            {{ formatDate(scope.row.jiezhishijian) }}
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="paichanEndTime" label="排产后截止日期" align="center" width="180">
+                        <template slot-scope="scope">
+                            {{ formatDateTime(scope.row.paichanEndTime) }}
+                        </template>
+                    </el-table-column>
+                   <el-table-column prop="type" label="类型" align="center" width="120">
+                        <template slot-scope="scope">
+                            <el-tag :type="getTypeTag(scope.row)">{{ getTypeText(scope.row) }}</el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="is_insert" label="是否插入" align="center" width="120">
+                        <template slot-scope="scope">
+                            <el-tag :type="scope.row.is_insert == 1 ? 'success' : 'info'">
+                                {{ scope.row.is_insert == 1 ? '是' : '否' }}
+                            </el-tag>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="操作" width="150" align="center">
+                        <template slot-scope="scope">
+                            <el-button-group>
+                                
+                                <el-popconfirm 
+                                    title="确定删除这条排产记录吗？" 
+                                    @confirm="deleteItem(scope.row.id)"
+                                    confirm-button-text="确定"
+                                    cancel-button-text="取消">
+                                    <el-button 
+                                        slot="reference"
+                                        type="danger" 
+                                        icon="el-icon-delete" 
+                                        size="mini">
+                                    </el-button>
+                                </el-popconfirm>
+                            </el-button-group>
+                        </template>
+                    </el-table-column>
+                </el-table>
+
+                <!-- 分页 -->
+                <el-pagination 
+                    background
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :current-page.sync="pageNow"
+                    :page-sizes="[10, 20, 50, 100]"
+                    :page-size="pageSize"
+                    :total="total"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    style="margin-top: 20px; text-align: right;"
+                ></el-pagination>
+            </el-main>
+        </el-container>
+
+
+        <!-- 排产结果表格 -->
+        <el-card shadow="always" style="margin-top: 20px">
+            <div slot="header">
+                <el-row :gutter="20" align="middle">
+                    <el-col :span="12">
+                        <span>排产结果</span>
+                    </el-col>
+                </el-row>
+            </div>
+    
+            <el-table 
+                :data="paichanResult" 
+                v-loading="isCalculating"
+                style="width: 100%;font-size:14px"
+                border
+                stripe>
+                <el-table-column prop="orderId" label="订单号" align="center" width="120" fixed="left"></el-table-column>
+                <el-table-column prop="processName" label="工序名称" align="center" width="100"></el-table-column>
+                <el-table-column prop="quantity" label="生产数量" align="center" width="100"></el-table-column>
+                <el-table-column label="生产效率" align="center" width="120">
+                    <template slot-scope="scope">
+                        {{ scope.row.processEfficiency }} /小时
+                    </template>
+                </el-table-column>
+                <el-table-column prop="productionLine" label="分配生产线" align="center" width="240">
+                    <template slot-scope="scope">
+                        <el-tag 
+                            :type="scope.row.warning ? 'danger' : 'success'"
+                            :effect="scope.row.warning ? 'dark' : 'light'">
+                            {{ scope.row.productionLine }}
+                        </el-tag>
+                        <div v-if="scope.row.lineEfficiency > 0" style="font-size: 12px; color: #909399;">
+                            ({{ scope.row.lineEfficiency }}/小时)
+                        </div>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="requiredHours" label="所需时间" align="center" width="100">
+                    <template slot-scope="scope">
+                        {{ scope.row.requiredHours }}小时
+                    </template>
+                </el-table-column>
+                <el-table-column prop="startTime" label="工序开始时间" align="center" width="180">
+                    <template slot-scope="scope">
+                        {{ formatDateTime(scope.row.startTime) }}
+                    </template>
+                </el-table-column>
+                <el-table-column prop="endTime" label="工序结束时间" align="center" width="180">
+                    <template slot-scope="scope">
+                        {{ formatDateTime(scope.row.endTime) }}
+                    </template>
+                </el-table-column>
+            </template>
+        </el-table-column>
+        <el-table-column label="状态" align="center" width="100">
+            <template slot-scope="scope">
+                <el-tag 
+                    :type="scope.row.warning ? 'danger' : 'success'">
+                    {{ scope.row.warning ? '异常' : '正常' }}
+                </el-tag>
+            </template>
+        </el-table-column>
+    </el-table>
+</el-card>
+
+<!-- 确认排产对话框 -->
+<el-dialog
+    title="确认排产"
+    :visible.sync="confirmDialogVisible"
+    width="500px"
+    :close-on-click-modal="false">
+    <el-form ref="confirmForm" label-width="100px">
+        <el-form-item label="订单号：">
+            {{ confirmData.orderId }}
+        </el-form-item>
+        <el-form-item label="工序：">
+            {{ confirmData.processName }}
+        </el-form-item>
+        <el-form-item label="生产线：">
+            {{ confirmData.productionLine }}
+        </el-form-item>
+        <el-form-item label="生产数量：">
+            {{ confirmData.quantity }}
+        </el-form-item>
+        <el-form-item label="开始时间：">
+            {{ formatDateTime(confirmData.startTime) }}
+        </el-form-item>
+        <el-form-item label="结束时间：">
+            {{ formatDateTime(confirmData.endTime) }}
+        </el-form-item>
+    </el-form>
+    <span slot="footer" class="dialog-footer">
+        <el-button @click="confirmDialogVisible = false">取消</el-button>
+        <el-button type="primary">确认保存</el-button>
+    </span>
+</el-dialog>
+
+        <!-- 新增对话框 -->
+        <el-dialog
+            title="新增排产记录"
+            :visible.sync="addDialogVisible"
+            width="700px"
+            :close-on-click-modal="false">
+            <el-form
+                :model="newItem"
+                :rules="rules"
+                ref="addForm"
+                label-width="120px">
+                <el-row :gutter="20">
+                    <el-col :span="12">
+                        <el-form-item label="订单号" prop="order_id">
+                            <el-select 
+                                v-model="newItem.order_id" 
+                                placeholder="请选择订单号" 
+                                filterable
+                                clearable
+                                @change="handleOrderChange"
+                                style="width: 100%">
+                                <!-- 修改：value绑定为订单的id -->
+                                <el-option
+                                    v-for="item in orderList"
+                                    :key="item.id"
+                                    :label="item.order_id"
+                                    :value="item.id">
+                                    <span style="float: left">{{ item.order_id }}</span>
+                                    <span style="float: right; color: #8492a6; font-size: 13px">
+                                        {{ item.product_name }} ({{ item.set_num }})
+                                    </span>
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="排产数量" prop="work_num">
+                            <el-input-number 
+                                v-model="newItem.work_num" 
+                                :min="1" 
+                                controls-position="right"
+                                :placeholder="selectedOrderNum > 0 ? '可生产数量：' + selectedOrderNum : '请输入排产数量'"
+                                style="width: 100%">
+                            </el-input-number>
+                            <!-- 添加一个小提示文本 -->
+                            <div v-if="selectedOrderNum > 0" style="font-size: 12px; color: #909399; margin-top: 5px;">
+                                该订单可生产数量：{{ selectedOrderNum }}
+                            </div>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+
+                <el-row :gutter="20">
+                    <el-col :span="12">
+                        <el-form-item label="类型" prop="type">
+                            <el-select v-model="newItem.type" placeholder="请选择类型" style="width: 100%">
+                                <el-option label="正常" value="normal"></el-option>
+                                <el-option label="优先" value="urgent"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="是否插入" prop="is_insert">
+                            <el-select v-model="newItem.is_insert" placeholder="请选择" style="width: 100%">
+                                <el-option :value="1" label="是"></el-option>
+                                <el-option :value="0" label="否"></el-option>
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                
+                <el-row :gutter="20">
+                    <el-col :span="12">
+                        <el-form-item label="开始日期" prop="work_start_date">
+                            <el-date-picker
+                                v-model="newItem.work_start_date"
+                                type="datetime"
+                                placeholder="选择开始日期"
+                                value-format="yyyy-MM-dd HH:mm"
+                                format="yyyy-MM-dd HH:mm"
+                                style="width: 100%">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="截止日期">
+                            <el-date-picker
+                                v-model="deadlineDate"
+                                type="datetime"
+                                placeholder="订单截止日期"
+                                value-format="yyyy-MM-dd HH:mm"
+                                format="yyyy-MM-dd HH:mm"
+                                style="width: 100%">
+                            </el-date-picker>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                
+                
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="addDialogVisible = false">取 消</el-button>
+                <el-button 
+                    type="primary" 
+                    @click="addItem('addForm')"
+                    :loading="saveLoading">
+                    确 定
+                </el-button>
+            </span>
+        </el-dialog>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#paichan',
+            data: {
+                //--------------------------------------------------
+                //-----------------排产功能数据开始-----------------
+                //--------------------------------------------------
+                allWorkList: [], // 存储从 getAll() 接口获取的全部工作数据
+                chanXianList: [], // 存储生产线数据
+                paichanResult: [], // 存储排产结果
+                isCalculating: false, // 计算状态
+                confirmDialogVisible: false,// 排产结果对话框
+                confirmData: {},// 排产结果对数据
+                timeList: [], // 工作时间安排列表
+                timeLoading: false, // 时间配置加载状态
+
+                parallelConfig: {
+                    enable: true, // 是否启用并行处理
+                    minQuantityForParallel: 500, // 启用并行的最小数量
+                    maxParallelLines: 3, // 最大并行线数
+                    efficiencyThreshold: 0.01, // 效率匹配阈值
+                    timePressureFactor: 0.8 // 时间压力因子（单线时间超过可用时间的多少时启用并行）
+                },
+
+                //--------------------------------------------------
+                //-----------------排产功能数据结束-----------------
+                //--------------------------------------------------
+
+                // 查询条件
+                queryForm: {
+                    orderId: '',
+                    workNum: '',
+                    startDate: ''
+                },
+
+                tableKey: 0,
+
+                // 订单列表数据
+                orderList: [],
+                selectedOrderNum: 0,
+            
+                // 分页参数
+                pageNow: 1,
+                pageSize: 20,
+                total: 0,
+            
+                // 数据列表
+                list: [],
+                loading: false,
+                updateLoading: false,
+                saveLoading: false,
+            
+                // 新增对话框
+                addDialogVisible: false,
+                newItem: {
+                    order_id: null,
+                    work_num: null,
+                    work_start_date: '',
+                    row_num: null,
+                    is_insert: 0,
+                    type: 'normal',
+                    jiezhishijian: ''
+                },
+                deadlineDate: '',
+            
+                // 表单验证规则
+                rules: {
+                    order_id: [
+                         { required: true, message: '请选择订单号', trigger: 'change' }
+                    ],
+                    work_num: [
+                        { required: true, message: '排产数量不能为空', trigger: 'blur' },
+                        { type: 'number', message: '排产数量必须为数字', trigger: 'blur' }
+                    ],
+                    work_start_date: [
+                        { required: true, message: '开始日期不能为空', trigger: 'blur' }
+                    ]
+                }
+            },
+            methods: {
+                getList: function () {
+                    var _this = this;
+                    _this.loading = true;
+
+                    var params = {
+                        nowPage: _this.pageNow,
+                        pageCount: _this.pageSize,
+                        orderId: 0 
+                    };
+
+                    if (_this.queryForm.orderId) {
+                        var orderId = parseInt(_this.queryForm.orderId);
+                        if (!isNaN(orderId) && orderId > 0) {
+                            params.orderId = orderId;
+                        }
+                    }
+
+                    axios.post(myUrl('paichan/page'), params)
+                        .then(function (res) {
+                            if (res.code == 200) {
+                                _this.total = res.data.total;
+                                _this.list = res.data.pageList || [];
+                                _this.associatePaichanEndTime();
+                            } else {
+                                _this.$notify.error({
+                                    title: '查询失败',
+                                    message: res.msg || '未知错误'
+                                });
+                            }
+                            _this.loading = false;
+                        })
+                        .catch(function (err) {
+                            _this.$notify.error({
+                                title: '查询错误',
+                                message: err.message || '网络错误'
+                            });
+                            _this.loading = false;
+                        });
+                },
+            
+                // 重置查询条件
+                resetQuery: function () {
+                    this.queryForm = {
+                        orderId: '', 
+                        workNum: '',
+                        startDate: ''
+                    };
+                    this.pageNow = 1;
+                    this.getList();
+                },
+
+                indexMethod: function (index) {
+                    return (this.pageNow - 1) * this.pageSize + index + 1;
+                },
+            
+                // 打开新增对话框
+                openAddDialog: function () {
+                    var _this = this;
+                    _this.newItem = {
+                        order_id: '',
+                        work_num: null,
+                        work_start_date: '',
+                        row_num: null,
+                        is_insert: 0,
+                        type: 'normal'
+                    };
+
+                    // 重置选中的订单数量
+                    _this.selectedOrderNum = 0;
+
+                    _this.addDialogVisible = true;
+                    _this.$nextTick(function () {
+                        if (_this.$refs.addForm) {
+                            _this.$refs.addForm.clearValidate();
+                        }
+                    });
+                },
+            
+                // 新增排产记录
+                addItem: function(formName) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function(valid) {
+                        if (valid) {
+
+                            if (_this.deadlineDate) {
+                                _this.newItem.jiezhishijian = _this.deadlineDate;
+                            }
+
+                            if (_this.newItem.work_num > _this.selectedOrderNum) {
+                                _this.$message.warning({
+                                    message: '排产数量不能超过可生产数量（' + _this.selectedOrderNum + '）',
+                                    type: 'warning'
+                                });
+                                return false;
+                            }
+                            _this.saveLoading = true;
+                            axios.post(myUrl('paichan/save'), {
+                                work_detail: _this.newItem
+                            })
+                            .then(function(res) {
+                                if (res.code == 200) {
+                                    _this.$notify.success({
+                                        title: '成功',
+                                        message: res.msg || '新增成功'
+                                    });
+                                    _this.addDialogVisible = false;
+                                    _this.getList();
+                                } else {
+                                    _this.$notify.error({
+                                        title: '新增失败',
+                                        message: res.msg || '未知错误'
+                                    });
+                                }
+                                _this.saveLoading = false;
+                            })
+                            .catch(function(err) {
+                                _this.$notify.error({
+                                    title: '新增错误',
+                                    message: err.message || '网络错误'
+                                });
+                                _this.saveLoading = false;
+                            });
+                        } else {
+                            return false;
+                        }
+                    });
+                },
+            
+                // 更新排产记录
+                updateItem: function(formName, row) {
+                    var _this = this;
+                    _this.$refs[formName].validate(function(valid) {
+                        if (valid) {
+                            // 创建row的副本，避免直接修改
+                            var updateData = JSON.parse(JSON.stringify(row));
+                
+                            _this.updateLoading = true;
+                            axios.post(myUrl('paichan/update'), {
+                                work_detail: updateData
+                            })
+                            .then(function(res) {
+                                if (res.code == 200) {
+                                    _this.$notify.success({
+                                        title: '成功',
+                                        message: res.msg || '更新成功'
+                                    });
+                        
+                                    // 使用Vue.set强制更新响应式数据
+                                    _this.$nextTick(function() {
+                                        _this.getList();
+                                    });
+                                } else {
+                                    _this.$notify.error({
+                                        title: '更新失败',
+                                        message: res.msg || '未知错误'
+                                    });
+                                }
+                                _this.updateLoading = false;
+                            })
+                            .catch(function(err) {
+                                _this.$notify.error({
+                                    title: '更新错误',
+                                    message: err.message || '网络错误'
+                                });
+                                _this.updateLoading = false;
+                            });
+                        } else {
+                            return false;
+                        }
+                    });
+                },
+            
+                // 删除排产记录
+                deleteItem: function(id) {
+                    var _this = this;
+                    _this.loading = true;
+                    axios.post(myUrl('paichan/delete'), {
+                        id: id
+                    })
+                    .then(function(res) {
+                        if (res.code == 200) {
+                            _this.$notify.success({
+                                title: '成功',
+                                message: res.msg || '删除成功'
+                            });
+                            _this.getList();
+                        } else {
+                            _this.$notify.error({
+                                title: '删除失败',
+                                message: res.msg || '未知错误'
+                            });
+                        }
+                        _this.loading = false;
+                    })
+                    .catch(function(err) {
+                        _this.$notify.error({
+                            title: '删除错误',
+                            message: err.message || '网络错误'
+                        });
+                        _this.loading = false;
+                    });
+                },
+
+                // 获取订单号
+                getOrderList: function () {
+                    var _this = this;
+                    _this.orderLoading = true;
+                    axios.post(myUrl('order/list'), {}).then(function (res) {
+                        if (res.code == 200) {
+                            if (typeof res.data === 'string') {
+                                try {
+                                    var parsedData = JSON.parse(res.data);
+                                    _this.orderList = parsedData.data || [];
+                                } catch (e) {
+                                    console.error('解析订单数据失败:', e);
+                                    _this.orderList = [];
+                                }
+                            } else {
+                                _this.orderList = res.data || [];
+                            }
+                        }
+                        if (res.code == 500) {
+                            _this.$notify({
+                                title: res.msg,
+                                type: 'error'
+                            });
+                        }
+                        _this.orderLoading = false;
+                    }).catch(function (err) {
+                        _this.$notify.error({
+                            title: err.msg
+                        });
+                        _this.orderLoading = false;
+                    })
+                },
+
+                //订单选择变化处理
+                handleOrderChange: function (orderId) {
+                    var _this = this;
+
+                    // 重置选中的数量和日期
+                    _this.selectedOrderNum = 0;
+                    _this.deadlineDate = '';
+
+                    if (orderId) {
+                        var selectedOrder = _this.orderList.find(function (item) {
+                            return item.id === orderId;
+                        });
+
+                        if (selectedOrder) {
+                            _this.selectedOrderNum = selectedOrder.set_num || 0;
+                            if (selectedOrder.order_date) {
+                                _this.deadlineDate = selectedOrder.order_date;
+                                _this.newItem.jiezhishijian = selectedOrder.order_date;
+                            }
+
+                            console.log('选择订单ID:', orderId, '订单号:', selectedOrder.order_id, '可生产数量:', _this.selectedOrderNum);
+                        }
+                    }
+                },
+
+                //编辑时订单选择变化处理
+                handleEditOrderChange: function (orderId, row) {
+                    var _this = this;
+
+                    if (orderId) {
+                        var selectedOrder = _this.orderList.find(function (item) {
+                            return item.id === orderId;
+                        });
+
+                        if (selectedOrder) {
+                            var setNum = selectedOrder.set_num || 0;
+
+                            // 设置截止日期
+                            if (selectedOrder.order_date) {
+                                row.jiezhishijian = selectedOrder.order_date;
+                            }
+
+                            console.log('编辑时选择订单ID:', orderId, '订单号:', selectedOrder.order_id, '可生产数量:', setNum);
+                        }
+                    }
+                },
+
+                formatOrderId: function (order_id) {
+                    if (!order_id) return '';
+                    // 从订单列表中查找对应的订单号显示
+                    var order = this.orderList.find(function (item) {
+                        return item.id == order_id;
+                    });
+                    return order ? order.order_id : order_id;
+                },
+                    
+                // 格式化日期
+                formatDate: function(date) {
+                    if (!date) return '';
+                    var d = new Date(date);
+                    // 格式化成年-月-日 时:分 的字符串
+                    return d.getFullYear() + '-' + 
+                           String(d.getMonth() + 1).padStart(2, '0') + '-' + 
+                           String(d.getDate()).padStart(2, '0') + ' ' + 
+                           String(d.getHours()).padStart(2, '0') + ':' + 
+                           String(d.getMinutes()).padStart(2, '0');
+                },
+                    
+                // 获取类型标签样式
+                getTypeTag: function(row) {
+                    var type = row.type;
+                    switch(type) {
+                        case 'urgent': return 'danger';
+                        case 'trial': return 'warning';
+                        default: return 'success';
+                    }
+                },
+                    
+                // 获取类型文本
+                getTypeText: function(row) {
+                    var type = row.type;
+                    switch(type) {
+                        case 'normal': return '正常';
+                        case 'urgent': return '优先';
+                        default: return type || '正常';
+                    }
+                },
+                    
+                // 分页大小改变
+                handleSizeChange: function(val) {
+                    this.pageSize = val;
+                    this.pageNow = 1;
+                    this.getList();
+                },
+                    
+                // 当前页改变
+                handleCurrentChange: function(val) {
+                    this.pageNow = val;
+                    this.getList();
+                },
+                    
+                //===============================================================================
+                //===========================排产逻辑开始========================================
+                //===============================================================================
+
+                //获取生产线全部数据
+                getAllChanXianList: function () {
+                    var _this = this;
+                    axios.post(myUrl('shengchanxian/getAll'), {}).then(function (res) {
+                        if (res.code == 200) {
+                            var data = res.data;
+                            if (typeof data === 'string') {
+                                try {
+                                    data = JSON.parse(data);
+                                } catch (e) {
+                                    console.error('解析生产线数据失败:', e);
+                                    return;
+                                }
+                            }
+                            _this.chanXianList = data || [];
+                            console.log("查询全部生产线返回内容：", _this.chanXianList);
+                        }
+                    }).catch(function (err) {
+                        console.error('获取生产线列表失败:', err);
+                    });
+                },
+
+                //获取排产计划全部数据
+                getAllWorkList: function () {
+                    var _this = this;
+                    axios.post(myUrl('paichan/getAll'), {}).then(function (res) {
+                        if (res.code == 200) {
+                            var data = res.data;
+                            if (typeof data === 'string') {
+                                try {
+                                    data = JSON.parse(data);
+                                } catch (e) {
+                                    console.error('解析订单数据失败:', e);
+                                    return;
+                                }
+                            }
+                            _this.allWorkList = data || [];
+                        
+                            // 检查是否有插单订单
+                            _this.checkInsertOrders();
+                        
+                            console.log("查询全部工作返回内容：", _this.allWorkList);
+                            console.log("是否有插单订单：", _this.hasInsertOrders);
+                        }
+                    }).catch(function (err) {
+                        console.error('获取工作列表失败:', err);
+                    });
+                },
+
+                // 检查是否有插单订单
+                checkInsertOrders: function() {
+                    var _this = this;
+                    _this.hasInsertOrders = false;
+                    _this.useInsertLogic = false;
+                
+                    if (_this.allWorkList && _this.allWorkList.length > 0) {
+                        // 检查是否有 is_insert 字段
+                        var hasIsInsertField = _this.allWorkList.some(function(work) {
+                            return work.is_insert !== undefined;
+                        });
+                    
+                        // 检查是否有 charu 字段
+                        var hasCharuField = _this.allWorkList.some(function(work) {
+                            return work.charu !== undefined;
+                        });
+                    
+                        // 检查是否有插单数据
+                        if (hasIsInsertField) {
+                            _this.hasInsertOrders = _this.allWorkList.some(function(work) {
+                                return work.is_insert == 1;
+                            });
+                        } else if (hasCharuField) {
+                            _this.hasInsertOrders = _this.allWorkList.some(function(work) {
+                                return work.charu == 1;
+                            });
+                        }
+                    
+                        // 根据是否有插单决定使用哪种逻辑
+                        _this.useInsertLogic = _this.hasInsertOrders;
+                    
+                        console.log("插单检查结果：", {
+                            hasIsInsertField: hasIsInsertField,
+                            hasCharuField: hasCharuField,
+                            hasInsertOrders: _this.hasInsertOrders,
+                            useInsertLogic: _this.useInsertLogic
+                        });
+                    }
+                },
+
+                //获取工作时间安排
+                getTimeList: function () {
+                    var _this = this;
+                    _this.timeList = [];
+                    _this.timeLoading = true;
+                    axios.post(myUrl('timeConfig/list'), {}).then(function (res) {
+                        console.log("加载的时间安排", res.data);
+                        if (res.code == 200) {
+                            var data = res.data;
+                            if (typeof data === 'string') {
+                                try {
+                                    data = JSON.parse(data);
+                                } catch (e) {
+                                    console.error('解析时间安排数据失败:', e);
+                                    return;
+                                }
+                            }
+                            _this.timeList = data || [];
+                            console.log("工作时间安排列表:", _this.timeList);
+                        }
+                    }).catch(function (err) {
+                        console.error('获取工作时间安排失败:', err);
+                    }).finally(function() {
+                        _this.timeLoading = false;
+                    });
+                },
+
+                // 计算在工作时间段内的实际可用时间（跨天计算，跳过休息日）
+                calculateWorkTime: function(startTime, requiredHours) {
+                    var _this = this;
+        
+                    console.log("开始计算工作时间:", {
+                        开始时间: startTime.toLocaleString(),
+                        需要小时: requiredHours
+                    });
+        
+                    var totalSeconds = requiredHours * 3600; // 需要的工作总秒数
+                    var currentTime = new Date(startTime); // 当前时间
+                    var workedSeconds = 0; // 已工作秒数
+                    var dayCount = 0; // 累计天数
+                    var totalWorkingDays = 0; // 实际工作天数
+        
+                    // 将时间字符串转换为分钟数
+                    function timeToMinutes(timeStr) {
+                        if (!timeStr) return 0;
+                        var parts = timeStr.split(':');
+                        var hours = parseInt(parts[0]) || 0;
+                        var minutes = parseInt(parts[1]) || 0;
+                        return hours * 60 + minutes;
+                    }
+        
+                    // 计算一天的工作总时间（秒）
+                    function getDailyWorkSeconds(dayConfig) {
+                        if (!dayConfig) return 0;
+                        var morningTime = timeToMinutes(dayConfig.morning_end) - timeToMinutes(dayConfig.morning_start);
+                        var noonTime = timeToMinutes(dayConfig.noon_end) - timeToMinutes(dayConfig.noon_start);
+                        var eveningTime = timeToMinutes(dayConfig.night_end) - timeToMinutes(dayConfig.night_start);
+                        return (morningTime + noonTime + eveningTime) * 60;
+                    }
+
+                    while (workedSeconds < totalSeconds && dayCount < 365) { // 最多计算365天
+                        // 获取当前日期是星期几 (1=周一, 2=周二, ..., 7=周日)
+                        var currentWeek = currentTime.getDay();
+                        var currentWeekNum = currentWeek === 0 ? 7 : currentWeek;
+            
+                        // 获取当天的工作时间配置
+                        var dayConfig = _this.timeList.find(function(item) {
+                            return item.week == currentWeekNum;
+                        });
+            
+                        if (dayConfig) {
+                            totalWorkingDays++; // 实际工作天数+1
+                
+                            console.log("第" + (dayCount + 1) + "天（工作）:", {
+                                日期: currentTime.toLocaleDateString(),
+                                星期: currentWeekNum,
+                                工作时间: {
+                                    上午: dayConfig.morning_start + '-' + dayConfig.morning_end,
+                                    中午: dayConfig.noon_start + '-' + dayConfig.noon_end,
+                                    晚上: dayConfig.night_start + '-' + dayConfig.night_end
+                                }
+                            });
+                
+                            // 转换工作时间段为分钟
+                            var dayMorningStart = timeToMinutes(dayConfig.morning_start);
+                            var dayMorningEnd = timeToMinutes(dayConfig.morning_end);
+                            var dayNoonStart = timeToMinutes(dayConfig.noon_start);
+                            var dayNoonEnd = timeToMinutes(dayConfig.noon_end);
+                            var dayEveningStart = timeToMinutes(dayConfig.night_start);
+                            var dayEveningEnd = timeToMinutes(dayConfig.night_end);
+                
+                            // 获取当前时间的分钟数
+                            var currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
+                
+                            // 检查是否需要调整到工作时间的开始
+                            if (dayCount === 0) { // 只在第一天调整
+                                if (currentMinutes < dayMorningStart) {
+                                    // 还没到工作时间，调整到上午开始
+                                    currentTime.setHours(Math.floor(dayMorningStart / 60), dayMorningStart % 60, 0, 0);
+                                    currentMinutes = dayMorningStart;
+                                    console.log("调整开始时间到上午工作时间:", currentTime.toLocaleTimeString());
+                                }
+                            } else {
+                                // 后续天数，从上午开始工作
+                                currentTime.setHours(Math.floor(dayMorningStart / 60), dayMorningStart % 60, 0, 0);
+                                currentMinutes = dayMorningStart;
+                            }
+                
+                            // 计算当天还能工作的时间（秒）
+                            var canWorkToday = 0;
+                
+                            // 上午时间段
+                            if (currentMinutes >= dayMorningStart && currentMinutes < dayMorningEnd) {
+                                canWorkToday += (dayMorningEnd - currentMinutes) * 60;
+                            }
+                
+                            // 中午时间段（如果上午已过，从中午开始）
+                            if (currentMinutes >= dayNoonStart && currentMinutes < dayNoonEnd) {
+                                canWorkToday += (dayNoonEnd - currentMinutes) * 60;
+                            } else if (currentMinutes < dayNoonStart) {
+                                canWorkToday += (dayNoonEnd - dayNoonStart) * 60;
+                            }
+                
+                            // 晚上时间段（如果中午已过，从晚上开始）
+                            if (currentMinutes >= dayEveningStart && currentMinutes < dayEveningEnd) {
+                                canWorkToday += (dayEveningEnd - currentMinutes) * 60;
+                            } else if (currentMinutes < dayEveningStart) {
+                                canWorkToday += (dayEveningEnd - dayEveningStart) * 60;
+                            }
+                
+                            console.log("今天可工作时间:", (canWorkToday / 3600).toFixed(2) + "小时");
+                
+                            // 计算还需要工作的时间
+                            var remainingSeconds = totalSeconds - workedSeconds;
+                
+                            // 今天能完成多少工作
+                            var workToday = Math.min(canWorkToday, remainingSeconds);
+                            workedSeconds += workToday;
+                
+                            console.log("今天完成工作:", (workToday / 3600).toFixed(2) + "小时", 
+                                       "累计完成:", (workedSeconds / 3600).toFixed(2) + "小时",
+                                       "还需:", ((totalSeconds - workedSeconds) / 3600).toFixed(2) + "小时");
+                
+                            // 更新当前时间（加上今天工作的时间）
+                            currentTime.setTime(currentTime.getTime() + workToday * 1000);
+                
+                            // 如果今天已经完成全部工作，退出循环
+                            if (workedSeconds >= totalSeconds) {
+                                console.log("工作完成于:", currentTime.toLocaleString());
+                                break;
+                            }
+                
+                            // 如果今天没完成，移动到下一天的开始
+                            currentTime.setDate(currentTime.getDate() + 1);
+                            currentTime.setHours(0, 0, 0, 0); // 重置到零点，下一循环重新计算
+                
+                        } else {
+                            // 今天是休息日，直接跳过
+                            console.log("第" + (dayCount + 1) + "天（休息）:", {
+                                日期: currentTime.toLocaleDateString(),
+                                星期: currentWeekNum,
+                                备注: "跳过休息日"
+                            });
+                
+                            // 直接跳到下一天
+                            currentTime.setDate(currentTime.getDate() + 1);
+                            currentTime.setHours(0, 0, 0, 0);
+                        }
+            
+                        dayCount++;
+            
+                        // 安全限制，防止无限循环
+                        if (dayCount >= 365) {
+                            console.error("计算超时，可能陷入无限循环");
+                            break;
+                        }
+                    }
+        
+                    var result = {
+                        actualEndTime: currentTime,
+                        totalDays: dayCount,
+                        totalWorkingDays: totalWorkingDays,
+                        workingHours: workedSeconds / 3600,
+                        nonWorkingHours: (totalSeconds - workedSeconds) / 3600
+                    };
+        
+                    console.log("工作时间计算结果:", result);
+                    return result;
+                },
+
+                // 智能选择排产逻辑
+                performPaichanCalculation: function () {
+                    var _this = this;
+                    console.log("智能选择排产逻辑，是否有插单：", _this.hasInsertOrders);
+                
+                    if (_this.useInsertLogic) {
+                        console.log("使用插单排产逻辑");
+                        _this.performInsertPaichanCalculation();
+                    } else {
+                        console.log("使用普通排产逻辑");
+                        _this.performNormalPaichanCalculation();
+                    }
+                },
+
+                // 普通排产逻辑（第一个代码的逻辑）
+                performNormalPaichanCalculation: function () {
+                    var _this = this;
+                    _this.isCalculating = true;
+
+                    try {
+                        // 1. 按订单号分组
+                        var orderGroups = {};
+                        _this.allWorkList.forEach(function (work) {
+                            if (!orderGroups[work.dingdanhao]) {
+                                orderGroups[work.dingdanhao] = [];
+                            }
+                            orderGroups[work.dingdanhao].push(work);
+                        });
+
+                        // 2. 准备生产线数据
+                        var productionLines = {};
+                        _this.chanXianList.forEach(function (line) {
+                            if (!productionLines[line.gongxu]) {
+                                productionLines[line.gongxu] = [];
+                            }
+                            productionLines[line.gongxu].push({
+                                id: line.id,
+                                name: line.mingcheng,
+                                efficiency: parseFloat(line.xiaolv) || 0,
+                                availableFrom: null, // 生产线可用开始时间
+                                schedule: [], // 生产线排班计划
+                                isBusy: false, // 新增：标记是否忙碌
+                                concurrentTasks: [] // 新增：并发任务列表
+                            });
+                        });
+
+                        // 3. 对每个订单组进行排序和处理 - 按订单的起始日期排序，urgent优先
+                        _this.paichanResult = [];
+            
+                        // 创建一个订单列表，用于按起始日期和优先级排序
+                        var orderListForSorting = [];
+            
+                        Object.keys(orderGroups).forEach(function (orderId) {
+                            var works = orderGroups[orderId];
+                
+                            // 找到订单的最早起始日期
+                            var earliestStartTime = works.reduce(function (earliest, work) {
+                                var workStartTime = new Date(work.kaishishijian);
+                                return !earliest || workStartTime < earliest ? workStartTime : earliest;
+                            }, null);
+                
+                            // 判断订单是否为紧急订单（只要有一个工序是urgent，整个订单就视为urgent）
+                            var isUrgentOrder = works.some(function(work) {
+                                return work.dingdanleixing === "urgent";
+                            });
+                
+                            orderListForSorting.push({
+                                orderId: orderId,
+                                works: works,
+                                earliestStartTime: earliestStartTime,
+                                isUrgent: isUrgentOrder,
+                                priority: isUrgentOrder ? 1 : 2 // 1表示最高优先级，2表示普通优先级
+                            });
+                        });
+            
+                        // 按起始日期从早到晚排序，相同起始日期的urgent订单优先
+                        orderListForSorting.sort(function (a, b) {
+                            // 如果都有起始日期
+                            if (a.earliestStartTime && b.earliestStartTime) {
+                                // 起始日期不同，按日期排序
+                                if (a.earliestStartTime.getTime() !== b.earliestStartTime.getTime()) {
+                                    return a.earliestStartTime - b.earliestStartTime;
+                                }
+                                // 起始日期相同，按优先级排序（urgent优先）
+                                return a.priority - b.priority;
+                            }
+                
+                            // 如果一个有日期一个没有，有日期的优先
+                            if (a.earliestStartTime && !b.earliestStartTime) return -1;
+                            if (!a.earliestStartTime && b.earliestStartTime) return 1;
+                
+                            // 都没有日期，按优先级排序
+                            return a.priority - b.priority;
+                        });
+            
+                        console.log("按起始日期和优先级排序的订单列表:", orderListForSorting.map(function(item) {
+                            return {
+                                订单号: item.orderId,
+                                起始日期: item.earliestStartTime ? _this.formatDateTime(item.earliestStartTime) : '无日期',
+                                是否紧急: item.isUrgent ? '是' : '否',
+                                优先级: item.priority
+                            };
+                        }));
+
+                        // 按排序后的顺序处理订单
+                        orderListForSorting.forEach(function (orderItem) {
+                            var orderId = orderItem.orderId;
+                            var works = orderItem.works;
+
+                            // 对订单内的工序按开始时间排序（保持原有逻辑）
+                            // 对于紧急订单，可能需要特殊的内部排序逻辑
+                            works.sort(function (a, b) {
+                                // 如果都是紧急订单，按时间排序
+                                if (a.dingdanleixing === "urgent" && b.dingdanleixing === "urgent") {
+                                    return new Date(a.kaishishijian) - new Date(b.kaishishijian);
+                                }
+                                // 如果a是紧急，b不是，a优先
+                                if (a.dingdanleixing === "urgent" && b.dingdanleixing !== "urgent") {
+                                    return -1;
+                                }
+                                // 如果b是紧急，a不是，b优先
+                                if (a.dingdanleixing !== "urgent" && b.dingdanleixing === "urgent") {
+                                    return 1;
+                                }
+                                // 都不是紧急，按时间排序
+                                return new Date(a.kaishishijian) - new Date(b.kaishishijian);
+                            });
+
+                            works.forEach(function (work) {
+                                var processName = work.gongxumingcheng;
+                                var processEfficiency = work.gongxuxiaolv;
+                                var quantity = work.gongxushuliang || 0;
+
+                                if (productionLines[processName]) {
+                                    // 查找匹配效率的生产线（按效率降序排列）
+                                    var suitableLines = productionLines[processName].filter(function (line) {
+                                        return Math.abs(line.efficiency - processEfficiency) < 0.01; // 允许微小误差
+                                    });
+        
+                                    // 按效率从高到低排序
+                                    suitableLines.sort(function (a, b) {
+                                        return b.efficiency - a.efficiency;
+                                    });
+
+                                    if (suitableLines.length > 0) {
+                                        // 使用配置参数决定并行处理
+                                        var needParallel = false;
+                                        var parallelLinesCount = 1;
+
+                                        // 如果是紧急订单，自动增加并行处理的可能性
+                                        if (work.dingdanleixing === "urgent") {
+                                            console.log("紧急订单处理:", orderId, "工序:", processName);
+                                
+                                            // 对于紧急订单，更积极地使用并行处理
+                                            if (_this.parallelConfig.enable && suitableLines.length > 1) {
+                                                // 策略1：紧急订单降低并行门槛
+                                                if (quantity >= _this.parallelConfig.minQuantityForParallel * 0.7) { // 降低门槛
+                                                    parallelLinesCount = Math.min(
+                                                        suitableLines.length, 
+                                                        Math.min(_this.parallelConfig.maxParallelLines + 1, Math.ceil(quantity / 800)) // 增加并行线数
+                                                    );
+                                                    needParallel = true;
+                                                }
+
+                                                // 策略2：紧急订单的时间压力因子更高
+                                                if (!needParallel) {
+                                                    var deadline = new Date(work.jiezhishijian);
+                                                    var startTime = new Date(work.kaishishijian);
+                                                    var availableTime = deadline - startTime;
+                                                    var requiredHours = quantity / processEfficiency;
+                                                    var requiredTime = requiredHours * 60 * 60 * 1000;
+        
+                                                    // 紧急订单的时间压力因子更高
+                                                    var pressureFactor = _this.parallelConfig.timePressureFactor * 0.9; // 降低阈值
+                                                    if (requiredTime > availableTime * pressureFactor) {
+                                                        parallelLinesCount = Math.min(
+                                                            suitableLines.length,
+                                                            Math.ceil(requiredTime / (availableTime * pressureFactor))
+                                                        );
+                                                        needParallel = parallelLinesCount > 1;
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            // 普通订单的原有逻辑
+                                            if (_this.parallelConfig.enable && suitableLines.length > 1) {
+                                                // 策略1：根据订单量决定
+                                                if (quantity >= _this.parallelConfig.minQuantityForParallel) {
+                                                    parallelLinesCount = Math.min(
+                                                        suitableLines.length, 
+                                                        Math.min(_this.parallelConfig.maxParallelLines, Math.ceil(quantity / 1000))
+                                                    );
+                                                    needParallel = true;
+                                                }
+
+                                                // 策略2：根据时间压力决定
+                                                if (!needParallel) {
+                                                    var deadline = new Date(work.jiezhishijian);
+                                                    var startTime = new Date(work.kaishishijian);
+                                                    var availableTime = deadline - startTime;
+                                                    var requiredHours = quantity / processEfficiency;
+                                                    var requiredTime = requiredHours * 60 * 60 * 1000;
+        
+                                                    if (requiredTime > availableTime * _this.parallelConfig.timePressureFactor) {
+                                                        parallelLinesCount = Math.min(
+                                                            suitableLines.length,
+                                                            Math.ceil(requiredTime / (availableTime * _this.parallelConfig.timePressureFactor))
+                                                        );
+                                                        needParallel = parallelLinesCount > 1;
+                                                    }
+                                                }
+                                            }
+                                        }
+            
+                                        if (needParallel && parallelLinesCount > 1) {
+                                            // 并行处理逻辑
+                                            console.log((work.dingdanleixing === "urgent" ? "紧急订单" : "普通订单"), 
+                                                       orderId, "工序", processName, "使用", parallelLinesCount, "条线并行处理");
+                
+                                            // 选择最早可用的生产线（最多parallelLinesCount条）
+                                            var selectedLines = [];
+                                            var linesToConsider = suitableLines.slice(); // 复制数组
+                
+                                            for (var i = 0; i < parallelLinesCount && linesToConsider.length > 0; i++) {
+                                                // 按可用时间排序
+                                                linesToConsider.sort(function (a, b) {
+                                                    var timeA = a.availableFrom ? new Date(a.availableFrom) : new Date(work.kaishishijian);
+                                                    var timeB = b.availableFrom ? new Date(b.availableFrom) : new Date(work.kaishishijian);
+                                                    return timeA - timeB;
+                                                });
+                    
+                                                var selectedLine = linesToConsider[0];
+                                                selectedLines.push(selectedLine);
+                    
+                                                // 从待选列表中移除已选线
+                                                linesToConsider = linesToConsider.filter(function(line) {
+                                                    return line.id !== selectedLine.id;
+                                                });
+                                            }
+                
+                                            // 计算并行处理的总效率
+                                            var totalEfficiency = selectedLines.reduce(function(sum, line) {
+                                                return sum + line.efficiency;
+                                            }, 0);
+                
+                                            // 计算并行处理所需时间
+                                            var parallelRequiredHours = quantity / totalEfficiency;
+                
+                                            // 获取最晚的开始时间（等所有线都可用）
+                                            var parallelStartTime = selectedLines.reduce(function(latestTime, line) {
+                                                var lineStartTime = line.availableFrom ? new Date(line.availableFrom) : new Date(work.kaishishijian);
+                                                return lineStartTime > latestTime ? lineStartTime : latestTime;
+                                            }, new Date(work.kaishishijian));
+                
+                                            // 考虑工作时间段的实际结束时间
+                                            var workTimeResult = _this.calculateWorkTime(parallelStartTime, parallelRequiredHours);
+                                            var parallelEndTime = workTimeResult.actualEndTime;
+                
+                                            // 计算每条线分配的数量（按效率比例分配）
+                                            var allocatedQuantities = selectedLines.map(function(line) {
+                                                return Math.floor(quantity * (line.efficiency / totalEfficiency));
+                                            });
+                
+                                            // 调整数量，确保总和等于原数量
+                                            var allocatedTotal = allocatedQuantities.reduce(function(sum, q) { return sum + q; }, 0);
+                                            if (allocatedTotal < quantity) {
+                                                allocatedQuantities[0] += (quantity - allocatedTotal);
+                                            }
+                
+                                            // 更新每条生产线的可用时间
+                                            selectedLines.forEach(function(line, index) {
+                                                line.availableFrom = parallelEndTime;
+                    
+                                                // 添加到生产线的排班计划
+                                                line.schedule.push({
+                                                    orderId: orderId,
+                                                    startTime: parallelStartTime,
+                                                    endTime: parallelEndTime,
+                                                    quantity: allocatedQuantities[index],
+                                                    isParallel: true,
+                                                    parallelCount: selectedLines.length,
+                                                    totalQuantity: quantity,
+                                                    isUrgent: work.dingdanleixing === "urgent"
+                                                });
+                                            });
+                
+                                            // 添加排产记录（合并记录）
+                                            _this.paichanResult.push({
+                                                orderId: orderId,
+                                                orderType: work.dingdanleixing,
+                                                processName: processName,
+                                                processEfficiency: processEfficiency,
+                                                quantity: quantity,
+                                                productionLine: selectedLines.map(function(l) { return l.name; }).join('、'),
+                                                lineEfficiency: totalEfficiency.toFixed(2),
+                                                startTime: parallelStartTime,
+                                                endTime: parallelEndTime,
+                                                requiredHours: parallelRequiredHours.toFixed(2),
+                                                actualWorkHours: workTimeResult.workingHours.toFixed(2),
+                                                totalDays: workTimeResult.totalDays,
+                                                deadline: work.jiezhishijian,
+                                                parallelCount: selectedLines.length,
+                                                allocatedQuantities: allocatedQuantities,
+                                                workTimeConfig: '并行处理',
+                                                isUrgent: work.dingdanleixing === "urgent",
+                                                priorityColor: work.dingdanleixing === "urgent" ? "danger" : "success"
+                                            });
+                
+                                            console.log("并行处理详情:", {
+                                                订单: orderId,
+                                                是否紧急: work.dingdanleixing === "urgent" ? "是" : "否",
+                                                工序: processName,
+                                                使用生产线: selectedLines.map(l => l.name),
+                                                总效率: totalEfficiency,
+                                                分配数量: allocatedQuantities,
+                                                开始时间: parallelStartTime.toLocaleString(),
+                                                结束时间: parallelEndTime.toLocaleString()
+                                            });
+                
+                                        } else {
+                                            // 单线处理逻辑
+                                            // 选择最早可用的生产线
+                                            suitableLines.sort(function (a, b) {
+                                                var timeA = a.availableFrom ? new Date(a.availableFrom) : new Date(work.kaishishijian);
+                                                var timeB = b.availableFrom ? new Date(b.availableFrom) : new Date(work.kaishishijian);
+                                                return timeA - timeB;
+                                            });
+
+                                            var selectedLine = suitableLines[0];
+                                            var startTime = selectedLine.availableFrom ?
+                                                new Date(selectedLine.availableFrom) :
+                                                new Date(work.kaishishijian);
+
+                                            // 计算所需时间（小时）
+                                            var requiredHours = quantity / processEfficiency;
+                
+                                            // 考虑工作时间段的实际结束时间
+                                            var workTimeResult = _this.calculateWorkTime(startTime, requiredHours);
+                
+                                            var endTime = workTimeResult.actualEndTime;
+
+                                            // 更新生产线可用时间
+                                            selectedLine.availableFrom = endTime;
+
+                                            // 添加排产记录
+                                            _this.paichanResult.push({
+                                                orderId: orderId,
+                                                orderType: work.dingdanleixing,
+                                                processName: processName,
+                                                processEfficiency: processEfficiency,
+                                                quantity: quantity,
+                                                productionLine: selectedLine.name,
+                                                lineEfficiency: selectedLine.efficiency,
+                                                startTime: startTime,
+                                                endTime: endTime,
+                                                requiredHours: requiredHours.toFixed(2),
+                                                actualWorkHours: workTimeResult.workingHours.toFixed(2),
+                                                totalDays: workTimeResult.totalDays,
+                                                deadline: work.jiezhishijian,
+                                                parallelCount: 1,
+                                                workTimeConfig: '单线处理',
+                                                isUrgent: work.dingdanleixing === "urgent",
+                                                priorityColor: work.dingdanleixing === "urgent" ? "danger" : "success"
+                                            });
+
+                                            // 添加到生产线的排班计划
+                                            selectedLine.schedule.push({
+                                                orderId: orderId,
+                                                startTime: startTime,
+                                                endTime: endTime,
+                                                quantity: quantity,
+                                                isParallel: false,
+                                                isUrgent: work.dingdanleixing === "urgent"
+                                            });
+                                        }
+                                    } else {
+                                        // 没有匹配的生产线，标记为未分配
+                                        _this.paichanResult.push({
+                                            orderId: orderId,
+                                            orderType: work.dingdanleixing,
+                                            processName: processName,
+                                            processEfficiency: processEfficiency,
+                                            quantity: quantity,
+                                            productionLine: "未分配",
+                                            lineEfficiency: 0,
+                                            startTime: new Date(work.kaishishijian),
+                                            endTime: new Date(work.jiezhishijian),
+                                            requiredHours: "N/A",
+                                            deadline: work.jiezhishijian,
+                                            warning: "找不到匹配效率的生产线",
+                                            isUrgent: work.dingdanleixing === "urgent",
+                                            priorityColor: work.dingdanleixing === "urgent" ? "danger" : "warning"
+                                        });
+                                    }
+                                } else {
+                                    // 没有对应的生产线类型
+                                    _this.paichanResult.push({
+                                        orderId: orderId,
+                                        orderType: work.dingdanleixing,
+                                        processName: processName,
+                                        processEfficiency: processEfficiency,
+                                        quantity: quantity,
+                                        productionLine: "无生产线",
+                                        lineEfficiency: 0,
+                                        startTime: new Date(work.kaishishijian),
+                                        endTime: new Date(work.jiezhishijian),
+                                        requiredHours: "N/A",
+                                        deadline: work.jiezhishijian,
+                                        warning: "没有对应的生产线类型",
+                                        isUrgent: work.dingdanleixing === "urgent",
+                                        priorityColor: work.dingdanleixing === "urgent" ? "danger" : "warning"
+                                    });
+                                }
+                            });
+                        });
+
+                        // 4. 按开始时间排序结果
+                        _this.paichanResult.sort(function (a, b) {
+                            return a.startTime - b.startTime;
+                        });
+
+                        if (_this.list.length > 0) {
+                            _this.associatePaichanEndTime();
+                        }
+
+                        // 5. 显示结果
+                        var urgentCount = _this.paichanResult.filter(function(item) {
+                            return item.isUrgent;
+                        }).length;
+            
+                        _this.$notify.success({
+                            title: '排产完成',
+                            message: '共排产' + _this.paichanResult.length + '个任务（普通模式）'
+                        });
+
+                    } catch (error) {
+                        console.error('普通排产计算错误:', error);
+                        _this.$notify.error({
+                            title: '排产计算失败',
+                            message: error.message
+                        });
+                    } finally {
+                        _this.isCalculating = false;
+                    }
+                },
+
+                // 插单排产逻辑（第二个代码的逻辑）
+                performInsertPaichanCalculation: function () {
+                    var _this = this;
+                    _this.isCalculating = true;
+
+                    try {
+                        // 1. 按订单号分组
+                        var orderGroups = {};
+                        _this.allWorkList.forEach(function (work) {
+                            if (!orderGroups[work.dingdanhao]) {
+                                orderGroups[work.dingdanhao] = [];
+                            }
+                            orderGroups[work.dingdanhao].push(work);
+                        });
+
+                        // 2. 准备生产线数据
+                        var productionLinesByProcess = {};
+                        _this.chanXianList.forEach(function (line) {
+                            if (!productionLinesByProcess[line.gongxu]) {
+                                productionLinesByProcess[line.gongxu] = [];
+                            }
+                            productionLinesByProcess[line.gongxu].push({
+                                id: line.id,
+                                name: line.mingcheng,
+                                efficiency: parseFloat(line.xiaolv) || 0,
+                                availableFrom: null,
+                                schedule: [],
+                                pausedTasks: [],
+                                activeTask: null,
+                                isPaused: false,
+                                pausedAt: null,
+                                processName: line.gongxu
+                            });
+                        });
+
+                        // 3. 分离插单和普通订单
+                        var insertOrders = [];
+                        var normalOrders = [];
+            
+                        Object.keys(orderGroups).forEach(function (orderId) {
+                            var works = orderGroups[orderId];
+                
+                            // 判断是否为插单订单（兼容两种字段）
+                            var isInsertOrder = works.some(function(work) {
+                                return (work.charu == 1) || (work.is_insert == 1);
+                            });
+                
+                            var orderItem = {
+                                orderId: orderId,
+                                works: works,
+                                isInsert: isInsertOrder,
+                                insertStartTime: works.reduce(function (earliest, work) {
+                                    if (work.charu == 1 || work.is_insert == 1) {
+                                        var workStartTime = new Date(work.kaishishijian);
+                                        return !earliest || workStartTime < earliest ? workStartTime : earliest;
+                                    }
+                                    return earliest;
+                                }, null)
+                            };
+                
+                            if (isInsertOrder) {
+                                insertOrders.push(orderItem);
+                            } else {
+                                normalOrders.push(orderItem);
+                            }
+                        });
+
+                        // 4. 按插单开始时间排序插单订单
+                        insertOrders.sort(function (a, b) {
+                            if (a.insertStartTime && b.insertStartTime) {
+                                return a.insertStartTime - b.insertStartTime;
+                            }
+                            return 0;
+                        });
+
+                        _this.paichanResult = [];
+            
+                        // 5. 创建一个全局的工作数据映射，便于查找
+                        var workDataMap = {};
+                        _this.allWorkList.forEach(function(work) {
+                            var key = work.dingdanhao + "_" + work.gongxumingcheng;
+                            workDataMap[key] = work;
+                        });
+
+                        // 6. 处理普通订单的部分执行（在插单开始前）
+                        console.log("\n=== 第一步：处理插单前的普通订单执行 ===");
+            
+                        // 如果有插单，找到插单开始时间
+                        var globalInsertStartTime = insertOrders.length > 0 ? insertOrders[0].insertStartTime : null;
+
+                        // 处理普通订单
+                        normalOrders.forEach(function (orderItem) {
+                            var orderId = orderItem.orderId;
+                            var works = orderItem.works;
+                
+                            // 对订单内的工序排序
+                            works.sort(function (a, b) {
+                                return new Date(a.kaishishijian) - new Date(b.kaishishijian);
+                            });
+
+                            works.forEach(function (work) {
+                                var processName = work.gongxumingcheng;
+                                var processEfficiency = parseFloat(work.gongxuxiaolv) || 0;
+                                var quantity = parseFloat(work.gongxushuliang) || 0;
+                                var plannedStartTime = new Date(work.kaishishijian);
+                    
+                                console.log("处理普通订单工序: " + orderId + " - " + processName);
+
+                                if (productionLinesByProcess[processName]) {
+                                    // 找到符合条件且可用的生产线
+                                    var suitableLines = productionLinesByProcess[processName].filter(function (line) {
+                                        var efficiencyMatch = Math.abs(line.efficiency - processEfficiency) < 0.01;
+                                        var isAvailable = !line.activeTask;
+                                        return efficiencyMatch && isAvailable;
+                                    });
+                        
+                                    if (suitableLines.length > 0) {
+                                        // 选择最早可用的生产线
+                                        suitableLines.sort(function (a, b) {
+                                            var timeA = a.availableFrom ? new Date(a.availableFrom) : plannedStartTime;
+                                            var timeB = b.availableFrom ? new Date(b.availableFrom) : plannedStartTime;
+                                            return timeA - timeB;
+                                        });
+
+                                        var selectedLine = suitableLines[0];
+                                        var actualStartTime = selectedLine.availableFrom ? 
+                                            new Date(selectedLine.availableFrom) : plannedStartTime;
+                                
+                                        if (actualStartTime < plannedStartTime) {
+                                            actualStartTime = plannedStartTime;
+                                        }
+
+                                        // 如果订单计划开始时间晚于插单开始时间，或者没有插单，完整执行
+                                        if (!globalInsertStartTime || actualStartTime >= globalInsertStartTime) {
+                                            // 完整执行整个任务
+                                            var requiredHours = quantity / processEfficiency;
+                                            var workTimeResult = _this.calculateWorkTime(actualStartTime, requiredHours);
+                                            var endTime = workTimeResult.actualEndTime;
+
+                                            // 更新生产线状态
+                                            selectedLine.availableFrom = endTime;
+                                            selectedLine.activeTask = {
+                                                orderId: orderId,
+                                                processName: processName,
+                                                startTime: actualStartTime,
+                                                endTime: endTime,
+                                                plannedQuantity: quantity,
+                                                efficiency: processEfficiency
+                                            };
+
+                                            // 记录到排产结果
+                                            _this.paichanResult.push({
+                                                orderId: orderId,
+                                                orderType: work.dingdanleixing || 'normal',
+                                                processName: processName,
+                                                processEfficiency: processEfficiency,
+                                                quantity: quantity,
+                                                productionLine: selectedLine.name,
+                                                lineEfficiency: selectedLine.efficiency,
+                                                startTime: actualStartTime,
+                                                endTime: endTime,
+                                                requiredHours: requiredHours.toFixed(2),
+                                                actualWorkHours: workTimeResult.workingHours.toFixed(2),
+                                                totalDays: workTimeResult.totalDays,
+                                                deadline: work.jiezhishijian,
+                                                isInsertOrder: false,
+                                                note: "正常执行（无插单影响）",
+                                                priorityColor: "success"
+                                            });
+                                
+                                            console.log("✓ 完整执行: " + selectedLine.name + ", 开始: " + _this.formatDateTime(actualStartTime));
+                                
+                                        } else {
+                                            // 部分执行（会被插单中断）
+                                            // 使用实际工作时间计算能完成的数量
+                                            var workableResult = _this.calculateWorkableQuantity(actualStartTime, globalInsertStartTime, processEfficiency);
+                                            var completedQuantity = Math.min(workableResult.workableQuantity, quantity);
+                                            var remainingQuantity = quantity - completedQuantity;
+                                
+                                            if (completedQuantity > 0) {
+                                                // 记录部分执行
+                                                _this.paichanResult.push({
+                                                    orderId: orderId,
+                                                    orderType: work.dingdanleixing || 'normal',
+                                                    processName: processName,
+                                                    processEfficiency: processEfficiency,
+                                                    quantity: completedQuantity,
+                                                    productionLine: selectedLine.name,
+                                                    lineEfficiency: selectedLine.efficiency,
+                                                    startTime: actualStartTime,
+                                                    endTime: globalInsertStartTime,
+                                                    requiredHours: workableResult.workableHours.toFixed(2),
+                                                    isInsertOrder: false,
+                                                    note: "部分执行（插单前）",
+                                                    priorityColor: "info",
+                                                    isPartial: true,
+                                                    partialNote: "完成" + Math.round(completedQuantity) + "/" + quantity,
+                                                    remainingQuantity: remainingQuantity
+                                                });
+                                    
+                                                // 暂停生产线任务
+                                                selectedLine.isPaused = true;
+                                                selectedLine.pausedAt = globalInsertStartTime;
+                                                selectedLine.activeTask = {
+                                                    orderId: orderId,
+                                                    processName: processName,
+                                                    startTime: actualStartTime,
+                                                    pausedAt: globalInsertStartTime,
+                                                    plannedQuantity: quantity,
+                                                    completedQuantity: completedQuantity,
+                                                    remainingQuantity: remainingQuantity,
+                                                    efficiency: processEfficiency
+                                                };
+                                    
+                                                console.log("✓ 部分执行: " + selectedLine.name + ", 开始: " + _this.formatDateTime(actualStartTime) + 
+                                                          ", 暂停: " + _this.formatDateTime(globalInsertStartTime));
+                                                console.log("  完成数量: " + Math.round(completedQuantity) + "/" + quantity);
+                                                console.log("  实际工作时间: " + workableResult.workableHours.toFixed(2) + "小时");
+                                            } else {
+                                                // 在插单开始前还没开始，需要延后
+                                                console.log("任务延后到插单后执行");
+                                            }
+                                        }
+                                    } else {
+                                        console.log("✗ 没有可用生产线");
+                                    }
+                                } else {
+                                    console.log("✗ 没有此工序生产线");
+                                }
+                            });
+                        });
+
+                        // 7. 处理插单订单
+                        console.log("\n=== 第二步：处理插单订单 ===");
+            
+                        insertOrders.forEach(function (orderItem) {
+                            var orderId = orderItem.orderId;
+                            var works = orderItem.works;
+                            var insertStartTime = orderItem.insertStartTime;
+                
+                            console.log("\n处理插单订单 " + orderId + ", 插单开始时间: " + _this.formatDateTime(insertStartTime));
+
+                            // 对插单工序排序
+                            works.sort(function (a, b) {
+                                return new Date(a.kaishishijian) - new Date(b.kaishishijian);
+                            });
+
+                            // 处理每个插单工序
+                            works.forEach(function (work) {
+                                var processName = work.gongxumingcheng;
+                                var processEfficiency = parseFloat(work.gongxuxiaolv) || 0;
+                                var quantity = parseFloat(work.gongxushuliang) || 0;
+                    
+                                console.log("\n执行插单工序 " + processName + ":");
+                                console.log("  数量: " + quantity + ", 效率: " + processEfficiency + "/小时");
+
+                                if (productionLinesByProcess[processName]) {
+                                    // 找到所有符合效率条件的生产线（包括被暂停的）
+                                    var suitableLines = productionLinesByProcess[processName].filter(function (line) {
+                                        return Math.abs(line.efficiency - processEfficiency) < 0.01;
+                                    });
+                        
+                                    if (suitableLines.length > 0) {
+                                        // 计算并行总效率
+                                        var totalEfficiency = suitableLines.reduce(function(sum, line) {
+                                            return sum + line.efficiency;
+                                        }, 0);
+                            
+                                        console.log("  使用 " + suitableLines.length + " 条生产线，总效率: " + totalEfficiency.toFixed(2) + "/小时");
+
+                                        // 确定开始时间
+                                        var actualStartTime = insertStartTime;
+                            
+                                        // 计算所需时间
+                                        var parallelRequiredHours = quantity / totalEfficiency;
+                            
+                                        // 计算实际结束时间
+                                        var workTimeResult = _this.calculateWorkTime(actualStartTime, parallelRequiredHours);
+                                        var endTime = workTimeResult.actualEndTime;
+                            
+                                        console.log("  开始: " + _this.formatDateTime(actualStartTime));
+                                        console.log("  结束: " + _this.formatDateTime(endTime));
+
+                                        // 按效率比例分配数量
+                                        var allocatedQuantities = [];
+                                        var allocatedTotal = 0;
+                            
+                                        suitableLines.forEach(function(line, index) {
+                                            var proportion = line.efficiency / totalEfficiency;
+                                            var allocatedQty = Math.round(quantity * proportion);
+                                            allocatedQuantities[index] = allocatedQty;
+                                            allocatedTotal += allocatedQty;
+                                        });
+                            
+                                        // 调整数量
+                                        var quantityDiff = quantity - allocatedTotal;
+                                        if (quantityDiff !== 0) {
+                                            allocatedQuantities[0] += quantityDiff;
+                                        }
+
+                                        // 更新生产线状态
+                                        suitableLines.forEach(function(line, index) {
+                                            // 保存被暂停的任务信息
+                                            if (line.isPaused && line.activeTask) {
+                                                line.pausedTasks.push({
+                                                    task: line.activeTask,
+                                                    pauseTime: line.pausedAt,
+                                                    insertOrderId: orderId
+                                                });
+                                            }
+                                
+                                            // 执行插单任务
+                                            line.activeTask = {
+                                                orderId: orderId,
+                                                processName: processName,
+                                                startTime: actualStartTime,
+                                                endTime: endTime,
+                                                plannedQuantity: allocatedQuantities[index],
+                                                efficiency: line.efficiency,
+                                                isInsert: true
+                                            };
+                                
+                                            line.isPaused = false;
+                                            line.pausedAt = null;
+                                            line.availableFrom = endTime;
+                                
+                                            // 记录到计划
+                                            line.schedule.push({
+                                                orderId: orderId,
+                                                processName: processName,
+                                                startTime: actualStartTime,
+                                                endTime: endTime,
+                                                quantity: allocatedQuantities[index],
+                                                isInsert: true,
+                                                isParallel: suitableLines.length > 1
+                                            });
+                                        });
+                            
+                                        // 添加插单记录
+                                        _this.paichanResult.push({
+                                            orderId: orderId,
+                                            orderType: work.dingdanleixing || 'urgent',
+                                            processName: processName,
+                                            processEfficiency: processEfficiency,
+                                            quantity: quantity,
+                                            productionLine: suitableLines.map(function(l) { 
+                                                return l.name + "(" + l.efficiency + "/h)"; 
+                                            }).join('、'),
+                                            lineEfficiency: totalEfficiency.toFixed(2),
+                                            startTime: actualStartTime,
+                                            endTime: endTime,
+                                            requiredHours: parallelRequiredHours.toFixed(2),
+                                            actualWorkHours: workTimeResult.workingHours.toFixed(2),
+                                            totalDays: workTimeResult.totalDays,
+                                            deadline: work.jiezhishijian,
+                                            isInsertOrder: true,
+                                            parallelCount: suitableLines.length,
+                                            note: "插单执行",
+                                            priorityColor: "danger"
+                                        });
+                            
+                                        console.log("✓ 插单工序 " + processName + " 执行完成");
+                                    }
+                                }
+                            });
+
+                            // 插单完成后，恢复被暂停的任务（按工序分别恢复）
+                            console.log("\n恢复被插单暂停的任务:");
+
+                            // 按工序处理每个插单任务
+                            works.forEach(function(work) {
+                                var processName = work.gongxumingcheng;
+                                var currentInsertEndTime = null;
+    
+                                // 找到当前工序的插单结束时间
+                                if (productionLinesByProcess[processName]) {
+                                    var lines = productionLinesByProcess[processName];
+                                    lines.forEach(function(line) {
+                                        if (line.activeTask && line.activeTask.orderId === orderId && line.activeTask.endTime) {
+                                            var endTime = new Date(line.activeTask.endTime);
+                                            if (!currentInsertEndTime || endTime > currentInsertEndTime) {
+                                                currentInsertEndTime = endTime;
+                                            }
+                                        }
+                                    });
+                                }
+
+                                if (currentInsertEndTime) {
+                                    console.log("工序 " + processName + " 的插单结束时间: " + _this.formatDateTime(currentInsertEndTime));
+        
+                                    // 恢复被当前工序插单暂停的同工序任务
+                                    if (productionLinesByProcess[processName]) {
+                                        var lines = productionLinesByProcess[processName];
+            
+                                        lines.forEach(function(line) {
+                                            // 恢复被此插单暂停的同工序任务
+                                            for (var i = line.pausedTasks.length - 1; i >= 0; i--) {
+                                                var pausedTask = line.pausedTasks[i];
+                                                if (pausedTask.insertOrderId === orderId && pausedTask.task.processName === processName) {
+                                                    var task = pausedTask.task;
+                                                    var resumeStartTime = currentInsertEndTime;
+                
+                                                    // 计算剩余数量所需时间
+                                                    var remainingHours = task.remainingQuantity / task.efficiency;
+                
+                                                    // 计算实际结束时间
+                                                    var workTimeResult = _this.calculateWorkTime(resumeStartTime, remainingHours);
+                                                    var resumeEndTime = workTimeResult.actualEndTime;
+                
+                                                    console.log("恢复同工序任务: 订单 " + task.orderId + " 工序 " + task.processName);
+                                                    console.log("  生产线: " + line.name);
+                                                    console.log("  恢复时间: " + _this.formatDateTime(resumeStartTime));
+                                                    console.log("  剩余数量: " + task.remainingQuantity);
+                
+                                                    // 从映射中获取原始工作数据
+                                                    var workKey = task.orderId + "_" + task.processName;
+                                                    var originalWorkData = workDataMap[workKey];
+                
+                                                    // 更新生产线状态
+                                                    line.activeTask = {
+                                                        orderId: task.orderId,
+                                                        processName: task.processName,
+                                                        startTime: resumeStartTime,
+                                                        endTime: resumeEndTime,
+                                                        plannedQuantity: task.remainingQuantity,
+                                                        efficiency: task.efficiency,
+                                                        isResumed: true
+                                                    };
+                
+                                                    line.availableFrom = resumeEndTime;
+                                                    line.isPaused = false;
+                
+                                                    // 添加恢复执行记录
+                                                    _this.paichanResult.push({
+                                                        orderId: task.orderId,
+                                                        orderType: originalWorkData ? (originalWorkData.dingdanleixing || 'normal') : 'normal',
+                                                        processName: task.processName,
+                                                        processEfficiency: task.efficiency,
+                                                        quantity: task.remainingQuantity,
+                                                        productionLine: line.name,
+                                                        lineEfficiency: line.efficiency,
+                                                        startTime: resumeStartTime,
+                                                        endTime: resumeEndTime,
+                                                        requiredHours: remainingHours.toFixed(2),
+                                                        actualWorkHours: workTimeResult.workingHours.toFixed(2),
+                                                        totalDays: workTimeResult.totalDays,
+                                                        deadline: originalWorkData ? originalWorkData.jiezhishijian : '',
+                                                        isInsertOrder: false,
+                                                        note: "恢复执行（插单工序结束后）",
+                                                        priorityColor: "success",
+                                                        isResumed: true,
+                                                        totalNote: "总计" + task.plannedQuantity + "个（插单前完成" + task.completedQuantity + "）"
+                                                    });
+                
+                                                    // 从暂停列表中移除
+                                                    line.pausedTasks.splice(i, 1);
+                        
+                                                    console.log("已恢复订单 " + task.orderId + " 的工序 " + task.processName);
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+
+                            console.log("插单订单 " + orderId + " 的所有工序处理完成");
+
+                        });
+
+                        // 8. 处理剩余的普通订单（没有被打断的）
+                        console.log("\n=== 第三步：处理剩余普通订单 ===");
+            
+                        // 检查哪些工序已经处理过
+                        var processedTasks = {};
+                        _this.paichanResult.forEach(function(item) {
+                            var key = item.orderId + "_" + item.processName;
+                            if (!processedTasks[key]) {
+                                processedTasks[key] = [];
+                            }
+                            processedTasks[key].push(item);
+                        });
+
+                        normalOrders.forEach(function (orderItem) {
+                            var orderId = orderItem.orderId;
+                            var works = orderItem.works;
+                
+                            works.forEach(function (work) {
+                                var processName = work.gongxumingcheng;
+                                var key = orderId + "_" + processName;
+                    
+                                // 检查这个工序是否已经完整处理
+                                var taskRecords = processedTasks[key];
+                                var totalProcessed = 0;
+                                var isComplete = false;
+                    
+                                if (taskRecords) {
+                                    taskRecords.forEach(function(record) {
+                                        if (record.quantity && typeof record.quantity === 'number') {
+                                            totalProcessed += record.quantity;
+                                        }
+                                        if (record.isPartial || record.isResumed) {
+                                            isComplete = false;
+                                        }
+                                    });
+                        
+                                    // 如果总处理数量等于计划数量，说明已经完成
+                                    if (totalProcessed >= parseFloat(work.gongxushuliang || 0)) {
+                                        isComplete = true;
+                                    }
+                                }
+                    
+                                if (!isComplete) {
+                                    // 这个工序还没有处理或未完成
+                                    console.log("处理未完成订单工序: " + orderId + " - " + processName);
+                        
+                                    var processEfficiency = parseFloat(work.gongxuxiaolv) || 0;
+                                    var quantity = parseFloat(work.gongxushuliang) || 0;
+                                    var plannedStartTime = new Date(work.kaishishijian);
+                        
+                                    if (productionLinesByProcess[processName]) {
+                                        var suitableLines = productionLinesByProcess[processName].filter(function (line) {
+                                            var efficiencyMatch = Math.abs(line.efficiency - processEfficiency) < 0.01;
+                                            var isAvailable = !line.activeTask || line.isPaused;
+                                            return efficiencyMatch && isAvailable;
+                                        });
+                            
+                                        if (suitableLines.length > 0) {
+                                            suitableLines.sort(function (a, b) {
+                                                var timeA = a.availableFrom ? new Date(a.availableFrom) : plannedStartTime;
+                                                var timeB = b.availableFrom ? new Date(b.availableFrom) : plannedStartTime;
+                                                return timeA - timeB;
+                                            });
+
+                                            var selectedLine = suitableLines[0];
+                                            var actualStartTime = selectedLine.availableFrom ? 
+                                                new Date(selectedLine.availableFrom) : plannedStartTime;
+                                
+                                            if (actualStartTime < plannedStartTime) {
+                                                actualStartTime = plannedStartTime;
+                                            }
+                                
+                                            var requiredHours = quantity / processEfficiency;
+                                            var workTimeResult = _this.calculateWorkTime(actualStartTime, requiredHours);
+                                            var endTime = workTimeResult.actualEndTime;
+
+                                            selectedLine.availableFrom = endTime;
+                                            selectedLine.activeTask = {
+                                                orderId: orderId,
+                                                processName: processName,
+                                                startTime: actualStartTime,
+                                                endTime: endTime,
+                                                plannedQuantity: quantity,
+                                                efficiency: processEfficiency
+                                            };
+
+                                            _this.paichanResult.push({
+                                                orderId: orderId,
+                                                orderType: work.dingdanleixing || 'normal',
+                                                processName: processName,
+                                                processEfficiency: processEfficiency,
+                                                quantity: quantity,
+                                                productionLine: selectedLine.name,
+                                                lineEfficiency: selectedLine.efficiency,
+                                                startTime: actualStartTime,
+                                                endTime: endTime,
+                                                requiredHours: requiredHours.toFixed(2),
+                                                actualWorkHours: workTimeResult.workingHours.toFixed(2),
+                                                totalDays: workTimeResult.totalDays,
+                                                deadline: work.jiezhishijian,
+                                                isInsertOrder: false,
+                                                note: "延迟执行（插单后）",
+                                                priorityColor: "success"
+                                            });
+                                
+                                            console.log("✓ 新增执行: " + selectedLine.name);
+                                        }
+                                    }
+                                }
+                            });
+                        });
+
+                        // 9. 按开始时间排序结果
+                        _this.paichanResult.sort(function (a, b) {
+                            return a.startTime - b.startTime;
+                        });
+
+                        if (_this.list.length > 0) {
+                            _this.associatePaichanEndTime();
+                        }
+
+                        // 10. 统计信息
+                        var partialCount = _this.paichanResult.filter(function(item) {
+                            return item.isPartial;
+                        }).length;
+            
+                        var resumedCount = _this.paichanResult.filter(function(item) {
+                            return item.isResumed;
+                        }).length;
+            
+                        var insertCount = _this.paichanResult.filter(function(item) {
+                            return item.isInsertOrder;
+                        }).length;
+            
+                        var normalCount = _this.paichanResult.filter(function(item) {
+                            return !item.isInsertOrder;
+                        }).length;
+
+                        console.log("\n=== 排产统计 ===");
+                        console.log("总工序数: " + _this.paichanResult.length);
+                        console.log("插单工序: " + insertCount);
+                        console.log("普通工序: " + normalCount);
+                        console.log("部分执行: " + partialCount);
+                        console.log("恢复执行: " + resumedCount);
+
+                        _this.$notify.success({
+                            title: '排产完成',
+                            message: '共排产' + _this.paichanResult.length + '个任务（插单模式）'
+                        });
+
+                        setTimeout(function() {
+                            _this.updatePaichanEndTimeInList();
+                        }, 100);
+
+                    } catch (error) {
+                        console.error('插单排产计算错误:', error);
+                        _this.$notify.error({
+                            title: '排产计算失败',
+                            message: error.message
+                        });
+                    } finally {
+                        _this.isCalculating = false;
+                    }
+                },
+
+                // 新增方法：计算在工作时间段内能完成的数量
+                calculateWorkableQuantity: function(startTime, endTime, efficiency) {
+                    var _this = this;
+        
+                    console.log("计算可完成数量:", {
+                        开始时间: startTime.toLocaleString(),
+                        结束时间: endTime.toLocaleString(),
+                        效率: efficiency + "/小时"
+                    });
+        
+                    var totalSeconds = 0;
+                    var currentTime = new Date(startTime);
+                    var targetTime = new Date(endTime);
+                    var dayCount = 0;
+        
+                    // 将时间字符串转换为分钟数
+                    function timeToMinutes(timeStr) {
+                        if (!timeStr) return 0;
+                        var parts = timeStr.split(':');
+                        var hours = parseInt(parts[0]) || 0;
+                        var minutes = parseInt(parts[1]) || 0;
+                        return hours * 60 + minutes;
+                    }
+        
+                    // 计算两个时间点之间的有效工作时间（秒）
+                    function getWorkSecondsBetween(startMinute, endMinute, dayConfig) {
+                        if (!dayConfig) return 0;
+            
+                        var dayMorningStart = timeToMinutes(dayConfig.morning_start);
+                        var dayMorningEnd = timeToMinutes(dayConfig.morning_end);
+                        var dayNoonStart = timeToMinutes(dayConfig.noon_start);
+                        var dayNoonEnd = timeToMinutes(dayConfig.noon_end);
+                        var dayEveningStart = timeToMinutes(dayConfig.night_start);
+                        var dayEveningEnd = timeToMinutes(dayConfig.night_end);
+            
+                        var workSeconds = 0;
+            
+                        // 上午工作时间段
+                        if (startMinute < dayMorningEnd && endMinute > dayMorningStart) {
+                            var overlapStart = Math.max(startMinute, dayMorningStart);
+                            var overlapEnd = Math.min(endMinute, dayMorningEnd);
+                            workSeconds += (overlapEnd - overlapStart) * 60;
+                        }
+            
+                        // 中午工作时间段
+                        if (startMinute < dayNoonEnd && endMinute > dayNoonStart) {
+                            var overlapStart = Math.max(startMinute, dayNoonStart);
+                            var overlapEnd = Math.min(endMinute, dayNoonEnd);
+                            workSeconds += (overlapEnd - overlapStart) * 60;
+                        }
+            
+                        // 晚上工作时间段
+                        if (startMinute < dayEveningEnd && endMinute > dayEveningStart) {
+                            var overlapStart = Math.max(startMinute, dayEveningStart);
+                            var overlapEnd = Math.min(endMinute, dayEveningEnd);
+                            workSeconds += (overlapEnd - overlapStart) * 60;
+                        }
+            
+                        return workSeconds;
+                    }
+        
+                    while (currentTime < targetTime && dayCount < 365) {
+                        // 获取当前日期是星期几
+                        var currentWeek = currentTime.getDay();
+                        var currentWeekNum = currentWeek === 0 ? 7 : currentWeek;
+            
+                        // 获取当天的工作时间配置
+                        var dayConfig = _this.timeList.find(function(item) {
+                            return item.week == currentWeekNum;
+                        });
+            
+                        if (dayConfig) {
+                            // 获取当天开始和结束的时间戳
+                            var dayStart = new Date(currentTime);
+                            dayStart.setHours(0, 0, 0, 0);
+                            var dayEnd = new Date(dayStart);
+                            dayEnd.setDate(dayEnd.getDate() + 1);
+                
+                            // 计算当天的开始和结束时间（相对于这天）
+                            var workStart = Math.max(currentTime.getTime(), dayStart.getTime());
+                            var workEnd = Math.min(targetTime.getTime(), dayEnd.getTime());
+                
+                            // 转换为当天的分钟数
+                            var dayStartMinutes = (workStart - dayStart.getTime()) / (1000 * 60);
+                            var dayEndMinutes = (workEnd - dayStart.getTime()) / (1000 * 60);
+                
+                            // 计算当天能工作的时间（秒）
+                            var dayWorkSeconds = getWorkSecondsBetween(dayStartMinutes, dayEndMinutes, dayConfig);
+                
+                            totalSeconds += dayWorkSeconds;
+                
+                            console.log("第" + (dayCount + 1) + "天工作时间:", {
+                                日期: currentTime.toLocaleDateString(),
+                                星期: currentWeekNum,
+                                开始时间: new Date(workStart).toLocaleTimeString(),
+                                结束时间: new Date(workEnd).toLocaleTimeString(),
+                                工作时间: (dayWorkSeconds / 3600).toFixed(2) + "小时",
+                                累计时间: (totalSeconds / 3600).toFixed(2) + "小时"
+                            });
+                
+                            // 移动到下一天
+                            currentTime = new Date(dayEnd);
+                
+                        } else {
+                            // 休息日，直接跳过一整天
+                            console.log("第" + (dayCount + 1) + "天（休息）:", {
+                                日期: currentTime.toLocaleDateString(),
+                                星期: currentWeekNum,
+                                工作时间: "0小时"
+                            });
+                
+                            currentTime.setDate(currentTime.getDate() + 1);
+                            currentTime.setHours(0, 0, 0, 0);
+                        }
+            
+                        dayCount++;
+            
+                        if (dayCount >= 365) {
+                            console.error("计算超时");
+                            break;
+                        }
+                    }
+        
+                    // 计算能完成的数量
+                    var workableHours = totalSeconds / 3600;
+                    var workableQuantity = workableHours * efficiency;
+        
+                    console.log("可完成数量计算结果:", {
+                        总工作时间: workableHours.toFixed(2) + "小时",
+                        可完成数量: Math.floor(workableQuantity),
+                        效率: efficiency + "/小时"
+                    });
+        
+                    return {
+                        workableHours: workableHours,
+                        workableQuantity: Math.floor(workableQuantity)
+                    };
+                },
+
+                calculatePaichan: function () {
+                    var _this = this;
+        
+                    // 防止重复执行
+                    if (_this.isCalculating) {
+                        return;
+                    }
+        
+                    _this.isCalculating = true;
+        
+                    console.log("开始重新计算排产，获取最新数据...");
+        
+                    // 使用Promise确保所有数据都加载完成
+                    Promise.all([
+                        new Promise(function(resolve) {
+                            // 重新获取工作数据
+                            axios.post(myUrl('paichan/getAll'), {}).then(function (res) {
+                                if (res.code == 200) {
+                                    var data = res.data;
+                                    if (typeof data === 'string') {
+                                        try {
+                                            data = JSON.parse(data);
+                                        } catch (e) {
+                                            console.error('解析订单数据失败:', e);
+                                            data = [];
+                                        }
+                                    }
+                                    _this.allWorkList = data || [];
+                                    console.log("重新获取工作数据:", _this.allWorkList.length);
+                                
+                                    // 检查是否有插单
+                                    _this.checkInsertOrders();
+                                }
+                                resolve();
+                            }).catch(function(err) {
+                                console.error('获取工作数据失败:', err);
+                                resolve();
+                            });
+                        }),
+                        new Promise(function(resolve) {
+                            // 重新获取生产线数据
+                            axios.post(myUrl('shengchanxian/getAll'), {}).then(function (res) {
+                                if (res.code == 200) {
+                                    var data = res.data;
+                                    if (typeof data === 'string') {
+                                        try {
+                                            data = JSON.parse(data);
+                                        } catch (e) {
+                                            console.error('解析生产线数据失败:', e);
+                                            data = [];
+                                        }
+                                    }
+                                    _this.chanXianList = data || [];
+                                    console.log("重新获取生产线数据:", _this.chanXianList.length);
+                                }
+                                resolve();
+                            }).catch(function(err) {
+                                console.error('获取生产线数据失败:', err);
+                                resolve();
+                            });
+                        }),
+                        new Promise(function(resolve) {
+                            // 重新获取时间配置
+                            axios.post(myUrl('timeConfig/list'), {}).then(function (res) {
+                                if (res.code == 200) {
+                                    var data = res.data;
+                                    if (typeof data === 'string') {
+                                        try {
+                                            data = JSON.parse(data);
+                                        } catch (e) {
+                                            console.error('解析时间安排数据失败:', e);
+                                            data = [];
+                                        }
+                                    }
+                                    _this.timeList = data || [];
+                                    console.log("重新获取工作时间安排:", _this.timeList.length);
+                                }
+                                resolve();
+                            }).catch(function(err) {
+                                console.error('获取时间配置失败:', err);
+                                resolve();
+                            });
+                        })
+                    ]).then(function() {
+                        console.log("所有数据重新获取完成，开始计算排产");
+                        console.log("是否使用插单逻辑:", _this.useInsertLogic);
+            
+                        // 检查是否有必要的数据
+                        if (_this.allWorkList.length === 0 || _this.chanXianList.length === 0) {
+                            _this.$notify.warning({
+                                title: '数据不完整',
+                                message: '工作数据或生产线数据为空，无法计算排产'
+                            });
+                            _this.isCalculating = false;
+                            return;
+                        }
+            
+                        // 执行智能排产计算逻辑
+                        _this.performPaichanCalculation();
+            
+                    }).catch(function(error) {
+                        console.error('数据获取失败:', error);
+                        _this.$notify.error({
+                            title: '数据获取失败',
+                            message: '无法获取最新数据'
+                        });
+                        _this.isCalculating = false;
+                    });
+                },
+
+                // 格式化时间显示
+                formatDateTime: function (date) {
+                    if (!date) return '';
+                    var d = new Date(date);
+                    return d.toLocaleString('zh-CN', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                },
+
+                // 格式化工作时间段显示
+                formatWorkTime: function(workTimeConfig) {
+                    if (!workTimeConfig) return '无工作时间';
+                    return `上午 ${workTimeConfig.morning_start}-${workTimeConfig.morning_end} | 中午 ${workTimeConfig.noon_start}-${workTimeConfig.noon_end} | 晚上 ${workTimeConfig.night_start}-${workTimeConfig.night_end}`;
+                },
+
+                // 判断是否超期
+                isOverdue: function (endTime, deadline) {
+                    if (!deadline) return false;
+                    return new Date(endTime) > new Date(deadline);
+                },
+
+                // 确认排产
+                confirmSchedule: function(row) {
+                    this.confirmData = { ...row };
+                    this.confirmDialogVisible = true;
+                },
+
+                // 添加一个方法，在排产完成后直接更新列表中的结束时间
+                updatePaichanEndTimeInList: function() {
+                    var _this = this;
+        
+                    if (_this.paichanResult.length === 0) {
+                        console.log('没有排产结果，无法更新');
+                        return;
+                    }
+        
+                    // 为每个订单找到最晚的工序结束时间
+                    var orderEndTimes = {};
+                    _this.paichanResult.forEach(function(item) {
+                        if (!orderEndTimes[item.orderId] || 
+                            new Date(item.endTime) > new Date(orderEndTimes[item.orderId])) {
+                            orderEndTimes[item.orderId] = item.endTime;
+                        }
+                    });
+        
+                    console.log('各订单最终结束时间:', orderEndTimes);
+        
+                    // 更新主列表
+                    _this.list.forEach(function(item) {
+                        // 尝试匹配订单号
+                        var matchedOrderId = null;
+            
+                        // 方法1: 通过order_id在orderList中查找对应的订单号
+                        if (item.order_id) {
+                            var order = _this.orderList.find(function(o) {
+                                return o.id == item.order_id;
+                            });
+                            if (order) {
+                                matchedOrderId = order.order_id;
+                            }
+                        }
+            
+                        // 方法2: 直接使用item中的订单号字段（如果有）
+                        if (!matchedOrderId && item.dingdanhao) {
+                            matchedOrderId = item.dingdanhao;
+                        }
+            
+                        // 方法3: 通过订单号前缀匹配（如果订单号是数字）
+                        if (!matchedOrderId && item.order_id) {
+                            // 检查是否有以order_id结尾的订单号
+                            for (var orderId in orderEndTimes) {
+                                if (orderId.toString().endsWith(item.order_id.toString())) {
+                                    matchedOrderId = orderId;
+                                    break;
+                                }
+                            }
+                        }
+            
+                        if (matchedOrderId && orderEndTimes[matchedOrderId]) {
+                            item.paichanEndTime = orderEndTimes[matchedOrderId];
+                            console.log('更新成功:', matchedOrderId, '->', _this.formatDateTime(orderEndTimes[matchedOrderId]));
+                        }
+                    });
+        
+                    // 强制刷新表格
+                    _this.tableKey += 1;
+                },
+
+                // 关联排产结束时间到主列表
+                associatePaichanEndTime: function() {
+                    var _this = this;
+
+                    // 如果还没有排产结果，先计算排产
+                    if (_this.paichanResult.length === 0 && 
+                        _this.allWorkList.length > 0 && 
+                        _this.chanXianList.length > 0) {
+                        _this.calculatePaichan();
+                        return;
+                    }
+
+                    // 建立订单号到排产结果的映射
+                    var paichanMap = {};
+                    _this.paichanResult.forEach(function(item) {
+                        // 同一个订单可能有多个工序，取最晚的结束时间
+                        if (!paichanMap[item.orderId] || 
+                            new Date(item.endTime) > new Date(paichanMap[item.orderId])) {
+                            paichanMap[item.orderId] = item.endTime;
+                        }
+                    });
+
+                    // 将排产结束时间关联到主列表
+                    _this.list.forEach(function(item) {
+                        // 获取订单号（需要根据您的数据结构调整）
+                        var orderId = _this.formatOrderId(item.order_id);
+
+                        if (paichanMap[orderId]) {
+                            // 将排产结束时间添加到列表项
+                            item.paichanEndTime = paichanMap[orderId];
+                        } else {
+                            // 如果没有排产结果，使用原始截止日期
+                            item.paichanEndTime = item.jiezhishijian;
+                        }
+                    });
+
+                    console.log('关联排产结束时间完成:', _this.list);
+        
+                    // 检查是否有超期订单
+                    var overdueOrders = [];
+                    _this.list.forEach(function(item) {
+                        if (item.paichanEndTime && item.jiezhishijian) {
+                            var paichanEndTime = new Date(item.paichanEndTime);
+                            var orderDeadline = new Date(item.jiezhishijian);
+                
+                            // 如果排产后截止日期 > 订单截止日期，说明超期
+                            if (paichanEndTime > orderDeadline) {
+                                overdueOrders.push({
+                                    orderId: _this.formatOrderId(item.order_id),
+                                    orderDeadline: _this.formatDateTime(orderDeadline),
+                                    paichanEndTime: _this.formatDateTime(paichanEndTime)
+                                });
+                            }
+                        }
+                    });
+        
+                    // 如果有超期订单，显示提醒
+                    if (overdueOrders.length > 0) {
+                        var message = '发现 ' + overdueOrders.length + ' 个订单无法按期完成：\n\n';
+            
+                        overdueOrders.forEach(function(order, index) {
+                            message += (index + 1) + '. 订单号：' + order.orderId + '\n';
+                            message += '   订单截止日期：' + order.orderDeadline + '\n';
+                            message += '   排产后截止日期：' + order.paichanEndTime + '\n\n';
+                        });
+            
+                        message += '该排产存在无法按期完成订单的内容，请添加设备或者重新配置工作时间！';
+            
+                        // 显示警告对话框
+                        _this.$alert(message, '排产超期提醒', {
+                            confirmButtonText: '确定',
+                            type: 'warning',
+                            showClose: false,
+                            callback: function(action) {
+                                console.log('用户确认了超期提醒');
+                            }
+                        });
+            
+                        console.warn('排产超期提醒：', message);
+                    }
+                },
+
+                //===============================================================================
+                //===========================排产逻辑结束========================================
+                //===============================================================================
+
+            },
+            mounted: function() {
+                var vm = this;
+
+                // 先加载订单列表
+                vm.getOrderList();
+
+                // 然后加载主列表数据
+                vm.getList();
+
+                // 最后异步加载排产相关数据
+                setTimeout(function() {
+                    vm.getAllWorkList();
+                    vm.getAllChanXianList();
+                    vm.getTimeList();
+    
+                    // 稍后计算排产
+                    setTimeout(function() {
+                        if (vm.allWorkList.length > 0 && vm.chanXianList.length > 0) {
+                            vm.calculatePaichan();
+                        }
+                    }, 1000);
+                }, 300);
+            }
+        });
+</script>
+
+    <style>
+        /* 复用生产线页面的样式 */
+        .el-card {
+            border-radius: 12px !important;
+            border: 1px solid rgba(26, 42, 108, 0.1) !important;
+            background: linear-gradient(135deg, rgba(26, 42, 108, 0.02) 0%, rgba(42, 82, 152, 0.02) 100%) !important;
+            box-shadow: 0 4px 20px rgba(26, 42, 108, 0.08) !important;
+            transition: all 0.3s ease !important;
+            margin-bottom: 20px;
+        }
+
+        .el-card:hover {
+            box-shadow: 0 8px 24px rgba(26, 42, 108, 0.12) !important;
+        }
+
+        .el-card__header {
+            padding: 16px 24px !important;
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            border-radius: 12px 12px 0 0 !important;
+            border: none !important;
+            color: white !important;
+            font-weight: bold !important;
+        }
+
+        .el-table {
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            box-shadow: 0 2px 12px rgba(26, 42, 108, 0.1) !important;
+            font-size: 14px !important;
+            background: white !important;
+        }
+
+        .el-table th {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            color: white !important;
+            font-weight: 600 !important;
+            border: none !important;
+            text-align: center;
+        }
+
+        .el-table td {
+            border-bottom: 1px solid rgba(26, 42, 108, 0.08) !important;
+            text-align: center;
+        }
+
+        .el-table .el-table__row:nth-child(even) {
+            background-color: rgba(257, 246, 250, 1);
+        }
+
+        .el-table .el-table__row:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .el-button--primary {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            border: none !important;
+            border-radius: 8px !important;
+            color: white !important;
+            font-weight: 500 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .el-button--primary:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(26, 42, 108, 0.3) !important;
+        }
+
+        .el-button--success {
+            background: linear-gradient(135deg, #67c23a 0%, #5daf34 100%) !important;
+            border: none !important;
+        }
+
+        .el-button--danger {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%) !important;
+            border: none !important;
+        }
+
+        .el-tag {
+            border: none !important;
+            font-weight: bold !important;
+        }
+
+        .el-dialog {
+            border-radius: 12px !important;
+            overflow: hidden !important;
+        }
+
+        .el-dialog__header {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 100%) !important;
+            color: white !important;
+            font-weight: bold !important;
+            padding: 15px 20px !important;
+        }
+
+        .el-dialog__title {
+            color: white !important;
+        }
+    </style>
+</body>
+</html>

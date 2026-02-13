@@ -15,7 +15,7 @@
         padding: 0;
         box-sizing: border-box;
         font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
-        background: white;
+       
         border-radius: 12px;
         width: 100%;
     }

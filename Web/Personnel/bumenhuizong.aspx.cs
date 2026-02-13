@@ -82,9 +82,49 @@ namespace Web.Personnel
                 GridView1.DataBind();
             }
         }
+        //protected void Button2_Click(object sender, EventArgs e)
+        //{
+        //    Session["bm1"] = Request.Form["DropDownList1"];
+        //    Server.Transfer("../Personnel/bumenxiangqing1.aspx");
+        //}
+
         protected void Button2_Click(object sender, EventArgs e)
         {
+            // 1. 获取公司名称（从Session或HiddenField）
+            string gongsi = Session["gongsi"].ToString();
+            if (string.IsNullOrEmpty(gongsi))
+            {
+                // 从隐藏字段获取公司名
+                gongsi = hiddenCompanyName.Value;
+                if (!string.IsNullOrEmpty(gongsi))
+                {
+                    Session["gongsi"] = gongsi;
+                }
+            }
+
+            // 2. 获取部门
             Session["bm1"] = Request.Form["DropDownList1"];
+
+            // 3. 获取日期条件
+            if (string.IsNullOrEmpty(Request.Form["ks"]))
+            {
+                Session["ks"] = "1900-01-01";
+            }
+            else
+            {
+                Session["ks"] = Request.Form["ks"];
+            }
+
+            if (string.IsNullOrEmpty(Request.Form["js"]))
+            {
+                Session["js"] = "2099-12-31";
+            }
+            else
+            {
+                Session["js"] = Request.Form["js"];
+            }
+
+            // 4. 跳转到部门详情页
             Server.Transfer("../Personnel/bumenxiangqing1.aspx");
         }
         protected void Button3_Click(object sender, EventArgs e)

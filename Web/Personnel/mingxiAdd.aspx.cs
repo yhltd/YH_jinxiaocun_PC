@@ -234,9 +234,185 @@ namespace Web.Personnel
             }
         }
 
+        //protected void Button4_Click(object sender, EventArgs e)
+        //{
+        //    if (notisnull(Request.Form["Textbox1"]) == false) 
+        //    {
+        //        return;
+        //    }
+        //    HrMingXiModel hm = new HrMingXiModel();
+        //    List<gongzi_peizhi> list = hm.getPeizhi(Session["gongsi"].ToString());
+        //    double chidao_koukuan = 0;
+        //    double jiabanfei = 0;
+        //    double queqin_koukuan = 0;
+        //    double geren_yiliao = 0;
+        //    double qiye_yiliao = 0;
+        //    double geren_shengyu = 0;
+        //    double qiye_shengyu = 0;
+        //    double geren_yanglao = 0;
+        //    double qiye_yanglao = 0;
+        //    double geren_shiye = 0;
+        //    double qiye_shiye = 0;
+        //    double qiye_gongshang = 0;
+        //    double geren_nianjin = 0;
+        //    double qiye_nianjin = 0;
+        //    double geren_gongjijin = 0;
+        //    double qiye_gongjijin = 0;
+
+        //    double yingshui_gongzi = 0;
+        //    double shifa_gongzi = 0;
+        //    double daikou_geshui = 0;
+
+        //    //迟到扣款
+        //    if (notisnull(Request.Form["Textbox18"]) && notisnull(list[0].chidao_koukuan) && isnumeric(list[0].chidao_koukuan))
+        //    {
+        //        ((TextBox)this.FindControl("TextBox19")).Text = Convert.ToString(Convert.ToDouble(list[0].chidao_koukuan) * Convert.ToDouble(Request.Form["Textbox18"]));
+        //        chidao_koukuan = Convert.ToDouble(list[0].chidao_koukuan) * Convert.ToDouble(Request.Form["Textbox18"]);
+        //    }
+        //    //加班费
+        //    if (notisnull(Request.Form["Textbox13"]) && notisnull(list[0].jiabanfei) && isnumeric(list[0].jiabanfei))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox14")).Text = Convert.ToString(Convert.ToDouble(list[0].jiabanfei) * Convert.ToDouble(Request.Form["Textbox13"]));
+        //        jiabanfei = Convert.ToDouble(list[0].jiabanfei) * Convert.ToDouble(Request.Form["Textbox13"]);
+        //    }
+        //    //缺勤扣款
+        //    if (notisnull(Request.Form["Textbox16"]) && notisnull(list[0].queqin_koukuan) && isnumeric(list[0].queqin_koukuan))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox17")).Text = Convert.ToString(Convert.ToDouble(list[0].queqin_koukuan) * Convert.ToDouble(Request.Form["Textbox16"]));
+        //        queqin_koukuan = Convert.ToDouble(list[0].queqin_koukuan) * Convert.ToDouble(Request.Form["Textbox16"]);
+        //    }
+        //    //个人医疗
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_yiliao) && isnumeric(list[0].geren_yiliao))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox37")).Text = Convert.ToString(Convert.ToDouble(list[0].geren_yiliao) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        geren_yiliao = Convert.ToDouble(list[0].geren_yiliao) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //企业医疗
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_yiliao) && isnumeric(list[0].qiye_yiliao))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox27")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_yiliao) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        qiye_yiliao = Convert.ToDouble(list[0].qiye_yiliao) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //个人生育
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_shengyu) && isnumeric(list[0].geren_shengyu))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox38")).Text = Convert.ToString(Convert.ToDouble(list[0].geren_shengyu) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        geren_shengyu = Convert.ToDouble(list[0].geren_shengyu) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //企业生育
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_shengyu) && isnumeric(list[0].qiye_shengyu))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox29")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_shengyu) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        qiye_shengyu = Convert.ToDouble(list[0].qiye_shengyu) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //个人养老
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_yanglao) && isnumeric(list[0].geren_yanglao))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox35")).Text = Convert.ToString(Convert.ToDouble(list[0].geren_yanglao) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        geren_yanglao = Convert.ToDouble(list[0].geren_yanglao) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //企业养老
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_yanglao) && isnumeric(list[0].qiye_yanglao))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox25")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_yanglao) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        qiye_yanglao = Convert.ToDouble(list[0].qiye_yanglao) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //个人失业
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_shiye) && isnumeric(list[0].geren_shiye))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox36")).Text = Convert.ToString(Convert.ToDouble(list[0].geren_shiye) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        geren_shiye = Convert.ToDouble(list[0].geren_shiye) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //企业失业
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_shiye) && isnumeric(list[0].qiye_shiye))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox26")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_shiye) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        qiye_shiye = Convert.ToDouble(list[0].qiye_shiye) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //企业工伤
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_gongshang) && isnumeric(list[0].qiye_gongshang))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox28")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_gongshang) * Convert.ToDouble(Request.Form["Textbox6"]));
+        //        qiye_gongshang = Convert.ToDouble(list[0].qiye_gongshang) * Convert.ToDouble(Request.Form["Textbox6"]);
+        //    }
+        //    //个人年金
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_nianjin) && isnumeric(list[0].geren_nianjin))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox40")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].geren_nianjin));
+        //        geren_nianjin = Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].geren_nianjin);
+        //    }
+        //    //企业年金
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_nianjin) && isnumeric(list[0].qiye_nianjin))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox31")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].qiye_nianjin));
+        //        qiye_nianjin = Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].qiye_nianjin);
+        //    }
+        //    //个人公积金
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_gongjijin) && isnumeric(list[0].geren_gongjijin))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox39")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].geren_gongjijin));
+        //        geren_gongjijin = Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].geren_gongjijin);
+        //    }
+        //    //企业公积金
+        //    if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_gongjijin) && isnumeric(list[0].qiye_gongjijin))
+        //    {
+        //        ((TextBox)this.FindControl("Textbox30")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].qiye_gongjijin));
+        //        qiye_gongjijin = Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].qiye_gongjijin);
+        //    }
+
+
+
+        //    //税前工资
+        //    //((TextBox)this.FindControl("TextBox44")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
+
+        //    ((TextBox)this.FindControl("TextBox44")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
+        //    for (int i = 0; i < list.Count; i++) 
+        //    {
+        //        //岗位工资
+        //        if (Request.Form["Textbox3"].Equals(list[i].gangwei)) 
+        //        {
+        //            ((TextBox)this.FindControl("TextBox8")).Text = list[i].gangwei_gongzi;
+        //        }
+        //        //应税工资
+        //        if (notisnull(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) && notisnull(list[i].gongzi) && list[i].gongzi.Contains("-")) 
+        //        {
+        //            if (isnumeric(list[i].gongzi.Split('-')[0]) && isnumeric(list[i].gongzi.Split('-')[1])) 
+        //            {
+        //                if (Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) >= Convert.ToDouble(list[i].gongzi.Split('-')[0]) && Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) <= Convert.ToDouble(list[i].gongzi.Split('-')[1])) 
+        //                {
+        //                    if (isnumeric(list[i].shuilv)) 
+        //                    {
+        //                        ((TextBox)this.FindControl("TextBox45")).Text = Convert.ToString(Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) - Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) * Convert.ToDouble(list[i].shuilv));
+        //                        ((TextBox)this.FindControl("Textbox46")).Text = list[i].shuilv;
+        //                        yingshui_gongzi = Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) - Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) * Convert.ToDouble(list[i].shuilv);
+        //                        daikou_geshui = Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]) * Convert.ToDouble(list[i].shuilv);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    //个人小计
+        //    ((TextBox)this.FindControl("Textbox43")).Text = Convert.ToString(geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao + Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
+        //    //企业小计
+        //    ((TextBox)this.FindControl("Textbox34")).Text = Convert.ToString(qiye_gongjijin + qiye_gongshang + qiye_nianjin + qiye_shengyu + qiye_shiye + qiye_yanglao + qiye_yiliao);
+        //    //实发工资
+        //    ((TextBox)this.FindControl("Textbox50")).Text = Convert.ToString(yingshui_gongzi - geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao );
+        //    shifa_gongzi = yingshui_gongzi - geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao ;
+        //    //应发工资
+        //    ((TextBox)this.FindControl("Textbox20")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]) - (geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao));
+        //    //当月工资合计
+        //    ((TextBox)this.FindControl("Textbox9")).Text = Convert.ToString(shifa_gongzi + jiabanfei - queqin_koukuan - chidao_koukuan);
+        //    //代扣个税
+        //    ((TextBox)this.FindControl("Textbox48")).Text =Convert.ToString(daikou_geshui);
+
+        
+        //}
+
+
         protected void Button4_Click(object sender, EventArgs e)
         {
-            if (notisnull(Request.Form["Textbox1"]) == false) 
+            if (notisnull(Request.Form["Textbox1"]) == false)
             {
                 return;
             }
@@ -264,97 +440,97 @@ namespace Web.Personnel
             double daikou_geshui = 0;
 
             //迟到扣款
-            if (notisnull(Request.Form["Textbox18"]) && notisnull(list[0].chidao_koukuan) && isnumeric(list[0].chidao_koukuan))
+            if (notisnull(Request.Form["Textbox18"]) && notisnull(list[0].chidao_koukuan) && isnumeric(list[0].chidao_koukuan) && isnumeric(Request.Form["Textbox18"]))
             {
                 ((TextBox)this.FindControl("TextBox19")).Text = Convert.ToString(Convert.ToDouble(list[0].chidao_koukuan) * Convert.ToDouble(Request.Form["Textbox18"]));
                 chidao_koukuan = Convert.ToDouble(list[0].chidao_koukuan) * Convert.ToDouble(Request.Form["Textbox18"]);
             }
             //加班费
-            if (notisnull(Request.Form["Textbox13"]) && notisnull(list[0].jiabanfei) && isnumeric(list[0].jiabanfei))
+            if (notisnull(Request.Form["Textbox13"]) && notisnull(list[0].jiabanfei) && isnumeric(list[0].jiabanfei) && isnumeric(Request.Form["Textbox13"]))
             {
                 ((TextBox)this.FindControl("Textbox14")).Text = Convert.ToString(Convert.ToDouble(list[0].jiabanfei) * Convert.ToDouble(Request.Form["Textbox13"]));
                 jiabanfei = Convert.ToDouble(list[0].jiabanfei) * Convert.ToDouble(Request.Form["Textbox13"]);
             }
             //缺勤扣款
-            if (notisnull(Request.Form["Textbox16"]) && notisnull(list[0].queqin_koukuan) && isnumeric(list[0].queqin_koukuan))
+            if (notisnull(Request.Form["Textbox16"]) && notisnull(list[0].queqin_koukuan) && isnumeric(list[0].queqin_koukuan) && isnumeric(Request.Form["Textbox16"]))
             {
                 ((TextBox)this.FindControl("Textbox17")).Text = Convert.ToString(Convert.ToDouble(list[0].queqin_koukuan) * Convert.ToDouble(Request.Form["Textbox16"]));
                 queqin_koukuan = Convert.ToDouble(list[0].queqin_koukuan) * Convert.ToDouble(Request.Form["Textbox16"]);
             }
             //个人医疗
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_yiliao) && isnumeric(list[0].geren_yiliao))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_yiliao) && isnumeric(list[0].geren_yiliao) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox37")).Text = Convert.ToString(Convert.ToDouble(list[0].geren_yiliao) * Convert.ToDouble(Request.Form["Textbox6"]));
                 geren_yiliao = Convert.ToDouble(list[0].geren_yiliao) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //企业医疗
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_yiliao) && isnumeric(list[0].qiye_yiliao))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_yiliao) && isnumeric(list[0].qiye_yiliao) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox27")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_yiliao) * Convert.ToDouble(Request.Form["Textbox6"]));
                 qiye_yiliao = Convert.ToDouble(list[0].qiye_yiliao) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //个人生育
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_shengyu) && isnumeric(list[0].geren_shengyu))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_shengyu) && isnumeric(list[0].geren_shengyu) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox38")).Text = Convert.ToString(Convert.ToDouble(list[0].geren_shengyu) * Convert.ToDouble(Request.Form["Textbox6"]));
                 geren_shengyu = Convert.ToDouble(list[0].geren_shengyu) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //企业生育
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_shengyu) && isnumeric(list[0].qiye_shengyu))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_shengyu) && isnumeric(list[0].qiye_shengyu) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox29")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_shengyu) * Convert.ToDouble(Request.Form["Textbox6"]));
                 qiye_shengyu = Convert.ToDouble(list[0].qiye_shengyu) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //个人养老
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_yanglao) && isnumeric(list[0].geren_yanglao))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_yanglao) && isnumeric(list[0].geren_yanglao) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox35")).Text = Convert.ToString(Convert.ToDouble(list[0].geren_yanglao) * Convert.ToDouble(Request.Form["Textbox6"]));
                 geren_yanglao = Convert.ToDouble(list[0].geren_yanglao) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //企业养老
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_yanglao) && isnumeric(list[0].qiye_yanglao))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_yanglao) && isnumeric(list[0].qiye_yanglao) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox25")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_yanglao) * Convert.ToDouble(Request.Form["Textbox6"]));
                 qiye_yanglao = Convert.ToDouble(list[0].qiye_yanglao) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //个人失业
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_shiye) && isnumeric(list[0].geren_shiye))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_shiye) && isnumeric(list[0].geren_shiye) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox36")).Text = Convert.ToString(Convert.ToDouble(list[0].geren_shiye) * Convert.ToDouble(Request.Form["Textbox6"]));
                 geren_shiye = Convert.ToDouble(list[0].geren_shiye) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //企业失业
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_shiye) && isnumeric(list[0].qiye_shiye))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_shiye) && isnumeric(list[0].qiye_shiye) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox26")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_shiye) * Convert.ToDouble(Request.Form["Textbox6"]));
                 qiye_shiye = Convert.ToDouble(list[0].qiye_shiye) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //企业工伤
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_gongshang) && isnumeric(list[0].qiye_gongshang))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_gongshang) && isnumeric(list[0].qiye_gongshang) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox28")).Text = Convert.ToString(Convert.ToDouble(list[0].qiye_gongshang) * Convert.ToDouble(Request.Form["Textbox6"]));
                 qiye_gongshang = Convert.ToDouble(list[0].qiye_gongshang) * Convert.ToDouble(Request.Form["Textbox6"]);
             }
             //个人年金
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_nianjin) && isnumeric(list[0].geren_nianjin))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_nianjin) && isnumeric(list[0].geren_nianjin) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox40")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].geren_nianjin));
                 geren_nianjin = Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].geren_nianjin);
             }
             //企业年金
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_nianjin) && isnumeric(list[0].qiye_nianjin))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_nianjin) && isnumeric(list[0].qiye_nianjin) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox31")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].qiye_nianjin));
                 qiye_nianjin = Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].qiye_nianjin);
             }
             //个人公积金
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_gongjijin) && isnumeric(list[0].geren_gongjijin))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].geren_gongjijin) && isnumeric(list[0].geren_gongjijin) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox39")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].geren_gongjijin));
                 geren_gongjijin = Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].geren_gongjijin);
             }
             //企业公积金
-            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_gongjijin) && isnumeric(list[0].qiye_gongjijin))
+            if (notisnull(Request.Form["Textbox6"]) && notisnull(list[0].qiye_gongjijin) && isnumeric(list[0].qiye_gongjijin) && isnumeric(Request.Form["Textbox6"]))
             {
                 ((TextBox)this.FindControl("Textbox30")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].qiye_gongjijin));
                 qiye_gongjijin = Convert.ToDouble(Request.Form["Textbox6"]) * Convert.ToDouble(list[0].qiye_gongjijin);
@@ -363,28 +539,36 @@ namespace Web.Personnel
 
 
             //税前工资
-            //((TextBox)this.FindControl("TextBox44")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
-            ((TextBox)this.FindControl("TextBox44")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
-            for (int i = 0; i < list.Count; i++) 
+            if (isnumeric(Request.Form["Textbox6"]) && isnumeric(Request.Form["Textbox7"]))
             {
-                //岗位工资
-                if (Request.Form["Textbox3"].Equals(list[i].gangwei)) 
+                ((TextBox)this.FindControl("TextBox44")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
+
+                double totalSalary = Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]);
+
+                for (int i = 0; i < list.Count; i++)
                 {
-                    ((TextBox)this.FindControl("TextBox8")).Text = list[i].gangwei_gongzi;
-                }
-                //应税工资
-                if (notisnull(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) && notisnull(list[i].gongzi) && list[i].gongzi.Contains("-")) 
-                {
-                    if (isnumeric(list[i].gongzi.Split('-')[0]) && isnumeric(list[i].gongzi.Split('-')[1])) 
+                    //岗位工资
+                    if (Request.Form["Textbox3"].Equals(list[i].gangwei) && isnumeric(list[i].gangwei_gongzi))
                     {
-                        if (Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) >= Convert.ToDouble(list[i].gongzi.Split('-')[0]) && Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) <= Convert.ToDouble(list[i].gongzi.Split('-')[1])) 
+                        ((TextBox)this.FindControl("TextBox8")).Text = list[i].gangwei_gongzi;
+                    }
+                    //应税工资
+                    if (notisnull(totalSalary.ToString()) && notisnull(list[i].gongzi) && list[i].gongzi.Contains("-"))
+                    {
+                        string[] gongziRange = list[i].gongzi.Split('-');
+                        if (gongziRange.Length == 2 && isnumeric(gongziRange[0]) && isnumeric(gongziRange[1]) && isnumeric(list[i].shuilv))
                         {
-                            if (isnumeric(list[i].shuilv)) 
+                            double minSalary = Convert.ToDouble(gongziRange[0]);
+                            double maxSalary = Convert.ToDouble(gongziRange[1]);
+                            double taxRate = Convert.ToDouble(list[i].shuilv);
+
+                            if (totalSalary >= minSalary && totalSalary <= maxSalary)
                             {
-                                ((TextBox)this.FindControl("TextBox45")).Text = Convert.ToString(Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) - Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) * Convert.ToDouble(list[i].shuilv));
+                                double taxableSalary = totalSalary - totalSalary * taxRate;
+                                ((TextBox)this.FindControl("TextBox45")).Text = Convert.ToString(taxableSalary);
                                 ((TextBox)this.FindControl("Textbox46")).Text = list[i].shuilv;
-                                yingshui_gongzi = Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) - Convert.ToDouble(Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]))) * Convert.ToDouble(list[i].shuilv);
-                                daikou_geshui = Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]) * Convert.ToDouble(list[i].shuilv);
+                                yingshui_gongzi = taxableSalary;
+                                daikou_geshui = totalSalary * taxRate;  // 修正扣税公式
                             }
                         }
                     }
@@ -392,21 +576,57 @@ namespace Web.Personnel
             }
 
             //个人小计
-            ((TextBox)this.FindControl("Textbox43")).Text = Convert.ToString(geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao + Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
-            //企业小计
-            ((TextBox)this.FindControl("Textbox34")).Text = Convert.ToString(qiye_gongjijin + qiye_gongshang + qiye_nianjin + qiye_shengyu + qiye_shiye + qiye_yanglao + qiye_yiliao);
-            //实发工资
-            ((TextBox)this.FindControl("Textbox50")).Text = Convert.ToString(yingshui_gongzi - geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao );
-            shifa_gongzi = yingshui_gongzi - geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao ;
-            //应发工资
-            ((TextBox)this.FindControl("Textbox20")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]) - (geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao));
-            //当月工资合计
-            ((TextBox)this.FindControl("Textbox9")).Text = Convert.ToString(shifa_gongzi + jiabanfei - queqin_koukuan - chidao_koukuan);
-            //代扣个税
-            ((TextBox)this.FindControl("Textbox48")).Text =Convert.ToString(daikou_geshui);
+            if (isnumeric(geren_gongjijin.ToString()) && isnumeric(geren_nianjin.ToString()) &&
+                isnumeric(geren_shengyu.ToString()) && isnumeric(geren_shiye.ToString()) &&
+                isnumeric(geren_yanglao.ToString()) && isnumeric(geren_yiliao.ToString()) &&
+                isnumeric(Request.Form["Textbox6"]) && isnumeric(Request.Form["Textbox7"]))
+            {
+                ((TextBox)this.FindControl("Textbox43")).Text = Convert.ToString(geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao + Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]));
+            }
 
-        
+            //企业小计
+            if (isnumeric(qiye_gongjijin.ToString()) && isnumeric(qiye_gongshang.ToString()) &&
+                isnumeric(qiye_nianjin.ToString()) && isnumeric(qiye_shengyu.ToString()) &&
+                isnumeric(qiye_shiye.ToString()) && isnumeric(qiye_yanglao.ToString()) &&
+                isnumeric(qiye_yiliao.ToString()))
+            {
+                ((TextBox)this.FindControl("Textbox34")).Text = Convert.ToString(qiye_gongjijin + qiye_gongshang + qiye_nianjin + qiye_shengyu + qiye_shiye + qiye_yanglao + qiye_yiliao);
+            }
+
+            //实发工资
+            if (isnumeric(yingshui_gongzi.ToString()) && isnumeric(geren_gongjijin.ToString()) &&
+                isnumeric(geren_nianjin.ToString()) && isnumeric(geren_shengyu.ToString()) &&
+                isnumeric(geren_shiye.ToString()) && isnumeric(geren_yanglao.ToString()) &&
+                isnumeric(geren_yiliao.ToString()))
+            {
+                ((TextBox)this.FindControl("Textbox50")).Text = Convert.ToString(yingshui_gongzi - geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao);
+                shifa_gongzi = yingshui_gongzi - geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao;
+            }
+
+            //应发工资
+            if (isnumeric(Request.Form["Textbox6"]) && isnumeric(Request.Form["Textbox7"]) &&
+                isnumeric(geren_gongjijin.ToString()) && isnumeric(geren_nianjin.ToString()) &&
+                isnumeric(geren_shengyu.ToString()) && isnumeric(geren_shiye.ToString()) &&
+                isnumeric(geren_yanglao.ToString()) && isnumeric(geren_yiliao.ToString()))
+            {
+                ((TextBox)this.FindControl("Textbox20")).Text = Convert.ToString(Convert.ToDouble(Request.Form["Textbox6"]) + Convert.ToDouble(Request.Form["Textbox7"]) - (geren_gongjijin + geren_nianjin + geren_shengyu + geren_shiye + geren_yanglao + geren_yiliao));
+            }
+
+            //当月工资合计
+            if (isnumeric(shifa_gongzi.ToString()) && isnumeric(jiabanfei.ToString()) &&
+                isnumeric(queqin_koukuan.ToString()) && isnumeric(chidao_koukuan.ToString()))
+            {
+                ((TextBox)this.FindControl("Textbox9")).Text = Convert.ToString(shifa_gongzi + jiabanfei - queqin_koukuan - chidao_koukuan);
+            }
+
+            //代扣个税
+            if (isnumeric(daikou_geshui.ToString()))
+            {
+                ((TextBox)this.FindControl("Textbox48")).Text = Convert.ToString(daikou_geshui);
+            }
         }
+
+
 
         //判断字符串是否为数字
         public bool isnumeric(string str)

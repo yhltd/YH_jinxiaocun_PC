@@ -134,15 +134,79 @@ namespace Web.Personnel.HrModel
         }
         //SELECT C,BD,count(id) AS ID,SUM(CAST(G AS float)) AS G,SUM(CAST(H AS float)) AS H,SUM(CAST(I AS float)) AS I,SUM(CAST(J AS float)) AS J,SUM(CAST(K AS float)) AS K,SUM(CAST(L AS float)) AS  L,SUM(CAST(M AS float)) AS M,SUM(CAST(N AS float)) AS N,SUM(CAST(O AS float)) AS O,SUM(CAST(P AS float)) AS P,SUM(CAST(Q AS float)) AS Q,SUM(CAST(R AS float)) AS R,SUM(CAST(S AS float)) AS S,SUM(CAST(T AS float)) AS T,SUM(CAST(U AS float)) AS U,SUM(CAST(V AS float)) AS V,SUM(CAST(W AS float)) AS W,SUM(CAST(X AS float)) AS X,SUM(CAST(Y AS float)) AS Y,SUM(CAST(Z AS float)) AS Z,SUM(CAST(AA AS float)) AS AA,SUM(CAST(AB AS float)) AS AB,SUM(CAST(AC AS float)) AS AC,SUM(CAST(AD AS float)) AS AD,SUM(CAST(AE AS float)) AS AE,SUM(CAST(AF AS float)) AS AF,SUM(CAST(AG AS float)) AS AG,SUM(CAST(AH AS float)) AS AH,SUM(CAST(AI AS float)) AS AI,SUM(CAST(AJ AS float)) AS AJ,SUM(CAST(AK AS float)) AS AK,SUM(CAST(AL AS float)) AS AL,SUM(CAST(AM AS float)) AS AM,SUM(CAST(AN AS float)) AS AN,SUM(CAST(AO AS float)) AS AO,SUM(CAST(AP AS float)) AS AP,SUM(CAST(AQ AS float)) AS AQ,SUM(CAST(AR AS float)) AS AR,SUM(CAST(ASA AS float)) AS ASA,SUM(CAST(ATA AS float)) AS ATA,SUM(CAST(AU AS float)) AS AU,SUM(CAST(AV AS float)) AS AV,SUM(CAST(AW AS float)) AS AW,SUM(CAST(AX AS float)) AS AX,SUM(CAST(AY AS float)) AS AY FROM gongzi_gongzimingxi WHERE [BD] like '%'+ @BD +'%'  GROUP BY c,bd
 
-        public List<bumenExcel> bumenToExcel(String gongsi) 
+        //public List<bumenExcel> bumenToExcel(String gongsi) 
+        //{
+        //    using (yaoEntities y = new yaoEntities())
+        //    {
+        //        var @params = new SqlParameter[]{
+        //            new SqlParameter("@BD", gongsi),
+        //        };
+
+        //        string sql = "SELECT C,count(id) AS ID,SUM(CAST(G AS float)) AS G,SUM(CAST(H AS float)) AS H,SUM(CAST(I AS float)) AS I,SUM(CAST(J AS float)) AS J,SUM(CAST(K AS float)) AS K,SUM(CAST(L AS float)) AS  L,SUM(CAST(M AS float)) AS M,SUM(CAST(N AS float)) AS N,SUM(CAST(O AS float)) AS O,SUM(CAST(P AS float)) AS P,SUM(CAST(Q AS float)) AS Q,SUM(CAST(R AS float)) AS R,SUM(CAST(S AS float)) AS S,SUM(CAST(T AS float)) AS T,SUM(CAST(U AS float)) AS U,SUM(CAST(V AS float)) AS V,SUM(CAST(W AS float)) AS W,SUM(CAST(X AS float)) AS X,SUM(CAST(Y AS float)) AS Y,SUM(CAST(Z AS float)) AS Z,SUM(CAST(AA AS float)) AS AA,SUM(CAST(AB AS float)) AS AB,SUM(CAST(AC AS float)) AS AC,SUM(CAST(AD AS float)) AS AD,SUM(CAST(AE AS float)) AS AE,SUM(CAST(AF AS float)) AS AF,SUM(CAST(AG AS float)) AS AG,SUM(CAST(AH AS float)) AS AH,SUM(CAST(AI AS float)) AS AI,SUM(CAST(AJ AS float)) AS AJ,SUM(CAST(AK AS float)) AS AK,SUM(CAST(AL AS float)) AS AL,SUM(CAST(AM AS float)) AS AM,SUM(CAST(AN AS float)) AS AN,SUM(CAST(AO AS float)) AS AO,SUM(CAST(AP AS float)) AS AP,SUM(CAST(AQ AS float)) AS AQ,SUM(CAST(AR AS float)) AS AR,SUM(CAST(ASA AS float)) AS ASA,SUM(CAST(ATA AS float)) AS ATA,SUM(CAST(AU AS float)) AS AU,SUM(CAST(AV AS float)) AS AV,SUM(CAST(AW AS float)) AS AW,SUM(CAST(AX AS float)) AS AX,SUM(CAST(AY AS float)) AS AY FROM gongzi_gongzimingxi WHERE [BD] like '%"+ @gongsi +"%'  GROUP BY c,bd";
+        //        var result = y.Database.SqlQuery<bumenExcel>(sql, @params);
+        //        return result.ToList();
+        //    }
+        //}
+
+        public List<bumenExcel> bumenToExcel(String gongsi)
         {
             using (yaoEntities y = new yaoEntities())
             {
                 var @params = new SqlParameter[]{
-                    new SqlParameter("@BD", gongsi),
-                };
+            new SqlParameter("@BD", gongsi),
+        };
 
-                string sql = "SELECT C,count(id) AS ID,SUM(CAST(G AS float)) AS G,SUM(CAST(H AS float)) AS H,SUM(CAST(I AS float)) AS I,SUM(CAST(J AS float)) AS J,SUM(CAST(K AS float)) AS K,SUM(CAST(L AS float)) AS  L,SUM(CAST(M AS float)) AS M,SUM(CAST(N AS float)) AS N,SUM(CAST(O AS float)) AS O,SUM(CAST(P AS float)) AS P,SUM(CAST(Q AS float)) AS Q,SUM(CAST(R AS float)) AS R,SUM(CAST(S AS float)) AS S,SUM(CAST(T AS float)) AS T,SUM(CAST(U AS float)) AS U,SUM(CAST(V AS float)) AS V,SUM(CAST(W AS float)) AS W,SUM(CAST(X AS float)) AS X,SUM(CAST(Y AS float)) AS Y,SUM(CAST(Z AS float)) AS Z,SUM(CAST(AA AS float)) AS AA,SUM(CAST(AB AS float)) AS AB,SUM(CAST(AC AS float)) AS AC,SUM(CAST(AD AS float)) AS AD,SUM(CAST(AE AS float)) AS AE,SUM(CAST(AF AS float)) AS AF,SUM(CAST(AG AS float)) AS AG,SUM(CAST(AH AS float)) AS AH,SUM(CAST(AI AS float)) AS AI,SUM(CAST(AJ AS float)) AS AJ,SUM(CAST(AK AS float)) AS AK,SUM(CAST(AL AS float)) AS AL,SUM(CAST(AM AS float)) AS AM,SUM(CAST(AN AS float)) AS AN,SUM(CAST(AO AS float)) AS AO,SUM(CAST(AP AS float)) AS AP,SUM(CAST(AQ AS float)) AS AQ,SUM(CAST(AR AS float)) AS AR,SUM(CAST(ASA AS float)) AS ASA,SUM(CAST(ATA AS float)) AS ATA,SUM(CAST(AU AS float)) AS AU,SUM(CAST(AV AS float)) AS AV,SUM(CAST(AW AS float)) AS AW,SUM(CAST(AX AS float)) AS AX,SUM(CAST(AY AS float)) AS AY FROM gongzi_gongzimingxi WHERE [BD] like '%"+ @gongsi +"%'  GROUP BY c,bd";
+                string sql = @"SELECT C, 
+                      count(DISTINCT B + D) AS ID,  -- 姓名+岗位 共同去重
+                      SUM(CAST(G AS float)) AS G,
+                      SUM(CAST(H AS float)) AS H,
+                      SUM(CAST(I AS float)) AS I,
+                      SUM(CAST(J AS float)) AS J,
+                      SUM(CAST(K AS float)) AS K,
+                      SUM(CAST(L AS float)) AS L,
+                      SUM(CAST(M AS float)) AS M,
+                      SUM(CAST(N AS float)) AS N,
+                      SUM(CAST(O AS float)) AS O,
+                      SUM(CAST(P AS float)) AS P,
+                      SUM(CAST(Q AS float)) AS Q,
+                      SUM(CAST(R AS float)) AS R,
+                      SUM(CAST(S AS float)) AS S,
+                      SUM(CAST(T AS float)) AS T,
+                      SUM(CAST(U AS float)) AS U,
+                      SUM(CAST(V AS float)) AS V,
+                      SUM(CAST(W AS float)) AS W,
+                      SUM(CAST(X AS float)) AS X,
+                      SUM(CAST(Y AS float)) AS Y,
+                      SUM(CAST(Z AS float)) AS Z,
+                      SUM(CAST(AA AS float)) AS AA,
+                      SUM(CAST(AB AS float)) AS AB,
+                      SUM(CAST(AC AS float)) AS AC,
+                      SUM(CAST(AD AS float)) AS AD,
+                      SUM(CAST(AE AS float)) AS AE,
+                      SUM(CAST(AF AS float)) AS AF,
+                      SUM(CAST(AG AS float)) AS AG,
+                      SUM(CAST(AH AS float)) AS AH,
+                      SUM(CAST(AI AS float)) AS AI,
+                      SUM(CAST(AJ AS float)) AS AJ,
+                      SUM(CAST(AK AS float)) AS AK,
+                      SUM(CAST(AL AS float)) AS AL,
+                      SUM(CAST(AM AS float)) AS AM,
+                      SUM(CAST(AN AS float)) AS AN,
+                      SUM(CAST(AO AS float)) AS AO,
+                      SUM(CAST(AP AS float)) AS AP,
+                      SUM(CAST(AQ AS float)) AS AQ,
+                      SUM(CAST(AR AS float)) AS AR,
+                      SUM(CAST(ASA AS float)) AS ASA,
+                      SUM(CAST(ATA AS float)) AS ATA,
+                      SUM(CAST(AU AS float)) AS AU,
+                      SUM(CAST(AV AS float)) AS AV,
+                      SUM(CAST(AW AS float)) AS AW,
+                      SUM(CAST(AX AS float)) AS AX,
+                      SUM(CAST(AY AS float)) AS AY 
+               FROM gongzi_gongzimingxi 
+               WHERE [BD] like '%' + @BD + '%'  
+               GROUP BY c,bd";
+
                 var result = y.Database.SqlQuery<bumenExcel>(sql, @params);
                 return result.ToList();
             }

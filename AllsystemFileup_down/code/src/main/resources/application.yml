@@ -3,8 +3,11 @@ server:
   max-http-header-size: 102400000
   ssl:
     enabled: true #启用SSL
-    key-store: classpath:yhocn.cn.jks #文件位置
-    key-store-password: xk97ji4s1h3f360 #密钥存储密码（即生成时要求输入两遍的那个的密钥库口令）
+#    key-store: classpath:yhocn.cn.jks #文件位置
+    key-store: file:/C:/zhengshu_iss/yhocn.cn.jks
+#    key-store-password: mu22o2kq667 #密钥存储密码（即生成时要求输入两遍的那个的密钥库口令）
+    key-store-password: ${ssl.key-store-password}
+
     key-store-type: JKS
 web:
   upload-path: D:/profile

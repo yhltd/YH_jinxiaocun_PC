@@ -43,7 +43,7 @@
 
         .select_xl {
             width: 185px;
-            height: 73%;
+            height: 35px;
             border: 1px solid #C2C2C2;
             border-radius: 3px;
         }
@@ -89,9 +89,8 @@
             margin-left:1%;
             padding:5px;
             width:97%;
-            height:10%;
             min-height:50px;
-            margin-top:10px;
+            margin-top:17px;
            background: linear-gradient(135deg, #3030c7 0%, #2424a1 50%, #a8a8d2 100%);
            border-radius:5px;
            box-shadow: 

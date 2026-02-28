@@ -27,6 +27,79 @@ namespace Web.Server
         //        return result.ToList();
         //    }
         //}
+//        public List<JinChuZiLiaoItem> getSetStockDetail(string gongsi)
+//        {
+//            if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
+//            {
+//                int shujukuValue = (int)HttpContext.Current.Session["shujuku"];
+
+//                if (shujukuValue == 0) // MySQL
+//                {
+//                    using (ServerEntities sen = new ServerEntities())
+//                    {
+//                        var gongsiParam = new MySqlParameter("@gongsi", gongsi);
+//                        string sql = "select *,IFNULL((select sum(CASE mxtype WHEN '入库' THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi where cpname = j.name and gs_name = @gongsi),0) as maxNum from yh_jinxiaocun_jichuziliao as j where gs_name = @gongsi";
+//                        var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam);
+//                        return result.ToList();
+//                    }
+//                }
+//                else if (shujukuValue == 1) // SQL Server
+//                {
+//                    //using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+//                    //{
+//                    //    var gongsiParam = new System.Data.SqlClient.SqlParameter("@gongsi", gongsi);
+//                    //    string sql = "select *,ISNULL((select sum(CASE mxtype WHEN '入库' THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi_mssql where cpname = j.name and gs_name = @gongsi),0) as maxNum from yh_jinxiaocun_jichuziliao_mssql as j where gs_name = @gongsi";
+//                    //    var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam);
+//                    //    return result.ToList();
+//                    //}
+//                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+//                    {
+//                        var gongsiParam = new System.Data.SqlClient.SqlParameter("@gongsi", gongsi);
+
+//                        string sql = @"
+//                        SELECT 
+//                            j.*,
+//                            ISNULL((
+//                                SELECT CAST(SUM(
+//                                    CASE 
+//                                        WHEN mxtype IN ('入库', '调拨入库', '盘盈入库') THEN
+//                                            CASE 
+//                                                WHEN cpsl IS NOT NULL AND cpsl != '' AND ISNUMERIC(cpsl) = 1 
+//                                                THEN CAST(cpsl AS DECIMAL(18,2))
+//                                                ELSE 0 
+//                                            END
+//                                        ELSE
+//                                            CASE 
+//                                                WHEN cpsl IS NOT NULL AND cpsl != '' AND ISNUMERIC(cpsl) = 1 
+//                                                THEN CAST(cpsl AS DECIMAL(18,2)) * -1
+//                                                ELSE 0 
+//                                            END
+//                                    END
+//                                ) AS INT) as cpsl 
+//                                FROM yh_jinxiaocun_mingxi_mssql 
+//                                WHERE cpname = j.name AND gs_name = @gongsi
+//                            ), 0) as maxNum 
+//                        FROM yh_jinxiaocun_jichuziliao_mssql as j 
+//                        WHERE j.gs_name = @gongsi";
+
+//                        var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam);
+//                        return result.ToList();
+//                    }
+//                }
+//            }
+
+//            // 默认使用MySQL数据库
+//            using (ServerEntities sen = new ServerEntities())
+//            {
+//                var gongsiParam = new MySqlParameter("@gongsi", gongsi);
+//                string sql = "select *,IFNULL((select sum(CASE mxtype WHEN '入库' THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi where cpname = j.name and gs_name = @gongsi),0) as maxNum from yh_jinxiaocun_jichuziliao as j where gs_name = @gongsi";
+//                var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam);
+//                return result.ToList();
+//            }
+//        }
+
+
+
         public List<JinChuZiLiaoItem> getSetStockDetail(string gongsi)
         {
             if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
@@ -38,7 +111,22 @@ namespace Web.Server
                     using (ServerEntities sen = new ServerEntities())
                     {
                         var gongsiParam = new MySqlParameter("@gongsi", gongsi);
-                        string sql = "select *,IFNULL((select sum(CASE mxtype WHEN '入库' THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi where cpname = j.name and gs_name = @gongsi),0) as maxNum from yh_jinxiaocun_jichuziliao as j where gs_name = @gongsi";
+                        string sql = @"
+                    SELECT 
+                        j.*,
+                        IFNULL((
+                            SELECT CAST(SUM(
+                                CASE 
+                                    WHEN mxtype IN ('入库', '调拨入库', '盘盈入库') 
+                                    THEN CAST(cpsl AS DECIMAL(18,2))
+                                    ELSE CAST(cpsl AS DECIMAL(18,2)) * -1
+                                END
+                            ) AS SIGNED) as cpsl 
+                            FROM yh_jinxiaocun_mingxi 
+                            WHERE cpname = j.name AND gs_name = @gongsi
+                        ), 0) as maxNum 
+                    FROM yh_jinxiaocun_jichuziliao as j 
+                    WHERE j.gs_name = @gongsi";
                         var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam);
                         return result.ToList();
                     }
@@ -48,7 +136,33 @@ namespace Web.Server
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
                         var gongsiParam = new System.Data.SqlClient.SqlParameter("@gongsi", gongsi);
-                        string sql = "select *,ISNULL((select sum(CASE mxtype WHEN '入库' THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi_mssql where cpname = j.name and gs_name = @gongsi),0) as maxNum from yh_jinxiaocun_jichuziliao_mssql as j where gs_name = @gongsi";
+
+                        string sql = @"
+                    SELECT 
+                        j.*,
+                        ISNULL((
+                            SELECT CAST(SUM(
+                                CASE 
+                                    WHEN mxtype IN ('入库', '调拨入库', '盘盈入库') THEN
+                                        CASE 
+                                            WHEN cpsl IS NOT NULL AND cpsl != '' AND ISNUMERIC(cpsl) = 1 
+                                            THEN CAST(cpsl AS DECIMAL(18,2))
+                                            ELSE 0 
+                                        END
+                                    ELSE
+                                        CASE 
+                                            WHEN cpsl IS NOT NULL AND cpsl != '' AND ISNUMERIC(cpsl) = 1 
+                                            THEN CAST(cpsl AS DECIMAL(18,2)) * -1
+                                            ELSE 0 
+                                        END
+                                END
+                            ) AS INT) as cpsl 
+                            FROM yh_jinxiaocun_mingxi_mssql 
+                            WHERE cpname = j.name AND gs_name = @gongsi
+                        ), 0) as maxNum 
+                    FROM yh_jinxiaocun_jichuziliao_mssql as j 
+                    WHERE j.gs_name = @gongsi";
+
                         var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam);
                         return result.ToList();
                     }
@@ -59,7 +173,22 @@ namespace Web.Server
             using (ServerEntities sen = new ServerEntities())
             {
                 var gongsiParam = new MySqlParameter("@gongsi", gongsi);
-                string sql = "select *,IFNULL((select sum(CASE mxtype WHEN '入库' THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi where cpname = j.name and gs_name = @gongsi),0) as maxNum from yh_jinxiaocun_jichuziliao as j where gs_name = @gongsi";
+                string sql = @"
+            SELECT 
+                j.*,
+                IFNULL((
+                    SELECT CAST(SUM(
+                        CASE 
+                            WHEN mxtype IN ('入库', '调拨入库', '盘盈入库') 
+                            THEN CAST(cpsl AS DECIMAL(18,2))
+                            ELSE CAST(cpsl AS DECIMAL(18,2)) * -1
+                        END
+                    ) AS SIGNED) as cpsl 
+                    FROM yh_jinxiaocun_mingxi 
+                    WHERE cpname = j.name AND gs_name = @gongsi
+                ), 0) as maxNum 
+            FROM yh_jinxiaocun_jichuziliao as j 
+            WHERE j.gs_name = @gongsi";
                 var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam);
                 return result.ToList();
             }

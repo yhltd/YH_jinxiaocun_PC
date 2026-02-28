@@ -510,22 +510,25 @@ namespace Web.Server
                 {
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
-                        // 处理日期格式
-                        DateTime startDate, endDate;
+                        // 处理日期格式 - 保持为字符串格式
+                        string startDateStr, endDateStr;
 
+                        DateTime startDate, endDate;
                         if (!DateTime.TryParse(time_qs, out startDate))
                             startDate = new DateTime(1999, 1, 1);
-
                         if (!DateTime.TryParse(time_jz, out endDate))
                             endDate = new DateTime(2999, 12, 31);
 
-                        endDate = endDate.AddDays(1);
+                        // 格式化为与数据库匹配的字符串格式
+                        startDateStr = startDate.ToString("yyyy-MM-dd HH:mm:ss");
+                        endDateStr = endDate.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss");
 
                         StringBuilder sqlBuilder = new StringBuilder();
                         sqlBuilder.Append(@"SELECT * FROM yh_jinxiaocun_tuihuomingxi_mssql 
                      WHERE gs_name = @gs_name 
                      AND ruku != '已入库' ");
 
+                        // 注意：shijian 是 varchar，所以要用字符串比较
                         sqlBuilder.Append(@"AND shijian >= @time_qs 
                      AND shijian < @time_jz ");
 
@@ -548,12 +551,13 @@ namespace Web.Server
 
                         string sql = sqlBuilder.ToString();
 
+                        // 参数全部使用 string 类型
                         List<System.Data.SqlClient.SqlParameter> parameters = new List<System.Data.SqlClient.SqlParameter>
-                {
-                    new System.Data.SqlClient.SqlParameter("@time_qs", startDate),
-                    new System.Data.SqlClient.SqlParameter("@time_jz", endDate),
-                    new System.Data.SqlClient.SqlParameter("@gs_name", gs_name ?? (object)DBNull.Value)
-                };
+        {
+                        new System.Data.SqlClient.SqlParameter("@time_qs", startDateStr),
+                        new System.Data.SqlClient.SqlParameter("@time_jz", endDateStr),
+                        new System.Data.SqlClient.SqlParameter("@gs_name", gs_name ?? "")
+        };
 
                         parameters.Add(new System.Data.SqlClient.SqlParameter("@order_number", "%" + (order_number ?? "") + "%"));
                         parameters.Add(new System.Data.SqlClient.SqlParameter("@cangku", "%" + (cangku ?? "") + "%"));
@@ -1292,27 +1296,27 @@ namespace Web.Server
                     {
                         // 构建基本查询
                         string sql = @"
-                        SELECT * 
-                        FROM yh_jinxiaocun_tuihuomingxi 
-                        WHERE gs_name = @gongsi 
-                        AND mxtype = '销售退货'";
+                                SELECT * 
+                                FROM yh_jinxiaocun_tuihuomingxi_mssql 
+                                WHERE gs_name = @gongsi 
+                                AND mxtype = '销售退货'";
 
-                        var parameters = new List<System.Data.SqlClient.SqlParameter>
-                    {
-                        new System.Data.SqlClient.SqlParameter("@gongsi", gongsi)
-                    };
+                        var parameters = new List<System.Data.SqlClient.SqlParameter>();
+
+                        // 正确创建参数 - 指定类型和大小
+                        parameters.Add(new System.Data.SqlClient.SqlParameter("@gongsi", System.Data.SqlDbType.NVarChar, 100) { Value = gongsi ?? (object)DBNull.Value });
 
                         // 添加日期筛选
                         if (!string.IsNullOrEmpty(startDate))
                         {
                             sql += " AND CONVERT(date, shijian) >= @startDate";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", startDate));
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", System.Data.SqlDbType.NVarChar, 50) { Value = startDate });
                         }
 
                         if (!string.IsNullOrEmpty(endDate))
                         {
                             sql += " AND CONVERT(date, shijian) <= @endDate";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@endDate", endDate));
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@endDate", System.Data.SqlDbType.NVarChar, 50) { Value = endDate });
                         }
 
                         sql += " ORDER BY shijian DESC";
@@ -1401,27 +1405,27 @@ namespace Web.Server
                     {
                         // 构建基本查询
                         string sql = @"
-                        SELECT * 
-                        FROM yh_jinxiaocun_tuihuomingxi 
-                        WHERE gs_name = @gongsi 
-                        AND mxtype = '采购退货'";
+                            SELECT * 
+                            FROM yh_jinxiaocun_tuihuomingxi_mssql 
+                            WHERE gs_name = @gongsi 
+                            AND mxtype = '采购退货'";
 
-                        var parameters = new List<System.Data.SqlClient.SqlParameter>
-                    {
-                        new System.Data.SqlClient.SqlParameter("@gongsi", gongsi)
-                    };
+                        var parameters = new List<System.Data.SqlClient.SqlParameter>();
+
+                        // 正确创建参数 - 指定类型和大小
+                        parameters.Add(new System.Data.SqlClient.SqlParameter("@gongsi", System.Data.SqlDbType.NVarChar, 100) { Value = gongsi ?? (object)DBNull.Value });
 
                         // 添加日期筛选
                         if (!string.IsNullOrEmpty(startDate))
                         {
                             sql += " AND CONVERT(date, shijian) >= @startDate";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", startDate));
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", System.Data.SqlDbType.NVarChar, 50) { Value = startDate });
                         }
 
                         if (!string.IsNullOrEmpty(endDate))
                         {
                             sql += " AND CONVERT(date, shijian) <= @endDate";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@endDate", endDate));
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@endDate", System.Data.SqlDbType.NVarChar, 50) { Value = endDate });
                         }
 
                         sql += " ORDER BY shijian DESC";

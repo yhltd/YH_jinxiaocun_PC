@@ -409,7 +409,111 @@ namespace Web.Server
             }
         }
 
-        public int addPD(items item, string company, string name,string warehouse)
+//        public int addPD(items item, string company, string name,string warehouse)
+//        {
+//            if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
+//            {
+//                int shujukuValue = (int)HttpContext.Current.Session["shujuku"];
+
+//                if (shujukuValue == 0) // MySQL
+//                {
+//                    using (ServerEntities sen = new ServerEntities())
+//                    {
+//                        string date_now = DateTime.Now.ToString();
+//                        int affectedRows = 0;
+
+//                        for (int i = 0; i < item.itemList.Count; i++)
+//                        {
+//                            string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+//                                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+//                                 from yh_jinxiaocun_jichuziliao where id = @id";
+
+//                            var parameters = new MySqlParameter[]
+//                    {
+//                        new MySqlParameter("@price", item.itemList[i].price),
+//                        new MySqlParameter("@num", item.itemList[i].sjsl),
+//                        new MySqlParameter("@mxtype", item.itemList[i].kcsl),
+//                        new MySqlParameter("@orderid", item.orderid),
+//                        new MySqlParameter("@shijian", date_now),
+//                        new MySqlParameter("@shou_h", item.gonghuo),
+//                        new MySqlParameter("@zh_name", name),
+//                        new MySqlParameter("@gs_name", company),
+//                        new MySqlParameter("@cangku", warehouse),
+//                        new MySqlParameter("@id", item.itemList[i].id)
+//                    };
+
+//                            affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+//                        }
+//                        return affectedRows;
+//                    }
+//                }
+//                else if (shujukuValue == 1) // SQL Server
+//                {
+//                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+//                    {
+//                        string date_now = DateTime.Now.ToString();
+//                        int affectedRows = 0;
+
+//                        for (int i = 0; i < item.itemList.Count; i++)
+//                        {
+//                            string sql = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+//                                 SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
+//                                 FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
+
+//                            var parameters = new System.Data.SqlClient.SqlParameter[]
+//                    {
+//                        new System.Data.SqlClient.SqlParameter("@price", item.itemList[i].price),
+//                        new System.Data.SqlClient.SqlParameter("@num", item.itemList[i].sjsl),
+//                        new System.Data.SqlClient.SqlParameter("@mxtype", item.itemList[i].kcsl),
+//                        new System.Data.SqlClient.SqlParameter("@orderid", item.orderid),
+//                        new System.Data.SqlClient.SqlParameter("@shijian", date_now),
+//                        new System.Data.SqlClient.SqlParameter("@shou_h", item.gonghuo),
+//                        new System.Data.SqlClient.SqlParameter("@zh_name", name),
+//                        new System.Data.SqlClient.SqlParameter("@gs_name", company),
+//                        new System.Data.SqlClient.SqlParameter("@cangku", warehouse),
+//                        new System.Data.SqlClient.SqlParameter("@id", item.itemList[i].id)
+//                    };
+
+//                            affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+//                        }
+//                        return affectedRows;
+//                    }
+//                }
+//            }
+
+//            // 默认使用MySQL数据库
+//            using (ServerEntities sen = new ServerEntities())
+//            {
+//                string date_now = DateTime.Now.ToString();
+//                int affectedRows = 0;
+
+//                for (int i = 0; i < item.itemList.Count; i++)
+//                {
+//                    string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+//                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
+//                         from yh_jinxiaocun_jichuziliao where id = @id";
+
+//                    var parameters = new MySqlParameter[]
+//            {
+//                new MySqlParameter("@price", item.itemList[i].price),
+//                new MySqlParameter("@num", item.itemList[i].sjsl),
+//                new MySqlParameter("@mxtype", item.itemList[i].kcsl),
+//                new MySqlParameter("@orderid", item.orderid),
+//                new MySqlParameter("@shijian", date_now),
+//                new MySqlParameter("@shou_h", item.gonghuo),
+//                new MySqlParameter("@zh_name", name),
+//                new MySqlParameter("@gs_name", company),
+//                new MySqlParameter("@cangku", warehouse),
+//                new MySqlParameter("@id", item.itemList[i].id)
+//            };
+
+//                    affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+//                }
+//                return affectedRows;
+//            }
+//        }
+
+        public int addPD(items item, string company, string name, string warehouse)
         {
             if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
             {
@@ -457,21 +561,32 @@ namespace Web.Server
                         for (int i = 0; i < item.itemList.Count; i++)
                         {
                             string sql = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
-                                 SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
-                                 FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
+                             SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
+                             FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
 
+                            // 修复：正确创建 SqlParameter 数组
                             var parameters = new System.Data.SqlClient.SqlParameter[]
                     {
-                        new System.Data.SqlClient.SqlParameter("@price", item.itemList[i].price),
-                        new System.Data.SqlClient.SqlParameter("@num", item.itemList[i].sjsl),
-                        new System.Data.SqlClient.SqlParameter("@mxtype", item.itemList[i].kcsl),
-                        new System.Data.SqlClient.SqlParameter("@orderid", item.orderid),
-                        new System.Data.SqlClient.SqlParameter("@shijian", date_now),
-                        new System.Data.SqlClient.SqlParameter("@shou_h", item.gonghuo),
-                        new System.Data.SqlClient.SqlParameter("@zh_name", name),
-                        new System.Data.SqlClient.SqlParameter("@gs_name", company),
-                        new System.Data.SqlClient.SqlParameter("@cangku", warehouse),
-                        new System.Data.SqlClient.SqlParameter("@id", item.itemList[i].id)
+                        new System.Data.SqlClient.SqlParameter("@price", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = item.itemList[i].price ?? (object)DBNull.Value },
+                        new System.Data.SqlClient.SqlParameter("@num", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = item.itemList[i].sjsl ?? (object)DBNull.Value },
+                        new System.Data.SqlClient.SqlParameter("@mxtype", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = item.itemList[i].kcsl ?? (object)DBNull.Value },
+                        new System.Data.SqlClient.SqlParameter("@orderid", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = item.orderid ?? (object)DBNull.Value },
+                        new System.Data.SqlClient.SqlParameter("@shijian", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = date_now },
+                        new System.Data.SqlClient.SqlParameter("@shou_h", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = item.gonghuo ?? (object)DBNull.Value },
+                        new System.Data.SqlClient.SqlParameter("@zh_name", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = name ?? (object)DBNull.Value },
+                        new System.Data.SqlClient.SqlParameter("@gs_name", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = company ?? (object)DBNull.Value },
+                        new System.Data.SqlClient.SqlParameter("@cangku", System.Data.SqlDbType.NVarChar, 4000) 
+                            { Value = warehouse ?? (object)DBNull.Value },
+                        new System.Data.SqlClient.SqlParameter("@id", System.Data.SqlDbType.Int) 
+                            { Value = item.itemList[i].id }
                     };
 
                             affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);

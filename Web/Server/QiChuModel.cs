@@ -346,20 +346,28 @@ namespace Web.Server
                 {
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
-                        string sql = @"SELECT _id,_openid,cpid,cpjg,cpjj,cplb,cpname,cpsj,cpsl,mxtype,shijian,zh_name,gs_name,pic.mark1 
-                             FROM yh_jinxiaocun_qichushu_mssql 
-                             LEFT JOIN (SELECT sp_dm,mark1 FROM yh_jinxiaocun_jichuziliao_mssql) as pic 
-                             ON yh_jinxiaocun_qichushu_mssql.cpid = pic.sp_dm 
-                             WHERE gs_name = @gs_name 
-                             ORDER BY _id 
-                             OFFSET @yi_c ROWS FETCH NEXT @er_c ROWS ONLY";
+                        string sql = @"
+                        WITH PagedData AS
+                        (
+                            SELECT 
+                                _id,_openid,cpid,cpjg,cpjj,cplb,cpname,cpsj,cpsl,mxtype,shijian,zh_name,gs_name,pic.mark1,
+                                ROW_NUMBER() OVER (ORDER BY _id) AS RowNum
+                            FROM yh_jinxiaocun_qichushu_mssql 
+                            LEFT JOIN (SELECT sp_dm,mark1 FROM yh_jinxiaocun_jichuziliao_mssql) as pic 
+                            ON yh_jinxiaocun_qichushu_mssql.cpid = pic.sp_dm 
+                            WHERE gs_name = @gs_name
+                        )
+                        SELECT _id,_openid,cpid,cpjg,cpjj,cplb,cpname,cpsj,cpsl,mxtype,shijian,zh_name,gs_name,mark1
+                        FROM PagedData
+                        WHERE RowNum > @yi_c AND RowNum <= @yi_c + @er_c
+                        ORDER BY _id";
 
-                        var parameters = new System.Data.SqlClient.SqlParameter[]
-                {
-                    new System.Data.SqlClient.SqlParameter("@gs_name", gs_name),
-                    new System.Data.SqlClient.SqlParameter("@yi_c", yi_c),
-                    new System.Data.SqlClient.SqlParameter("@er_c", er_c)
-                };
+                                        var parameters = new System.Data.SqlClient.SqlParameter[]
+                        {
+                            new System.Data.SqlClient.SqlParameter("@gs_name", System.Data.SqlDbType.NVarChar, 100) { Value = gs_name },
+                            new System.Data.SqlClient.SqlParameter("@yi_c", System.Data.SqlDbType.Int) { Value = yi_c },
+                            new System.Data.SqlClient.SqlParameter("@er_c", System.Data.SqlDbType.Int) { Value = er_c }
+                        };
 
                         var result = sen.Database.SqlQuery<yh_jinxiaocun_qichushu>(sql, parameters);
                         return result.ToList();

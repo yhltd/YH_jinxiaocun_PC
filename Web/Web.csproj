@@ -3653,6 +3653,7 @@
     <Compile Include="ServerEntity\JinChuZiLiaoItem.cs" />
     <Compile Include="ServerEntity\MingXiItem.cs" />
     <Compile Include="ServerEntity\QiChuQiMoShuItem.cs" />
+    <Compile Include="ServerEntity\QiChuQiMoShuItem_SqlServer.cs" />
     <Compile Include="Server\CangKuModel.cs" />
     <Compile Include="Server\JinChuModel.cs" />
     <Compile Include="Server\ChuHuoFangModel.cs" />

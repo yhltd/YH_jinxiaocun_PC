@@ -222,7 +222,23 @@ namespace Web.Server
                         var warehouseParam = new System.Data.SqlClient.SqlParameter("@warehouse", warehouse);
 
                         // SQL Server版本，添加仓库筛选
-                        string sql = "select *,ISNULL((select sum(CASE WHEN mxtype IN ('入库', '调拨入库', '盘盈入库') THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi_mssql where cpname = j.name and gs_name = @gongsi and cangku = @warehouse),0) as maxNum from yh_jinxiaocun_jichuziliao_mssql as j where gs_name = @gongsi";
+                        //string sql = "select *,ISNULL((select sum(CASE WHEN mxtype IN ('入库', '调拨入库', '盘盈入库') THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi_mssql where cpname = j.name and gs_name = @gongsi and cangku = @warehouse),0) as maxNum from yh_jinxiaocun_jichuziliao_mssql as j where gs_name = @gongsi";
+                        string sql = @"
+                        SELECT 
+                            j.*,
+                            ISNULL((
+                                SELECT CAST(SUM(
+                                    CASE 
+                                        WHEN mxtype IN ('入库', '调拨入库', '盘盈入库') 
+                                        THEN CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))
+                                        ELSE CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) * -1
+                                    END
+                                ) AS INT) as cpsl 
+                                FROM yh_jinxiaocun_mingxi_mssql 
+                                WHERE cpname = j.name AND gs_name = @gongsi AND cangku = @warehouse
+                            ), 0) as maxNum 
+                        FROM yh_jinxiaocun_jichuziliao_mssql as j 
+                        WHERE j.gs_name = @gongsi";
 
                         var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam, warehouseParam);
                         return result.ToList();
@@ -277,7 +293,23 @@ namespace Web.Server
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
                         var gongsiParam = new System.Data.SqlClient.SqlParameter("@gongsi", gongsi);
-                        string sql = "select *,ISNULL((select sum(CASE WHEN mxtype IN ('出库','调拨出库','盘亏出库') THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi_mssql where cpname = j.name and gs_name = @gongsi),0) as maxNum from yh_jinxiaocun_jichuziliao_mssql as j where gs_name = @gongsi";
+                        //string sql = "select *,ISNULL((select sum(CASE WHEN mxtype IN ('出库','调拨出库','盘亏出库') THEN cpsl ELSE (cpsl*-1) END) as cpsl from yh_jinxiaocun_mingxi_mssql where cpname = j.name and gs_name = @gongsi),0) as maxNum from yh_jinxiaocun_jichuziliao_mssql as j where gs_name = @gongsi";
+                        string sql = @"
+                        SELECT 
+                            j.*,
+                            ISNULL((
+                                SELECT CAST(SUM(
+                                    CASE 
+                                        WHEN mxtype IN ('出库', '调拨出库', '盘亏出库') 
+                                        THEN CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))
+                                        ELSE CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) * -1
+                                    END
+                                ) AS INT) as cpsl 
+                                FROM yh_jinxiaocun_mingxi_mssql 
+                                WHERE cpname = j.name AND gs_name = @gongsi
+                            ), 0) as maxNum 
+                        FROM yh_jinxiaocun_jichuziliao_mssql as j 
+                        WHERE j.gs_name = @gongsi";
                         var result = sen.Database.SqlQuery<JinChuZiLiaoItem>(sql, gongsiParam);
                         return result.ToList();
                     }
@@ -456,63 +488,63 @@ namespace Web.Server
                     }
                 }
                 else if (shujukuValue == 1) // SQL Server
-                {
-                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
-                    {
-                        var gongsiParam = new System.Data.SqlClient.SqlParameter("@gongsi", gongsi);
-                        var parameters = new List<System.Data.SqlClient.SqlParameter>();
-                        parameters.Add(gongsiParam);
+{
+    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+    {
+        var gongsiParam = new System.Data.SqlClient.SqlParameter("@gongsi", gongsi);
+        var parameters = new List<System.Data.SqlClient.SqlParameter>();
+        parameters.Add(gongsiParam);
 
-                        // 构建共同的查询条件部分
-                        string commonConditions = "";
+        // 构建共同的查询条件部分
+        string commonConditions = "";
 
-                        // 添加仓库条件
-                        if (!string.IsNullOrEmpty(cangku))
-                        {
-                            commonConditions = " AND m.cangku = @cangku";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@cangku", cangku));
-                        }
+        // 添加仓库条件
+        if (!string.IsNullOrEmpty(cangku))
+        {
+            commonConditions = " AND m.cangku = @cangku";
+            parameters.Add(new System.Data.SqlClient.SqlParameter("@cangku", cangku));
+        }
 
-                        // 构建期初和期末的日期条件
-                        string qichuDateCondition = "";
-                        string qimoDateCondition = "";
+        // 构建期初和期末的日期条件
+        string qichuDateCondition = "";
+        string qimoDateCondition = "";
 
-                        if (!string.IsNullOrEmpty(startDate))
-                        {
-                            qichuDateCondition = " AND m.shijian <= @startDate";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", startDate + " 23:59:59"));
-                        }
+        if (!string.IsNullOrEmpty(startDate))
+        {
+            qichuDateCondition = " AND m.shijian <= @startDate";
+            parameters.Add(new System.Data.SqlClient.SqlParameter("@startDate", startDate + " 23:59:59"));
+        }
 
-                        if (!string.IsNullOrEmpty(endDate))
-                        {
-                            qimoDateCondition = " AND m.shijian <= @endDate";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@endDate", endDate + " 23:59:59"));
-                        }
+        if (!string.IsNullOrEmpty(endDate))
+        {
+            qimoDateCondition = " AND m.shijian <= @endDate";
+            parameters.Add(new System.Data.SqlClient.SqlParameter("@endDate", endDate + " 23:59:59"));
+        }
 
-                        // 构建商品名称条件
-                        string cpnameCondition = "";
-                        if (!string.IsNullOrEmpty(cpname))
-                        {
-                            cpnameCondition = " AND j.name LIKE @cpname";
-                            parameters.Add(new System.Data.SqlClient.SqlParameter("@cpname", "%" + cpname + "%"));
-                        }
+        // 构建商品名称条件
+        string cpnameCondition = "";
+        if (!string.IsNullOrEmpty(cpname))
+        {
+            cpnameCondition = " AND j.name LIKE @cpname";
+            parameters.Add(new System.Data.SqlClient.SqlParameter("@cpname", "%" + cpname + "%"));
+        }
 
-                        // 使用StringBuilder构建SQL
-                        StringBuilder sqlBuilder = new StringBuilder();
+        // 使用StringBuilder构建SQL
+        StringBuilder sqlBuilder = new StringBuilder();
 
-                        sqlBuilder.Append(@"
+        sqlBuilder.Append(@"
 SELECT 
     j.id,
     j.sp_dm,
     j.name,
     j.lei_bie,
     j.mark1,
-    -- 期初数量（截止到开始日期）- 修正正负号
+    -- 期初数量（截止到开始日期）
     ROUND(ISNULL((
         SELECT SUM(
             CASE 
-                WHEN m.mxtype IN ('采购入库','入库','盘盈入库','调拨入库') THEN CAST(m.cpsl AS DECIMAL(18,2))  -- 入库：正数
-                WHEN m.mxtype IN ('销售出库','出库','盘亏出库','调拨出库') THEN CAST(m.cpsl AS DECIMAL(18,2)) * -1  -- 出库：负数
+                WHEN m.mxtype IN ('采购入库','入库','盘盈入库','调拨入库') THEN CAST(ISNULL(m.cpsl, '0') AS DECIMAL(18,2))
+                WHEN m.mxtype IN ('销售出库','出库','盘亏出库','调拨出库') THEN CAST(ISNULL(m.cpsl, '0') AS DECIMAL(18,2)) * -1
                 ELSE 0
             END
         )
@@ -521,21 +553,21 @@ SELECT
             AND m.gs_name = @gongsi
 ");
 
-                        // 添加期初查询的仓库和日期条件
-                        sqlBuilder.Append(commonConditions);
-                        sqlBuilder.Append(qichuDateCondition);
+        // 添加期初查询的仓库和日期条件
+        sqlBuilder.Append(commonConditions);
+        sqlBuilder.Append(qichuDateCondition);
 
-                        sqlBuilder.Append(@"
+        sqlBuilder.Append(@"
     ), 0), 2) as qichu_shuliang,
     
-    -- 期初金额（截止到开始日期）- 修正正负号
+    -- 期初金额（截止到开始日期）
     ROUND(ISNULL((
         SELECT SUM(
             CASE 
                 WHEN m.mxtype IN ('采购入库','入库','盘盈入库','调拨入库') THEN 
-                    CAST(m.cpsl AS DECIMAL(18,2)) * CAST(m.cpsj AS DECIMAL(18,2))  -- 入库金额：正数
+                    CAST(ISNULL(m.cpsl, '0') AS DECIMAL(18,2)) * CAST(ISNULL(m.cpsj, '0') AS DECIMAL(18,2))
                 WHEN m.mxtype IN ('销售出库','出库','盘亏出库','调拨出库') THEN 
-                    CAST(m.cpsl AS DECIMAL(18,2)) * CAST(m.cpsj AS DECIMAL(18,2)) * -1  -- 出库金额：负数
+                    CAST(ISNULL(m.cpsl, '0') AS DECIMAL(18,2)) * CAST(ISNULL(m.cpsj, '0') AS DECIMAL(18,2)) * -1
                 ELSE 0
             END
         )
@@ -544,19 +576,19 @@ SELECT
             AND m.gs_name = @gongsi
 ");
 
-                        // 添加期初金额查询的条件
-                        sqlBuilder.Append(commonConditions);
-                        sqlBuilder.Append(qichuDateCondition);
+        // 添加期初金额查询的条件
+        sqlBuilder.Append(commonConditions);
+        sqlBuilder.Append(qichuDateCondition);
 
-                        sqlBuilder.Append(@"
+        sqlBuilder.Append(@"
     ), 0), 2) as qichu_jine,
     
-    -- 期末数量（截止到结束日期）- 修正正负号
+    -- 期末数量（截止到结束日期）
     ROUND(ISNULL((
         SELECT SUM(
             CASE 
-                WHEN m.mxtype IN ('采购入库','入库','盘盈入库','调拨入库') THEN CAST(m.cpsl AS DECIMAL(18,2))  -- 入库：正数
-                WHEN m.mxtype IN ('销售出库','出库','盘亏出库','调拨出库') THEN CAST(m.cpsl AS DECIMAL(18,2)) * -1  -- 出库：负数
+                WHEN m.mxtype IN ('采购入库','入库','盘盈入库','调拨入库') THEN CAST(ISNULL(m.cpsl, '0') AS DECIMAL(18,2))
+                WHEN m.mxtype IN ('销售出库','出库','盘亏出库','调拨出库') THEN CAST(ISNULL(m.cpsl, '0') AS DECIMAL(18,2)) * -1
                 ELSE 0
             END
         )
@@ -565,21 +597,21 @@ SELECT
             AND m.gs_name = @gongsi
 ");
 
-                        // 添加期末数量查询的条件
-                        sqlBuilder.Append(commonConditions);
-                        sqlBuilder.Append(qimoDateCondition);
+        // 添加期末数量查询的条件
+        sqlBuilder.Append(commonConditions);
+        sqlBuilder.Append(qimoDateCondition);
 
-                        sqlBuilder.Append(@"
+        sqlBuilder.Append(@"
     ), 0), 2) as qimo_shuliang,
     
-    -- 期末金额（截止到结束日期）- 修正正负号
+    -- 期末金额（截止到结束日期）
     ROUND(ISNULL((
         SELECT SUM(
             CASE 
                 WHEN m.mxtype IN ('采购入库','入库','盘盈入库','调拨入库') THEN 
-                    CAST(m.cpsl AS DECIMAL(18,2)) * CAST(m.cpsj AS DECIMAL(18,2))  -- 入库金额：正数
+                    CAST(ISNULL(m.cpsl, '0') AS DECIMAL(18,2)) * CAST(ISNULL(m.cpsj, '0') AS DECIMAL(18,2))
                 WHEN m.mxtype IN ('销售出库','出库','盘亏出库','调拨出库') THEN 
-                    CAST(m.cpsl AS DECIMAL(18,2)) * CAST(m.cpsj AS DECIMAL(18,2)) * -1  -- 出库金额：负数
+                    CAST(ISNULL(m.cpsl, '0') AS DECIMAL(18,2)) * CAST(ISNULL(m.cpsj, '0') AS DECIMAL(18,2)) * -1
                 ELSE 0
             END
         )
@@ -588,24 +620,24 @@ SELECT
             AND m.gs_name = @gongsi
 ");
 
-                        // 添加期末金额查询的条件
-                        sqlBuilder.Append(commonConditions);
-                        sqlBuilder.Append(qimoDateCondition);
+        // 添加期末金额查询的条件
+        sqlBuilder.Append(commonConditions);
+        sqlBuilder.Append(qimoDateCondition);
 
-                        sqlBuilder.Append(@"
+        sqlBuilder.Append(@"
     ), 0), 2) as qimo_jine
 FROM yh_jinxiaocun_jichuziliao_mssql as j 
 WHERE j.gs_name = @gongsi");
 
-                        sqlBuilder.Append(cpnameCondition);
+        sqlBuilder.Append(cpnameCondition);
 
-                        string sql = sqlBuilder.ToString();
+        string sql = sqlBuilder.ToString();
 
-                        // 使用 SqlQuery 直接查询到 List<QiChuQiMoShuItem>
-                        var result = sen.Database.SqlQuery<QiChuQiMoShuItem>(sql, parameters.ToArray()).ToList();
-                        return result;
-                    }
-                }
+        // 使用 SqlQuery 直接查询到 List<QiChuQiMoShuItem>
+        var result = sen.Database.SqlQuery<QiChuQiMoShuItem>(sql, parameters.ToArray()).ToList();
+        return result;
+    }
+}
             }
 
             return new List<QiChuQiMoShuItem>();
@@ -856,221 +888,150 @@ WHERE j.gs_name = @gongsi");
                         var parameters = new List<System.Data.SqlClient.SqlParameter>();
                         parameters.Add(gongsiParam);
 
-                        // 构建共同的查询条件部分
-                        string commonConditions = "";
+                        // 处理积压天数参数
+                        int jiyaDays = 0;
+                        if (!string.IsNullOrEmpty(shijian) && int.TryParse(shijian, out jiyaDays) && jiyaDays > 0)
+                        {
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@jiyaDays", jiyaDays));
+                        }
 
-                        // 添加仓库条件
+                        // 处理数量参数
+                        decimal quantity = 0;
+                        if (!string.IsNullOrEmpty(shuliang) && decimal.TryParse(shuliang, out quantity) && quantity > 0)
+                        {
+                            parameters.Add(new System.Data.SqlClient.SqlParameter("@quantity", quantity));
+                        }
+
+                        // 添加仓库参数
                         if (!string.IsNullOrEmpty(cangku))
                         {
-                            commonConditions = " AND m.cangku = @cangku";
                             parameters.Add(new System.Data.SqlClient.SqlParameter("@cangku", cangku));
                         }
 
-                        // 构建商品名称条件
-                        string cpnameCondition = "";
+                        // 添加商品名称参数
                         if (!string.IsNullOrEmpty(cpname))
                         {
-                            cpnameCondition = " AND j.name LIKE @cpname";
                             parameters.Add(new System.Data.SqlClient.SqlParameter("@cpname", "%" + cpname + "%"));
                         }
 
-                        // 构建积压时间条件
-                        string timeCondition = "";
-                        if (!string.IsNullOrEmpty(shijian))
+                        // 构建条件字符串
+                        string commonConditions = !string.IsNullOrEmpty(cangku) ? " AND m.cangku = @cangku" : "";
+                        string cpnameCondition = !string.IsNullOrEmpty(cpname) ? " AND j.name LIKE @cpname" : "";
+
+                        // 构建积压天数条件
+                        string jiyaCondition = "";
+                        if (jiyaDays > 0)
                         {
-                            int days;
-                            if (int.TryParse(shijian, out days))
-                            {
-                                DateTime endDate = DateTime.Now.AddDays(-days);
-                                timeCondition = " AND m.shijian <= @endDate";
-                                parameters.Add(new System.Data.SqlClient.SqlParameter("@endDate", endDate));
-                            }
+                            jiyaCondition = @"
+                AND EXISTS (
+                    SELECT 1
+                    FROM yh_jinxiaocun_mingxi_mssql m_last
+                    WHERE m_last.cpname = j.name 
+                        AND m_last.gs_name = @gongsi
+                        " + (string.IsNullOrEmpty(cangku) ? "" : "AND m_last.cangku = @cangku") + @"
+                        AND DATEDIFF(DAY, m_last.shijian, GETDATE()) > @jiyaDays
+                )";
                         }
 
-                        // 构建数量条件
+                        // 构建数量筛选条件 - 与最终返回页面的数量进行比较
                         string quantityCondition = "";
-                        decimal quantity = 0;
-                        if (!string.IsNullOrEmpty(shuliang))
+                        if (quantity > 0)
                         {
-                            // 将shuliang参数转换为数字
-                            if (decimal.TryParse(shuliang, out quantity))
-                            {
-                                // 将在HAVING子句中添加数量条件
-                                quantityCondition = " HAVING current_qty > @quantity";
-                                parameters.Add(new System.Data.SqlClient.SqlParameter("@quantity", quantity));
-                            }
+                            quantityCondition = @"
+    AND CAST(ROUND(ISNULL((
+        SELECT ISNULL(SUM(
+            CASE 
+                WHEN m.mxtype IN ('出库','调拨出库','盘亏出库') THEN 
+                    CASE 
+                        WHEN ISNUMERIC(m.cpsl) = 1 THEN CAST(m.cpsl AS DECIMAL(18,2)) * -1
+                        ELSE CAST(0 AS DECIMAL(18,2))
+                    END
+                ELSE 
+                    CASE 
+                        WHEN ISNUMERIC(m.cpsl) = 1 THEN CAST(m.cpsl AS DECIMAL(18,2))
+                        ELSE CAST(0 AS DECIMAL(18,2))
+                    END
+            END), CAST(0 AS DECIMAL(18,2)))
+        FROM yh_jinxiaocun_mingxi_mssql m
+        WHERE m.cpname = j.name 
+            AND m.gs_name = @gongsi
+            " + commonConditions + @"
+    ), CAST(0.00 AS DECIMAL(18,2))), 2) AS DECIMAL(18,2)) > @quantity";
                         }
 
                         // SQL Server版本的查询
-                        StringBuilder sqlBuilder = new StringBuilder();
+                        string sql = @"
+SELECT 
+    j.id,
+    j.sp_dm,
+    j.name,
+    j.lei_bie,
+    j.mark1,
+    -- 当前库存数量
+    CAST(ROUND(ISNULL((
+        SELECT ISNULL(SUM(
+            CASE 
+                WHEN m.mxtype IN ('出库','调拨出库','盘亏出库') THEN 
+                    CASE 
+                        WHEN ISNUMERIC(m.cpsl) = 1 THEN CAST(m.cpsl AS DECIMAL(18,2)) * -1
+                        ELSE CAST(0 AS DECIMAL(18,2))
+                    END
+                ELSE 
+                    CASE 
+                        WHEN ISNUMERIC(m.cpsl) = 1 THEN CAST(m.cpsl AS DECIMAL(18,2))
+                        ELSE CAST(0 AS DECIMAL(18,2))
+                    END
+            END), CAST(0 AS DECIMAL(18,2)))
+        FROM yh_jinxiaocun_mingxi_mssql m
+        WHERE m.cpname = j.name 
+            AND m.gs_name = @gongsi
+            " + commonConditions + @"
+    ), CAST(0.00 AS DECIMAL(18,2))), 2) AS DECIMAL(18,2)) as qimo_shuliang,
+    
+    -- 当前库存金额
+    CAST(ROUND(ISNULL((
+        SELECT ISNULL(SUM(
+            CASE 
+                WHEN m.mxtype IN ('出库','调拨出库','盘亏出库') THEN 
+                    CASE 
+                        WHEN ISNUMERIC(m.cpsl) = 1 AND ISNUMERIC(m.cpsj) = 1 
+                            THEN CAST(m.cpsl AS DECIMAL(18,2)) * CAST(m.cpsj AS DECIMAL(18,2)) * -1
+                        ELSE CAST(0 AS DECIMAL(18,2))
+                    END
+                ELSE 
+                    CASE 
+                        WHEN ISNUMERIC(m.cpsl) = 1 AND ISNUMERIC(m.cpsj) = 1 
+                            THEN CAST(m.cpsl AS DECIMAL(18,2)) * CAST(m.cpsj AS DECIMAL(18,2))
+                        ELSE CAST(0 AS DECIMAL(18,2))
+                    END
+            END), CAST(0 AS DECIMAL(18,2)))
+        FROM yh_jinxiaocun_mingxi_mssql m
+        WHERE m.cpname = j.name 
+            AND m.gs_name = @gongsi
+            " + commonConditions + @"
+    ), CAST(0.00 AS DECIMAL(18,2))), 2) AS DECIMAL(18,2)) as qimo_jine,
+    
+    -- 积压天数
+    CAST(ISNULL(DATEDIFF(DAY, (
+        SELECT MAX(m_date.shijian)
+        FROM yh_jinxiaocun_mingxi_mssql m_date
+        WHERE m_date.cpname = j.name 
+            AND m_date.gs_name = @gongsi
+            " + (string.IsNullOrEmpty(cangku) ? "" : "AND m_date.cangku = @cangku") + @"
+            AND CAST(ISNULL(m_date.cpsl, '0') AS DECIMAL(18,2)) > 0
+    ), GETDATE()), CAST(0 AS DECIMAL(18,2))) AS DECIMAL(18,2)) as jiya_days,
+    
+    -- 期初数量和金额置为0（使用Decimal类型的0）
+    CAST(0 AS DECIMAL(18,2)) as qichu_shuliang,
+    CAST(0 AS DECIMAL(18,2)) as qichu_jine
+FROM yh_jinxiaocun_jichuziliao_mssql as j 
+WHERE j.gs_name = @gongsi"
+                            + cpnameCondition
+                            + jiyaCondition
+                            + quantityCondition;
 
-                        sqlBuilder.Append(@"
-                    SELECT 
-                        j.id,
-                        j.sp_dm,
-                        j.name,
-                        j.lei_bie,
-                        j.mark1,
-                        -- 当前库存数量
-                        ROUND(ISNULL((
-                            SELECT SUM(CASE 
-                                WHEN m.mxtype IN ('出库','调拨出库','盘亏出库') THEN m.cpsl 
-                                ELSE (m.cpsl * -1) 
-                            END)
-                            FROM yh_jinxiaocun_mingxi_mssql m
-                            WHERE m.cpname = j.name 
-                                AND m.gs_name = @gongsi
-                                ");
-
-                        sqlBuilder.Append(commonConditions);
-                        sqlBuilder.Append(timeCondition);
-
-                        sqlBuilder.Append(@"
-                        ), 0), 2) as qimo_shuliang,
-                        -- 当前库存金额
-                        ROUND(ISNULL((
-                            SELECT SUM(
-                                CASE 
-                                    WHEN m.mxtype IN ('出库','调拨出库','盘亏出库') THEN 
-                                        (m.cpsl * 
-                                         CASE 
-                                            WHEN LTRIM(RTRIM(m.cpsj)) != '' AND m.cpsj IS NOT NULL THEN m.cpsj 
-                                            ELSE 0 
-                                         END * -1)
-                                    ELSE 
-                                        (m.cpsl * 
-                                         CASE 
-                                            WHEN LTRIM(RTRIM(m.cpsj)) != '' AND m.cpsj IS NOT NULL THEN m.cpsj 
-                                            ELSE 0 
-                                         END)
-                                END
-                            )
-                            FROM yh_jinxiaocun_mingxi_mssql m
-                            WHERE m.cpname = j.name 
-                                AND m.gs_name = @gongsi
-                                ");
-
-                        sqlBuilder.Append(commonConditions);
-                        sqlBuilder.Append(timeCondition);
-
-                        sqlBuilder.Append(@"
-                        ), 0), 2) as qimo_jine,
-                        -- 积压天数（SQL Server使用DATEDIFF）
-                        CASE WHEN @shijian_days > 0 THEN 
-                            DATEDIFF(DAY, (
-                                SELECT MAX(m.shijian) 
-                                FROM yh_jinxiaocun_mingxi_mssql m 
-                                WHERE m.cpname = j.name 
-                                    AND m.gs_name = @gongsi
-                                    AND m.cpsl > 0
-                                    ");
-
-                        sqlBuilder.Append(commonConditions);
-                        sqlBuilder.Append(@"
-                            ), GETDATE())
-                        ELSE 0 END as jiya_days,
-                        -- 期初数量和金额置为0
-                        0 as qichu_shuliang,
-                        0 as qichu_jine
-                    FROM yh_jinxiaocun_jichuziliao_mssql as j 
-                    WHERE j.gs_name = @gongsi");
-
-                        sqlBuilder.Append(cpnameCondition);
-
-                        // 添加数量筛选条件
-                        if (!string.IsNullOrEmpty(shuliang) && quantity > 0)
-                        {
-                            // 修正：为子查询创建独立的条件，修正别名
-                            string subqueryConditions = "";
-                            if (!string.IsNullOrEmpty(cangku))
-                            {
-                                subqueryConditions = " AND m2.cangku = @cangku";
-                            }
-
-                            if (!string.IsNullOrEmpty(timeCondition))
-                            {
-                                // 修正时间条件的别名
-                                string correctedTimeCondition = timeCondition.Replace("m.shijian", "m2.shijian");
-                                subqueryConditions += correctedTimeCondition;
-                            }
-
-                            sqlBuilder.Append(@"
-                    AND EXISTS (
-                        SELECT 1
-                        FROM yh_jinxiaocun_mingxi_mssql m2
-                        WHERE m2.cpname = j.name 
-                            AND m2.gs_name = @gongsi
-                            ");
-                            sqlBuilder.Append(subqueryConditions);
-                            sqlBuilder.Append(@"
-                        GROUP BY m2.cpname, m2.cangku
-                        HAVING SUM(CASE 
-                            WHEN m2.mxtype IN ('出库','调拨出库','盘亏出库') THEN m2.cpsl 
-                            ELSE (m2.cpsl * -1) 
-                        END) > @quantity
-                    )");
-                        }
-
-                        // 添加积压天数筛选条件
-                        if (!string.IsNullOrEmpty(shijian))
-                        {
-                            int days;
-                            if (int.TryParse(shijian, out days))
-                            {
-                                parameters.Add(new System.Data.SqlClient.SqlParameter("@shijian_days", days));
-
-                                // 修正：为积压天数子查询创建独立的条件，修正别名
-                                string subqueryConditions = "";
-                                if (!string.IsNullOrEmpty(cangku))
-                                {
-                                    subqueryConditions = " AND m3.cangku = @cangku";
-                                }
-
-                                sqlBuilder.Append(@"
-                            AND EXISTS (
-                                SELECT 1
-                                FROM yh_jinxiaocun_mingxi_mssql m3
-                                WHERE m3.cpname = j.name 
-                                    AND m3.gs_name = @gongsi
-                                    ");
-                                sqlBuilder.Append(subqueryConditions);
-                                sqlBuilder.Append(@"
-                                AND DATEDIFF(DAY, m3.shijian, GETDATE()) > @shijian_days
-                            )");
-                            }
-                        }
-
-                        string sql = sqlBuilder.ToString();
                         var result = sen.Database.SqlQuery<QiChuQiMoShuItem>(sql, parameters.ToArray());
-
-                        // 过滤结果：如果设置了shuliang参数，只返回库存大于该值的记录
-                        var resultList = result.ToList();
-                        if (!string.IsNullOrEmpty(shuliang))
-                        {
-                            decimal qtyFilter;
-                            if (decimal.TryParse(shuliang, out qtyFilter))
-                            {
-                                var filteredList = new List<QiChuQiMoShuItem>();
-                                foreach (var item in resultList)
-                                {
-                                    try
-                                    {
-                                        decimal currentQty = Convert.ToDecimal(item.qimo_shuliang);
-                                        if (currentQty > qtyFilter)
-                                        {
-                                            filteredList.Add(item);
-                                        }
-                                    }
-                                    catch
-                                    {
-                                        // 如果转换失败，跳过此项
-                                        continue;
-                                    }
-                                }
-                                resultList = filteredList;
-                            }
-                        }
-                        return resultList;
+                        return result.ToList();
                     }
                 }
             }

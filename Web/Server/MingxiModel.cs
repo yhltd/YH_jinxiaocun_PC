@@ -1149,8 +1149,8 @@ namespace Web.Server
                              ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
                              ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price 
                              from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx 
-                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
-                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
+                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
+                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
                              where mx.cpname = @cpname and mx.sp_dm like @sp_dm and mx.cplb like @cplb";
 
                         var @params = new MySqlParameter[]{
@@ -1168,13 +1168,53 @@ namespace Web.Server
                 {
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
-                        string sql = @"SELECT mx.sp_dm,mx.cpname,mx.cplb,
-                             ISNULL(rk.cpsl,0) as ruku_num,ISNULL(rk.cp_price,0) as ruku_price,
-                             ISNULL(ck.cpsl,0) as chuku_num,ISNULL(ck.cp_price,0) as chuku_price 
-                             FROM (SELECT sp_dm,cpname,cplb FROM yh_jinxiaocun_mingxi_mssql WHERE gs_name = @gongxi GROUP BY sp_dm,cpname,cplb) as mx 
-                             LEFT JOIN (SELECT sp_dm,SUM(cpsl) as cpsl,SUM(cpsl*cpsj) as cp_price FROM yh_jinxiaocun_mingxi_mssql WHERE mxtype = '入库' AND gs_name = @gongxi GROUP BY sp_dm) as rk ON mx.sp_dm=rk.sp_dm 
-                             LEFT JOIN (SELECT sp_dm,SUM(cpsl) as cpsl,SUM(cpsl*cpsj) as cp_price FROM yh_jinxiaocun_mingxi_mssql WHERE mxtype = '出库' AND gs_name = @gongxi GROUP BY sp_dm) as ck ON ck.sp_dm=rk.sp_dm 
-                             WHERE mx.cpname = @cpname AND mx.sp_dm LIKE @sp_dm AND mx.cplb LIKE @cplb";
+                        string sql = @"SELECT 
+    mx.sp_dm,
+    mx.cpname,
+    mx.cplb,
+    -- 入库数量 - 返回 int 类型
+    CAST(ISNULL(rk.cpsl, 0) AS INT) as ruku_num,
+    -- 入库金额 - 返回 decimal 类型
+    CAST(ISNULL(rk.cp_price, 0) AS DECIMAL(18,2)) as ruku_price,
+    -- 出库数量 - 返回 int 类型
+    CAST(ISNULL(ck.cpsl, 0) AS INT) as chuku_num,
+    -- 出库金额 - 返回 decimal 类型
+    CAST(ISNULL(ck.cp_price, 0) AS DECIMAL(18,2)) as chuku_price 
+FROM (
+    SELECT sp_dm, cpname, cplb 
+    FROM yh_jinxiaocun_mingxi_mssql 
+    WHERE gs_name = @gongxi 
+    GROUP BY sp_dm, cpname, cplb
+) as mx 
+LEFT JOIN (
+    SELECT 
+        sp_dm,
+        -- 内部计算使用 decimal
+        SUM(CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))) as cpsl,
+        SUM(
+            CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) * 
+            CAST(ISNULL(cpsj, '0') AS DECIMAL(18,2))
+        ) as cp_price 
+    FROM yh_jinxiaocun_mingxi_mssql 
+    WHERE mxtype in ('入库','调拨入库','盘盈入库') AND gs_name = @gongxi 
+    GROUP BY sp_dm
+) as rk ON mx.sp_dm = rk.sp_dm 
+LEFT JOIN (
+    SELECT 
+        sp_dm,
+        -- 内部计算使用 decimal
+        SUM(CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))) as cpsl,
+        SUM(
+            CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) * 
+            CAST(ISNULL(cpsj, '0') AS DECIMAL(18,2))
+        ) as cp_price 
+    FROM yh_jinxiaocun_mingxi_mssql 
+    WHERE mxtype in ('出库','调拨出库','盘亏出库') AND gs_name = @gongxi 
+    GROUP BY sp_dm
+) as ck ON ck.sp_dm = rk.sp_dm 
+WHERE mx.cpname = @cpname 
+    AND mx.sp_dm LIKE @sp_dm 
+    AND mx.cplb LIKE @cplb";
 
                         var @params = new System.Data.SqlClient.SqlParameter[]{
                     new System.Data.SqlClient.SqlParameter("@cpname", cpname ?? (object)DBNull.Value),
@@ -1196,8 +1236,8 @@ namespace Web.Server
                      ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
                      ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price 
                      from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx 
-                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
-                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
+                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
+                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
                      where mx.cpname = @cpname and mx.sp_dm like @sp_dm and mx.cplb like @cplb";
 
                 var @params = new MySqlParameter[]{
@@ -1245,8 +1285,8 @@ namespace Web.Server
                              ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
                              ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price 
                              from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx 
-                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
-                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
+                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
+                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
                              where mx.sp_dm like @sp_dm and mx.cplb like @cplb";
 
                         var @params = new MySqlParameter[]{
@@ -1263,13 +1303,49 @@ namespace Web.Server
                 {
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
-                        string sql = @"SELECT mx.sp_dm,mx.cpname,mx.cplb,
-                             ISNULL(rk.cpsl,0) as ruku_num,ISNULL(rk.cp_price,0) as ruku_price,
-                             ISNULL(ck.cpsl,0) as chuku_num,ISNULL(ck.cp_price,0) as chuku_price 
-                             FROM (SELECT sp_dm,cpname,cplb FROM yh_jinxiaocun_mingxi_mssql WHERE gs_name = @gongxi GROUP BY sp_dm,cpname,cplb) as mx 
-                             LEFT JOIN (SELECT sp_dm,SUM(cpsl) as cpsl,SUM(cpsl*cpsj) as cp_price FROM yh_jinxiaocun_mingxi_mssql WHERE mxtype = '入库' AND gs_name = @gongxi GROUP BY sp_dm) as rk ON mx.sp_dm=rk.sp_dm 
-                             LEFT JOIN (SELECT sp_dm,SUM(cpsl) as cpsl,SUM(cpsl*cpsj) as cp_price FROM yh_jinxiaocun_mingxi_mssql WHERE mxtype = '出库' AND gs_name = @gongxi GROUP BY sp_dm) as ck ON ck.sp_dm=rk.sp_dm 
-                             WHERE mx.sp_dm LIKE @sp_dm AND mx.cplb LIKE @cplb";
+                        string sql = @"SELECT 
+    mx.sp_dm,
+    mx.cpname,
+    mx.cplb,
+    -- ruku_num 和 chuku_num 返回 int 类型
+    CAST(ISNULL(rk.cpsl, 0) AS INT) as ruku_num,
+    -- ruku_price 和 chuku_price 返回 decimal 类型
+    CAST(ISNULL(rk.cp_price, 0) AS DECIMAL(18,2)) as ruku_price,
+    CAST(ISNULL(ck.cpsl, 0) AS INT) as chuku_num,
+    CAST(ISNULL(ck.cp_price, 0) AS DECIMAL(18,2)) as chuku_price 
+FROM (
+    SELECT sp_dm, cpname, cplb 
+    FROM yh_jinxiaocun_mingxi_mssql 
+    WHERE gs_name = @gongxi 
+    GROUP BY sp_dm, cpname, cplb
+) as mx 
+LEFT JOIN (
+    SELECT 
+        sp_dm,
+        -- 内部计算使用 decimal，最终转换为对应类型
+        SUM(CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))) as cpsl,
+        SUM(
+            CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) * 
+            CAST(ISNULL(cpsj, '0') AS DECIMAL(18,2))
+        ) as cp_price 
+    FROM yh_jinxiaocun_mingxi_mssql 
+    WHERE mxtype in ('入库','调拨入库','盘盈入库') AND gs_name = @gongxi 
+    GROUP BY sp_dm
+) as rk ON mx.sp_dm = rk.sp_dm 
+LEFT JOIN (
+    SELECT 
+        sp_dm,
+        SUM(CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))) as cpsl,
+        SUM(
+            CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) * 
+            CAST(ISNULL(cpsj, '0') AS DECIMAL(18,2))
+        ) as cp_price 
+    FROM yh_jinxiaocun_mingxi_mssql 
+    WHERE mxtype in ('出库','调拨出库','盘亏出库') AND gs_name = @gongxi 
+    GROUP BY sp_dm
+) as ck ON mx.sp_dm = ck.sp_dm 
+WHERE mx.sp_dm LIKE @sp_dm 
+    AND mx.cplb LIKE @cplb";
 
                         var @params = new System.Data.SqlClient.SqlParameter[]{
                     new System.Data.SqlClient.SqlParameter("@gongxi", gongsi ?? (object)DBNull.Value),
@@ -1290,8 +1366,8 @@ namespace Web.Server
                      ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
                      ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price 
                      from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx 
-                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
-                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
+                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
+                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
                      where mx.sp_dm like @sp_dm and mx.cplb like @cplb";
 
                 var @params = new MySqlParameter[]{
@@ -1331,8 +1407,8 @@ namespace Web.Server
                      ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
                      ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price 
                      from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx 
-                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
-                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm";
+                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
+                     left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm";
 
                         var @params = new MySqlParameter[]{
                     new MySqlParameter("@gongxi", gongsi ?? (object)DBNull.Value)
@@ -1342,7 +1418,7 @@ namespace Web.Server
                         return result.ToList();
                     }
                 }
-                else if (shujukuValue == 1) // SQL Server - 精确匹配类型
+                else if (shujukuValue == 1) // SQL Server
                 {
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
@@ -1369,7 +1445,7 @@ namespace Web.Server
                 SUM(CAST(ISNULL(cpsl, 0) AS DECIMAL(18,2))) as cpsl,
                 SUM(CAST(ISNULL(cpsl, 0) AS DECIMAL(18,2)) * CAST(ISNULL(cpsj, 0) AS DECIMAL(18,2))) as cp_price 
             FROM yh_jinxiaocun_mingxi_mssql 
-            WHERE mxtype = '入库' AND gs_name = @gongxi 
+            WHERE mxtype in ('入库','调拨入库','盘盈入库') AND gs_name = @gongxi 
             GROUP BY sp_dm
         ) as rk ON mx.sp_dm = rk.sp_dm 
         LEFT JOIN (
@@ -1378,13 +1454,13 @@ namespace Web.Server
                 SUM(CAST(ISNULL(cpsl, 0) AS DECIMAL(18,2))) as cpsl,
                 SUM(CAST(ISNULL(cpsl, 0) AS DECIMAL(18,2)) * CAST(ISNULL(cpsj, 0) AS DECIMAL(18,2))) as cp_price 
             FROM yh_jinxiaocun_mingxi_mssql 
-            WHERE mxtype = '出库' AND gs_name = @gongxi 
+            WHERE mxtype in ('出库','调拨出库','盘亏出库') AND gs_name = @gongxi 
             GROUP BY sp_dm
         ) as ck ON mx.sp_dm = ck.sp_dm";
 
                         var @params = new System.Data.SqlClient.SqlParameter[]{
-            new System.Data.SqlClient.SqlParameter("@gongxi", gongsi ?? (object)DBNull.Value)
-        };
+                    new System.Data.SqlClient.SqlParameter("@gongxi", gongsi ?? (object)DBNull.Value)
+                };
 
                         var result = sen.Database.SqlQuery<MingXiItem>(sql, @params);
                         return result.ToList();
@@ -1399,8 +1475,8 @@ namespace Web.Server
              ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
              ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price 
              from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx 
-             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
-             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm";
+             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
+             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm";
 
                 var @params = new MySqlParameter[]{
             new MySqlParameter("@gongxi", gongsi ?? (object)DBNull.Value)
@@ -1499,12 +1575,30 @@ namespace Web.Server
                 {
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
-                        string sql = @"SELECT shou_h,sp_dm,cpname,cplb,
-                             ISNULL(SUM(cpsl),0) as ruku_num,ISNULL(SUM(cpsl*cpsj),0) as ruku_price 
-                             FROM yh_jinxiaocun_mingxi_mssql 
-                             WHERE gs_name = @gongxi 
-                             GROUP BY shou_h,sp_dm,cpname,cplb 
-                             HAVING shou_h != '' AND shou_h = @shouhuo";
+                        string sql = @"SELECT 
+    shou_h,
+    sp_dm,
+    cpname,
+    cplb,
+    -- ruku_num 返回 int 类型
+    CAST(ISNULL(SUM(CASE 
+        WHEN cpsl IS NULL OR cpsl = '' THEN 0
+        WHEN ISNUMERIC(cpsl) = 1 THEN CAST(cpsl AS DECIMAL(18,2))
+        ELSE 0
+    END), 0) AS INT) as ruku_num,
+    -- ruku_price 返回 decimal 类型
+    CAST(ISNULL(SUM(CASE 
+        WHEN cpsl IS NULL OR cpsl = '' OR cpsj IS NULL OR cpsj = '' THEN 0
+        WHEN ISNUMERIC(cpsl) = 1 AND ISNUMERIC(cpsj) = 1 THEN 
+            CAST(cpsl AS DECIMAL(18,2)) * CAST(cpsj AS DECIMAL(18,2))
+        ELSE 0
+    END), 0) AS DECIMAL(18,2)) as ruku_price 
+FROM yh_jinxiaocun_mingxi_mssql 
+WHERE gs_name = @gongxi 
+    AND shou_h = @shouhuo
+GROUP BY shou_h, sp_dm, cpname, cplb 
+HAVING shou_h != '' 
+ORDER BY shou_h";
 
                         var @params = new System.Data.SqlClient.SqlParameter[]{
                     new System.Data.SqlClient.SqlParameter("@shouhuo", shouhuo ?? (object)DBNull.Value),

@@ -1092,7 +1092,7 @@
             <input class="order_id_input" placeholder="退货单号" value=""/>
         </div>
         <div style="margin-bottom: 10px;">
-            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">退货仓库</label>
+            <label style="font-size: 14px; color: #333; margin-bottom: 5px; display: block;margin-left: 40px;">退货公司</label>
             <select class="gonghuo_select" onchange="getGongguo(this.value)"></select>
         </div>
         <div style="margin-bottom: 10px;">

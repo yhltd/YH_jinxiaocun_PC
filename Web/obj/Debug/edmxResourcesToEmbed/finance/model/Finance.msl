@@ -109,6 +109,7 @@
     <EntitySetMapping Name="SimpleData">
       <EntityTypeMapping TypeName="FinanceModel.SimpleData">
         <MappingFragment StoreEntitySet="SimpleData">
+          <ScalarProperty Name="wenjian" ColumnName="wenjian" />
           <ScalarProperty Name="yijiaoshuijine" ColumnName="yijiaoshuijine" />
           <ScalarProperty Name="nashuijine" ColumnName="nashuijine" />
           <ScalarProperty Name="zhaiyao" ColumnName="zhaiyao" />

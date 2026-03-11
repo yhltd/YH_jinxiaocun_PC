@@ -99,6 +99,7 @@
     <Property Type="Int32" Name="set_num" Nullable="false" />
     <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="is_complete" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="wenjian" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="work_detail">
     <Key>

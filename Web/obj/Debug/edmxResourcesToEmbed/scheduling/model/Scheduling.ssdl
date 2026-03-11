@@ -118,6 +118,7 @@
     <Property Name="set_num" Type="int" Nullable="false" />
     <Property Name="company" Type="varchar" MaxLength="255" />
     <Property Name="is_complete" Type="varchar" MaxLength="255" />
+    <Property Name="wenjian" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="paibanbiao_detail">
     <Key>

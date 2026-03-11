@@ -13,7 +13,7 @@
     <script>
         
         var upd_id = "";
-
+        var currentImageSrc = "";
         function del_row(row) {
             var rowIndex = $("#del_row_cs1").context.rowIndex;
             $("#del_row" + row + "").remove();
@@ -22,96 +22,184 @@
         function fileUp(id) {
             upd_id = id
             $('#file').trigger('click');
+            var currentRow = $("input[type='button'][onclick*='fileUp(" + upd_id + ")']").closest('tr');
+            currentImageSrc = currentRow.find('img').attr('src') || '';
+            
         }
 
         
+
+        //$(function () {
+        //    $("#dj_row").click(function () {
+        //        $("#row_i1").val($("#biao_ge tr").length);
+        //    })
+
+        //    $('#file').change(function () {
+        //        var file = document.getElementById("file").files;
+        //        var oFReader = new FileReader();
+        //        var this_file = file[0];
+        //        var fileName = file[0].name;
+        //        var obj = [];
+        //        if(this_file.size>1024 * 1024){
+        //            alert("文件超过1兆，请重新上传！")
+        //        }else{
+        //            oFReader.readAsDataURL(this_file);
+        //            oFReader.onloadend = function (oFRevent) {
+        //                this_file = oFRevent.target.result;
+        //                this_file = this_file.split(",")[1]
+        //                console.log(this_file)
+        //                console.log(upd_id)
+
+
+        //                var fileInput = document.getElementById('file');
+        //                fileInput.value = ""
+        //                fileInput.outerHTML = fileInput.outerHTML;
+
+        //                $.ajax({
+        //                    type: "post", //要用post方式                 
+        //                    url: "/ji_chu_zi_liao_page.aspx/picture_upd",//方法所在页面和方法名
+        //                    contentType: "application/json; charset=utf-8",
+        //                    async: false,
+        //                    dataType: "json",
+        //                    data: JSON.stringify({
+        //                        id:upd_id,
+        //                        base64:this_file
+        //                    }),
+        //                    success: function (data) {
+        //                        alert(data.d);//返回的数据用data.d获取内容
+        //                        window.location.reload();
+        //                    },
+        //                    error: function (err) {
+        //                        alert(err);
+        //                    }
+        //                });
+
+        //                //$ajax({
+        //                //    type: 'post',
+        //                //    url: '/ji_chu_zi_liao_page.aspx/picture_upd',
+        //                //    data: JSON.stringify({
+        //                //        id:upd_id,
+        //                //        base64:this_file
+        //                //    }),
+        //                //    dataType: 'json',
+        //                //    contentType: 'application/json;charset=utf-8',
+        //                //    async: false,
+        //                //    success: function (data) {
+        //                //        alert(data.d);//返回的数据用data.d获取内容
+        //                //        window.location.reload();
+        //                //    },
+        //                //})
+        //            };
+        //        }
+        //    });
+        //})
 
         $(function () {
             $("#dj_row").click(function () {
                 $("#row_i1").val($("#biao_ge tr").length);
             })
 
+
+
+
             $('#file').change(function () {
                 var file = document.getElementById("file").files;
                 var oFReader = new FileReader();
                 var this_file = file[0];
                 var fileName = file[0].name;
-                var obj = [];
+
                 if(this_file.size>1024 * 1024){
                     alert("文件超过1兆，请重新上传！")
                 }else{
-                    oFReader.readAsDataURL(this_file);
-                    oFReader.onloadend = function (oFRevent) {
-                        this_file = oFRevent.target.result;
-                        this_file = this_file.split(",")[1]
-                        console.log(this_file)
-                        console.log(upd_id)
 
 
-                        var fileInput = document.getElementById('file');
-                        fileInput.value = ""
-                        fileInput.outerHTML = fileInput.outerHTML;
+                    if(currentImageSrc != ""){
+                        deleteFile(currentImageSrc);
+                    }
 
-                        $.ajax({
-                            type: "post", //要用post方式                 
-                            url: "/ji_chu_zi_liao_page.aspx/picture_upd",//方法所在页面和方法名
-                            contentType: "application/json; charset=utf-8",
-                            async: false,
-                            dataType: "json",
-                            data: JSON.stringify({
-                                id:upd_id,
-                                base64:this_file
-                            }),
-                            success: function (data) {
-                                alert(data.d);//返回的数据用data.d获取内容
-                                window.location.reload();
-                            },
-                            error: function (err) {
-                                alert(err);
+                    // 使用FormData上传
+                    var formData = new FormData();
+                    formData.append('file', this_file);
+                    formData.append('name', fileName);
+                    formData.append('path', '/jinxiaocun/');
+                    formData.append('kongjian', '3');
+
+                    $.ajax({
+                        url: 'https://yhocn.cn:9097/file/upload',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+               
+                            try {
+                                var resData = typeof response === 'string' ? JSON.parse(response) : response;
+                    
+                                if (resData.code === 200 || resData.success) {
+                                    // 构建文件URL - 使用小程序中的URL格式
+                                    var fileUrl = "http://yhocn.cn:9088/jinxiaocun/" + fileName;
+
+                                    var fileInput = document.getElementById('file');
+                                    fileInput.value = ""
+                                    fileInput.outerHTML = fileInput.outerHTML;
+
+                                    $.ajax({
+                                        type: "post", //要用post方式                 
+                                        url: "/ji_chu_zi_liao_page.aspx/picture_upd",//方法所在页面和方法名
+                                        contentType: "application/json; charset=utf-8",
+                                        async: false,
+                                        dataType: "json",
+                                        data: JSON.stringify({
+                                            id:upd_id,
+                                            base64:fileUrl
+                                        }),
+                                        success: function (data) {
+                                            alert(data.d);//返回的数据用data.d获取内容
+                                            window.location.reload();
+                                        },
+                                        error: function (err) {
+                                            alert(err);
+                                        }
+                                    });
+                                }
+                            } catch (e) {
+                                console.error('解析响应失败:', e, response);
+                                setTimeout(function() {
+                                    uploadNextFile(index + 1);
+                                }, 1000);
                             }
-                        });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('上传失败:', error);
+                        }
+                    });
 
-                        //$ajax({
-                        //    type: 'post',
-                        //    url: '/ji_chu_zi_liao_page.aspx/picture_upd',
-                        //    data: JSON.stringify({
-                        //        id:upd_id,
-                        //        base64:this_file
-                        //    }),
-                        //    dataType: 'json',
-                        //    contentType: 'application/json;charset=utf-8',
-                        //    async: false,
-                        //    success: function (data) {
-                        //        alert(data.d);//返回的数据用data.d获取内容
-                        //        window.location.reload();
-                        //    },
-                        //})
-                    };
+               
                 }
             });
         })
 
-        //$(document).on("click", "#qr_print", function () {
-        //    var oldstr = window.document.body.innerHTML;
-        //    var newstr = '<table>'
-            
-        //    var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
-        //    console.log(elText)
-        //    for(var i=1; i<elText.length; i++){
-        //        this_text1 = elText.eq(i).children().eq(1)[0].innerHTML
-        //        this_text2 = elText.eq(i).children().eq(9)[0].innerHTML
-        //        this_text2 = this_text2.replace("100","380")
-        //        this_text = '<tr><td>' + this_text1 + '</td><td>' + this_text2 + '</td></tr>'
-        //        newstr = newstr + this_text
-        //        console.log(this_text)
-        //    }
-        //    newstr = newstr + "</table>"
-        //    document.body.innerHTML = newstr;
-        //    window.print();
-        //    document.body.innerHTML = oldstr;
-        //    window.location.reload();
-        //})
-
+        function deleteFile(url) {
+                // 从URL中提取文件名
+                var fileName = url.substring(url.lastIndexOf('/') + 1);
+                var cleanFileName = fileName.split('.')[0]; // 移除扩展名
+        
+                $.ajax({
+                    url: 'https://yhocn.cn:9097/file/delete',
+                    type: 'POST',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: {
+                        order_number: cleanFileName,
+                        path: '/jinxiaocun/'
+                    },success: function(response) {
+                       
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('删除请求失败:', error);
+                    }
+                });
+       
+        }
 
         $(document).on("click", "#qr_print", function () {
             var oldstr = window.document.body.innerHTML;
@@ -443,7 +531,8 @@
                         for (int i = 0; i < jczj_select.Count; i++)
                         {
                             if(jczj_select[i].mark1!=null && jczj_select[i].mark1!="" ){
-                                jczj_select[i].mark1="data:image/jpg;base64,"+jczj_select[i].mark1;
+                                //jczj_select[i].mark1="data:image/jpg;base64,"+jczj_select[i].mark1;
+                                jczj_select[i].mark1 =jczj_select[i].mark1;
                             }                          
                 %>
                 <tr id="del_row_cs<%=i%>">

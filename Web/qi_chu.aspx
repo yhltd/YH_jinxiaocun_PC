@@ -363,7 +363,8 @@
                             {
                                 if (qi_chu_select[i].mark1 != null && qi_chu_select[i].mark1 != "")
                                 {
-                                    qi_chu_select[i].mark1 = "data:image/jpg;base64," + qi_chu_select[i].mark1;
+                                    //qi_chu_select[i].mark1 = "data:image/jpg;base64," + qi_chu_select[i].mark1;
+                                    qi_chu_select[i].mark1 = qi_chu_select[i].mark1;
                                 } 
                     %>
                     <tr id="del_row_cs<%=i%>">

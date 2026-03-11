@@ -317,6 +317,7 @@
           <Property Name="zhaiyao" Type="varchar" MaxLength="255" />
           <Property Name="nashuijine" Type="money" />
           <Property Name="yijiaoshuijine" Type="money" />
+          <Property Name="wenjian" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="VoucherSummary">
           <Key>
@@ -509,6 +510,7 @@
           <Property Type="String" Name="zhaiyao" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="nashuijine" Precision="19" Scale="4" />
           <Property Type="Decimal" Name="yijiaoshuijine" Precision="19" Scale="4" />
+          <Property Type="String" Name="wenjian" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VoucherSummary">
           <Key>
@@ -841,6 +843,7 @@
           <EntitySetMapping Name="SimpleData">
             <EntityTypeMapping TypeName="FinanceModel.SimpleData">
               <MappingFragment StoreEntitySet="SimpleData">
+                <ScalarProperty Name="wenjian" ColumnName="wenjian" />
                 <ScalarProperty Name="yijiaoshuijine" ColumnName="yijiaoshuijine" />
                 <ScalarProperty Name="nashuijine" ColumnName="nashuijine" />
                 <ScalarProperty Name="zhaiyao" ColumnName="zhaiyao" />

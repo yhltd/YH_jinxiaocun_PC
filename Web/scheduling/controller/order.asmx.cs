@@ -309,6 +309,41 @@ namespace Web.scheduling.controller
         }
 
         [WebMethod]
+        public string updateFile(int id, string wenjian)
+        {
+            try
+            {
+                UserInfoService us = new UserInfoService();
+                string quanxian_save1 = us.new_quanxian("upd", "订单");
+                if (quanxian_save1 != null && quanxian_save1.Length > 0 && quanxian_save1 == "是")
+                {
+                }
+                else
+                {
+                    return ResultUtil.error("没有权限！");
+                }
+
+                ois = new OrderInfoService();
+                if (ois.updateFile(id, wenjian))
+                {
+                    return ResultUtil.success("文件更新成功");
+                }
+                else
+                {
+                    return ResultUtil.error("文件更新失败");
+                }
+            }
+            catch (ErrorUtil err)
+            {
+                return ResultUtil.fail(401, err.Message);
+            }
+            catch (Exception ex)
+            {
+                return ResultUtil.error("文件更新失败：" + ex.Message);
+            }
+        }
+
+        [WebMethod]
         public string delete(int id)
         {
             using (TransactionScope tran = new TransactionScope())

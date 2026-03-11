@@ -27,5 +27,6 @@ namespace Web.finance.model
         public string zhaiyao { get; set; }
         public Nullable<decimal> nashuijine { get; set; }
         public Nullable<decimal> yijiaoshuijine { get; set; }
+        public string wenjian { get; set; }
     }
 }

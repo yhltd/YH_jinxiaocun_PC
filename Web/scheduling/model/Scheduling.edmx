@@ -123,6 +123,7 @@
           <Property Name="set_num" Type="int" Nullable="false" />
           <Property Name="company" Type="varchar" MaxLength="255" />
           <Property Name="is_complete" Type="varchar" MaxLength="255" />
+          <Property Name="wenjian" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="paibanbiao_detail">
           <Key>
@@ -385,6 +386,7 @@
           <Property Type="Int32" Name="set_num" Nullable="false" />
           <Property Type="String" Name="company" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="is_complete" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="wenjian" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="work_detail">
           <Key>
@@ -642,7 +644,8 @@
     <EntitySetMapping Name="order_info">
       <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.order_info)">
         <MappingFragment StoreEntitySet="order_info">
-          <ScalarProperty Name="is_complete" ColumnName="is_complete" />
+          <ScalarProperty Name="wenjian" ColumnName="wenjian" />
+                <ScalarProperty Name="is_complete" ColumnName="is_complete" />
                 <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="product_name" ColumnName="product_name" />

@@ -74,6 +74,7 @@
     <EntitySetMapping Name="order_info">
       <EntityTypeMapping TypeName="IsTypeOf(schedulingModel.order_info)">
         <MappingFragment StoreEntitySet="order_info">
+          <ScalarProperty Name="wenjian" ColumnName="wenjian" />
           <ScalarProperty Name="is_complete" ColumnName="is_complete" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />

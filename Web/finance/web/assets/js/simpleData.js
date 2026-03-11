@@ -959,7 +959,31 @@ function setTable(data) {
                 }
             },
             { field: 'accounting', align: 'center', title: '科目', width: 220 },
-            { field: 'zhaiyao', align: 'center', title: '摘要', width: 220 }
+            { field: 'zhaiyao', align: 'center', title: '摘要', width: 220 },
+             { field: 'accounting', align: 'center', title: '科目', width: 220 },
+            { field: 'zhaiyao', align: 'center', title: '摘要', width: 220 },
+            // 新增文件列 - 放在摘要列后面
+            {
+                field: 'wenjian',
+                align: 'center',
+                title: '文件',
+                width: 150,
+                formatter: function (value, row, index) {
+                    if (value && value != '') {
+                        // 有文件时显示查看和删除按钮
+                        return '<div style="display: flex; justify-content: center; gap: 5px;">' +
+                               '<a href="javascript:void(0)" onclick="viewFile(\'' + value + '\')" style="color: #00BFFF; text-decoration: none; margin-right: 5px;">查看</a>' +
+                               '<a href="javascript:void(0)" onclick="deleteFile(' + row.id + ', \'' + value + '\')" style="color: #ff6b6b; text-decoration: none;">删除</a>' +
+                               '</div>';
+                    } else {
+                        // 没有文件时显示暂无
+                        return '<div>' +
+                               '<input type="file" id="fileInput_' + row.id + '" style="display:none;" onchange="uploadFile(' + row.id + ', this)" />' +
+                               '<a href="javascript:void(0)" onclick="triggerFileUpload(' + row.id + ')" style="color: #4CAF50; text-decoration: none; border: 1px solid #4CAF50; padding: 3px 8px; border-radius: 3px;">上传文件</a>' +
+                               '</div>';
+                    }
+                }
+            }
         ]]
     });
 
@@ -976,6 +1000,180 @@ function setTable(data) {
             page.pageSize = pageSize;
         }
     })
+}
+
+// 触发文件上传
+function triggerFileUpload(id) {
+    document.getElementById('fileInput_' + id).click();
+}
+
+// 上传文件
+function uploadFile(id, input) {
+    var file = input.files[0];
+    if (!file) return;
+
+    console.log('上传文件 - ID:', id, '文件名:', file.name);
+
+    // 文件大小限制（10MB）
+    if (file.size > 10 * 1024 * 1024) {
+        $.messager.alert('提示', '文件大小不能超过10MB', 'warning');
+        input.value = ''; // 清空文件输入
+        return;
+    }
+
+    // 显示上传中提示
+    $.messager.progress({
+        title: '提示',
+        msg: '正在上传文件...',
+        text: ''
+    });
+
+    // 使用FormData上传
+    var formData = new FormData();
+    formData.append('file', file);
+    formData.append('name', file.name);
+    formData.append('path', '/caiwu/');
+    formData.append('kongjian', '3');
+
+    $.ajax({
+        url: 'https://yhocn.cn:9097/file/upload',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            $.messager.progress('close');
+
+            try {
+                var resData = typeof response === 'string' ? JSON.parse(response) : response;
+
+                if (resData.code === 200 || resData.success) {
+                    // 构建文件URL
+                    var fileUrl = "http://yhocn.cn:9088/caiwu/" + file.name;
+
+                    console.log('上传成功，文件URL:', fileUrl);
+
+                    // 更新数据库中的文件字段
+                    $.ajax({
+                        type: 'Post',
+                        url: "web_service/simpleData.asmx/updateFileField",
+                        data: {
+                            id: id,
+                            wenjian: fileUrl
+                        },
+                        dataType: "xml",
+                        success: function (data) {
+                            var result = getJson(data);
+                            if (result.code == 200) {
+                                $.messager.show({
+                                    title: '提示',
+                                    msg: '文件上传成功',
+                                    timeout: 2000,
+                                    showType: 'slide'
+                                });
+                                // 刷新列表
+                                getList();
+                            } else {
+                                $.messager.alert('提示', result.msg || '更新失败', 'error');
+                            }
+                        },
+                        error: function (err) {
+                            console.error('更新数据库失败:', err);
+                            $.messager.alert('提示', '更新数据库失败', 'error');
+                            getList();
+                        }
+                    });
+                } else {
+                    $.messager.alert('提示', '上传失败: ' + (resData.msg || '未知错误'), 'error');
+                }
+            } catch (e) {
+                console.error('解析响应失败:', e);
+                $.messager.alert('提示', '上传失败，请重试', 'error');
+            }
+
+            // 清空文件输入框
+            input.value = '';
+        },
+        error: function (xhr, status, error) {
+            $.messager.progress('close');
+            console.error('上传失败:', error);
+            $.messager.alert('提示', '上传失败: ' + error, 'error');
+            input.value = '';
+        }
+    });
+}
+
+// 查看文件
+function viewFile(fileUrl) {
+    if (fileUrl && fileUrl != '') {
+        window.open(fileUrl, '_blank');
+    } else {
+        $.messager.alert('提示', '文件地址无效', 'warning');
+    }
+}
+
+// 删除文件
+function deleteFile(id, fileUrl) {
+    // 弹出确认框
+    $.messager.confirm('确认', '确定要删除这个文件吗？', function (r) {
+        if (r) {
+            // 从URL中提取文件名
+            var fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+            var cleanFileName = fileName.split('.')[0]; // 移除扩展名
+
+            console.log('删除文件 - ID:', id, '文件名:', fileName);
+
+            // 先删除文件服务器上的文件
+            $.ajax({
+                url: 'https://yhocn.cn:9097/file/delete',
+                type: 'POST',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    order_number: cleanFileName,
+                    path: '/caiwu/'
+                },
+                success: function (response) {
+                    console.log('文件删除成功', response);
+
+                    // 更新数据库，清空文件字段
+                    $.ajax({
+                        type: 'Post',
+                        url: "web_service/simpleData.asmx/updateFileField",
+                        data: {
+                            id: id,
+                            wenjian: ''  // 清空文件URL
+                        },
+                        dataType: "xml",
+                        success: function (data) {
+                            var result = getJson(data);
+                            if (result.code == 200) {
+                                $.messager.show({
+                                    title: '提示',
+                                    msg: '文件删除成功',
+                                    timeout: 2000,
+                                    showType: 'slide'
+                                });
+                                // 刷新列表
+                                getList();
+                            } else {
+                                $.messager.alert('提示', result.msg || '更新失败', 'error');
+                            }
+                        },
+                        error: function (err) {
+                            console.error('更新数据库失败:', err);
+                            $.messager.alert('提示', '更新数据库失败', 'error');
+                            // 即使更新失败也刷新列表
+                            getList();
+                        }
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error('删除文件请求失败:', error);
+                    $.messager.alert('提示', '文件删除失败: ' + error, 'error');
+                }
+            });
+        }
+    });
 }
 
 //function update(rowItem) {

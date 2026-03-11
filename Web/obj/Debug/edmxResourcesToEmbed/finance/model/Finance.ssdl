@@ -312,6 +312,7 @@
     <Property Name="zhaiyao" Type="varchar" MaxLength="255" />
     <Property Name="nashuijine" Type="money" />
     <Property Name="yijiaoshuijine" Type="money" />
+    <Property Name="wenjian" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="VoucherSummary">
     <Key>

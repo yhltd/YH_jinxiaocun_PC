@@ -81,6 +81,35 @@ namespace Web.finance.service
         }
 
         /// <summary>
+        /// 更新文件字段
+        /// </summary>
+        public Boolean updateFileField(int id, string wenjian)
+        {
+            try
+            {
+                // 先查找要更新的记录
+                SimpleData simpleData = commonModel.comFind<SimpleData>(new SimpleData(), id);
+
+                if (simpleData != null)
+                {
+                    // 更新文件字段
+                    simpleData.wenjian = wenjian;
+
+                    // 执行更新
+                    int result = commonModel.comUpd<SimpleData>(simpleData);
+                    return result > 0;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                FinanceToError.getFinanceToError().toError();
+                return false;
+            }
+        }
+
+        /// <summary>
         /// 删除
         /// </summary>
         /// <param name="ids"></param>

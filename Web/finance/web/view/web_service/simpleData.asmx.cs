@@ -119,6 +119,39 @@ namespace Web.finance.web.view.web_service
         }
 
         /// <summary>
+        /// 更新文件字段
+        /// </summary>
+        [WebMethod]
+        public string updateFileField(int id, string wenjian)
+        {
+            try
+            {
+                // 创建service层实例
+                simpleDataService = new SimpleDataService();
+
+                // 修改操作
+                if (simpleDataService.updateFileField(id, wenjian))
+                {
+                    return FinanceResultData.getFinanceResultData().success(200, null, "更新成功");
+                }
+                else
+                {
+                    return FinanceResultData.getFinanceResultData().fail(500, null, "更新失败");
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                //身份验证不通过
+                return FinanceResultData.getFinanceResultData().fail(401, null, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                //未知的错误
+                return FinanceResultData.getFinanceResultData().fail(500, null, "未知的错误");
+            }
+        }
+
+        /// <summary>
         /// 修改
         /// </summary>
         /// <param name="newExpenditure"></param>

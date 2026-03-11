@@ -23,5 +23,6 @@ namespace Web.scheduling.model
         public int set_num { get; set; }
         public string company { get; set; }
         public string is_complete { get; set; }
+        public string wenjian { get; set; }
     }
 }

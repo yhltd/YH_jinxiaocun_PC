@@ -185,6 +185,29 @@ namespace Web.scheduling.service
             }
         }
 
+        public Boolean updateFile(int id, string wenjian)
+        {
+            try
+            {
+                using (var se = new schedulingEntities())
+                {
+                    var order = se.order_info.FirstOrDefault(o => o.id == id && o.company == user.company);
+                    if (order != null)
+                    {
+                        order.wenjian = wenjian;  // 更新文件字段
+
+                        se.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ErrorUtil("更新文件失败：" + ex.Message);
+            }
+        }
+
 
         /// <summary>
         /// 删除订单Bom

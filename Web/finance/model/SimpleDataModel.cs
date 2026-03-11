@@ -69,7 +69,7 @@ namespace Web.finance.model
             var maxPageParam = new SqlParameter("@maxPage", financePage.getMax());
             var projectParam = new SqlParameter("@project", financePage.selectParamsMap["project"]);
 
-            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao,a.nashuijine,a.yijiaoshuijine from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and project like '%'+@project+'%') as a where a.rownum > @minPage and a.rownum < @maxPage";
+            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao,a.nashuijine,a.yijiaoshuijine,a.wenjian from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and project like '%'+@project+'%') as a where a.rownum > @minPage and a.rownum < @maxPage";
 
             if (start_date != "")
             {

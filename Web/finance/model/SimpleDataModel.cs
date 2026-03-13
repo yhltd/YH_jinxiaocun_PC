@@ -128,7 +128,7 @@ namespace Web.finance.model
             var jsParam = new SqlParameter("@js", js);
 
             //string sql = "select a.id,a.zhaiyao,a.kehu,a.receivable,'' as project,'' as company,0.0 as receipts,0.0 as cope,0.0 as payment,'' as accounting, insert_date from (select id,zhaiyao,kehu,(convert(Decimal,receivable)-convert(Decimal,receipts)) as receivable,insert_date from SimpleData where company= @company and (convert(Decimal,receivable)-convert(Decimal,receipts))<>0 and insert_date>= @ks and insert_date<= @js) as a";
-            string sql = "select a.id,a.zhaiyao,a.kehu,a.receivable,'' as project,'' as company,0.0 as receipts,0.0 as cope,0.0 as payment,'' as accounting, insert_date,0.0 as nashuijine,0.0 as yijiaoshuijine from (select id,zhaiyao,kehu,(convert(Decimal,receivable)-convert(Decimal,receipts)) as receivable,insert_date from SimpleData where company= @company and (convert(Decimal,receivable)-convert(Decimal,receipts))<>0 and insert_date>= @ks and insert_date<= @js) as a";
+            string sql = "select a.id,a.zhaiyao,a.kehu,a.receivable,'' as project,'' as company,0.0 as receipts,0.0 as cope,0.0 as payment,'' as accounting, insert_date,0.0 as nashuijine,0.0 as yijiaoshuijine,'' as wenjian from (select id,zhaiyao,kehu,(convert(Decimal,receivable)-convert(Decimal,receipts)) as receivable,insert_date from SimpleData where company= @company and (convert(Decimal,receivable)-convert(Decimal,receipts))<>0 and insert_date>= @ks and insert_date<= @js) as a";
 
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, jsParam);
 
@@ -150,7 +150,7 @@ namespace Web.finance.model
             var jsParam = new SqlParameter("@js", js);
 
             //string sql = "select a.id,a.zhaiyao,a.kehu,a.cope,'' as project,'' as company,0.0 as receipts,0.0 as receivable,0.0 as payment,'' as accounting,insert_date from (select id,zhaiyao,kehu,(convert(Decimal,cope)-convert(Decimal,payment)) as cope,insert_date from SimpleData where company= @company and (convert(Decimal,cope)-convert(Decimal,payment))<>0 and insert_date>= @ks and insert_date<= @js) as a";
-            string sql = "select a.id,a.zhaiyao,a.kehu,a.cope,'' as project,'' as company,0.0 as receipts,0.0 as receivable,0.0 as payment,'' as accounting,insert_date,0.0 as nashuijine,0.0 as yijiaoshuijine from (select id,zhaiyao,kehu,(convert(Decimal,cope)-convert(Decimal,payment)) as cope,insert_date from SimpleData where company= @company and (convert(Decimal,cope)-convert(Decimal,payment))<>0 and insert_date>= @ks and insert_date<= @js) as a";
+            string sql = "select a.id,a.zhaiyao,a.kehu,a.cope,'' as project,'' as company,0.0 as receipts,0.0 as receivable,0.0 as payment,'' as accounting,insert_date,0.0 as nashuijine,0.0 as yijiaoshuijine,'' as wenjian from (select id,zhaiyao,kehu,(convert(Decimal,cope)-convert(Decimal,payment)) as cope,insert_date from SimpleData where company= @company and (convert(Decimal,cope)-convert(Decimal,payment))<>0 and insert_date>= @ks and insert_date<= @js) as a";
 
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, jsParam);
 
@@ -173,7 +173,7 @@ namespace Web.finance.model
 
             var khParam = new SqlParameter("@kehu", kehu);
 
-            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao,a.nashuijine,a.yijiaoshuijine  from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and kehu = @kehu and (receivable-receipts)<>0 and insert_date>=@ks and insert_date<=@js) as a";
+            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao,a.nashuijine,a.yijiaoshuijine,a.wenjian from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and kehu = @kehu and (receivable-receipts)<>0 and insert_date>=@ks and insert_date<=@js) as a";
 
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, jsParam, khParam);
 
@@ -195,7 +195,7 @@ namespace Web.finance.model
             var khParam = new SqlParameter("@kehu", kehu);
 
             //string sql = "select 0 as id,'' as company,null as insert_date,'' as project,b.kehu,b.receivable,b.receipts,0.0 as cope,0.0 as payment,'' as accounting,'' as zhaiyao from (select kehu,sum(receivable) as receivable,sum(receipts) as receipts from SimpleData where company = @company and kehu = @kehu and insert_date<@ks group by kehu) as b";
-            string sql = "select 0 as id,'' as company,null as insert_date,'' as project,b.kehu,b.receivable,b.receipts,0.0 as cope,0.0 as payment,'' as accounting,'' as zhaiyao,0.0 as nashuijine,0.0 as yijiaoshuijine from (select kehu,sum(receivable) as receivable,sum(receipts) as receipts,sum(nashuijine) as nashuijine,sum(yijiaoshuijine) as yijiaoshuijine from SimpleData where company = @company and kehu = @kehu and insert_date<@ks group by kehu) as b";
+            string sql = "select 0 as id,'' as company,null as insert_date,'' as project,b.kehu,b.receivable,b.receipts,0.0 as cope,0.0 as payment,'' as accounting,'' as zhaiyao,0.0 as nashuijine,0.0 as yijiaoshuijine,'' as wenjian from (select kehu,sum(receivable) as receivable,sum(receipts) as receipts,sum(nashuijine) as nashuijine,sum(yijiaoshuijine) as yijiaoshuijine from SimpleData where company = @company and kehu = @kehu and insert_date<@ks group by kehu) as b";
 
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, khParam);
 
@@ -220,8 +220,7 @@ namespace Web.finance.model
             var khParam = new SqlParameter("@kehu", kehu);
 
             //string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and kehu = @kehu and (receivable-receipts)<>0 and insert_date>=@ks and insert_date<=@js) as a";
-            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao,a.nashuijine,a.yijiaoshuijine from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and kehu = @kehu and (receivable-receipts)<>0 and insert_date>=@ks and insert_date<=@js) as a";
-
+            string sql = "select a.id,a.company,a.insert_date,a.project,a.kehu,a.receivable,a.receipts,a.cope,a.payment,a.accounting,a.zhaiyao,a.nashuijine,a.yijiaoshuijine,a.wenjian from (select row_number() over(order by id) as rownum,* from SimpleData where company = @company and kehu = @kehu and (receivable-receipts)<>0 and insert_date>=@ks and insert_date<=@js) as a";
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, jsParam, khParam);
 
             return result.ToList();
@@ -242,7 +241,7 @@ namespace Web.finance.model
             var khParam = new SqlParameter("@kehu", kehu);
 
             //string sql = "select 0 as id,'' as company,null as insert_date,'' as project,b.kehu,0.0 as receivable,0.0 as receipts,b.cope,b.payment,'' as accounting,'' as zhaiyao from (select kehu,sum(cope) as cope,sum(payment) as payment from SimpleData where company = @company and kehu = @kehu and insert_date<@ks group by kehu) as b";
-            string sql = "select 0 as id,'' as company,null as insert_date,'' as project,b.kehu,0.0 as receivable,0.0 as receipts,b.cope,b.payment,'' as accounting,'' as zhaiyao,0.0 as nashuijine,0.0 as yijiaoshuijine from (select kehu,sum(cope) as cope,sum(payment) as payment,sum(nashuijine) as nashuijine,sum(yijiaoshuijine) as yijiaoshuijine from SimpleData where company = @company and kehu = @kehu and insert_date<@ks group by kehu) as b";
+            string sql = "select 0 as id,'' as company,null as insert_date,'' as project,b.kehu,0.0 as receivable,0.0 as receipts,b.cope,b.payment,'' as accounting,'' as zhaiyao,0.0 as nashuijine,0.0 as yijiaoshuijine,'' as wenjian from (select kehu,sum(cope) as cope,sum(payment) as payment,sum(nashuijine) as nashuijine,sum(yijiaoshuijine) as yijiaoshuijine from SimpleData where company = @company and kehu = @kehu and insert_date<@ks group by kehu) as b";
 
 
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, ksParam, khParam);
@@ -340,23 +339,22 @@ namespace Web.finance.model
             var endDateParam = new SqlParameter("@endDate", endDate);
 
             string sql = @"
-                SELECT 
-                    id, company, project, kehu, zhaiyao,
-                    accounting, insert_date,
-                    ISNULL(receivable, 0) as receivable,
-                    ISNULL(receipts, 0) as receipts,
-                    ISNULL(cope, 0) as cope,
-                    ISNULL(payment, 0) as payment,
-                    ISNULL(nashuijine, 0) as nashuijine,
-                    ISNULL(yijiaoshuijine, 0) as yijiaoshuijine,
-                    -- 计算利润 = (应收 - 实收) - (应付 - 实付)
-                    (ISNULL(receivable, 0) - ISNULL(receipts, 0)) - 
-                    (ISNULL(cope, 0) - ISNULL(payment, 0)) as profit
-                FROM SimpleData 
-                WHERE company = @company 
-                    AND insert_date >= @startDate 
-                    AND insert_date <= @endDate
-                ORDER BY accounting, project, insert_date";
+        SELECT 
+            id, company, project, kehu, zhaiyao,
+            accounting, insert_date, wenjian,
+            ISNULL(receivable, 0) as receivable,
+            ISNULL(receipts, 0) as receipts,
+            ISNULL(cope, 0) as cope,
+            ISNULL(payment, 0) as payment,
+            ISNULL(nashuijine, 0) as nashuijine,
+            ISNULL(yijiaoshuijine, 0) as yijiaoshuijine,
+            (ISNULL(receivable, 0) - ISNULL(receipts, 0)) - 
+            (ISNULL(cope, 0) - ISNULL(payment, 0)) as profit
+        FROM SimpleData 
+        WHERE company = @company 
+            AND insert_date >= @startDate 
+            AND insert_date <= @endDate
+        ORDER BY accounting, project, insert_date";
 
             var result = fin.Database.SqlQuery<SimpleData>(sql, companyParam, startDateParam, endDateParam);
             

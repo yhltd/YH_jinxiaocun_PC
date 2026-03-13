@@ -374,7 +374,8 @@
                                     }
                                     else
                                     {
-                                        imageSrc = "data:image/jpg;base64," + item.mark1;
+                                        //imageSrc = "data:image/jpg;base64," + item.mark1;
+                                        imageSrc = item.mark1;
                                     }
                                 }
                     %>

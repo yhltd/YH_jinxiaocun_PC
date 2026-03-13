@@ -810,6 +810,10 @@
                 </div>
             </div>
 
+            <div class="function_top">    
+                <a style="color:white" href="http://yhocn.cn/chanpin7_shipin/excel_7product/7product/userstep/index.html" class="bt_top" style="color:white">查看视频</a>
+            </div>
+
             <div class="function_top">
                 <a  href="./jxc_excel.aspx" >
                 <%--<img class="bt_top" src="Images/xiazai.png" style="height:25px;width:25px;padding-bottom: 15px; background-color:#3d566e"/>--%>
@@ -825,7 +829,6 @@
                 </a>
                 <a style="color:white" href="./jxc_excel.aspx" class="bt_top" style="color:white">下载Excel</a>
             </div>
-
 
 
             <div class="function_top">

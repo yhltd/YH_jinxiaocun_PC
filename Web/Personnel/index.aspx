@@ -617,6 +617,8 @@
                 </div>
             </div>
             <div style="margin-left:1%">
+                <a style="color:white;margin-right:20px" href="http://yhocn.cn/chanpin7_shipin/excel_7product/7product/userstep/index.html" class="fl welcome_info bt-in">
+                    &nbsp;使用视频</a>
                 <a style="color:white;margin-right:20px" href="../Personnel/downloadApp.aspx" class="fl welcome_info bt-in">
                     <svg viewBox="0 0 1024 1024" version="1.1" class="bt_toptp" width="20" height="20">
                     <path d="M755.8 0H268.2C214.4 0 170.7 45.8 170.7 102.4v819.2c0 56.6 43.7 102.4 97.5 102.4h487.6c53.8 0 97.5-45.8 97.5-102.4V102.4C853.3 45.8 809.6 0 755.8 0zM512 972.8a52.1 52.1 0 0 1-51.2-51.2c0-28.2 24.2-51.2 51.2-51.2s51.2 23 51.2 51.2a52.1 52.1 0 0 1-51.2 51.2zm243.8-153.6H268.2V102.4h487.6v716.8z" fill="#dbdbdb"></path>

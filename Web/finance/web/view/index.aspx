@@ -71,6 +71,7 @@
             <img src="../assets/img/animat-diamond-color.gif"/ style="height:100px;width:100px; z-index:9999;">
 
             <div id="Div1" class="north-left" style="color:white">
+                <a style="color:white;margin-right:20px" href="http://yhocn.cn/chanpin7_shipin/excel_7product/7product/userstep/index.html" class="leftNav_li">使用视频</a>
                 <a style="color:white;margin-right:20px" href="./downloadApp.aspx" class="leftNav_li">下载APP</a>
                 <a style="color:white" href="./downloadExcel.aspx" class="leftNav_li">下载Excel</a>
             </div>

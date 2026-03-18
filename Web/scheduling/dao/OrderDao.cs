@@ -57,6 +57,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Web.scheduling.model;
+using System.Data.SqlClient;
 
 namespace Web.scheduling.dao
 {
@@ -87,37 +88,71 @@ namespace Web.scheduling.dao
         /// </summary>
         /// <param name="company"></param>
         /// <returns></returns>
+//        public List<order_info> list(string company)
+//        {
+//            using (se = new schedulingEntities())
+//            {
+//                var result = se.Database.SqlQuery<order_info>(@"
+//                    select 
+//                        oi.id,
+//                        oi.is_complete,
+//                        oi.code,
+//                        oi.product_name,
+//                        oi.norms,
+//                        oi.set_date,
+//                        oi.company,
+//                        oi.order_id,
+//                        oi.set_num - sum(isnull(wd.work_num, 0)) as set_num,
+//                        oi.wenjian
+//                    from order_info as oi 
+//                    left join work_detail as wd on oi.id = wd.order_id 
+//                    group by 
+//                        oi.id,
+//                        oi.code,
+//                        oi.product_name,
+//                        oi.norms,
+//                        oi.set_date,
+//                        oi.company,
+//                        oi.order_id,
+//                        oi.set_num,
+//                        oi.is_complete,
+//                        oi.wenjian 
+//                    having oi.set_num - sum(isnull(wd.work_num, 0)) > 0");
+//                return result.ToList();
+//            }
+//        }
         public List<order_info> list(string company)
         {
             using (se = new schedulingEntities())
             {
-                // 修改1：在 GROUP BY 中添加 oi.wenjian 字段
                 var result = se.Database.SqlQuery<order_info>(@"
-                    select 
-                        oi.id,
-                        oi.is_complete,
-                        oi.code,
-                        oi.product_name,
-                        oi.norms,
-                        oi.set_date,
-                        oi.company,
-                        oi.order_id,
-                        oi.set_num - sum(isnull(wd.work_num, 0)) as set_num,
-                        oi.wenjian
-                    from order_info as oi 
-                    left join work_detail as wd on oi.id = wd.order_id 
-                    group by 
-                        oi.id,
-                        oi.code,
-                        oi.product_name,
-                        oi.norms,
-                        oi.set_date,
-                        oi.company,
-                        oi.order_id,
-                        oi.set_num,
-                        oi.is_complete,
-                        oi.wenjian 
-                    having oi.set_num - sum(isnull(wd.work_num, 0)) > 0");
+            select 
+                oi.id,
+                oi.is_complete,
+                oi.code,
+                oi.product_name,
+                oi.norms,
+                oi.set_date,
+                oi.company,
+                oi.order_id,
+                oi.set_num - sum(isnull(wd.work_num, 0)) as set_num,
+                oi.wenjian
+            from order_info as oi 
+            left join work_detail as wd on oi.id = wd.order_id 
+            where oi.company = @company 
+            group by 
+                oi.id,
+                oi.code,
+                oi.product_name,
+                oi.norms,
+                oi.set_date,
+                oi.company,
+                oi.order_id,
+                oi.set_num,
+                oi.is_complete,
+                oi.wenjian 
+            having oi.set_num - sum(isnull(wd.work_num, 0)) > 0",
+                    new SqlParameter("@company", company));
                 return result.ToList();
             }
         }

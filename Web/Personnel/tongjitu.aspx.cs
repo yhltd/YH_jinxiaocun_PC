@@ -72,52 +72,77 @@ namespace Web.Personnel
                 }
                 else
                 {
-                    // 获取标题配置
-                    var titleConfig = LoadTitleConfigFromDb(gongsi);
-                    var dynamicTitles = ParseTitleConfig(titleConfig);
-
-                    // 获取所有数据行（排除标题配置行）
+                    // 获取所有数据行（按id排序）
                     var allRows = GetAllDataRows(gongsi);
 
-                    // 准备返回数据
-                    var fields = dynamicTitles.Select(t => t.Text).ToList();
-                    var data = new List<Dictionary<string, object>>();
-
-                    foreach (var row in allRows)
+                    // 如果没有数据，返回空
+                    if (allRows.Count == 0)
                     {
-                        if (row.Id == TitleConfigId) continue;
-
-                        var rowDict = new Dictionary<string, object>
+                        responseData = new
                         {
-                            { "id", row.Id }
+                            fields = new string[0],
+                            data = new object[0]
                         };
-
-                        // 解析数据
-                        var dataArray = new List<string>();
-                        if (!string.IsNullOrEmpty(row.Name))
-                        {
-                            dataArray = row.Name.Split(new string[] { TitleSeparator }, StringSplitOptions.None).ToList();
-                        }
-
-                        // 确保数组长度与标题一致
-                        while (dataArray.Count < dynamicTitles.Count)
-                        {
-                            dataArray.Add("");
-                        }
-
-                        // 添加字段值
-                        rowDict["values"] = dataArray.ToArray();
-                        data.Add(rowDict);
+                        responseMessage = "暂无数据";
+                        isSuccess = true;
                     }
-
-                    responseData = new
+                    else
                     {
-                        fields = fields,
-                        data = data
+                        // 第一条数据（索引0）作为标题
+                        var titleRecord = allRows[0];
+                        // 剩余数据作为内容
+                        var contentRows = allRows.Skip(1).ToList();
+
+                        // 从标题记录解析标题字段
+                        List<string> fields = new List<string>();
+                        if (titleRecord != null && !string.IsNullOrEmpty(titleRecord.Name))
+                        {
+                            fields = titleRecord.Name.Split(new string[] { TitleSeparator }, StringSplitOptions.None).ToList();
+                        }
+
+                        // 如果没有标题数据，使用默认字段
+                        if (fields.Count == 0)
+                        {
+                            fields = new List<string> { "字段1", "字段2", "字段3", "字段4", "字段5" };
+                        }
+
+                        // 准备数据行
+                        var data = new List<Dictionary<string, object>>();
+
+                        foreach (var row in contentRows)
+                        {
+                            var rowDict = new Dictionary<string, object>
+                    {
+                        { "id", row.Id }
                     };
 
-                    responseMessage = "加载成功";
-                    isSuccess = true;
+                            // 解析数据
+                            var dataArray = new List<string>();
+                            if (!string.IsNullOrEmpty(row.Name))
+                            {
+                                dataArray = row.Name.Split(new string[] { TitleSeparator }, StringSplitOptions.None).ToList();
+                            }
+
+                            // 确保数组长度与标题一致
+                            while (dataArray.Count < fields.Count)
+                            {
+                                dataArray.Add("");
+                            }
+
+                            // 添加字段值
+                            rowDict["values"] = dataArray.ToArray();
+                            data.Add(rowDict);
+                        }
+
+                        responseData = new
+                        {
+                            fields = fields,
+                            data = data
+                        };
+
+                        responseMessage = "加载成功";
+                        isSuccess = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -129,11 +154,11 @@ namespace Web.Personnel
             {
                 Response.ContentType = "application/json";
                 var response = new Dictionary<string, object>
-                {
-                    { "success", isSuccess },
-                    { "message", responseMessage },
-                    { "data", responseData }
-                };
+        {
+            { "success", isSuccess },
+            { "message", responseMessage },
+            { "data", responseData }
+        };
 
                 Response.Write(serializer.Serialize(response));
                 Response.End();
@@ -395,18 +420,25 @@ namespace Web.Personnel
             else
             {
                 // 默认字段
-                for (int i = 0; i < 5; i++)
-                {
-                    dynamicTitles.Add(new DynamicTitle
-                    {
-                        Text = string.Format("字段{0}", i + 1),
-                        ColumnName = string.Format("field_{0}", i + 1),
-                        ColumnIndex = i
-                    });
-                }
+                dynamicTitles = GetDefaultTitles();
             }
 
             return dynamicTitles;
+        }
+
+        private List<DynamicTitle> GetDefaultTitles()
+        {
+            var titles = new List<DynamicTitle>();
+            for (int i = 0; i < 5; i++)
+            {
+                titles.Add(new DynamicTitle
+                {
+                    Text = string.Format("字段{0}", i + 1),
+                    ColumnName = string.Format("field_{0}", i + 1),
+                    ColumnIndex = i
+                });
+            }
+            return titles;
         }
 
         // 辅助方法 - 获取所有数据行

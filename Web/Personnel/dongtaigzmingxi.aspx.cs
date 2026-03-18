@@ -101,21 +101,46 @@ namespace Web.Personnel
         {
             string gongsi = Session["gongsi"] != null ? Session["gongsi"].ToString() : "";
 
-            // 加载标题配置
-            var titleConfig = LoadTitleConfigFromDb(gongsi);
-            var dynamicTitles = ParseTitleConfig(titleConfig);
+            // 不再使用固定的 TitleConfigId = 1，而是获取所有数据
+            var allData = GetAllDataRows(gongsi);
 
-            // 计算分页
-            totalRecords = GetTotalRecords(gongsi);
+            List<DynamicTitle> dynamicTitles;
+            List<DataRow> contentData;
+
+            if (allData.Count > 0)
+            {
+                // 第一条数据（索引0）作为标题
+                var titleRecord = allData[0];
+                // 剩余数据作为内容
+                contentData = allData.Skip(1).ToList();
+
+                // 解析标题
+                dynamicTitles = ParseTitleFromRecord(titleRecord);
+            }
+            else
+            {
+                // 没有数据时使用默认标题
+                dynamicTitles = GetDefaultTitles();
+                contentData = new List<DataRow>();
+            }
+
+            // 计算分页（基于内容数据）
+            totalRecords = contentData.Count;
             totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
 
             if (currentPage < 1) currentPage = 1;
             if (currentPage > totalPages) currentPage = totalPages;
 
-            // 加载当前页数据
-            var data = LoadPageDataFromDb(gongsi, currentPage, pageSize, dynamicTitles);
-            
-            rptData.DataSource = data;
+            // 获取当前页的数据
+            var pageData = contentData
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            // 转换为显示格式
+            var displayData = ConvertToDisplayData(pageData, dynamicTitles);
+
+            rptData.DataSource = displayData;
             rptData.DataBind();
 
             // 更新分页显示
@@ -127,13 +152,107 @@ namespace Web.Personnel
             btnPrev.Enabled = currentPage > 1;
             btnNext.Enabled = currentPage < totalPages;
             btnLast.Enabled = currentPage < totalPages;
+
+            // 保存动态标题到ViewState，供其他地方使用
+            ViewState["DynamicTitles"] = dynamicTitles;
+        }
+
+        private List<Dictionary<string, object>> ConvertToDisplayData(List<DataRow> dataRows, List<DynamicTitle> dynamicTitles)
+        {
+            var result = new List<Dictionary<string, object>>();
+
+            foreach (var row in dataRows)
+            {
+                var displayRow = new Dictionary<string, object>
+        {
+            { "id", row.Id }
+        };
+
+                if (!string.IsNullOrEmpty(row.Name))
+                {
+                    var dataArray = row.Name.Split(new string[] { TitleSeparator }, StringSplitOptions.None);
+
+                    for (int i = 0; i < dynamicTitles.Count; i++)
+                    {
+                        string value = i < dataArray.Length ? dataArray[i] : "";
+                        displayRow[dynamicTitles[i].ColumnName] = value;
+                    }
+                }
+                else
+                {
+                    // 如果name为空，填充空值
+                    for (int i = 0; i < dynamicTitles.Count; i++)
+                    {
+                        displayRow[dynamicTitles[i].ColumnName] = "";
+                    }
+                }
+
+                result.Add(displayRow);
+            }
+
+            return result;
+        }
+
+        private List<DynamicTitle> ParseTitleFromRecord(DataRow titleRecord)
+        {
+            var dynamicTitles = new List<DynamicTitle>();
+
+            if (titleRecord != null && !string.IsNullOrEmpty(titleRecord.Name))
+            {
+                var titleArray = titleRecord.Name.Split(new string[] { TitleSeparator }, StringSplitOptions.None);
+                for (int i = 0; i < titleArray.Length; i++)
+                {
+                    dynamicTitles.Add(new DynamicTitle
+                    {
+                        Text = titleArray[i].Trim(),
+                        ColumnName = string.Format("field_{0}", i + 1),
+                        ColumnIndex = i
+                    });
+                }
+            }
+            else
+            {
+                // 默认字段
+                dynamicTitles = GetDefaultTitles();
+            }
+
+            return dynamicTitles;
+        }
+
+        private List<DynamicTitle> GetDefaultTitles()
+        {
+            var titles = new List<DynamicTitle>();
+            for (int i = 0; i < 5; i++)
+            {
+                titles.Add(new DynamicTitle
+                {
+                    Text = string.Format("字段{0}", i + 1),
+                    ColumnName = string.Format("field_{0}", i + 1),
+                    ColumnIndex = i
+                });
+            }
+            return titles;
         }
 
         private void BindDynamicHeaders()
         {
-            string gongsi = Session["gongsi"] != null ? Session["gongsi"].ToString() : "";
-            var titleConfig = LoadTitleConfigFromDb(gongsi);
-            var dynamicTitles = ParseTitleConfig(titleConfig);
+            // 从ViewState获取动态标题，如果没有则从数据库加载
+            var dynamicTitles = ViewState["DynamicTitles"] as List<DynamicTitle>;
+
+            if (dynamicTitles == null)
+            {
+                string gongsi = Session["gongsi"] != null ? Session["gongsi"].ToString() : "";
+                var allData = GetAllDataRows(gongsi);
+
+                if (allData.Count > 0)
+                {
+                    dynamicTitles = ParseTitleFromRecord(allData[0]);
+                }
+                else
+                {
+                    dynamicTitles = GetDefaultTitles();
+                }
+            }
 
             rptDynamicHeaders.DataSource = dynamicTitles.Select(t => t.Text);
             rptDynamicHeaders.DataBind();
@@ -271,45 +390,54 @@ namespace Web.Personnel
 
                 using (SqlConnection conn = new SqlConnection(conString))
                 {
-                    // 检查标题配置是否存在
-                    string checkSql = "SELECT COUNT(*) FROM gongzi_dongtaimingxi WHERE id = @id AND gongsi = @gongsi";
-                    SqlCommand cmd = new SqlCommand(checkSql, conn);
-                    cmd.Parameters.AddWithValue("@id", TitleConfigId);
-                    cmd.Parameters.AddWithValue("@gongsi", gongsi);
+                    // 获取第一条数据的ID
+                    var allData = GetAllDataRows(gongsi);
+                    int targetId;
 
-                    conn.Open();
-                    int count = (int)cmd.ExecuteScalar();
-                    conn.Close();
-
-                    string sql;
-                    if (count > 0)
+                    if (allData.Count > 0)
                     {
-                        // 更新
-                        sql = "UPDATE gongzi_dongtaimingxi SET name = @name WHERE id = @id AND gongsi = @gongsi";
+                        // 更新第一条数据作为标题
+                        targetId = allData[0].Id;
                     }
                     else
                     {
-                        // 插入
-                        sql = "INSERT INTO gongzi_dongtaimingxi (id, gongsi, name) VALUES (@id, @gongsi, @name)";
+                        // 如果没有数据，插入新数据作为标题
+                        targetId = 0; // 将在插入时生成
                     }
 
-                    cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@id", TitleConfigId);
-                    cmd.Parameters.AddWithValue("@gongsi", gongsi);
-                    cmd.Parameters.AddWithValue("@name", titleStr);
+                    if (targetId > 0)
+                    {
+                        // 更新第一条数据
+                        string sql = "UPDATE gongzi_dongtaimingxi SET name = @name WHERE id = @id AND gongsi = @gongsi";
+                        SqlCommand cmd = new SqlCommand(sql, conn);
+                        cmd.Parameters.AddWithValue("@id", targetId);
+                        cmd.Parameters.AddWithValue("@gongsi", gongsi);
+                        cmd.Parameters.AddWithValue("@name", titleStr);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    else
+                    {
+                        // 插入新数据
+                        string sql = "INSERT INTO gongzi_dongtaimingxi (gongsi, name) VALUES (@gongsi, @name)";
+                        SqlCommand cmd = new SqlCommand(sql, conn);
+                        cmd.Parameters.AddWithValue("@gongsi", gongsi);
+                        cmd.Parameters.AddWithValue("@name", titleStr);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
 
                     // 如果列数减少，截断现有数据
-                    var oldTitleConfig = LoadTitleConfigFromDb(gongsi);
-                    var oldDynamicTitles = ParseTitleConfig(oldTitleConfig);
+                    var oldTitles = allData.Count > 0 ? ParseTitleFromRecord(allData[0]) : new List<DynamicTitle>();
                     var newFieldCount = fields.Count;
 
-                    if (oldDynamicTitles.Count > newFieldCount)
+                    if (oldTitles.Count > newFieldCount)
                     {
-                        TruncateExistingData(gongsi, oldDynamicTitles.Count, newFieldCount);
+                        TruncateExistingData(gongsi, oldTitles.Count, newFieldCount, allData[0].Id);
                     }
 
                     responseMessage = "保存成功";
@@ -323,7 +451,6 @@ namespace Web.Personnel
             }
             finally
             {
-                // 统一返回JSON响应
                 Response.ContentType = "application/json";
                 string jsonResponse = "{\"success\": " + isSuccess.ToString().ToLower() +
                                       ", \"message\": \"" +
@@ -1028,9 +1155,8 @@ namespace Web.Personnel
             string conString = ConfigurationManager.AppSettings["yao"];
             using (conn = new SqlConnection(conString))
             {
-                string sql = "SELECT id, gongsi, name FROM gongzi_dongtaimingxi WHERE id = @id AND gongsi = @gongsi";
+                string sql = "SELECT TOP 1 id, gongsi, name FROM gongzi_dongtaimingxi WHERE gongsi = @gongsi ORDER BY id";
                 cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", TitleConfigId);
                 cmd.Parameters.AddWithValue("@gongsi", gongsi);
 
                 conn.Open();
@@ -1156,21 +1282,19 @@ namespace Web.Personnel
             return result;
         }
 
-        private void TruncateExistingData(string gongsi, int oldFieldCount, int newFieldCount)
+        private void TruncateExistingData(string gongsi, int oldFieldCount, int newFieldCount, int titleId)
         {
             string conString = ConfigurationManager.AppSettings["yao"];
 
-            // 获取所有数据行
-            var allRows = GetAllDataRows(gongsi);
+            // 获取所有数据行（排除标题行）
+            var allRows = GetAllDataRows(gongsi).Where(r => r.Id != titleId).ToList();
 
             using (conn = new SqlConnection(conString))
             {
                 conn.Open();
-                
+
                 foreach (var row in allRows)
                 {
-                    if (row.Id == TitleConfigId) continue;
-
                     var dataArray = new List<string>();
                     if (!string.IsNullOrEmpty(row.Name))
                     {
@@ -1205,6 +1329,7 @@ namespace Web.Personnel
 
             using (SqlConnection conn = new SqlConnection(conString))
             {
+                // 按id排序，确保第一条是标题
                 string sql = "SELECT id, name FROM gongzi_dongtaimingxi WHERE gongsi = @gongsi ORDER BY id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@gongsi", gongsi);
@@ -1230,8 +1355,19 @@ namespace Web.Personnel
         public string GetDynamicTitlesJson()
         {
             string gongsi = Session["gongsi"] != null ? Session["gongsi"].ToString() : "";
-            var titleConfig = LoadTitleConfigFromDb(gongsi);
-            var dynamicTitles = ParseTitleConfig(titleConfig);
+            var allData = GetAllDataRows(gongsi);
+
+            List<DynamicTitle> dynamicTitles;
+
+            if (allData.Count > 0)
+            {
+                dynamicTitles = ParseTitleFromRecord(allData[0]);
+            }
+            else
+            {
+                dynamicTitles = GetDefaultTitles();
+            }
+
             return new JavaScriptSerializer().Serialize(dynamicTitles);
         }
 
@@ -1597,6 +1733,7 @@ namespace Web.Personnel
         }
 
         // 数据模型类
+        [Serializable]
         private class TitleConfig
         {
             public int Id { get; set; }
@@ -1604,6 +1741,22 @@ namespace Web.Personnel
             public string Name { get; set; }
         }
 
+        [Serializable]
+        private class DataRow
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
+        [Serializable]
+        private class Formula
+        {
+            public int Id { get; set; }
+            public string TargetField { get; set; }
+            public string Expression { get; set; }
+        }
+
+        [Serializable]
         private class DynamicTitle
         {
             public string Text { get; set; }
@@ -1611,17 +1764,6 @@ namespace Web.Personnel
             public int ColumnIndex { get; set; }
         }
 
-        private class DataRow
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-        }
-
-        private class Formula
-        {
-            public int Id { get; set; }
-            public string TargetField { get; set; }
-            public string Expression { get; set; }
-        }
+       
     }
 }

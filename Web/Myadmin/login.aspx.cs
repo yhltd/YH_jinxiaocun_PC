@@ -511,16 +511,23 @@ namespace Web
                                 conn2.Open();
                             }
                             string now = DateTime.Now.ToShortDateString().ToString();
-                            string this_sql = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='人事'";
+                            string this_sql = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3,isnull(mark5,'') as mark5,isnull(mark4,'') as mark4 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='人事'";
                             cmd = new SqlCommand(this_sql, conn);
                             str = cmd.ExecuteReader();
                             string thisNum = "";
+                            string thisStorageSpace = ""; 
                             int a = 0;
                             List<string> itemi = new List<string>();
                             while (str.Read())
                             {
                                 if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
                                 {
+                                    if (str["mark5"] == null || !str["mark5"].ToString().Contains("PC端"))
+                                    {
+                                        Response.Write("<script>alert('您没有当前使用端权限，请联系我公司续费或者购买系统。')</script>");
+                                        return;
+                                    }
+
                                     if (str["endtime"].Equals(1))
                                     {
                                         Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
@@ -531,6 +538,9 @@ namespace Web
                                         Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
                                         return;
                                     }
+
+                                    thisStorageSpace = str["mark4"].ToString().Trim();
+                                   
                                 }
                                 thisNum = str["mark3"].ToString().Trim();
                                 if (!thisNum.Equals(""))
@@ -541,10 +551,22 @@ namespace Web
                                 }
                                 
                             }
+                            double totalDBSizeKB = GetDatabaseSizeByRenShi(gs_name.Trim());
                             string[] b = gs_name.Split('_');
                             Session["gongsi"] = b[0];
                             Session["id1"] = id;
                             Session["userNum"] = thisNum;
+
+                            HttpCookie storageCookie = new HttpCookie("storageSpace");
+                            storageCookie.Value = thisStorageSpace;
+                            storageCookie.Expires = DateTime.Now.AddDays(7);
+                            Response.Cookies.Add(storageCookie);
+
+                            HttpCookie dbSizeCookie = new HttpCookie("dbSizeKB");
+                            dbSizeCookie.Value = totalDBSizeKB.ToString();
+                            dbSizeCookie.Expires = DateTime.Now.AddDays(7);
+                            Response.Cookies.Add(dbSizeCookie);
+
                             Server.Transfer("../Personnel/index.aspx");
 
                         }
@@ -619,16 +641,22 @@ namespace Web
 
 
                         string now = DateTime.Now.ToShortDateString().ToString();
-                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
+                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3,isnull(mark5,'') as mark5,isnull(mark4,'') as mark4 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='进销存'";
                         cmd = new SqlCommand(sqlStr, conn);
                         str = cmd.ExecuteReader();
                         string thisNum = "";
+                        string thisStorageSpace = ""; 
                         int a = 0;
                         List<string> itemi = new List<string>();
                         while (str.Read())
                         {
                             if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
                             {
+                                if (str["mark5"] == null || !str["mark5"].ToString().Contains("PC端"))
+                                {
+                                    Response.Write("<script>alert('您没有当前使用端权限，请联系我公司续费或者购买系统。')</script>");
+                                    return;
+                                }
                                 if (str["endtime"].Equals(1))
                                 {
                                     Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
@@ -639,6 +667,7 @@ namespace Web
                                     Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
                                     return;
                                 }
+                                thisStorageSpace = str["mark4"].ToString().Trim();
                             }
                             thisNum = str["mark3"].ToString().Trim();
                             if (!thisNum.Equals(""))
@@ -650,11 +679,24 @@ namespace Web
 
                         }
 
+                        double totalDBSizeKB = GetDatabaseSizeByJXC(gs_name.Trim());
+
                        
 
                         Session["userNum"] = thisNum;
                         Session.Timeout = 10000;
                         Session["user"] = user;
+
+                        HttpCookie storageCookie = new HttpCookie("storageSpace");
+                        storageCookie.Value = thisStorageSpace;
+                        storageCookie.Expires = DateTime.Now.AddDays(7);
+
+                        HttpCookie dbSizeCookie = new HttpCookie("dbSizeKB");
+                        dbSizeCookie.Value = totalDBSizeKB.ToString();
+                        dbSizeCookie.Expires = DateTime.Now.AddDays(7);
+                        Response.Cookies.Add(dbSizeCookie);
+
+                        Response.Cookies.Add(storageCookie);
                         Response.Redirect("~/frmMain.aspx");
                         return;
                     }
@@ -687,9 +729,10 @@ namespace Web
                         conn2.Open();
                     }
                     string now = DateTime.Now.ToShortDateString().ToString();
-                    string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='财务'";
+                    string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3,isnull(mark5,'') as mark5,isnull(mark4,'') as mark4 from control_soft_time where name ='" + gs_name.Trim() + "' and soft_name='财务'";
                     cmd = new SqlCommand(sqlStr, conn);
                     str = cmd.ExecuteReader();
+                    string thisStorageSpace = ""; 
                     string thisNum = "";
                     int a = 0;
                     List<string> itemi = new List<string>();
@@ -697,6 +740,11 @@ namespace Web
                     {
                         if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
                         {
+                            if (str["mark5"] == null || !str["mark5"].ToString().Contains("PC端"))
+                            {
+                                Response.Write("<script>alert('您没有当前使用端权限，请联系我公司续费或者购买系统。')</script>");
+                                return;
+                            }
                             if (str["endtime"].Equals(1))
                             {
                                 Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
@@ -707,6 +755,7 @@ namespace Web
                                 Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
                                 return;
                             }
+                            thisStorageSpace = str["mark4"].ToString().Trim();
                         }
                         thisNum = str["mark3"].ToString().Trim();
                         if (!thisNum.Equals(""))
@@ -717,8 +766,21 @@ namespace Web
                         }
 
                     }
+
+                    double totalDBSizeKB = GetDatabaseSizeByCW(gs_name.Trim());
+
                     Session["userNum"] = thisNum;
                     FinanceToken.getFinanceCheckToken().setToken(token);
+                    HttpCookie storageCookie = new HttpCookie("storageSpace");
+                    storageCookie.Value = thisStorageSpace;
+                    storageCookie.Expires = DateTime.Now.AddDays(7);
+                    Response.Cookies.Add(storageCookie);
+
+                    HttpCookie dbSizeCookie = new HttpCookie("dbSizeKB");
+                    dbSizeCookie.Value = totalDBSizeKB.ToString();
+                    dbSizeCookie.Expires = DateTime.Now.AddDays(7);
+                    Response.Cookies.Add(dbSizeCookie);
+
                     Response.Redirect("../finance/web/view/index.aspx");
                 }
             }
@@ -743,16 +805,22 @@ namespace Web
                             conn2.Open();
                         }
                         string now = DateTime.Now.ToShortDateString().ToString();
-                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";
+                        string sqlStr = "select CASE WHEN convert(date,endtime)< '" + now + "' THEN 1 ELSE 0 END as endtime,CASE WHEN convert(date,mark2)<'" + now + "' THEN 1 ELSE 0 END as mark2,mark1,isnull(mark3,'') as mark3,isnull(mark5,'') as mark5,isnull(mark4,'') as mark4 from control_soft_time where name ='" + gs_name + "' and soft_name='排产'";
                         cmd = new SqlCommand(sqlStr, conn);
                         str = cmd.ExecuteReader();
                         string thisNum = "";
+                        string thisStorageSpace = ""; 
                         int a = 0;
                         List<string> itemi = new List<string>();
                         while (str.Read())
                         {
                             if (!str["mark1"].Equals("a8xd2s                                                                                                                                                                                                                                                         "))
                             {
+                                if (str["mark5"] == null || !str["mark5"].ToString().Contains("PC端"))
+                                {
+                                    Response.Write("<script>alert('您没有当前使用端权限，请联系我公司续费或者购买系统。')</script>");
+                                    return;
+                                }
                                 if (str["endtime"].Equals(1))
                                 {
                                     Response.Write("<script>alert('工具到期，请联系我公司续费。')</script>");
@@ -763,6 +831,7 @@ namespace Web
                                     Response.Write("<script>alert('服务器到期，请联系我公司续费。')</script>");
                                     return;
                                 }
+                                thisStorageSpace = str["mark4"].ToString().Trim();
                             }
                             thisNum = str["mark3"].ToString().Trim();
                             if (!thisNum.Equals(""))
@@ -774,6 +843,8 @@ namespace Web
 
                         }
 
+                        double totalDBSizeKB = GetDatabaseSizeByPC(gs_name.Trim());
+
                         int ky_rongliang = FinanceSpace.getFinanceSpace().getMark4_all(gs_name,"排产");
                         int sy_rongliang = FinanceSpace.getFinanceSpace().getUseMark4_all(gs_name, "排产");
 
@@ -783,6 +854,16 @@ namespace Web
                             return;
                         }
                         Session["userNum"] = thisNum;
+                        HttpCookie storageCookie = new HttpCookie("storageSpace");
+                        storageCookie.Value = thisStorageSpace;
+                        storageCookie.Expires = DateTime.Now.AddDays(7);
+                        Response.Cookies.Add(storageCookie);
+
+                        HttpCookie dbSizeCookie = new HttpCookie("dbSizeKB");
+                        dbSizeCookie.Value = totalDBSizeKB.ToString();
+                        dbSizeCookie.Expires = DateTime.Now.AddDays(7);
+                        Response.Cookies.Add(dbSizeCookie);
+
                         Response.Redirect("../scheduling/web/index.html");
                     }
                 }
@@ -791,6 +872,478 @@ namespace Web
                 }
             }
         }
+
+
+        private double GetDatabaseSizeByRenShi(string companyName)
+        {
+            double totalSizeKB = 0;
+
+            // 定义表名和对应的公司字段名
+            var tables = new Dictionary<string, string>
+            {
+                { "gongzi_dongtaimingxi", "gongsi" },
+                { "gongzi_gongzimingxi", "BD" },
+                { "gongzi_jianliguanli", "gongsi" },
+                { "gongzi_kaoqinjilu", "AO" },
+                { "gongzi_kaoqinmingxi", "K" },
+                { "gongzi_lizhishenpi", "gongsi" },
+                { "gongzi_shenpi", "gongsi" },
+                { "gongzi_shezhi", "gongsi" },
+                { "gongzi_renyuan", "L" },
+                { "gongzi_qingjiashenpi", "gongsi" }
+            };
+
+            // 处理公司名：去掉 _hr 后缀
+            string searchCompanyName = companyName;
+            if (searchCompanyName.EndsWith("_hr"))
+            {
+                searchCompanyName = searchCompanyName.Substring(0, searchCompanyName.Length - 3);
+            }
+
+            try
+            {
+                using (SqlConnection dbConn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yao;Uid=sa;Pwd=Lyh07910_001;"))
+                {
+                    dbConn.Open();
+
+                    foreach (var table in tables)
+                    {
+                        string tableName = table.Key;
+                        string companyColumn = table.Value;
+
+                        try
+                        {
+                            // 1. 使用模糊搜索查询该公司的数据行数
+                            string countSql = string.Format(
+                                "SELECT COUNT(*) FROM {0} WHERE {1} LIKE @companyName",
+                                tableName, companyColumn);
+
+                            using (SqlCommand countCmd = new SqlCommand(countSql, dbConn))
+                            {
+                                // 使用 % 进行模糊匹配
+                                countCmd.Parameters.AddWithValue("@companyName", "%" + searchCompanyName + "%");
+                                int rowCount = (int)countCmd.ExecuteScalar();
+
+                                System.Diagnostics.Debug.WriteLine(string.Format(
+                                    "表 {0}: 模糊匹配行数 = {1}", tableName, rowCount));
+
+                                if (rowCount > 0)
+                                {
+                                    // 2. 获取该表的总大小
+                                    string spaceSql = "EXEC sp_spaceused @tableName";
+                                    using (SqlCommand spaceCmd = new SqlCommand(spaceSql, dbConn))
+                                    {
+                                        spaceCmd.Parameters.AddWithValue("@tableName", tableName);
+                                        using (SqlDataReader reader = spaceCmd.ExecuteReader())
+                                        {
+                                            if (reader.Read())
+                                            {
+                                                // 获取表总大小（KB）
+                                                string totalDataSize = reader["data"].ToString();
+                                                double totalSizeKB_Table = ParseSizeToKB(totalDataSize);
+
+                                                // 获取表总行数
+                                                string totalRows = reader["rows"].ToString();
+                                                int totalRowCount = int.Parse(totalRows);
+
+                                                // 3. 按行数比例估算该公司占用的空间
+                                                if (totalRowCount > 0)
+                                                {
+                                                    double ratio = (double)rowCount / totalRowCount;
+                                                    double companySizeKB = totalSizeKB_Table * ratio;
+                                                    totalSizeKB += companySizeKB;
+
+                                                    System.Diagnostics.Debug.WriteLine(string.Format(
+                                                        "表 {0}: 公司行数={1}, 总行数={2}, 比例={3:P}, 公司大小={4:F2} KB",
+                                                        tableName, rowCount, totalRowCount, ratio, companySizeKB));
+                                                }
+                                            }
+                                            reader.Close();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine(string.Format("获取表 {0} 大小失败: {1}", tableName, ex.Message));
+                        }
+                    }
+
+                    dbConn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("获取数据库大小失败: " + ex.Message);
+                totalSizeKB = 0;
+            }
+
+            return totalSizeKB;
+        }
+
+
+        private double GetDatabaseSizeByJXC(string companyName)
+        {
+            double totalSizeKB = 0;
+
+            // 定义表名和对应的公司字段名
+            var tables = new Dictionary<string, string>
+            {
+                { "yh_jinxiaocun_cangku_mssql", "gongsi" },
+                { "yh_jinxiaocun_chuhuofang_mssql", "gongsi" },
+                { "yh_jinxiaocun_jichuziliao_mssql", "gs_name" },
+                { "yh_jinxiaocun_jinhuofang_mssql", "gongsi" },
+                { "yh_jinxiaocun_mingxi_mssql", "gs_name" },
+                { "yh_jinxiaocun_qichushu_mssql", "gs_name" },
+                { "yh_jinxiaocun_tuihuomingxi_mssql", "gs_name" },
+                { "yh_jinxiaocun_user_mssql", "gongsi" },
+                { "yh_jinxiaocun_zhengli_mssql", "gs_name" },
+            };
+
+            string searchCompanyName = companyName;
+
+            try
+            {
+                using (SqlConnection dbConn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=yh_jinxiaocun_excel;Uid=sa;Pwd=Lyh07910_001;"))
+                {
+                    dbConn.Open();
+
+                    foreach (var table in tables)
+                    {
+                        string tableName = table.Key;
+                        string companyColumn = table.Value;
+
+                        try
+                        {
+                            // 1. 使用模糊搜索查询该公司的数据行数
+                            string countSql = string.Format(
+                                "SELECT COUNT(*) FROM {0} WHERE {1} LIKE @companyName",
+                                tableName, companyColumn);
+
+                            using (SqlCommand countCmd = new SqlCommand(countSql, dbConn))
+                            {
+                                // 使用 % 进行模糊匹配
+                                countCmd.Parameters.AddWithValue("@companyName", "%" + searchCompanyName + "%");
+                                int rowCount = (int)countCmd.ExecuteScalar();
+
+                                System.Diagnostics.Debug.WriteLine(string.Format(
+                                    "表 {0}: 模糊匹配行数 = {1}", tableName, rowCount));
+
+                                if (rowCount > 0)
+                                {
+                                    // 2. 获取该表的总大小
+                                    string spaceSql = "EXEC sp_spaceused @tableName";
+                                    using (SqlCommand spaceCmd = new SqlCommand(spaceSql, dbConn))
+                                    {
+                                        spaceCmd.Parameters.AddWithValue("@tableName", tableName);
+                                        using (SqlDataReader reader = spaceCmd.ExecuteReader())
+                                        {
+                                            if (reader.Read())
+                                            {
+                                                // 获取表总大小（KB）
+                                                string totalDataSize = reader["data"].ToString();
+                                                double totalSizeKB_Table = ParseSizeToKB(totalDataSize);
+
+                                                // 获取表总行数
+                                                string totalRows = reader["rows"].ToString();
+                                                int totalRowCount = int.Parse(totalRows);
+
+                                                // 3. 按行数比例估算该公司占用的空间
+                                                if (totalRowCount > 0)
+                                                {
+                                                    double ratio = (double)rowCount / totalRowCount;
+                                                    double companySizeKB = totalSizeKB_Table * ratio;
+                                                    totalSizeKB += companySizeKB;
+
+                                                    System.Diagnostics.Debug.WriteLine(string.Format(
+                                                        "表 {0}: 公司行数={1}, 总行数={2}, 比例={3:P}, 公司大小={4:F2} KB",
+                                                        tableName, rowCount, totalRowCount, ratio, companySizeKB));
+                                                }
+                                            }
+                                            reader.Close();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine(string.Format("获取表 {0} 大小失败: {1}", tableName, ex.Message));
+                        }
+                    }
+
+                    dbConn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("获取数据库大小失败: " + ex.Message);
+                totalSizeKB = 0;
+            }
+
+            return totalSizeKB;
+        }
+
+        private double GetDatabaseSizeByCW(string companyName)
+        {
+            double totalSizeKB = 0;
+
+            // 定义表名和对应的公司字段名
+            var tables = new Dictionary<string, string>
+            {
+                { "Account", "company" },
+                { "Accounting", "company" },
+                { "Department", "company" },
+                { "FinancingExpenditure", "company" },
+                { "FinancingIncome", "company" },
+                { "gongzimingxi", "company" },
+                { "InvestmentExpenditure", "company" },
+                { "InvestmentIncome", "company" },
+                { "Invoice", "company" },
+                { "InvoicePeizhi", "company" },
+                { "KehuPeizhi", "company" },
+                { "ManagementExpenditure", "company" },
+                { "ManagementIncome", "company" },
+                { "shuilvPeizhi", "company" },
+                { "SimpleAccounting", "company" },
+                { "SimpleData", "company" },
+                { "VoucherSummary", "company" },
+                { "VoucherWord", "company" },
+                { "waibiPeizhi", "company" },
+                { "ysyfpeizhi", "company" }                
+            };
+
+            string searchCompanyName = companyName;
+
+            try
+            {
+                using (SqlConnection dbConn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=Finance;Uid=sa;Pwd=Lyh07910_001;"))
+                {
+                    dbConn.Open();
+
+                    foreach (var table in tables)
+                    {
+                        string tableName = table.Key;
+                        string companyColumn = table.Value;
+
+                        try
+                        {
+                            // 1. 使用模糊搜索查询该公司的数据行数
+                            string countSql = string.Format(
+                                "SELECT COUNT(*) FROM {0} WHERE {1} LIKE @companyName",
+                                tableName, companyColumn);
+
+                            using (SqlCommand countCmd = new SqlCommand(countSql, dbConn))
+                            {
+                                // 使用 % 进行模糊匹配
+                                countCmd.Parameters.AddWithValue("@companyName", "%" + searchCompanyName + "%");
+                                int rowCount = (int)countCmd.ExecuteScalar();
+
+                                System.Diagnostics.Debug.WriteLine(string.Format(
+                                    "表 {0}: 模糊匹配行数 = {1}", tableName, rowCount));
+
+                                if (rowCount > 0)
+                                {
+                                    // 2. 获取该表的总大小
+                                    string spaceSql = "EXEC sp_spaceused @tableName";
+                                    using (SqlCommand spaceCmd = new SqlCommand(spaceSql, dbConn))
+                                    {
+                                        spaceCmd.Parameters.AddWithValue("@tableName", tableName);
+                                        using (SqlDataReader reader = spaceCmd.ExecuteReader())
+                                        {
+                                            if (reader.Read())
+                                            {
+                                                // 获取表总大小（KB）
+                                                string totalDataSize = reader["data"].ToString();
+                                                double totalSizeKB_Table = ParseSizeToKB(totalDataSize);
+
+                                                // 获取表总行数
+                                                string totalRows = reader["rows"].ToString();
+                                                int totalRowCount = int.Parse(totalRows);
+
+                                                // 3. 按行数比例估算该公司占用的空间
+                                                if (totalRowCount > 0)
+                                                {
+                                                    double ratio = (double)rowCount / totalRowCount;
+                                                    double companySizeKB = totalSizeKB_Table * ratio;
+                                                    totalSizeKB += companySizeKB;
+
+                                                    System.Diagnostics.Debug.WriteLine(string.Format(
+                                                        "表 {0}: 公司行数={1}, 总行数={2}, 比例={3:P}, 公司大小={4:F2} KB",
+                                                        tableName, rowCount, totalRowCount, ratio, companySizeKB));
+                                                }
+                                            }
+                                            reader.Close();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine(string.Format("获取表 {0} 大小失败: {1}", tableName, ex.Message));
+                        }
+                    }
+
+                    dbConn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("获取数据库大小失败: " + ex.Message);
+                totalSizeKB = 0;
+            }
+
+            return totalSizeKB;
+        }
+
+        private double GetDatabaseSizeByPC(string companyName)
+        {
+            double totalSizeKB = 0;
+
+            // 定义表名和对应的公司字段名
+            var tables = new Dictionary<string, string>
+            {
+                { "bom_info", "company" },
+                { "department", "company" },
+                { "holiday_config", "company" },
+                { "module_type", "company" },
+                { "order_check", "company" },
+                { "order_info", "company" },
+                { "paibanbiao_info", "remarks1" },
+                { "paibanbiao_renyuan", "company" },
+                { "paibanbiao_detail", "company" },
+                { "shengchanxian", "gongsi" },
+                { "time_config", "company" },
+                { "user_info", "company" },
+                { "work_detail", "company" }
+            };
+
+            try
+            {
+                using (SqlConnection dbConn = new SqlConnection("Data Source=sqloledb;server=yhocn.cn;Database=scheduling;Uid=sa;Pwd=Lyh07910_001;"))
+                {
+                    dbConn.Open();
+
+                    foreach (var table in tables)
+                    {
+                        string tableName = table.Key;
+                        string companyColumn = table.Value;
+
+                        string searchCompanyName = companyName;
+
+                        try
+                        {
+                            // 1. 使用模糊搜索查询该公司的数据行数
+                            string countSql = string.Format(
+                                "SELECT COUNT(*) FROM {0} WHERE {1} LIKE @companyName",
+                                tableName, companyColumn);
+
+                            using (SqlCommand countCmd = new SqlCommand(countSql, dbConn))
+                            {
+                                // 使用 % 进行模糊匹配
+                                countCmd.Parameters.AddWithValue("@companyName", "%" + searchCompanyName + "%");
+                                int rowCount = (int)countCmd.ExecuteScalar();
+
+                                System.Diagnostics.Debug.WriteLine(string.Format(
+                                    "表 {0}: 模糊匹配行数 = {1}", tableName, rowCount));
+
+                                if (rowCount > 0)
+                                {
+                                    // 2. 获取该表的总大小
+                                    string spaceSql = "EXEC sp_spaceused @tableName";
+                                    using (SqlCommand spaceCmd = new SqlCommand(spaceSql, dbConn))
+                                    {
+                                        spaceCmd.Parameters.AddWithValue("@tableName", tableName);
+                                        using (SqlDataReader reader = spaceCmd.ExecuteReader())
+                                        {
+                                            if (reader.Read())
+                                            {
+                                                // 获取表总大小（KB）
+                                                string totalDataSize = reader["data"].ToString();
+                                                double totalSizeKB_Table = ParseSizeToKB(totalDataSize);
+
+                                                // 获取表总行数
+                                                string totalRows = reader["rows"].ToString();
+                                                int totalRowCount = int.Parse(totalRows);
+
+                                                // 3. 按行数比例估算该公司占用的空间
+                                                if (totalRowCount > 0)
+                                                {
+                                                    double ratio = (double)rowCount / totalRowCount;
+                                                    double companySizeKB = totalSizeKB_Table * ratio;
+                                                    totalSizeKB += companySizeKB;
+
+                                                    System.Diagnostics.Debug.WriteLine(string.Format(
+                                                        "表 {0}: 公司行数={1}, 总行数={2}, 比例={3:P}, 公司大小={4:F2} KB",
+                                                        tableName, rowCount, totalRowCount, ratio, companySizeKB));
+                                                }
+                                            }
+                                            reader.Close();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine(string.Format("获取表 {0} 大小失败: {1}", tableName, ex.Message));
+                        }
+                    }
+
+                    dbConn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("获取数据库大小失败: " + ex.Message);
+                totalSizeKB = 0;
+            }
+
+            return totalSizeKB;
+        }
+
+
+
+
+
+        /// <summary>
+        /// 解析大小字符串为 KB
+        /// </summary>
+        private double ParseSizeToKB(string sizeStr)
+        {
+            if (string.IsNullOrEmpty(sizeStr)) return 0;
+
+            sizeStr = sizeStr.Trim();
+
+            try
+            {
+                // 如果是 "8 KB"，按 0 处理（空表）
+                if (sizeStr == "8 KB") return 0;
+
+                string[] parts = sizeStr.Split(' ');
+                if (parts.Length == 2)
+                {
+                    double value = double.Parse(parts[0]);
+                    string unit = parts[1].ToUpper();
+
+                    switch (unit)
+                    {
+                        case "KB": return value;
+                        case "MB": return value * 1024;
+                        case "GB": return value * 1024 * 1024;
+                        case "TB": return value * 1024 * 1024 * 1024;
+                        default: return value;
+                    }
+                }
+            }
+            catch { }
+
+            return 0;
+        }
+
+
         protected void HtmlBtcreate_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/frmUserManger.aspx");

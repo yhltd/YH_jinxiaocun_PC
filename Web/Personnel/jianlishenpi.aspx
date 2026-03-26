@@ -80,35 +80,39 @@
 
         function deleteFile(id, url) {
             if (confirm('确定要删除这个文件吗？')) {
+                var savedCompany = localStorage.getItem('savedCompany');
+        
                 // 从URL中提取文件名
                 var fileName = url.substring(url.lastIndexOf('/') + 1);
                 var cleanFileName = fileName.split('.')[0]; // 移除扩展名
-        
+
                 console.log('删除文件:', fileName, '清理后:', cleanFileName);
-        
+
                 // 显示加载状态
                 $('#fileListContent').html('<div style="text-align: center; padding: 20px;">删除中...</div>');
-        
+
+                // 构建动态路径
+                var dynamicPath = "/renshi/" + savedCompany + "/";
+
                 $.ajax({
                     url: 'https://yhocn.cn:9097/file/delete',
                     type: 'POST',
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     data: {
                         order_number: cleanFileName,
-                        path: '/人事系统/简历文件/'
-                    },success: function(response) {
+                        path: dynamicPath  // 使用动态路径
+                    },
+                    success: function(response) {
                         console.log('删除响应:', response);
-                
+        
                         try {
-                    
                             if (response.code === 200 || response.success) {
                                 // 从数据库移除文件记录
                                 removeFileFromDatabase(url, id);
                                 location.reload();
-                        
                                 alert('删除成功');
                             } else {
-                                alert('删除失败: ' + (resData.msg || '未知错误'));
+                                alert('删除失败: ' + (response.msg || '未知错误'));
                                 // 重新加载文件列表
                                 showFileViewModal(id, '');
                             }
@@ -161,13 +165,87 @@
             });
         });
 
-        // 开始上传
+        function checkTotalSpace(companyName, limitKB) {
+            return new Promise((resolve, reject) => {
+                // 获取数据库大小
+                var dbSizeKB = parseFloat(getCookie("dbSizeKB")) || 0;
+        
+            // 获取文件夹大小
+            var path = "/renshi/" + companyName + "/";
+            var folderRequest = $.ajax({
+                url: "https://yhocn.cn:9097/file/getFolderSize",
+                type: 'GET',
+                data: { path: path }
+            });
+
+            folderRequest.done(function(folderData) {
+                var folderSizeKB = 0;
+            
+                // 检查文件夹请求结果
+                if (folderData.code === 200) {
+                    // 文件夹存在，获取大小
+                    folderSizeKB = folderData.data.sizeBytes / 1024;
+                    console.log("文件夹大小:", folderSizeKB.toFixed(2), "KB");
+                } else if (folderData.code === 500 && folderData.msg === "文件夹不存在") {
+                    // 文件夹不存在，大小设为 0
+                    folderSizeKB = 0;
+                    console.log("文件夹不存在，大小设为 0 KB");
+                } else {
+                    // 其他错误，也设为 0 继续执行
+                    console.warn("获取文件夹大小失败:", folderData.msg);
+                    folderSizeKB = 0;
+                }
+
+                // 总使用空间（KB）
+                var totalUsedKB = dbSizeKB + folderSizeKB;
+                limitKB = parseFloat(limitKB);
+
+                // 使用率
+                var usagePercent = (totalUsedKB / limitKB) * 100;
+
+                console.log("数据库大小:", dbSizeKB, "KB");
+                console.log("文件夹大小:", folderSizeKB.toFixed(2), "KB");
+                console.log("总使用:", totalUsedKB.toFixed(2), "KB", "(", usagePercent.toFixed(2), "%)");
+                console.log("限制:", limitKB, "KB", "(", (limitKB / 1024 / 1024).toFixed(2), "GB)");
+
+                var canUpload = true;
+                var message = "";
+
+                if (totalUsedKB >= limitKB * 1.1) {
+                    canUpload = false;
+                    message = "空间使用已超110%（" + usagePercent.toFixed(2) + "%），无法上传！";
+                    alert(message);
+                    $("#upload-btn").prop("disabled", true);
+                } else if (totalUsedKB >= limitKB * 0.9) {
+                    message = "空间使用已超90%（" + usagePercent.toFixed(2) + "%），请注意清理！";
+                    alert(message);
+                    $("#upload-btn").prop("disabled", false);
+                } else {
+                    $("#upload-btn").prop("disabled", false);
+                }
+
+                resolve({
+                    canUpload: canUpload,
+                    usagePercent: usagePercent,
+                    totalUsedKB: totalUsedKB,
+                    limitKB: limitKB
+                });
+
+            }).fail(function(err) {
+                console.error("获取文件夹大小失败:", err);
+                reject("请求失败");
+            });
+        });
+        }
+
         function startUpload() {
             var fileInput = document.getElementById('fileInput');
             var files = fileInput.files;
             var recordId = $('#uploadRecordId').val();
             var recordName = $('#uploadRecordName').val();
             var fileName = $('#fileName').val(); 
+            var savedCompany = localStorage.getItem('savedCompany');
+            var storageSpace = parseFloat(getCookie("storageSpace")) || 0; // 获取总空间限制
 
             if (files.length === 0) {
                 alert('请选择文件');
@@ -189,121 +267,222 @@
                 return;
             }
 
-            if (!confirm('确定要上传 ' + files.length + ' 个文件吗？')) {
+            if (!savedCompany) {
+                alert('公司名称不存在，请重新登录');
                 return;
             }
 
-            var uploadedFiles = [];
-            var totalFiles = files.length;
-            var completedCount = 0;
+            // 检查每个文件大小是否超过500MB
+            var maxFileSize = 500 * 1024 * 1024; // 500MB
+            var totalSize = 0;
+            var oversizedFiles = [];
+    
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                totalSize += file.size;
+        
+                if (file.size > maxFileSize) {
+                    oversizedFiles.push(file.name + " (" + (file.size / 1024 / 1024).toFixed(2) + "MB)");
+                }
+            }
+    
+            // 如果有超过500MB的文件
+            if (oversizedFiles.length > 0) {
+                alert('以下文件超过500MB限制，请重新选择：\n' + oversizedFiles.join('\n'));
+                return;
+            }
+    
+            // 可选：检查总文件大小（建议不超过2GB）
+            var maxTotalSize = 2 * 1024 * 1024 * 1024; // 2GB
+            if (totalSize > maxTotalSize) {
+                alert('所有文件总大小超过2GB，请减少文件数量或选择较小的文件');
+                return;
+            }
+    
+            console.log('文件检查通过 - 文件数量:', files.length, '总大小:', (totalSize / 1024 / 1024).toFixed(2), 'MB');
 
-            // 显示上传进度
+            // 先检查空间
             $('#uploadProgress').val(0);
-            $('#uploadProgressText').text('0%');
-
-            // 按顺序上传每个文件
-            function uploadNextFile(index) {
-                if (index >= totalFiles) {
-                    // 所有文件上传完成
-                    handleUploadComplete(uploadedFiles);
+            $('#uploadProgressText').text('正在检查空间...');
+    
+            checkTotalSpace(savedCompany, storageSpace).then(function(spaceInfo) {
+                if (!spaceInfo.canUpload) {
+                    alert('空间不足，无法上传！当前使用率：' + spaceInfo.usagePercent.toFixed(2) + '%');
+                    return;
+                }
+        
+                // 计算上传后预计使用的空间
+                var totalSizeKB = totalSize / 1024;
+                var estimatedUsagePercent = ((spaceInfo.totalUsedKB + totalSizeKB) / spaceInfo.limitKB) * 100;
+        
+                // 检查上传后是否会超过限制
+                if (estimatedUsagePercent > 110) {
+                    alert('上传后空间使用率将达到 ' + estimatedUsagePercent.toFixed(2) + '%，超过110%限制，无法上传！');
+                    return;
+                }
+        
+                // 空间充足，继续上传
+                var confirmMsg = '确定要上传 ' + files.length + ' 个文件吗？\n';
+                confirmMsg += '文件总大小：' + (totalSize / 1024 / 1024).toFixed(2) + 'MB\n';
+                confirmMsg += '当前空间使用率：' + spaceInfo.usagePercent.toFixed(2) + '%\n';
+                confirmMsg += '预计上传后使用率：' + estimatedUsagePercent.toFixed(2) + '%';
+        
+                if (!confirm(confirmMsg)) {
                     return;
                 }
 
-                var file = files[index];
-                var fileExtension = file.name.split('.').pop().toLowerCase();
-        
-                // 清理文件名中的非法字符
-                var baseName = fileName.trim().replace(/[\\/:*?"<>|]/g, '_');
-        
-                // 如果文件名已经包含扩展名，去掉它
-                if (baseName.includes('.')) {
-                    baseName = baseName.split('.').slice(0, -1).join('.');
-                }
-        
-                // 构建最终文件名
-                var finalFileName = '';
-                if (totalFiles === 1) {
-                    finalFileName = baseName + '.' + fileExtension;
-                } else {
-                    finalFileName = baseName + '_' + (index + 1) + '.' + fileExtension;
-                }
+                var uploadedFiles = [];
+                var totalFiles = files.length;
+                var completedCount = 0;
 
-                // 更新进度
-                var progress = Math.round((index / totalFiles) * 100);
-                $('#uploadProgress').val(progress);
-                $('#uploadProgressText').text(progress + '%');
+                // 显示上传进度
+                $('#uploadProgress').val(0);
+                $('#uploadProgressText').text('0%');
 
-                // 使用FormData上传
-                var formData = new FormData();
-                formData.append('file', file);
-                formData.append('name', finalFileName);
-                formData.append('path', '/人事系统/简历文件/');
-                formData.append('kongjian', '3');
-                formData.append('fileType', fileExtension);
-                formData.append('recordId', recordId);
-                formData.append('recordName', recordName);
-                formData.append('userFileName', fileName);
-                formData.append('originalName', file.name);
-                formData.append('index', index + 1);
-                formData.append('total', totalFiles);
-                formData.append('timestamp', Date.now());
+                // 按顺序上传每个文件
+                function uploadNextFile(index) {
+                    if (index >= totalFiles) {
+                        // 所有文件上传完成
+                        handleUploadComplete(uploadedFiles);
+                        return;
+                    }
 
-                $.ajax({
-                    url: 'https://yhocn.cn:9097/file/upload',
-                    type: 'POST',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        completedCount++;
+                    var file = files[index];
+                    var fileExtension = file.name.split('.').pop().toLowerCase();
+            
+                    // 再次检查当前文件大小（确保没有遗漏）
+                    if (file.size > maxFileSize) {
+                        alert('文件 ' + file.name + ' 超过500MB限制，跳过上传');
+                        // 继续上传下一个文件
+                        setTimeout(function() {
+                            uploadNextFile(index + 1);
+                        }, 500);
+                        return;
+                    }
+    
+                    // 清理文件名中的非法字符
+                    var baseName = fileName.trim().replace(/[\\/:*?"<>|]/g, '_');
+    
+                    // 如果文件名已经包含扩展名，去掉它
+                    if (baseName.includes('.')) {
+                        baseName = baseName.split('.').slice(0, -1).join('.');
+                    }
+    
+                    // 构建最终文件名
+                    var finalFileName = '';
+                    if (totalFiles === 1) {
+                        finalFileName = baseName + '.' + fileExtension;
+                    } else {
+                        finalFileName = baseName + '_' + (index + 1) + '.' + fileExtension;
+                    }
+
+                    // 更新进度
+                    var progress = Math.round((index / totalFiles) * 100);
+                    $('#uploadProgress').val(progress);
+                    $('#uploadProgressText').text(progress + '%');
+
+                    // 构建动态路径
+                    var dynamicPath = "/renshi/" + savedCompany + "/";
+
+                    // 使用FormData上传
+                    var formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('name', finalFileName);
+                    formData.append('path', dynamicPath);  // 使用动态路径
+                    formData.append('kongjian', '3');
+                    formData.append('fileType', fileExtension);
+                    formData.append('recordId', recordId);
+                    formData.append('recordName', recordName);
+                    formData.append('userFileName', fileName);
+                    formData.append('originalName', file.name);
+                    formData.append('index', index + 1);
+                    formData.append('total', totalFiles);
+                    formData.append('timestamp', Date.now());
+                    formData.append('fileSize', file.size); // 添加文件大小信息
+
+                    console.log('开始上传第 ' + (index + 1) + ' 个文件:', finalFileName, '大小:', (file.size / 1024 / 1024).toFixed(2), 'MB');
+
+                    $.ajax({
+                        url: 'https://yhocn.cn:9097/file/upload',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        timeout: 600000, // 设置超时时间为10分钟（600秒），适合大文件上传
+                        success: function(response) {
+                            completedCount++;
+            
+                            try {
+                                var resData = typeof response === 'string' ? JSON.parse(response) : response;
                 
-                        try {
-                            var resData = typeof response === 'string' ? JSON.parse(response) : response;
+                                if (resData.code === 200 || resData.success) {
+                                    // 构建文件URL - 使用动态路径
+                                    var fileUrl = "http://yhocn.cn:9088/renshi/" + savedCompany + "/" + finalFileName;
+                                    uploadedFiles.push({
+                                        name: finalFileName,
+                                        url: fileUrl,
+                                        originalName: file.name,
+                                        userFileName: fileName,
+                                        size: file.size,
+                                        type: fileExtension
+                                    });
                     
-                            if (resData.code === 200 || resData.success) {
-                                // 构建文件URL - 使用小程序中的URL格式
-                                var fileUrl = "http://yhocn.cn:9088/人事系统/简历文件/" + finalFileName;
-                                uploadedFiles.push({
-                                    name: finalFileName,
-                                    url: fileUrl,
-                                    originalName: file.name,
-                                    userFileName: fileName,
-                                    size: file.size,
-                                    type: fileExtension
-                                });
-                        
-                                console.log('第 ' + (index + 1) + ' 个文件上传成功');
-                        
-                                // 继续上传下一个文件
-                                setTimeout(function() {
-                                    uploadNextFile(index + 1);
-                                }, 500);
-                            } else {
-                                alert('第 ' + (index + 1) + ' 个文件上传失败: ' + (resData.msg || '未知错误'));
+                                    console.log('第 ' + (index + 1) + ' 个文件上传成功');
+                    
+                                    // 继续上传下一个文件
+                                    setTimeout(function() {
+                                        uploadNextFile(index + 1);
+                                    }, 500);
+                                } else {
+                                    alert('第 ' + (index + 1) + ' 个文件上传失败: ' + (resData.msg || '未知错误'));
+                                    setTimeout(function() {
+                                        uploadNextFile(index + 1);
+                                    }, 1000);
+                                }
+                            } catch (e) {
+                                console.error('解析响应失败:', e, response);
+                                alert('第 ' + (index + 1) + ' 个文件上传失败，响应格式错误');
                                 setTimeout(function() {
                                     uploadNextFile(index + 1);
                                 }, 1000);
                             }
-                        } catch (e) {
-                            console.error('解析响应失败:', e, response);
+                        },
+                        error: function(xhr, status, error) {
+                            completedCount++;
+                            console.error('上传失败:', error);
+                    
+                            // 根据错误类型给出更具体的提示
+                            var errorMsg = '';
+                            if (status === 'timeout') {
+                                errorMsg = '上传超时，文件可能过大或网络不稳定';
+                            } else if (status === 'error') {
+                                errorMsg = '网络错误，请检查网络连接';
+                            } else {
+                                errorMsg = error;
+                            }
+                    
+                            alert('第 ' + (index + 1) + ' 个文件上传失败：' + errorMsg);
                             setTimeout(function() {
                                 uploadNextFile(index + 1);
                             }, 1000);
                         }
-                    },
-                    error: function(xhr, status, error) {
-                        completedCount++;
-                        console.error('上传失败:', error);
-                        alert('第 ' + (index + 1) + ' 个文件上传失败');
-                        setTimeout(function() {
-                            uploadNextFile(index + 1);
-                        }, 1000);
-                    }
-                });
-            }
+                    });
+                }
 
-            // 开始上传第一个文件
-            uploadNextFile(0);
+                // 开始上传第一个文件
+                uploadNextFile(0);
+        
+            }).catch(function(error) {
+                console.error('空间检查失败:', error);
+                alert('空间检查失败，请稍后重试');
+            });
+        }
+
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+            return null;
         }
 
         // 处理上传完成

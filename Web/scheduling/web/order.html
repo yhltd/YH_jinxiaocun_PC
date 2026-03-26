@@ -567,100 +567,220 @@
                     }
                 },
 
-                deleteFile: function (id, fileUrl) {
-                    var _this = this;
-
-                    // 如果直接从参数获取不到ID，尝试从表单获取
-                    if (!id && this.$refs.updateForm && this.$refs.updateForm.model) {
-                        id = this.$refs.updateForm.model.id;
-                    }
-
-                    if (!id) {
-                        this.$message.error('无法获取记录ID');
-                        return;
-                    }
-
-                    this.deletewenjian(id, fileUrl)
-
-                
-                },
-
-                deletewenjian: function (id, url) {
-                    var _this = this; 
-                    // 从URL中提取文件名
-                        var fileName = url.substring(url.lastIndexOf('/') + 1);
-                var cleanFileName = fileName.split('.')[0]; // 移除扩展名
+                // 在Vue组件的methods中添加空间检查函数
+                checkTotalSpaceForPaichan: function(companyName, limitKB) {
+                    return new Promise((resolve, reject) => {
+                        // 获取数据库大小
+                        var dbSizeKB = parseFloat(this.getCookie("dbSizeKB")) || 0;
         
-                $.ajax({
-                    url: 'https://yhocn.cn:9097/file/delete',
-                    type: 'POST',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: {
-                        order_number: cleanFileName,
-                        path: '/paichan/'
-                    }, success: function (response) {
-
-                        
-                        axios.post(myUrl('order/updateFile'), {
-                            id: id,
-                            wenjian: ''  // 清空文件URL
-                        }).then(function (res) {  // ✅ 3. 使用 then 处理成功
-                            console.log('数据库更新成功', res);
-                            if (res.code == 200) {
-                                _this.$message.success('文件删除成功');
-                                _this.getList();  // ✅ 4. 刷新列表
+                    // 获取文件夹大小
+                    var path = "/paichan/" + companyName + "/";
+                    var _this = this;
+        
+                    $.ajax({
+                        url: "https://yhocn.cn:9097/file/getFolderSize",
+                        type: 'GET',
+                        data: { path: path },
+                        success: function(folderData) {
+                            var folderSizeKB = 0;
+                
+                            // 检查文件夹请求结果
+                            if (folderData.code === 200) {
+                                // 文件夹存在，获取大小
+                                folderSizeKB = folderData.data.sizeBytes / 1024;
+                                console.log("排产文件夹大小:", folderSizeKB.toFixed(2), "KB");
+                            } else if (folderData.code === 500 && folderData.msg === "文件夹不存在") {
+                                // 文件夹不存在，大小设为 0
+                                folderSizeKB = 0;
+                                console.log("排产文件夹不存在，大小设为 0 KB");
                             } else {
-                                _this.$message.error(res.msg || '更新失败');
+                                // 其他错误，也设为 0 继续执行
+                                console.warn("获取排产文件夹大小失败:", folderData.msg);
+                                folderSizeKB = 0;
                             }
-                        }).catch(function (error) {  // ✅ 5. 处理失败
-                            console.error('更新数据库失败:', error);
-                            _this.$message.error('更新数据库失败');
-                            _this.getList();  // 即使更新失败，也刷新列表看看实际状态
-                        });
-                        
-                        
-                       
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('删除请求失败:', error);
-                    }
+
+                            // 总使用空间（KB）
+                            var totalUsedKB = dbSizeKB + folderSizeKB;
+                            limitKB = parseFloat(limitKB);
+
+                            // 使用率
+                            var usagePercent = (totalUsedKB / limitKB) * 100;
+
+                            console.log("排产系统 - 数据库大小:", dbSizeKB, "KB");
+                            console.log("排产系统 - 文件夹大小:", folderSizeKB.toFixed(2), "KB");
+                            console.log("排产系统 - 总使用:", totalUsedKB.toFixed(2), "KB", "(", usagePercent.toFixed(2), "%)");
+                            console.log("排产系统 - 限制:", limitKB, "KB", "(", (limitKB / 1024 / 1024).toFixed(2), "GB)");
+
+                            var canUpload = true;
+                            var message = "";
+
+                            if (totalUsedKB >= limitKB * 1.1) {
+                                canUpload = false;
+                                message = "空间使用已超110%（" + usagePercent.toFixed(2) + "%），无法上传！";
+                                _this.$message.error(message);
+                            } else if (totalUsedKB >= limitKB * 0.9) {
+                                message = "空间使用已超90%（" + usagePercent.toFixed(2) + "%），请注意清理！";
+                                _this.$message.warning(message);
+                            }
+
+                            resolve({
+                                canUpload: canUpload,
+                                usagePercent: usagePercent,
+                                totalUsedKB: totalUsedKB,
+                                limitKB: limitKB
+                            });
+                        },
+                        error: function(err) {
+                            console.error("获取排产文件夹大小失败:", err);
+                            reject("请求失败");
+                        }
+                    });
                 });
-       
+        },
+
+        // 获取Cookie的辅助函数
+        getCookie: function(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+            return null;
+        },
+
+        // 修改删除文件函数
+        deleteFile: function (id, fileUrl) {
+            var _this = this;
+
+            // 如果直接从参数获取不到ID，尝试从表单获取
+            if (!id && this.$refs.updateForm && this.$refs.updateForm.model) {
+                id = this.$refs.updateForm.model.id;
+            }
+
+            if (!id) {
+                this.$message.error('无法获取记录ID');
+                return;
+            }
+
+            this.deletewenjian(id, fileUrl);
+        },
+
+        deletewenjian: function (id, url) {
+            var _this = this;
+    
+            // 获取公司名
+            var savedCompany = localStorage.getItem('savedCompany');
+    
+            if (!savedCompany) {
+                this.$message.error('公司名称不存在，请重新登录');
+                return;
+            }
+    
+            // 从URL中提取文件名
+            var fileName = url.substring(url.lastIndexOf('/') + 1);
+            var cleanFileName = fileName.split('.')[0]; // 移除扩展名
+    
+            // 构建动态路径
+            var dynamicPath = "/paichan/" + savedCompany + "/";
+    
+            $.ajax({
+                url: 'https://yhocn.cn:9097/file/delete',
+                type: 'POST',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    order_number: cleanFileName,
+                    path: dynamicPath  // 使用动态路径
+                }, 
+                success: function (response) {
+                    axios.post(myUrl('order/updateFile'), {
+                        id: id,
+                        wenjian: ''  // 清空文件URL
+                    }).then(function (res) {
+                        console.log('数据库更新成功', res);
+                        if (res.code == 200) {
+                            _this.$message.success('文件删除成功');
+                            _this.getList();
+                        } else {
+                            _this.$message.error(res.msg || '更新失败');
+                        }
+                    }).catch(function (error) {
+                        console.error('更新数据库失败:', error);
+                        _this.$message.error('更新数据库失败');
+                        _this.getList();
+                    });
                 },
+                error: function(xhr, status, error) {
+                    console.error('删除请求失败:', error);
+                    _this.$message.error('文件删除失败: ' + error);
+                }
+            });
+        },
 
-                // 触发文件选择
-                triggerFileInput: function (id) {
-                    document.getElementById('fileInput_' + id).click();
-                },
+        // 触发文件选择
+        triggerFileInput: function (id) {
+            document.getElementById('fileInput_' + id).click();
+        },
 
-                // 处理文件选择
-                handleFileSelect: function (event, id) {
-                    var file = event.target.files[0];
-                    if (!file) return;
+        // 修改处理文件选择函数，添加空间验证
+        handleFileSelect: function (event, id) {
+            var file = event.target.files[0];
+            if (!file) return;
+    
+            // 获取公司名和空间限制
+            var savedCompany = localStorage.getItem('savedCompany');
+            var storageSpace = parseFloat(this.getCookie("storageSpace")) || 0;
+    
+            if (!savedCompany) {
+                this.$message.error('公司名称不存在，请重新登录');
+                event.target.value = '';
+                return;
+            }
 
-                    this.currentUploadId = id;
-                    this.uploadingFile = true;
-                    this.fileName = file.name;
+            this.currentUploadId = id;
+            this.uploadingFile = true;
+            this.fileName = file.name;
 
-                    console.log('选择的文件:', file.name, '大小:', file.size, '类型:', file.type);
-                    console.log('订单ID:', id);
+            console.log('选择的文件:', file.name, '大小:', file.size, '类型:', file.type);
+            console.log('订单ID:', id);
+            console.log('公司名:', savedCompany);
 
-                    // 文件大小限制（10MB）
-                    if (file.size > 10 * 1024 * 1024) {
-                        this.$message.error('文件大小不能超过10MB');
-                        this.uploadingFile = false;
-                        this.currentUploadId = null;
-                        return;
-                    }
+            // 文件大小限制（10MB）
+            if (file.size > 500 * 1024 * 1024) {
+                this.$message.error('文件大小不能超过500MB');
+                this.uploadingFile = false;
+                this.currentUploadId = null;
+                event.target.value = '';
+                return;
+            }
 
-                    // 使用FormData上传 - 进销存系统模式
+            var _this = this;
+    
+            // 显示加载提示
+            this.$message.info('正在检查空间...');
+    
+            // 先检查空间
+            this.checkTotalSpaceForPaichan(savedCompany, storageSpace).then(function(spaceInfo) {
+                if (!spaceInfo.canUpload) {
+                    _this.$message.error('空间不足，无法上传！当前使用率：' + spaceInfo.usagePercent.toFixed(2) + '%');
+                    _this.uploadingFile = false;
+                    _this.currentUploadId = null;
+                    event.target.value = '';
+                    return;
+                }
+        
+                // 空间充足，确认上传
+                _this.$confirm('确定要上传文件吗？\n当前空间使用率：' + spaceInfo.usagePercent.toFixed(2) + '%', '确认上传', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(function() {
+                    // 构建动态路径
+                    var dynamicPath = "/paichan/" + savedCompany + "/";
+            
+                    // 使用FormData上传
                     var formData = new FormData();
                     formData.append('file', file);
                     formData.append('name', file.name);
-                    formData.append('path', '/paichan/');  // 改为 jinxiaocun
+                    formData.append('path', dynamicPath);  // 使用动态路径
                     formData.append('kongjian', '3');
-
-                    var _this = this;
 
                     $.ajax({
                         url: 'https://yhocn.cn:9097/file/upload',
@@ -673,8 +793,8 @@
                                 var resData = typeof response === 'string' ? JSON.parse(response) : response;
 
                                 if (resData.code === 200 || resData.success) {
-                                    // 使用返回的data中的完整路径作为文件URL
-                                    var fileUrl = "http://yhocn.cn:9088/paichan/" + file.name;
+                                    // 构建文件URL - 使用动态路径
+                                    var fileUrl = "http://yhocn.cn:9088/paichan/" + savedCompany + "/" + file.name;
 
                                     console.log('上传成功，文件URL:', fileUrl);
                                     console.log('返回消息:', resData.msg);
@@ -688,71 +808,87 @@
                                     _this.$message.error('上传失败: ' + (resData.msg || '未知错误'));
                                     _this.uploadingFile = false;
                                     _this.currentUploadId = null;
+                                    event.target.value = '';
                                 }
                             } catch (e) {
                                 console.error('解析响应失败:', e);
                                 _this.$message.error('上传失败，请重试');
                                 _this.uploadingFile = false;
                                 _this.currentUploadId = null;
+                                event.target.value = '';
                             }
                         },
-                    
                         error: function (xhr, status, error) {
                             console.error('上传失败:', error);
                             _this.$message.error('上传失败: ' + error);
                             _this.uploadingFile = false;
                             _this.currentUploadId = null;
+                            event.target.value = '';
                         }
                     });
-                },
-                updateFileUrl: function (id, fileUrl) {
-                    var _this = this;
+                }).catch(function() {
+                    // 用户取消上传
+                    _this.uploadingFile = false;
+                    _this.currentUploadId = null;
+                    event.target.value = '';
+                });
+            }).catch(function(error) {
+                console.error('空间检查失败:', error);
+                _this.$message.error('空间检查失败，请稍后重试');
+                _this.uploadingFile = false;
+                _this.currentUploadId = null;
+                event.target.value = '';
+            });
+        },
 
-                    $.ajax({
-                        type: "post",
-                        url: myUrl('order/updateFile'),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify({
-                            id: id,
-                            wenjian: fileUrl
-                        }),
-                        success: function (response) {
-                            try {
-                                // 解析外层响应
-                                var outerData = typeof response === 'string' ? JSON.parse(response) : response;
+        // 修改更新文件URL函数（保持不变，但URL已经是动态的）
+        updateFileUrl: function (id, fileUrl) {
+            var _this = this;
 
-                                // 获取内层实际数据（在 d 属性中）
-                                var innerData = typeof outerData.d === 'string' ? JSON.parse(outerData.d) : outerData.d;
+            $.ajax({
+                type: "post",
+                url: myUrl('order/updateFile'),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({
+                    id: id,
+                    wenjian: fileUrl
+                }),
+                success: function (response) {
+                    try {
+                        // 解析外层响应
+                        var outerData = typeof response === 'string' ? JSON.parse(response) : response;
 
-                                console.log('更新数据库响应:', innerData);
+                        // 获取内层实际数据（在 d 属性中）
+                        var innerData = typeof outerData.d === 'string' ? JSON.parse(outerData.d) : outerData.d;
 
-                                if (innerData.code == 200) {
-                                    _this.$message.success('文件上传成功');
-                                    _this.uploadingFile = false;
-                                    _this.currentUploadId = null;
-                                    _this.getList(); // 刷新列表
-                                } else {
-                                    _this.$message.error(innerData.msg || '更新失败');
-                                    _this.uploadingFile = false;
-                                    _this.currentUploadId = null;
-                                }
-                            } catch (e) {
-                                console.error('解析响应失败:', e, response);
-                                _this.$message.error('解析响应失败');
-                                _this.uploadingFile = false;
-                                _this.currentUploadId = null;
-                            }
-                        },
-                        error: function (err) {
-                            console.error('更新失败:', err);
-                            _this.$message.error('更新数据库失败');
+                        console.log('更新数据库响应:', innerData);
+
+                        if (innerData.code == 200) {
+                            _this.$message.success('文件上传成功');
+                            _this.uploadingFile = false;
+                            _this.currentUploadId = null;
+                            _this.getList(); // 刷新列表
+                        } else {
+                            _this.$message.error(innerData.msg || '更新失败');
                             _this.uploadingFile = false;
                             _this.currentUploadId = null;
                         }
-                    });
+                    } catch (e) {
+                        console.error('解析响应失败:', e, response);
+                        _this.$message.error('解析响应失败');
+                        _this.uploadingFile = false;
+                        _this.currentUploadId = null;
+                    }
                 },
-
+                error: function (err) {
+                    console.error('更新失败:', err);
+                    _this.$message.error('更新数据库失败');
+                    _this.uploadingFile = false;
+                    _this.currentUploadId = null;
+                }
+            });
+        },
 
                 formatDate:function(date, format) {
                 if (!date) return '';

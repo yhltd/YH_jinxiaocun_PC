@@ -11,227 +11,257 @@
     <script src="Myadmin/js/JsBarcode.all.min.js"></script>
     <link href="Myadmin/css/common.css" rel="stylesheet" type="text/css" />
     <script>
-        
+        // 全局变量
         var upd_id = "";
         var currentImageSrc = "";
+        
+        // 删除行函数
         function del_row(row) {
-            var rowIndex = $("#del_row_cs1").context.rowIndex;
-            $("#del_row" + row + "").remove();
+            $("#del_row" + row).remove();
         }
-
+        
+        // 上传文件触发函数
         function fileUp(id) {
-            upd_id = id
+            upd_id = id;
             $('#file').trigger('click');
             var currentRow = $("input[type='button'][onclick*='fileUp(" + upd_id + ")']").closest('tr');
             currentImageSrc = currentRow.find('img').attr('src') || '';
-            
+            console.log('准备上传，ID:', upd_id, '当前图片:', currentImageSrc);
         }
-
         
-
-        //$(function () {
-        //    $("#dj_row").click(function () {
-        //        $("#row_i1").val($("#biao_ge tr").length);
-        //    })
-
-        //    $('#file').change(function () {
-        //        var file = document.getElementById("file").files;
-        //        var oFReader = new FileReader();
-        //        var this_file = file[0];
-        //        var fileName = file[0].name;
-        //        var obj = [];
-        //        if(this_file.size>1024 * 1024){
-        //            alert("文件超过1兆，请重新上传！")
-        //        }else{
-        //            oFReader.readAsDataURL(this_file);
-        //            oFReader.onloadend = function (oFRevent) {
-        //                this_file = oFRevent.target.result;
-        //                this_file = this_file.split(",")[1]
-        //                console.log(this_file)
-        //                console.log(upd_id)
-
-
-        //                var fileInput = document.getElementById('file');
-        //                fileInput.value = ""
-        //                fileInput.outerHTML = fileInput.outerHTML;
-
-        //                $.ajax({
-        //                    type: "post", //要用post方式                 
-        //                    url: "/ji_chu_zi_liao_page.aspx/picture_upd",//方法所在页面和方法名
-        //                    contentType: "application/json; charset=utf-8",
-        //                    async: false,
-        //                    dataType: "json",
-        //                    data: JSON.stringify({
-        //                        id:upd_id,
-        //                        base64:this_file
-        //                    }),
-        //                    success: function (data) {
-        //                        alert(data.d);//返回的数据用data.d获取内容
-        //                        window.location.reload();
-        //                    },
-        //                    error: function (err) {
-        //                        alert(err);
-        //                    }
-        //                });
-
-        //                //$ajax({
-        //                //    type: 'post',
-        //                //    url: '/ji_chu_zi_liao_page.aspx/picture_upd',
-        //                //    data: JSON.stringify({
-        //                //        id:upd_id,
-        //                //        base64:this_file
-        //                //    }),
-        //                //    dataType: 'json',
-        //                //    contentType: 'application/json;charset=utf-8',
-        //                //    async: false,
-        //                //    success: function (data) {
-        //                //        alert(data.d);//返回的数据用data.d获取内容
-        //                //        window.location.reload();
-        //                //    },
-        //                //})
-        //            };
-        //        }
-        //    });
-        //})
-
+        // 获取Cookie函数
+        function getCookie(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+            return null;
+        }
+        
+        // 空间检查函数
+        function checkTotalSpaceForJinxiaocun(companyName, limitKB) {
+            return new Promise((resolve, reject) => {
+                var dbSizeKB = parseFloat(getCookie("dbSizeKB")) || 0;
+            var path = "/jinxiaocun/" + companyName + "/";
+                
+            $.ajax({
+                url: "https://yhocn.cn:9097/file/getFolderSize",
+                type: 'GET',
+                data: { path: path },
+                success: function(folderData) {
+                    var folderSizeKB = 0;
+                        
+                    if (folderData.code === 200) {
+                        folderSizeKB = folderData.data.sizeBytes / 1024;
+                        console.log("进销存文件夹大小:", folderSizeKB.toFixed(2), "KB");
+                    } else if (folderData.code === 500 && folderData.msg === "文件夹不存在") {
+                        folderSizeKB = 0;
+                        console.log("进销存文件夹不存在，大小设为 0 KB");
+                    } else {
+                        console.warn("获取进销存文件夹大小失败:", folderData.msg);
+                        folderSizeKB = 0;
+                    }
+                        
+                    var totalUsedKB = dbSizeKB + folderSizeKB;
+                    limitKB = parseFloat(limitKB);
+                    var usagePercent = (totalUsedKB / limitKB) * 100;
+                        
+                    console.log("进销存系统 - 数据库大小:", dbSizeKB, "KB");
+                    console.log("进销存系统 - 文件夹大小:", folderSizeKB.toFixed(2), "KB");
+                    console.log("进销存系统 - 总使用:", totalUsedKB.toFixed(2), "KB", "(", usagePercent.toFixed(2), "%)");
+                        
+                    var canUpload = true;
+                        
+                    if (totalUsedKB >= limitKB * 1.1) {
+                        canUpload = false;
+                        alert("空间使用已超110%（" + usagePercent.toFixed(2) + "%），无法上传！");
+                    } else if (totalUsedKB >= limitKB * 0.9) {
+                        alert("空间使用已超90%（" + usagePercent.toFixed(2) + "%），请注意清理！");
+                    }
+                        
+                    resolve({
+                        canUpload: canUpload,
+                        usagePercent: usagePercent,
+                        totalUsedKB: totalUsedKB,
+                        limitKB: limitKB
+                    });
+                },
+                error: function(err) {
+                    console.error("获取进销存文件夹大小失败:", err);
+                    reject("请求失败");
+                }
+            });
+        });
+        }
+        
+        // 删除文件函数
+        function deleteFile(url) {
+            var savedCompany = localStorage.getItem('savedCompany');
+            
+            if (!savedCompany) {
+                console.error('公司名称不存在');
+                return;
+            }
+            
+            var fileName = url.substring(url.lastIndexOf('/') + 1);
+            var cleanFileName = fileName.split('.')[0];
+            var dynamicPath = "/jinxiaocun/" + savedCompany + "/";
+            
+            $.ajax({
+                url: 'https://yhocn.cn:9097/file/delete',
+                type: 'POST',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: {
+                    order_number: cleanFileName,
+                    path: dynamicPath
+                },
+                success: function(response) {
+                    console.log('文件删除成功', response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('删除请求失败:', error);
+                }
+            });
+        }
+        
+        // 页面加载完成后执行
         $(function () {
             $("#dj_row").click(function () {
                 $("#row_i1").val($("#biao_ge tr").length);
-            })
-
-
-
-
+            });
+            
+            // 文件上传事件
             $('#file').change(function () {
                 var file = document.getElementById("file").files;
-                var oFReader = new FileReader();
+                if (file.length === 0) return;
+                
                 var this_file = file[0];
-                var fileName = file[0].name;
-
-                if(this_file.size>1024 * 1024){
-                    alert("文件超过1兆，请重新上传！")
-                }else{
-
-
-                    if(currentImageSrc != ""){
-                        deleteFile(currentImageSrc);
-                    }
-
-                    // 使用FormData上传
-                    var formData = new FormData();
-                    formData.append('file', this_file);
-                    formData.append('name', fileName);
-                    formData.append('path', '/jinxiaocun/');
-                    formData.append('kongjian', '3');
-
-                    $.ajax({
-                        url: 'https://yhocn.cn:9097/file/upload',
-                        type: 'POST',
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function(response) {
-               
-                            try {
-                                var resData = typeof response === 'string' ? JSON.parse(response) : response;
-                    
-                                if (resData.code === 200 || resData.success) {
-                                    // 构建文件URL - 使用小程序中的URL格式
-                                    var fileUrl = "http://yhocn.cn:9088/jinxiaocun/" + fileName;
-
-                                    var fileInput = document.getElementById('file');
-                                    fileInput.value = ""
-                                    fileInput.outerHTML = fileInput.outerHTML;
-
-                                    $.ajax({
-                                        type: "post", //要用post方式                 
-                                        url: "/ji_chu_zi_liao_page.aspx/picture_upd",//方法所在页面和方法名
-                                        contentType: "application/json; charset=utf-8",
-                                        async: false,
-                                        dataType: "json",
-                                        data: JSON.stringify({
-                                            id:upd_id,
-                                            base64:fileUrl
-                                        }),
-                                        success: function (data) {
-                                            alert(data.d);//返回的数据用data.d获取内容
-                                            window.location.reload();
-                                        },
-                                        error: function (err) {
-                                            alert(err);
-                                        }
-                                    });
-                                }
-                            } catch (e) {
-                                console.error('解析响应失败:', e, response);
-                                setTimeout(function() {
-                                    uploadNextFile(index + 1);
-                                }, 1000);
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error('上传失败:', error);
-                        }
-                    });
-
-               
+                var fileName = this_file.name;
+                var savedCompany = localStorage.getItem('savedCompany');
+                var storageSpace = parseFloat(getCookie("storageSpace")) || 0;
+                
+                if (!savedCompany) {
+                    alert('公司名称不存在，请重新登录');
+                    $('#file').val('');
+                    return;
                 }
-            });
-        })
-
-        function deleteFile(url) {
-                // 从URL中提取文件名
-                var fileName = url.substring(url.lastIndexOf('/') + 1);
-                var cleanFileName = fileName.split('.')[0]; // 移除扩展名
-        
-                $.ajax({
-                    url: 'https://yhocn.cn:9097/file/delete',
-                    type: 'POST',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: {
-                        order_number: cleanFileName,
-                        path: '/jinxiaocun/'
-                    },success: function(response) {
-                       
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('删除请求失败:', error);
+                
+                // 文件大小限制为500MB
+                if (this_file.size > 500 * 1024 * 1024) {
+                    alert("文件超过500MB，请重新上传！");
+                    $('#file').val('');
+                    return;
+                }
+                
+                
+                // 检查空间
+                checkTotalSpaceForJinxiaocun(savedCompany, storageSpace).then(function(spaceInfo) {
+                    if (!spaceInfo.canUpload) {
+                        alert('空间不足，无法上传！当前使用率：' + spaceInfo.usagePercent.toFixed(2) + '%');
+                        $('#file').val('');
+                        return;
                     }
+                    
+                    if (confirm('确定要上传文件吗？\n当前空间使用率：' + spaceInfo.usagePercent.toFixed(2) + '%')) {
+                        // 如果有旧图片，先删除
+                        if (currentImageSrc && currentImageSrc != "") {
+                            deleteFile(currentImageSrc);
+                        }
+                        
+                        var dynamicPath = "/jinxiaocun/" + savedCompany + "/";
+                        var formData = new FormData();
+                        formData.append('file', this_file);
+                        formData.append('name', fileName);
+                        formData.append('path', dynamicPath);
+                        formData.append('kongjian', '3');
+                        
+                        $.ajax({
+                            url: 'https://yhocn.cn:9097/file/upload',
+                            type: 'POST',
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+                            success: function(response) {
+                                try {
+                                    var resData = typeof response === 'string' ? JSON.parse(response) : response;
+                                    
+                                    if (resData.code === 200 || resData.success) {
+                                        var fileUrl = "http://yhocn.cn:9088/jinxiaocun/" + savedCompany + "/" + fileName;
+                                        
+                                        // 清空文件输入框
+                                        var fileInput = document.getElementById('file');
+                                        fileInput.value = "";
+                                        
+                                        // 更新数据库
+                                        $.ajax({
+                                            type: "post",
+                                            url: "/ji_chu_zi_liao_page.aspx/picture_upd",
+                                            contentType: "application/json; charset=utf-8",
+                                            async: false,
+                                            dataType: "json",
+                                            data: JSON.stringify({
+                                                id: upd_id,
+                                                base64: fileUrl
+                                            }),
+                                            success: function (data) {
+                                                alert("上传成功！空间使用率：" + spaceInfo.usagePercent.toFixed(2) + "%");
+                                                window.location.reload();
+                                            },
+                                            error: function (err) {
+                                                console.error('更新数据库失败:', err);
+                                                alert('更新数据库失败，但文件已上传');
+                                                window.location.reload();
+                                            }
+                                        });
+                                    } else {
+                                        alert('上传失败: ' + (resData.msg || '未知错误'));
+                                    }
+                                } catch (e) {
+                                    console.error('解析响应失败:', e, response);
+                                    alert('上传失败，请重试');
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('上传失败:', error);
+                                alert('上传失败: ' + error);
+                            }
+                        });
+                    } else {
+                        $('#file').val('');
+                    }
+                }).catch(function(error) {
+                    console.error('空间检查失败:', error);
+                    alert('空间检查失败，请稍后重试');
+                    $('#file').val('');
                 });
-       
-        }
-
+            });
+        });
+        
+        // 打印二维码
         $(document).on("click", "#qr_print", function () {
             var oldstr = window.document.body.innerHTML;
             var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
-            console.log(elText)
-            var this_list = []
+            var this_list = [];
             for(var i=1; i<elText.length; i++){
-                this_text1 = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue
-                this_text2 = elText.eq(i).children().eq(2).children().eq(1).prevObject[0].defaultValue
-                this_base64 = elText.eq(i).children().eq(9).children().eq(0).children().eq(1)[0].currentSrc
-                console.log(this_text1)
-                console.log(this_text2)
-                console.log(this_base64)
+                this_text1 = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue;
+                this_text2 = elText.eq(i).children().eq(2).children().eq(1).prevObject[0].defaultValue;
+                this_base64 = elText.eq(i).children().eq(9).children().eq(0).children().eq(1)[0].currentSrc;
                 this_list.push({
                     this_text1: this_text1,
                     this_text2: this_text2, 
                     this_base64: this_base64,
-                })
+                });
             }
-            console.log(this_list)
-
-            var newstr = '<canvas class="canvas" id="outCanvas" width="300" height="' + ((10 * 1) + this_list.length * 280) + '"></canvas>' + '<image id="Image" style="width:170px,height:170px" show="false"></image>'
+            
+            var newstr = '<canvas class="canvas" id="outCanvas" width="300" height="' + ((10 * 1) + this_list.length * 280) + '"></canvas>' + '<image id="Image" style="width:170px;height:170px" show="false"></image>';
             document.body.innerHTML = newstr;
-
-            var image = document.querySelector('#Image')
-            var canvas = document.querySelector('#outCanvas')
+            
+            var image = document.querySelector('#Image');
+            var canvas = document.querySelector('#outCanvas');
             var ctx = canvas.getContext('2d');
-
             ctx.font = "18px Arial";
-
+            
             for(var i=0; i<this_list.length; i++){
-                image.src = this_list[i].this_base64
+                image.src = this_list[i].this_base64;
                 ctx.drawImage(image, 60,10 + i*280,170,170);
                 ctx.fillText("商品代码：" + this_list[i].this_text1, 30, 200+i*280);
                 ctx.fillText("商品名称：" + this_list[i].this_text2, 30, 230+i*280);
@@ -240,43 +270,36 @@
             window.print();
             document.body.innerHTML = oldstr;
             window.location.reload();
-        })
-
-
-
+        });
+        
+        // 打印条形码
         $(document).on("click", "#barcode_print", function () {
             var oldstr = window.document.body.innerHTML;
             var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
-            console.log(elText)
-            var this_list = []
+            var this_list = [];
             for(var i=1; i<elText.length; i++){
-                this_text1 = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue
-                this_text2 = elText.eq(i).children().eq(2).children().eq(1).prevObject[0].defaultValue
+                this_text1 = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue;
+                this_text2 = elText.eq(i).children().eq(2).children().eq(1).prevObject[0].defaultValue;
                 var canvas = document.createElement("canvas");
                 JsBarcode(canvas, this_text1, {format: "CODE128"});
                 this_base64 = canvas.toDataURL("image/png");
-                console.log(this_text1)
-                console.log(this_text2)
-                console.log(this_base64)
                 this_list.push({
                     this_text1: this_text1,
                     this_text2: this_text2, 
                     this_base64: this_base64,
-                })
+                });
             }
-            console.log(this_list)
-
-            var newstr = '<canvas class="canvas" id="outCanvas" width="300" height="' + ((10 * 1) + this_list.length * 280) + '"></canvas>' + '<image id="Image" style="width:170px,height:170px" show="false"></image>'
+            
+            var newstr = '<canvas class="canvas" id="outCanvas" width="300" height="' + ((10 * 1) + this_list.length * 280) + '"></canvas>' + '<image id="Image" style="width:170px;height:170px" show="false"></image>';
             document.body.innerHTML = newstr;
-
-            var image = document.querySelector('#Image')
-            var canvas = document.querySelector('#outCanvas')
+            
+            var image = document.querySelector('#Image');
+            var canvas = document.querySelector('#outCanvas');
             var ctx = canvas.getContext('2d');
-
             ctx.font = "18px Arial";
-
+            
             for(var i=0; i<this_list.length; i++){
-                image.src = this_list[i].this_base64
+                image.src = this_list[i].this_base64;
                 ctx.drawImage(image, 60,10 + i*280,170,170);
                 ctx.fillText("商品代码：" + this_list[i].this_text1, 30, 200+i*280);
                 ctx.fillText("商品名称：" + this_list[i].this_text2, 30, 230+i*280);
@@ -285,21 +308,21 @@
             window.print();
             document.body.innerHTML = oldstr;
             window.location.reload();
-        })
-
+        });
+        
+        // 页面就绪
         $(document).ready(function () {
-            
             var row = 1;
             var elText = $("#biao_ge").children().eq(0).children().eq(0).prevObject;
             for(var i=1; i<elText.length; i++){
-                this_text = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue
-                var this_id = 'qrcode' + (i-1)
+                this_text = elText.eq(i).children().eq(1).children().eq(1).prevObject[0].defaultValue;
+                var this_id = 'qrcode' + (i-1);
                 var qrcode = new QRCode(document.getElementById('' + this_id), {
                     width : 100,
                     height : 100
                 });
                 qrcode.makeCode(this_text);
-                var barcode_id = "barcode" + (i-1)
+                var barcode_id = "barcode" + (i-1);
                 JsBarcode("#barcode" + (i-1), this_text, {
                     format: "CODE128",
                     displayValue: true,
@@ -311,25 +334,13 @@
                 var canvas = document.createElement("canvas");
                 JsBarcode(canvas, this_text, {format: "CODE128"});
                 this_base64 = canvas.toDataURL("image/png");
-                console.log(this_base64)
-                var canvas_barcode = document.getElementById("barcode" + (i-1))
-                var this_html = '<img src="' + this_base64 + '" style="display: block;">'
-                canvas_barcode.innerHTML = this_html
+                var canvas_barcode = document.getElementById("barcode" + (i-1));
+                var this_html = '<img src="' + this_base64 + '" style="display: block;">';
+                canvas_barcode.innerHTML = this_html;
             }
+            
             $("#insert").click(function () {
-                
                 var rowLength = $("#biao_ge tr").length;
-
-                //var insertStr = "<tr id='del_row" + row + "' >"
-                //               + "<td style='font-size: 14px;padding-left: 0.5%;width: 70px;'>" + rowLength + "</td>"
-                //               + "<td ><input type='text' class='input_tr' style='width: 120px;margin:0.2%;' name='sp_dm" + row + "' ></input></td>"
-                //               + "<td class='bg_bj_dm'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='name" + row + "' ></input></td>"
-                //               + "<td class='bg_bj_lb'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='lei_bie" + row + "' ></input></td>"
-                //               + "<td class='bg_bj_sj'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='dan_wei" + row + "' ></input></td>"
-                //               + "<td class='bg_bj_sj'><input type='text' style='width: 150px;margin:0.2%;' class='input_tr' name='shou_huo" + row + "' ></input></td>"
-                //               + "<td class='bg_bj_sj'><input type='text' style='width: 60px;margin:0.2%;' class='input_tr' name='gong_huo" + row + "' ></input></td>"
-                //               + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button' style='width: 50px;margin:0.2%;' class='rk_btu'value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
-                //               + "</tr>";
                 var insertStr = "<tr id='del_row" + row + "' >"
                                + "<td>" + rowLength + "</td>"
                                + "<td ><input type='text' class='input_tr' name='sp_dm" + row + "' ></input></td>"
@@ -344,35 +355,27 @@
                                + "<td class='bg_bj_sj'></td>"
                                + "<td style='border-right: 1px dashed #a8a8a8;'><input type='button'  style='width:50px' value='删除' style='margin-left: 3px;'  onclick='del_row(" + row + ")'/></td>"
                                + "</tr>";
-
                 $("#biao_ge tr:eq(" + (rowLength - 1) + ")").after(insertStr);
                 row++;
             });
-
-
         });
-
+        
         function pd_tj_ff() {
             var c = confirm('要提交吗?');
             if (c) {
                 $("#xx_hidden").val("tj_true");
                 $("#tj_pd_id").val("tj_true");
             } else {
-
                 $("#tj_pd_id").val("tj_false");
-
             }
         }
-
-
+        
         $(document).on("click", "#dj_row", function () {
-            //  alert("asd");
             if (document.getElementById("xx_hidden").value == "tj_false") {
                 return false;
             } else {
             }
-        })
-
+        });
     </script>
     <style type="text/css">
 

@@ -11,6 +11,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -99,77 +101,155 @@ public class DriverController {
         }
     }
 
-//    @RequestMapping("/delete")
-//    public ResultInfo delete(HttpServletRequest request) throws IOException {
-//        //获取原始名称
-//        String orderNumber = request.getParameter("order_number");
-//        String path = request.getParameter("path");
-//
-//        // 支持的文件扩展名列表
-//        String[] extensions = {"jpg", "jpeg", "png", "pdf", "gif", "bmp", "webp", "tiff", "doc", "docx", "xls", "xlsx", "zip", "rar"};
-//
-//        // 遍历所有可能的文件编号和扩展名
-//        for (int i = 1; i <= 14; i++) {
-//            String fileNumber = (i < 10) ? "0" + i : String.valueOf(i);
-//
-//            for (String ext : extensions) {
-//                String filepath = "C:/iis_jxc/sharepic_path" + path + orderNumber + "-" + fileNumber + "." + ext;
-//                File file = new File(filepath);
-//
-//                if (file.isFile() && file.exists()) {
-//                    boolean deleted = file.delete();
-//                    System.out.println("删除文件 " + filepath + ": " + (deleted ? "成功" : "失败"));
-//                }
-//            }
-//        }
-//
-//        return ResultInfo.success("删除成功", orderNumber);
-//    }
-@RequestMapping("/delete")
-public ResultInfo delete(HttpServletRequest request) throws IOException {
-    //获取原始名称
-    String orderNumber = request.getParameter("order_number");
-    String path = request.getParameter("path");
+    @RequestMapping("/delete")
+    public ResultInfo delete(HttpServletRequest request) throws IOException {
+        //获取原始名称
+        String orderNumber = request.getParameter("order_number");
+        String path = request.getParameter("path");
 
-    // 支持的文件扩展名列表
-    String[] extensions = {"jpg", "jpeg", "png", "pdf", "gif", "bmp", "webp", "tiff",
-            "doc", "docx", "xls", "xlsx", "zip", "rar"};
+        // 支持的文件扩展名列表
+        String[] extensions = {"jpg", "jpeg", "png", "pdf", "gif", "bmp", "webp", "tiff",
+                "doc", "docx", "xls", "xlsx", "zip", "rar"};
 
-    int deletedCount = 0;
-    int failedCount = 0;
+        int deletedCount = 0;
+        int failedCount = 0;
 
-    // 方案1：遍历两种格式
-    for (int i = 0; i <= 14; i++) {  // 注意：从0开始，0表示不带"-"
-        // 生成文件名部分
-        String fileNumberPart = "";
-        if (i > 0) {
-            fileNumberPart = "-" + ((i < 10) ? "0" + i : String.valueOf(i));
-        }
-        // i=0时：不带"-"部分，如 ABC123.jpg
-        // i>0时：带"-"部分，如 ABC123-01.jpg
+        // 方案1：遍历两种格式
+        for (int i = 0; i <= 14; i++) {  // 注意：从0开始，0表示不带"-"
+            // 生成文件名部分
+            String fileNumberPart = "";
+            if (i > 0) {
+                fileNumberPart = "-" + ((i < 10) ? "0" + i : String.valueOf(i));
+            }
+            // i=0时：不带"-"部分，如 ABC123.jpg
+            // i>0时：带"-"部分，如 ABC123-01.jpg
 
-        for (String ext : extensions) {
-            // 构建文件路径
-            String filepath = "C:/iis_jxc/sharepic_path" + path +
-                    orderNumber + fileNumberPart + "." + ext;
-            File file = new File(filepath);
+            for (String ext : extensions) {
+                // 构建文件路径
+                String filepath = "C:/iis_jxc/sharepic_path" + path +
+                        orderNumber + fileNumberPart + "." + ext;
+                File file = new File(filepath);
 
-            if (file.isFile() && file.exists()) {
-                boolean deleted = file.delete();
-                System.out.println("删除文件 " + filepath + ": " + (deleted ? "成功" : "失败"));
+                if (file.isFile() && file.exists()) {
+                    boolean deleted = file.delete();
+                    System.out.println("删除文件 " + filepath + ": " + (deleted ? "成功" : "失败"));
 
-                if (deleted) {
-                    deletedCount++;
-                } else {
-                    failedCount++;
+                    if (deleted) {
+                        deletedCount++;
+                    } else {
+                        failedCount++;
+                    }
                 }
             }
         }
+
+        String result = String.format("删除完成。成功: %d 个, 失败: %d 个", deletedCount, failedCount);
+        return ResultInfo.success(result, orderNumber);
     }
 
-    String result = String.format("删除完成。成功: %d 个, 失败: %d 个", deletedCount, failedCount);
-    return ResultInfo.success(result, orderNumber);
-}
+    /**
+     * 获取文件夹大小接口
+     * @param path 文件夹路径
+     * @return 文件夹大小信息
+     */
+    @GetMapping("/getFolderSize")
+    public ResultInfo getFolderSize(@RequestParam String path) {
+        try {
+            // 安全校验
+            if (path == null || path.contains("..")) {
+                return ResultInfo.error("路径参数不合法");
+            }
+
+            // 构建完整路径
+            String basePath = "C:/iis_jxc/sharepic_path";
+            String fullPath = basePath + path;
+            File folder = new File(fullPath);
+
+            // 检查文件夹是否存在
+            if (!folder.exists() || !folder.isDirectory()) {
+                return ResultInfo.error("文件夹不存在");
+            }
+
+            // 计算文件夹大小（调用私有方法）
+            long sizeBytes = calculateFolderSize(fullPath);
+            long sizeMB = sizeBytes / (1024 * 1024);
+            double sizeGB = sizeBytes / (1024.0 * 1024 * 1024);
+            String sizeFormatted = formatSize(sizeBytes);
+            int fileCount = countFiles(fullPath);
+
+            // 构建返回结果
+            Map<String, Object> result = new HashMap<>();
+            result.put("path", path);
+            result.put("sizeBytes", sizeBytes);
+            result.put("sizeMB", sizeMB);
+            result.put("sizeGB", Math.round(sizeGB * 100) / 100.0);
+            result.put("sizeFormatted", sizeFormatted);
+            result.put("fileCount", fileCount);
+
+            return ResultInfo.success("获取成功", result);
+
+        } catch (Exception e) {
+            log.error("获取文件夹大小失败", e);
+            return ResultInfo.error("获取失败: " + e.getMessage());
+        }
+    }
+
+    /**
+     * 递归计算文件夹大小
+     */
+    private long calculateFolderSize(String folderPath) {
+        File folder = new File(folderPath);
+        if (!folder.exists() || !folder.isDirectory()) {
+            return 0;
+        }
+
+        long size = 0;
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    size += file.length();
+                } else if (file.isDirectory()) {
+                    size += calculateFolderSize(file.getAbsolutePath());
+                }
+            }
+        }
+        return size;
+    }
+
+    /**
+     * 计算文件夹内文件数量
+     */
+    private int countFiles(String folderPath) {
+        File folder = new File(folderPath);
+        if (!folder.exists() || !folder.isDirectory()) {
+            return 0;
+        }
+
+        int count = 0;
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    count++;
+                } else if (file.isDirectory()) {
+                    count += countFiles(file.getAbsolutePath());
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * 格式化文件大小
+     */
+    private String formatSize(long size) {
+        if (size <= 0) return "0 B";
+
+        String[] units = {"B", "KB", "MB", "GB", "TB"};
+        int digitGroups = (int) (Math.log10(size) / Math.log10(1024));
+        return String.format("%.2f %s", size / Math.pow(1024, digitGroups), units[digitGroups]);
+    }
 
 
 

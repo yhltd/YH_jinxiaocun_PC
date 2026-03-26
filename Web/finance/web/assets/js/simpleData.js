@@ -1007,103 +1007,223 @@ function triggerFileUpload(id) {
     document.getElementById('fileInput_' + id).click();
 }
 
-// 上传文件
+// 1. 添加空间检查函数（与之前相同）
+function checkTotalSpaceForCaiwu(companyName, limitKB) {
+    return new Promise((resolve, reject) => {
+        // 获取数据库大小
+        var dbSizeKB = parseFloat(getCookie("dbSizeKB")) || 0;
+        
+    // 获取文件夹大小
+    var path = "/caiwu/" + companyName + "/";
+    var folderRequest = $.ajax({
+        url: "https://yhocn.cn:9097/file/getFolderSize",
+        type: 'GET',
+        data: { path: path }
+    });
+
+    folderRequest.done(function(folderData) {
+        var folderSizeKB = 0;
+            
+        // 检查文件夹请求结果
+        if (folderData.code === 200) {
+            // 文件夹存在，获取大小
+            folderSizeKB = folderData.data.sizeBytes / 1024;
+            console.log("财务文件夹大小:", folderSizeKB.toFixed(2), "KB");
+        } else if (folderData.code === 500 && folderData.msg === "文件夹不存在") {
+            // 文件夹不存在，大小设为 0
+            folderSizeKB = 0;
+            console.log("财务文件夹不存在，大小设为 0 KB");
+        } else {
+            // 其他错误，也设为 0 继续执行
+            console.warn("获取财务文件夹大小失败:", folderData.msg);
+            folderSizeKB = 0;
+        }
+
+        // 总使用空间（KB）
+        var totalUsedKB = dbSizeKB + folderSizeKB;
+        limitKB = parseFloat(limitKB);
+
+        // 使用率
+        var usagePercent = (totalUsedKB / limitKB) * 100;
+
+        console.log("财务系统 - 数据库大小:", dbSizeKB, "KB");
+        console.log("财务系统 - 文件夹大小:", folderSizeKB.toFixed(2), "KB");
+        console.log("财务系统 - 总使用:", totalUsedKB.toFixed(2), "KB", "(", usagePercent.toFixed(2), "%)");
+        console.log("财务系统 - 限制:", limitKB, "KB", "(", (limitKB / 1024 / 1024).toFixed(2), "GB)");
+
+        var canUpload = true;
+        var message = "";
+
+        if (totalUsedKB >= limitKB * 1.1) {
+            canUpload = false;
+            message = "空间使用已超110%（" + usagePercent.toFixed(2) + "%），无法上传！";
+            $.messager.alert('提示', message, 'warning');
+        } else if (totalUsedKB >= limitKB * 0.9) {
+            message = "空间使用已超90%（" + usagePercent.toFixed(2) + "%），请注意清理！";
+            $.messager.alert('提示', message, 'warning');
+        }
+
+        resolve({
+            canUpload: canUpload,
+            usagePercent: usagePercent,
+            totalUsedKB: totalUsedKB,
+            limitKB: limitKB
+        });
+
+    }).fail(function(err) {
+        console.error("获取财务文件夹大小失败:", err);
+        reject("请求失败");
+    });
+});
+}
+
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+    return null;
+}
+
+// 2. 修改上传文件函数，添加空间验证
 function uploadFile(id, input) {
     var file = input.files[0];
     if (!file) return;
 
     console.log('上传文件 - ID:', id, '文件名:', file.name);
 
+    // 获取公司名和空间限制
+    var savedCompany = localStorage.getItem('savedCompany');
+    var storageSpace = parseFloat(getCookie("storageSpace")) || 0; // 获取总空间限制
+
+    if (!savedCompany) {
+        $.messager.alert('提示', '公司名称不存在，请重新登录', 'error');
+        input.value = '';
+        return;
+    }
+
     // 文件大小限制（10MB）
-    if (file.size > 10 * 1024 * 1024) {
-        $.messager.alert('提示', '文件大小不能超过10MB', 'warning');
+    if (file.size > 500 * 1024 * 1024) {
+        $.messager.alert('提示', '文件大小不能超过500MB', 'warning');
         input.value = ''; // 清空文件输入
         return;
     }
 
-    // 显示上传中提示
+    // 显示检查空间提示
     $.messager.progress({
         title: '提示',
-        msg: '正在上传文件...',
+        msg: '正在检查空间...',
         text: ''
     });
 
-    // 使用FormData上传
-    var formData = new FormData();
-    formData.append('file', file);
-    formData.append('name', file.name);
-    formData.append('path', '/caiwu/');
-    formData.append('kongjian', '3');
-
-    $.ajax({
-        url: 'https://yhocn.cn:9097/file/upload',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            $.messager.progress('close');
-
-            try {
-                var resData = typeof response === 'string' ? JSON.parse(response) : response;
-
-                if (resData.code === 200 || resData.success) {
-                    // 构建文件URL
-                    var fileUrl = "http://yhocn.cn:9088/caiwu/" + file.name;
-
-                    console.log('上传成功，文件URL:', fileUrl);
-
-                    // 更新数据库中的文件字段
-                    $.ajax({
-                        type: 'Post',
-                        url: "web_service/simpleData.asmx/updateFileField",
-                        data: {
-                            id: id,
-                            wenjian: fileUrl
-                        },
-                        dataType: "xml",
-                        success: function (data) {
-                            var result = getJson(data);
-                            if (result.code == 200) {
-                                $.messager.show({
-                                    title: '提示',
-                                    msg: '文件上传成功',
-                                    timeout: 2000,
-                                    showType: 'slide'
-                                });
-                                // 刷新列表
-                                getList();
-                            } else {
-                                $.messager.alert('提示', result.msg || '更新失败', 'error');
-                            }
-                        },
-                        error: function (err) {
-                            console.error('更新数据库失败:', err);
-                            $.messager.alert('提示', '更新数据库失败', 'error');
-                            getList();
-                        }
-                    });
-                } else {
-                    $.messager.alert('提示', '上传失败: ' + (resData.msg || '未知错误'), 'error');
-                }
-            } catch (e) {
-                console.error('解析响应失败:', e);
-                $.messager.alert('提示', '上传失败，请重试', 'error');
-            }
-
-            // 清空文件输入框
+    // 先检查空间
+    checkTotalSpaceForCaiwu(savedCompany, storageSpace).then(function(spaceInfo) {
+        $.messager.progress('close');
+        
+        if (!spaceInfo.canUpload) {
+            $.messager.alert('提示', '空间不足，无法上传！当前使用率：' + spaceInfo.usagePercent.toFixed(2) + '%', 'warning');
             input.value = '';
-        },
-        error: function (xhr, status, error) {
-            $.messager.progress('close');
-            console.error('上传失败:', error);
-            $.messager.alert('提示', '上传失败: ' + error, 'error');
-            input.value = '';
+            return;
         }
+        
+        // 空间充足，确认上传
+        $.messager.confirm('确认', '确定要上传文件吗？\n当前空间使用率：' + spaceInfo.usagePercent.toFixed(2) + '%', function(r) {
+            if (r) {
+                // 显示上传中提示
+                $.messager.progress({
+                    title: '提示',
+                    msg: '正在上传文件...',
+                    text: ''
+                });
+
+                // 构建动态路径
+                var dynamicPath = "/caiwu/" + savedCompany + "/";
+
+                // 使用FormData上传
+                var formData = new FormData();
+                formData.append('file', file);
+                formData.append('name', file.name);
+                formData.append('path', dynamicPath); // 使用动态路径
+                formData.append('kongjian', '3');
+
+                $.ajax({
+                    url: 'https://yhocn.cn:9097/file/upload',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        $.messager.progress('close');
+
+                        try {
+                            var resData = typeof response === 'string' ? JSON.parse(response) : response;
+
+                            if (resData.code === 200 || resData.success) {
+                                // 构建文件URL - 使用动态路径
+                                var fileUrl = "http://yhocn.cn:9088/caiwu/" + savedCompany + "/" + file.name;
+
+                                console.log('上传成功，文件URL:', fileUrl);
+
+                                // 更新数据库中的文件字段
+                                $.ajax({
+                                    type: 'Post',
+                                    url: "web_service/simpleData.asmx/updateFileField",
+                                    data: {
+                                        id: id,
+                                        wenjian: fileUrl
+                                    },
+                                    dataType: "xml",
+                                    success: function (data) {
+                                        var result = getJson(data);
+                                        if (result.code == 200) {
+                                            $.messager.show({
+                                                title: '提示',
+                                                msg: '文件上传成功',
+                                                timeout: 2000,
+                                                showType: 'slide'
+                                            });
+                                            // 刷新列表
+                                            getList();
+                                        } else {
+                                            $.messager.alert('提示', result.msg || '更新失败', 'error');
+                                        }
+                                    },
+                                    error: function (err) {
+                                        console.error('更新数据库失败:', err);
+                                        $.messager.alert('提示', '更新数据库失败', 'error');
+                                        getList();
+                                    }
+                                });
+                            } else {
+                                $.messager.alert('提示', '上传失败: ' + (resData.msg || '未知错误'), 'error');
+                            }
+                        } catch (e) {
+                            console.error('解析响应失败:', e);
+                            $.messager.alert('提示', '上传失败，请重试', 'error');
+                        }
+
+                        // 清空文件输入框
+                        input.value = '';
+                    },
+                    error: function (xhr, status, error) {
+                        $.messager.progress('close');
+                        console.error('上传失败:', error);
+                        $.messager.alert('提示', '上传失败: ' + error, 'error');
+                        input.value = '';
+                    }
+                });
+            } else {
+                input.value = '';
+            }
+        });
+    }).catch(function(error) {
+        $.messager.progress('close');
+        console.error('空间检查失败:', error);
+        $.messager.alert('提示', '空间检查失败，请稍后重试', 'error');
+        input.value = '';
     });
 }
 
-// 查看文件
+// 3. 修改查看文件函数（URL已经是动态的，无需修改）
 function viewFile(fileUrl) {
     if (fileUrl && fileUrl != '') {
         window.open(fileUrl, '_blank');
@@ -1112,16 +1232,27 @@ function viewFile(fileUrl) {
     }
 }
 
-// 删除文件
+// 4. 修改删除文件函数，使用动态路径
 function deleteFile(id, fileUrl) {
     // 弹出确认框
     $.messager.confirm('确认', '确定要删除这个文件吗？', function (r) {
         if (r) {
+            // 获取公司名
+            var savedCompany = localStorage.getItem('savedCompany');
+            
+            if (!savedCompany) {
+                $.messager.alert('提示', '公司名称不存在，请重新登录', 'error');
+                return;
+            }
+            
             // 从URL中提取文件名
             var fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
             var cleanFileName = fileName.split('.')[0]; // 移除扩展名
 
-            console.log('删除文件 - ID:', id, '文件名:', fileName);
+            console.log('删除文件 - ID:', id, '文件名:', fileName, '清理后:', cleanFileName);
+
+            // 构建动态路径
+            var dynamicPath = "/caiwu/" + savedCompany + "/";
 
             // 先删除文件服务器上的文件
             $.ajax({
@@ -1130,7 +1261,7 @@ function deleteFile(id, fileUrl) {
                 contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                 data: {
                     order_number: cleanFileName,
-                    path: '/caiwu/'
+                    path: dynamicPath // 使用动态路径
                 },
                 success: function (response) {
                     console.log('文件删除成功', response);

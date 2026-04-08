@@ -1186,7 +1186,7 @@ namespace Web.Server
                         int affectedRows = 0;
                         foreach (yh_jinxiaocun_tuihuomingxi item in list)
                         {
-                            string sql = @"update yh_jinxiaocun_tuihuomingxi 
+                            string sql = @"update yh_jinxiaocun_tuihuomingxi_mssql 
                              set orderid = @orderid, sp_dm = @sp_dm, cpname = @cpname, 
                                  cplb = @cplb, cpsj = @cpsj, cpsl = @cpsl, 
                                  mxtype = @mxtype, shou_h = @shou_h, 

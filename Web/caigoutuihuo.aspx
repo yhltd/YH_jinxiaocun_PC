@@ -1064,7 +1064,7 @@
             <input type="hidden" id="xx_hidden" value="tj_false" />
             <div class="d-header new_ss_div">
                 <input id="ru_cx" class="select_input" autocomplete="off" oninput="bindInput_select(this.value)" placeholder="按商品名称/商品代码搜索" />
-                <input id="ru_bt" class="rk_bt" type="button" value="退货入库"/>
+                <input id="ru_bt" class="rk_bt" type="button" value="退货出库"/>
                 <input id="shuaxin" class="rk_bt" type="button" value="刷新"/>  
                 <input id="insert" class="rk_bt" type="button" value="添加"/>
                 <input id="print_btn" class="rk_bt" type="button" value="打印退货单"/>            
@@ -1103,7 +1103,7 @@
         </div>
         <div class="ruku_bottom_div">
             <input class="rk_bt" id="back_ruku" type="button" value="返回"/>
-            <input class="rk_bt" id="insert_ruku" type="button" value="确认退货入库"/>
+            <input class="rk_bt" id="insert_ruku" type="button" value="确认退货出库"/>
         </div>
     </div>
 

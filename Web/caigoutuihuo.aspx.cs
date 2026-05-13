@@ -161,7 +161,7 @@ namespace Web
                 int result1 = TuiHuomxModel.add(infoList, user.gongsi, user.name, "采购退货", rwarehouse, "已入库");
 
                 MingxiModel mingXiModel = new MingxiModel();
-                int result = mingXiModel.add(infoList, user.gongsi, user.name, "入库", rwarehouse);
+                int result = mingXiModel.add(infoList, user.gongsi, user.name, "出库", rwarehouse);
 
                 return result.ToString();
             }

@@ -70,3 +70,8 @@ E:\yh_soft\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
 E:\yh_soft\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
 E:\yh_soft\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
 E:\yh_soft\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb
+D:\yh_soft\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.dll
+D:\yh_soft\YH_jinxiaocun_PC\SDZdb\bin\Debug\SDZdb.pdb
+D:\yh_soft\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.csprojResolveAssemblyReference.cache
+D:\yh_soft\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.dll
+D:\yh_soft\YH_jinxiaocun_PC\SDZdb\obj\Debug\SDZdb.pdb

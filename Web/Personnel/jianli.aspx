@@ -1123,7 +1123,10 @@
             <div class="ti">
                 <h1>简历管理</h1>
             </div>
-            
+            <div style="background: #fffbe6; border: 1px solid #ffe58f; padding: 10px 30px; margin: 0 10px 20px 10px; border-radius: 0 0 12px 12px; color: #856404; font-size: 14px; border-left: 5px solid #ffe58f;">
+                <strong>使用说明：</strong> 简历管理页面显示状态为“待处理”和“驳回”的简历。
+            </div>
+
             <div class="header-top">
                 
     

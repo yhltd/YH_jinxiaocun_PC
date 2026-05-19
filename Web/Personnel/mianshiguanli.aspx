@@ -1137,7 +1137,10 @@
             <div class="ti">
                 <h1>面试管理</h1>
             </div>
-            
+            <div style="background: #fffbe6; border: 1px solid #ffe58f; padding: 10px 30px; margin: 0 10px 20px 10px; border-radius: 0 0 1px 12px; color: #856404; font-size: 14px; border-left: 5px solid #ffe58f;">
+                <strong>使用说明：</strong> 本页面显示已通过审批的简历，用于进行后续的面试管理。
+            </div>
+
             <div class="header-top">
                 
     

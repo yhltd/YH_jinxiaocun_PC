@@ -20,6 +20,14 @@
     <div id="paichan" style="display: none;" :style="{display: 'block'}">
         <el-container>
             <el-header height="80px">
+                <el-card shadow="always" style="margin-top: 10px; border-left: 5px solid #E6A23C !important;">
+                    <div style="color: #E6A23C; font-weight: bold; line-height: 1.6; font-size: 14px;">
+                        <i class="el-icon-warning" style="margin-right: 5px;"></i>
+                        排产说明：在排产前请先配置好生产线以及对应工序后再添加订单排产。
+                        <br/>
+                        排产根据工序进行排序，务必添加工序。详细排产逻辑请参考使用视频。
+                    </div>
+                </el-card>
                 <el-card shadow="always" style="margin-top: 10px">
                     <el-form :inline="true" :model="queryForm" label-width="100px" size="medium">
                         <el-row :gutter="20">

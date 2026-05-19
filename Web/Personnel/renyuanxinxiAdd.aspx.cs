@@ -84,8 +84,8 @@ namespace Web.Personnel
             else if (a[0] == "添加")
             {
                 Button1.Text = "添加";
-                Button3.Enabled = false;
-                Button4.Enabled = false;
+                Button3.Visible = false;
+                Button4.Visible = false;
             }
         }
         protected void Button1_Click(object sender, EventArgs e)

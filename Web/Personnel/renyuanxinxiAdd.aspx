@@ -403,13 +403,15 @@
                 <br />
             <br />
             <br />
-            <asp:Button ID="Button1" runat="server" Text="添加" OnClick="Button1_Click"  CssClass="top_bt" />
-                 &nbsp;
-            <asp:Button ID="Button2" runat="server" Text="返回" OnClick="Button2_Click"  CssClass="top_bt" />
-                 &nbsp;
-            <asp:Button ID="Button3" runat="server" Text="权限" OnClick="Button3_Click"  CssClass="top_bt" />
-                 &nbsp;
-            <asp:Button ID="Button4" runat="server" Text="更多" OnClick="Button4_Click"   CssClass="top_bt" />
+            <div class="button-container" style="text-align: center; margin-top: 20px;">
+                <asp:Button ID="Button1" runat="server" Text="添加" OnClick="Button1_Click" CssClass="top_bt" />
+                &nbsp;
+                <asp:Button ID="Button2" runat="server" Text="返回" OnClick="Button2_Click" CssClass="top_bt" />
+                &nbsp;
+                <asp:Button ID="Button3" runat="server" Text="权限" OnClick="Button3_Click" CssClass="top_bt" />
+                &nbsp;
+                <asp:Button ID="Button4" runat="server" Text="更多" OnClick="Button4_Click" CssClass="top_bt" />
+            </div>
           </div>
         </div>
     </form>

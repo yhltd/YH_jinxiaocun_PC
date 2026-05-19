@@ -703,10 +703,16 @@ function checkUpd(params) {
 //设置
 function setCode(grade, choiceCode, isNull, className) {
     var code = 0;
+    var currentClassId = 1;
+    var selectedRow = $("#grade-list1").datalist('getSelected');
+    if (selectedRow) {
+        currentClassId = selectedRow.classId;
+    }
+
     switch (parseInt(grade)) {
         case 1:
             if (isNull) {
-                code = 1001
+                code = currentClassId * 1000 + 1;
             } else {
                 var data = $("#grade-list2").datalist('getData')
                 for (var i = 0; i < data.rows.length; i++) {
@@ -765,6 +771,9 @@ function clearNew() {
 }
 
 function toNew() {
+    if (window.isSubmitting) return;
+    window.isSubmitting = true;
+
     var updatePwdForm = $('#newForm').serialize();
     var params = JSON.parse(formToJson(decodeURIComponent(updatePwdForm, true)))
     var code = $("#newCode").val();
@@ -794,8 +803,13 @@ function toNew() {
             error: function (err) {
                 alert("错误！")
                 console.log(err)
+            },
+            complete: function() {
+                window.isSubmitting = false;
             }
         })
+    } else {
+        window.isSubmitting = false;
     }
 }
 

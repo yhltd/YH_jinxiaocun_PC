@@ -184,7 +184,7 @@ namespace Web.finance.model
 
 
             string sqlString = fin.Set(entity.GetType()).ToString();
-            string sql = "select l.*,l." + columnName + " as " + columnName + "1 from (select ROW_NUMBER() over(order by id) as rownum,a.* from (" + sqlString + ") as a) as l where l.rownum > @minPage and l.rownum < @maxPage and l.company = @company";
+            string sql = "select l.*,l." + columnName + " as " + columnName + "1 from (select ROW_NUMBER() over(order by id) as rownum,a.* from (" + sqlString + ") as a) as l where l.company = @company";
 
             var result = fin.Set(entity.GetType()).SqlQuery(sql, companyParam, maxPageParam, minPageParam);
             try

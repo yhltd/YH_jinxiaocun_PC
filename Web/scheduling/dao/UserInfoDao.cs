@@ -60,7 +60,7 @@ namespace Web.scheduling.dao
             var @params = new SqlParameter[] { 
                 new SqlParameter("@company", company),
             };
-            string sql = "select count(id) as id,'' as user_code,'' as password,'' as company,'' as department_name,'' as state from user_info where company='" + company + "'";
+            string sql = "select count(id) as id,'' as user_code,'' as password,'' as company,'' as department_name,'' as state,'' as wechart_user,'' as touxiang from user_info where company='" + company + "'";
             using (se = new schedulingEntities())
             {
                 var result = se.Database.SqlQuery<user_info>(sql, @params);

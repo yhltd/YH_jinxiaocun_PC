@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using Web.ServerEntity;
 using Web.JxcServer;
-using MySql.Data.MySqlClient; 
+using MySql.Data.MySqlClient;
 
 namespace Web.Server
 {
@@ -22,7 +22,7 @@ namespace Web.Server
         //            new MySqlParameter("@order", order_id),
         //            new MySqlParameter("@gongsi", gongsi)
         //        };
-                
+
         //        string sql = "select orderid from yh_jinxiaocun_mingxi where orderid = @order and gongsi = @gongsi";
         //        var result = sen.Database.SqlQuery<yh_jinxiaocun_mingxi>(sql, @params);
         //        List<yh_jinxiaocun_mingxi> list = result.ToList();
@@ -409,109 +409,109 @@ namespace Web.Server
             }
         }
 
-//        public int addPD(items item, string company, string name,string warehouse)
-//        {
-//            if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
-//            {
-//                int shujukuValue = (int)HttpContext.Current.Session["shujuku"];
+        //        public int addPD(items item, string company, string name,string warehouse)
+        //        {
+        //            if (HttpContext.Current != null && HttpContext.Current.Session["shujuku"] != null)
+        //            {
+        //                int shujukuValue = (int)HttpContext.Current.Session["shujuku"];
 
-//                if (shujukuValue == 0) // MySQL
-//                {
-//                    using (ServerEntities sen = new ServerEntities())
-//                    {
-//                        string date_now = DateTime.Now.ToString();
-//                        int affectedRows = 0;
+        //                if (shujukuValue == 0) // MySQL
+        //                {
+        //                    using (ServerEntities sen = new ServerEntities())
+        //                    {
+        //                        string date_now = DateTime.Now.ToString();
+        //                        int affectedRows = 0;
 
-//                        for (int i = 0; i < item.itemList.Count; i++)
-//                        {
-//                            string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
-//                                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
-//                                 from yh_jinxiaocun_jichuziliao where id = @id";
+        //                        for (int i = 0; i < item.itemList.Count; i++)
+        //                        {
+        //                            string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+        //                                 select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name,@cangku as cangku 
+        //                                 from yh_jinxiaocun_jichuziliao where id = @id";
 
-//                            var parameters = new MySqlParameter[]
-//                    {
-//                        new MySqlParameter("@price", item.itemList[i].price),
-//                        new MySqlParameter("@num", item.itemList[i].sjsl),
-//                        new MySqlParameter("@mxtype", item.itemList[i].kcsl),
-//                        new MySqlParameter("@orderid", item.orderid),
-//                        new MySqlParameter("@shijian", date_now),
-//                        new MySqlParameter("@shou_h", item.gonghuo),
-//                        new MySqlParameter("@zh_name", name),
-//                        new MySqlParameter("@gs_name", company),
-//                        new MySqlParameter("@cangku", warehouse),
-//                        new MySqlParameter("@id", item.itemList[i].id)
-//                    };
+        //                            var parameters = new MySqlParameter[]
+        //                    {
+        //                        new MySqlParameter("@price", item.itemList[i].price),
+        //                        new MySqlParameter("@num", item.itemList[i].sjsl),
+        //                        new MySqlParameter("@mxtype", item.itemList[i].kcsl),
+        //                        new MySqlParameter("@orderid", item.orderid),
+        //                        new MySqlParameter("@shijian", date_now),
+        //                        new MySqlParameter("@shou_h", item.gonghuo),
+        //                        new MySqlParameter("@zh_name", name),
+        //                        new MySqlParameter("@gs_name", company),
+        //                        new MySqlParameter("@cangku", warehouse),
+        //                        new MySqlParameter("@id", item.itemList[i].id)
+        //                    };
 
-//                            affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
-//                        }
-//                        return affectedRows;
-//                    }
-//                }
-//                else if (shujukuValue == 1) // SQL Server
-//                {
-//                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
-//                    {
-//                        string date_now = DateTime.Now.ToString();
-//                        int affectedRows = 0;
+        //                            affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+        //                        }
+        //                        return affectedRows;
+        //                    }
+        //                }
+        //                else if (shujukuValue == 1) // SQL Server
+        //                {
+        //                    using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
+        //                    {
+        //                        string date_now = DateTime.Now.ToString();
+        //                        int affectedRows = 0;
 
-//                        for (int i = 0; i < item.itemList.Count; i++)
-//                        {
-//                            string sql = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
-//                                 SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
-//                                 FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
+        //                        for (int i = 0; i < item.itemList.Count; i++)
+        //                        {
+        //                            string sql = @"INSERT INTO yh_jinxiaocun_mingxi_mssql(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+        //                                 SELECT lei_bie as cplb,[name] as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
+        //                                 FROM yh_jinxiaocun_jichuziliao_mssql WHERE id = @id";
 
-//                            var parameters = new System.Data.SqlClient.SqlParameter[]
-//                    {
-//                        new System.Data.SqlClient.SqlParameter("@price", item.itemList[i].price),
-//                        new System.Data.SqlClient.SqlParameter("@num", item.itemList[i].sjsl),
-//                        new System.Data.SqlClient.SqlParameter("@mxtype", item.itemList[i].kcsl),
-//                        new System.Data.SqlClient.SqlParameter("@orderid", item.orderid),
-//                        new System.Data.SqlClient.SqlParameter("@shijian", date_now),
-//                        new System.Data.SqlClient.SqlParameter("@shou_h", item.gonghuo),
-//                        new System.Data.SqlClient.SqlParameter("@zh_name", name),
-//                        new System.Data.SqlClient.SqlParameter("@gs_name", company),
-//                        new System.Data.SqlClient.SqlParameter("@cangku", warehouse),
-//                        new System.Data.SqlClient.SqlParameter("@id", item.itemList[i].id)
-//                    };
+        //                            var parameters = new System.Data.SqlClient.SqlParameter[]
+        //                    {
+        //                        new System.Data.SqlClient.SqlParameter("@price", item.itemList[i].price),
+        //                        new System.Data.SqlClient.SqlParameter("@num", item.itemList[i].sjsl),
+        //                        new System.Data.SqlClient.SqlParameter("@mxtype", item.itemList[i].kcsl),
+        //                        new System.Data.SqlClient.SqlParameter("@orderid", item.orderid),
+        //                        new System.Data.SqlClient.SqlParameter("@shijian", date_now),
+        //                        new System.Data.SqlClient.SqlParameter("@shou_h", item.gonghuo),
+        //                        new System.Data.SqlClient.SqlParameter("@zh_name", name),
+        //                        new System.Data.SqlClient.SqlParameter("@gs_name", company),
+        //                        new System.Data.SqlClient.SqlParameter("@cangku", warehouse),
+        //                        new System.Data.SqlClient.SqlParameter("@id", item.itemList[i].id)
+        //                    };
 
-//                            affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
-//                        }
-//                        return affectedRows;
-//                    }
-//                }
-//            }
+        //                            affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+        //                        }
+        //                        return affectedRows;
+        //                    }
+        //                }
+        //            }
 
-//            // 默认使用MySQL数据库
-//            using (ServerEntities sen = new ServerEntities())
-//            {
-//                string date_now = DateTime.Now.ToString();
-//                int affectedRows = 0;
+        //            // 默认使用MySQL数据库
+        //            using (ServerEntities sen = new ServerEntities())
+        //            {
+        //                string date_now = DateTime.Now.ToString();
+        //                int affectedRows = 0;
 
-//                for (int i = 0; i < item.itemList.Count; i++)
-//                {
-//                    string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
-//                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
-//                         from yh_jinxiaocun_jichuziliao where id = @id";
+        //                for (int i = 0; i < item.itemList.Count; i++)
+        //                {
+        //                    string sql = @"insert into yh_jinxiaocun_mingxi(cplb,cpname,cpsj,cpsl,mxtype,orderid,shijian,sp_dm,shou_h,zh_name,gs_name,cangku) 
+        //                         select lei_bie as cplb,`name` as cpname,@price as cpsj,@num as cpsl,@mxtype as mxtype,@orderid as orderid,@shijian as shijian,sp_dm,@shou_h as shou_h,@zh_name as zh_name,@gs_name as gs_name ,@cangku as cangku 
+        //                         from yh_jinxiaocun_jichuziliao where id = @id";
 
-//                    var parameters = new MySqlParameter[]
-//            {
-//                new MySqlParameter("@price", item.itemList[i].price),
-//                new MySqlParameter("@num", item.itemList[i].sjsl),
-//                new MySqlParameter("@mxtype", item.itemList[i].kcsl),
-//                new MySqlParameter("@orderid", item.orderid),
-//                new MySqlParameter("@shijian", date_now),
-//                new MySqlParameter("@shou_h", item.gonghuo),
-//                new MySqlParameter("@zh_name", name),
-//                new MySqlParameter("@gs_name", company),
-//                new MySqlParameter("@cangku", warehouse),
-//                new MySqlParameter("@id", item.itemList[i].id)
-//            };
+        //                    var parameters = new MySqlParameter[]
+        //            {
+        //                new MySqlParameter("@price", item.itemList[i].price),
+        //                new MySqlParameter("@num", item.itemList[i].sjsl),
+        //                new MySqlParameter("@mxtype", item.itemList[i].kcsl),
+        //                new MySqlParameter("@orderid", item.orderid),
+        //                new MySqlParameter("@shijian", date_now),
+        //                new MySqlParameter("@shou_h", item.gonghuo),
+        //                new MySqlParameter("@zh_name", name),
+        //                new MySqlParameter("@gs_name", company),
+        //                new MySqlParameter("@cangku", warehouse),
+        //                new MySqlParameter("@id", item.itemList[i].id)
+        //            };
 
-//                    affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
-//                }
-//                return affectedRows;
-//            }
-//        }
+        //                    affectedRows += sen.Database.ExecuteSqlCommand(sql, parameters);
+        //                }
+        //                return affectedRows;
+        //            }
+        //        }
 
         public int addPD(items item, string company, string name, string warehouse)
         {
@@ -534,7 +534,7 @@ namespace Web.Server
 
                             var parameters = new MySqlParameter[]
                     {
-                        new MySqlParameter("@price", item.itemList[i].price),
+                        new MySqlParameter("@price", "0"),
                         new MySqlParameter("@num", item.itemList[i].sjsl),
                         new MySqlParameter("@mxtype", item.itemList[i].kcsl),
                         new MySqlParameter("@orderid", item.orderid),
@@ -568,7 +568,7 @@ namespace Web.Server
                             var parameters = new System.Data.SqlClient.SqlParameter[]
                     {
                         new System.Data.SqlClient.SqlParameter("@price", System.Data.SqlDbType.NVarChar, 4000) 
-                            { Value = item.itemList[i].price ?? (object)DBNull.Value },
+                            { Value = "0" },
                         new System.Data.SqlClient.SqlParameter("@num", System.Data.SqlDbType.NVarChar, 4000) 
                             { Value = item.itemList[i].sjsl ?? (object)DBNull.Value },
                         new System.Data.SqlClient.SqlParameter("@mxtype", System.Data.SqlDbType.NVarChar, 4000) 
@@ -610,7 +610,7 @@ namespace Web.Server
 
                     var parameters = new MySqlParameter[]
             {
-                new MySqlParameter("@price", item.itemList[i].price),
+                new MySqlParameter("@price", "0"),
                 new MySqlParameter("@num", item.itemList[i].sjsl),
                 new MySqlParameter("@mxtype", item.itemList[i].kcsl),
                 new MySqlParameter("@orderid", item.orderid),
@@ -800,7 +800,7 @@ namespace Web.Server
 
         //public List<yh_jinxiaocun_mingxi> ming_xi_select(string gs_name, int limit1, int limit2, String kstime88, String jstime88)
         //{
-            
+
         //    using (ServerEntities sen = new ServerEntities()) {
         //       var limit = 20;
         //       var riqi1 = DateTime.Now.ToString("yyyy-MM-01");
@@ -816,7 +816,7 @@ namespace Web.Server
         //        //    riqi2 = DateTime.Now.ToString("yyyy-MM-31");
         //        //   // DateTime dt2 = DateTime.Parse(DateTime.Now.ToString("yyyy")).ToString() + "/" + DateTime.Now.ToString("MM")).ToString() + "/1").AddMonths(1).AddDays(-1);
         //        //    riqi2 = DateTime.Parse(DateTime.Now.ToString("yyyy").ToString() + "/" + DateTime.Now.ToString("MM").ToString() + "/1").AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
-           
+
         //        //   // riqi2 = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd")).AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
         //        //}
 
@@ -1128,7 +1128,7 @@ namespace Web.Server
 
         //        //string sql = "select mx.sp_dm,mx.cpname,mx.cplb,ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = '' group by sp_dm,cpname,cplb) as mx left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm having mx.cpname like '%'+ @cpname + '%' and mx.sp_dm like '%' + @sp_dm + '%' and mx.cplb like '%' + @cplb + '%'";
         //        string sql = "select mx.sp_dm,mx.cpname,mx.cplb,ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm where mx.cpname = @cpname and mx.sp_dm like '%" + sp_dm + "%' and mx.cplb like '%" + cplb + "%'";
-                
+
         //        //string sql = "select mx.sp_dm,mx.cpname,mx.cplb,ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm having mx.cpname = @cpname";
         //        //string sql = "select mx.shijian,mx.orderid,mx.sp_dm,mx.cpname,ifnull(ruku.cpsl,0) as ruku_num,ifnull(ruku.cp_price,0) as ruku_price,ifnull(chuku.cpsl,0) as chuku_num,ifnull(chuku.cp_price,0) as chuku_price from yh_jinxiaocun_mingxi as mx left join (select orderid,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '入库' and gs_name = @gongxi group by orderid) as ruku on mx.orderid = ruku.orderid left join (select orderid,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype = '出库' and gs_name = @gongxi group by orderid) as chuku on mx.orderid = chuku.orderid where mx.gs_name = @gongxi GROUP BY mx.orderid having mx.cpname = @cpname";
         //        var result = sen.Database.SqlQuery<MingXiItem>(sql, @params);
@@ -1145,20 +1145,34 @@ namespace Web.Server
                 {
                     using (ServerEntities sen = new ServerEntities())
                     {
+//                        string sql = @"select mx.sp_dm,mx.cpname,mx.cplb,
+//                             ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
+//                             ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price 
+//                             from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx 
+//                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
+//                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
+//                             where mx.cpname = @cpname and mx.sp_dm like @sp_dm and mx.cplb like @cplb";
                         string sql = @"select mx.sp_dm,mx.cpname,mx.cplb,
-                             ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
-                             ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price 
-                             from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by sp_dm,cpname,cplb) as mx 
-                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on mx.sp_dm=rk.sp_dm 
-                             left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on ck.sp_dm=rk.sp_dm 
-                             where mx.cpname = @cpname and mx.sp_dm like @sp_dm and mx.cplb like @cplb";
+                               ifnull(rk.cpsl,0) as ruku_num,ifnull(rk.cp_price,0) as ruku_price,
+                               ifnull(ck.cpsl,0) as chuku_num,ifnull(ck.cp_price,0) as chuku_price
+                               from (select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi where gs_name = @gongxi group by
+   sp_dm,cpname,cplb) as mx
+                               left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from
+  yh_jinxiaocun_mingxi where mxtype in ('入库','调拨入库','盘盈入库') and gs_name = @gongxi group by sp_dm) as rk on
+  mx.sp_dm=rk.sp_dm
+                               left join (select sp_dm,sum(cpsl) as cpsl,sum(cpsl*cpsj) as cp_price from
+  yh_jinxiaocun_mingxi where mxtype in ('出库','调拨出库','盘亏出库') and gs_name = @gongxi group by sp_dm) as ck on
+  ck.sp_dm=rk.sp_dm
+                               where (@cpname is null or @cpname = '' or mx.cpname = @cpname)
+                               and (@sp_dm is null or @sp_dm = '' or mx.sp_dm like @sp_dm)
+                               and (@cplb is null or @cplb = '' or mx.cplb like @cplb)";
 
                         var @params = new MySqlParameter[]{
-                    new MySqlParameter("@cpname", cpname ?? (object)DBNull.Value),
-                    new MySqlParameter("@gongxi", gongsi ?? (object)DBNull.Value),
-                    new MySqlParameter("@sp_dm", "%" + sp_dm + "%"),
-                    new MySqlParameter("@cplb", "%" + cplb + "%")
-                };
+                                    new MySqlParameter("@cpname", cpname ?? (object)DBNull.Value),
+                                    new MySqlParameter("@gongxi", gongsi ?? (object)DBNull.Value),
+                                    new MySqlParameter("@sp_dm", "%" + sp_dm + "%"),
+                                    new MySqlParameter("@cplb", "%" + cplb + "%")
+                                };
 
                         var result = sen.Database.SqlQuery<MingXiItem>(sql, @params);
                         return result.ToList();
@@ -1168,53 +1182,53 @@ namespace Web.Server
                 {
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
-                        string sql = @"SELECT 
-    mx.sp_dm,
-    mx.cpname,
-    mx.cplb,
-    -- 入库数量 - 返回 int 类型
-    CAST(ISNULL(rk.cpsl, 0) AS INT) as ruku_num,
-    -- 入库金额 - 返回 decimal 类型
-    CAST(ISNULL(rk.cp_price, 0) AS DECIMAL(18,2)) as ruku_price,
-    -- 出库数量 - 返回 int 类型
-    CAST(ISNULL(ck.cpsl, 0) AS INT) as chuku_num,
-    -- 出库金额 - 返回 decimal 类型
-    CAST(ISNULL(ck.cp_price, 0) AS DECIMAL(18,2)) as chuku_price 
-FROM (
-    SELECT sp_dm, cpname, cplb 
-    FROM yh_jinxiaocun_mingxi_mssql 
-    WHERE gs_name = @gongxi 
-    GROUP BY sp_dm, cpname, cplb
-) as mx 
-LEFT JOIN (
-    SELECT 
-        sp_dm,
-        -- 内部计算使用 decimal
-        SUM(CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))) as cpsl,
-        SUM(
-            CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) * 
-            CAST(ISNULL(cpsj, '0') AS DECIMAL(18,2))
-        ) as cp_price 
-    FROM yh_jinxiaocun_mingxi_mssql 
-    WHERE mxtype in ('入库','调拨入库','盘盈入库') AND gs_name = @gongxi 
-    GROUP BY sp_dm
-) as rk ON mx.sp_dm = rk.sp_dm 
-LEFT JOIN (
-    SELECT 
-        sp_dm,
-        -- 内部计算使用 decimal
-        SUM(CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))) as cpsl,
-        SUM(
-            CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) * 
-            CAST(ISNULL(cpsj, '0') AS DECIMAL(18,2))
-        ) as cp_price 
-    FROM yh_jinxiaocun_mingxi_mssql 
-    WHERE mxtype in ('出库','调拨出库','盘亏出库') AND gs_name = @gongxi 
-    GROUP BY sp_dm
-) as ck ON ck.sp_dm = rk.sp_dm 
-WHERE mx.cpname = @cpname 
-    AND mx.sp_dm LIKE @sp_dm 
-    AND mx.cplb LIKE @cplb";
+                        string sql = @"SELECT
+      mx.sp_dm,
+      mx.cpname,
+      mx.cplb,
+      -- 入库数量 - 返回 int 类型
+      CAST(ISNULL(rk.cpsl, 0) AS INT) as ruku_num,
+      -- 入库金额 - 返回 decimal 类型
+      CAST(ISNULL(rk.cp_price, 0) AS DECIMAL(18,2)) as ruku_price,
+      -- 出库数量 - 返回 int 类型
+      CAST(ISNULL(ck.cpsl, 0) AS INT) as chuku_num,
+      -- 出库金额 - 返回 decimal 类型
+      CAST(ISNULL(ck.cp_price, 0) AS DECIMAL(18,2)) as chuku_price
+  FROM (
+      SELECT sp_dm, cpname, cplb
+      FROM yh_jinxiaocun_mingxi_mssql
+      WHERE gs_name = @gongxi
+      GROUP BY sp_dm, cpname, cplb
+  ) as mx
+  LEFT JOIN (
+      SELECT
+          sp_dm,
+          -- 内部计算使用 decimal
+          SUM(CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))) as cpsl,
+          SUM(
+              CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) *
+              CAST(ISNULL(cpsj, '0') AS DECIMAL(18,2))
+          ) as cp_price
+      FROM yh_jinxiaocun_mingxi_mssql
+      WHERE mxtype in ('入库','调拨入库','盘盈入库') AND gs_name = @gongxi
+      GROUP BY sp_dm
+  ) as rk ON mx.sp_dm = rk.sp_dm
+  LEFT JOIN (
+      SELECT
+          sp_dm,
+          -- 内部计算使用 decimal
+          SUM(CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2))) as cpsl,
+          SUM(
+              CAST(ISNULL(cpsl, '0') AS DECIMAL(18,2)) *
+              CAST(ISNULL(cpsj, '0') AS DECIMAL(18,2))
+          ) as cp_price
+      FROM yh_jinxiaocun_mingxi_mssql
+      WHERE mxtype in ('出库','调拨出库','盘亏出库') AND gs_name = @gongxi
+      GROUP BY sp_dm
+  ) as ck ON ck.sp_dm = rk.sp_dm
+  WHERE (@cpname IS NULL OR @cpname = '' OR mx.cpname = @cpname)
+      AND (@sp_dm IS NULL OR @sp_dm = '' OR mx.sp_dm LIKE @sp_dm)
+      AND (@cplb IS NULL OR @cplb = '' OR mx.cplb LIKE @cplb)";
 
                         var @params = new System.Data.SqlClient.SqlParameter[]{
                     new System.Data.SqlClient.SqlParameter("@cpname", cpname ?? (object)DBNull.Value),

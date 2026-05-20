@@ -525,56 +525,88 @@ WHERE RowNum BETWEEN @startRow AND @endRow";
                 {
                     using (yh_jinxiaocun_excelEntities3 sen = new yh_jinxiaocun_excelEntities3())
                     {
-                        string sql = @"select cpid as sp_dm,cpname as [name],cplb as lei_bie,qcsl as jq_cpsl,qcje as jq_price,
-                    rksl as mx_ruku_cpsl,rkje as mx_ruku_price,cksl as mx_chuku_cpsl,ckje as mx_chuku_price,
-                    jcsl as jc_sl,jcje as jc_price,isnull(bian_yuan.bianyuan,'') as bianyuan,mark1 
-                    from (
-                        select isnull(link_rk.cpid,'') as cpid,isnull(link_rk.cpname,'') as cpname,isnull(link_rk.cplb,'') as cplb,
-                        isnull(link_rk.cpsl,0) as qcsl,isnull(link_rk.cpje,0) as qcje,isnull(link_rk.rksl,0) as rksl,
-                        isnull(link_rk.rkje,0) as rkje,isnull(ck.cksl,0) as cksl,isnull(ck.ckje,0) as ckje,
-                        isnull(cpsl,0)+isnull(rksl,0)-isnull(cksl,0) as jcsl,isnull(cpje,0)+isnull(rkje,0)-isnull(ckje,0) as jcje 
-                        from (
-                            select link_qc.cpid,link_qc.cpname,link_qc.cplb,link_qc.cpsl,link_qc.cpje,rk.rksl,rk.rkje 
-                            from(
-                                select cp.cpid,cp.cpname,cp.cplb,qc.cpsl,qc.cpje 
-                                from(
-                                    select cpid,cpname,cplb from yh_jinxiaocun_qichushu_mssql where gs_name = @gs_name 
-                                    union 
-                                    select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi_mssql where gs_name = @gs_name
-                                ) as cp 
+                        string sql = @"select 
+                                cpid as sp_dm,
+                                cpname as [name],
+                                cplb as lei_bie,
+                                -- ✅ 修改：直接用 cpsl（已经在子查询中转换好了）
+                                CONVERT(VARCHAR(50), isnull(cpsl,0)) as jq_cpsl,
+                                CONVERT(VARCHAR(50), isnull(cpje,0)) as jq_price,
+                                CONVERT(VARCHAR(50), isnull(rksl,0)) as mx_ruku_cpsl,
+                                CONVERT(VARCHAR(50), isnull(rkje,0)) as mx_ruku_price,
+                                CONVERT(VARCHAR(50), isnull(cksl,0)) as mx_chuku_cpsl,
+                                CONVERT(VARCHAR(50), isnull(ckje,0)) as mx_chuku_price,
+                                CONVERT(VARCHAR(50), isnull(jcsl,0)) as jc_sl,
+                                CONVERT(VARCHAR(50), isnull(jcje,0)) as jc_price,
+                                isnull(bian_yuan.bianyuan,'') as bianyuan,
+                                mark1 
+                            from (
+                                select 
+                                    isnull(link_rk.cpid,'') as cpid,
+                                    isnull(link_rk.cpname,'') as cpname,
+                                    isnull(link_rk.cplb,'') as cplb,
+                                    -- ✅ 在这里直接用别名（不加 link_rk. 前缀）
+                                    isnull(link_rk.cpsl,0) as cpsl,
+                                    isnull(link_rk.cpje,0) as cpje,
+                                    isnull(link_rk.rksl,0) as rksl,
+                                    isnull(link_rk.rkje,0) as rkje,
+                                    isnull(ck.cksl,0) as cksl,
+                                    isnull(ck.ckje,0) as ckje,
+                                    isnull(cpsl,0)+isnull(rksl,0)-isnull(cksl,0) as jcsl,
+                                    isnull(cpje,0)+isnull(rkje,0)-isnull(ckje,0) as jcje 
+                                from (
+                                    select link_qc.cpid,link_qc.cpname,link_qc.cplb,
+                                           link_qc.cpsl,link_qc.cpje,rk.rksl,rk.rkje 
+                                    from(
+                                        select cp.cpid,cp.cpname,cp.cplb,qc.cpsl,qc.cpje 
+                                        from(
+                                            select cpid,cpname,cplb from yh_jinxiaocun_qichushu_mssql where gs_name = @gs_name 
+                                            union 
+                                            select sp_dm,cpname,cplb from yh_jinxiaocun_mingxi_mssql where gs_name = @gs_name
+                                        ) as cp 
+                                        left join (
+                                            select cpid,cplb,cpname,
+                                                sum(CAST(NULLIF(cpsl, '') AS DECIMAL(10,2))) as cpsl,
+                                                sum(CAST(NULLIF(cpsj, '') AS DECIMAL(10,2)) * CAST(NULLIF(cpsl, '') AS DECIMAL(10,2))) as cpje
+                                            from yh_jinxiaocun_qichushu_mssql 
+                                            where gs_name = @gs_name 
+                                            GROUP BY cpid,cpname,cplb
+                                        ) as qc on cp.cpid = qc.cpid and cp.cpname = qc.cpname and cp.cplb = qc.cplb
+                                    ) as link_qc 
+                                    left join (
+                                        select sp_dm,cpname,cplb,
+                                            sum(CAST(NULLIF(cpsl, '') AS DECIMAL(10,2))) as rksl,
+                                            sum(CAST(NULLIF(cpsl, '') AS DECIMAL(10,2)) * CAST(NULLIF(cpsj, '') AS DECIMAL(10,2))) as rkje
+                                        from yh_jinxiaocun_mingxi_mssql 
+                                        where mxtype = '入库' and gs_name = @gs_name and shijian between @start_time and @end_time 
+                                        group by sp_dm,cpname,cplb
+                                    ) as rk on rk.sp_dm = link_qc.cpid and rk.cpname = link_qc.cpname and rk.cplb = link_qc.cplb
+                                ) as link_rk 
                                 left join (
-                                    select cpid,cplb,cpname,sum(cpsl) as cpsl,sum(cpsj*cpsl) as cpje 
-                                    from yh_jinxiaocun_qichushu_mssql where gs_name = @gs_name 
-                                    GROUP BY cpid,cpname,cplb
-                                ) as qc on cp.cpid = qc.cpid and cp.cpname = qc.cpname and cp.cplb = qc.cplb
-                            ) as link_qc 
-                            left join (
-                                select sp_dm,cpname,cplb,sum(cpsl) as rksl,sum(cpsl*cpsj) as rkje 
-                                from yh_jinxiaocun_mingxi_mssql 
-                                where mxtype = '入库' and gs_name = @gs_name and shijian between @start_time and @end_time 
-                                group by sp_dm,cpname,cplb
-                            ) as rk on rk.sp_dm = link_qc.cpid and rk.cpname = link_qc.cpname and rk.cplb = link_qc.cplb
-                        ) as link_rk 
-                        left join (
-                            select sp_dm,cpname,cplb,sum(cpsl) as cksl,sum(cpsl*cpsj) as ckje 
-                            from yh_jinxiaocun_mingxi_mssql 
-                            where mxtype = '出库' and gs_name = @gs_name and shijian between @start_time and @end_time 
-                            group by sp_dm,cpname,cplb
-                        ) as ck on ck.sp_dm = link_rk.cpid and ck.cpname = link_rk.cpname and ck.cplb = link_rk.cplb
-                    ) as jxc 
-                    left join(
-                        select sp_dm,lei_bie,[name],bianyuan,mark1 
-                        from yh_jinxiaocun_jichuziliao_mssql where gs_name = @gs_name
-                    ) as bian_yuan on jxc.cpid = bian_yuan.sp_dm and jxc.cpname = bian_yuan.[name] and jxc.cplb = bian_yuan.lei_bie  
-                    where cpid like @code";
+                                    select sp_dm,cpname,cplb,
+                                        sum(CAST(NULLIF(cpsl, '') AS DECIMAL(10,2))) as cksl,
+                                        sum(CAST(NULLIF(cpsl, '') AS DECIMAL(10,2)) * CAST(NULLIF(cpsj, '') AS DECIMAL(10,2))) as ckje
+                                    from yh_jinxiaocun_mingxi_mssql 
+                                    where mxtype = '出库' and gs_name = @gs_name and shijian between @start_time and @end_time 
+                                    group by sp_dm,cpname,cplb
+                                ) as ck on ck.sp_dm = link_rk.cpid and ck.cpname = link_rk.cpname and ck.cplb = link_rk.cplb
+                            ) as jxc 
+                            left join(
+                                select sp_dm,lei_bie,[name],bianyuan,mark1 
+                                from yh_jinxiaocun_jichuziliao_mssql where gs_name = @gs_name
+                            ) as bian_yuan on jxc.cpid = bian_yuan.sp_dm and jxc.cpname = bian_yuan.[name] and jxc.cplb = bian_yuan.lei_bie  
+                            where cpid like @code";
+
+
+
 
                         var parameters = new System.Data.SqlClient.SqlParameter[]
-                {
-                    new System.Data.SqlClient.SqlParameter("@gs_name", gs_name),
-                    new System.Data.SqlClient.SqlParameter("@start_time", start_time),
-                    new System.Data.SqlClient.SqlParameter("@end_time", end_time),
-                    new System.Data.SqlClient.SqlParameter("@code", "%" + code + "%")
-                };
+                                {
+                                    new System.Data.SqlClient.SqlParameter("@gs_name", gs_name),
+                                    new System.Data.SqlClient.SqlParameter("@start_time", start_time),
+                                    new System.Data.SqlClient.SqlParameter("@end_time", end_time),
+                                    new System.Data.SqlClient.SqlParameter("@code", "%" + code + "%")
+                                };
 
                         var result = sen.Database.SqlQuery<jxc_z_info>(sql, parameters);
                         return result.ToList();

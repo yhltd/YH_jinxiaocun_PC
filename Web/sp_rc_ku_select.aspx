@@ -119,11 +119,11 @@
     <form id="form1" runat="server">
         <div>
             <div class="d-header top-div">
-                <label class="top-text">商品代码：</label>
+                <label class="top-text" style="color:white">商品代码：</label>
                     <asp:TextBox ID='sp_dm' class='select_xl' Autocomplete='off'  runat="server" placeholder="商品代码"/>
-                <label class="top-text" style="margin-left:10px">商品类别：</label>
+                <label class="top-text" style="margin-left:10px;color:white">商品类别：</label>
                     <asp:TextBox ID='cplb' class='select_xl' Autocomplete='off'  runat="server" placeholder="商品类别"/>
-                <label class="top-text" style="margin-left:10px">商品名称：</label>
+                <label class="top-text" style="margin-left:10px;color:white">商品名称：</label>
                 <select class="select_xl" name="kui_lei">
                     <option>请选择</option>
                     <%           

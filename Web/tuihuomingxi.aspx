@@ -676,7 +676,7 @@
                     
                     <asp:Button ID="del_mx_btu" OnClick="del_mingxi" class="mingxi_input_tr_tj" style="width:61px" Text="删除" runat="server" />
                     <asp:Button ID="Button4" CssClass="mingxi_input_tr_tj" style="width:61px" Text="保存" runat="server" 
-    OnClientClick="return false;" OnClick="mx_save" ClientIDMode="Static" />
+   OnClientClick="return handleSaveClick(event);" OnClick="mx_save" ClientIDMode="Static" />
                     <input type="button" id="qr_print" class="mingxi_input_tr_tj" value="打印二维码">
                     <input type="button" id="barcode_print" class="mingxi_input_tr_tj" value="打印条形码">
                 </div>
